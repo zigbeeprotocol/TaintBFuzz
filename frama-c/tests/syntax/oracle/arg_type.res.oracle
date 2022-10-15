@@ -1,0 +1,7 @@
+[kernel] Parsing arg_type.i (no preprocessing)
+[kernel] arg_type.i:15: User Error: 
+  Declaration of g does not match previous declaration from arg_type.i:13 (different integer types:
+  'int' and 'short').
+[kernel] arg_type.i:15: User Error: Cannot resolve variable x
+[kernel] User Error: stopping on file "arg_type.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

@@ -1,0 +1,62 @@
+# frama-c -wp [...]
+[kernel] Parsing decreases.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp:hypothesis] decreases.i:44: Warning: 'Rel' relation must be well-founded
+[wp:hypothesis] decreases.i:25: Warning: 'Rel' relation must be well-founded
+[wp:hypothesis] decreases.i:30: Warning: 'Rel' relation must be well-founded
+[wp] decreases.i:71: Warning: No decreases clause for missing_2
+[wp:hypothesis] decreases.i:107: Warning: 'Wrong' relation must be well-founded
+[wp] decreases.i:109: Warning: 
+  On call to mw1, relation (Wrong) does not match caller (Rel)
+[wp:hypothesis] decreases.i:103: Warning: 'Rel' relation must be well-founded
+[wp] decreases.i:105: Warning: 
+  On call to mw2, relation (Rel) does not match caller (Wrong)
+[wp] 27 goals scheduled
+[wp] [Qed] Goal typed_fact_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_fact_variant : Valid
+[wp] [Alt-Ergo] Goal typed_fails_fact_variant : Unsuccess
+[wp] [Alt-Ergo] Goal typed_facto_gen_variant : Valid
+[wp] [Alt-Ergo] Goal typed_fails_facto_gen_variant : Unsuccess
+[wp] [Qed] Goal typed_fact_i_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_fact_i_terminates_part2 : Valid
+[wp] [Qed] Goal typed_fact_i_variant : Valid
+[wp] [Qed] Goal typed_fails_fact_i_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_fails_fact_i_terminates_part2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_fails_fact_i_variant : Unsuccess
+[wp] [Alt-Ergo] Goal typed_m2_variant_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_m2_variant_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_m1_variant : Valid
+[wp] [Alt-Ergo] Goal typed_missing_variant_part1 : Unsuccess (Degenerated)
+[wp] [Alt-Ergo] Goal typed_missing_variant_part2 : Valid
+[wp] [Qed] Goal typed_mt2_terminates_part1 : Valid
+[wp] [Qed] Goal typed_mt2_terminates_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_mt2_variant_part1 : Valid
+[wp] [Qed] Goal typed_mt2_variant_part2 : Valid
+[wp] [Qed] Goal typed_mt1_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_mt1_terminates_part2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_mt1_variant : Valid
+[wp] [Alt-Ergo] Goal typed_mw2_variant_part1 : Unsuccess (Degenerated)
+[wp] [Alt-Ergo] Goal typed_mw2_variant_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_mw1_variant : Unsuccess (Degenerated)
+[wp] [Qed] Goal typed_se_variant : Valid
+[wp] Proved goals:   19 / 27
+  Qed:             9 
+  Alt-Ergo:       10  (unsuccess: 8)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  fact                      1        1        2       100%
+  fails_fact                -        -        1       0.0%
+  facto_gen                 -        1        1       100%
+  fails_facto_gen           -        -        1       0.0%
+  fact_i                    2        1        3       100%
+  fails_fact_i              1        -        3      33.3%
+  m2                        -        2        2       100%
+  m1                        -        1        1       100%
+  missing                   -        1        2      50.0%
+  mt2                       3        1        4       100%
+  mt1                       1        1        3      66.7%
+  mw2                       -        1        2      50.0%
+  mw1                       -        -        1       0.0%
+  se                        1        -        1       100%
+------------------------------------------------------------

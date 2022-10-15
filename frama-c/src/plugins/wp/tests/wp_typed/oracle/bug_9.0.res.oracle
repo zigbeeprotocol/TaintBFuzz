@@ -1,0 +1,12 @@
+# frama-c -wp [...]
+[kernel] Parsing bug_9.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Assertion (file bug_9.c, line 14):
+Prove: true.
+
+------------------------------------------------------------

@@ -1,0 +1,97 @@
+[kernel] Parsing ghost_cv_incompat.i (no preprocessing)
+[kernel:ghost:bad-use] ghost_cv_incompat.i:27: Warning: 
+  Invalid cast of '& ng' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:28: Warning: 
+  Invalid cast of 'gl_gp' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:33: Warning: 
+  Invalid cast of 'gl_p00' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:33: Warning: 
+  Invalid cast of 'gl_p00' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:33: Warning: 
+  Invalid cast of 'gl_p01' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:43: Warning: 
+  Invalid cast of '& i' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:44: Warning: 
+  Invalid cast of 'p' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:45: Warning: 
+  Invalid cast of 'a' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:51: Warning: 
+  Invalid cast of 'nga' from 'int (*)[10]' to 'int \ghost (*)[10]'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:58: Warning: 
+  Invalid cast of 'p2' from 'int * \ghost *' to 'int \ghost * \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:59: Warning: 
+  Invalid cast of 'array' from 'int * \ghost *' to 'int \ghost * \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:61: Warning: 
+  Invalid cast of '*p2' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:62: Warning: 
+  Invalid cast of 'array[0]' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:66: Warning: 
+  Invalid cast of 'p4' from 'int * \ghost (*)[10]' to 'int \ghost * \ghost * \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:71: Warning: 
+  Invalid cast of '& ng_var.field' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:79: Warning: 
+  Invalid cast of '& i' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:80: Warning: 
+  Invalid cast of 'p' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:81: Warning: 
+  Invalid cast of 'a' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:83: Warning: 
+  Cannot cast return of 'function' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:86: Warning: 
+  Invalid cast of 'p00' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:86: Warning: 
+  Invalid cast of 'p00' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:86: Warning: 
+  Invalid cast of 'p01' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:94: Warning: 
+  Invalid cast of '& i' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:95: Warning: 
+  Invalid cast of '& i' from 'int *' to 'int \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:104: Warning: 
+  Invalid cast of '& g' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:105: Warning: 
+  Invalid cast of 'gl_gpg' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:120: Warning: 
+  Invalid cast of '& i' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:121: Warning: 
+  Invalid cast of 'p' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:122: Warning: 
+  Invalid cast of 'a' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:128: Warning: 
+  Invalid cast of 'gpai' from 'int (*)[10]' to 'int \ghost (*)[10]'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:135: Warning: 
+  Invalid cast of 'p2' from 'int \ghost * \ghost *' to 'int * \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:136: Warning: 
+  Invalid cast of 'array' from 'int \ghost * \ghost *' to 'int * \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:138: Warning: 
+  Invalid cast of '*p2' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:139: Warning: 
+  Invalid cast of 'array[0]' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:143: Warning: 
+  Invalid cast of 'p4' from 'int \ghost * \ghost (*)[10]' to 'int * \ghost * \ghost *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:149: Warning: 
+  Invalid cast of '& g_var.field' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:163: Warning: 
+  Invalid cast of '& i' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:164: Warning: 
+  Invalid cast of 'p' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:165: Warning: 
+  Invalid cast of 'a' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:167: Warning: 
+  Cannot cast return of 'function_g' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:170: Warning: 
+  Invalid cast of 'p00' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:170: Warning: 
+  Invalid cast of 'p00' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:170: Warning: 
+  Invalid cast of 'p01' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:178: Warning: 
+  Invalid cast of '& b' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:179: Warning: 
+  Invalid cast of '& b' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:193: Warning: 
+  Invalid cast of '& g_0' from 'int \ghost *' to 'int *'
+[kernel:ghost:bad-use] ghost_cv_incompat.i:194: Warning: 
+  Invalid cast of '& g_0' from 'int \ghost *' to 'int *'
+[kernel] Warning: warning ghost:bad-use treated as deferred error. See above messages for more information.
+[kernel] Frama-C aborted: invalid user input.

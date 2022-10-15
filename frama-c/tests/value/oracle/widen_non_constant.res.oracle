@@ -1,0 +1,160 @@
+[kernel] Parsing widen_non_constant.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  N ∈ {24}
+  A[0..23] ∈ [--..--]
+  B[0..25] ∈ [--..--]
+  C[0..23] ∈ [--..--]
+  t[0..19] ∈ {0}
+  u[0..39] ∈ {0}
+[eva] computing for function main1 <- main.
+  Called from widen_non_constant.i:97.
+[eva] widen_non_constant.i:11: Frama_C_show_each_out: {0}
+[eva] widen_non_constant.i:13: Frama_C_show_each_in: {0}, {1}
+[eva] widen_non_constant.i:12: starting to merge loop iterations
+[eva] widen_non_constant.i:13: Frama_C_show_each_in: {0}, {1; 2}
+[eva] widen_non_constant.i:13: Frama_C_show_each_in: {0}, {1; 2; 3}
+[eva] widen_non_constant.i:13: Frama_C_show_each_in: {0}, [1..23]
+[eva] widen_non_constant.i:10: starting to merge loop iterations
+[eva] widen_non_constant.i:11: Frama_C_show_each_out: {0; 1}
+[eva] widen_non_constant.i:13: Frama_C_show_each_in: {0; 1}, [1..23]
+[eva] widen_non_constant.i:11: Frama_C_show_each_out: {0; 1; 2}
+[eva] widen_non_constant.i:13: Frama_C_show_each_in: {0; 1; 2}, [1..23]
+[eva] widen_non_constant.i:11: Frama_C_show_each_out: [0..22]
+[eva] widen_non_constant.i:13: Frama_C_show_each_in: [0..22], [1..23]
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from widen_non_constant.i:98.
+[eva] widen_non_constant.i:27: Frama_C_show_each_out: {0}
+[eva] widen_non_constant.i:29: Frama_C_show_each_in: {0}, {1}
+[eva] widen_non_constant.i:28: starting to merge loop iterations
+[eva] widen_non_constant.i:29: Frama_C_show_each_in: {0}, {1; 2}
+[eva] widen_non_constant.i:29: Frama_C_show_each_in: {0}, {1; 2; 3}
+[eva] widen_non_constant.i:29: Frama_C_show_each_in: {0}, [1..23]
+[eva] widen_non_constant.i:26: starting to merge loop iterations
+[eva] widen_non_constant.i:27: Frama_C_show_each_out: {0; 1}
+[eva] widen_non_constant.i:29: Frama_C_show_each_in: {0; 1}, [1..23]
+[eva] widen_non_constant.i:27: Frama_C_show_each_out: {0; 1; 2}
+[eva] widen_non_constant.i:29: Frama_C_show_each_in: {0; 1; 2}, [1..23]
+[eva] widen_non_constant.i:27: Frama_C_show_each_out: [0..22]
+[eva] widen_non_constant.i:29: Frama_C_show_each_in: [0..22], [1..23]
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] computing for function main3 <- main.
+  Called from widen_non_constant.i:99.
+[eva] widen_non_constant.i:46: Frama_C_show_each_out: {0}
+[eva] widen_non_constant.i:48: Frama_C_show_each_in: {0}, {1}
+[eva] widen_non_constant.i:47: starting to merge loop iterations
+[eva] widen_non_constant.i:48: Frama_C_show_each_in: {0}, {1; 2}
+[eva] widen_non_constant.i:48: Frama_C_show_each_in: {0}, {1; 2; 3}
+[eva] widen_non_constant.i:48: Frama_C_show_each_in: {0}, [1..23]
+[eva] widen_non_constant.i:45: starting to merge loop iterations
+[eva] widen_non_constant.i:46: Frama_C_show_each_out: {0; 1}
+[eva] widen_non_constant.i:48: Frama_C_show_each_in: {0; 1}, [1..23]
+[eva] widen_non_constant.i:46: Frama_C_show_each_out: {0; 1; 2}
+[eva] widen_non_constant.i:48: Frama_C_show_each_in: {0; 1; 2}, [1..23]
+[eva] widen_non_constant.i:46: Frama_C_show_each_out: [0..22]
+[eva] widen_non_constant.i:48: Frama_C_show_each_in: [0..22], [1..23]
+[eva] Recording results for main3
+[eva] Done for function main3
+[eva] computing for function main4 <- main.
+  Called from widen_non_constant.i:100.
+[eva] widen_non_constant.i:63: starting to merge loop iterations
+[eva] widen_non_constant.i:69: starting to merge loop iterations
+[eva] widen_non_constant.i:72: Frama_C_show_each: {43}
+[eva] widen_non_constant.i:75: starting to merge loop iterations
+[eva] widen_non_constant.i:78: 
+  Frama_C_show_each: {35; 36; 37; 38; 39; 40; 41; 42}
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main5 <- main.
+  Called from widen_non_constant.i:101.
+[eva] widen_non_constant.i:90: starting to merge loop iterations
+[eva] Recording results for main5
+[eva] Done for function main5
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  i ∈ {24} or UNINITIALIZED
+  j ∈ {23}
+[eva:final-states] Values at end of function main2:
+  i ∈ {24; 25} or UNINITIALIZED
+  j ∈ {23; 24; 25}
+[eva:final-states] Values at end of function main3:
+  i ∈ [24..2147483647] or UNINITIALIZED
+  j ∈ [23..2147483647]
+  p ∈ {{ &C[0] }}
+[eva:final-states] Values at end of function main4:
+  t[0] ∈ {-1}
+   [1..19] ∈ [0..18]
+  u[0..39] ∈ [0..42]
+  i ∈ {19}
+  j ∈ {35; 36; 37; 38; 39; 40; 41; 42}
+  maxi ∈ {19}
+  maxj ∈ {35}
+[eva:final-states] Values at end of function main5:
+  i ∈ {32}
+  ptr ∈ {{ (void *)&sub }}
+[eva:final-states] Values at end of function main:
+  t[0] ∈ {-1}
+   [1..19] ∈ [0..18]
+  u[0..39] ∈ [0..42]
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main3
+[from] Done for function main3
+[from] Computing for function main4
+[from] Done for function main4
+[from] Computing for function main5
+[from] Done for function main5
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  NO EFFECTS
+[from] Function main2:
+  NO EFFECTS
+[from] Function main3:
+  NO EFFECTS
+[from] Function main4:
+  t[0] FROM \nothing
+   [1..19] FROM \nothing (and SELF)
+  u[0..39] FROM \nothing (and SELF)
+[from] Function main5:
+  NO EFFECTS
+[from] Function main:
+  t[0] FROM \nothing
+   [1..19] FROM \nothing (and SELF)
+  u[0..39] FROM \nothing (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    i; j
+[inout] Inputs for function main1:
+    N; A[0..23]
+[inout] Out (internal) for function main2:
+    i; j
+[inout] Inputs for function main2:
+    N; B[0..23]
+[inout] Out (internal) for function main3:
+    i; j; p
+[inout] Inputs for function main3:
+    N; C[0..23]
+[inout] Out (internal) for function main4:
+    t[0..19]; u[0..39]; i; j; maxi; maxj
+[inout] Inputs for function main4:
+    \nothing
+[inout] Out (internal) for function main5:
+    i; ptr
+[inout] Inputs for function main5:
+    \nothing
+[inout] Out (internal) for function main:
+    t[0..19]; u[0..39]
+[inout] Inputs for function main:
+    N; A[0..23]; B[0..23]; C[0..23]

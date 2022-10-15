@@ -1,0 +1,10 @@
+[kernel] Parsing array_cast_bts1099.i (no preprocessing)
+[kernel] array_cast_bts1099.i:12: User Error: 
+  Cast over a non-scalar type t
+  10      int tab1[4];
+  11      u* p = &tab1;
+  12      t* p2 = (t) p;
+        ^^^^^^^^^^^^^^^^
+  13    }
+[kernel] User Error: stopping on file "array_cast_bts1099.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

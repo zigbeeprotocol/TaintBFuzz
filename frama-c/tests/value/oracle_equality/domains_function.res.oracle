@@ -1,0 +1,52 @@
+19c19
+< [eva] domains_function.c:92: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:92: Frama_C_show_each_top: {3}
+27c27
+< [eva] domains_function.c:77: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:77: Frama_C_show_each_top: {1}
+30c30
+< [eva] domains_function.c:96: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:96: Frama_C_show_each_top: {1}
+33c33
+< [eva] domains_function.c:84: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:84: Frama_C_show_each_top: {2}
+36c36
+< [eva] domains_function.c:98: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:98: Frama_C_show_each_top: {2}
+55c55
+< [eva] domains_function.c:84: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:84: Frama_C_show_each_top: {2}
+58c58
+< [eva] domains_function.c:113: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:113: Frama_C_show_each_top: {2}
+71c71
+< [eva] domains_function.c:55: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:55: Frama_C_show_each_top: {42}
+99c99
+< [eva] domains_function.c:64: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:64: Frama_C_show_each_top: {42}
+106c106
+<   result ∈ [--..--]
+---
+>   result ∈ {2}
+120c120
+<   result ∈ [--..--]
+---
+>   result ∈ {1}
+125c125
+<   result ∈ [--..--]
+---
+>   result ∈ {2}
+128c128
+<   result ∈ [--..--]
+---
+>   result ∈ {2}

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="80"
+   height="80"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:docname="frama-c.calib.svg"
+   inkscape:export-filename="/home/ftk/Software/frama-c.trunk/share/frama-c.ico.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient4002">
+      <stop
+         id="stop4004"
+         offset="0"
+         style="stop-color:#ffffff;stop-opacity:0.421875" />
+      <stop
+         id="stop4008"
+         offset="1"
+         style="stop-color:#c15317;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3775">
+      <stop
+         style="stop-color:#f26d35;stop-opacity:1;"
+         offset="0"
+         id="stop3777" />
+      <stop
+         style="stop-color:#f79734;stop-opacity:1;"
+         offset="1"
+         id="stop3779" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3775"
+       id="linearGradient3781"
+       x1="38.558689"
+       y1="1030.7899"
+       x2="38.558689"
+       y2="950.37933"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.89415376,0,0,0.89415376,4.0278355,106.40989)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3775-7"
+       id="linearGradient3781-6"
+       x1="38.558689"
+       y1="1012.3595"
+       x2="38.558689"
+       y2="1052.7762"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       id="linearGradient3775-7">
+      <stop
+         style="stop-color:#f6722b;stop-opacity:1;"
+         offset="0"
+         id="stop3777-5" />
+      <stop
+         style="stop-color:#c15317;stop-opacity:1;"
+         offset="1"
+         id="stop3779-6" />
+    </linearGradient>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask4031">
+      <rect
+         mask="none"
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/florent/Software/frama-c-Carbon-20110201/share/frama-c/frama-c.png"
+         ry="9.6428566"
+         y="974.08386"
+         x="-1.3220315"
+         height="78.571426"
+         width="78.571426"
+         id="rect4033"
+         style="fill:#d035c0;fill-opacity:1;fill-rule:evenodd;stroke:none" />
+    </mask>
+    <filter
+       inkscape:collect="always"
+       id="filter4465"
+       x="-0.19467638"
+       width="1.3893528"
+       y="-0.089260694"
+       height="1.1785214">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.5452315"
+         id="feGaussianBlur4467" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4002-6"
+       id="linearGradient4061-6"
+       gradientUnits="userSpaceOnUse"
+       x1="38.558689"
+       y1="979.14435"
+       x2="38.558689"
+       y2="1052.7762"
+       gradientTransform="matrix(0.97198746,0,0,0.97198746,1.1558004,-944.98252)" />
+    <linearGradient
+       id="linearGradient4002-6">
+      <stop
+         id="stop4004-7"
+         offset="0"
+         style="stop-color:#ffffff;stop-opacity:0.421875" />
+      <stop
+         id="stop4008-7"
+         offset="1"
+         style="stop-color:#c15317;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4002"
+       id="linearGradient5065"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.89415376,0,0,0.89415376,4.0278365,-865.9523)"
+       x1="38.558689"
+       y1="949.49261"
+       x2="38.558689"
+       y2="1052.7762" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.4261534"
+     inkscape:cx="118.29268"
+     inkscape:cy="23.807771"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer4"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="744"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Background"
+     style="display:inline">
+    <rect
+       mask="none"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/florent/Software/frama-c-Carbon-20110201/share/frama-c/frama-c.png"
+       ry="8.6221972"
+       y="5.0284443"
+       x="4.6340432"
+       height="70.254936"
+       width="70.254936"
+       id="rect4057-4"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-972.3622)"
+     style="display:inline">
+    <rect
+       style="fill:url(#linearGradient3781);fill-opacity:1;fill-rule:evenodd;stroke:none"
+       id="rect2985"
+       width="70.254936"
+       height="70.254936"
+       x="4.6340432"
+       y="977.39069"
+       ry="8.6221972"
+       inkscape:export-filename="/home/florent/Software/frama-c-Carbon-20110201/share/frama-c/frama-c.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       mask="none" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Layer 2"
+     style="display:inline">
+    <rect
+       mask="none"
+       inkscape:export-ydpi="90"
+       inkscape:export-xdpi="90"
+       inkscape:export-filename="/home/florent/Software/frama-c-Carbon-20110201/share/frama-c/frama-c.png"
+       ry="8.6221972"
+       y="5.0284443"
+       x="4.6340432"
+       height="70.254936"
+       width="70.254936"
+       id="rect4057"
+       style="fill:url(#linearGradient5065);fill-opacity:1;fill-rule:evenodd;stroke:#ffcba9;stroke-width:0.91992313;stroke-opacity:0.77586209;display:inline" />
+    <g
+       id="g4469"
+       transform="matrix(0.72504827,0,0,0.72504827,3.8024115,7.7922021)">
+      <g
+         transform="matrix(0.95709032,0,0,-0.95709032,42.600087,31.901456)"
+         id="g112">
+        <path
+           inkscape:connector-curvature="0"
+           id="path114"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           d="m 0,0 -8.38,0 0,1.49 8.38,0 0,6.424 c 0,11.639 5.307,23.836 14.618,23.836 5.773,0 8.38,-4.19 8.38,-8.473 0,-2.235 -1.583,-4.376 -4.469,-4.376 -2.794,0 -3.911,1.955 -3.911,3.724 0,4.284 5.028,3.166 5.028,5.122 0,1.396 -2.142,2.513 -4.655,2.513 -4.47,0 -7.17,-2.513 -7.17,-12.849 l 0,-15.921 10.615,0 0,-1.49 -10.615,0 0,-35.196 8.473,0 0,-1.489 -24.674,0 0,1.489 8.38,0 L 0,0 z" />
+      </g>
+      <g
+         style="opacity:0.2;filter:url(#filter4465)"
+         id="g3673"
+         transform="matrix(0.95709032,0,0,-0.95709032,42.600087,31.901456)">
+        <path
+           d="m 0,0 -8.38,0 0,1.49 8.38,0 0,6.424 c 0,11.639 5.307,23.836 14.618,23.836 5.773,0 8.38,-4.19 8.38,-8.473 0,-2.235 -1.583,-4.376 -4.469,-4.376 -2.794,0 -3.911,1.955 -3.911,3.724 0,4.284 5.028,3.166 5.028,5.122 0,1.396 -2.142,2.513 -4.655,2.513 -4.47,0 -7.17,-2.513 -7.17,-12.849 l 0,-15.921 10.615,0 0,-1.49 -10.615,0 0,-35.196 8.473,0 0,-1.489 -24.674,0 0,1.489 8.38,0 L 0,0 z"
+           style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+           id="path3675"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Code"
+     style="display:inline">
+    <a
+       id="a3021"
+       mask="url(#mask4031)"
+       style="fill:#ffffff"
+       transform="matrix(1.6352931,0,0,1.6352931,-0.63347949,-1619.4071)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3785"
+         y="1020.6642"
+         x="4.1015253"
+         style="font-size:4px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:TlwgTypewriter;-inkscape-font-specification:TlwgTypewriter Medium"
+         xml:space="preserve"><tspan
+           y="1020.6642"
+           x="4.1015253"
+           id="tspan3787"
+           sodipodi:role="line"
+           style="font-size:6px;font-weight:bold;-inkscape-font-specification:TlwgTypewriter Bold">static int x = 1; static long mc1[8][8], mc2[8][8];</tspan><tspan
+           id="tspan3793"
+           y="1028.1642"
+           x="4.1015253"
+           sodipodi:role="line"
+           style="font-size:6px;font-weight:bold;-inkscape-font-specification:TlwgTypewriter Bold">if (init) { for (i = 0; i &lt; 8; i++) </tspan><tspan
+           id="tspan3797"
+           y="1035.6642"
+           x="4.1015253"
+           sodipodi:role="line"
+           style="font-size:6px;font-weight:bold;-inkscape-font-specification:TlwgTypewriter Bold">for (j = 0; j &lt; 8; j++) { </tspan><tspan
+           id="tspan3799"
+           y="1043.1642"
+           x="4.1015253"
+           sodipodi:role="line"
+           style="font-size:6px;font-weight:bold;-inkscape-font-specification:TlwgTypewriter Bold">ftmp1 = ((j == 0) ? 0.5 / sqrt (2.0) : 0.5) * cos ((2.0 * i + 1.0) * j * TH); </tspan><tspan
+           id="tspan2995"
+           y="1050.6642"
+           x="4.1015253"
+           sodipodi:role="line"
+           style="font-size:6px;font-weight:bold;-inkscape-font-specification:TlwgTypewriter Bold">ftmp2 = ftmp1; </tspan><tspan
+           id="tspan2997"
+           y="1058.1642"
+           x="4.1015253"
+           sodipodi:role="line"
+           style="font-size:6px;font-weight:bold;-inkscape-font-specification:TlwgTypewriter Bold">/* The well known formula. The max absolute value for ftmp1 and ftmp2 is 0.5. */ </tspan><tspan
+           id="tspan2999"
+           y="1065.6642"
+           x="4.1015253"
+           sodipodi:role="line"
+           style="font-size:6px;font-weight:bold;-inkscape-font-specification:TlwgTypewriter Bold">ftmp1 *= (1 &lt;&lt; NBC1);</tspan><tspan
+           id="tspan3789"
+           y="1073.1642"
+           x="4.1015253"
+           sodipodi:role="line"
+           style="font-size:6px;font-weight:bold;-inkscape-font-specification:TlwgTypewriter Bold" /></text>
+    </a>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="F"
+     style="display:none" />
+</svg>

@@ -1,0 +1,1160 @@
+[kernel] Parsing gauges.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  t[0..37] ∈ {0}
+  u[0..99] ∈ {0}
+  T[0..99] ∈ [--..--]
+[eva] computing for function main0 <- main.
+  Called from gauges.c:350.
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:18: starting to merge loop iterations
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva:alarm] gauges.c:23: Warning: signed overflow. assert -2147483648 ≤ j - 4;
+[eva] gauges.c:16: starting to merge loop iterations
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:19: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:21: Frama_C_show_each_1: {{ "in" }}
+[eva:alarm] gauges.c:26: Warning: signed overflow. assert l + 1 ≤ 2147483647;
+[eva] Recording results for main0
+[eva] Done for function main0
+[eva] computing for function main0_bis <- main.
+  Called from gauges.c:351.
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:40: starting to merge loop iterations
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva:alarm] gauges.c:45: Warning: signed overflow. assert -2147483648 ≤ j - 4;
+[eva] gauges.c:38: starting to merge loop iterations
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva] gauges.c:41: Frama_C_show_each_0: {{ "in" }}
+[eva] gauges.c:43: Frama_C_show_each_1: {{ "in" }}
+[eva:alarm] gauges.c:48: Warning: signed overflow. assert l + 1 ≤ 2147483647;
+[eva] Recording results for main0_bis
+[eva] Done for function main0_bis
+[eva] computing for function main1 <- main.
+  Called from gauges.c:352.
+[eva] gauges.c:59: Frama_C_show_each: {{ "in" }}
+[eva] gauges.c:57: starting to merge loop iterations
+[eva] gauges.c:59: Frama_C_show_each: {{ "in" }}
+[eva] gauges.c:59: Frama_C_show_each: {{ "in" }}
+[eva] gauges.c:59: Frama_C_show_each: {{ "in" }}
+[eva] gauges.c:59: Frama_C_show_each: {{ "in" }}
+[eva] gauges.c:59: Frama_C_show_each: {{ "in" }}
+[eva:alarm] gauges.c:58: Warning: accessing out of bounds index. assert j < 38;
+[eva] gauges.c:62: Frama_C_show_each: {{ "out" }}
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from gauges.c:353.
+[eva] gauges.c:72: Frama_C_show_each:
+[eva] gauges.c:70: starting to merge loop iterations
+[eva] gauges.c:72: Frama_C_show_each:
+[eva] gauges.c:72: Frama_C_show_each:
+[eva] gauges.c:72: Frama_C_show_each:
+[eva] gauges.c:72: Frama_C_show_each:
+[eva] gauges.c:72: Frama_C_show_each:
+[eva:alarm] gauges.c:71: Warning: 
+  out of bounds write. assert \valid(tmp);
+                       (tmp from p++)
+[eva] gauges.c:72: Frama_C_show_each:
+[eva] gauges.c:72: Frama_C_show_each:
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] computing for function main3 <- main.
+  Called from gauges.c:354.
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva] gauges.c:79: starting to merge loop iterations
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva:alarm] gauges.c:81: Warning: signed overflow. assert k + 1 ≤ 2147483647;
+[eva] gauges.c:83: Frama_C_show_each: {{ "outer" }}
+[eva:alarm] gauges.c:84: Warning: signed overflow. assert k + 1 ≤ 2147483647;
+[eva] gauges.c:78: starting to merge loop iterations
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva] gauges.c:83: Frama_C_show_each: {{ "outer" }}
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva] gauges.c:83: Frama_C_show_each: {{ "outer" }}
+[eva] gauges.c:80: Frama_C_show_each: {{ "inner" }}
+[eva] gauges.c:83: Frama_C_show_each: {{ "outer" }}
+[eva] gauges.c:86: Frama_C_show_each: [0..2147483647]
+[eva] Recording results for main3
+[eva] Done for function main3
+[eva] computing for function main4 <- main.
+  Called from gauges.c:355.
+[eva] computing for function main4_search <- main4 <- main.
+  Called from gauges.c:107.
+[eva] gauges.c:97: Frama_C_show_each:
+[eva] gauges.c:96: starting to merge loop iterations
+[eva] gauges.c:97: Frama_C_show_each:
+[eva] gauges.c:97: Frama_C_show_each:
+[eva] gauges.c:97: Frama_C_show_each:
+[eva] gauges.c:97: Frama_C_show_each:
+[eva] gauges.c:97: Frama_C_show_each:
+[eva:alarm] gauges.c:99: Warning: signed overflow. assert c + 1 ≤ 2147483647;
+[eva] Recording results for main4_search
+[eva] Done for function main4_search
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main5 <- main.
+  Called from gauges.c:356.
+[eva] gauges.c:116: Frama_C_show_each: {{ &x }}
+[eva] gauges.c:113: starting to merge loop iterations
+[eva] gauges.c:116: Frama_C_show_each: {{ &x + {0; 4} }}
+[eva] gauges.c:116: Frama_C_show_each: {{ &x + {0; 4; 8} }}
+[eva] gauges.c:116: Frama_C_show_each: {{ &x + {0; 4; 8; 12} ; &y }}
+[eva] gauges.c:116: 
+  Frama_C_show_each: {{ &x + {0; 4; 8; 12; 16} ; &y + {0; 4} }}
+[eva] gauges.c:116: 
+  Frama_C_show_each: {{ &x + {0; 4; 8; 12; 16; 20} ; &y + {0; 4; 8} }}
+[eva] gauges.c:116: 
+  Frama_C_show_each: {{ &x + {0; 4; 8; 12; 16; 20; 24} ; &y + {0; 4; 8; 12} }}
+[eva] gauges.c:116: Frama_C_show_each: {{ &x + [0..36],0%4 ; &y + [0..36],0%4 }}
+[eva] gauges.c:116: Frama_C_show_each: {{ &x + [0..40],0%4 ; &y + [0..40],0%4 }}
+[eva:alarm] gauges.c:117: Warning: out of bounds write. assert \valid(p);
+[eva] Recording results for main5
+[eva] Done for function main5
+[eva] computing for function main5_bis <- main.
+  Called from gauges.c:357.
+[eva] gauges.c:129: Frama_C_show_each: {{ &x }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &x + {4} }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &x + {8} }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &y }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &y + {4} }}
+[eva] gauges.c:126: starting to merge loop iterations
+[eva] gauges.c:129: Frama_C_show_each: {{ &y + {4; 8} }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &y + {4; 8; 12} }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &y + {4; 8; 12; 16} }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &y + {4; 8; 12; 16; 20} }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &y + [4..36],0%4 }}
+[eva] gauges.c:129: Frama_C_show_each: {{ &y + [4..40],0%4 }}
+[eva:alarm] gauges.c:130: Warning: out of bounds write. assert \valid(p);
+[eva] Recording results for main5_bis
+[eva] Done for function main5_bis
+[eva] computing for function main6 <- main.
+  Called from gauges.c:358.
+[eva] gauges.c:138: starting to merge loop iterations
+[eva:alarm] gauges.c:140: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+[eva] Recording results for main6
+[eva] Done for function main6
+[eva] computing for function main7 <- main.
+  Called from gauges.c:359.
+[eva] computing for function main7_aux <- main7 <- main.
+  Called from gauges.c:164.
+[eva] gauges.c:145: Frama_C_show_each:
+[eva] gauges.c:147: starting to merge loop iterations
+[eva:alarm] gauges.c:149: Warning: 
+  out of bounds write. assert \valid(tmp);
+                       (tmp from p--)
+[eva] Recording results for main7_aux
+[eva] Done for function main7_aux
+[eva] computing for function main7_aux2 <- main7 <- main.
+  Called from gauges.c:165.
+[eva] gauges.c:154: Frama_C_show_each:
+[eva] gauges.c:156: starting to merge loop iterations
+[eva:alarm] gauges.c:158: Warning: 
+  out of bounds write. assert \valid(tmp);
+                       (tmp from p--)
+[eva:alarm] gauges.c:156: Warning: 
+  signed overflow. assert -2147483648 ≤ toCopy - 1;
+[eva] Recording results for main7_aux2
+[eva] Done for function main7_aux2
+[eva] Recording results for main7
+[eva] Done for function main7
+[eva] computing for function main8 <- main.
+  Called from gauges.c:360.
+[eva] computing for function main8_aux <- main8 <- main.
+  Called from gauges.c:178.
+[eva] gauges.c:172: Frama_C_show_each: {0}
+[eva] gauges.c:172: Frama_C_show_each: {4294967295}
+[eva] gauges.c:172: Frama_C_show_each: {4294967294}
+[eva] gauges.c:171: starting to merge loop iterations
+[eva] gauges.c:172: Frama_C_show_each: {4294967293; 4294967294}
+[eva] gauges.c:172: Frama_C_show_each: {4294967292; 4294967293; 4294967294}
+[eva] gauges.c:172: Frama_C_show_each: [2147483647..4294967294]
+[eva] gauges.c:172: Frama_C_show_each: [2147483646..4294967294]
+[eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+[eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+[eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+[eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+[eva:alarm] gauges.c:173: Warning: 
+  out of bounds write. assert \valid(tmp);
+                       (tmp from p++)
+[eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+[eva] Recording results for main8_aux
+[eva] Done for function main8_aux
+[eva] Recording results for main8
+[eva] Done for function main8
+[eva] computing for function main9 <- main.
+  Called from gauges.c:361.
+[eva] gauges.c:186: starting to merge loop iterations
+[eva:alarm] gauges.c:188: Warning: 
+  pointer downcast. assert (unsigned int)p ≤ 2147483647;
+[eva:alarm] gauges.c:188: Warning: 
+  pointer downcast. assert (unsigned int)q ≤ 2147483647;
+[eva:alarm] gauges.c:188: Warning: 
+  signed overflow. assert -2147483648 ≤ (int)p + (int)q;
+[eva:alarm] gauges.c:188: Warning: 
+  signed overflow. assert (int)p + (int)q ≤ 2147483647;
+[eva] gauges.c:188: 
+  Assigning imprecise value to z.
+  The imprecision originates from Arithmetic {gauges.c:188}
+[eva] gauges.c:189: 
+  Assigning imprecise value to r.
+  The imprecision originates from Arithmetic {gauges.c:188}
+[eva:alarm] gauges.c:190: Warning: out of bounds write. assert \valid(r);
+[eva:alarm] gauges.c:192: Warning: out of bounds write. assert \valid(p);
+[eva:alarm] gauges.c:193: Warning: out of bounds write. assert \valid(q);
+[eva] Recording results for main9
+[eva] Done for function main9
+[eva] computing for function main10 <- main.
+  Called from gauges.c:362.
+[eva] computing for function main10_aux <- main10 <- main.
+  Called from gauges.c:211.
+[eva] gauges.c:201: starting to merge loop iterations
+[eva:alarm] gauges.c:202: Warning: 
+  out of bounds read. assert \valid_read(tmp);
+                      (tmp from A++)
+[eva:alarm] gauges.c:202: Warning: 
+  out of bounds read. assert \valid_read(tmp_0);
+                      (tmp_0 from B++)
+[eva:alarm] gauges.c:201: Warning: 
+  signed overflow. assert -2147483648 ≤ numNonZero - 1;
+[eva:alarm] gauges.c:202: Warning: 
+  non-finite float value.
+  assert \is_finite(\mul_float(*p, \mul_float(*tmp, *tmp_0)));
+  (tmp from A++, tmp_0 from B++)
+[eva] Recording results for main10_aux
+[eva] Done for function main10_aux
+[eva:alarm] gauges.c:211: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert tmp < 2147483648;
+  (tmp from main10_aux(& p, (float const *)(A), (float const *)(B), 10))
+[eva] Recording results for main10
+[eva] Done for function main10
+[eva] computing for function main11 <- main.
+  Called from gauges.c:363.
+[eva] gauges.c:218: Frama_C_show_each:
+[eva] gauges.c:217: starting to merge loop iterations
+[eva] gauges.c:218: Frama_C_show_each:
+[eva] gauges.c:218: Frama_C_show_each:
+[eva] gauges.c:218: Frama_C_show_each:
+[eva:alarm] gauges.c:219: Warning: signed overflow. assert i + 1 ≤ 2147483647;
+[eva] gauges.c:218: Frama_C_show_each:
+[eva] gauges.c:218: Frama_C_show_each:
+[eva] gauges.c:218: Frama_C_show_each:
+[eva] gauges.c:218: Frama_C_show_each:
+[eva:alarm] gauges.c:220: Warning: 
+  signed overflow. assert -2147483648 ≤ n - 1;
+[eva] Recording results for main11
+[eva] Done for function main11
+[eva] computing for function main12 <- main.
+  Called from gauges.c:364.
+[eva] gauges.c:225: starting to merge loop iterations
+[eva:alarm] gauges.c:225: Warning: signed overflow. assert i + 1 ≤ 2147483647;
+[eva] Recording results for main12
+[eva] Done for function main12
+[eva] computing for function main13 <- main.
+  Called from gauges.c:365.
+[eva] computing for function main13_1 <- main13 <- main.
+  Called from gauges.c:280.
+[eva] gauges.c:238: starting to merge loop iterations
+[eva:alarm] gauges.c:240: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+[eva] gauges.c:242: 
+  Frama_C_show_each: {45; 46; 47; 48; 49; 50; 51}, [0..2147483647]
+[eva] Recording results for main13_1
+[eva] Done for function main13_1
+[eva] computing for function main13_2 <- main13 <- main.
+  Called from gauges.c:281.
+[eva] gauges.c:249: starting to merge loop iterations
+[eva:alarm] gauges.c:251: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+[eva] gauges.c:254: 
+  Frama_C_show_each: {48; 49; 50; 51; 52; 53; 54}, [0..2147483647]
+[eva] Recording results for main13_2
+[eva] Done for function main13_2
+[eva] computing for function main13_3 <- main13 <- main.
+  Called from gauges.c:282.
+[eva] gauges.c:261: starting to merge loop iterations
+[eva:alarm] gauges.c:263: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+[eva] gauges.c:265: 
+  Frama_C_show_each: {-59; -58; -57; -56; -55; -54; -53}, [0..2147483647]
+[eva] Recording results for main13_3
+[eva] Done for function main13_3
+[eva] computing for function main13_4 <- main13 <- main.
+  Called from gauges.c:283.
+[eva] gauges.c:272: starting to merge loop iterations
+[eva:alarm] gauges.c:274: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+[eva] gauges.c:276: 
+  Frama_C_show_each: {-64; -63; -62; -61; -60; -59; -58}, [0..2147483647]
+[eva] Recording results for main13_4
+[eva] Done for function main13_4
+[eva] Recording results for main13
+[eva] Done for function main13
+[eva] computing for function main14 <- main.
+  Called from gauges.c:366.
+[eva] gauges.c:291: starting to merge loop iterations
+[eva:alarm] gauges.c:293: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+[eva] gauges.c:297: 
+  Frama_C_show_each: {-593; -592; -591; -590; -589; -588}, [0..2147483647]
+[eva] Recording results for main14
+[eva] Done for function main14
+[eva] computing for function main15 <- main.
+  Called from gauges.c:367.
+[eva] gauges.c:306: 
+  Frama_C_dump_each:
+  # cvalue:
+  __fc_heap_status ∈ [--..--]
+  __fc_random_counter ∈ [--..--]
+  __fc_rand_max ∈ {32767}
+  __fc_random48_init ∈ {0}
+  __fc_random48_counter[0..2] ∈ [--..--]
+  __fc_p_random48_counter ∈ {{ &__fc_random48_counter[0] }}
+  __fc_env[0] ∈ {{ NULL ; &S_0___fc_env[0] }}
+          [1] ∈ {{ NULL ; &S_1___fc_env[0] }}
+          [2..4095] ∈ {{ NULL ; &S_0___fc_env[0] ; &S_1___fc_env[0] }}
+  __fc_mblen_state ∈ [--..--]
+  __fc_mbtowc_state ∈ [--..--]
+  __fc_wctomb_state ∈ [--..--]
+  v ∈ [--..--]
+  t[0..4] ∈ {0}
+   [5] ∈ [0..48],0%3
+   [6] ∈ {0}
+   [7] ∈ [0..48],0%3
+   [8] ∈ {0}
+   [9] ∈ [0..48],0%3
+   [10] ∈ {0}
+   [11] ∈ [0..48],0%3
+   [12] ∈ {0}
+   [13] ∈ [0..48],0%3
+   [14] ∈ {0}
+   [15] ∈ [0..48],0%3
+   [16] ∈ {0}
+   [17] ∈ [0..48],0%3
+   [18] ∈ {0}
+   [19] ∈ [0..48],0%3
+   [20] ∈ {0}
+   [21] ∈ [0..48],0%3
+   [22] ∈ {0}
+   [23] ∈ [0..48],0%3
+   [24] ∈ {0}
+   [25] ∈ [0..48],0%3
+   [26] ∈ {0}
+   [27] ∈ [0..48],0%3
+   [28] ∈ {0}
+   [29] ∈ [0..48],0%3
+   [30] ∈ {0}
+   [31] ∈ [0..48],0%3
+   [32] ∈ {0}
+   [33] ∈ [0..48],0%3
+   [34] ∈ {0}
+   [35] ∈ [0..48],0%3
+   [36] ∈ {0}
+   [37] ∈ [0..48],0%3
+  u[0..99] ∈ [0..100]
+  T[0..99] ∈ [--..--]
+  x ∈ UNINITIALIZED
+  y ∈ UNINITIALIZED
+  p ∈ {{ &x }}
+  i ∈ {1}
+  S_0___fc_env[0..1] ∈ [--..--]
+  S_1___fc_env[0..1] ∈ [--..--]
+  ==END OF DUMP==
+[eva] gauges.c:304: starting to merge loop iterations
+[eva] gauges.c:306: 
+  Frama_C_dump_each:
+  # cvalue:
+  __fc_heap_status ∈ [--..--]
+  __fc_random_counter ∈ [--..--]
+  __fc_rand_max ∈ {32767}
+  __fc_random48_init ∈ {0}
+  __fc_random48_counter[0..2] ∈ [--..--]
+  __fc_p_random48_counter ∈ {{ &__fc_random48_counter[0] }}
+  __fc_env[0] ∈ {{ NULL ; &S_0___fc_env[0] }}
+          [1] ∈ {{ NULL ; &S_1___fc_env[0] }}
+          [2..4095] ∈ {{ NULL ; &S_0___fc_env[0] ; &S_1___fc_env[0] }}
+  __fc_mblen_state ∈ [--..--]
+  __fc_mbtowc_state ∈ [--..--]
+  __fc_wctomb_state ∈ [--..--]
+  v ∈ [--..--]
+  t[0..4] ∈ {0}
+   [5] ∈ [0..48],0%3
+   [6] ∈ {0}
+   [7] ∈ [0..48],0%3
+   [8] ∈ {0}
+   [9] ∈ [0..48],0%3
+   [10] ∈ {0}
+   [11] ∈ [0..48],0%3
+   [12] ∈ {0}
+   [13] ∈ [0..48],0%3
+   [14] ∈ {0}
+   [15] ∈ [0..48],0%3
+   [16] ∈ {0}
+   [17] ∈ [0..48],0%3
+   [18] ∈ {0}
+   [19] ∈ [0..48],0%3
+   [20] ∈ {0}
+   [21] ∈ [0..48],0%3
+   [22] ∈ {0}
+   [23] ∈ [0..48],0%3
+   [24] ∈ {0}
+   [25] ∈ [0..48],0%3
+   [26] ∈ {0}
+   [27] ∈ [0..48],0%3
+   [28] ∈ {0}
+   [29] ∈ [0..48],0%3
+   [30] ∈ {0}
+   [31] ∈ [0..48],0%3
+   [32] ∈ {0}
+   [33] ∈ [0..48],0%3
+   [34] ∈ {0}
+   [35] ∈ [0..48],0%3
+   [36] ∈ {0}
+   [37] ∈ [0..48],0%3
+  u[0..99] ∈ [0..100]
+  T[0..99] ∈ [--..--]
+  x ∈ UNINITIALIZED
+  y ∈ UNINITIALIZED
+  p ∈ {{ &x ; &y }}
+  i ∈ {1; 2}
+  S_0___fc_env[0..1] ∈ [--..--]
+  S_1___fc_env[0..1] ∈ [--..--]
+  ==END OF DUMP==
+[eva] gauges.c:306: 
+  Frama_C_dump_each:
+  # cvalue:
+  __fc_heap_status ∈ [--..--]
+  __fc_random_counter ∈ [--..--]
+  __fc_rand_max ∈ {32767}
+  __fc_random48_init ∈ {0}
+  __fc_random48_counter[0..2] ∈ [--..--]
+  __fc_p_random48_counter ∈ {{ &__fc_random48_counter[0] }}
+  __fc_env[0] ∈ {{ NULL ; &S_0___fc_env[0] }}
+          [1] ∈ {{ NULL ; &S_1___fc_env[0] }}
+          [2..4095] ∈ {{ NULL ; &S_0___fc_env[0] ; &S_1___fc_env[0] }}
+  __fc_mblen_state ∈ [--..--]
+  __fc_mbtowc_state ∈ [--..--]
+  __fc_wctomb_state ∈ [--..--]
+  v ∈ [--..--]
+  t[0..4] ∈ {0}
+   [5] ∈ [0..48],0%3
+   [6] ∈ {0}
+   [7] ∈ [0..48],0%3
+   [8] ∈ {0}
+   [9] ∈ [0..48],0%3
+   [10] ∈ {0}
+   [11] ∈ [0..48],0%3
+   [12] ∈ {0}
+   [13] ∈ [0..48],0%3
+   [14] ∈ {0}
+   [15] ∈ [0..48],0%3
+   [16] ∈ {0}
+   [17] ∈ [0..48],0%3
+   [18] ∈ {0}
+   [19] ∈ [0..48],0%3
+   [20] ∈ {0}
+   [21] ∈ [0..48],0%3
+   [22] ∈ {0}
+   [23] ∈ [0..48],0%3
+   [24] ∈ {0}
+   [25] ∈ [0..48],0%3
+   [26] ∈ {0}
+   [27] ∈ [0..48],0%3
+   [28] ∈ {0}
+   [29] ∈ [0..48],0%3
+   [30] ∈ {0}
+   [31] ∈ [0..48],0%3
+   [32] ∈ {0}
+   [33] ∈ [0..48],0%3
+   [34] ∈ {0}
+   [35] ∈ [0..48],0%3
+   [36] ∈ {0}
+   [37] ∈ [0..48],0%3
+  u[0..99] ∈ [0..100]
+  T[0..99] ∈ [--..--]
+  x ∈ UNINITIALIZED
+  y ∈ UNINITIALIZED
+  p ∈ {{ &x ; &y }}
+  i ∈ {1; 2; 3}
+  S_0___fc_env[0..1] ∈ [--..--]
+  S_1___fc_env[0..1] ∈ [--..--]
+  ==END OF DUMP==
+[eva] gauges.c:306: 
+  Frama_C_dump_each:
+  # cvalue:
+  __fc_heap_status ∈ [--..--]
+  __fc_random_counter ∈ [--..--]
+  __fc_rand_max ∈ {32767}
+  __fc_random48_init ∈ {0}
+  __fc_random48_counter[0..2] ∈ [--..--]
+  __fc_p_random48_counter ∈ {{ &__fc_random48_counter[0] }}
+  __fc_env[0] ∈ {{ NULL ; &S_0___fc_env[0] }}
+          [1] ∈ {{ NULL ; &S_1___fc_env[0] }}
+          [2..4095] ∈ {{ NULL ; &S_0___fc_env[0] ; &S_1___fc_env[0] }}
+  __fc_mblen_state ∈ [--..--]
+  __fc_mbtowc_state ∈ [--..--]
+  __fc_wctomb_state ∈ [--..--]
+  v ∈ [--..--]
+  t[0..4] ∈ {0}
+   [5] ∈ [0..48],0%3
+   [6] ∈ {0}
+   [7] ∈ [0..48],0%3
+   [8] ∈ {0}
+   [9] ∈ [0..48],0%3
+   [10] ∈ {0}
+   [11] ∈ [0..48],0%3
+   [12] ∈ {0}
+   [13] ∈ [0..48],0%3
+   [14] ∈ {0}
+   [15] ∈ [0..48],0%3
+   [16] ∈ {0}
+   [17] ∈ [0..48],0%3
+   [18] ∈ {0}
+   [19] ∈ [0..48],0%3
+   [20] ∈ {0}
+   [21] ∈ [0..48],0%3
+   [22] ∈ {0}
+   [23] ∈ [0..48],0%3
+   [24] ∈ {0}
+   [25] ∈ [0..48],0%3
+   [26] ∈ {0}
+   [27] ∈ [0..48],0%3
+   [28] ∈ {0}
+   [29] ∈ [0..48],0%3
+   [30] ∈ {0}
+   [31] ∈ [0..48],0%3
+   [32] ∈ {0}
+   [33] ∈ [0..48],0%3
+   [34] ∈ {0}
+   [35] ∈ [0..48],0%3
+   [36] ∈ {0}
+   [37] ∈ [0..48],0%3
+  u[0..99] ∈ [0..100]
+  T[0..99] ∈ [--..--]
+  x ∈ UNINITIALIZED
+  y ∈ UNINITIALIZED
+  p ∈ {{ &x ; &y }}
+  i ∈ [1..11]
+  S_0___fc_env[0..1] ∈ [--..--]
+  S_1___fc_env[0..1] ∈ [--..--]
+  ==END OF DUMP==
+[eva] Recording results for main15
+[eva] Done for function main15
+[eva] computing for function main16 <- main.
+  Called from gauges.c:368.
+[eva] gauges.c:323: starting to merge loop iterations
+[eva] gauges.c:324: starting to merge loop iterations
+[eva] gauges.c:325: 
+  Frama_C_dump_each:
+  # cvalue:
+  __fc_heap_status ∈ [--..--]
+  __fc_random_counter ∈ [--..--]
+  __fc_rand_max ∈ {32767}
+  __fc_random48_init ∈ {0}
+  __fc_random48_counter[0..2] ∈ [--..--]
+  __fc_p_random48_counter ∈ {{ &__fc_random48_counter[0] }}
+  __fc_env[0] ∈ {{ NULL ; &S_0___fc_env[0] }}
+          [1] ∈ {{ NULL ; &S_1___fc_env[0] }}
+          [2..4095] ∈ {{ NULL ; &S_0___fc_env[0] ; &S_1___fc_env[0] }}
+  __fc_mblen_state ∈ [--..--]
+  __fc_mbtowc_state ∈ [--..--]
+  __fc_wctomb_state ∈ [--..--]
+  v ∈ [--..--]
+  t[0..4] ∈ {0}
+   [5] ∈ [0..48],0%3
+   [6] ∈ {0}
+   [7] ∈ [0..48],0%3
+   [8] ∈ {0}
+   [9] ∈ [0..48],0%3
+   [10] ∈ {0}
+   [11] ∈ [0..48],0%3
+   [12] ∈ {0}
+   [13] ∈ [0..48],0%3
+   [14] ∈ {0}
+   [15] ∈ [0..48],0%3
+   [16] ∈ {0}
+   [17] ∈ [0..48],0%3
+   [18] ∈ {0}
+   [19] ∈ [0..48],0%3
+   [20] ∈ {0}
+   [21] ∈ [0..48],0%3
+   [22] ∈ {0}
+   [23] ∈ [0..48],0%3
+   [24] ∈ {0}
+   [25] ∈ [0..48],0%3
+   [26] ∈ {0}
+   [27] ∈ [0..48],0%3
+   [28] ∈ {0}
+   [29] ∈ [0..48],0%3
+   [30] ∈ {0}
+   [31] ∈ [0..48],0%3
+   [32] ∈ {0}
+   [33] ∈ [0..48],0%3
+   [34] ∈ {0}
+   [35] ∈ [0..48],0%3
+   [36] ∈ {0}
+   [37] ∈ [0..48],0%3
+  u[0..99] ∈ [0..100]
+  T[0..99] ∈ [--..--]
+  a ∈ {1}
+  b ∈ {0}
+  p ∈ {{ &a }}
+  i ∈ {2}
+  S_0___fc_env[0..1] ∈ [--..--]
+  S_1___fc_env[0..1] ∈ [--..--]
+  ==END OF DUMP==
+[eva] gauges.c:326: starting to merge loop iterations
+[eva] gauges.c:321: starting to merge loop iterations
+[eva] gauges.c:325: 
+  Frama_C_dump_each:
+  # cvalue:
+  __fc_heap_status ∈ [--..--]
+  __fc_random_counter ∈ [--..--]
+  __fc_rand_max ∈ {32767}
+  __fc_random48_init ∈ {0}
+  __fc_random48_counter[0..2] ∈ [--..--]
+  __fc_p_random48_counter ∈ {{ &__fc_random48_counter[0] }}
+  __fc_env[0] ∈ {{ NULL ; &S_0___fc_env[0] }}
+          [1] ∈ {{ NULL ; &S_1___fc_env[0] }}
+          [2..4095] ∈ {{ NULL ; &S_0___fc_env[0] ; &S_1___fc_env[0] }}
+  __fc_mblen_state ∈ [--..--]
+  __fc_mbtowc_state ∈ [--..--]
+  __fc_wctomb_state ∈ [--..--]
+  v ∈ [--..--]
+  t[0..4] ∈ {0}
+   [5] ∈ [0..48],0%3
+   [6] ∈ {0}
+   [7] ∈ [0..48],0%3
+   [8] ∈ {0}
+   [9] ∈ [0..48],0%3
+   [10] ∈ {0}
+   [11] ∈ [0..48],0%3
+   [12] ∈ {0}
+   [13] ∈ [0..48],0%3
+   [14] ∈ {0}
+   [15] ∈ [0..48],0%3
+   [16] ∈ {0}
+   [17] ∈ [0..48],0%3
+   [18] ∈ {0}
+   [19] ∈ [0..48],0%3
+   [20] ∈ {0}
+   [21] ∈ [0..48],0%3
+   [22] ∈ {0}
+   [23] ∈ [0..48],0%3
+   [24] ∈ {0}
+   [25] ∈ [0..48],0%3
+   [26] ∈ {0}
+   [27] ∈ [0..48],0%3
+   [28] ∈ {0}
+   [29] ∈ [0..48],0%3
+   [30] ∈ {0}
+   [31] ∈ [0..48],0%3
+   [32] ∈ {0}
+   [33] ∈ [0..48],0%3
+   [34] ∈ {0}
+   [35] ∈ [0..48],0%3
+   [36] ∈ {0}
+   [37] ∈ [0..48],0%3
+  u[0..99] ∈ [0..100]
+  T[0..99] ∈ [--..--]
+  a ∈ {1}
+  b ∈ {0}
+  p ∈ {{ &a ; &b }}
+  i ∈ {2}
+  S_0___fc_env[0..1] ∈ [--..--]
+  S_1___fc_env[0..1] ∈ [--..--]
+  ==END OF DUMP==
+[eva] gauges.c:327: starting to merge loop iterations
+[eva] Recording results for main16
+[eva] Done for function main16
+[eva] computing for function main17 <- main.
+  Called from gauges.c:369.
+[eva] gauges.c:343: Call to builtin malloc
+[eva] gauges.c:343: allocating variable __malloc_main17_l343
+[eva] gauges.c:342: starting to merge loop iterations
+[eva] gauges.c:343: Call to builtin malloc
+[eva] Recording results for main17
+[eva] Done for function main17
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main0:
+  i ∈ {1; 162}
+  j ∈ [-2147483646..2],2%4
+  k ∈ {101}
+  l ∈ [4..2147483647]
+[eva:final-states] Values at end of function main0_bis:
+  i ∈ {1; 163}
+  j ∈ [-2147483646..2],2%4
+  k ∈ {101}
+  l ∈ [4..2147483647]
+[eva:final-states] Values at end of function main1:
+  t[0..4] ∈ {0}
+   [5] ∈ [0..48],0%3
+   [6] ∈ {0}
+   [7] ∈ [0..48],0%3
+   [8] ∈ {0}
+   [9] ∈ [0..48],0%3
+   [10] ∈ {0}
+   [11] ∈ [0..48],0%3
+   [12] ∈ {0}
+   [13] ∈ [0..48],0%3
+   [14] ∈ {0}
+   [15] ∈ [0..48],0%3
+   [16] ∈ {0}
+   [17] ∈ [0..48],0%3
+   [18] ∈ {0}
+   [19] ∈ [0..48],0%3
+   [20] ∈ {0}
+   [21] ∈ [0..48],0%3
+   [22] ∈ {0}
+   [23] ∈ [0..48],0%3
+   [24] ∈ {0}
+   [25] ∈ [0..48],0%3
+   [26] ∈ {0}
+   [27] ∈ [0..48],0%3
+   [28] ∈ {0}
+   [29] ∈ [0..48],0%3
+   [30] ∈ {0}
+   [31] ∈ [0..48],0%3
+   [32] ∈ {0}
+   [33] ∈ [0..48],0%3
+   [34] ∈ {0}
+   [35] ∈ [0..48],0%3
+   [36] ∈ {0}
+   [37] ∈ [0..48],0%3
+  j ∈ [5..39],1%2
+[eva:final-states] Values at end of function main10_aux:
+  A ∈ {{ &A + [0..--],0%4 }}
+  B ∈ {{ &B + [0..--],0%4 }}
+  numNonZero ∈ [-2147483648..8]
+  p ∈ [0. .. 3.40282346639e+38]
+  __retres ∈ [0. .. 3.40282346639e+38]
+[eva:final-states] Values at end of function main10:
+  p ∈ [0. .. 3.40282346639e+38]
+  A[0] ∈ {1.}
+   [1..9] ∈ {0}
+  B[0] ∈ {2.}
+   [1..9] ∈ {0}
+  __retres ∈ [0..2147483520]
+[eva:final-states] Values at end of function main11:
+  n ∈ [-2147483648..99]
+  i ∈ [1..2147483647]
+[eva:final-states] Values at end of function main12:
+  i ∈ [0..2147483647]
+  j ∈ {10}
+[eva:final-states] Values at end of function main13_1:
+  i ∈ {45; 46; 47; 48; 49; 50; 51}
+  j ∈ [0..2147483647]
+[eva:final-states] Values at end of function main13_2:
+  i ∈ {48; 49; 50; 51; 52; 53; 54}
+  j ∈ [0..2147483647]
+[eva:final-states] Values at end of function main13_3:
+  i ∈ {-59; -58; -57; -56; -55; -54; -53}
+  j ∈ [0..2147483647]
+[eva:final-states] Values at end of function main13_4:
+  i ∈ {-64; -63; -62; -61; -60; -59; -58}
+  j ∈ [0..2147483647]
+[eva:final-states] Values at end of function main13:
+  
+[eva:final-states] Values at end of function main14:
+  i ∈ {-593; -592; -591; -590; -589; -588}
+  s ∈ {5; 6}
+  j ∈ [0..2147483647]
+[eva:final-states] Values at end of function main15:
+  p ∈ {{ &x ; &y }}
+  i ∈ {11}
+[eva:final-states] Values at end of function main16:
+  a ∈ {1}
+  b ∈ {0}
+  p ∈ {{ &b }}
+[eva:final-states] Values at end of function main2:
+  u[0..99] ∈ [0..100]
+  p ∈ {{ &u + [0..--],0%4 }}
+[eva:final-states] Values at end of function main3:
+  k ∈ [0..2147483647]
+[eva:final-states] Values at end of function main4_search:
+  c ∈ [0..2147483647]
+  i ∈ {21}
+[eva:final-states] Values at end of function main4:
+  i ∈ [0..2147483647]
+[eva:final-states] Values at end of function main5:
+  x[0..9] ∈ [0..9] or UNINITIALIZED
+  y[0..9] ∈ [0..9] or UNINITIALIZED
+  p ∈ {{ &x + [0..40],0%4 ; &y + [4..40],0%4 }}
+[eva:final-states] Values at end of function main5_bis:
+  x[0] ∈ {0}
+   [1] ∈ {1}
+   [2] ∈ {2}
+   [3..9] ∈ UNINITIALIZED
+  y[0] ∈ {3}
+   [1..9] ∈ {4; 5; 6; 7; 8; 9} or UNINITIALIZED
+  p ∈ {{ &y + [4..40],0%4 }}
+[eva:final-states] Values at end of function main6:
+  i ∈ {13}
+  j ∈ [0..2147483647]
+[eva:final-states] Values at end of function main7_aux:
+  T[0..99] ∈ [--..--]
+  toCopy ∈ [--..--]
+  p ∈ {{ &T + [--..396],0%4 }}
+[eva:final-states] Values at end of function main7_aux2:
+  T[0..99] ∈ [--..--]
+  toCopy ∈ [-2147483648..99]
+  p ∈ {{ &T + [--..396],0%4 }}
+[eva:final-states] Values at end of function main7:
+  T[0..99] ∈ [--..--]
+  toCopy ∈ {100}
+[eva:final-states] Values at end of function main8_aux:
+  n ∈ {0}
+  arr[0] ∈ {0}
+     [1] ∈ {-1}
+     [2..65535] ∈ [--..--] or UNINITIALIZED
+  p ∈ {{ &arr + [12..--],0%4 }}
+[eva:final-states] Values at end of function main8:
+  
+[eva:final-states] Values at end of function main9:
+  x[0..9] ∈ [--..--] or UNINITIALIZED
+  y[0..9] ∈ [--..--] or UNINITIALIZED
+  p ∈ {{ &x + [0..40],0%4 }}
+  q ∈ {{ &y + [0..40],0%4 }}
+  z ∈
+   {{ garbled mix of &{x; y}
+    (origin: Arithmetic {gauges.c:188}) }} or UNINITIALIZED
+[eva:final-states] Values at end of function main17:
+  __fc_heap_status ∈ [--..--]
+  q ∈ {0}
+  p ∈ {{ &x ; &__malloc_w_main17_l343 }}
+[eva:final-states] Values at end of function main:
+  __fc_heap_status ∈ [--..--]
+  t[0..4] ∈ {0}
+   [5] ∈ [0..48],0%3
+   [6] ∈ {0}
+   [7] ∈ [0..48],0%3
+   [8] ∈ {0}
+   [9] ∈ [0..48],0%3
+   [10] ∈ {0}
+   [11] ∈ [0..48],0%3
+   [12] ∈ {0}
+   [13] ∈ [0..48],0%3
+   [14] ∈ {0}
+   [15] ∈ [0..48],0%3
+   [16] ∈ {0}
+   [17] ∈ [0..48],0%3
+   [18] ∈ {0}
+   [19] ∈ [0..48],0%3
+   [20] ∈ {0}
+   [21] ∈ [0..48],0%3
+   [22] ∈ {0}
+   [23] ∈ [0..48],0%3
+   [24] ∈ {0}
+   [25] ∈ [0..48],0%3
+   [26] ∈ {0}
+   [27] ∈ [0..48],0%3
+   [28] ∈ {0}
+   [29] ∈ [0..48],0%3
+   [30] ∈ {0}
+   [31] ∈ [0..48],0%3
+   [32] ∈ {0}
+   [33] ∈ [0..48],0%3
+   [34] ∈ {0}
+   [35] ∈ [0..48],0%3
+   [36] ∈ {0}
+   [37] ∈ [0..48],0%3
+  u[0..99] ∈ [0..100]
+  T[0..99] ∈ [--..--]
+[from] Computing for function main0
+[from] Done for function main0
+[from] Computing for function main0_bis
+[from] Done for function main0_bis
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main10_aux
+[from] Done for function main10_aux
+[from] Computing for function main10
+[from] Done for function main10
+[from] Computing for function main11
+[from] Done for function main11
+[from] Computing for function main12
+[from] Done for function main12
+[from] Computing for function main13_1
+[from] Done for function main13_1
+[from] Computing for function main13_2
+[from] Done for function main13_2
+[from] Computing for function main13_3
+[from] Done for function main13_3
+[from] Computing for function main13_4
+[from] Done for function main13_4
+[from] Computing for function main13
+[from] Done for function main13
+[from] Computing for function main14
+[from] Done for function main14
+[from] Computing for function main15
+[from] Done for function main15
+[from] Computing for function main16
+[from] Done for function main16
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main3
+[from] Done for function main3
+[from] Computing for function main4_search
+[from] Done for function main4_search
+[from] Computing for function main4
+[from] Done for function main4
+[from] Computing for function main5
+[from] Done for function main5
+[from] Computing for function main5_bis
+[from] Done for function main5_bis
+[from] Computing for function main6
+[from] Done for function main6
+[from] Computing for function main7_aux
+[from] Done for function main7_aux
+[from] Computing for function main7_aux2
+[from] Done for function main7_aux2
+[from] Computing for function main7
+[from] Done for function main7
+[from] Computing for function main8_aux
+[from] Done for function main8_aux
+[from] Computing for function main8
+[from] Done for function main8
+[from] Computing for function main9
+[from] Done for function main9
+[from] Computing for function main17
+[from] Computing for function malloc <-main17
+[from] Done for function malloc
+[from] Done for function main17
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main0:
+  NO EFFECTS
+[from] Function main0_bis:
+  NO EFFECTS
+[from] Function main1:
+  t{[5]; [7]; [9]; [11]; [13]; [15]; [17]; [19]; [21]; [23]; [25]; [27];
+    [29]; [31]; [33]; [35]; [37]}
+   FROM \nothing (and SELF)
+[from] Function main10_aux:
+  p FROM p; A; B; n; p; A[0..9]; B[0..9] (and SELF)
+  \result FROM p; A; B; n; p; A[0..9]; B[0..9]
+[from] Function main10:
+  \result FROM \nothing
+[from] Function main11:
+  NO EFFECTS
+[from] Function main12:
+  NO EFFECTS
+[from] Function main13_1:
+  NO EFFECTS
+[from] Function main13_2:
+  NO EFFECTS
+[from] Function main13_3:
+  NO EFFECTS
+[from] Function main13_4:
+  NO EFFECTS
+[from] Function main13:
+  NO EFFECTS
+[from] Function main14:
+  NO EFFECTS
+[from] Function main15:
+  NO EFFECTS
+[from] Function main16:
+  NO EFFECTS
+[from] Function main2:
+  u[0..99] FROM \nothing (and SELF)
+[from] Function main3:
+  NO EFFECTS
+[from] Function main4_search:
+  \result FROM T[0..20]
+[from] Function main4:
+  NO EFFECTS
+[from] Function main5:
+  NO EFFECTS
+[from] Function main5_bis:
+  NO EFFECTS
+[from] Function main6:
+  NO EFFECTS
+[from] Function main7_aux:
+  T[0..99] FROM toCopy (and SELF)
+[from] Function main7_aux2:
+  T[0..99] FROM toCopy (and SELF)
+[from] Function main7:
+  T[0..99] FROM \nothing (and SELF)
+[from] Function main8_aux:
+  NO EFFECTS
+[from] Function main8:
+  NO EFFECTS
+[from] Function main9:
+  NO EFFECTS
+[from] Function malloc:
+  __fc_heap_status FROM __fc_heap_status; size (and SELF)
+  \result FROM __fc_heap_status; size
+[from] Function main17:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+[from] Function main:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+  t{[5]; [7]; [9]; [11]; [13]; [15]; [17]; [19]; [21]; [23]; [25]; [27];
+    [29]; [31]; [33]; [35]; [37]}
+   FROM \nothing (and SELF)
+  u[0..99] FROM \nothing (and SELF)
+  T[0..99] FROM \nothing (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main0:
+    i; j; k; l
+[inout] Inputs for function main0:
+    \nothing
+[inout] Out (internal) for function main0_bis:
+    i; j; k; l
+[inout] Inputs for function main0_bis:
+    \nothing
+[inout] Out (internal) for function main1:
+    t{[5]; [7]; [9]; [11]; [13]; [15]; [17]; [19]; [21]; [23]; [25]; [27];
+      [29]; [31]; [33]; [35]; [37]}; j; i
+[inout] Inputs for function main1:
+    \nothing
+[inout] Out (internal) for function main10_aux:
+    A; B; numNonZero; tmp; tmp_0; tmp_1; p; __retres
+[inout] Inputs for function main10_aux:
+    p; A[0..9]; B[0..9]
+[inout] Out (internal) for function main10:
+    p; A[0..9]; B[0..9]; tmp; __retres
+[inout] Inputs for function main10:
+    \nothing
+[inout] Out (internal) for function main11:
+    n; i; tmp
+[inout] Inputs for function main11:
+    \nothing
+[inout] Out (internal) for function main12:
+    i; j
+[inout] Inputs for function main12:
+    v
+[inout] Out (internal) for function main13_1:
+    i; tmp; j
+[inout] Inputs for function main13_1:
+    v
+[inout] Out (internal) for function main13_2:
+    i; tmp; j
+[inout] Inputs for function main13_2:
+    v
+[inout] Out (internal) for function main13_3:
+    i; tmp; j
+[inout] Inputs for function main13_3:
+    v
+[inout] Out (internal) for function main13_4:
+    i; tmp; j
+[inout] Inputs for function main13_4:
+    v
+[inout] Out (internal) for function main13:
+    \nothing
+[inout] Inputs for function main13:
+    v
+[inout] Out (internal) for function main14:
+    i; s; tmp; j
+[inout] Inputs for function main14:
+    v
+[inout] Out (internal) for function main15:
+    p; i
+[inout] Inputs for function main15:
+    \nothing
+[inout] Out (internal) for function main16:
+    a; b; p; i
+[inout] Inputs for function main16:
+    \nothing
+[inout] Out (internal) for function main2:
+    u[0..99]; p; i; tmp
+[inout] Inputs for function main2:
+    \nothing
+[inout] Out (internal) for function main3:
+    k; i; j
+[inout] Inputs for function main3:
+    \nothing
+[inout] Out (internal) for function main4_search:
+    c; i
+[inout] Inputs for function main4_search:
+    T[0..20]
+[inout] Out (internal) for function main4:
+    i
+[inout] Inputs for function main4:
+    T[0..20]
+[inout] Out (internal) for function main5:
+    x[0..9]; y[0..9]; p; i
+[inout] Inputs for function main5:
+    \nothing
+[inout] Out (internal) for function main5_bis:
+    x[0..2]; y[0..9]; p; i
+[inout] Inputs for function main5_bis:
+    \nothing
+[inout] Out (internal) for function main6:
+    i; j
+[inout] Inputs for function main6:
+    \nothing
+[inout] Out (internal) for function main7_aux:
+    T[0..99]; toCopy; p; tmp; tmp_0
+[inout] Inputs for function main7_aux:
+    \nothing
+[inout] Out (internal) for function main7_aux2:
+    T[0..99]; toCopy; p; tmp; tmp_0
+[inout] Inputs for function main7_aux2:
+    \nothing
+[inout] Out (internal) for function main7:
+    T[0..99]; toCopy
+[inout] Inputs for function main7:
+    \nothing
+[inout] Out (internal) for function main8_aux:
+    n; arr[0..65535]; p; tmp
+[inout] Inputs for function main8_aux:
+    \nothing
+[inout] Out (internal) for function main8:
+    \nothing
+[inout] Inputs for function main8:
+    v
+[inout] Out (internal) for function main9:
+    x[0..9]; y[0..9]; p; q; z; i; r
+[inout] Inputs for function main9:
+    \nothing
+[inout] Out (internal) for function main17:
+    __fc_heap_status; q; p
+[inout] Inputs for function main17:
+    __fc_heap_status
+[inout] Out (internal) for function main:
+    __fc_heap_status;
+    t{[5]; [7]; [9]; [11]; [13]; [15]; [17]; [19]; [21]; [23]; [25]; [27];
+      [29]; [31]; [33]; [35]; [37]}; u[0..99]; T[0..99]
+[inout] Inputs for function main:
+    __fc_heap_status; v; T[0..20]

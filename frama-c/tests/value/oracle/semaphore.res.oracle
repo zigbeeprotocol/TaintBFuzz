@@ -1,0 +1,92 @@
+[kernel] Parsing semaphore.i (no preprocessing)
+[eva] Analyzing a complete application starting at g
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  Sa ∈ {0}
+  Sb ∈ {0}
+[kernel:annot:missing-spec] semaphore.i:31: Warning: 
+  Neither code nor specification for function V, generating default assigns from the prototype
+[eva] computing for function V <- g.
+  Called from semaphore.i:31.
+[eva] using specification for function V
+[eva] Done for function V
+[eva] semaphore.i:29: starting to merge loop iterations
+[eva] computing for function V <- g.
+  Called from semaphore.i:31.
+[eva] Done for function V
+[eva] computing for function V <- g.
+  Called from semaphore.i:31.
+[eva] Done for function V
+[eva] computing for function V <- g.
+  Called from semaphore.i:31.
+[eva] Done for function V
+[eva] semaphore.i:28: starting to merge loop iterations
+[kernel:annot:missing-spec] semaphore.i:34: Warning: 
+  Neither code nor specification for function P, generating default assigns from the prototype
+[eva] computing for function P <- g.
+  Called from semaphore.i:34.
+[eva] using specification for function P
+[eva] Done for function P
+[eva] computing for function P <- g.
+  Called from semaphore.i:35.
+[eva] Done for function P
+[eva] computing for function V <- g.
+  Called from semaphore.i:37.
+[eva] Done for function V
+[eva] computing for function V <- g.
+  Called from semaphore.i:38.
+[eva] Done for function V
+[eva] computing for function f <- g.
+  Called from semaphore.i:40.
+[eva] computing for function P <- f <- g.
+  Called from semaphore.i:14.
+[eva] Done for function P
+[eva] computing for function P <- f <- g.
+  Called from semaphore.i:16.
+[eva] Done for function P
+[eva] computing for function P <- f <- g.
+  Called from semaphore.i:17.
+[eva] Done for function P
+[eva] computing for function V <- f <- g.
+  Called from semaphore.i:19.
+[eva] Done for function V
+[eva] computing for function V <- f <- g.
+  Called from semaphore.i:20.
+[eva] Done for function V
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for g
+[eva] done for function g
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  c ∈ {12}
+[eva:final-states] Values at end of function g:
+  c ∈ {-26; -1}
+[from] Computing for function f
+[from] Computing for function P <-f
+[from] Done for function P
+[from] Computing for function V <-f
+[from] Done for function V
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function P:
+  NO EFFECTS
+[from] Function V:
+  NO EFFECTS
+[from] Function f:
+  NO EFFECTS
+[from] Function g:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    c
+[inout] Inputs for function f:
+    Sa; Sb
+[inout] Out (internal) for function g:
+    c; tmp
+[inout] Inputs for function g:
+    Sa; Sb

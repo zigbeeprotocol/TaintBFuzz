@@ -1,0 +1,146 @@
+\chapter{The Branch Stage}
+
+That is the procedure for forking the release from \texttt{master}.
+
+\section{``Freezing'' master}
+
+When the ``freeze'' period arrives (usually a few weeks before the beta
+release), the release manager may decide to prevent direct merges to the
+\texttt{master} branch, until the \texttt{stable} branch is created.
+If so, then the branch should be protected such that Developers can no
+longer push and merge to it, without asking for a Master to do it.
+
+In Gitlab, this is done via: Frama-C project $\rightarrow$ Settings
+$\rightarrow$ Repository $\rightarrow$ Protected Branches.
+
+\textbf{The \texttt{master} branch must be protected \emph{at all times}.
+  Parameters
+  \texttt{Allowed to merge} and \texttt{Allowed to push} must be set to
+  \texttt{Developers + Maintainers} during non-freeze times, and to
+  \texttt{Maintainers} during freeze time.}
+
+\section{Creating the branch}
+
+Note that you must be member of the GitLab groups "frama-c", "dev" and have
+access to each plugin of continuous integration.
+
+Create the branch \texttt{stable/release}, where \texttt{release} is the
+element name, using the \texttt{frama-ci} tool:
+\begin{enumerate}
+\item Install \texttt{frama-ci} tools:
+\begin{shell}
+opam pin add frama-ci-tools git@git.frama-c.com:frama-c/Frama-CI.git
+\end{shell}
+\item Create an API token for gitlab, in your gitlab profile settings.
+\item Run the command
+\begin{shell}
+frama-ci-create-branch --token=\$TOKEN \
+--name=stable/release --default-branch
+\end{shell}
+This command creates a branch \texttt{stable/release} for frama-c and for
+each plugin tested by the CI — and configures the CI to use these branches
+by default when testing fixes for the release.
+These branches are directly created on the gitlab server.
+\end{enumerate}
+What can be committed in this branch must follow the release schedule,
+and go through Merge-requests. Everything else should go in \texttt{master},
+which can then be reset to standard-level protection (Developers + Maintainers
+allowed to push/merge).
+
+\section{Creating the milestones}
+
+Create the milestone for the next release on \textsf{Gitlab},
+in the Frama-C group
+\expertise{François, Julien}.
+
+
+\section{BTS}
+
+Check public issue tracker at \url{https://git.frama-c.com/pub/frama-c/issues/} All issues should have been at least acknowledged: at least they should be assigned to someone, preferably tagged appropriately.
+
+Send a message to the Frama-C channel on LSL's Mattermost.
+Each developer should have a
+look at their own assigned/monitored/reported issues. Depending on their severity,
+the issues should be tagged with the current release, or with the next one.
+
+\section{Changelog}
+
+Create headers in the Changelog(s). This is to avoid some merge conflicts,
+but also so that merge requests add information in the proper part of
+the Changelog.
+
+\begin{itemize}
+\item Add the following in the Changelogs, in \texttt{stable/element}
+\begin{verbatim}
+ ####################################
+ Open Source Release <nb> (<element>)
+ ####################################
+\end{verbatim}
+
+This should go directly below
+\begin{verbatim}
+ ##################################
+ Open Source Release <next-release>
+ ##################################
+\end{verbatim}
+
+The changelogs to update are the global Frama-C changelog and each plugin
+changelog in \texttt{src/plugins}.
+
+\item Check the manuals if they contain a changelog, usually in files named
+\texttt{changes.tex} or a variation of it. Add the following in
+\texttt{stable/element}
+\begin{verbatim}
+\section*{<nb> (<element>)}
+\end{verbatim}
+
+This should go directly below
+\begin{verbatim}
+\section*{\framacversion}
+\end{verbatim}
+
+and this line should be commented out.
+
+\begin{itemize}
+  \item \emph{Take care to adapt the format of the version according to the
+        content of the file}.
+  \item \emph{Check for manual changelogs in \texttt{doc/}, but also in
+        \texttt{src/plugins/**/doc}}.
+\end{itemize}
+
+\item Merge this branch in \texttt{master}
+\end{itemize}
+
+From now on, Changelog items corresponding to MR merged into \texttt{master}
+must be placed between these two banners. This should minimize conflicts when
+merging back \texttt{stable/element} into \texttt{master}.
+
+\todo{Can we simplify this?}
+
+\section{Copyright}
+
+Check that the date in copyright headers is correct. If not then the script
+\texttt{headers/updates-headers.sh} can be used to update them.
+
+\begin{itemize}
+  \item Update the dates in the license files in:
+  \begin{itemize}
+    \item \texttt{headers/close-source/*}
+    \item \texttt{headers/open-source/*}
+    \item \texttt{ivette/headers/close-source/*}
+    \item \texttt{ivette/headers/open-source/*}
+    \item \texttt{src/plugins/e-acsl/headers/close-source/*}
+    \item \texttt{src/plugins/e-acsl/headers/open-source/*}
+  \end{itemize}
+  \item Update the headers with the following commands:
+  \begin{itemize}
+    \item \texttt{./headers/updates-headers.sh headers/header\_spec.txt headers/open-source}
+    \item \texttt{./headers/updates-headers.sh ivette/headers/header\_spec.txt headers/open-source ivette}
+    \item \texttt{./headers/updates-headers.sh src/plugins/e-acsl/headers/header\_spec.txt src/plugins/e-acsl/headers/open-source src/plugins/e-acsl}
+  \end{itemize}
+  \item Check if some copyright are left to update by \texttt{grep}-ing the date in the sources: \texttt{grep -r -e "-yyyy" .}
+\end{itemize}
+
+%%%Local Variables:
+%%%TeX-master: "release"
+%%%End:

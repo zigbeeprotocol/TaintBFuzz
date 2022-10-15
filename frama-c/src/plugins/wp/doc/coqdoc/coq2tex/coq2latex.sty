@@ -1,0 +1,23 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{coq2latex}[2012/11/28]
+
+\def\_{\kern.08em\vbox{\hrule width.35em height.6pt}\kern.08em}
+\newcommand{\coqid}[1]{\textsf{#1}}
+\newcommand{\coqkw}[1]{\texttt{#1}}
+\newcommand{\coqtac}[1]{\textbf{#1}}
+\newcommand{\coqvar}[1]{\textit{#1}}
+\newenvironment{coqplain}{\tt\small}{}
+\newenvironment{coqcomment}{\tt\color{darkgreen}}{}
+
+\usepackage{ifpdf}
+\ifpdf
+  \RequirePackage{hyperref}
+  \hypersetup{raiselinks=true,colorlinks=true,linkcolor=black}
+  \newcommand{\coqlabel}[2]{\hypertarget{#1}{#2}}
+  \newcommand{\coqlink}[2]{\hyperlink{#1}{#2}}
+  \newcommand{\coqurl}[2]{\href{#1}{#2}}
+\else
+  \newcommand{\coqlabel}[2]{#2}
+  \newcommand{\coqlink}[2]{#2}
+  \newcommand{\coqurl}[2]{{#2}
+\fi

@@ -1,0 +1,23 @@
+\begin{syntax}
+  term ::= "\null" ;
+        | "\base_addr" { one-label? } "(" term ")" ;
+        | "\block_length" { one-label? } "(" term ")" ;
+        | "\offset" { one-label? } "(" term ")" ;
+        | { "\allocation" one-label? "(" term ")" };
+       \
+  pred ::= { "\allocable" one-label? "(" term ")" };
+       | "\freeable" { one-label? } "(" term ")" ;
+       | { "\fresh" two-labels? "(" term, term ")" };
+       | "\valid" { one-label? } "(" locations-list ")" ;
+       | "\valid_read" { one-label? } "(" locations-list ")";
+       | "\separated" "(" location "," locations-list ")";
+       \
+  { one-label } ::= { "{" label-id "}" } ;
+       \
+  { two-labels } ::= { "{" label-id, label-id "}" } ;
+\end{syntax}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

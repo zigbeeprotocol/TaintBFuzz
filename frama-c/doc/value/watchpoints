@@ -1,0 +1,57 @@
+In a debugger, a breakpoint is a place in the target code where
+execution stops and the control of the debugger is returned to the
+user for em to inspect memory and provide further instructions.
+
+A sophisticated debugger also offers watchpoints. A watchpoint can
+be declared for a memory location, and from that point onwards,
+the control of the debugger is returned to the user each time
+the value of the memory location changes. This is useful when
+the user does not know where in the target code the memory location
+ey is interested in is modified. See the URL below for a description
+of GDB's watchpoint feature:
+http://www.unknownroad.com/rtfm/gdbtut/gdbwatch.html
+
+In the metaphor in which Frama-C's value analysis is a debugger, the
+breakpoint functionality is provided through the insertion in the
+target C code of invalid calls to builtins. One example is
+Frama_C_cos(1.0, 1.0) (the builtin Frama_C_cos() normally expects only
+one argument).
+
+Two proprietary builtins provide functionality similar to that of
+watchpoints in a debugger:
+
+Frama_C_watch_value(&lvalue, sizeof lvalue, <forbidden value>, <number>); 
+
+Frama_C_watch_cardinal(&lvalue, sizeof lvalue, <forbidden cardinal>, <number>); 
+
+For each builtin, the fourth argument is a number of statements that
+will be allowed to break the newly installed rule before analysis is
+halted.  This is useful to work around programmatic patterns such as:
+
+int f(void) {
+  unsigned int len = <receive from network>;
+  if (len > LIMIT) return ERROR_CODE;
+}
+
+int g(void) {
+  int ret = f();
+  if (ret == ERROR_CODE) return ret;
+  ...
+}
+
+In the above example, a small value may be used for <number> in order to allow
+len to temporarily hold the wrong value and continue the analysis of ...
+
+Frama_C_watch_value() allows to set a forbidden value for lvalue. This
+could be LIMIT + 1 in the example. The call can be placed anywhere in
+the target C program, but takes effect immediately for the entire
+analysis when encountered along one analysis path without regard for
+the control flow. This mode of operation is only intended to allow
+watching a variable with block or function scope that would be
+difficult to refer to otherwise.
+
+Frama_C_watch_cardinal() allows to set a maximum number of elements
+associated to lvalue in the abstract memory state. This is useful
+in order to watch variables that should remain precise during
+the entire execution (e.g. should remain a singleton) but which can
+take different values at different points.

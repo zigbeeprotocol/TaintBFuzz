@@ -1,0 +1,5 @@
+[kernel] Parsing declared_function.i (no preprocessing)
+[kernel] Parsing TMPDIR/aorai_declared_function_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards
+[kernel:annot:missing-spec] TMPDIR/aorai_declared_function_0.i:105: Warning: 
+  Neither code nor specification for function f, generating default assigns from the prototype

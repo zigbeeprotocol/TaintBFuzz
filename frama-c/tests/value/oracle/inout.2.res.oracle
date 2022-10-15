@@ -1,0 +1,39 @@
+[kernel] Parsing inout.i (no preprocessing)
+[eva] Analyzing a complete application starting at never_terminate
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  Xt ∈ {0}
+  Xs ∈ {0}
+  Xs_I ∈ {0}
+  Ys ∈ {0}
+  Ys_I ∈ {0}
+  Z ∈ {0}
+  I ∈ {0}
+  I_size ∈ {8}
+  Itab[0] ∈ {-40}
+      [1] ∈ {-25}
+      [2] ∈ {-15}
+      [3] ∈ {-5}
+      [4] ∈ {5}
+      [5] ∈ {15}
+      [6] ∈ {25}
+      [7] ∈ {40}
+  I5_nt ∈ {0}
+[eva] Recording results for never_terminate
+[eva] done for function never_terminate
+[from] Computing for function never_terminate
+[from] Non-terminating function never_terminate (no dependencies)
+[from] Done for function never_terminate
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function never_terminate:
+  NON TERMINATING - NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] InOut (internal) for function never_terminate:
+  Operational inputs:
+    i1_nt; i2_nt; i3_nt
+  Operational inputs on termination:
+    \nothing
+  Sure outputs:
+    ANYTHING(origin:Unknown)

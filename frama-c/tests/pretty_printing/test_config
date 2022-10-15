@@ -1,0 +1,6 @@
+COMMENT: this directory is meant to test the parser and pretty-printer
+COMMENT: the default option checks that pretty-printed code can be merged
+COMMENT: with the original one
+PLUGIN:
+CMD: FRAMAC_PLUGIN=tests/.empty @frama-c@
+OPT: @PTEST_FILE@ -print -then -ocode @PTEST_RESULT@/ocode_@PTEST_NAME@.c -print -then @PTEST_RESULT@/ocode_@PTEST_NAME@.c @PTEST_FILE@ -ocode="" -print

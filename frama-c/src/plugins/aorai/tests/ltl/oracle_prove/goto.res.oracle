@@ -1,0 +1,5 @@
+[kernel] Parsing goto.c (with preprocessing)
+[aorai] goto.c:28: Warning: 
+  Call to opc does not follow automaton's specification. This path is assumed to be dead
+[kernel] Parsing TMPDIR/aorai_goto_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

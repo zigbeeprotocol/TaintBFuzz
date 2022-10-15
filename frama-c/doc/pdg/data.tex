@@ -1,0 +1,138 @@
+\chapter{Dépendances liées aux données}
+
+Le calcul de dépendances de données et d'adresse consiste principalement
+à retrouver les éléments de flot correspondant aux données utilisées dans les
+expressions.
+Mais comme les données peuvent être incluses les unes dans les
+autres, il ne suffit pas de retrouver les éléments de flot qui calculent
+exactement ces données, mais aussi ceux qui ont une intersection possible.
+
+Par exemple, dans la séquence~:\\
+  \centerline{\verbtt{d = d0; x = d.a;}}
+
+il faut être capable de voir que \verbtt{x} dépend de \verbtt{d0}.
+
+Autre exemple~: dans la séquence~:\\
+\centerline{\verbtt{d0.a = a; d0.b = b; d = d0;}}
+
+il faut voir que \verbtt{d} dépend éventuellement de la valeur initiale de \verbtt{d0}
+(si \verbtt{d0} contient d'autres champs que \verbtt{.a} et \verbtt{.b}), mais aussi
+de \verbtt{a}, et de \verbtt{b}.\\
+
+\section{Recherche arrière}
+
+Le premier calcul mis en {\oe}uvre procédait par recherche en arrière
+des éléments de la table ayant une intersection avec les données présentes en
+partie droite de l'instruction. Mais cette recherche était compliquée en cas de
+dépendances partielles comme dans le second exemple ci-dessus. Cette solution a
+donc été abandonnée.
+
+\section{Propagation avant d'un état}\label{sec-propagation-etat}
+
+La méthode finalement choisie pour calculer ces dépendances
+consiste à propager en avant, par une analyse du type flot de données,
+un \indexdef{état des données}
+qui contient pour chaque donnée, une liste de liens vers les éléments
+du graphe qui ont permis de déterminer sa valeur en ce point.
+
+Cet état doit avoir les propriétés suivantes~:
+\begin{itemize}
+\item on veut pouvoir associer un nouveau noeud à une donnée
+en précisant s'il faut faire l'union avec l'ensemble précédemment stocké.
+Par exemple~;
+\begin{itemize}
+\item pour l'instruction \verbtt{x = 3;} on construit un nouvel élément
+dans le PDG, et on mémorise dans l'état que \verbtt{x} est maintenant associé
+à cet élément. L'ancienne association est perdue.
+\item  pour l'instruction \verbtt{*p = 3;} si \verbtt{p} peut pointer sur \verbtt{x},
+il faut mémoriser que  \verbtt{x} peut être défini par l'élément du PDG
+correspondant, mais comme ce n'est pas sûr, il faut faire l'union avec
+ce qui était précédemment stocké pour \verbtt{x}.
+\end{itemize}
+\item lorsque l'on demande l'ensemble associé à une donnée,
+le résultat doit contenir au moins ce qu'on a stocké
+(il peut contenir plus d'élément en cas de perte de précision),
+\item la consultation ne doit pas modifier l'état,
+\item il faut savoir faire l'union de deux états.
+\end{itemize}
+
+La structure de donnée du module \verbtt{Lmap} de \ppc correspond à ces critères,
+et peut donc être utilisée pour ce calcul.\\
+
+\section{Propagation arrière d'un état}
+
+Une autre solution aurait pu être de propager en arrière
+un état contenant les utilisations
+de variables, et mettre à jour le graphe en rencontrant la définition.
+Le coût de ce calcul semble être le même que le précèdent,
+mais la propagation avant nous permet d'avoir, à chaque point de programme,
+un état donnant la correspondance entre une donnée et les éléments du graphe,
+même si cette donnée n'est pas utilisée à ce point.
+Cette information nous permet par la suite de définir des critères
+de \slicing moins restrictifs.
+
+\section{Traitement de l'affectation}
+
+Le principe de l'algorithme du traitement d'une affectation
+\verbtt{lval = exp;} est donc le suivant~:
+
+\begin{itemize}
+\item recherche des données $\{d_v\}$
+utilisées dans \verbtt{exp} à l'aide des résultats de l'analyse d'alias préalable,
+\item calcul de {\it dpdv},
+c'est-à-dire l'union des ensembles associées à ces données $d_v$ dans l'état,
+\item recherche des données $\{d_a\}$
+utilisées pour calculer l'adresse de {\it lval},
+\item calcul de {\it dpda}
+c'est-à-dire l'union des ensembles associées à ces données $d_a$ dans l'état,
+\item recherche de l'élément $e$
+correspondant à cette instruction dans le graphe,
+      et création de cet élément s'il n'existe pas,
+\item ajout des dépendances {\it dpdv} et  {\it dpda} à $e$,
+\item recherche des données $\{d_x\}$
+potentiellement modifiées par cette affectation,
+\item calcul du nouvel état (après l'instruction)
+en ajoutant dans l'ancien état un lien entre les $\{d_x\}$ et $e$.
+\end{itemize}
+
+\section{Déclarations}
+
+Les déclarations de variable doivent être traitées séparément
+des valeurs, car on peut parfois dépendre de l'adresse d'une variable
+sans dépendre de ce qu'elle contient.
+
+C'est par exemple le cas lorsque la variable apparaît à gauche
+d'une affectation (\verbtt{x = 3;})
+ou encore quand on n'utilise que son adresse (\verbtt{p = \&x;}).
+
+On garde donc une table qui permet de retrouver les éléments
+du graphe de dépendances qui correspondent aux déclarations.
+
+
+\section{Calcul de conditions}
+
+Les noeuds du graphe de dépendances représentant
+les calculs de condition des \verbtt{if} ou \verbtt{switch}
+ont des dépendances de donnée sur les données utilisées.
+
+\section{Dépendances de donnée dans les boucles}
+
+Pour les boucles {\it explicites}, il suffirait d'effectuer deux tours
+de la boucle pour obtenir toutes les dépendances de donnée car le premier
+capture les dépendances avec les données provenant d'avant la boucle,
+ou interne à un tour, et le second capture les dépendances entre un tour et le
+suivant.
+
+Mais comme les boucles peuvent être introduites par la présence de sauts
+quelconques,
+le plus simple est dans un premier temps d'itérer jusqu'à obtenir un point fixe
+sur l'état des données. Il faut noter que les noeuds ne sont créés que lors de la
+première itération, les suivantes n'ajoutant que de nouvelles dépendances entre
+ces noeuds. Le nombre de noeuds étant fini (de l'ordre de grandeur du nombre
+d'instruction de la fonction), l'atteignabilité du point fixe est
+garantie.
+
+\section{Appels de fonction}
+
+Le traitement des appels de fonction est présenté
+dans le chapitre \ref{sec-intro-call}

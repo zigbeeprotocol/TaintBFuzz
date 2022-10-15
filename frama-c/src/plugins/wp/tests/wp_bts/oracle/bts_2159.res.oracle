@@ -1,0 +1,18 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_2159.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition (file bts_2159.i, line 5) in 'job':
+Assume {
+  Type: is_sint32(s) /\ is_sint32(s_1) /\ is_sint32(x).
+  If 0 <= x
+  Then { If x <= 100 Then { Have: (s + x) = s_1. } Else { Have: s_1 = s. } }
+  Else { Have: s_1 = s. }
+}
+Prove: (if ((0 <= x) & (x <= 100)) then L_Id(s + x) else L_Id(s)) = s_1.
+
+------------------------------------------------------------

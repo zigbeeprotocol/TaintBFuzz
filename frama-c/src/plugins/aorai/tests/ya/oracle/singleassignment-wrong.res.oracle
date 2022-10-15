@@ -1,0 +1,5 @@
+[kernel] Parsing singleassignment-wrong.i (no preprocessing)
+[aorai] User Error: The metavariable aorai_x is assigned several times during the transition from a to b:
+  { Call(main) } aorai_x <- x
+                 aorai_x <- aorai_x + 1
+[kernel] Plug-in aorai aborted: invalid user input.

@@ -1,0 +1,24 @@
+\documentclass{frama-c-book}
+
+\newcommand{\tool}[1]{\textsf{#1}\xspace}
+\newcommand{\expertise}[1]{{\color{gray}{[#1]}}}
+\newcommand{\todo}[1]{{\color{red}{[#1]}}}
+
+
+\makeatletter\@openrightfalse\makeatother
+
+\begin{document}
+\coverpage{Release Management}
+\begin{titlepage}
+\title{Release Management Manual}{CEA -- Private}
+\author{Loïc Correnson, Patrick Baudin, François Bobot, Julien Signoles and Boris Yakobowski}
+\end{titlepage}
+\tableofcontents
+
+\input{intro}
+\input{branch}
+\input{build}
+\input{website}
+\input{standalone-src}
+
+\end{document}

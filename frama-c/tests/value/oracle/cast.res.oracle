@@ -1,0 +1,184 @@
+[kernel] Parsing cast.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  __fc_stdout ∈ {{ NULL ; &S___fc_stdout[0] }}
+  G ∈ {0}
+  H ∈ {0}
+  K ∈ {0}
+  L ∈ {0}
+  i ∈ {0}
+  b ∈ {0}
+  I ∈ {0}
+  c ∈ {0}
+  d ∈ {0}
+  e ∈ {0}
+  uc ∈ {0}
+  ud ∈ {0}
+  ll ∈ {0}
+  gg ∈ {0}
+  ull ∈ {0}
+  ugg ∈ {0}
+  S___fc_stdout[0..1] ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from cast.i:73.
+[eva] computing for function any_int_4 <- main1 <- main.
+  Called from cast.i:33.
+[eva] Recording results for any_int_4
+[eva] Done for function any_int_4
+[eva] computing for function printf_va_1 <- main1 <- main.
+  Called from cast.i:46.
+[eva] using specification for function printf_va_1
+[eva:alarm] cast.i:46: Warning: 
+  function printf_va_1: precondition got status unknown.
+[eva] Done for function printf_va_1
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from cast.i:74.
+[eva] computing for function printf_va_2 <- main2 <- main.
+  Called from cast.i:67.
+[eva] using specification for function printf_va_2
+[eva:alarm] cast.i:67: Warning: 
+  function printf_va_2: precondition got status unknown.
+[eva] Done for function printf_va_2
+[eva] cast.i:64: starting to merge loop iterations
+[eva] computing for function printf_va_2 <- main2 <- main.
+  Called from cast.i:67.
+[eva] Done for function printf_va_2
+[eva] computing for function printf_va_2 <- main2 <- main.
+  Called from cast.i:67.
+[eva] Done for function printf_va_2
+[eva] computing for function printf_va_2 <- main2 <- main.
+  Called from cast.i:67.
+[eva] Done for function printf_va_2
+[eva] computing for function printf_va_3 <- main2 <- main.
+  Called from cast.i:69.
+[eva] using specification for function printf_va_3
+[eva:alarm] cast.i:69: Warning: 
+  function printf_va_3: precondition got status unknown.
+[eva] Done for function printf_va_3
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function any_int_4:
+  i_0 ∈ [--..--]
+  __retres ∈ [-536870912..536870911]
+[eva:final-states] Values at end of function main1:
+  G ∈ [2..12]
+  H ∈ [-536870912..536870911]
+  K ∈ [-10..20]
+  L ∈ [-4000..2],0%2
+  I ∈ {4294967295}
+  c ∈ [-10..20]
+  d ∈ [--..--]
+  e ∈ [-128..126],0%2
+  uc ∈ [--..--]
+  ull ∈ {1}
+  S___fc_stdout[0..1] ∈ [--..--]
+[eva:final-states] Values at end of function main2:
+  min ∈ {130}
+  max ∈ {135}
+  i_0 ∈ [136..2147483647]
+  G_0 ∈ {-126; -125; -124; -123; -122; -121} or UNINITIALIZED
+  S___fc_stdout[0..1] ∈ [--..--]
+[eva:final-states] Values at end of function main:
+  G ∈ [2..12]
+  H ∈ [-536870912..536870911]
+  K ∈ [-10..20]
+  L ∈ [-4000..2],0%2
+  I ∈ {4294967295}
+  c ∈ [-10..20]
+  d ∈ [--..--]
+  e ∈ [-128..126],0%2
+  uc ∈ [--..--]
+  ull ∈ {1}
+  S___fc_stdout[0..1] ∈ [--..--]
+[from] Computing for function any_int_4
+[from] Done for function any_int_4
+[from] Computing for function main1
+[from] Computing for function printf_va_1 <-main1
+[from] Done for function printf_va_1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Computing for function printf_va_2 <-main2
+[from] Done for function printf_va_2
+[from] Computing for function printf_va_3 <-main2
+[from] Done for function printf_va_3
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function any_int_4:
+  \result FROM \nothing
+[from] Function printf_va_1:
+  S___fc_stdout[0].__fc_FILE_data
+               FROM param0; S___fc_stdout[0];
+                    "%ud\n"[bits 0 to 39] (and SELF)
+  \result FROM param0; S___fc_stdout[0]; "%ud\n"[bits 0 to 39]
+[from] Function main1:
+  G FROM \nothing
+  H FROM \nothing
+  K FROM \nothing
+  L FROM \nothing
+  I FROM \nothing
+  c FROM \nothing
+  d FROM \nothing
+  e FROM \nothing
+  uc FROM \nothing
+  ull FROM \nothing
+  S___fc_stdout[0].__fc_FILE_data
+               FROM S___fc_stdout[0]; "%ud\n"[bits 0 to 39] (and SELF)
+[from] Function printf_va_2:
+  S___fc_stdout[0].__fc_FILE_data
+               FROM param0; param1; S___fc_stdout[0];
+                    "cast:%d formule:%d\n"[bits 0 to 159] (and SELF)
+  \result FROM param0; param1; S___fc_stdout[0];
+               "cast:%d formule:%d\n"[bits 0 to 159]
+[from] Function printf_va_3:
+  S___fc_stdout[0].__fc_FILE_data
+               FROM param0; S___fc_stdout[0];
+                    "usc: %ud"[bits 0 to 71] (and SELF)
+  \result FROM param0; S___fc_stdout[0]; "usc: %ud"[bits 0 to 71]
+[from] Function main2:
+  S___fc_stdout[0].__fc_FILE_data
+               FROM S___fc_stdout[0]; "cast:%d formule:%d\n"[bits 0 to 159];
+                    "usc: %ud"[bits 0 to 71] (and SELF)
+[from] Function main:
+  G FROM \nothing
+  H FROM \nothing
+  K FROM \nothing
+  L FROM \nothing
+  I FROM \nothing
+  c FROM \nothing
+  d FROM \nothing
+  e FROM \nothing
+  uc FROM \nothing
+  ull FROM \nothing
+  S___fc_stdout[0].__fc_FILE_data
+               FROM S___fc_stdout[0]; "%ud\n"[bits 0 to 39];
+                    "cast:%d formule:%d\n"[bits 0 to 159];
+                    "usc: %ud"[bits 0 to 71] (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function any_int_4:
+    i_0; __retres
+[inout] Inputs for function any_int_4:
+    \nothing
+[inout] Out (internal) for function main1:
+    G; H; K; L; I; c; d; e; uc; ull; S___fc_stdout[0].__fc_FILE_data
+[inout] Inputs for function main1:
+    G; H; K; L; I; c; S___fc_stdout[0]; "%ud\n"[bits 0 to 39]
+[inout] Out (internal) for function main2:
+    min; max; i_0; G_0; S___fc_stdout[0].__fc_FILE_data
+[inout] Inputs for function main2:
+    S___fc_stdout[0]; "cast:%d formule:%d\n"[bits 0 to 159];
+    "usc: %ud"[bits 0 to 71]
+[inout] Out (internal) for function main:
+    G; H; K; L; I; c; d; e; uc; ull; S___fc_stdout[0].__fc_FILE_data
+[inout] Inputs for function main:
+    G; H; K; L; I; c; S___fc_stdout[0]; "%ud\n"[bits 0 to 39];
+    "cast:%d formule:%d\n"[bits 0 to 159]; "usc: %ud"[bits 0 to 71]

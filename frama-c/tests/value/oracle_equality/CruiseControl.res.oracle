@@ -1,0 +1,45 @@
+979c979
+<        [0]._C4_ThrottleCmd._I0_Regul_ON ∈ {0; 1}
+---
+>        [0]._C4_ThrottleCmd._I0_Regul_ON ∈ {1}
+1017c1017
+<        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._C0_SaturateThrottle{._I0_ThrottleIn; ._O0_ThrottleOut} ∈
+---
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._C0_SaturateThrottle._I0_ThrottleIn ∈
+1018a1019,1020
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._C0_SaturateThrottle._O0_ThrottleOut ∈
+>        [-0.0000000000000000 .. 1.9999998807907104*2^127]
+1032c1034
+<        [-1.9999998807907104*2^127 .. 1.9999998807907104*2^127]
+---
+>        [-0.0000000000000000 .. 1.9999998807907104*2^127]
+1217c1219
+<        [0]._C4_ThrottleCmd._I0_Regul_ON ∈ {0; 1}
+---
+>        [0]._C4_ThrottleCmd._I0_Regul_ON ∈ {1}
+1229c1231,1235
+<        [0]._C4_ThrottleCmd._C0_ThrottleRegulation{._I1_CruiseSpeed; ._I2_VehiculeSpeed; ._O0_Throttle; ._L1_CruiseControl; ._L2_CruiseControl; ._L3_CruiseControl} ∈
+---
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation{._I1_CruiseSpeed; ._I2_VehiculeSpeed} ∈
+>        [-1.9999998807907104*2^127 .. 1.9999998807907104*2^127]
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._O0_Throttle ∈
+>        [-0.0000000000000000 .. 1.9999998807907104*2^127]
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation{._L1_CruiseControl; ._L2_CruiseControl; ._L3_CruiseControl} ∈
+1247c1253
+<        [0]._C4_ThrottleCmd._C0_ThrottleRegulation{._L4_CruiseControl; ._L13_CruiseControl} ∈
+---
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._L4_CruiseControl ∈
+1248a1255,1256
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._L13_CruiseControl ∈
+>        [-0.0000000000000000 .. 1.9999998807907104*2^127]
+1255c1263
+<        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._C0_SaturateThrottle{._I0_ThrottleIn; ._O0_ThrottleOut} ∈
+---
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._C0_SaturateThrottle._I0_ThrottleIn ∈
+1256a1265,1266
+>        [0]._C4_ThrottleCmd._C0_ThrottleRegulation._C0_SaturateThrottle._O0_ThrottleOut ∈
+>        [-0.0000000000000000 .. 1.9999998807907104*2^127]
+1270c1280
+<        [-1.9999998807907104*2^127 .. 1.9999998807907104*2^127]
+---
+>        [-0.0000000000000000 .. 1.9999998807907104*2^127]

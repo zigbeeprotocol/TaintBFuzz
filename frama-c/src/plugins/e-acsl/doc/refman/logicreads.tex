@@ -1,0 +1,15 @@
+\begin{syntax}
+  { logic-function-decl } ::= { "logic" type-expr poly-id };
+  { parameters reads-clause ";" }
+  \
+  { logic-predicate-decl } ::= { "predicate" poly-id };
+  { parameters? reads-clause ";" }
+  \
+  { reads-clause } ::= { "reads" locations }
+  \
+  logic-function-def ::= "logic" type-expr poly-id;
+                         parameters { reads-clause } "=" term ";"
+  \
+  logic-predicate-def ::= "predicate" poly-id ;
+  parameters? { reads-clause } "=" pred ";"
+\end{syntax}

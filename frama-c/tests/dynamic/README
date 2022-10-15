@@ -1,0 +1,16 @@
+This file is an empty file in order to test dynamic plugin engine.
+For this purpose, we test four part in this engine:
+I.   Test path loading engine
+II. Test registering engine 
+
+I.   Test path loading engine 
+    In the dynamic plugin engine, we can add a path to load modules, but this 
+  path must be a directory path.So we tempt to add a file path and a unknown 
+  path in order to raise errors. We tempt to add a directory path to check if 
+  the engine runs.
+ 
+II. Test registering engine
+    In this part, we try to register some functions with dynamic engine and
+  to apply them. For this purpose, we test with a mutual recursive function
+  separated in two files. This test is also an example of how to write a good 
+  dynamic plugin.

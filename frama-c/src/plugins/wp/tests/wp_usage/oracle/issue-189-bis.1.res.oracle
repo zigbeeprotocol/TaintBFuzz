@@ -1,0 +1,186 @@
+# frama-c -wp [...]
+[kernel] Parsing issue-189-bis.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+
+Goal Post-condition 'memcpy,ok' in 'memcpy_context_vars':
+Let a = global(G_dst_48).
+Let a_1 = havoc(Mint_undef_0, Mint_0, shift_uint8(a, 0), len_0).
+Let a_2 = global(G_src_47).
+Assume {
+  Type: is_sint32(len_0) /\ is_sint32(len_1).
+  (* Goal *)
+  When: (0 <= i) /\ ((2 + i) <= len_0).
+  (* Pre-condition 'write_access' *)
+  Have: ((0 < len_0) -> (len_0 <= 1)).
+  (* Invariant 'ok,len' *)
+  Have: len_1 <= len_0.
+  (* Invariant 'ok,src' *)
+  Have: shift_uint8(a_2, len_0) = shift_uint8(src2_0, len_1).
+  (* Invariant 'ok,dst' *)
+  Have: shift_uint8(a, len_0) = shift_uint8(dst2_0, len_1).
+  (* Invariant 'ok,cpy' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> (((len_1 + i_1) < len_0) ->
+      (a_1[shift_uint8(a, i_1)] = Mint_0[shift_uint8(a_2, i_1)]))).
+  (* Else *)
+  Have: len_1 <= 0.
+}
+Prove: a_1[shift_uint8(a, i)] = Mint_0[shift_uint8(a_2, i)].
+
+------------------------------------------------------------
+
+Goal Post-condition 'unmodified,ok' in 'memcpy_context_vars':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'ok,cpy' (file issue-189-bis.i, line 55):
+Let a = global(G_dst_48).
+Let a_1 = havoc(Mint_undef_0, Mint_0, shift_uint8(a, 0), len_0).
+Let a_2 = global(G_src_47).
+Let a_3 = a_1[dst2_0 <- a_1[src2_0]].
+Assume {
+  Type: is_sint32(len_0) /\ is_sint32(len_1) /\ is_sint32(len_1 - 1).
+  (* Goal *)
+  When: (0 <= i) /\ ((i + len_1) <= len_0).
+  (* Pre-condition 'write_access' *)
+  Have: ((0 < len_0) -> (len_0 <= 1)).
+  (* Invariant 'ok,len' *)
+  Have: len_1 <= len_0.
+  (* Invariant 'ok,src' *)
+  Have: shift_uint8(a_2, len_0) = shift_uint8(src2_0, len_1).
+  (* Invariant 'ok,dst' *)
+  Have: shift_uint8(a, len_0) = shift_uint8(dst2_0, len_1).
+  (* Invariant 'ok,cpy' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> (((len_1 + i_1) < len_0) ->
+      (a_1[shift_uint8(a, i_1)] = Mint_0[shift_uint8(a_2, i_1)]))).
+  (* Then *)
+  Have: 0 < len_1.
+  (* Invariant 'ok,len' *)
+  Have: len_1 <= (1 + len_0).
+}
+Prove: a_3[shift_uint8(a_2, i)] = a_3[shift_uint8(a, i)].
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'ok,cpy' (file issue-189-bis.i, line 55):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'ok,dst' (file issue-189-bis.i, line 53):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'ok,dst' (file issue-189-bis.i, line 53):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'ok,len' (file issue-189-bis.i, line 51):
+Let a = global(G_dst_48).
+Let a_1 = global(G_src_47).
+Assume {
+  Type: is_sint32(len_1) /\ is_sint32(len_0) /\ is_sint32(len_0 - 1).
+  (* Pre-condition 'write_access' *)
+  Have: ((0 < len_1) -> (len_1 <= 1)).
+  (* Invariant 'ok,len' *)
+  Have: len_0 <= len_1.
+  (* Invariant 'ok,src' *)
+  Have: shift_uint8(a_1, len_1) = shift_uint8(src2_0, len_0).
+  (* Invariant 'ok,dst' *)
+  Have: shift_uint8(a, len_1) = shift_uint8(dst2_0, len_0).
+  (* Invariant 'ok,cpy' *)
+  Have: forall i : Z. ((0 <= i) -> (((len_0 + i) < len_1) ->
+      (havoc(Mint_undef_0, Mint_0, shift_uint8(a, 0), len_1)
+         [shift_uint8(a, i)] = Mint_0[shift_uint8(a_1, i)]))).
+  (* Then *)
+  Have: 0 < len_0.
+}
+Prove: len_0 <= (1 + len_1).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'ok,len' (file issue-189-bis.i, line 51):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'ok,src' (file issue-189-bis.i, line 52):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'ok,src' (file issue-189-bis.i, line 52):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file issue-189-bis.i, line 54) (1/4):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file issue-189-bis.i, line 54) (2/4):
+Effect at line 60
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file issue-189-bis.i, line 54) (3/4):
+Effect at line 60
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file issue-189-bis.i, line 54) (4/4):
+Effect at line 60
+Let a = global(G_dst_48).
+Let a_1 = shift_uint8(a, 0).
+Let a_2 = havoc(Mint_undef_0, Mint_0, a_1, len_0).
+Let a_3 = a_2[tmp_0 <- a_2[src2_0]].
+Let a_4 = global(G_src_47).
+Assume {
+  Type: is_sint32(len_0) /\ is_sint32(len_1) /\ is_sint32(len_1 - 1).
+  (* Heap *)
+  Type: linked(Malloc_0).
+  (* Goal *)
+  When: !invalid(Malloc_0, tmp_0, 1).
+  (* Pre-condition 'write_access' *)
+  Have: ((0 < len_0) -> (len_0 <= 1)).
+  (* Invariant 'ok,len' *)
+  Have: len_1 <= len_0.
+  (* Invariant 'ok,src' *)
+  Have: shift_uint8(a_4, len_0) = shift_uint8(src2_0, len_1).
+  (* Invariant 'ok,dst' *)
+  Have: shift_uint8(a, len_0) = shift_uint8(tmp_0, len_1).
+  (* Invariant 'ok,cpy' *)
+  Have: forall i : Z. ((0 <= i) -> (((len_1 + i) < len_0) ->
+      (a_2[shift_uint8(a, i)] = Mint_0[shift_uint8(a_4, i)]))).
+  (* Then *)
+  Have: 0 < len_1.
+  (* Invariant 'ok,len' *)
+  Have: len_1 <= (1 + len_0).
+  (* Invariant 'ok,cpy' *)
+  Have: forall i : Z. ((0 <= i) -> (((len_1 + i) <= len_0) ->
+      (a_3[shift_uint8(a_4, i)] = a_3[shift_uint8(a, i)]))).
+}
+Prove: included(tmp_0, 1, a_1, len_0).
+
+------------------------------------------------------------
+
+Goal Assigns (file issue-189-bis.i, line 44) in 'memcpy_context_vars':
+Effect at line 59
+Prove: true.
+
+------------------------------------------------------------
+[wp] issue-189-bis.i:48: Warning: 
+  Memory model hypotheses for function 'memcpy_context_vars':
+  /*@
+     behavior wp_typed:
+       requires \valid(dst);
+       requires \valid(src);
+       requires \separated(src, dst);
+     */
+  void memcpy_context_vars(unsigned char *src, unsigned char *dst, int len);

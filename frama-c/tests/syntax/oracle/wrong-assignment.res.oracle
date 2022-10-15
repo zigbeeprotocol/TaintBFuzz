@@ -1,0 +1,4 @@
+[kernel] Parsing wrong-assignment.i (no preprocessing)
+[kernel] wrong-assignment.i:13: Failure: castTo ebool -> _Bool
+[kernel] User Error: stopping on file "wrong-assignment.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

@@ -1,0 +1,185 @@
+#!/bin/sh
+##########################################################################
+#                                                                        #
+#  This file is part of Frama-C.                                         #
+#                                                                        #
+#  Copyright (C) 2007-2022                                               #
+#    CEA (Commissariat à l'énergie atomique et aux énergies              #
+#         alternatives)                                                  #
+#                                                                        #
+#  you can redistribute it and/or modify it under the terms of the GNU   #
+#  Lesser General Public License as published by the Free Software       #
+#  Foundation, version 2.1.                                              #
+#                                                                        #
+#  It is distributed in the hope that it will be useful,                 #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#  GNU Lesser General Public License for more details.                   #
+#                                                                        #
+#  See the GNU Lesser General Public License version 2.1                 #
+#  for more details (enclosed in the file licenses/LGPLv2.1).            #
+#                                                                        #
+##########################################################################
+
+
+. $(dirname $0)/local_export.sh
+
+if ! command -v ocamlc > /dev/null; then
+    echo "ocamlc not found" && exit 1;
+fi
+if ! command -v ocamldebug > /dev/null; then
+    echo "ocamldebug not found" && exit 1;
+fi
+
+OCAML_VERSION=$(ocamlc -version)
+case $OCAML_VERSION in
+4.08*)
+    echo "impossible to load dynlink in ocamldebug for version $OCAML_VERSION";
+    echo "pretty-printers will not be loaded";
+    if test ! -e .ocamldebug; then GEN_OCAMLDEBUG=yes; touch .ocamldebug; fi;;
+*) DYNLINK=;;
+esac
+
+if test ! -e .ocamldebug; then
+    GEN_OCAMLDEBUG=yes;
+    cat <<EOF > .ocamldebug;
+load_printer "str.cma"
+load_printer "zarith.cma"
+$DYNLINK
+load_printer "extlib.cmo"
+load_printer "filepath.cmo"
+load_printer "integer.cmo"
+load_printer "transitioning.cmo"
+load_printer "pretty_utils.cmo"
+load_printer "cil_types_debug.cmo"
+load_printer "cabs_debug.cmo"
+
+install_printer Cil_types_debug.pp_integer
+install_printer Cil_types_debug.pp_variant
+install_printer Cil_types_debug.pp_allocation
+install_printer Cil_types_debug.pp_deps
+install_printer Cil_types_debug.pp_from
+install_printer Cil_types_debug.pp_assigns
+install_printer Cil_types_debug.pp_file
+install_printer Cil_types_debug.pp_global
+install_printer Cil_types_debug.pp_typ
+install_printer Cil_types_debug.pp_ikind
+install_printer Cil_types_debug.pp_fkind
+install_printer Cil_types_debug.pp_attribute
+install_printer Cil_types_debug.pp_attributes
+install_printer Cil_types_debug.pp_attrparam
+install_printer Cil_types_debug.pp_compinfo
+install_printer Cil_types_debug.pp_fieldinfo
+install_printer Cil_types_debug.pp_enuminfo
+install_printer Cil_types_debug.pp_enumitem
+install_printer Cil_types_debug.pp_typeinfo
+install_printer Cil_types_debug.pp_varinfo
+install_printer Cil_types_debug.pp_storage
+install_printer Cil_types_debug.pp_exp
+install_printer Cil_types_debug.pp_exp_node
+install_printer Cil_types_debug.pp_constant
+install_printer Cil_types_debug.pp_unop
+install_printer Cil_types_debug.pp_binop
+install_printer Cil_types_debug.pp_lval
+install_printer Cil_types_debug.pp_lhost
+install_printer Cil_types_debug.pp_offset
+install_printer Cil_types_debug.pp_init
+install_printer Cil_types_debug.pp_initinfo
+install_printer Cil_types_debug.pp_fundec
+install_printer Cil_types_debug.pp_block
+install_printer Cil_types_debug.pp_stmt
+install_printer Cil_types_debug.pp_label
+install_printer Cil_types_debug.pp_stmtkind
+install_printer Cil_types_debug.pp_catch_binder
+install_printer Cil_types_debug.pp_instr
+install_printer Cil_types_debug.pp_extended_asm
+install_printer Cil_types_debug.pp_filepath_position
+install_printer Cil_types_debug.pp_lexing_position
+install_printer Cil_types_debug.pp_location
+install_printer Cil_types_debug.pp_logic_constant
+install_printer Cil_types_debug.pp_logic_real
+install_printer Cil_types_debug.pp_logic_type
+install_printer Cil_types_debug.pp_identified_term
+install_printer Cil_types_debug.pp_logic_label
+install_printer Cil_types_debug.pp_logic_builtin_label
+install_printer Cil_types_debug.pp_term
+install_printer Cil_types_debug.pp_term_node
+install_printer Cil_types_debug.pp_term_lval
+install_printer Cil_types_debug.pp_term_lhost
+install_printer Cil_types_debug.pp_model_info
+install_printer Cil_types_debug.pp_term_offset
+install_printer Cil_types_debug.pp_logic_info
+install_printer Cil_types_debug.pp_builtin_logic_info
+install_printer Cil_types_debug.pp_logic_body
+install_printer Cil_types_debug.pp_logic_type_info
+install_printer Cil_types_debug.pp_logic_type_def
+install_printer Cil_types_debug.pp_logic_var_kind
+install_printer Cil_types_debug.pp_logic_var
+install_printer Cil_types_debug.pp_logic_ctor_info
+install_printer Cil_types_debug.pp_quantifiers
+install_printer Cil_types_debug.pp_relation
+install_printer Cil_types_debug.pp_predicate_node
+install_printer Cil_types_debug.pp_identified_predicate
+install_printer Cil_types_debug.pp_predicate
+install_printer Cil_types_debug.pp_spec
+install_printer Cil_types_debug.pp_acsl_extension
+install_printer Cil_types_debug.pp_acsl_extension_kind
+install_printer Cil_types_debug.pp_loop_pragma
+install_printer Cil_types_debug.pp_slice_pragma
+install_printer Cil_types_debug.pp_impact_pragma
+install_printer Cil_types_debug.pp_pragma
+install_printer Cil_types_debug.pp_code_annotation_node
+install_printer Cil_types_debug.pp_funspec
+install_printer Cil_types_debug.pp_code_annotation
+install_printer Cil_types_debug.pp_funbehavior
+install_printer Cil_types_debug.pp_global_annotation
+install_printer Cil_types_debug.pp_kinstr
+install_printer Cil_types_debug.pp_cil_function
+install_printer Cil_types_debug.pp_kernel_function
+install_printer Cil_types_debug.pp_localisation
+install_printer Cil_types_debug.pp_mach
+
+install_printer Cabs_debug.pp_cabsloc
+install_printer Cabs_debug.pp_storage
+install_printer Cabs_debug.pp_fun_spec
+install_printer Cabs_debug.pp_cvspec
+install_printer Cabs_debug.pp_const
+install_printer Cabs_debug.pp_labels
+install_printer Cabs_debug.pp_typeSpecifier
+install_printer Cabs_debug.pp_spec_elem
+install_printer Cabs_debug.pp_spec
+install_printer Cabs_debug.pp_decl_type
+install_printer Cabs_debug.pp_name_group
+install_printer Cabs_debug.pp_field_group
+install_printer Cabs_debug.pp_field_groups
+install_printer Cabs_debug.pp_init_name_group
+install_printer Cabs_debug.pp_name
+install_printer Cabs_debug.pp_init_name
+install_printer Cabs_debug.pp_single_name
+install_printer Cabs_debug.pp_enum_item
+install_printer Cabs_debug.pp_def
+install_printer Cabs_debug.pp_block
+install_printer Cabs_debug.pp_raw_stmt
+install_printer Cabs_debug.pp_stmt
+install_printer Cabs_debug.pp_for_clause
+install_printer Cabs_debug.pp_bin_op
+install_printer Cabs_debug.pp_un_op
+install_printer Cabs_debug.pp_exp
+install_printer Cabs_debug.pp_exp_node
+install_printer Cabs_debug.pp_init_exp
+install_printer Cabs_debug.pp_initwhat
+install_printer Cabs_debug.pp_attr
+install_printer Cabs_debug.pp_attrs
+install_printer Cabs_debug.pp_file
+EOF
+else
+GEN_OCAMLDEBUG=${GEN_OCAMLDEBUG:-no};
+fi
+
+ocamldebug -I $(ocamlfind query zarith) -I $(ocamlfind query ocamlgraph) \
+           -I $(ocamlfind query compiler-libs) \
+           -I $FRAMAC_LIB $BINDIR/toplevel.byte "$@"
+
+if test "$GEN_OCAMLDEBUG" = "yes"; then
+  rm .ocamldebug;
+fi

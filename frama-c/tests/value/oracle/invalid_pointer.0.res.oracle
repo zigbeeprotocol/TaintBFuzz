@@ -1,0 +1,441 @@
+[kernel] Parsing invalid_pointer.c (with preprocessing)
+[kernel:typing:int-conversion] invalid_pointer.c:112: Warning: 
+  Conversion from a pointer to an integer without an explicit cast
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  NULL[rbits 80 to 247] ∈ [--..--]
+  undet ∈ [--..--]
+[eva] computing for function pointer_computation <- main.
+  Called from invalid_pointer.c:190.
+[eva:alarm] invalid_pointer.c:20: Warning: 
+  invalid pointer creation. assert \object_pointer(p - 1);
+[eva:alarm] invalid_pointer.c:23: Warning: 
+  invalid pointer creation. assert \object_pointer(p + 1);
+[eva:alarm] invalid_pointer.c:25: Warning: 
+  invalid pointer creation. assert \object_pointer(p + i);
+[eva:alarm] invalid_pointer.c:27: Warning: 
+  invalid pointer creation. assert \object_pointer(p - j);
+[eva:alarm] invalid_pointer.c:28: Warning: 
+  invalid pointer creation. assert \object_pointer(p - 1);
+[eva] computing for function Frama_C_interval <- pointer_computation <- main.
+  Called from invalid_pointer.c:31.
+[eva] using specification for function Frama_C_interval
+[eva] invalid_pointer.c:31: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] invalid_pointer.c:32: Warning: 
+  invalid pointer creation. assert \object_pointer(q + offset1);
+[eva] computing for function Frama_C_interval <- pointer_computation <- main.
+  Called from invalid_pointer.c:33.
+[eva] invalid_pointer.c:33: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] invalid_pointer.c:34: Warning: 
+  invalid pointer creation. assert \object_pointer(q + offset2);
+[eva] Recording results for pointer_computation
+[eva] Done for function pointer_computation
+[eva] computing for function pointer_in_loops <- main.
+  Called from invalid_pointer.c:191.
+[eva] invalid_pointer.c:43: Trace partitioning superposing up to 100 states
+[eva:alarm] invalid_pointer.c:52: Warning: 
+  invalid pointer creation. assert \object_pointer(q - 1);
+[eva] Recording results for pointer_in_loops
+[eva] Done for function pointer_in_loops
+[eva] computing for function int_conversion <- main.
+  Called from invalid_pointer.c:192.
+[eva:alarm] invalid_pointer.c:64: Warning: 
+  invalid pointer creation. assert \object_pointer((int *)42);
+[eva] computing for function Frama_C_interval <- int_conversion <- main.
+  Called from invalid_pointer.c:66.
+[eva] invalid_pointer.c:66: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- int_conversion <- main.
+  Called from invalid_pointer.c:68.
+[eva] invalid_pointer.c:68: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] invalid_pointer.c:70: Warning: 
+  invalid pointer creation. assert \object_pointer((int *)x);
+[eva] computing for function Frama_C_interval <- int_conversion <- main.
+  Called from invalid_pointer.c:72.
+[eva] invalid_pointer.c:72: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] invalid_pointer.c:73: Warning: 
+  invalid pointer creation. assert \object_pointer((int *)x);
+[eva:alarm] invalid_pointer.c:74: Warning: 
+  invalid pointer creation. assert \object_pointer((int *)undet);
+[eva] Recording results for int_conversion
+[eva] Done for function int_conversion
+[eva] computing for function addrof <- main.
+  Called from invalid_pointer.c:193.
+[eva:alarm] invalid_pointer.c:82: Warning: 
+  invalid pointer creation. assert \object_pointer(&a[11]);
+[eva:alarm] invalid_pointer.c:84: Warning: 
+  invalid pointer creation. assert \object_pointer(&a[(int)(-1)]);
+[eva:alarm] invalid_pointer.c:86: Warning: 
+  invalid pointer creation. assert \object_pointer(&a[offset]);
+[eva] Recording results for addrof
+[eva] Done for function addrof
+[eva] computing for function union_pointer <- main.
+  Called from invalid_pointer.c:194.
+[eva:alarm] invalid_pointer.c:102: Warning: 
+  invalid pointer creation. assert \object_pointer(u.pointer);
+[eva:alarm] invalid_pointer.c:105: Warning: 
+  invalid pointer creation. assert \object_pointer(u.pointer);
+[eva] Recording results for union_pointer
+[eva] Done for function union_pointer
+[eva] computing for function write_pointer <- main.
+  Called from invalid_pointer.c:195.
+[eva:alarm] invalid_pointer.c:115: Warning: 
+  invalid pointer creation. assert \object_pointer(p);
+[eva:alarm] invalid_pointer.c:118: Warning: 
+  invalid pointer creation. assert \object_pointer(p);
+[eva] Recording results for write_pointer
+[eva] Done for function write_pointer
+[eva] computing for function object_pointer_predicate <- main.
+  Called from invalid_pointer.c:196.
+[eva] invalid_pointer.c:127: assertion got status valid.
+[eva:alarm] invalid_pointer.c:129: Warning: 
+  invalid pointer creation. assert \object_pointer(p - 1);
+[eva] invalid_pointer.c:133: assertion got status valid.
+[eva:alarm] invalid_pointer.c:135: Warning: 
+  invalid pointer creation. assert \object_pointer(p + 1);
+[eva:alarm] invalid_pointer.c:138: Warning: 
+  invalid pointer creation. assert \object_pointer(p + undet);
+[eva] invalid_pointer.c:139: assertion got status valid.
+[eva] invalid_pointer.c:140: assertion got status valid.
+[eva] invalid_pointer.c:141: Frama_C_show_each_object_pointer: {{ &x + {0; 4} }}
+[eva:alarm] invalid_pointer.c:142: Warning: 
+  invalid pointer creation.
+  assert
+  \object_pointer((int *)((uintptr_t)((uintptr_t)(&x) + (uintptr_t)undet)));
+[eva] invalid_pointer.c:143: assertion got status valid.
+[eva] invalid_pointer.c:144: assertion got status valid.
+[eva] invalid_pointer.c:145: 
+  Frama_C_show_each_object_pointer_char: {{ &x + {0; 1; 2; 3; 4} }}
+[eva] computing for function Frama_C_interval <- object_pointer_predicate <- main.
+  Called from invalid_pointer.c:146.
+[eva] invalid_pointer.c:146: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] invalid_pointer.c:148: assertion got status valid.
+[eva:alarm] invalid_pointer.c:149: Warning: 
+  invalid pointer creation. assert \object_pointer(p + i);
+[eva] invalid_pointer.c:150: assertion got status valid.
+[eva:alarm] invalid_pointer.c:151: Warning: 
+  invalid pointer creation. assert \object_pointer(p + undet);
+[eva] invalid_pointer.c:152: assertion got status valid.
+[eva] invalid_pointer.c:153: 
+  Frama_C_show_each_object_pointer_array:
+  {{ &x + {0; 4} ; &array + [0..256],0%4 }}
+[eva] invalid_pointer.c:155: assertion got status valid.
+[eva:alarm] invalid_pointer.c:158: Warning: assertion got status unknown.
+[eva:alarm] invalid_pointer.c:160: Warning: 
+  invalid pointer creation. assert \object_pointer((int *)50);
+[eva:alarm] invalid_pointer.c:161: Warning: assertion got status unknown.
+[eva:alarm] invalid_pointer.c:162: Warning: 
+  invalid pointer creation. assert \object_pointer((int *)undet);
+[eva:alarm] invalid_pointer.c:163: Warning: assertion got status unknown.
+[eva:alarm] invalid_pointer.c:165: Warning: 
+  invalid pointer creation. assert \object_pointer((int *)100);
+[eva] Recording results for object_pointer_predicate
+[eva] Done for function object_pointer_predicate
+[eva] computing for function flexible_array_member <- main.
+  Called from invalid_pointer.c:197.
+[eva:alarm] invalid_pointer.c:181: Warning: 
+  invalid pointer creation. assert \object_pointer(&s1.fam[1]);
+[eva:alarm] invalid_pointer.c:185: Warning: 
+  invalid pointer creation. assert \object_pointer(p_0 + 1);
+[kernel] invalid_pointer.c:185: Warning: 
+  all target addresses were invalid. This path is assumed to be dead.
+[eva] Recording results for flexible_array_member
+[eva] Done for function flexible_array_member
+[eva] computing for function signal <- main.
+  Called from invalid_pointer.c:199.
+[eva] using specification for function signal
+[eva] Done for function signal
+[eva] computing for function signal <- main.
+  Called from invalid_pointer.c:200.
+[eva] Done for function signal
+[eva] computing for function signal <- main.
+  Called from invalid_pointer.c:201.
+[eva] Done for function signal
+[eva] Recording results for main
+[eva] done for function main
+[eva] invalid_pointer.c:20: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:23: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:64: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:70: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:82: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:84: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:102: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:118: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:129: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:135: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:160: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:165: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:181: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[eva] invalid_pointer.c:185: 
+  assertion 'Eva,pointer_value' got final status invalid.
+[scope:rm_asserts] removing 2 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function addrof:
+  p ∈ {{ &a + [0..40],0%4 }}
+  offset ∈ [--..--]
+[eva:final-states] Values at end of function flexible_array_member:
+  s1 ∈ {0}
+[eva:final-states] Values at end of function int_conversion:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ [15..31]
+  p ∈ [0..31]
+[eva:final-states] Values at end of function object_pointer_predicate:
+  Frama_C_entropy_source ∈ [--..--]
+  p ∈ [0..31]
+  i ∈ [0..20]
+[eva:final-states] Values at end of function pointer_computation:
+  Frama_C_entropy_source ∈ [--..--]
+  p ∈ {{ &x }}
+  i ∈ {-1; 0}
+  j ∈ {-1; 0; 1}
+  q ∈ {{ &x + {0; 4} ; &array + [0..100],0%4 }}
+  offset1 ∈ [0..10]
+  offset2 ∈ [0..25]
+[eva:final-states] Values at end of function pointer_in_loops:
+  t[0] ∈ {0}
+   [1] ∈ {1}
+   [2] ∈ {2}
+   [3] ∈ {3}
+   [4] ∈ {4}
+   [5] ∈ {5}
+   [6] ∈ {6}
+   [7] ∈ {7}
+   [8] ∈ {8}
+   [9] ∈ {9}
+   [10] ∈ {10}
+   [11] ∈ {11}
+   [12] ∈ {12}
+   [13] ∈ {13}
+   [14] ∈ {14}
+   [15] ∈ {15}
+   [16] ∈ {16}
+   [17] ∈ {17}
+   [18] ∈ {18}
+   [19] ∈ {19}
+   [20] ∈ {20}
+   [21] ∈ {21}
+   [22] ∈ {22}
+   [23] ∈ {23}
+   [24] ∈ {24}
+   [25] ∈ {25}
+   [26] ∈ {26}
+   [27] ∈ {27}
+   [28] ∈ {28}
+   [29] ∈ {29}
+   [30] ∈ {30}
+   [31] ∈ {31}
+   [32] ∈ {32}
+   [33] ∈ {33}
+   [34] ∈ {34}
+   [35] ∈ {35}
+   [36] ∈ {36}
+   [37] ∈ {37}
+   [38] ∈ {38}
+   [39] ∈ {39}
+   [40] ∈ {40}
+   [41] ∈ {41}
+   [42] ∈ {42}
+   [43] ∈ {43}
+   [44] ∈ {44}
+   [45] ∈ {45}
+   [46] ∈ {46}
+   [47] ∈ {47}
+   [48] ∈ {48}
+   [49] ∈ {49}
+   [50] ∈ {50}
+   [51] ∈ {51}
+   [52] ∈ {52}
+   [53] ∈ {53}
+   [54] ∈ {54}
+   [55] ∈ {55}
+   [56] ∈ {56}
+   [57] ∈ {57}
+   [58] ∈ {58}
+   [59] ∈ {59}
+   [60] ∈ {60}
+   [61] ∈ {61}
+   [62] ∈ {62}
+   [63] ∈ {63}
+   [64] ∈ {64}
+   [65] ∈ {65}
+   [66] ∈ {66}
+   [67] ∈ {67}
+   [68] ∈ {68}
+   [69] ∈ {69}
+   [70] ∈ {70}
+   [71] ∈ {71}
+   [72] ∈ {72}
+   [73] ∈ {73}
+   [74] ∈ {74}
+   [75] ∈ {75}
+   [76] ∈ {76}
+   [77] ∈ {77}
+   [78] ∈ {78}
+   [79] ∈ {79}
+   [80] ∈ {80}
+   [81] ∈ {81}
+   [82] ∈ {82}
+   [83] ∈ {83}
+   [84] ∈ {84}
+   [85] ∈ {85}
+   [86] ∈ {86}
+   [87] ∈ {87}
+   [88] ∈ {88}
+   [89] ∈ {89}
+   [90] ∈ {90}
+   [91] ∈ {91}
+   [92] ∈ {92}
+   [93] ∈ {93}
+   [94] ∈ {94}
+   [95] ∈ {95}
+   [96] ∈ {96}
+   [97] ∈ {97}
+   [98] ∈ {98}
+   [99] ∈ {99}
+   [100] ∈ {100}
+   [101] ∈ {101}
+   [102] ∈ {102}
+   [103] ∈ {103}
+   [104] ∈ {104}
+   [105] ∈ {105}
+   [106] ∈ {106}
+   [107] ∈ {107}
+   [108] ∈ {108}
+   [109] ∈ {109}
+   [110] ∈ {110}
+   [111] ∈ {111}
+   [112] ∈ {112}
+   [113] ∈ {113}
+   [114] ∈ {114}
+   [115] ∈ {115}
+   [116] ∈ {116}
+   [117] ∈ {117}
+   [118] ∈ {118}
+   [119] ∈ {119}
+   [120] ∈ {120}
+   [121] ∈ {121}
+   [122] ∈ {122}
+   [123] ∈ {123}
+   [124] ∈ {124}
+   [125] ∈ {125}
+   [126] ∈ {126}
+   [127] ∈ {127}
+  p ∈ {{ &t[128] }}
+[eva:final-states] Values at end of function union_pointer:
+  p ∈ [0..31]
+  u{.integer; .pointer} ∈ [0..31]
+[eva:final-states] Values at end of function write_pointer:
+  p ∈ {42}
+  q ∈ {{ &x + {0; 1; 2; 3; 4} }}
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+[from] Computing for function addrof
+[from] Done for function addrof
+[from] Computing for function flexible_array_member
+[from] Done for function flexible_array_member
+[from] Computing for function int_conversion
+[from] Computing for function Frama_C_interval <-int_conversion
+[from] Done for function Frama_C_interval
+[from] Done for function int_conversion
+[from] Computing for function object_pointer_predicate
+[from] Done for function object_pointer_predicate
+[from] Computing for function pointer_computation
+[from] Done for function pointer_computation
+[from] Computing for function pointer_in_loops
+[from] Done for function pointer_in_loops
+[from] Computing for function union_pointer
+[from] Done for function union_pointer
+[from] Computing for function write_pointer
+[from] Done for function write_pointer
+[from] Computing for function main
+[from] Computing for function signal <-main
+[from] Done for function signal
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function addrof:
+  NO EFFECTS
+[from] Function flexible_array_member:
+  NO EFFECTS
+[from] Function int_conversion:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function object_pointer_predicate:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function pointer_computation:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function pointer_in_loops:
+  NO EFFECTS
+[from] Function signal:
+  \result FROM ANYTHING(origin:Unknown)
+[from] Function union_pointer:
+  NO EFFECTS
+[from] Function write_pointer:
+  NO EFFECTS
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function addrof:
+    p; offset
+[inout] Inputs for function addrof:
+    undet
+[inout] Out (internal) for function flexible_array_member:
+    s1; p; p_0
+[inout] Inputs for function flexible_array_member:
+    undet
+[inout] Out (internal) for function int_conversion:
+    Frama_C_entropy_source; x; p
+[inout] Inputs for function int_conversion:
+    Frama_C_entropy_source; undet
+[inout] Out (internal) for function object_pointer_predicate:
+    Frama_C_entropy_source; p; i
+[inout] Inputs for function object_pointer_predicate:
+    Frama_C_entropy_source; undet
+[inout] Out (internal) for function pointer_computation:
+    Frama_C_entropy_source; p; i; j; q; tmp; offset1; offset2
+[inout] Inputs for function pointer_computation:
+    Frama_C_entropy_source; undet
+[inout] Out (internal) for function pointer_in_loops:
+    t[0..127]; p; i; q; i_0
+[inout] Inputs for function pointer_in_loops:
+    undet
+[inout] Out (internal) for function union_pointer:
+    p; u
+[inout] Inputs for function union_pointer:
+    undet
+[inout] Out (internal) for function write_pointer:
+    p; q
+[inout] Inputs for function write_pointer:
+    undet
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source
+[inout] Inputs for function main:
+    Frama_C_entropy_source; undet

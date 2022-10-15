@@ -1,0 +1,26 @@
+# frama-c -wp [...]
+[kernel] Parsing assigns_path.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 9 goals scheduled
+[wp] [Qed] Goal typed_job_ensures_N : Valid
+[wp] [Alt-Ergo] Goal typed_job_ensures_A : Valid
+[wp] [Qed] Goal typed_job_loop_invariant_preserved : Valid
+[wp] [Qed] Goal typed_job_loop_invariant_established : Valid
+[wp] [Alt-Ergo] Goal typed_job_loop_invariant_2_preserved : Valid
+[wp] [Qed] Goal typed_job_loop_invariant_2_established : Valid
+[wp] [Qed] Goal typed_job_loop_assigns : Valid
+[wp] [Qed] Goal typed_job_assigns_part1 : Valid
+[wp] [Qed] Goal typed_job_assigns_part2 : Valid
+[wp] Proved goals:    9 / 9
+  Qed:             7 
+  Alt-Ergo:        2
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  job                       7        2        9       100%
+------------------------------------------------------------
+[wp] assigns_path.i:12: Warning: 
+  Memory model hypotheses for function 'job':
+  /*@ behavior wp_typed:
+        requires \separated(b + (..), &p); */
+  void job(int n, int *b);

@@ -1,0 +1,8 @@
+V4
+	Bug fix for identifier with integer suffix overflowing type int
+V3
+	Bug fix in the case of files with more than Sys.max_array_length tokens
+V2
+	New dictionary output using #define
+V1
+	Initial release

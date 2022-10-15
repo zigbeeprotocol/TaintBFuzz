@@ -1,0 +1,6 @@
+[ { "header": "Sequence", "tactic": "Wp.sequence",
+    "params": { "seq.side": "right" },
+    "select": { "select": "inside-goal", "occur": 0,
+                "target": "(repeat a_0 n_0)", "pattern": "repeat$a$n" },
+    "children": { "Nil": [ { "prover": "qed", "verdict": "valid" } ],
+                  "Unroll": [ { "prover": "qed", "verdict": "valid" } ] } } ]

@@ -1,0 +1,1 @@
+    "description": "Compiler builtins supported by Frama-C (for GCC builtins, see gcc_builtins.json)",

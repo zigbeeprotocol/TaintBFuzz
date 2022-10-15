@@ -1,0 +1,6 @@
+*.vo*
+*.glob
+*.aux
+/instwp
+/install
+/html

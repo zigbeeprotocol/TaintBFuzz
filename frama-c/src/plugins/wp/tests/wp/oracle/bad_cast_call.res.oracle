@@ -1,0 +1,20 @@
+# frama-c -wp [...]
+[kernel] Parsing bad_cast_call.i (no preprocessing)
+[wp] Running WP plugin...
+[kernel] bad_cast_call.i:6: Warning: 
+  No code nor implicit assigns clause for function m, generating default assigns from the prototype
+[wp] Warning: Missing RTE guards
+[wp] bad_cast_call.i:8: Warning: 
+  Cast with incompatible pointers types (source: sint8*) (target: char**)
+------------------------------------------------------------
+  Function foo
+------------------------------------------------------------
+
+Goal Assertion 'MUST_FAIL' (file bad_cast_call.i, line 9):
+bad_cast_call.i:8: warning from Typed Model:
+ - Warning: Hide \result
+   Reason: Cast with incompatible pointers types (source: sint8*) (target: char**)
+Assume { (* Call 'm' *) Have: P_Kept. }
+Prove: null = pages_0.
+
+------------------------------------------------------------

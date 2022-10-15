@@ -1,0 +1,70 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing reference_and_struct.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 32 goals scheduled
+[wp] [Qed] Goal typed_ref_reset_ensures : Valid
+[wp] [Qed] Goal typed_ref_reset_assigns : Valid
+[wp] [Qed] Goal typed_ref_call_reset_ensures : Valid
+[wp] [Qed] Goal typed_ref_call_reset_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_reset_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_ref_call_reset_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_ref_call_reset_call_reset_requires : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_reset_5_ensures_Preset_5 : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_call_reset_5_requires : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_reset_5_tps_ensures_Preset_5_tps : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_tps_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_tps_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_tps_call_reset_5_requires : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_reset_1_5_ensures_Presset_mat : Valid
+[wp] [Qed] Goal typed_ref_call_reset_1_5_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_reset_1_5_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_reset_1_5_call_reset_1_5_requires : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_reset_5_dim2_ensures_Presset_mat : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_dim2_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_dim2_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_reset_5_dim2_call_reset_5_requires : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_on_array_in_struct_global_ensures_Pload : Valid
+[wp] [Qed] Goal typed_ref_call_on_array_in_struct_global_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_on_array_in_struct_global_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_on_array_in_struct_global_call_load_5_requires : Valid
+[wp] [Qed] Goal typed_ref_call_array_in_struct_param_ensures_Pload2 : Valid
+[wp] [Qed] Goal typed_ref_call_array_in_struct_param_ensures_Pload3 : Valid
+[wp] [Qed] Goal typed_ref_call_array_in_struct_param_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_array_in_struct_param_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_array_in_struct_param_call_load_5_requires : Valid
+[wp] Proved goals:   32 / 32
+  Qed:            27 
+  Alt-Ergo:        5
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  reset                     2        -        2       100%
+  call_reset                5        -        5       100%
+  call_reset_5              3        1        4       100%
+  call_reset_5_tps          3        1        4       100%
+  call_reset_1_5            3        1        4       100%
+  call_reset_5_dim2         3        1        4       100%
+  call_on_array_in_struct_global   3   1      4       100%
+  call_array_in_struct_param   5     -        5       100%
+------------------------------------------------------------
+[wp] reference_and_struct.i:15: Warning: 
+  Memory model hypotheses for function 'reset':
+  /*@ behavior wp_typed_ref:
+        requires \valid(p); */
+  void reset(struct T *p);
+[wp] reference_and_struct.i:48: Warning: 
+  Memory model hypotheses for function 'call_reset_5_tps':
+  /*@
+     behavior wp_typed_ref:
+       requires \separated(tps[9] + (0 .. 4), (struct T **)tps + (..));
+     */
+  void call_reset_5_tps(void);
+[wp] reference_and_struct.i:88: Warning: 
+  Memory model hypotheses for function 'load_5':
+  /*@
+     behavior wp_typed_ref:
+       requires \separated(hp + (..), (int *)reg_load + (..));
+     */
+  void load_5(int *hp);

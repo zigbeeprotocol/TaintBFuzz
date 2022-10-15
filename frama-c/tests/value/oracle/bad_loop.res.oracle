@@ -1,0 +1,25 @@
+[kernel] Parsing bad_loop.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  c ∈ [--..--]
+[eva] bad_loop.i:6: starting to merge loop iterations
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  x ∈ {0; 1; 2}
+  d ∈ [--..--]
+  e ∈ [--..--]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    x; d; e
+[inout] Inputs for function main:
+    c

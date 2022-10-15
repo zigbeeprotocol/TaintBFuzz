@@ -1,0 +1,4 @@
+Frama-C is now installed on your computer.
+Note that no C preprocessor is installed by Frama-C itself.
+We encourage you to install cygwin from http://cygwin.org and to launch Frama-C tools from a shell which contains "gcc" and the "bin" directory of Frama-C in its path.
+

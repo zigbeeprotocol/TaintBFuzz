@@ -1,0 +1,42 @@
+[kernel] Parsing ast_diff_1.i (no preprocessing)
+[kernel] Parsing ast_diff_2.i (no preprocessing)
+[AST diff test] Showing correspondances between orig_default and default
+[AST diff test] Variable i:  => i
+[AST diff test] Variable local_var_use:  => local_var_use
+[AST diff test] Variable v:  => w
+[AST diff test] Variable a:  => q
+[AST diff test] Variable x:  => z
+[AST diff test] Variable y:  => t
+[AST diff test] Variable s:  => s
+[AST diff test] Variable use_s:  => use_s
+[AST diff test] Variable x:  => x
+[AST diff test] Variable with_goto_changed:  => with_goto_changed
+[AST diff test] Variable X:  => X
+[AST diff test] Variable Y: N/A
+[AST diff test] Variable c:  => c
+[AST diff test] Variable f:  => f
+[AST diff test] Variable with_goto_unchanged:  => with_goto_unchanged
+[AST diff test] Variable x:  => x
+[AST diff test] Variable c:  => c
+[AST diff test] Variable g:  => g
+[AST diff test] Variable has_static_local_x:  => has_static_local_y
+[AST diff test] Variable __retres:  => __retres
+[AST diff test] Variable h:  => h
+[AST diff test] Variable use_logic_builtin:  => use_logic_builtin
+[AST diff test] Variable x:  => x
+[AST diff test] Variable y:  => y
+[AST diff test] Variable has_static_local:  => has_static_local
+[AST diff test] Variable decl:  => decl
+[AST diff test] Variable used_in_decl:  => used_in_decl
+[AST diff test] Variable ptr_func:  => ptr_func
+[AST diff test] Function i:  => i
+[AST diff test] Function local_var_use:  => local_var_use
+[AST diff test] Function use_s:  => use_s
+[AST diff test] Function with_goto_changed: -> with_goto_changed (body changed)
+[AST diff test] Function f:  => f
+[AST diff test] Function with_goto_unchanged:  => with_goto_unchanged
+[AST diff test] Function g: N/A
+[AST diff test] Function h: -> h (body changed)
+[AST diff test] Function use_logic_builtin:  => use_logic_builtin
+[AST diff test] Function has_static_local:  => has_static_local
+[AST diff test] Function decl:  => decl

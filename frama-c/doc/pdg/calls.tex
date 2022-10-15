@@ -1,0 +1,209 @@
+\chapter{Dépendances interprocédurales}\label{sec-intro-call}
+
+On a vu qu'un PDG est associé à une fonction.
+La question se pose donc de savoir
+comment calculer des dépendances interprocédurales, c'est-à-dire comment mettre
+en relation les appels de fonctions et les dépendances des fonctions appelées.
+
+Nous allons tout d'abord voir qu'un appel de fonction
+est représenté par plusieurs éléments dans le PDG (\S\ref{sec-call}).
+Puis, nous allons voir que pour mettre en relation des appels et les fonctions
+appelées, ils faut ajouter d'autres éléments à chaque fonction
+(\S\ref{sec-fct-inout}).
+
+\section{Appels de fonction}\label{sec-call}
+
+L'instruction contenant l'appel est représentée par plusieurs
+éléments dans le graphe de dépendances
+afin de pouvoir plus précisément mettre en relation les appels aux
+fonctions appelées.
+
+Les éléments créés sont les suivants~:
+\begin{itemize}
+\item un élément pour chaque paramètre de la fonction appelée;
+  les dépendances sont crées par une simulation
+  de l'affectation des arguments d'appel dans les paramètres formels,
+\item un élément représentant le contrôle du point d'entrée de la fonction
+  appelée (un peu comme si l'appel était dans un bloc et que ce noeud
+  représentait ce bloc),
+\item un élément pour chaque sortie, dépendant des entrées correspondantes.
+\end{itemize}
+
+Pour ne pas avoir à calculer les flots de données de toutes les fonctions de
+l'application, il a été décidé d'utiliser les dépendances ({\it from})
+calculées indépendamment par \ppc.
+La liste des entrées et des sorties, ainsi que les dépendances entre les unes et
+les autres sont extraites des spécifications des fonctions appelées, et non de
+leur PDG\footnote{c'est peut-être un problème
+si on fait de la coupure de branche, car les dépendances peuvent être réduites
+par une telle spécialisation.}.
+Ceci est vrai également pour les
+fonctions dont le code est absent de l'application étudiée
+car cela permet d'être cohérent avec les autres analyses.
+Cela permettra en particulier, d'utiliser d'éventuelles propriétés
+fournies par la suite par l'utilisateur.
+
+\begin{exemple}
+\begin{tabular}{m{0.35\textwidth} m{0.6\textwidth}}
+\begin{verbatim}
+struct {int a;
+        int b; } G;
+
+/*@ assigns \result {a},
+            G.a {G, a} */
+int g (int a);
+
+int f (int x, int y) {
+  G.b = x;
+  x = g (x+y);
+  return x + G.b;
+}
+\end{verbatim}
+&
+Ici, pour représenter l'appel à \verbtt{g} dans \verbtt{f} dans le PDG,
+on va avoir~:
+\begin{itemize}
+  \item un élément représentant le point d'entrée dans \verbtt{g},
+  \item un élément $e_1$ pour représenter \verbtt{a = x+y},
+    c'est-à-dire l'affectation de l'argument de l'appel
+    dans le paramètre formel de \verbtt{g},
+  \item un élément $e_2$ pour calculer la valeur de retour de \verbtt{g},
+    qui dépend de la valeur de $e_1$
+    (utilisation de la spécification de $g$),
+
+\item et enfin, un élément $e_3$ qui représente la seconde sortie de \verbtt{g}~:
+\verbtt{G.a} qui dépend du paramètre \verbtt{a} et donc de $e_1$
+    et de des éléments $\{ e_G \}$
+    correspondant à
+    la valeur de $G$ avant l'appel
+(selon la spécification de $g$).
+\end{itemize}
+\end{tabular}
+\end{exemple}
+
+On note que, contrairement à ce qui était fait dans la version précédente,
+on ne crée par d'élément pour l'entrée implicite $G$ de $g$ dans $f$.
+Cela permet d'améliorer la précision des dépendances lorsque
+l'ajout d'un tel noeud conduisait au regroupement de plusieurs données.
+
+Ainsi, dans l'exemple précédent, on ne crée pas d'élément pour
+représenter la valeur de $G$ avant l'appel, même si l'élément $e_3$ en dépend,
+et on conserve donc l'information que $G.b$ ne dépend que de l'affectation
+précédent l'appel.
+
+
+\section{Entrées/sorties d'une fonction}\label{sec-fct-inout}
+
+Pour relier un appel de fonction au PDG de la fonction appelée,
+il faut ajouter des éléments représentant ses entrées/sorties,
+c'est-à-dire~:
+
+\begin{itemize}
+  \item un élément correspondant au point de contrôle d'entrée
+dans la fonction,
+\item deux éléments pour chaque paramètre (cf. \S\ref{sec-decl-param}),
+\item un élément pour les entrées implicites (cf. \S\ref{sec-impl-in}),
+\item un élément pour la sortie de la fonction si celle-ci retourne
+  quelque chose.
+\end{itemize}
+
+On note que, contrairement à ce qui était fait dans la version précédente,
+on ne crée par d'élément pour les sorties implicites de la fonction.
+Cela permet d'améliorer la précision des dépendances lorsque
+l'ajout d'un tel noeud conduisait au regroupement de plusieurs données.
+
+C'est par exemple le cas lorsqu'une fonction calcule $G.a$,
+puis $G.a.x$ car un élément de sortie regrouperait les deux alors que
+si par la suite on s'intéresse juste à $G.a.x$ à la sortie de la fonction,
+le fait de ne pas avoir créé cet élément permet de retrouver l'information plus
+précise.
+
+\subsection{Entrées implicites}\label{sec-impl-in}
+
+Au cours du calcul du PDG, on mémorise l'utilisation des données
+qui ne sont pas préalablement définies.
+Cela permet par la suite que créer des éléments pour ces entrées dites
+implicites. On ne crée pas d'élément pour les variables locales non
+initialisées, mais un message d'avertissement est émis.
+Il est possible que ce soit une fausse alerte dans le cas où l'initialisation
+est faite dans une branche dont la condition est forcement vrai à chaque
+exécution où l'on passe par la suite par l'utilisation.
+
+Diverses stratégies de regroupement de ces entrées peuvent être utilisées.
+A ce jour, l'outil construit tous les éléments lui permettant d'avoir une
+meilleure précision. C'est-à-dire que deux éléments peuvent représenter les
+données qui ont une intersection.
+
+\subsection{Déclaration des paramètres formels}\label{sec-decl-param}
+
+En plus de l'élément représentant la valeur des paramètres,
+on crée un second élément qui représente sa déclaration,
+le premier dépendant du second.
+
+Cette représentation peut permettre d'avoir une meilleure précision
+dans le cas où certains calcul ne dépendent pas de la valeur du
+paramètre, mais uniquement de sa déclaration.
+
+\begin{exemple}
+\begin{tabular}{m{5cm} m{\linewidth - 6cm}}
+\begin{verbatim}
+int g (int a) {
+  G = 2 * a;
+  a = calcul_a ();
+  return a;
+}
+int f (void) {
+  int x = calcul_x ();
+  return g (x);
+}
+\end{verbatim}
+&
+On voit que la valeur de retour de \verbtt{g} ne nécessite pas la valeur initiale
+de \verbtt{a}, mais seulement sa déclaration. La valeur de retour de \verbtt{f}
+ne dépend donc pas de l'appel à \verbtt{calcul\_x}.
+\end{tabular}
+\end{exemple}
+
+Ce point n'est pas encore implémenté dans la version actuelle,
+car dans des cas plus complexe, il est délicat de savoir ce qu'il faut
+garder dans la fonction appelante. Le plus simple serait sans doute
+de transformer le paramètre formel en une variable locale,
+mais le filtrage permet à l'heure actuelle de garder ou d'effacer des
+éléments existants, mais pas d'effectuer des transformations de code...
+
+\section{Fonctions à nombre d'arguments variable}
+
+Pour l'instant, on ne calcule pas le PDG des fonctions à nombre
+d'arguments variable, c'est-à-dire que pour le reste de l'application,
+tout se passe comme si on n'avait pas le code source de ces fonctions.\\
+
+En revanche, les appels à de telles fonctions sont gérées de manière semblable à
+ce qui est fait pour les autres appels, c'est-à-dire~:
+\begin{itemize}
+  \item création d'un noeud d'entrée pour chaque argument d'appel,
+    (il y en a donc éventuellement plus que que paramètres formels dans le
+    déclaration de la fonction appelée)
+  \item utilisation des informations {\it from} pour créer les éventuelles
+    entrées implicites, les sorties, et les liens de dépendance.
+\end{itemize}
+
+\section{Exemple}
+
+\begin{exemple}
+
+\lstinputlisting[language=c]{exple-call.c}
+\end{exemple}
+
+Graphe de la fonction \verbtt{f}: \\
+
+\includegraphics[width=0.6\textwidth]{call-f}
+\\
+
+\clearpage
+
+Graphe de la fonction \verbtt{g}: \\
+
+\includegraphics[width=1\textwidth]{call-g}
+\\
+
+Les graphes sont ceux qui sont effectivement produits par l'outil.

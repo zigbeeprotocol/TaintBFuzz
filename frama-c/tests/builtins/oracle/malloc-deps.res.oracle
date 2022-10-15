@@ -1,0 +1,172 @@
+[kernel] Parsing malloc-deps.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] malloc-deps.c:12: Call to builtin malloc
+[eva] malloc-deps.c:12: allocating weak variable __malloc_w_main_l12
+[eva] malloc-deps.c:17: Call to builtin malloc
+[eva] malloc-deps.c:17: allocating variable __malloc_main_l17
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva] malloc-deps.c:25: allocating variable __malloc_main_l25
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva:alarm] malloc-deps.c:7: Warning: out of bounds write. assert \valid(p + k);
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc:weak] malloc-deps.c:25: marking variable `__malloc_main_l25' as weak
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31) to fit 0..63
+[eva:alarm] malloc-deps.c:26: Warning: 
+  signed overflow. assert l + v ≤ 2147483647;
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31/63) to fit 0..95
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31/95) to fit 0..127
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31/127) to fit 0..159
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31/159) to fit 0..191
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:23: starting to merge loop iterations
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31/191) to fit 0..191/223
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31/223) to fit 0..191/255
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31/255) to fit 0..191/319
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] malloc-deps.c:25: Call to builtin malloc
+[eva:malloc] malloc-deps.c:25: 
+  resizing variable `__malloc_w_main_l25' (0..31/319) to fit 0..191/319
+[eva] computing for function g <- main.
+  Called from malloc-deps.c:26.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function g:
+  __malloc_w_main_l25[0..9] ∈ [0..9] or UNINITIALIZED
+[eva:final-states] Values at end of function main:
+  __fc_heap_status ∈ [--..--]
+  p ∈ {{ &__malloc_w_main_l12[0] }}
+  q ∈ {{ &__malloc_main_l17[0] }}
+  r ∈ {{ &__malloc_w_main_l25[0] }}
+  __malloc_w_main_l12[0] ∈ [--..--] or UNINITIALIZED
+                     [1..24] ∈ UNINITIALIZED
+  __malloc_main_l17[0] ∈ [--..--]
+                   [1..24] ∈ UNINITIALIZED
+  __malloc_w_main_l25[0..9] ∈ [0..9] or UNINITIALIZED
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function main
+[from] Computing for function malloc <-main
+[from] Done for function malloc
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function g:
+  __malloc_w_main_l25[0..9] FROM p; k (and SELF)
+[from] Function malloc:
+  __fc_heap_status FROM __fc_heap_status; size (and SELF)
+  \result FROM __fc_heap_status; size
+[from] Function main:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+  __malloc_w_main_l12[0] FROM __fc_heap_status; i; j (and SELF)
+  __malloc_main_l17[0] FROM __fc_heap_status; j
+  __malloc_w_main_l25[0..9] FROM __fc_heap_status; v (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to malloc at malloc-deps.c:12 (by main):
+  __fc_heap_status FROM __fc_heap_status; size (and SELF)
+  \result FROM __fc_heap_status; size
+[from] call to malloc at malloc-deps.c:17 (by main):
+  __fc_heap_status FROM __fc_heap_status; size (and SELF)
+  \result FROM __fc_heap_status; size
+[from] call to malloc at malloc-deps.c:25 (by main):
+  __fc_heap_status FROM __fc_heap_status; size (and SELF)
+  \result FROM __fc_heap_status; size
+[from] call to g at malloc-deps.c:26 (by main):
+  __malloc_w_main_l25[0..9] FROM p; k (and SELF)
+[from] entry point:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+  __malloc_w_main_l12[0] FROM __fc_heap_status; i; j (and SELF)
+  __malloc_main_l17[0] FROM __fc_heap_status; j
+  __malloc_w_main_l25[0..9] FROM __fc_heap_status; v (and SELF)
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[inout] InOut (internal) for function g:
+  Operational inputs:
+    p; k
+  Operational inputs on termination:
+    p; k
+  Sure outputs:
+    \nothing
+[inout] InOut (internal) for function main:
+  Operational inputs:
+    __fc_heap_status; v; i; j
+  Operational inputs on termination:
+    __fc_heap_status; v; i; j
+  Sure outputs:
+    p; q; l; __malloc_main_l17[0]

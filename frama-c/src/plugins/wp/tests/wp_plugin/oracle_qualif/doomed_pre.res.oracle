@@ -1,0 +1,47 @@
+# frama-c -wp [...]
+[kernel] Parsing doomed_pre.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 13 goals scheduled
+[wp] [Failed] Smoke-test typed_requires_wp_smoke_default_requires
+       Qed: Valid
+[wp] doomed_pre.i:10: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_reqs_assumes_wp_smoke_default_requires
+[wp] [Failed] Smoke-test typed_reqs_assumes_wp_smoke_B_assumes
+       Qed: Valid
+[wp] doomed_pre.i:16: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_reqs_2_2_assumes_wp_smoke_default_requires
+[wp] [Failed] Smoke-test typed_reqs_2_2_assumes_wp_smoke_B_assumes
+       Qed: Valid
+[wp] doomed_pre.i:23: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_reqs_1_2_assumes_wp_smoke_default_requires
+[wp] [Failed] Smoke-test typed_reqs_1_2_assumes_wp_smoke_B_assumes
+       Qed: Valid
+[wp] doomed_pre.i:30: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_reqs_combined_assumes_wp_smoke_default_requires
+[wp] [Failed] Smoke-test typed_reqs_combined_assumes_wp_smoke_B_assumes
+       Qed: Valid
+[wp] doomed_pre.i:37: Warning: Failed smoke-test
+[wp] [Failed] Smoke-test typed_bhv_requires_assumes_wp_smoke_B_requires
+       Qed: Valid
+[wp] doomed_pre.i:48: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_reqs_massumes_wp_smoke_default_requires
+[wp] [Failed] Smoke-test typed_reqs_massumes_wp_smoke_B1_assumes
+       Qed: Valid
+[wp] doomed_pre.i:56: Warning: Failed smoke-test
+[wp] [Failed] Smoke-test typed_reqs_massumes_wp_smoke_B2_assumes
+       Qed: Valid
+[wp] doomed_pre.i:56: Warning: Failed smoke-test
+[wp] Proved goals:    5 / 13
+  Qed:             0  (failed: 8)
+  Alt-Ergo:        5
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  requires                  -        -        1       0.0%
+  reqs_assumes              -        1        2      50.0%
+  reqs_2_2_assumes          -        1        2      50.0%
+  reqs_1_2_assumes          -        1        2      50.0%
+  reqs_combined_assumes     -        1        2      50.0%
+  bhv_requires_assumes      -        -        1       0.0%
+  reqs_massumes             -        1        3      33.3%
+------------------------------------------------------------

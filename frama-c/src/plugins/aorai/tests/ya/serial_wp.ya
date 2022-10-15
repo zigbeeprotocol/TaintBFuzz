@@ -1,0 +1,159 @@
+%init : Wait1;
+%deterministic;
+%observables: input_status, input_data, output;
+
+$x1 : int;
+$x2 : int;
+$y1 : int;
+$y2 : int;
+
+Error : { false } -> Error;
+
+Wait1 :
+  { CALL(input_status) } -> StatusReq1
+| { CALL(input_data) } -> Error
+| { CALL(output) } -> Error
+| other -> Wait1
+;
+
+Wait2 :
+  { CALL(input_status) } -> StatusReq2
+| { CALL(input_data) } -> Error
+| { CALL(output) } -> Error
+| other -> Wait2
+;
+
+Wait3 :
+  { CALL(input_status) } -> StatusReq3
+| { CALL(input_data) } -> Error
+| { CALL(output) } -> Error
+| other -> Wait3
+;
+
+Wait4 :
+  { CALL(input_status) } -> StatusReq4
+| { CALL(input_data) } -> Error
+| { CALL(output) } -> Error
+| other -> Wait4
+;
+
+Wait5 :
+  { CALL(input_status) } -> StatusReq5
+| { CALL(input_data) } -> Error
+| { CALL(output) } -> Error
+| other -> Wait5
+;
+
+StatusReq1 :
+  { input_status().\result < 1 } -> Wait1
+| { input_status().\result == 14 } -> StatusOk1
+| other -> StatusError
+;
+
+StatusReq2 :
+  { input_status().\result < 1 } -> Wait2
+| { input_status().\result == 14 } -> StatusOk2
+| other -> StatusError
+;
+
+StatusReq3 :
+  { input_status().\result < 1 } -> Wait3
+| { input_status().\result == 14 } -> StatusOk3
+| other -> StatusError
+;
+
+StatusReq4 :
+  { input_status().\result < 1 } -> Wait4
+| { input_status().\result == 14 } -> StatusOk4
+| other -> StatusError
+;
+
+StatusReq5 :
+  { input_status().\result < 1 } -> Wait5
+| { input_status().\result == 14 } -> StatusOk5
+| other -> StatusError
+;
+
+StatusError :
+  { CALL(input_status) } -> StatusReq1
+| { CALL(input_data) } -> DataReqE
+| { CALL(output) } -> Error
+| other -> StatusError
+;
+
+StatusOk1 :
+  { CALL(input_status) } -> StatusReq1
+| { CALL(input_data) } -> DataReq1
+| { CALL(output) } -> Error
+| other -> StatusOk1
+;
+
+StatusOk2 :
+  { CALL(input_status) } -> StatusReq2
+| { CALL(input_data) } -> DataReq2
+| { CALL(output) } -> Error
+| other -> StatusOk2
+;
+
+StatusOk3 :
+  { CALL(input_status) } -> StatusReq3
+| { CALL(input_data) } -> DataReq3
+| { CALL(output) } -> Error
+| other -> StatusOk3
+;
+
+StatusOk4 :
+  { CALL(input_status) } -> StatusReq4
+| { CALL(input_data) } -> DataReq4
+| { CALL(output) } -> Error
+| other -> StatusOk4
+;
+
+StatusOk5 :
+  { CALL(input_status) } -> StatusReq5
+| { CALL(input_data) } -> DataReq5
+| { CALL(output) } -> Error
+| other -> StatusOk5
+;
+
+DataReqE :
+  { RETURN(input_data) } -> Wait1
+;
+
+DataReq1 :
+  { input_data().\result <= 128 && input_data().\result != 64 } -> Wait2
+| { input_data().\result == 64 } -> Wait1
+| { input_data().\result > 128 } -> Wait1
+;
+
+DataReq2 :
+  { input_data().\result <= 128 && input_data().\result != 64 } -> Wait2
+| { input_data().\result == 64 } -> Wait1
+| { input_data().\result > 128 } $x1 := \result; -> Wait3
+;
+
+DataReq3 :
+  { input_data().\result <= 128 && input_data().\result != 64 } -> Wait2
+| { input_data().\result == 64 } -> Wait1
+| { input_data().\result > 128 } $x2 := \result; -> Wait4
+;
+
+DataReq4 :
+  { input_data().\result <= 128 && input_data().\result != 64 } -> Wait2
+| { input_data().\result == 64 } -> Wait1
+| { input_data().\result > 128 } $y1 := \result; -> Wait5
+;
+
+DataReq5 :
+  { input_data().\result <= 128 && input_data().\result != 64 } -> Wait2
+| { input_data().\result == 64 } -> Wait1
+| { input_data().\result > 128 } $y2 := \result; -> Complete
+;
+
+Complete :
+  { CALL(output) && output().x == $x1 + 128 * $x2 && output().y == $y1 + 128 * $y2 } -> Wait1
+| { CALL(output) && (output().x != $x1 + 128 * $x2 || output().y != $y1 + 128 * $y2) } -> Error
+| { CALL(input_status) } -> StatusReq1
+| { CALL(input_data) } -> Error
+| other -> Complete
+;

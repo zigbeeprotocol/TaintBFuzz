@@ -1,0 +1,39 @@
+[kernel] Parsing replace_by_show_each.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+[eva] replace_by_show_each.c:23: Frama_C_show_each_2:
+[eva] replace_by_show_each.c:25: Frama_C_show_each_1:
+[inout] Warning: no assigns clauses for function Frama_C_show_each_1.
+  Results will be imprecise.
+[from] Warning: no assigns clauses for function Frama_C_show_each_1.
+  Results will be imprecise.
+[eva:alarm] replace_by_show_each.c:26: Warning: 
+  signed overflow. assert j + 1 ≤ 2147483647;
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+Cannot filter: dumping raw memory (including unchanged variables)
+  x ∈ {0}
+  j ∈ [-2147483648..2147483646]
+  i ∈ [-2147483647..2147483647]
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to Frama_C_show_each_2 at replace_by_show_each.c:23 (by main):
+  NO EFFECTS
+[from] call to Frama_C_show_each_1 at replace_by_show_each.c:25 (by main):
+  FROMTOP
+[from] entry point:
+  \result FROM j
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[inout] InOut (internal) for function main:
+  Operational inputs:
+    ANYTHING(origin:Unknown)
+  Operational inputs on termination:
+    ANYTHING(origin:Unknown)
+  Sure outputs:
+    i

@@ -1,0 +1,368 @@
+[kernel] Parsing multidim.c (with preprocessing)
+[eva:experimental] Warning: The multidim domain is experimental.
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  z[0..3] ∈ {0}
+  nondet ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from multidim.c:187.
+[eva] multidim.c:39: 
+  Frama_C_domain_show_each:
+  x : # cvalue: .t1[0].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t1[0].i ∈ [--..--]
+                .t1[1].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t1[1].i ∈ [--..--]
+                .t1[2].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t1[2].i ∈ [--..--]
+                .t1[3].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t1[3].i ∈ [--..--]
+                .t2[0].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t2[0].i ∈ [--..--]
+                .t2[1].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t2[1].i ∈ [--..--]
+                .t2[2].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t2[2].i ∈ [--..--]
+                .t2[3].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t2[3].i ∈ [--..--]
+      # multidim: T
+  y1 : # cvalue: .t1[0].f ∈ {3.}
+                 {.t1{[0].i; [1..3]}; .t2[0..3]} ∈ {0}
+       # multidim: {
+                     .t1[0] = { .f = {3.}, .i = {0} },
+                     .t2{
+                       [0] = { .f = {0}, .i = {0} },
+                       [1] = { .f = {0}, .i = {0} },
+                       [2] = { .f = {0}, .i = {0} },
+                       [3] = { .f = {0}, .i = {0} }
+                     }
+                   }
+  y2 : # cvalue: .t1[0].f ∈ {4.} or UNINITIALIZED
+                 {.t1{[0].i; [1..3]}; .t2[0..3]} ∈ UNINITIALIZED
+       # multidim: { .t1[0] = { .f = {4.} or UNINITIALIZED } }
+  z : # cvalue: {0}
+      # multidim: 0
+[eva] multidim.c:45: 
+  Frama_C_domain_show_each:
+  x : # cvalue: .t1[0].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t1[0].i ∈ [--..--]
+                .t1[1].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t1[1].i ∈ [--..--]
+                .t1[2].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t1[2].i ∈ [--..--]
+                .t1[3].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t1[3].i ∈ [--..--]
+                .t2[0].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t2[0].i ∈ [--..--]
+                .t2[1].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t2[1].i ∈ [--..--]
+                .t2[2].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t2[2].i ∈ [--..--]
+                .t2[3].f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+                .t2[3].i ∈ [--..--]
+      # multidim: {
+                    .t1[0 .. 3] = { .f = {{ ANYTHING }} or UNINITIALIZED },
+                    .t2[0 .. 3] = { .f = {{ ANYTHING }} or UNINITIALIZED }
+                  }
+[eva] computing for function f <- main1 <- main.
+  Called from multidim.c:47.
+[eva] using specification for function f
+[eva] Done for function f
+[eva] multidim.c:48: 
+  Frama_C_domain_show_each:
+  z : # cvalue: [--..--]
+      # multidim: [0 .. 3] = {
+                    .t1[0 .. 3] = {
+                      .f = [-3.40282346639e+38 .. 3.40282346639e+38]
+                    },
+                    .t2[0 .. 3] = {
+                      .f = [-3.40282346639e+38 .. 3.40282346639e+38]
+                    }
+                  }
+[eva:alarm] multidim.c:50: Warning: check got status unknown.
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from multidim.c:188.
+[eva] multidim.c:55: starting to merge loop iterations
+[eva:alarm] multidim.c:58: Warning: check got status unknown.
+[eva] multidim.c:59: 
+  Frama_C_domain_show_each:
+  t : # cvalue: {0; 1}
+      # multidim: [0 .. 9] = {1}
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] computing for function main3 <- main.
+  Called from multidim.c:189.
+[eva] multidim.c:65: starting to merge loop iterations
+[eva] multidim.c:64: starting to merge loop iterations
+[kernel] multidim.c:66: 
+  more than 1(20) locations to update in array. Approximating.
+[kernel] multidim.c:67: 
+  more than 1(20) locations to update in array. Approximating.
+[kernel] multidim.c:66: 
+  more than 1(28) locations to update in array. Approximating.
+[kernel] multidim.c:67: 
+  more than 1(28) locations to update in array. Approximating.
+[eva] computing for function Frama_C_interval <- main3 <- main.
+  Called from multidim.c:70.
+[eva] using specification for function Frama_C_interval
+[eva] multidim.c:70: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main3 <- main.
+  Called from multidim.c:71.
+[eva] multidim.c:71: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] multidim.c:73: 
+  Frama_C_domain_show_each:
+  z : # cvalue: [--..--]
+      # multidim: [0 .. 3] = {
+                    .t1[0 .. 3] = {
+                      .f = [-3.40282346639e+38 .. 3.40282346639e+38],
+                      .i = T
+                    },
+                    .t2[0 .. 3] = {
+                      .f = [-3.40282346639e+38 .. 3.40282346639e+38]
+                    }
+                  }
+  r : # cvalue: [--..--]
+      # multidim: { .f = [-3.40282346639e+38 .. 3.40282346639e+38], .i = T }
+[eva] Recording results for main3
+[kernel] multidim.c:66: more than 1(28) elements to enumerate. Approximating.
+[kernel] multidim.c:67: more than 1(28) elements to enumerate. Approximating.
+[eva] Done for function main3
+[eva] computing for function main4 <- main.
+  Called from multidim.c:190.
+[eva:loop-unroll:partial] multidim.c:81: loop not completely unrolled
+[eva] multidim.c:81: starting to merge loop iterations
+[eva] multidim.c:83: starting to merge loop iterations
+[eva] multidim.c:88: 
+  Frama_C_domain_show_each:
+  t : # cvalue: {42}
+      # multidim: { [0] = {42}, [1] = {42}, [2] = {42}, [3] = {42} }
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main5 <- main.
+  Called from multidim.c:191.
+[eva] multidim.c:96: starting to merge loop iterations
+[eva] multidim.c:104: 
+  Frama_C_domain_show_each:
+  t : # cvalue: [0..9] ∈ {0; 1}
+                [10..19] ∈ {0; 2}
+      # multidim: { [0 .. 9] = {1}, [10 .. 18] = {2}, [19] = {2} }
+[eva] Recording results for main5
+[eva] Done for function main5
+[eva] computing for function main6 <- main.
+  Called from multidim.c:192.
+[eva] multidim.c:114: Trace partitioning superposing up to 100 states
+[eva] multidim.c:118: 
+  Frama_C_domain_show_each:
+  t : # cvalue: {0}
+      # multidim: {
+                    [0 .. 92] = {0},
+                    [93] = {0},
+                    [94] = {0},
+                    [95] = {0},
+                    [96] = {0},
+                    [97] = {0},
+                    [98] = {0},
+                    [99] = {0}
+                  }
+[eva] Recording results for main6
+[eva] Done for function main6
+[eva] computing for function main7 <- main.
+  Called from multidim.c:193.
+[eva] multidim.c:134: starting to merge loop iterations
+[kernel] multidim.c:136: 
+  more than 1(1000) locations to update in array. Approximating.
+[kernel] multidim.c:137: 
+  more than 1(1000) locations to update in array. Approximating.
+[kernel] multidim.c:140: 
+  more than 1(1000) locations to update in array. Approximating.
+[kernel] multidim.c:141: 
+  more than 1(1000) locations to update in array. Approximating.
+[eva] multidim.c:145: 
+  Frama_C_domain_show_each:
+  t : # cvalue: [0].typ ∈ {1; 2} or UNINITIALIZED
+                {[0].val; [1..999]} ∈ [--..--] or UNINITIALIZED
+      # multidim: [0 .. 999] = {
+                    { .typ = {1}, .val.i = {42} } or 
+                    { .typ = {2}, .val.f = {42.} }
+                  }
+[eva] computing for function Frama_C_interval <- main7 <- main.
+  Called from multidim.c:147.
+[eva] multidim.c:147: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] multidim.c:150: Frama_C_show_each_INT: {42}
+[eva] multidim.c:153: Frama_C_show_each_FLOAT: {42.}
+[eva] Recording results for main7
+[kernel] multidim.c:136: more than 1(1000) elements to enumerate. Approximating.
+[kernel] multidim.c:137: more than 1(1000) elements to enumerate. Approximating.
+[eva] Done for function main7
+[eva] computing for function main8 <- main.
+  Called from multidim.c:194.
+[eva] multidim.c:165: starting to merge loop iterations
+[eva] multidim.c:169: 
+  Frama_C_domain_show_each:
+  t : # cvalue: {0; 1}
+      # multidim: [0 .. 9] = {1}
+[eva] Recording results for main8
+[eva] Done for function main8
+[eva] computing for function main9 <- main.
+  Called from multidim.c:195.
+[eva] multidim.c:176: starting to merge loop iterations
+[eva] multidim.c:182: 
+  Frama_C_domain_show_each:
+  t1 : # cvalue: {0} or UNINITIALIZED
+       # multidim: [0 .. 9] = {0}
+  t2 : # cvalue: {0} or UNINITIALIZED
+       # multidim: T
+[eva] Recording results for main9
+[eva] Done for function main9
+[eva] Recording results for main
+[eva] done for function main
+[kernel] multidim.c:50: more than 1(28) elements to enumerate. Approximating.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  z[0..3] ∈ [--..--]
+  y1.t1[0].f ∈ {3.}
+    {.t1{[0].i; [1..3]}; .t2[0..3]} ∈ {0}
+  y2.t1[0].f ∈ {4.} or UNINITIALIZED
+    {.t1{[0].i; [1..3]}; .t2[0..3]} ∈ UNINITIALIZED
+[eva:final-states] Values at end of function main2:
+  t[0..9] ∈ {0; 1}
+[eva:final-states] Values at end of function main3:
+  Frama_C_entropy_source ∈ [--..--]
+  z[0..3] ∈ [--..--]
+  a ∈ {0; 1; 2; 3}
+  b ∈ {0; 1; 2; 3}
+  r ∈ [--..--]
+[eva:final-states] Values at end of function main4:
+  t[0..3] ∈ {42}
+[eva:final-states] Values at end of function main5:
+  t[0..9] ∈ {0; 1}
+   [10..19] ∈ {0; 2}
+[eva:final-states] Values at end of function main6:
+  t[0..99] ∈ {0}
+[eva:final-states] Values at end of function main7:
+  Frama_C_entropy_source ∈ [--..--]
+  t[0].typ ∈ {1; 2} or UNINITIALIZED
+   {[0].val; [1..999]} ∈ [--..--] or UNINITIALIZED
+  j ∈ [0..999]
+[eva:final-states] Values at end of function main8:
+  t[0..9] ∈ {0; 1}
+  p ∈ {{ &t[0] }}
+[eva:final-states] Values at end of function main9:
+  t1[0..9] ∈ {0} or UNINITIALIZED
+  t2[0..9] ∈ {0} or UNINITIALIZED
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+  z[0..3] ∈ [--..--]
+[from] Computing for function main1
+[from] Computing for function f <-main1
+[from] Done for function f
+[from] Done for function main1
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main3
+[kernel] multidim.c:66: more than 1(28) dependencies to update. Approximating.
+[kernel] multidim.c:67: more than 1(28) dependencies to update. Approximating.
+[from] Computing for function Frama_C_interval <-main3
+[from] Done for function Frama_C_interval
+[from] Done for function main3
+[from] Computing for function main4
+[from] Done for function main4
+[from] Computing for function main5
+[from] Done for function main5
+[from] Computing for function main6
+[from] Done for function main6
+[from] Computing for function main7
+[kernel] multidim.c:136: 
+  more than 1(1000) dependencies to update. Approximating.
+[kernel] multidim.c:137: 
+  more than 1(1000) dependencies to update. Approximating.
+[kernel] multidim.c:140: 
+  more than 1(1000) dependencies to update. Approximating.
+[kernel] multidim.c:141: 
+  more than 1(1000) dependencies to update. Approximating.
+[from] Done for function main7
+[from] Computing for function main8
+[from] Done for function main8
+[from] Computing for function main9
+[from] Done for function main9
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function f:
+  z[0..3] FROM \nothing
+[from] Function main1:
+  z[0..3] FROM \nothing
+[from] Function main2:
+  NO EFFECTS
+[from] Function main3:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  z{[0..2]; [3].t1[0..3]} FROM \nothing (and SELF)
+[from] Function main4:
+  NO EFFECTS
+[from] Function main5:
+  NO EFFECTS
+[from] Function main6:
+  NO EFFECTS
+[from] Function main7:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function main8:
+  NO EFFECTS
+[from] Function main9:
+  NO EFFECTS
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  z[0..3] FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    z[0..3]; y1; y2.t1[0].f
+[inout] Inputs for function main1:
+    nondet
+[inout] Out (internal) for function main2:
+    t[0..9]; i
+[inout] Inputs for function main2:
+    \nothing
+[inout] Out (internal) for function main3:
+    Frama_C_entropy_source; z{[0..2]; [3].t1[0..3]}; i; j; a; b; r
+[inout] Inputs for function main3:
+    Frama_C_entropy_source; z{[0..2]; [3].t1[0..3]}
+[inout] Out (internal) for function main4:
+    t[0..3]; i; j
+[inout] Inputs for function main4:
+    \nothing
+[inout] Out (internal) for function main5:
+    t[0..19]; i
+[inout] Inputs for function main5:
+    \nothing
+[inout] Out (internal) for function main6:
+    t[0..99]; i
+[inout] Inputs for function main6:
+    \nothing
+[inout] Out (internal) for function main7:
+    Frama_C_entropy_source; t[0..999]; i; j
+[inout] Inputs for function main7:
+    Frama_C_entropy_source; nondet
+[inout] Out (internal) for function main8:
+    t[0..9]; p; i
+[inout] Inputs for function main8:
+    \nothing
+[inout] Out (internal) for function main9:
+    t1[0..9]; t2[0..9]; i
+[inout] Inputs for function main9:
+    \nothing
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source; z[0..3]
+[inout] Inputs for function main:
+    Frama_C_entropy_source; z{[0..2]; [3].t1[0..3]}; nondet

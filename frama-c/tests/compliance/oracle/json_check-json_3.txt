@@ -1,0 +1,1 @@
+    "description": "Non-ISO C, Non-POSIX identifiers known to the Frama-C standard library",

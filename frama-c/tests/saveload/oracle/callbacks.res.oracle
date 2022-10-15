@@ -1,0 +1,110 @@
+[eva] Analyzing a complete application starting at main2
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+[eva] computing for function g1 <- main2.
+  Called from callbacks.i:32.
+[eva] computing for function f <- g1 <- main2.
+  Called from callbacks.i:18.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] Recording results for g1
+[from] Computing for function g1
+[from] Done for function g1
+[eva] Done for function g1
+[eva] computing for function g2 <- main2.
+  Called from callbacks.i:33.
+[eva] computing for function f <- g2 <- main2.
+  Called from callbacks.i:23.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] Recording results for g2
+[from] Computing for function g2
+[from] Done for function g2
+[eva] Done for function g2
+[eva] Recording results for main2
+[from] Computing for function main2
+[from] Done for function main2
+[eva] done for function main2
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to f at callbacks.i:18 (by g1):
+  x FROM p
+[from] call to f at callbacks.i:23 (by g2):
+  y FROM p
+[from] call to g1 at callbacks.i:32 (by main2):
+  x FROM \nothing
+[from] call to g2 at callbacks.i:33 (by main2):
+  y FROM \nothing
+[from] entry point:
+  x FROM \nothing
+  y FROM \nothing
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    x; y
+[inout] Out (internal) for function g1:
+    x
+[inout] Out (internal) for function g2:
+    y
+[inout] Out (internal) for function main2:
+    x; y
+[eva] Analyzing a complete application starting at main3
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+[eva] computing for function g1 <- main3.
+  Called from callbacks.i:37.
+[eva] computing for function f <- g1 <- main3.
+  Called from callbacks.i:18.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] Recording results for g1
+[from] Computing for function g1
+[from] Done for function g1
+[eva] Done for function g1
+[eva] computing for function g2 <- main3.
+  Called from callbacks.i:38.
+[eva] computing for function f <- g2 <- main3.
+  Called from callbacks.i:23.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] Recording results for g2
+[from] Computing for function g2
+[from] Done for function g2
+[eva] Done for function g2
+[eva] Recording results for main3
+[from] Computing for function main3
+[from] Done for function main3
+[eva] done for function main3
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to f at callbacks.i:18 (by g1):
+  x FROM p
+[from] call to f at callbacks.i:23 (by g2):
+  y FROM p
+[from] call to g1 at callbacks.i:37 (by main3):
+  x FROM \nothing
+[from] call to g2 at callbacks.i:38 (by main3):
+  y FROM \nothing
+[from] entry point:
+  x FROM \nothing
+  y FROM \nothing
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    x; y
+[inout] Out (internal) for function g1:
+    x
+[inout] Out (internal) for function g2:
+    y
+[inout] Out (internal) for function main3:
+    x; y

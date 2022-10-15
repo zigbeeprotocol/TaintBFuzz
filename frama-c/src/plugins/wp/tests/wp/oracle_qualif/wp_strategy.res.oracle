@@ -1,0 +1,18 @@
+# frama-c -wp -wp-model 'Hoare' [...]
+[kernel] Parsing wp_strategy.c (with preprocessing)
+[rte:annot] annotating function bts0513
+[rte:annot] annotating function bts0513_bis
+[wp] Running WP plugin...
+[wp] 4 goals scheduled
+[wp] [Alt-Ergo] Goal hoare_bts0513_ensures_qed_ko_ko1 : Unsuccess
+[wp] [Alt-Ergo] Goal hoare_bts0513_ensures_qed_ko_ko2 : Unsuccess
+[wp] [Alt-Ergo] Goal hoare_bts0513_bis_assert_qed_ko_ko1 : Unsuccess
+[wp] [Qed] Goal hoare_bts0513_bis_assert_qed_ok_ok : Valid
+[wp] Proved goals:    1 / 4
+  Qed:             1 
+  Alt-Ergo:        0  (unsuccess: 3)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  bts0513                   -        -        2       0.0%
+  bts0513_bis               1        -        2      50.0%
+------------------------------------------------------------

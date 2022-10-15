@@ -1,0 +1,31 @@
+[kernel] Parsing array_degenerating_loop.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..1] ∈ {1}
+   [2..99] ∈ {0}
+[eva] array_degenerating_loop.i:8: starting to merge loop iterations
+[eva:alarm] array_degenerating_loop.i:9: Warning: 
+  accessing out of bounds index. assert i < 100;
+[eva:alarm] array_degenerating_loop.i:9: Warning: 
+  signed overflow. assert G + t[i] ≤ 2147483647;
+[eva] array_degenerating_loop.i:10: 
+  Frama_C_show_each: [55..2147483647], [-2147483648..99]
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  G ∈ [55..2147483647]
+  i ∈ [0..100]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    G; i
+[inout] Inputs for function main:
+    t[0..99]

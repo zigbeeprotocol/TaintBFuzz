@@ -1,0 +1,17 @@
+# frama-c -wp [...]
+[kernel] Parsing user_def_type_guard.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok' in 'f':
+Prove: (0 <= L_t) /\ (L_t <= 255).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'f':
+Prove: (0 <= L_t) /\ (L_t <= 127).
+
+------------------------------------------------------------

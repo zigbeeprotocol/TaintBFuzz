@@ -1,0 +1,337 @@
+[kernel] Parsing behaviors2.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] computing for function test1 <- main.
+  Called from behaviors2.c:328.
+[eva] computing for function divi <- test1 <- main.
+  Called from behaviors2.c:178.
+[eva] using specification for function divi
+[eva] behaviors2.c:178: function divi: precondition got status valid.
+[eva] behaviors2.c:178: 
+  function divi, behavior division_by_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:178: 
+  function divi, behavior invalid_parameter: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:178: 
+  function divi, behavior error: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:178: 
+  function divi, behavior ok_res_sign_nonpositive: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:178: 
+  function divi, behavior ok_quotient_zero: assumes got status invalid; behavior not evaluated.
+[eva] Done for function divi
+[eva] computing for function divi <- test1 <- main.
+  Called from behaviors2.c:180.
+[eva] behaviors2.c:180: function divi: precondition got status valid.
+[eva] behaviors2.c:180: 
+  function divi, behavior division_by_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:180: 
+  function divi, behavior invalid_parameter: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:180: 
+  function divi, behavior error: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:180: 
+  function divi, behavior ok_res_sign_nonpositive: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:180: 
+  function divi, behavior ok_quotient_non_zero: assumes got status invalid; behavior not evaluated.
+[eva] Done for function divi
+[eva] computing for function divi <- test1 <- main.
+  Called from behaviors2.c:182.
+[eva] behaviors2.c:182: function divi: precondition got status valid.
+[eva] behaviors2.c:182: 
+  function divi, behavior division_by_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:182: 
+  function divi, behavior invalid_parameter: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:182: 
+  function divi, behavior error: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:182: 
+  function divi, behavior ok_res_sign_nonpositive: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:182: 
+  function divi, behavior ok_quotient_non_zero: assumes got status invalid; behavior not evaluated.
+[eva] Done for function divi
+[eva] computing for function divi <- test1 <- main.
+  Called from behaviors2.c:184.
+[eva] behaviors2.c:184: function divi: precondition got status valid.
+[eva] behaviors2.c:184: 
+  function divi, behavior invalid_parameter: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:184: 
+  function divi, behavior ok: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:184: 
+  function divi, behavior ok_res_sign_nonnegative: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:184: 
+  function divi, behavior ok_res_sign_nonpositive: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:184: 
+  function divi, behavior ok_quotient_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:184: 
+  function divi, behavior ok_quotient_non_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:184: 
+  function divi, behavior division_by_zero: precondition got status valid.
+[eva] behaviors2.c:184: 
+  function divi, behavior error: precondition got status valid.
+[eva] Done for function divi
+[eva] computing for function divi <- test1 <- main.
+  Called from behaviors2.c:186.
+[eva] behaviors2.c:186: function divi: precondition got status valid.
+[eva] behaviors2.c:186: 
+  function divi, behavior division_by_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:186: 
+  function divi, behavior ok: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:186: 
+  function divi, behavior ok_res_sign_nonnegative: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:186: 
+  function divi, behavior ok_res_sign_nonpositive: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:186: 
+  function divi, behavior ok_quotient_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:186: 
+  function divi, behavior ok_quotient_non_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:186: 
+  function divi, behavior invalid_parameter: precondition got status valid.
+[eva] behaviors2.c:186: 
+  function divi, behavior error: precondition got status valid.
+[eva] Done for function divi
+[eva] computing for function divi <- test1 <- main.
+  Called from behaviors2.c:188.
+[eva] behaviors2.c:188: function divi: precondition got status valid.
+[eva] behaviors2.c:188: 
+  function divi, behavior division_by_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:188: 
+  function divi, behavior ok: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:188: 
+  function divi, behavior ok_res_sign_nonnegative: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:188: 
+  function divi, behavior ok_res_sign_nonpositive: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:188: 
+  function divi, behavior ok_quotient_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:188: 
+  function divi, behavior ok_quotient_non_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:188: 
+  function divi, behavior invalid_parameter: precondition got status valid.
+[eva] behaviors2.c:188: 
+  function divi, behavior error: precondition got status valid.
+[eva] Done for function divi
+[eva] computing for function divi <- test1 <- main.
+  Called from behaviors2.c:190.
+[eva] behaviors2.c:190: function divi: precondition got status valid.
+[eva] behaviors2.c:190: 
+  function divi, behavior division_by_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:190: 
+  function divi, behavior ok: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:190: 
+  function divi, behavior ok_res_sign_nonnegative: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:190: 
+  function divi, behavior ok_res_sign_nonpositive: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:190: 
+  function divi, behavior ok_quotient_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:190: 
+  function divi, behavior ok_quotient_non_zero: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:190: 
+  function divi, behavior invalid_parameter: precondition got status valid.
+[eva] behaviors2.c:190: 
+  function divi, behavior error: precondition got status valid.
+[eva] Done for function divi
+[eva] computing for function divi <- test1 <- main.
+  Called from behaviors2.c:192.
+[eva] behaviors2.c:192: function divi: precondition got status valid.
+[eva] behaviors2.c:192: 
+  function divi, behavior invalid_parameter: assumes got status invalid; behavior not evaluated.
+[eva] behaviors2.c:192: 
+  function divi, behavior error: precondition got status valid.
+[eva] behaviors2.c:192: 
+  function divi, behavior division_by_zero: precondition got status valid.
+[eva] Done for function divi
+[eva] Recording results for test1
+[eva] Done for function test1
+[eva] computing for function test2 <- main.
+  Called from behaviors2.c:329.
+[eva] computing for function f1 <- test2 <- main.
+  Called from behaviors2.c:229.
+[eva] using specification for function f1
+[eva:alarm] behaviors2.c:229: Warning: 
+  function f1: precondition got status unknown.
+[eva] behaviors2.c:229: 
+  function f1, behavior b2: precondition \initialized(p2) got status valid.
+[eva] behaviors2.c:229: 
+  function f1, behavior b2: precondition \valid(y) got status valid.
+[eva] behaviors2.c:229: 
+  function f1, behavior b1: precondition \initialized(p1) got status valid.
+[eva] behaviors2.c:229: 
+  function f1, behavior b1: precondition \valid(y) got status valid.
+[eva] Done for function f1
+[eva] Recording results for test2
+[eva] Done for function test2
+[eva] computing for function test3 <- main.
+  Called from behaviors2.c:330.
+[eva] computing for function f2 <- test3 <- main.
+  Called from behaviors2.c:265.
+[eva] using specification for function f2
+[eva:alarm] behaviors2.c:265: Warning: 
+  function f2: precondition got status unknown.
+[eva] behaviors2.c:265: 
+  function f2, behavior b2: precondition \initialized(p2) got status valid.
+[eva] behaviors2.c:265: 
+  function f2, behavior b2: precondition \valid(y) got status valid.
+[eva] behaviors2.c:265: 
+  function f2, behavior b1: precondition \initialized(p1) got status valid.
+[eva] behaviors2.c:265: 
+  function f2, behavior b1: precondition \valid(y) got status valid.
+[eva] Done for function f2
+[eva] Recording results for test3
+[eva] Done for function test3
+[eva] computing for function test4 <- main.
+  Called from behaviors2.c:331.
+[eva] computing for function f3 <- test4 <- main.
+  Called from behaviors2.c:285.
+[eva] using specification for function f3
+[eva:alarm] behaviors2.c:285: Warning: 
+  function f3: precondition got status unknown.
+[eva] behaviors2.c:285: 
+  function f3, behavior b3: assumes got status invalid; behavior not evaluated.
+[eva] Done for function f3
+[eva] Recording results for test4
+[eva] Done for function test4
+[eva] computing for function test5 <- main.
+  Called from behaviors2.c:332.
+[eva] computing for function f4 <- test5 <- main.
+  Called from behaviors2.c:306.
+[eva] using specification for function f4
+[eva:alarm] behaviors2.c:306: Warning: 
+  function f4: precondition got status unknown.
+[eva] behaviors2.c:306: 
+  function f4, behavior b3: assumes got status invalid; behavior not evaluated.
+[eva] Done for function f4
+[eva] Recording results for test5
+[eva] Done for function test5
+[eva] computing for function test_red <- main.
+  Called from behaviors2.c:333.
+[eva] computing for function opt_ptr <- test_red <- main.
+  Called from behaviors2.c:319.
+[eva] using specification for function opt_ptr
+[eva] Done for function opt_ptr
+[eva] behaviors2.c:320: assertion got status valid.
+[eva] Recording results for test_red
+[eva] Done for function test_red
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function test1:
+  quotient ∈ [--..--]
+  remainder ∈ [--..--]
+  sign ∈ {-1; 0; 1}
+  errmsg[0..19] ∈ [--..--] or UNINITIALIZED
+  r1 ∈ {0}
+  r2 ∈ {0}
+  r3 ∈ {0}
+  r4 ∈ {1}
+  r5 ∈ {2}
+  r6 ∈ {2}
+  r7 ∈ {2}
+  r8 ∈ {0; 1}
+[eva:final-states] Values at end of function test2:
+  a ∈ {1}
+  b ∈ {2}
+  p ∈ {{ &a ; &b }}
+  y ∈ {-4; 2}
+  x ∈ {2; 4}
+[eva:final-states] Values at end of function test3:
+  a ∈ {1}
+  b ∈ {2}
+  p ∈ {{ &a ; &b }}
+  y ∈ {-4; 2}
+  x ∈ {2; 4}
+[eva:final-states] Values at end of function test4:
+  x ∈ {2; 4}
+[eva:final-states] Values at end of function test5:
+  x ∈ {4}
+[eva:final-states] Values at end of function test_red:
+  a ∈ {1}
+[eva:final-states] Values at end of function main:
+  __retres ∈ {0}
+[from] Computing for function test1
+[from] Computing for function divi <-test1
+[from] Done for function divi
+[from] Done for function test1
+[from] Computing for function test2
+[from] Computing for function f1 <-test2
+[from] Done for function f1
+[from] Done for function test2
+[from] Computing for function test3
+[from] Computing for function f2 <-test3
+[from] Done for function f2
+[from] Done for function test3
+[from] Computing for function test4
+[from] Computing for function f3 <-test4
+[from] Done for function f3
+[from] Done for function test4
+[from] Computing for function test5
+[from] Computing for function f4 <-test5
+[from] Done for function f4
+[from] Done for function test5
+[from] Computing for function test_red
+[from] Computing for function opt_ptr <-test_red
+[from] Done for function opt_ptr
+[from] Done for function test_red
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function divi:
+  quotient FROM dividend; divisor (and SELF)
+  remainder FROM dividend; divisor (and SELF)
+  sign FROM dividend; divisor (and SELF)
+  errmsg[0..19] FROM dividend; divisor; quotient; remainder; sign
+  \result FROM dividend; divisor; quotient; remainder; sign
+[from] Function f1:
+  y FROM x
+  \result FROM p1; p2
+[from] Function f2:
+  y FROM x
+  \result FROM p1; p2
+[from] Function f3:
+  \result FROM x
+[from] Function f4:
+  \result FROM x
+[from] Function opt_ptr:
+  a FROM p
+[from] Function test1:
+  NO EFFECTS
+[from] Function test2:
+  NO EFFECTS
+[from] Function test3:
+  NO EFFECTS
+[from] Function test4:
+  NO EFFECTS
+[from] Function test5:
+  NO EFFECTS
+[from] Function test_red:
+  NO EFFECTS
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function test1:
+    quotient; remainder; sign; errmsg[0..19]; r1; r2; r3; r4; r5; r6; r7; r8
+[inout] Inputs for function test1:
+    nondet
+[inout] Out (internal) for function test2:
+    a; b; p; y; x
+[inout] Inputs for function test2:
+    nondet
+[inout] Out (internal) for function test3:
+    a; b; p; y; x
+[inout] Inputs for function test3:
+    nondet
+[inout] Out (internal) for function test4:
+    x
+[inout] Inputs for function test4:
+    nondet
+[inout] Out (internal) for function test5:
+    x
+[inout] Inputs for function test5:
+    nondet
+[inout] Out (internal) for function test_red:
+    a
+[inout] Inputs for function test_red:
+    \nothing
+[inout] Out (internal) for function main:
+    __retres
+[inout] Inputs for function main:
+    nondet

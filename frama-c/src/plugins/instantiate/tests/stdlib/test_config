@@ -1,0 +1,1 @@
+OPT: @PTEST_FILE@ -instantiate -print -check -then -ocode @PTEST_RESULT@/ocode_@PTEST_NAME@.c -print -then -no-instantiate @PTEST_RESULT@/ocode_@PTEST_NAME@.c -ocode="" -print

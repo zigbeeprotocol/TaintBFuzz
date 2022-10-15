@@ -1,0 +1,15 @@
+[ { "header": "Mod-Mask", "tactic": "Wp.modmask",
+    "params": { "Wp.modmask.revert": false },
+    "select": { "select": "inside-goal", "occur": 0,
+                "target": "(land 255 us_0)", "pattern": "land255$us" },
+    "children": { "Mod Guard": [ { "prover": "qed", "verdict": "valid" },
+                                 { "header": "Definition",
+                                   "tactic": "Wp.unfold", "params": {},
+                                   "select": { "select": "clause-step",
+                                               "at": 0, "kind": "have",
+                                               "target": "(is_uint16 us_0)",
+                                               "pattern": "is_uint16$us" },
+                                   "children": { "Unfold 'is_uint16'": 
+                                                   [ { "prover": "qed",
+                                                       "verdict": "valid" } ] } } ],
+                  "Mod": [ { "prover": "qed", "verdict": "valid" } ] } } ]

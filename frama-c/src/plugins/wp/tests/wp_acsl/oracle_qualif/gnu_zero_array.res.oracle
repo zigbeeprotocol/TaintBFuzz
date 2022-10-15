@@ -1,0 +1,14 @@
+# frama-c -wp [...]
+[kernel] Parsing gnu_zero_array.i (no preprocessing)
+[rte:annot] annotating function main
+[wp] Running WP plugin...
+[wp] gnu_zero_array.i:14: Warning: 
+  Cast with incompatible pointers types (source: sint8*) (target: S*)
+[wp] 1 goal scheduled
+[wp] [Alt-Ergo] Goal typed_main_assert_rte_mem_access : Unsuccess (Stronger)
+[wp] Proved goals:    0 / 1
+  Alt-Ergo:        0  (unsuccess: 1)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  main                      -        -        1       0.0%
+------------------------------------------------------------

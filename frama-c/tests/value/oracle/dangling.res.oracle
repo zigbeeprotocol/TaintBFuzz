@@ -1,0 +1,41 @@
+[kernel] Parsing dangling.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva:locals-escaping] dangling.i:9: Warning: 
+  locals {v_0} escaping the scope of a block of main through x
+[eva:alarm] dangling.i:15: Warning: assertion got status unknown.
+[eva] dangling.i:16: assertion got status valid.
+[eva:alarm] dangling.i:19: Warning: 
+  accessing left-value that contains escaping addresses.
+  assert ¬\dangling(&x);
+[eva:alarm] dangling.i:23: Warning: assertion got status unknown.
+[eva:alarm] dangling.i:24: Warning: 
+  accessing left-value that contains escaping addresses.
+  assert ¬\dangling(&x);
+[eva:locals-escaping] dangling.i:31: Warning: 
+  locals {z} escaping the scope of a block of main through p
+[eva] dangling.i:33: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] dangling.i:24: assertion 'Eva,dangling_pointer' got final status invalid.
+[scope:rm_asserts] removing 1 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  x ∈ {{ &y }} or ESCAPINGADDR
+  y ∈ {1}
+  p[0] ∈ ESCAPINGADDR
+   [1] ∈ {42}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    x; y; i; j; j_0; p[0..1]
+[inout] Inputs for function main:
+    v

@@ -1,0 +1,5 @@
+[kernel] Parsing test_recursion2.c (with preprocessing)
+[kernel] Parsing TMPDIR/aorai_test_recursion2_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards
+[wp] Warning: No definition for 'string_len' interpreted as reads nothing
+[wp] Warning: No definition for 'sum_tab' interpreted as reads nothing

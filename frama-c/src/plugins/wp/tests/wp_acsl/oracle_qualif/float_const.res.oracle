@@ -1,0 +1,24 @@
+# frama-c -wp [...]
+[kernel] Parsing float_const.i (no preprocessing)
+[kernel:parser:decimal-float] float_const.i:10: Warning: 
+  Floating-point constant 0.1f is not represented exactly. Will use 0x1.99999a0000000p-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 8 goals scheduled
+[wp] [Alt-Ergo] Goal typed_float_convertible_check : Valid
+[wp] [Alt-Ergo] Goal typed_float_convertible_check_2 : Valid
+[wp] [Alt-Ergo] Goal typed_float_convertible_check_3 : Valid
+[wp] [Alt-Ergo] Goal typed_float_convertible_check_4 : Valid
+[wp] [Alt-Ergo] Goal typed_double_convertible_check : Valid
+[wp] [Alt-Ergo] Goal typed_double_convertible_check_2 : Valid
+[wp] [Alt-Ergo] Goal typed_double_convertible_check_3 : Valid
+[wp] [Alt-Ergo] Goal typed_double_convertible_check_4 : Valid
+[wp] Proved goals:    8 / 8
+  Qed:             0 
+  Alt-Ergo:        8
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  float_convertible         -        4        4       100%
+  double_convertible        -        4        4       100%
+------------------------------------------------------------

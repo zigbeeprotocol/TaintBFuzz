@@ -1,0 +1,329 @@
+# frama-c -wp -wp-rte -wp-no-let [...]
+[kernel] Parsing struct_fields.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function foo
+[wp] 2 goals scheduled
+---------------------------------------------
+--- Context 'typed_foo' Cluster 'Init_S1_X' 
+---------------------------------------------
+theory Init_S1_X
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  type Init_S1_X =
+    | Init_S1_X1 (Init_F1_X_a:bool) (Init_F1_X_b:bool) (Init_F1_X_c:bool)
+end
+---------------------------------------------
+--- Context 'typed_foo' Cluster 'S1_X' 
+---------------------------------------------
+theory S1_X
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  type S1_X =
+    | S1_X1 (F1_X_a:int) (F1_X_b:int) (F1_X_c:int)
+  
+  (* use frama_c_wp.cint.Cint *)
+  
+  predicate IsS1_X (s:S1_X) =
+    (is_sint8 (F1_X_a s) /\ is_sint16 (F1_X_b s)) /\ is_sint32 (F1_X_c s)
+end
+---------------------------------------------
+--- Context 'typed_foo' Cluster 'Compound' 
+---------------------------------------------
+theory Compound
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.memory.Memory *)
+  
+  function shiftfield_F1_X_a (p:addr) : addr = shift p 0
+  
+  function shiftfield_F1_X_b (p:addr) : addr = shift p 1
+  
+  function shiftfield_F1_X_c (p:addr) : addr = shift p 2
+  
+  (* use S1_X *)
+  
+  function Load_S1_X (p:addr) (mchar:addr -> int) (mint:addr -> int) (mint1:
+    addr -> int) : S1_X =
+    S1_X1 (get mchar (shiftfield_F1_X_a p)) (get mint (shiftfield_F1_X_b p))
+    (get mint1 (shiftfield_F1_X_c p))
+  
+  (* use Init_S1_X *)
+  
+  function Load_Init_S1_X (p:addr) (init:addr -> bool) : Init_S1_X =
+    Init_S1_X1 (get init (shiftfield_F1_X_a p))
+    (get init (shiftfield_F1_X_b p)) (get init (shiftfield_F1_X_c p))
+  
+  axiom Q_Load_S1_X_update_Mchar0 :
+    forall mchar:addr -> int, mint:addr -> int, mint1:addr -> int, p:addr, q:
+     addr, v:int [Load_S1_X p (set mchar q v) mint mint1].
+     separated p 3 q 1 ->
+     Load_S1_X p (set mchar q v) mint mint1 = Load_S1_X p mchar mint mint1
+  
+  axiom Q_Load_S1_X_eqmem_Mchar0 :
+    forall mchar:addr -> int, mchar1:addr -> int, mint:addr -> int, mint1:
+     addr -> int, n:int, p:addr, q:addr [Load_S1_X p mchar mint mint1,
+     eqmem mchar mchar1 q n| Load_S1_X p mchar1 mint mint1,
+     eqmem mchar mchar1 q n].
+     included p 3 q n ->
+     eqmem mchar mchar1 q n ->
+     Load_S1_X p mchar1 mint mint1 = Load_S1_X p mchar mint mint1
+  
+  axiom Q_Load_S1_X_havoc_Mchar0 :
+    forall mchar:addr -> int, mchar1:addr -> int, mint:addr -> int, mint1:
+     addr -> int, n:int, p:addr, q:addr
+     [Load_S1_X p (havoc mchar1 mchar q n) mint mint1].
+     separated p 3 q n ->
+     Load_S1_X p (havoc mchar1 mchar q n) mint mint1 =
+     Load_S1_X p mchar mint mint1
+  
+  axiom Q_Load_S1_X_update_Mint1 :
+    forall mchar:addr -> int, mint:addr -> int, mint1:addr -> int, p:addr, q:
+     addr, v:int [Load_S1_X p mchar (set mint1 q v) mint].
+     separated p 3 q 1 ->
+     Load_S1_X p mchar (set mint1 q v) mint = Load_S1_X p mchar mint1 mint
+  
+  axiom Q_Load_S1_X_eqmem_Mint1 :
+    forall mchar:addr -> int, mint:addr -> int, mint1:addr -> int, mint2:addr
+     -> int, n:int, p:addr, q:addr [Load_S1_X p mchar mint1 mint,
+     eqmem mint1 mint2 q n| Load_S1_X p mchar mint2 mint,
+     eqmem mint1 mint2 q n].
+     included p 3 q n ->
+     eqmem mint1 mint2 q n ->
+     Load_S1_X p mchar mint2 mint = Load_S1_X p mchar mint1 mint
+  
+  axiom Q_Load_S1_X_havoc_Mint1 :
+    forall mchar:addr -> int, mint:addr -> int, mint1:addr -> int, mint2:addr
+     -> int, n:int, p:addr, q:addr
+     [Load_S1_X p mchar (havoc mint2 mint1 q n) mint].
+     separated p 3 q n ->
+     Load_S1_X p mchar (havoc mint2 mint1 q n) mint =
+     Load_S1_X p mchar mint1 mint
+  
+  axiom Q_Load_S1_X_update_Mint2 :
+    forall mchar:addr -> int, mint:addr -> int, mint1:addr -> int, p:addr, q:
+     addr, v:int [Load_S1_X p mchar mint (set mint1 q v)].
+     separated p 3 q 1 ->
+     Load_S1_X p mchar mint (set mint1 q v) = Load_S1_X p mchar mint mint1
+  
+  axiom Q_Load_S1_X_eqmem_Mint2 :
+    forall mchar:addr -> int, mint:addr -> int, mint1:addr -> int, mint2:addr
+     -> int, n:int, p:addr, q:addr [Load_S1_X p mchar mint mint1,
+     eqmem mint1 mint2 q n| Load_S1_X p mchar mint mint2,
+     eqmem mint1 mint2 q n].
+     included p 3 q n ->
+     eqmem mint1 mint2 q n ->
+     Load_S1_X p mchar mint mint2 = Load_S1_X p mchar mint mint1
+  
+  axiom Q_Load_S1_X_havoc_Mint2 :
+    forall mchar:addr -> int, mint:addr -> int, mint1:addr -> int, mint2:addr
+     -> int, n:int, p:addr, q:addr
+     [Load_S1_X p mchar mint (havoc mint2 mint1 q n)].
+     separated p 3 q n ->
+     Load_S1_X p mchar mint (havoc mint2 mint1 q n) =
+     Load_S1_X p mchar mint mint1
+  
+  axiom Q_Load_Init_S1_X_update_Init0 :
+    forall init:addr -> bool, p:addr, q:addr, v:bool
+     [Load_Init_S1_X p (set init q v)].
+     separated p 3 q 1 ->
+     Load_Init_S1_X p (set init q v) = Load_Init_S1_X p init
+  
+  axiom Q_Load_Init_S1_X_eqmem_Init0 :
+    forall init:addr -> bool, init1:addr -> bool, n:int, p:addr, q:addr
+     [Load_Init_S1_X p init, eqmem init init1 q n| Load_Init_S1_X p init1,
+     eqmem init init1 q n].
+     included p 3 q n ->
+     eqmem init init1 q n -> Load_Init_S1_X p init1 = Load_Init_S1_X p init
+  
+  axiom Q_Load_Init_S1_X_havoc_Init0 :
+    forall init:addr -> bool, init1:addr -> bool, n:int, p:addr, q:addr
+     [Load_Init_S1_X p (havoc init1 init q n)].
+     separated p 3 q n ->
+     Load_Init_S1_X p (havoc init1 init q n) = Load_Init_S1_X p init
+end
+---------------------------------------------
+--- Context 'typed_foo' Cluster 'Chunk' 
+---------------------------------------------
+theory Chunk
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.memory.Memory *)
+  
+  (* use frama_c_wp.cint.Cint *)
+  
+  predicate is_sint8_chunk (m:addr -> int) =
+    forall a:addr. is_sint8 (get m a)
+  
+  predicate is_sint16_chunk (m:addr -> int) =
+    forall a:addr. is_sint16 (get m a)
+  
+  predicate is_sint32_chunk (m:addr -> int) =
+    forall a:addr. is_sint32 (get m a)
+end
+[wp:print-generated] 
+  theory WP
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool *)
+    
+    (* use int.Int *)
+    
+    (* use int.ComputerDivision *)
+    
+    (* use real.RealInfix *)
+    
+    (* use frama_c_wp.qed.Qed *)
+    
+    (* use map.Map *)
+    
+    (* use frama_c_wp.memory.Memory *)
+    
+    (* use Init_S1_X *)
+    
+    (* use Compound *)
+    
+    (* use Chunk *)
+    
+    goal wp_goal :
+      forall t:addr -> bool, x:Init_S1_X, t1:int -> int, t2:addr -> int, t3:
+       addr -> int, t4:addr -> int, a:addr.
+       Load_Init_S1_X a t = x ->
+       region (a.base) <= 0 ->
+       is_sint16_chunk t3 ->
+       is_sint32_chunk t4 ->
+       is_sint8_chunk t2 ->
+       linked t1 ->
+       sconst t2 ->
+       cinits t ->
+       valid_rd t1 a 3 -> IsS1_X (Load_S1_X a t2 t3 t4) -> valid_rw t1 a 3
+  end
+[wp:print-generated] 
+  theory WP1
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool *)
+    
+    (* use int.Int *)
+    
+    (* use int.ComputerDivision *)
+    
+    (* use real.RealInfix *)
+    
+    (* use frama_c_wp.qed.Qed *)
+    
+    (* use map.Map *)
+    
+    (* use frama_c_wp.memory.Memory *)
+    
+    (* use S1_X *)
+    
+    (* use Chunk *)
+    
+    (* use Compound *)
+    
+    goal wp_goal :
+      forall t:addr -> bool, t1:int -> int, t2:addr -> int, t3:addr -> int, t4:
+       addr -> int, a:addr, x:S1_X.
+       region (a.base) <= 0 ->
+       IsS1_X x ->
+       is_sint16_chunk t3 ->
+       is_sint32_chunk t4 ->
+       is_sint8_chunk t2 ->
+       linked t1 ->
+       sconst t2 ->
+       cinits t -> IsS1_X (Load_S1_X a t2 t3 t4) -> valid_rd t1 a 3
+  end
+[wp] 2 goals generated
+------------------------------------------------------------
+  Function foo
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file struct_fields.i, line 15):
+Assume {
+  Type: IsS1_X(r) /\ is_sint16_chunk(Mint_0) /\ is_sint32_chunk(Mint_1) /\
+      is_sint8_chunk(Mchar_0) /\
+      IsS1_X(Load_S1_X(p, Mchar_0, Mint_0, Mint_1)).
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ linked(Malloc_0) /\ sconst(Mchar_0) /\
+      cinits(Init_0).
+  Type: IsS1_X(r) /\ is_sint16_chunk(Mint_0) /\ is_sint32_chunk(Mint_1) /\
+      is_sint8_chunk(Mchar_0).
+  Type: IsS1_X(r) /\ is_sint16_chunk(Mint_0) /\ is_sint32_chunk(Mint_1) /\
+      is_sint8_chunk(Mchar_0).
+}
+Prove: valid_rd(Malloc_0, p, 3).
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file struct_fields.i, line 16):
+Let a = Load_S1_X(p, Mchar_0, Mint_0, Mint_1).
+Assume {
+  Type: IsS1_X(r) /\ is_sint16_chunk(Mint_0) /\ is_sint32_chunk(Mint_1) /\
+      is_sint8_chunk(Mchar_0) /\ IsS1_X(a).
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ linked(Malloc_0) /\ sconst(Mchar_0) /\
+      cinits(Init_0).
+  Type: IsS1_X(r) /\ is_sint16_chunk(Mint_0) /\ is_sint32_chunk(Mint_1) /\
+      is_sint8_chunk(Mchar_0).
+  Type: IsS1_X(r) /\ is_sint16_chunk(Mint_0) /\ is_sint32_chunk(Mint_1) /\
+      is_sint8_chunk(Mchar_0).
+  Type: IsS1_X(r) /\ is_sint16_chunk(Mint_0) /\ is_sint32_chunk(Mint_1) /\
+      is_sint8_chunk(Mchar_0).
+  (* Assertion 'rte,mem_access' *)
+  Have: valid_rd(Malloc_0, p, 3).
+  (* Initializer *)
+  Init: Load_Init_S1_X(p, Init_0) = Init_r_0.
+  (* Initializer *)
+  Init: a = r.
+}
+Prove: valid_rw(Malloc_0, p, 3).
+
+------------------------------------------------------------

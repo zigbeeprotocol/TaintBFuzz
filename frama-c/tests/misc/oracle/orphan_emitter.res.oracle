@@ -1,0 +1,2 @@
+[kernel] Warning: emitter emitter1: correctness parameter -orphan does not exist anymore. Ignored.
+[kernel] Warning: 11 states in saved file ignored. They are invalid in this Frama-C configuration.

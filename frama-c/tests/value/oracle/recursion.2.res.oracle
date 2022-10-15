@@ -1,0 +1,60 @@
+[kernel] Parsing recursion.c (with preprocessing)
+[eva] Analyzing a complete application starting at main_fail
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+  p ∈ {0}
+[eva:recursion] recursion.c:426: detected recursive call of function sum_nospec.
+[eva] recursion.c:433: Frama_C_show_each_10: {10}
+[eva] recursion.c:438: Frama_C_show_each_36: {36}
+[eva] using specification for function Frama_C_interval
+[eva] recursion.c:426: User Error: 
+  Recursive call to sum_nospec without a specification.
+  Generating probably incomplete assigns to interpret the call. Try to increase
+  the -eva-unroll-recursive-calls parameter or write a correct specification
+  for function sum_nospec.
+[kernel:annot:missing-spec] recursion.c:423: Warning: 
+  Neither code nor specification for function sum_nospec, generating default assigns from the prototype
+[eva] using specification for function sum_nospec
+[eva] recursion.c:442: Frama_C_show_each_unreachable: [-2147483648..2147483647]
+[eva] done for function main_fail
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function sum_nospec:
+  res ∈ [--..--]
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function main_fail:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ [4..16]
+  y ∈ [--..--]
+[from] Computing for function sum_nospec
+[from] Computing for function sum_nospec <-sum_nospec
+[from] Done for function sum_nospec
+[from] Done for function sum_nospec
+[from] Computing for function main_fail
+[from] Computing for function Frama_C_interval <-main_fail
+[from] Done for function Frama_C_interval
+[from] Done for function main_fail
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function sum_nospec:
+  res FROM i
+  tmp FROM i
+  __retres FROM i
+  \result FROM i
+[from] Function main_fail:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function sum_nospec:
+    res; tmp; __retres
+[inout] Inputs for function sum_nospec:
+    i; res; tmp; __retres
+[inout] Out (internal) for function main_fail:
+    Frama_C_entropy_source; x; y; tmp; tmp_0; tmp_1
+[inout] Inputs for function main_fail:
+    Frama_C_entropy_source
+[eva] User Error: Deferred error message was emitted during execution. See above messages for more information.
+[kernel] Plug-in eva aborted: invalid user input.

@@ -1,0 +1,5 @@
+[kernel] Parsing vla_switch.i (no preprocessing)
+[kernel:CERT:MSC:37] vla_switch.i:16: Warning: 
+  Body of function case3 falls-through. Adding a return statement
+[kernel] User Error: vla_switch.i:7, cannot jump from switch statement bypassing initialization of variable b, declared at vla_switch.i:9
+[kernel] Frama-C aborted: invalid user input.

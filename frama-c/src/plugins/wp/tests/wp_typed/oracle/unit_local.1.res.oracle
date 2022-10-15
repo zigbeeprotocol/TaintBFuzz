@@ -1,0 +1,31 @@
+# frama-c -wp -wp-model 'Typed (Raw)' [...]
+[kernel] Parsing unit_local.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function bar
+------------------------------------------------------------
+
+Goal Assigns nothing in 'bar':
+Effect at line 28
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: invalid(Malloc_0, global(L_a_28), 1).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function foo
+------------------------------------------------------------
+
+Goal Assigns nothing in 'foo' (1/2):
+Effect at line 18
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: invalid(Malloc_0, global(L_pa_24), 1).
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'foo' (2/2):
+Effect at line 19
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: invalid(Malloc_0, global(L_a_23), 1).
+
+------------------------------------------------------------

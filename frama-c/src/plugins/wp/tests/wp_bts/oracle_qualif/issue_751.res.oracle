@@ -1,0 +1,53 @@
+# frama-c -wp [...]
+[kernel] Parsing issue_751.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 40 goals scheduled
+[wp] [Qed] Goal typed_acquire_loop_invariant_RANGE_preserved : Valid
+[wp] [Qed] Goal typed_acquire_loop_invariant_RANGE_established : Valid
+[wp] [Qed] Goal typed_acquire_loop_assigns_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_acquire_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_issue_751_check : Valid
+[wp] [Qed] Goal typed_issue_751_check_2 : Valid
+[wp] [Qed] Goal typed_issue_751_check_3 : Valid
+[wp] [Qed] Goal typed_issue_751_check_4 : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_requires_pos_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_requires_neg_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_requires_pos_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_requires_neg_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_requires_strict_pos_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_requires_strict_neg_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_requires_strict_pos_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_requires_strict_neg_min : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_2_requires_pos_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_2_requires_neg_max : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_2_requires_pos_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_2_requires_neg_min : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_2_requires_strict_pos_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_2_requires_strict_neg_max : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_2_requires_strict_pos_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_2_requires_strict_neg_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_3_requires_pos_max : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_3_requires_neg_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_3_requires_pos_min : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_3_requires_neg_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_3_requires_strict_pos_max : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_3_requires_strict_neg_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_3_requires_strict_pos_min : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_3_requires_strict_neg_min : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_4_requires_pos_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_4_requires_neg_max : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_4_requires_pos_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_4_requires_neg_min : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_4_requires_strict_pos_max : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_4_requires_strict_neg_max : Valid
+[wp] [Alt-Ergo] Goal typed_issue_751_call_checks_4_requires_strict_pos_min : Valid
+[wp] [Qed] Goal typed_issue_751_call_checks_4_requires_strict_neg_min : Valid
+[wp] Proved goals:   40 / 40
+  Qed:            27 
+  Alt-Ergo:       13
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  acquire                   3        1        4       100%
+  issue_751                24       12       36       100%
+------------------------------------------------------------

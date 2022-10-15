@@ -1,0 +1,6 @@
+[kernel] Parsing alloc_order.i (no preprocessing)
+[kernel:annot-error] alloc_order.i:8: Warning: 
+  wrong order of clause in contract: requires after post-condition, assigns or allocates.
+[kernel] User Error: warning annot-error treated as fatal error.
+[kernel] User Error: stopping on file "alloc_order.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

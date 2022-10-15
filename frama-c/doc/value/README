@@ -1,0 +1,38 @@
+
+Si vous n'êtes pas un développeur de Value, vous avez
+reçu ce document par erreur, et vous pouvez l'ignorer.
+
+Conventions s'appliquant dans la documentation de Value :
+
+* Le "plug-in d'analyse de valeur" s'appelle "the value analysis plug-in",
+  "the plug-in", "the value analysis" ou "the analysis". 
+  Les deux derniers sont à utiliser quand le sujet de l'action
+  peut être une analyse particulière d'un code particulier.
+  Utiliser "Frama-C" si et seulement si Frama-C est
+  l'interface visible pour l'action dont il est question, par exemple :
+
+Frama-C displays a normalized version of the analyzed code source.
+The value analysis plug-in allows the user to interactively select
+an expression in the
+code and observe an over-approximation of the set of the possible
+values taken by this expression at run-time. Frama-C also provides
+synthetic information on the behavior of analyzed functions:
+inputs, outputs, and alarms.
+  
+* La personne qui utilise Value s'appelle "l'utilisateur" ;
+la personne qui a écrit l'application s'appelle "programmeur",
+mais on n'a pas souvent de raison de parler d'elle.
+
+* Sauf cas particulier, si un exemple contient le point d'entrée,
+alors ce point d'entrée s'appelle \verb|main|. Un exemple peut
+aussi ne pas contenir de fonction \verb|main|, ce qui indique
+qu'il ne s'agit que d'une partie d'un projet plus grand.
+
+* Le shell n'est pas csh. Le shell peut être bash, zsh, le prompt
+peut avoir été customisé par l'utilisateur, ou l'utilisateur peut
+être sous Windows et avoir un prompt de la forme "C:\>". Donc,
+on n'écrit pas de prompt précédant les commandes à taper au
+prompt, sinon l'utilisateur il croit que ça fait partie de la commande.
+Le style "verbatim" fait partie des éléments qui aident à reconnaître
+les commandes qui peuvent être tappées, et puis on peut/pourra aussi
+tout faire dans l'interface graphique.

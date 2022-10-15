@@ -1,0 +1,98 @@
+\ProvidesPackage{beamerouterthemeframa-c}[2008/12/03]
+\RequirePackage{calc}
+\RequirePackage{ifthen}
+\newdimen\framac@leftmargin
+\newdimen\framac@rightmargin
+\newdimen\framac@headheight
+\newdimen\framac@footheight
+\newdimen\framac@logowidth
+\newdimen\framac@sectionstart
+\newdimen\framac@sectionwidth
+\newdimen\framac@scale
+
+\newdimen\framac@temp
+
+\framac@scale=.2285pt
+
+\framac@leftmargin=80\framac@scale
+\framac@rightmargin=190\framac@scale
+\framac@headheight=220\framac@scale
+\framac@footheight=100\framac@scale
+
+\framac@logowidth=150\framac@scale
+\setlength{\framac@temp}{\framac@logowidth + 50\framac@scale}
+\setlength{\framac@sectionstart}{\framac@leftmargin - \framac@temp}
+\setlength{\framac@sectionwidth}{\paperwidth - \framac@temp}
+
+\setbeamersize{text margin left=\framac@leftmargin}
+\setbeamersize{text margin right=\framac@rightmargin}
+
+\def\framac@logo{logo}
+
+\DeclareOptionBeamer{logo}{\def\framac@logo{#1}}
+
+\ProcessOptionsBeamer
+
+\pgfdeclareimage[height=\paperheight,interpolate=true]{background}{background}
+\pgfdeclareimage[width=150\framac@scale,interpolate=true]{logo}{\framac@logo}
+
+
+\defbeamertemplate*{background}{frama-c}{\pgfuseimage{background}}
+
+\defbeamertemplate*{navigation symbols}{frama-c}{}
+
+\newbox\section@box%
+\newbox\subsection@box%
+\defbeamertemplate*{section in head}{frama-c}{
+\vskip -\framac@headheight
+\vbox to \framac@headheight{%
+ \vfil
+\moveleft\framac@sectionstart%
+\hbox to\framac@sectionwidth{%
+  \usebeamercolor[fg]{section in head}%
+  \usebeamerfont{section in head}%
+  \insertsectionhead\hfil}
+\vfil\vfil\vfil}}
+% \defbeamertemplate*{section in head}{frama-c}{
+% \vskip -\framac@headheight
+% \vbox to \framac@headheight{%
+% \vfil
+% \moveleft\framac@sectionstart%
+% \hbox to\framac@sectionwidth{%
+%   \usebeamercolor[fg]{section in head}%
+%   \usebeamerfont{section in head}%
+%   \setbox\section@box=\hbox{\insertsectionhead}%
+%   \setbox\subsection@box=\hbox{\insertsubsectionhead}%
+%   \setlength{\framac@temp}{\widthof{\copy\section@box} + \widthof{\copy\subsection@box}}
+%   \ifdim\framac@temp > \framac@sectionwidth%
+%   \vbox{\box\section@box\box\subsection@box}%
+%   \else%
+%   \def\sep{\ifdim\wd\section@box<1pt%
+%            \else\ifdim\wd\subsection@box<1pt%
+%            \else{~-~}\fi\fi}%
+%   \copy\section@box\sep\copy\subsection@box\fi\hfil}
+% \vfil%
+% \vfil%
+% \vfil}}
+\defbeamertemplate*{frametitle}{frama-c}{
+\usebeamertemplate{section in head}
+\vskip -\framac@headheight
+\vbox to\framac@headheight{%
+\vfil
+\moveleft\framac@leftmargin%
+  \hbox to\paperwidth{\usebeamercolor{frametitle}\usebeamerfont{frametitle}%
+  \hskip 0.1cm\insertsubsection \hfil \insertframetitle\hskip 0.25cm}%
+  \vskip -\parsep
+  \moveleft\framac@leftmargin%
+  \hbox to\paperwidth{%
+    \usebeamercolor{framesubtitle}\usebeamerfont{framesubtitle}
+    \hfil \insertframesubtitle\hskip 0.25cm}%
+}%
+}
+
+\defbeamertemplate*{headline}{frama-c}{
+\vtop to \framac@headheight{%
+\vfil\pgfuseimage{logo}\vfil\vfil\vfil}%
+}
+
+\defbeamertemplate*{footline}{frama-c}{\vskip\framac@footheight}

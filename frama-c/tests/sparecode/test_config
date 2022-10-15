@@ -1,0 +1,3 @@
+MACRO: SPARECODE_PLUGINS @EVA_PLUGINS@ sparecode
+PLUGIN: @SPARECODE_PLUGINS@
+OPT: -journal-disable @EVA_OPTIONS@ -sparecode-debug 1

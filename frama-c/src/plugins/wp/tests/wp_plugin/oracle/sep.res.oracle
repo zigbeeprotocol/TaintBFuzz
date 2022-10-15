@@ -1,0 +1,126 @@
+# frama-c -wp -wp-model 'Typed (Caveat)' [...]
+[kernel] Parsing sep.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f1_none
+------------------------------------------------------------
+
+Goal Post-condition (file sep.i, line 13) in 'f1_none':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f2_p_a
+------------------------------------------------------------
+
+Goal Post-condition (file sep.i, line 17) in 'f2_p_a':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f3_p_ab
+------------------------------------------------------------
+
+Goal Post-condition (file sep.i, line 21) in 'f3_p_ab':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f4_pq_ab
+------------------------------------------------------------
+
+Goal Post-condition (file sep.i, line 25) in 'f4_pq_ab':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f5_pq
+------------------------------------------------------------
+
+Goal Post-condition (file sep.i, line 29) in 'f5_pq':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f6_Pa
+------------------------------------------------------------
+
+Goal Post-condition (file sep.i, line 33) in 'f6_Pa':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f7_pq_ad
+------------------------------------------------------------
+
+Goal Post-condition (file sep.i, line 42) in 'f7_pq_ad':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f8_pq_a
+------------------------------------------------------------
+
+Goal Post-condition (file sep.i, line 48) in 'f8_pq_a':
+Prove: true.
+
+------------------------------------------------------------
+[wp] sep.i:18: Warning: 
+  Memory model hypotheses for function 'f2_p_a':
+  /*@ behavior wp_typed_caveat:
+        requires \valid(p);
+        requires \separated(p, &a); */
+  void f2_p_a(int *p);
+[wp] sep.i:22: Warning: 
+  Memory model hypotheses for function 'f3_p_ab':
+  /*@
+     behavior wp_typed_caveat:
+       requires \valid(p);
+       requires \separated(p, &a, &b);
+     */
+  void f3_p_ab(int *p);
+[wp] sep.i:26: Warning: 
+  Memory model hypotheses for function 'f4_pq_ab':
+  /*@
+     behavior wp_typed_caveat:
+       requires \valid(p);
+       requires \valid(q);
+       requires \separated(p, q, &a, &b);
+     */
+  void f4_pq_ab(int *p, int *q);
+[wp] sep.i:30: Warning: 
+  Memory model hypotheses for function 'f5_pq':
+  /*@
+     behavior wp_typed_caveat:
+       requires \valid(p);
+       requires \valid(q);
+       requires \separated(p, q);
+     */
+  void f5_pq(int *p, int *q);
+[wp] sep.i:34: Warning: 
+  Memory model hypotheses for function 'f6_Pa':
+  /*@
+     behavior wp_typed_caveat:
+       requires \valid(p + (..));
+       requires \separated(p + (..), &a);
+     */
+  void f6_Pa(int *p, int k);
+[wp] sep.i:43: Warning: 
+  Memory model hypotheses for function 'f7_pq_ad':
+  /*@
+     behavior wp_typed_caveat:
+       requires \valid(p);
+       requires \valid(q);
+       requires \separated(p, q, &a, &d);
+     */
+  void f7_pq_ad(int *p, int *q);
+[wp] sep.i:49: Warning: 
+  Memory model hypotheses for function 'f8_pq_a':
+  /*@
+     behavior wp_typed_caveat:
+       requires \valid(p);
+       requires \valid(q);
+       requires \separated(p, q, &a);
+     */
+  void f8_pq_a(int *p, int *q);

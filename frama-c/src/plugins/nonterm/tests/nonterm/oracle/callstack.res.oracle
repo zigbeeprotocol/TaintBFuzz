@@ -1,0 +1,31 @@
+[kernel] Parsing callstack.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function g <- main.
+  Called from callstack.i:12.
+[eva] computing for function f <- g <- main.
+  Called from callstack.i:7.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for g
+[eva] Done for function g
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function g:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[nonterm:stmt] callstack.i:2: Warning: 
+  non-terminating loop
+  stack: f :: callstack.i:7 <- g :: callstack.i:12 <- main
+[nonterm:unreachable] callstack.i:7: Warning: unreachable return
+[nonterm:stmt] callstack.i:11: Warning: 
+  non-terminating loop
+  stack: main
+[nonterm] Analysis done.

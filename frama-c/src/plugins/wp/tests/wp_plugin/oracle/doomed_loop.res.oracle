@@ -1,0 +1,48 @@
+# frama-c -wp [...]
+[kernel] Parsing doomed_loop.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function foo
+------------------------------------------------------------
+
+Goal Wp_smoke_dead_loop in 'foo' at loop (file doomed_loop.i, line 22):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Wp_smoke_dead_code in 'foo' at instruction (file doomed_loop.i, line 23):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Wp_smoke_dead_code in 'foo' at return (file doomed_loop.i, line 25):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'A' (file doomed_loop.i, line 18):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'A' (file doomed_loop.i, line 18):
+Prove: P_P(0).
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'B' (file doomed_loop.i, line 19):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'B' (file doomed_loop.i, line 19):
+Assume { (* Invariant 'A' *) Have: P_P(0). }
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file doomed_loop.i, line 20):
+Prove: true.
+
+------------------------------------------------------------

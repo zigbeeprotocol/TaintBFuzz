@@ -1,0 +1,46 @@
+\chapter{Implemented Features}
+
+%% --------------------------------------------------------------------------
+%% --- Tables Stuff                                                       ---
+%% --------------------------------------------------------------------------
+
+\newenvironment{wpfeatures}[1]%
+{\begin{longtable}{lcccc}
+ \textbf{#1} & WP & Hoare & Store & Runtime \\\hline
+ \endhead
+}%
+{\end{longtable}}
+\newcommand{\wpsection}[1]{\\\textbf{#1:} & & & & \\}
+\newcommand{\wyes}{\ding{51}}
+\newcommand{\wno} {\ding{53}}
+
+\section{C Features}
+
+\begin{wpfeatures}{C Features}
+\wpsection{Types}
+integers   & No overflows & & & \\
+floats     & Reals & & & \\
+arrays     & & \wyes & \wyes & \wyes \\
+structures & & \wyes & \wyes & \wyes \\
+unions     & & \wno  & \wno  & \wyes  \\
+bitfields  & & \wno  & \wno  & \wno  \\
+\wpsection{Expressions}
+numerical conversions & \wyes & & & \\
+pointer casts & & \wno & \wno & \wyes \\
+\wpsection{Instructions}
+affectations & \wyes & & & \\
+conditionals & \wyes & & & \\
+loops        & \wyes & & & \\
+gotos        & Cf. loops & & & \\
+\end{wpfeatures}
+
+\section{ACSL Features}
+
+\begin{wpfeatures}{ACSL Features}
+\wpsection{Types}
+\wpsection{Terms}
+\wpsection{Tsets}
+\wpsection{Formulas}
+\wpsection{Contracts}
+\wpsection{Axiomatics}
+\end{wpfeatures}

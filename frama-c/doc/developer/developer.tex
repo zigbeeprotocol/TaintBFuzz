@@ -1,0 +1,180 @@
+%; whizzy section -pdf -initex "pdflatex -ini"
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%MODERN \documentclass[a4paper,11pt,twoside,openright]{report}
+\documentclass[web,svgnames]{frama-c-book}
+
+\usepackage{xspace,alltt,calc,multirow,tabularx,bigdelim,spverbatim}
+\usepackage{amsmath}
+\IfFileExists{diagbox.sty} % Compatibility with newer diagbox and older slashbox
+  {\usepackage{diagbox}
+  }
+  {\usepackage{slashbox}
+    \let\diagbox\backslashbox
+  }
+\usepackage{framed}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{longtable}
+\usepackage{varwidth}
+\usepackage{tikz}
+\usetikzlibrary{fit}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{chains}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+\usetikzlibrary{scopes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{./macros.sty}
+\input{./frama-c-affiliation.tex}
+\makeindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\sloppy
+\hbadness=10000
+
+\coverpage{Developer Manual}
+\begin{titlepage}
+\includegraphics[height=14mm]{../images/cealistlogo.jpg}
+\hfill~
+\vfill
+\title{Plug-in Development Guide}%
+{Release \framacversion}
+\author{Julien~Signoles with Thibaud~Antignac, Loïc~Correnson, Matthieu~Lemerre
+and Virgile~Prevosto}
+\begin{center}
+  \fcaffiliationen
+\end{center}
+\vfill
+\begin{flushleft}
+  \textcopyright 2009-{\the\year} CEA LIST
+\end{flushleft}
+\end{titlepage}
+
+%%Contents should open on right
+\cleardoublepage
+\markright{}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% \chapter*{Very Important Preliminary Warning}
+%% \markright{}
+%% \addcontentsline{toc}{chapter}{Very Important Preliminary Warning}
+
+%% This document is no longer consistent with the current \framac implementation
+%% (\framac \framacversion). When a particular part of the document is known to be
+%% out-of-date, the following mention comes in front of it.
+
+%% \outofdate{part}
+
+%% But even without this mention, any part of the document may be also obsolete:
+%% feel free to report us such a behavior as "feature request" on
+%% \url{http://bts.frama-c.com}. In any way, it is \emph{not} a bug, but an
+%% assumed possible behavior.
+
+%% Please be sure that we will do our best to improve this awkward situation in
+%% future releases.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Foreword}
+\markright{}
+\addcontentsline{toc}{chapter}{Foreword}
+
+This is the documentation of the \framac
+implementation\footnote{\url{http://frama-c.com}} which aims at
+helping developers integrate new plug-ins inside this platform. It started as
+a deliverable of the task 2.3 of the ANR RNTL project
+CAT\footnote{\url{http://www.rntl.org/projet/resume2005/cat.htm}}.
+
+The content of this document corresponds to the version \framacversion,
+released on \today,
+of \framac. However the development of \framac is still ongoing: features
+described here may still evolve in the future.
+
+\section*{Acknowledgements}
+%\addcontentsline{toc}{chapter}{Acknowledgements}
+
+We gratefully thank all the people who contributed to this document:
+Michele Alberti,
+Gergö Barany,
+Patrick Baudin,
+Allan Blanchard,
+Richard Bonichon,
+David B\"uhler,
+Pascal Cuoq,
+Zaynah Dargaye,
+Basile Desloges,
+Florent Garnier,
+Pierre-Loïc Garoche,
+Philippe Herrmann,
+Boris Hollas,
+Nikolaï Kosmatov,
+Jean-Christophe Léchenet,
+Romain Maliach-Auguste,
+André Maroneze,
+Benjamin Monate,
+Yannick Moy,
+Anne Pacalet,
+Valentin Perrelle,
+Armand Puccetti,
+Muriel Roger and
+Boris Yakobowski.
+
+We also thank Johannes Kanig for his \langage{Mlpost}
+support\footnote{\url{http://mlpost.lri.fr}}, the tool formerly used for
+making figures of this document.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{introduction}
+%\include{tutorial}
+\include{tutorial}
+\include{architecture}
+\include{advance}
+\include{refman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\include{changes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{plain}
+\bibliography{./developer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\indexname}
+\printindex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+Local Variables:
+ispell-local-dictionary: "english"
+End:

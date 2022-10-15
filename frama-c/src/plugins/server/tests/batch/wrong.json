@@ -1,0 +1,4 @@
+[
+  { id:"unknown request", request:"kernel.unknown", data:null, comment:"the request doesn't exist" },
+  { id:"wrong data", request:"kernel.ast.printFunction", data:{f1:1, f2:{x:1, y:2}, f3:null}, comment:"ident is expected, object is given" }
+]

@@ -1,0 +1,69 @@
+[kernel] Parsing str_allocated.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] computing for function memchr_bug <- main.
+  Called from str_allocated.c:19.
+[eva] str_allocated.c:12: Call to builtin malloc
+[eva] str_allocated.c:12: allocating variable __malloc_memchr_bug_l12
+[eva] str_allocated.c:11: starting to merge loop iterations
+[eva] str_allocated.c:12: Call to builtin malloc
+[eva:malloc:weak] str_allocated.c:12: 
+  marking variable `__malloc_memchr_bug_l12' as weak
+[eva:malloc] str_allocated.c:12: 
+  resizing variable `__malloc_w_memchr_bug_l12' (0..-1) to fit 0..-1/7
+[eva] str_allocated.c:12: Call to builtin malloc
+[eva:alarm] str_allocated.c:14: Warning: 
+  accessing uninitialized left-value. assert \initialized(&b);
+[eva] str_allocated.c:14: Call to builtin memchr
+[eva:alarm] str_allocated.c:14: Warning: 
+  function memchr: precondition 'valid' got status unknown.
+[eva:alarm] str_allocated.c:14: Warning: 
+  function memchr: precondition 'initialization' got status unknown.
+[eva:alarm] str_allocated.c:14: Warning: 
+  function memchr: precondition 'danglingness' got status unknown.
+[eva] FRAMAC_SHARE/libc/string.h:78: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memchr
+[eva] FRAMAC_SHARE/libc/string.h:85: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memchr
+[eva] Recording results for memchr_bug
+[eva] Done for function memchr_bug
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function memchr_bug:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  __fc_heap_status ∈ [--..--]
+  __retres ∈ {0}
+[from] Computing for function memchr_bug
+[from] Computing for function malloc <-memchr_bug
+[from] Done for function malloc
+[from] Computing for function memchr <-memchr_bug
+[from] Done for function memchr
+[from] Non-terminating function memchr_bug (no dependencies)
+[from] Done for function memchr_bug
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function malloc:
+  __fc_heap_status FROM __fc_heap_status; size (and SELF)
+  \result FROM __fc_heap_status; size
+[from] Function memchr:
+  \result FROM s; c; __malloc_w_memchr_bug_l12[0]
+[from] Function memchr_bug:
+  NON TERMINATING - NO EFFECTS
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function memchr_bug:
+    __fc_heap_status; b; i
+[inout] Inputs for function memchr_bug:
+    __fc_heap_status; __malloc_w_memchr_bug_l12[0]
+[inout] Out (internal) for function main:
+    __fc_heap_status; __retres
+[inout] Inputs for function main:
+    __fc_heap_status; nondet; __malloc_w_memchr_bug_l12[0]

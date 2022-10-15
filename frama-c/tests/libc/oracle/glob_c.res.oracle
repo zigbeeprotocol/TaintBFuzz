@@ -1,0 +1,208 @@
+[kernel] Parsing glob_c.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] computing for function glob <- main.
+  Called from glob_c.c:30.
+[eva] computing for function Frama_C_interval <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:32.
+[eva] using specification for function Frama_C_interval
+[eva] FRAMAC_SHARE/libc/glob.c:32: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] FRAMAC_SHARE/libc/glob.c:66: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/glob.c:66: 
+  function realloc: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/glob.c:66: allocating variable __realloc_glob_l66
+[eva] FRAMAC_SHARE/libc/glob.c:71: starting to merge loop iterations
+[eva] FRAMAC_SHARE/libc/glob.c:73: starting to merge loop iterations
+[eva:alarm] FRAMAC_SHARE/libc/glob.c:74: Warning: 
+  out of bounds write.
+  assert
+  \valid(pglob->gl_pathv + (size_t)((size_t)(reserve_offs + prev_len) + i_1));
+[eva:alarm] FRAMAC_SHARE/libc/glob.c:76: Warning: 
+  out of bounds write.
+  assert
+  \valid(pglob->gl_pathv +
+         (size_t)((size_t)(prev_len + reserve_offs) + pglob->gl_pathc));
+[eva] computing for function Frama_C_nondet <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:77.
+[eva] using specification for function Frama_C_nondet
+[eva] Done for function Frama_C_nondet
+[eva] computing for function Frama_C_interval <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:82.
+[eva] FRAMAC_SHARE/libc/glob.c:82: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function globerr0 <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:82.
+[eva] Recording results for globerr0
+[eva] Done for function globerr0
+[eva] Recording results for glob
+[eva] Done for function glob
+[eva] computing for function globfree <- main.
+  Called from glob_c.c:31.
+[eva:alarm] FRAMAC_SHARE/libc/glob.c:93: Warning: 
+  accessing uninitialized left-value. assert \initialized(&pglob->gl_pathv);
+[eva] FRAMAC_SHARE/libc/glob.c:93: Call to builtin free
+[eva] FRAMAC_SHARE/libc/glob.c:93: 
+  function free: precondition 'freeable' got status valid.
+[eva] Recording results for globfree
+[eva] Done for function globfree
+[eva] computing for function glob <- main.
+  Called from glob_c.c:33.
+[eva] computing for function Frama_C_interval <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:32.
+[eva] Done for function Frama_C_interval
+[eva] FRAMAC_SHARE/libc/glob.c:66: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/glob.c:66: allocating variable __realloc_glob_l66_0
+[eva] computing for function Frama_C_nondet <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:77.
+[eva] Done for function Frama_C_nondet
+[eva] computing for function Frama_C_interval <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:82.
+[eva] Done for function Frama_C_interval
+[eva] FRAMAC_SHARE/libc/glob.c:82: Reusing old results for call to globerr0
+[eva] Recording results for glob
+[eva] Done for function glob
+[eva] computing for function globfree <- main.
+  Called from glob_c.c:34.
+[eva:alarm] FRAMAC_SHARE/libc/glob.c:93: Warning: 
+  accessing left-value that contains escaping addresses.
+  assert ¬\dangling(&pglob->gl_pathv);
+[eva] FRAMAC_SHARE/libc/glob.c:93: Call to builtin free
+[eva] Recording results for globfree
+[eva] Done for function globfree
+[eva] computing for function glob <- main.
+  Called from glob_c.c:36.
+[eva] computing for function Frama_C_interval <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:32.
+[eva] Done for function Frama_C_interval
+[eva] FRAMAC_SHARE/libc/glob.c:50: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/glob.c:50: 
+  function realloc: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/glob.c:50: allocating variable __realloc_glob_l50
+[eva] FRAMAC_SHARE/libc/glob.c:66: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/glob.c:66: allocating variable __realloc_glob_l66_1
+[eva] computing for function Frama_C_nondet <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:77.
+[eva] Done for function Frama_C_nondet
+[eva] computing for function Frama_C_interval <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:82.
+[eva] Done for function Frama_C_interval
+[eva] computing for function globerr1 <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:82.
+[eva] Recording results for globerr1
+[eva] Done for function globerr1
+[eva] Recording results for glob
+[eva] Done for function glob
+[eva] computing for function globfree <- main.
+  Called from glob_c.c:37.
+[eva] FRAMAC_SHARE/libc/glob.c:93: Call to builtin free
+[eva] Recording results for globfree
+[eva] Done for function globfree
+[eva] computing for function glob <- main.
+  Called from glob_c.c:40.
+[eva] computing for function Frama_C_interval <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:32.
+[eva] Done for function Frama_C_interval
+[eva] FRAMAC_SHARE/libc/glob.c:50: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/glob.c:50: allocating variable __realloc_glob_l50_0
+[eva] FRAMAC_SHARE/libc/glob.c:54: starting to merge loop iterations
+[eva] FRAMAC_SHARE/libc/glob.c:66: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/glob.c:66: allocating variable __realloc_glob_l66_2
+[eva] computing for function Frama_C_nondet <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:77.
+[eva] Done for function Frama_C_nondet
+[eva] computing for function Frama_C_interval <- glob <- main.
+  Called from FRAMAC_SHARE/libc/glob.c:82.
+[eva] Done for function Frama_C_interval
+[eva] FRAMAC_SHARE/libc/glob.c:82: Reusing old results for call to globerr1
+[eva] Recording results for glob
+[eva] Done for function glob
+[eva] computing for function globfree <- main.
+  Called from glob_c.c:41.
+[eva] FRAMAC_SHARE/libc/glob.c:93: Call to builtin free
+[eva] Recording results for globfree
+[eva] Done for function globfree
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function globerr0:
+  __retres ∈ {0}
+[eva:final-states] Values at end of function globerr1:
+  __retres ∈ {1}
+[eva:final-states] Values at end of function globfree:
+  gl.gl_pathc ∈ [1..10]
+    .gl_pathv ∈
+    {{ NULL ; &__realloc_glob_l66[0] ; &__realloc_glob_l66_0[0] ;
+       &__realloc_glob_l50[0] ; &__realloc_glob_l66_1[0] ;
+       &__realloc_glob_l50_0[0] ; &__realloc_glob_l66_2[0] }} or ESCAPINGADDR
+    .gl_offs ∈ {1}
+    {.gl_flags; .gl_closedir; .gl_readdir; .gl_opendir; .gl_lstat; .gl_stat} ∈
+    UNINITIALIZED
+[eva:final-states] Values at end of function glob:
+  Frama_C_entropy_source ∈ [--..--]
+  reserve_offs ∈ {0; 1}
+  prev_len ∈ {0}
+  path ∈ {0}
+  gl.gl_pathc ∈ [0..10]
+    .gl_pathv ∈
+    {{ NULL ; &__realloc_glob_l66[0] ; &__realloc_glob_l66_0[0] ;
+       &__realloc_glob_l50[0] ; &__realloc_glob_l66_1[0] ;
+       &__realloc_glob_l50_0[0] ; &__realloc_glob_l66_2[0] }} or UNINITIALIZED or ESCAPINGADDR
+    .gl_offs ∈ {1}
+    {.gl_flags; .gl_closedir; .gl_readdir; .gl_opendir; .gl_lstat; .gl_stat} ∈
+    UNINITIALIZED
+  __retres ∈ {0; 1; 2; 3}
+  __realloc_glob_l66[0] ∈ {0} or UNINITIALIZED
+                    [1] ∈ {{ "glob result" }} or UNINITIALIZED
+                    [2..10] ∈ {{ NULL ; "glob result" }} or UNINITIALIZED
+                    [11] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l66_0[0] ∈ {{ "glob result" }} or UNINITIALIZED
+                      [1..9] ∈ {{ NULL ; "glob result" }} or UNINITIALIZED
+                      [10] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l50[0] ∈ {{ "bli" }} or UNINITIALIZED
+                    [1] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l66_1[0] ∈ {{ "glob result" }} or UNINITIALIZED
+                      [1..9] ∈ {{ NULL ; "glob result" }} or UNINITIALIZED
+                      [10] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l50_0[0] ∈ {0} or UNINITIALIZED
+                      [1] ∈ {{ "blo" }} or UNINITIALIZED
+                      [2] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l66_2[0] ∈ {0} or UNINITIALIZED
+                      [1] ∈ {{ "glob result" }} or UNINITIALIZED
+                      [2..10] ∈ {{ NULL ; "glob result" }} or UNINITIALIZED
+                      [11] ∈ {0} or UNINITIALIZED
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+  ret ∈ {0; 1; 2}
+  flags ∈ {24}
+  gl.gl_pathc ∈ [0..10]
+    .gl_pathv ∈
+    {{ NULL ; &__realloc_glob_l50_0[0] ; &__realloc_glob_l66_2[0] }} or ESCAPINGADDR
+    .gl_offs ∈ {1}
+    {.gl_flags; .gl_closedir; .gl_readdir; .gl_opendir; .gl_lstat; .gl_stat} ∈
+    UNINITIALIZED
+  __retres ∈ {0}
+  __realloc_glob_l66[0] ∈ {0} or UNINITIALIZED
+                    [1] ∈ {{ "glob result" }} or UNINITIALIZED
+                    [2..10] ∈ {{ NULL ; "glob result" }} or UNINITIALIZED
+                    [11] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l66_0[0] ∈ {{ "glob result" }} or UNINITIALIZED
+                      [1..9] ∈ {{ NULL ; "glob result" }} or UNINITIALIZED
+                      [10] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l50[0] ∈ {{ "bli" }} or UNINITIALIZED
+                    [1] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l66_1[0] ∈ {{ "glob result" }} or UNINITIALIZED
+                      [1..9] ∈ {{ NULL ; "glob result" }} or UNINITIALIZED
+                      [10] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l50_0[0] ∈ {0} or UNINITIALIZED
+                      [1] ∈ {{ "blo" }} or UNINITIALIZED
+                      [2] ∈ {0} or UNINITIALIZED
+  __realloc_glob_l66_2[0] ∈ {0} or UNINITIALIZED
+                      [1] ∈ {{ "glob result" }} or UNINITIALIZED
+                      [2..10] ∈ {{ NULL ; "glob result" }} or UNINITIALIZED
+                      [11] ∈ {0} or UNINITIALIZED

@@ -1,0 +1,6 @@
+[kernel] Parsing sizeof_incomplete_type.c (with preprocessing)
+[kernel] sizeof_incomplete_type.c:26: User Error: 
+  sizeof on incomplete type 'struct inexistent'
+[kernel] User Error: stopping on file "sizeof_incomplete_type.c" that has errors. Add
+  '-kernel-msg-key pp' for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

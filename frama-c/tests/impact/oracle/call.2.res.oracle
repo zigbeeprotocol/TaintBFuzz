@@ -1,0 +1,49 @@
+[kernel] Parsing call.i (no preprocessing)
+[impact] beginning analysis
+[eva] Analyzing a complete application starting at main3
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+  X ∈ {0}
+[eva] computing for function call_test3 <- main3.
+  Called from call.i:55.
+[eva] computing for function test3 <- call_test3 <- main3.
+  Called from call.i:49.
+[eva] computing for function p3 <- test3 <- call_test3 <- main3.
+  Called from call.i:45.
+[eva] using specification for function p3
+[eva] call.i:41: Warning: no \from part for clause 'assigns G;'
+[eva] Done for function p3
+[kernel:annot:missing-spec] call.i:45: Warning: 
+  Neither code nor specification for function p2, generating default assigns from the prototype
+[eva] computing for function p2 <- test3 <- call_test3 <- main3.
+  Called from call.i:45.
+[eva] using specification for function p2
+[eva] Done for function p2
+[eva] Recording results for test3
+[eva] Done for function test3
+[eva] Recording results for call_test3
+[eva] Done for function call_test3
+[eva] Recording results for main3
+[eva] done for function main3
+[pdg] computing for function main3
+[from] Computing for function call_test3
+[from] Computing for function test3 <-call_test3
+[from] Computing for function p3 <-test3 <-call_test3
+[from] Done for function p3
+[from] Computing for function p2 <-test3 <-call_test3
+[from] Done for function p2
+[from] Done for function test3
+[from] Done for function call_test3
+[pdg] done for function main3
+[pdg] computing for function call_test3
+[pdg] done for function call_test3
+[pdg] computing for function test3
+[pdg] done for function test3
+[pdg] computing for function p3
+[pdg] done for function p3
+[impact] impacted statements of stmt(s) 30 are:
+    call.i:45 (sid 22): p3(1);call.i:49 (sid 26): test3();
+    call.i:55 (sid 31): call_test3();
+[impact] analysis done

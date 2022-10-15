@@ -1,0 +1,25 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_2246.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function bad
+------------------------------------------------------------
+
+Goal Post-condition (file bts_2246.i, line 9) in 'bad' (1/3):
+Tags: Default.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file bts_2246.i, line 9) in 'bad' (2/3):
+Tags: Case 1.
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Post-condition (file bts_2246.i, line 9) in 'bad' (3/3):
+Tags: Case 0.
+Prove: true.
+
+------------------------------------------------------------

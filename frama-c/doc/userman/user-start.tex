@@ -1,0 +1,560 @@
+\chapter{Getting Started}
+\label{user-start}
+
+This chapter describes \emph{how} to install \FramaC and
+\emph{what} this installation provides.
+
+\section{Installation}\label{sec:install}\index{Installation}
+
+The \FramaC platform is distributed as source code, including the \FramaC kernel
+and a base set of open-source plug-ins.
+
+The recommended way to install \FramaC is by using the
+\opam\index{opam}\footnote{\url{http://opam.ocaml.org}} package manager to
+install the \texttt{frama-c} package, which should always point to the latest
+release compatible with the configured OCaml compiler. \opam is able to handle
+the dependencies required by the \FramaC kernel.
+
+\FramaC can also be installed via pre-compiled binaries,
+which include many of the required libraries and other dependencies, although
+there is a delay between each new \FramaC release and the availability of a
+binary package for the considered platform.
+
+Finally, \FramaC can be compiled and installed from the source distribution,
+as long as its dependencies have already been installed. The exact set of
+dependencies varies from release to release. They are listed as constraints
+in the \texttt{opam/opam} file of the source distribution.
+
+A {\em reference configuration}, guaranteed to be a working set of dependencies
+for \FramaC kernel and the open-source plug-ins included in the source
+distribution, is available in the \texttt{reference-configuration.md} file of
+the source distribution.
+
+For more installation instructions, consider reading the \texttt{INSTALL.md}
+file of the source distribution. The main components necessary for compiling
+and running \FramaC are described below.
+
+\begin{description}
+\item[A \C pre-processor]\index{C pre-processor} is required for \emph{using}
+  \FramaC on \C files. If you do not have any \C pre-processor,
+  you can only run \FramaC on already pre-processed \texttt{.i} files.
+\item[A \C compiler]\index{C compiler} is required to compile the \FramaC
+  kernel.
+\item[A \tool{Unix}-like compilation environment] with at least the tool
+  \texttt{GNU make}\footnote{\url{http://www.gnu.org/software/make}} $\ge 4.0$,
+  as well as various POSIX commands, libraries and header files, is necessary
+  for compiling \FramaC and its plug-ins.
+\item[The \caml compiler]\index{OCaml compiler}\footnote{\url{http://ocaml.org}}
+  is required both for compiling \FramaC from source \emph{and} for compiling
+  additional plug-ins. Compatible OCaml versions are listed as constraints in
+  the \texttt{opam/opam} file.
+\end{description}
+
+Other components, such as OcamlGraph, Zarith, Gtk-related packages for the GUI,
+etc., are listed in the \texttt{INSTALL.md} and \texttt{opam/opam} files.
+
+\section{One Framework, Several Executables}\label{sec:modes}
+
+The main executables installed by \FramaC are:
+
+\begin{itemize}
+\item \texttt{frama-c}\codeidx{frama-c}: batch version (command line);
+\item \texttt{frama-c-gui}\codeidx{frama-c-gui}: interactive version (graphical interface).
+\end{itemize}
+
+\begin{description}
+\item[Batch version]\index{Batch version}
+
+  The \texttt{frama-c} binary can be used to perform most \FramaC analyses:
+  from parsing the sources to running complex analyses, on-demand or as part
+  of a continuous integration pipeline. Many analyses can display their output
+  in simple text form, but some structured results (HTML, CSV or JSON) are
+  also available. For instance, a SARIF~(see Section~\ref{sarif}) output
+  based on JSON is can be produced by the \tool{Markdown Report} plug-in.
+  While the batch version is very powerful, it does not offer the visualization
+  features of the interactive version.
+
+\item[Interactive version]\index{Interactive version}
+  The interactive version is a GUI that can be used to select the set of files
+  to analyze, specify options, launch analyses, browse the code and observe
+  analysis results at one's convenience (see Chapter~\ref{user-gui} for
+  details). For instance, you can hover over an expression in the code and
+  obtain immediate syntactic and semantic information about it; or use context
+  menus for easy code navigation.
+  However, the initial analysis setup (especially parsing) can be complex for
+  some projects, and the batch version is better suited for providing error
+  messages at this stage.
+
+\end{description}
+
+Both versions are complementary: the batch version is recommended
+for initial setup and analysis, while the interactive version is recommended for
+results visualization and interactive proofs.
+
+Besides these two executables, \FramaC also provides a few other command line
+binaries:
+\begin{itemize}
+\item \texttt{frama-c-config}\codeidx{frama-c-config}: auxiliary batch version for
+  quickly retrieving configuration information (e.g. installation paths);
+  it is only useful for scripting and running a large amount of analyses;
+\item \texttt{frama-c-script}\codeidx{frama-c-script}: contains several
+  utilities related to source preparation, results visualization and analysis
+  automation. Run it without arguments to obtain more details.
+\end{itemize}
+
+Finally, note that the two main binaries (\texttt{frama-c} and
+\texttt{frama-c-gui} are also provided in {\em bytecode} version, as
+\texttt{frama-c.byte} and \texttt{frama-c-gui.byte}.
+\index{Native-compiled|bfit}\index{Bytecode|bfit}
+The bytecode is sometimes able to provide better debugging information;
+but since the native-compiled version is usually much faster (10x),
+use the latter unless you have a specific reason to use the bytecode one.
+
+\section{\FramaC Command Line and General Options}\index{Options}
+
+\subsection{Getting Help}
+
+The option \optiondef{-}{help} or \optiondef{-}{h} or
+\optiondef{-{}-}{help} gives a very short summary of \FramaC's command line,
+with its version and the main help entry points presented below.
+
+The other options of the \FramaC kernel, \ie those which are not specific to any
+plug-in, can be printed out through either the option
+\optiondef{-}{kernel-help} or \optiondef{-}{kernel-h}.
+
+The list of all installed plug-ins can be obtained via \optiondef{-}{plugins},
+while \optiondef{-}{version} prints the \FramaC version only
+(useful for installation scripts).
+
+The options of the installed plug-ins are displayed by using either the
+option \texttt{-<plug-in shortname>-help} or \texttt{-<plug-in shortname>-h}.
+
+Finally, the option \optiondef{-}{explain} can be used to obtain information
+about some specific options of the kernel or of any installed plug-ins:
+it prints a help message for each other option given on the command line.
+
+\subsection{\FramaC Configuration}\label{sec:version}
+
+The complete configuration of \FramaC can be obtained with various options,
+all documented with \texttt{-kernel-h}:
+
+\begin{quote}
+\begin{tabular}{ll}
+  \optiondef{-}{print-version} & version number only \\
+  \optiondef{-}{print-share-path} & directory for shared resources \\
+  \optiondef{-}{print-lib-path} & directory for the \FramaC kernel \\
+  \optiondef{-}{print-plugin-path} & directory for installed plug-ins \\
+  \optiondef{-}{print-config} & summary of the \FramaC configuration \\
+  \optiondef{-}{plugins} & list of installed plug-ins
+\end{tabular}
+\end{quote}
+
+There are many aliases for these options, but for backward compatibility purposes only.
+Those listed above should be used for scripting.
+Note that, for all of these options except \texttt{-plugins},
+you can use \texttt{frama-c-config} (instead of \texttt{frama-c}),
+which offers faster loading times.
+This is unnecessary for occasional usage, but when running hundreds of
+instances of short analyses on \FramaC, the difference is significant.
+
+For a more thorough display of configuration-related data, in JSON format,
+use option \optiondef{-}{print-config-json}. Note that the data output by this
+option is likely to change in future releases.
+
+\subsection{Options Outline}
+
+The batch and interactive versions of \FramaC obey a number of
+command-line options. Any option that exists in these two modes
+has the same meaning in both.
+For instance, the batch version can be made to launch the value analysis
+on the \verb|foo.c| file with the command \verb|frama-c -eva foo.c|.
+Although the GUI allows to select files and to
+launch the value analysis interactively, the
+command \verb|frama-c-gui -eva foo.c| can be used to launch the value
+analysis on the file \verb|foo.c| and immediately start displaying the results
+in the GUI.
+
+Any option requiring an argument may use the following
+format:
+\begin{commands}
+\texttt{-option\_name value}
+\end{commands}
+
+\paragraph{Parameterless Options}
+
+Most parameterless options have an opposite option, often written by prefixing
+the option name with \texttt{no-}.  For instance, the option \verb|-unicode|
+for using the Unicode character set in messages has an opposite option
+\optionidx{-}{no-unicode} for limiting the messages to ASCII.  Plug-in options
+with
+a name of the form \texttt{-<plug-in name>-<option name>} have their opposite
+option named \texttt{-<plug-in name>-no-<option name>}. For instance, the
+opposite of option \optionuse{-}{wp-print} is \optionuse{-}{wp-no-print}. When
+prefixing
+an option name by \texttt{-no} is meaningless, the opposite option is usually
+renamed. For instance, the opposite option of \optionuse{-}{journal-enable} is
+\optionuse{-}{journal-disable}. Use the options \texttt{-kernel-help} and
+\texttt{-<plug-in name>-help} to get the opposite option name of each
+parameterless option.
+
+\paragraph{String Options}
+
+If the option's argument is a
+string (that is, neither an integer nor a float, \etc), the following
+format is also possible:
+\begin{commands}
+\texttt{-option\_name=value}
+\end{commands}
+
+\begin{important}
+This format \textbf{must be used} when \texttt{value} starts with a minus sign.
+\end{important}
+
+\paragraph{Set Options}
+
+Some options (e.g. option \optionuse{-}{cpp-extra-args}) accept a set of
+comma-separated values as argument. Each value may be prefix by \texttt{+}
+(resp. \texttt{-}) to indicate that this value must be added to (resp. deleted
+from) the set. When neither is specified, \texttt{+} is added by default.
+
+As for string options, the extended format is also possible:
+\begin{commands}
+\texttt{-option\_name=values}
+\end{commands}
+
+\begin{important}
+This format \textbf{must be used} if your argument contains a minus sign.
+\end{important}
+
+For instance, you can ask the \C preprocessor to search for header files in
+directory \texttt{src} by setting:
+\begin{commands}
+\texttt{-cpp-extra-args="-I src"}
+\end{commands}
+
+Categories are specific values which describe a subset of values. Their names
+begin with an \texttt{@}. Available categories are option-dependent, but most
+set options accept the category \texttt{@all} which defines the set of all
+acceptable values.
+
+For instance, you can ask the \Value plug-in to use the ACSL specification of
+each function but \texttt{main} instead of their definitions by setting:
+\begin{commands}\optionidx{-}{eva-use-spec}
+\texttt{-eva-use-spec="@all, -main"}
+\end{commands}
+
+\begin{important}
+If the first character of a set value is either \texttt{+}, \texttt{-},
+\texttt{@} or $\backslash$, it \textbf{must be escaped} with a $\backslash$.
+\end{important}
+
+\paragraph{Map Options}
+
+Map options are set options whose values are of the form \texttt{key:value}. For
+instance, you can override the default \Value's $slevel$~\cite{value} for
+functions \texttt{f} and \texttt{g} by setting:
+\begin{commands}\optionidx{-}{slevel-function}
+\texttt{-slevel-function="f:16, g:42"}
+\end{commands}
+
+\subsection{Autocompletion for Options}
+
+The \texttt{autocomplete\_frama-c} file in the directory of shared resources
+(see \texttt{-print-share-path} option above) contains a
+bash autocompletion script for \FramaC's options. In order to take advantage
+of it, several possibilities exist.
+\begin{itemize}
+\item In order to enable system-wide completion, the file can be copied
+  into the directory \texttt{/etc/bash\_completion.d/} where bash search for
+  completion scripts by default
+\item If you only want to add completion for yourself, you can append the
+content of the file to \texttt{\~{}/.bash\_completion}
+\item You can \texttt{source} the file, e.g. from your \texttt{.bashrc} with
+the following command:
+\begin{verbatim}
+source $(frama-c-config -print-share-path)/autocomplete_frama-c || true
+\end{verbatim}
+\end{itemize}
+
+There is also an autocompletion script for zsh, \texttt{\_frama-c}, also
+in the shared resources directory. Look inside for installation instructions.
+
+The kernel option \optiondef{-}{autocomplete} provides a text output listing
+all \FramaC options, so that autocompletion scripts may use it to provide
+completion. The \FramaC team welcomes improved and additional autocompletion
+scripts.
+
+\subsection{Splitting a \FramaC Execution into Several Steps}\label{sec:then}
+
+By default, \FramaC parses its command line in an \emph{unspecified} order and
+runs its actions according to the read options. To enforce an order of
+execution, you have to use the option \optiondef{-}{then}: \FramaC parses its
+command line until the option \texttt{-then} and runs its actions accordingly,
+\emph{then} it parses its command line from this option to the end (or to the
+next occurrence of \texttt{-then}) and runs its actions according to the read
+options. Note that this second run starts with the results of the first one.
+
+Consider for instance the following command.
+\begin{shell}
+\$ frama-c -eva -ulevel 4 file.c -then -ulevel 5
+\end{shell}
+It first runs the value analysis plug-in (option
+\optionuse{-}{eva},~\cite{value}) with an unrolling level of 4 (option
+\optionuse{-}{ulevel}, Section~\ref{sec:normalize}). Then it re-runs the value
+analysis plug-in (option \optionuse{-}{eva} is still set) with an unrolling
+level of 5.
+
+It is also possible to specify a project (see Section~\ref{sec:project}) on
+which the actions are applied thanks to the option \optiondef{-}{then-on}.
+Consider for instance the following command.
+\begin{shell}
+\$ frama-c -semantic-const-fold main file.c -then-on propagated -eva
+\end{shell}
+It first propagates constants in function \texttt{main} of \texttt{file.c}
+(option \optionuse{-}{semantic-const-fold}) which generates a new project
+called \texttt{propagated}. Then it runs the value analysis plug-in on this new
+project. Finally it restores the initial default project, except if the option
+\optiondef{-}{set-project-as-default} is used as follow:
+\begin{shell}
+\$ frama-c -semantic-const-fold main file.c \
+          -then-on propagated -eva -set-project-as-default
+\end{shell}
+
+Another possibility is the option \optiondef{-}{then-last} which applies the
+next actions on the last project created by a program transformer. For
+instance, the following command is equivalent to the previous one.
+\begin{shell}
+\$ frama-c -semantic-const-fold main file.c -then-last -eva
+\end{shell}
+
+The last option is \optiondef{-}{then-replace} which behaves like
+\optionuse{-}{then-last} but also definitively destroys the previous current
+project. It might be useful to prevent a prohibitive memory consumption. For
+instance, the following command is equivalent to the previous one, but also
+destroys the initial default project.
+\begin{shell}
+\$ frama-c -semantic-const-fold main file.c -then-replace -eva
+\end{shell}
+
+\subsection{Verbosity and Debugging Levels}
+
+The \FramaC kernel and plug-ins usually output messages either in the GUI or
+in the console. Their levels of verbosity may be set by using the option
+\texttt{\optiondef{-}{verbose} <level>}. By default, this level is
+1. Setting it to 0 limits the output to warnings and error messages, while setting it
+to a number greater than 1 displays additional informative message (progress
+of the analyses, \etc).
+
+In the same fashion, debugging messages may be printed by using the option
+\texttt{\optiondef{-}{debug} <level>}. By default, this level is 0: no
+debugging message is printed. By contrast with standard messages, debugging
+messages may refer to the internals of the analyzer, and may not be
+understandable by non-developers.
+
+The option \optiondef{-}{quiet} is a shortcut for \texttt{-verbose 0
+  -debug 0}.
+
+In the same way that \texttt{-verbose} (resp. \texttt{-debug}) sets the level
+of verbosity (resp. debugging), the options
+\optiondef{-}{kernel-verbose}
+(resp. \optiondef{-}{kernel-debug}) and
+\texttt{-<plug-in shortname>-verbose} (resp. \texttt{-<plug-in shortname>-debug}) set the
+level of verbosity (resp. debugging) of the kernel and particular
+plug-ins. When both the global level of verbosity (resp. debugging) and a
+specific one are modified, the specific one applies. For instance,
+\texttt{-verbose 0 -slicing-verbose 1} runs \FramaC quietly except for the
+slicing plug-in.
+
+It is also possible to choose which categories of message should be displayed
+for a given plugin. See section~\ref{sec:feedback-options} for more information.
+
+\subsection{Copying Output to Files}
+
+Messages emitted by the logging mechanism (either by the kernel or by plug-ins)
+can be copied to files using the \texttt{-<plug-in shortname>-log} option
+(or \texttt{-kernel-log}), according to the following syntax:
+\optionidxdef{-}{kernel-log}
+\optionidxdef{-}{<plug-in>-log} \texttt{kinds1:file1,kinds2:file2,...}
+
+Its argument is a map from {\em kind} specifiers to output files, where
+each key is a set of flags defining the kind(s) of
+message to be copied, that is, a sequence of one or several of the following
+characters:
+\begin{description}
+\item\texttt{a}: all (equivalent to \texttt{defrw} or \texttt{dfiruw})
+\item\texttt{d}: debug
+\item\texttt{e}: user or internal error (equivalent to \texttt{iu})
+\item\texttt{f}: feedback
+\item\texttt{i}: internal error
+\item\texttt{r}: result
+\item\texttt{u}: user error
+\item\texttt{w}: warning
+\end{description}
+If \texttt{kinds} is empty (e.g. \texttt{:file1}), it defaults to \texttt{erw},
+that is, copy all but debug and feedback messages.
+
+\texttt{file1}, \texttt{file2}, etc. are the names of the files where each
+set of messages will be copied to.
+Each file will be overwritten if existing, or created otherwise.
+Note that multiple entries can be directed to a single file
+(e.g.~\texttt{-kernel-log w:warn.txt -wp-log w:warn.txt}).
+%Also note that the use of symbolic links can cause some issues:
+%if \texttt{a.txt} is a symbolic link to \texttt{b.txt}, then you should
+%never use e.g. \texttt{-plugin1-log :a.txt -plugin2-log :b.txt}.
+%Otherwise, the behavior of this option is unspecified.
+
+Here is an example of a sophisticated use case for this option:
+
+\texttt{frama-c -kernel-log ew:warn.log -wp-log ew:warn.log \\
+  \phantom{\qquad} -metrics-log :../metrics.log} [...] \texttt{file.c}
+
+The command above will run some unspecified analyses ([...]), copying
+the error and warning messages produced by both the kernel and the
+\texttt{wp} plug-in into file \texttt{warn.log}, and copying all non-debug,
+non-feedback output from the \texttt{metrics} plug-in into file
+\texttt{../metrics.log} (note that there is a separator (\texttt{:}) before the
+file path).
+
+This option does not suppress the standard \FramaC output, but
+only copies it to a file. Also, only messages which are effectively printed
+(according to the defined verbosity and debugging levels) will be copied.
+
+\subsection{Terminal Capabilities}
+
+Some plug-ins can take advantage of terminal capabilities to enrich
+output.  These features are automatically turned off when the \FramaC
+standard output channel is not a terminal, which typically occurs when you
+redirect it into a file or through a pipe.
+
+You can control use of terminal capabilities with option
+\optiondef{-}{tty}, which is set by default and can be deactivated
+with \texttt{-no-tty}.
+
+\subsection{Getting time}
+
+The option \texttt{\optiondef{-}{time} <file>} appends user time and date to
+the given log \texttt{<file>} at exit.
+
+\subsection{Inputs and Outputs of Source Code}\label{sec:io}
+
+The following options deal with the output of analyzed source code:
+\begin{description}
+\item \optiondef{-}{print} causes \FramaC's representation for the analyzed
+  source files to be printed as a single C program (see
+  Section~\ref{sec:normalize}). Note that files from the \FramaC standard
+  library are kept by default under the form of \texttt{\#include} directives,
+  to avoid polluting the output. To expand them, use \optiondef{-}{print-libc}.
+\item \texttt{\optiondef{-}{ocode} <file name>} redirects all output code of the
+  current project to the designated file.
+\item \optiondef{-}{keep-comments} keeps C comments in-lined in the code.
+\item \optiondef{-}{unicode} uses unicode characters in order to display some
+  \acsl symbols. This option is set by default, so one usually uses the opposite
+  option \texttt{-no-unicode}.
+\end{description}
+A series of dedicated options deal with the display of floating-point and
+integer numbers:
+\begin{description}
+\item \optiondef{-}{float-hex} displays floating-point
+  numbers as hexadecimal
+\item \optiondef{-}{float-normal} displays floating-point numbers
+  with an internal routine
+\item \optiondef{-}{float-relative} displays intervals of
+  floating-point numbers as \texttt{[lower bound ++ width]}
+\item \texttt{\optiondef{-}{big-ints-hex} <max>} prints all integers greater
+  than \texttt{max} (in absolute value) using hexadecimal notation
+\end{description}
+
+\section{Environment Variables}\label{sec:env-variables}
+
+Different environment variables may be set to customize \FramaC.
+
+\subsection{Variable \texttt{FRAMAC\_LIB}}\label{sec:var-lib}
+
+External plug-ins (see Section~\ref{sec:install-external}) or scripts (see
+Section~\ref{sec:use-plugins}) are compiled against the \FramaC compiled
+library. The \FramaC option \optiondef{-}{print-lib-path} prints the path to
+this library.
+
+The default path to this library may be set when configuring \FramaC by using
+the \texttt{configure} option \optiondef{-{}-}{libdir}. Once \FramaC is
+installed, you can also set the environment variable \textttdef{FRAMAC\_LIB}
+to change this path.
+
+\subsection{Variable \texttt{FRAMAC\_PLUGIN}}\label{sec:var-plugin}
+
+Dynamic plug-ins (see Section~\ref{sec:use-plugins}) are searched for in a default
+directory. The \FramaC option \optiondef{-}{print-plugin-path} prints the path
+to this directory. It can be changed by setting the environment variable
+\textttdef{FRAMAC\_PLUGIN}.
+
+\subsection{Variable \texttt{FRAMAC\_SHARE}}\label{sec:var-share}
+
+\FramaC looks for all its other data (installed manuals, configuration files,
+\C modelization libraries, \etc) in a single directory. The \FramaC option
+\optiondef{-}{print-share-path} prints this path.
+
+The default path to this library may be set when configuring \FramaC by using
+the \texttt{configure} option \optiondef{-{}-}{datarootdir}. Once \FramaC is
+installed, you can also set the environment variable
+\textttdef{FRAMAC\_SHARE} to change this path.
+
+A \FramaC plug-in may have its own share directory (default is \texttt{`frama-c
+  -print-share-path `/<plug-in shortname>}). If the plug-in is not installed in
+the standard way, you can set this share directory by using the option
+\texttt{-<plug-in shortname>-share}.
+
+\subsection{Variable \texttt{FRAMAC\_SESSION}}\label{sec:var-session}
+
+\FramaC may have to generate files depending on the project under analysis
+during a session in order to reuse them later in other sessions.
+
+By default, these files are generated or searched in the subdirectory
+\texttt{.frama-c} of the current directory. You can also set the environment
+variable \textttdef{FRAMAC\_SESSION} or the option \optiondef{-}{session} to
+change this path.
+
+Each \FramaC plug-in may have its own session directory (default is
+\texttt{.frama-c/<plug-in shortname>}). It is also possible to change
+a plug-in's session directory by using the option \texttt{-<plug-in
+  shortname>-session}.
+
+\subsection{Variable \texttt{FRAMAC\_CONFIG}}\label{sec:var-config}
+
+\FramaC may have to generate configuration files during a session in order to
+reuse them later in other sessions.
+
+By default, these files are generated or searched in a subdirectory
+\texttt{frama-c} (or \texttt{.frama-c}) of the system's default configuration
+directory ({\it e.g.}
+\texttt{\%USERPROFILE\%} on Windows or \texttt{\$HOME/.config}
+on Linux). You can also set the environment variable \textttdef{FRAMAC\_CONFIG}
+or the option \optiondef{-}{config} to change this path.
+
+Each \FramaC plug-in may have its own configuration directory if required (on
+Linux, default is \texttt{\$HOME/.config/frama-c/<plug-in shortname>}). It is
+also possible to change a plug-in's config directory by using the option
+\texttt{-<plug-in shortname>-config}.
+
+\section{Exit Status}
+
+When exiting, \FramaC has one of the following status:
+\begin{description}
+\item[0] \FramaC exits normally without any error;
+\item[1] \FramaC exits because of invalid user input;
+\item[2] \FramaC exits because the user kills it (usually \via \texttt{Ctrl-C});
+\item[3] \FramaC exits because the user tries to use an unimplemented feature.
+  Please report a ``feature request'' on the Bug Tracking System (see
+  Chapter~\ref{user-errors});
+\item[4,5,6] \FramaC exits on an internal error. Please report a ``bug report'' on
+  the Bug Tracking System (see Chapter~\ref{user-errors});
+%\item[5] \FramaC raises an error while exiting normally.
+%\item[6] \FramaC raises an error while exiting abnormally.
+\item[125] \FramaC exits abnormally on an unknown error. Please report a ``bug
+  report'' on the Bug Tracking System (see Chapter~\ref{user-errors}).
+\end{description}
+
+%% Local Variables:
+%% compile-command: "make"
+%% ispell-local-dictionary: "english"
+%% TeX-master: "userman.tex"
+%% End:

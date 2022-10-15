@@ -1,0 +1,500 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing chunk_typing_usable.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function usable_axiom
+[rte:annot] annotating function usable_lemma
+[wp] 3 goals scheduled
+---------------------------------------------
+--- Context 'typed_usable_lemma' Cluster 'Chunk' 
+---------------------------------------------
+theory Chunk
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.memory.Memory *)
+  
+  (* use frama_c_wp.cint.Cint *)
+  
+  predicate is_sint32_chunk (m:addr -> int) =
+    forall a:addr. is_sint32 (get m a)
+end
+---------------------------------------------
+--- Context 'typed_usable_lemma' Cluster 'Compound' 
+---------------------------------------------
+theory Compound
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.memory.Memory *)
+  
+  function shift_sint32 (p:addr) (k:int) : addr = shift p k
+end
+---------------------------------------------
+--- Context 'typed_usable_lemma' Cluster 'A_Occ' 
+---------------------------------------------
+theory A_Occ
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.memory.Memory *)
+  
+  function L_occ (addr -> int) int addr int int : int
+  
+  (* use Chunk *)
+  
+  axiom Q_empty :
+    forall mint:addr -> int, v:int, p:addr, f:int, t:int.
+     t <= f -> is_sint32_chunk mint -> is_sint32 v -> L_occ mint v p f t = 0
+  
+  (* use Compound *)
+  
+  axiom Q_is :
+    forall mint:addr -> int, v:int, p:addr, f:int, t:int.
+     let x = (- 1) + t in
+     let x1 = get mint (shift_sint32 p x) in
+     x1 = v ->
+     f < t ->
+     is_sint32_chunk mint ->
+     is_sint32 v ->
+     is_sint32 x1 -> (1 + L_occ mint v p f x) = L_occ mint v p f t
+  
+  axiom Q_isnt :
+    forall mint:addr -> int, v:int, p:addr, f:int, t:int.
+     let x = (- 1) + t in
+     let x1 = get mint (shift_sint32 p x) in
+     not x1 = v ->
+     f < t ->
+     is_sint32_chunk mint ->
+     is_sint32 v -> is_sint32 x1 -> L_occ mint v p f x = L_occ mint v p f t
+end
+---------------------------------------------
+--- Context 'typed_usable_lemma' Cluster 'Axiomatic1' 
+---------------------------------------------
+theory Axiomatic1
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.memory.Memory *)
+  
+  (* use Chunk *)
+  
+  (* use A_Occ *)
+  
+  lemma Q_provable_lemma :
+    forall mint:addr -> int, v:int, p:addr, f:int, s:int, t:int.
+     f <= s ->
+     s <= t ->
+     is_sint32_chunk mint ->
+     is_sint32 v ->
+     (L_occ mint v p f s + L_occ mint v p s t) = L_occ mint v p f t
+end
+[wp:print-generated] 
+  theory WP
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool *)
+    
+    (* use int.Int *)
+    
+    (* use int.ComputerDivision *)
+    
+    (* use real.RealInfix *)
+    
+    (* use frama_c_wp.qed.Qed *)
+    
+    (* use map.Map *)
+    
+    (* use Axiomatic1 *)
+    
+    goal wp_goal :
+      forall t:addr -> int, a:addr, i:int, i1:int, i2:int, i3:int.
+       i3 <= i1 ->
+       i < i3 ->
+       region (a.base) <= 0 ->
+       is_sint32_chunk t ->
+       is_uint32 i3 ->
+       is_uint32 i1 ->
+       is_uint32 i ->
+       is_sint32 i2 ->
+       (L_occ t i2 a i i3 + L_occ t i2 a i3 i1) = L_occ t i2 a i i1
+  end
+---------------------------------------------
+--- Context 'typed_usable_axiom' Cluster 'Chunk' 
+---------------------------------------------
+theory Chunk1
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool1 *)
+  
+  (* use int.Int1 *)
+  
+  (* use int.ComputerDivision1 *)
+  
+  (* use real.RealInfix1 *)
+  
+  (* use frama_c_wp.qed.Qed1 *)
+  
+  (* use map.Map1 *)
+  
+  (* use frama_c_wp.memory.Memory1 *)
+  
+  (* use frama_c_wp.cint.Cint1 *)
+  
+  predicate is_sint32_chunk1 (m:addr1 -> int) =
+    forall a:addr1. is_sint321 (get1 m a)
+end
+---------------------------------------------
+--- Context 'typed_usable_axiom' Cluster 'Compound' 
+---------------------------------------------
+theory Compound1
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool1 *)
+  
+  (* use int.Int1 *)
+  
+  (* use int.ComputerDivision1 *)
+  
+  (* use real.RealInfix1 *)
+  
+  (* use frama_c_wp.qed.Qed1 *)
+  
+  (* use map.Map1 *)
+  
+  (* use frama_c_wp.memory.Memory1 *)
+  
+  function shift_sint321 (p:addr1) (k:int) : addr1 = shift1 p k
+end
+---------------------------------------------
+--- Context 'typed_usable_axiom' Cluster 'A_Occ' 
+---------------------------------------------
+theory A_Occ1
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool1 *)
+  
+  (* use int.Int1 *)
+  
+  (* use int.ComputerDivision1 *)
+  
+  (* use real.RealInfix1 *)
+  
+  (* use frama_c_wp.qed.Qed1 *)
+  
+  (* use map.Map1 *)
+  
+  (* use frama_c_wp.memory.Memory1 *)
+  
+  function L_occ1 (addr1 -> int) int addr1 int int : int
+  
+  (* use Chunk1 *)
+  
+  axiom Q_empty1 :
+    forall mint:addr1 -> int, v:int, p:addr1, f:int, t:int.
+     t <=' f ->
+     is_sint32_chunk1 mint -> is_sint321 v -> L_occ1 mint v p f t = 0
+  
+  (* use Compound1 *)
+  
+  axiom Q_is1 :
+    forall mint:addr1 -> int, v:int, p:addr1, f:int, t:int.
+     let x = (- 1) +' t in
+     let x1 = get1 mint (shift_sint321 p x) in
+     x1 = v ->
+     f <' t ->
+     is_sint32_chunk1 mint ->
+     is_sint321 v ->
+     is_sint321 x1 -> (1 +' L_occ1 mint v p f x) = L_occ1 mint v p f t
+  
+  axiom Q_isnt1 :
+    forall mint:addr1 -> int, v:int, p:addr1, f:int, t:int.
+     let x = (- 1) +' t in
+     let x1 = get1 mint (shift_sint321 p x) in
+     not x1 = v ->
+     f <' t ->
+     is_sint32_chunk1 mint ->
+     is_sint321 v ->
+     is_sint321 x1 -> L_occ1 mint v p f x = L_occ1 mint v p f t
+end
+---------------------------------------------
+--- Context 'typed_usable_axiom' Cluster 'Axiomatic1' 
+---------------------------------------------
+theory Axiomatic11
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool1 *)
+  
+  (* use int.Int1 *)
+  
+  (* use int.ComputerDivision1 *)
+  
+  (* use real.RealInfix1 *)
+  
+  (* use frama_c_wp.qed.Qed1 *)
+  
+  (* use map.Map1 *)
+  
+  (* use frama_c_wp.memory.Memory1 *)
+  
+  (* use Chunk1 *)
+  
+  (* use A_Occ1 *)
+  
+  lemma Q_provable_lemma1 :
+    forall mint:addr1 -> int, v:int, p:addr1, f:int, s:int, t:int.
+     f <=' s ->
+     s <=' t ->
+     is_sint32_chunk1 mint ->
+     is_sint321 v ->
+     (L_occ1 mint v p f s +' L_occ1 mint v p s t) = L_occ1 mint v p f t
+end
+[wp:print-generated] 
+  theory WP1
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool1 *)
+    
+    (* use int.Int1 *)
+    
+    (* use int.ComputerDivision1 *)
+    
+    (* use real.RealInfix1 *)
+    
+    (* use frama_c_wp.qed.Qed1 *)
+    
+    (* use map.Map1 *)
+    
+    (* use Axiomatic11 *)
+    
+    goal wp_goal :
+      forall t:addr1 -> int, a:addr1, i:int, i1:int, i2:int.
+       let x = (- 1) +' i1 in
+       not get1 t (shift_sint321 a x) = i2 ->
+       i <' i1 ->
+       region1 (a.base1) <=' 0 ->
+       i1 <=' 1000 ->
+       is_sint32_chunk1 t ->
+       is_uint321 i1 ->
+       is_uint321 i -> is_sint321 i2 -> L_occ1 t i2 a i x = L_occ1 t i2 a i i1
+  end
+---------------------------------------------
+--- Context 'typed' Cluster 'Chunk' 
+---------------------------------------------
+theory Chunk2
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool2 *)
+  
+  (* use int.Int2 *)
+  
+  (* use int.ComputerDivision2 *)
+  
+  (* use real.RealInfix2 *)
+  
+  (* use frama_c_wp.qed.Qed2 *)
+  
+  (* use map.Map2 *)
+  
+  (* use frama_c_wp.memory.Memory2 *)
+  
+  (* use frama_c_wp.cint.Cint2 *)
+  
+  predicate is_sint32_chunk2 (m:addr2 -> int) =
+    forall a:addr2. is_sint322 (get2 m a)
+end
+---------------------------------------------
+--- Context 'typed' Cluster 'Compound' 
+---------------------------------------------
+theory Compound2
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool2 *)
+  
+  (* use int.Int2 *)
+  
+  (* use int.ComputerDivision2 *)
+  
+  (* use real.RealInfix2 *)
+  
+  (* use frama_c_wp.qed.Qed2 *)
+  
+  (* use map.Map2 *)
+  
+  (* use frama_c_wp.memory.Memory2 *)
+  
+  function shift_sint322 (p:addr2) (k:int) : addr2 = shift2 p k
+end
+---------------------------------------------
+--- Context 'typed' Cluster 'A_Occ' 
+---------------------------------------------
+theory A_Occ2
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool2 *)
+  
+  (* use int.Int2 *)
+  
+  (* use int.ComputerDivision2 *)
+  
+  (* use real.RealInfix2 *)
+  
+  (* use frama_c_wp.qed.Qed2 *)
+  
+  (* use map.Map2 *)
+  
+  (* use frama_c_wp.memory.Memory2 *)
+  
+  function L_occ2 (addr2 -> int) int addr2 int int : int
+  
+  (* use Chunk2 *)
+  
+  axiom Q_empty2 :
+    forall mint:addr2 -> int, v:int, p:addr2, f:int, t:int.
+     t <='' f ->
+     is_sint32_chunk2 mint -> is_sint322 v -> L_occ2 mint v p f t = 0
+  
+  (* use Compound2 *)
+  
+  axiom Q_is2 :
+    forall mint:addr2 -> int, v:int, p:addr2, f:int, t:int.
+     let x = (- 1) +'' t in
+     let x1 = get2 mint (shift_sint322 p x) in
+     x1 = v ->
+     f <'' t ->
+     is_sint32_chunk2 mint ->
+     is_sint322 v ->
+     is_sint322 x1 -> (1 +'' L_occ2 mint v p f x) = L_occ2 mint v p f t
+  
+  axiom Q_isnt2 :
+    forall mint:addr2 -> int, v:int, p:addr2, f:int, t:int.
+     let x = (- 1) +'' t in
+     let x1 = get2 mint (shift_sint322 p x) in
+     not x1 = v ->
+     f <'' t ->
+     is_sint32_chunk2 mint ->
+     is_sint322 v ->
+     is_sint322 x1 -> L_occ2 mint v p f x = L_occ2 mint v p f t
+end
+[wp:print-generated] 
+  theory WP2
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool2 *)
+    
+    (* use int.Int2 *)
+    
+    (* use int.ComputerDivision2 *)
+    
+    (* use real.RealInfix2 *)
+    
+    (* use frama_c_wp.qed.Qed2 *)
+    
+    (* use map.Map2 *)
+    
+    (* use frama_c_wp.memory.Memory2 *)
+    
+    (* use Chunk2 *)
+    
+    (* use A_Occ2 *)
+    
+    goal wp_goal :
+      forall t:addr2 -> int, i:int, a:addr2, i1:int, i2:int, i3:int.
+       i2 <='' i3 ->
+       i1 <='' i2 ->
+       is_sint32_chunk2 t ->
+       is_sint322 i ->
+       (L_occ2 t i a i1 i2 +'' L_occ2 t i a i2 i3) = L_occ2 t i a i1 i3
+  end
+[wp] 3 goals generated
+------------------------------------------------------------
+  Global
+------------------------------------------------------------
+
+Lemma provable_lemma:
+Prove: (f_0<=s_0) -> (s_0<=t_0) -> (is_sint32_chunk Mint_0)
+       -> (is_sint32 v_0)
+       -> (((L_occ Mint_0 v_0 p_0 f_0 s_0)+(L_occ Mint_0 v_0 p_0 s_0 t_0))=
+           (L_occ Mint_0 v_0 p_0 f_0 t_0))
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function usable_axiom
+------------------------------------------------------------
+
+Goal Post-condition (file chunk_typing_usable.i, line 29) in 'usable_axiom':
+Let x = e - 1.
+Assume {
+  Type: is_sint32_chunk(Mint_0) /\ is_uint32(b) /\ is_uint32(e).
+  (* Heap *)
+  Type: region(a.base) <= 0.
+  (* Goal *)
+  When: (Mint_0[shift_sint32(a, x)] != i) /\ is_sint32(i).
+  (* Pre-condition *)
+  Have: (b < e) /\ (e <= 1000).
+}
+Prove: L_occ(Mint_0, i, a, b, x) = L_occ(Mint_0, i, a, b, e).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function usable_lemma
+------------------------------------------------------------
+
+Goal Post-condition (file chunk_typing_usable.i, line 43) in 'usable_lemma':
+Assume {
+  Type: is_sint32_chunk(Mint_0) /\ is_uint32(b) /\ is_uint32(e) /\
+      is_uint32(s).
+  (* Heap *)
+  Type: region(a.base) <= 0.
+  (* Goal *)
+  When: is_sint32(i).
+  (* Pre-condition *)
+  Have: (b < s) /\ (s <= e).
+}
+Prove: (L_occ(Mint_0, i, a, b, s) + L_occ(Mint_0, i, a, s, e))
+         = L_occ(Mint_0, i, a, b, e).
+
+------------------------------------------------------------

@@ -1,0 +1,205 @@
+\chapter{Aide à l'analyse d'impact}\label{sec-impact}
+
+Le document \cite{baudinImpact} spécifie un outil d'aide à l'analyse d'impact
+après avoir analysé les besoins dans ce domaine.
+L'exploitation du graphe de dépendances est présenté comme étant 
+un composant important de cet outil.
+Nous reprenons ici les éléments de spécification 
+décrits dans le paragraphe 5.3 de ce document,
+auxquels nous ajoutons quelques nouveaux critères.\\
+
+
+\section{Définition d'ensembles}\label{sec-ensembles}\label{sec-defR}
+
+\newcommand{\remitem}[1]{\begin{itemize}\item #1 \end{itemize}}
+\newcommand{\warnitem}[1]{\begin{itemize}\item[$\blacktriangle$] #1
+                          \end{itemize}}
+\newcommand{\question}[1]{\begin{itemize}\item[{\bf ?}] #1 \end{itemize}}
+\newcommand{\smilitem}[1]{\begin{itemize}\item[$\smiley$] #1 \end{itemize}}
+\newcommand{\frownitem}[1]{\begin{itemize}\item[$\frownie$] #1 \end{itemize}}
+
+
+Il s'agit de définir des sous-ensembles d'instructions
+répondant à différents critères.
+
+Donnons tout d'abord quelques notations :
+\begin{itemize}
+\item S : un ensemble d'instructions,
+\item L : un point de programme,
+\item V : une zone mémoire (le V se réfère à {\bf V}ariable,
+mais il peut s'agir d'une donnée quelconque comme un champ de structure ou
+un élément de tableau),
+\end{itemize}
+
+Les ensembles sont tous relatifs à un point de programme $L$,
+et peuvent se classer en deux catégories~:
+\begin{itemize}
+\item ceux qui contiennent des instructions situées {\bf avant} $L$~: 
+ils portent un indice 0,
+\item et ceux qui contiennent des instructions situées {\bf après} $L$~:
+ils portent un indice 1.\\
+\end{itemize}
+
+\begin{description}
+\item[$R_0(S,L)$]  : sous-ensemble d'instructions de S depuis lesquelles 
+L est accessible.
+\warnitem{mais L ne postdomine pas forcement toutes les instructions de cet ensemble.} 
+
+\item[$R_{1}(S,L)$] : sous-ensemble d'instructions de S 
+qui sont (éventuellement) accessibles depuis L.
+
+\item[$R_{L0}(S,L)$] : accessibilité à un point du code.
+\remitem{il s'agit du sous-ensemble des instructions de $R_0(S,L)$
+qui conditionnent le passage en L,
+c'est-à-dire les instructions de branchement 
+et les dépendances de ces conditions de branchement.
+}
+
+%\item[$R_{L1}(S,L)$] : ?
+
+\item[$R_{V0}(S,L,V)$] : contenu d'une zone mémoire en un point du code.
+\remitem{il s'agit du critère traditionnel de \slicing,
+c'est-à-dire que cet ensemble contient les instructions de $S$ qui 
+ont une influence sur la valeur de $V$ en $L$.
+}
+
+\item[$R_{V1}(S,L,V)$] : utilisation d'une zone mémoire.
+\remitem{il s'agit du sous-ensemble des instructions de $R_{1}(S,L)$
+influencées par la valeur qu'à la zone mémoire $V$ a en $L$.}
+
+\item[$R_{DV0}(S,L,V)$] : définition de la valeur d'une variable à un point de
+programme.
+\remitem{il s'agit de l'ensemble des instructions qui {\bf définissent}
+tout ou partie de la valeur de $V$ en $L$. Ces instructions 
+sont donc nécessairement des affectations ou des appels de fonction.
+
+On note que~: $R_{DV0}(S,L,V) \subseteq R_{V0}(S,L,V)$
+}
+\warnitem{
+Il serait probablement utile d'avoir un élément spécial 
+qui indique qu'il existe 
+un ou plusieurs chemin menant à $L$ pour le(s)quel(s) 
+$V$ n'est pas entièrement défini.
+}
+
+\item[$R_{DV1}(S,L,V)$] : modification de la valeur d'une variable.
+\remitem{il s'agit de trouver les instructions $I_i$ accessibles depuis L
+qui modifient la valeur de $V$,
+et telles qu'il existe un chemin entre $L$ et $I_i$
+le long duquel $V$ n'est pas modifiée.
+Cela signifie que ces instructions sont les premières à modifier la valeur
+de $V$ sur les chemins partant de $L$.}
+\remitem{Il n'est pas sûr que cet ensemble soit très utile.
+L'ensemble $R_{P1}(S,L,V)$ ci-dessous en sans doute plus intéressant.
+}
+
+\item[$R_{P0}(S,L,V)$] : 
+portée arrière de la valeur d'une variable à un point de programme.
+\remitem{il s'agit d'un sous-ensemble de $R_{L0}(S,L)$
+contenant les instructions $I_i$ pour lesquelles la valeur de $V$
+n'a été modifiée sur aucun chemin entre le point qui précède $I_i$ et $L$.
+C'est-à-dire que la valeur de $V$ en $L$ est la même qu'avant chacune de ces
+instructions, et qu'elle n'est pas modifiée entre les deux.
+}
+
+\item[$R_{P1}(S,L,V)$] : 
+portée de la valeur d'une variable à un point de programme~.
+\remitem{il s'agit d'un sous-ensemble de $R_{1}(S,L)$
+contenant les instructions $I_i$ pour lesquelles la valeur de $V$ 
+n'a été modifiée sur aucun chemin entre $L$ et le point de programme 
+qui précède $I_i$.
+}
+
+\item[$R_{PV0}(S,L,V)$] : utilisation arrière d'une zone mémoire dans sa portée.
+\remitem{il s'agit du sous-ensemble des instructions $R_{P0}(S,L,V)$
+qui sont influencées, directement ou non, par $V$. 
+}
+
+\item[$R_{PV1}(S,L,V)$] : utilisation d'une zone mémoire dans sa portée.
+\remitem{il s'agit du sous-ensemble 
+         des instructions influencées, directement ou non, 
+         par la valeur de $V$ en $L$
+         qui sont dans la portée de cette valeur.
+
+         On a donc : $R_{PV1}(S,L,V) = R_{V1}(S,L,V) \cap R_{P1}(S,L,V)$
+        }
+
+\end{description}
+
+\begin{exemple1}
+On montre ici différents ensembles relatifs au point $L$
+et à la variable $v$~:
+\end{exemple1}
+
+\begin{center}
+\begin{scriptsize}
+\begin{tabular}{|l||c|c|c|c|c|c||c|c|c|c|c| }
+\hline
+S & $R_{0}$ & $R_{L0}$ & $R_{V0}$ & $R_{DV0}$ & $R_{P0}$ & $R_{VP0}$
+            & $R_{1}$ & $R_{V1}$ & $R_{DV1}$ & $R_{P1}$ & $R_{VP1}$ \\
+\hline
+\verb!!                      &   &   &   &   &   &   &   &   &   &   &  \\
+\verb!v = a; !               & X & X & X & X &   &   &   &   &   &   &  \\
+\verb!x = b; !               & X &   & X &   &   &   &   &   &   &   &  \\
+\verb!z = c; !               & X &   &   &   &   &   &   &   &   &   &  \\
+\verb!if (c1>v) { !          & X & X & X &   &   &   &   &   &   &   &  \\
+\verb!  z++;    !            &   &   &   &   &   &   &   &   &   &   &  \\
+\verb!  }       !            &   &   &   &   &   &   &   &   &   &   &  \\
+\verb!else {    !            &   &   &   &   &   &   &   &   &   &   &  \\
+\verb!  if (c2) !            & X & X & X &   &   &   &   &   &   &   &  \\
+\verb!    v += x; !          & X & X & X & X &   &   &   &   &   &   &  \\
+\verb!    if (c3) { !        & X & X & X &   & X &   &   &   &   &   &  \\
+\verb!      z += v; !        & X & X &   &   & X & X &   &   &   &   &  \\
+\hline
+{\tt\bf L:}
+  \verb!    y = v; !         &   &   &   &   &   &   & X & X &   & X & X \\
+\verb!       z++;   !        &   &   &   &   &   &   & X &   &   & X &   \\
+\verb!       v++; !          &   &   &   &   &   &   & X & X &   & X & X \\
+\verb!       } !             &   &   &   &   &   &   &   &   &   &   &   \\
+\verb!  z += 2*y; !          &   &   &   &   &   &   & X & X &   &   &   \\
+\verb!  }      !             &   &   &   &   &   &   &   &   &   &   &   \\
+\verb!z += x;  !             &   &   &   &   &   &   & X & X &   &   &   \\
+\verb!v = 0; !               &   &   &   &   &   &   &   &   & X &   &   \\
+\verb!!                      &   &   &   &   &   &   &   &   &   &   &   \\
+\hline
+\end{tabular}\end{scriptsize}\end{center}
+\begin{exemple2}
+\end{exemple2}
+
+La construction des ensembles ci-dessus exploite le CFG (le flot de contrôle)
+et le PDG (les dépendances).\\
+
+La construction des ensembles ci-dessous exploite en plus la sémantique du
+programme car elle utilise une contrainte $C(...v_i...)$ portant
+sur les valeurs des données en $L$~:
+
+\begin{description}
+\item[$R_{C0}(S,L,C(...v_i...))$] :
+accessibilité contrainte à un point.
+\remitem{il s'agit de déterminer l'ensemble des instructions
+qui, si elles sont présentes, rendent fausse la contrainte $C$ au point $L$.
+En fait, il s'agit de déplacer $C$ pour essayer de couper des branches.
+La condition de branchement sera alors éventuellement
+remplacée par un \verbtt{assert}.
+}
+\smilitem{Dans la séquence \verbtt{int x = 0; x=x-1; L:} pour laquelle
+on a une contrainte $x \ge 0$, il ne s'agit pas de supprimer l'instruction
+\verbtt{x=x-1;} mais bien de dire que cette branche est impossible...}
+
+\item[$R_{C1}(S,L,C(...v_i...))$] : accessibilité contrainte depuis un point.
+\remitem{il s'agit de déterminer le sous-ensemble des instructions de
+$R_{1}(S,L)$ qui ne peuvent pas être atteintes si l'état en L est tel que 
+$C$ est satisfaite.\\
+
+
+On notera que certaines instructions n'appartenant ni à $R_{L0}$, ni à $R_{1}$
+peuvent également ne pas être atteintes du fait de la contrainte.\\
+
+}
+\end{description}
+
+\section{Exploitation du graphe pour le calcul d'ensembles}
+
+La plupart des ensembles définis en \ref{sec-ensembles}
+peuvent être calculés simplement en exploitant le flot de contrôle
+et les fonction du graphe de dépendances présentées en \$\ref{sec-find}.

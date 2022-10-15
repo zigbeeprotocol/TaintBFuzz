@@ -1,0 +1,29 @@
+[kernel] Parsing deps_addr.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t ∈ {0}
+  a ∈ {0}
+  tt[0..4][0..4] ∈ {0}
+[eva:alarm] deps_addr.i:6: Warning: 
+  pointer downcast. assert (unsigned int)(&a) ≤ 2147483647;
+[eva:alarm] deps_addr.i:6: Warning: 
+  out of bounds read. assert \valid_read(t + (int)(&a));
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[from] Computing for function main
+[from] Non-terminating function main (no dependencies)
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NON TERMINATING - NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    __retres
+[inout] Inputs for function main:
+    t

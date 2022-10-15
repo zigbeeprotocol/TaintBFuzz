@@ -1,0 +1,94 @@
+[kernel] Parsing empty_union.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva:unknown-size] empty_union.c:59: Warning: 
+  during initialization of variable 'f1', size of type 'int []' cannot be
+  computed (Size of array without number of elements.)
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+  array_of_comp[0]{.a; .e{}; .b} ∈ {17}
+  f1[bits 0 to ..] ∈ {0} or UNINITIALIZED
+  f2.data[0] ∈ {1}
+    .data[1..2] ∈ {0}
+[eva] empty_union.c:67: assertion got status valid.
+[eva] empty_union.c:68: assertion got status valid.
+[eva] empty_union.c:70: Frama_C_show_each_global_empty: ∅
+[eva] empty_union.c:71: Frama_C_show_each_e1: ∅
+[eva] empty_union.c:72: Call to builtin memcpy
+[eva] empty_union.c:72: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] empty_union.c:72: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] empty_union.c:72: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:101: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] empty_union.c:77: Call to builtin memcpy
+[eva] empty_union.c:77: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] empty_union.c:77: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] empty_union.c:77: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] empty_union.c:78: Frama_C_show_each_c2: {77}
+[eva] empty_union.c:79: Frama_C_show_each_c2_e: ∅
+[eva] computing for function f <- main.
+  Called from empty_union.c:80.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function copy_empty <- main.
+  Called from empty_union.c:81.
+[eva:alarm] empty_union.c:37: Warning: 
+  function copy_empty: postcondition got status unknown.
+[eva] Recording results for copy_empty
+[eva] Done for function copy_empty
+[eva] empty_union.c:83: Frama_C_show_each_res: {74}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function copy_empty:
+  
+[eva:final-states] Values at end of function f:
+  res{.a; .e{}; .b} ∈ {74}
+[eva:final-states] Values at end of function main:
+  c1{.a; .e{}; .b} ∈ {77}
+  c2{.a; .e{}; .b} ∈ {77}
+  res{.a; .e{}; .b} ∈ {74}
+  cb{.s{}; .i} ∈ {91}
+  ce{.ch; .ss{}} ∈ {90}
+  p ∈ {{ (union empty *)&cb }}
+  pc ∈ {{ &empty_init_array[0] }}
+  __retres ∈ {0}
+[from] Computing for function copy_empty
+[from] Done for function copy_empty
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main
+[from] Computing for function memcpy <-main
+[from] Done for function memcpy
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function copy_empty:
+  NO EFFECTS
+[from] Function f:
+  \result FROM s
+[from] Function memcpy:
+  c2 FROM c1 (and SELF)
+  \result FROM dest
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function copy_empty:
+    \nothing
+[inout] Inputs for function copy_empty:
+    \nothing
+[inout] Out (internal) for function f:
+    res
+[inout] Inputs for function f:
+    nondet
+[inout] Out (internal) for function main:
+    c1; c2; res; cb; ce; p; pc; __retres
+[inout] Inputs for function main:
+    nondet

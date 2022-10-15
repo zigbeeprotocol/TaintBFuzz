@@ -1,0 +1,3 @@
+[kernel] Parsing test_switch3_return.c (with preprocessing)
+[kernel] Parsing TMPDIR/aorai_test_switch3_return_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

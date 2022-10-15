@@ -1,0 +1,10 @@
+# frama-c -wp [...]
+[kernel] Parsing bigarray.c (with preprocessing)
+[kernel] bigarray.c:28: Warning: 
+  Cannot represent length of array as an attribute
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] bigarray.c:28: Warning: Array size too large (0xFFFFFFFFFFFFFFFF)
+[wp] bigarray.c:29: Warning: Array size too large (0xFFFFFFFFFFFFFFFF)
+[wp] bigarray.c:21: User Error: Array size too large (0xFFFFFFFFFFFFFFFF)
+[kernel] Plug-in wp aborted: invalid user input.

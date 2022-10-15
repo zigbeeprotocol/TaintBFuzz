@@ -1,0 +1,65 @@
+[kernel] Parsing sys_socket_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  dest ∈ [--..--]
+  v ∈ [--..--]
+[eva] sys_socket_h.c:26: Call to builtin strlen
+[eva] sys_socket_h.c:26: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] computing for function socket <- main.
+  Called from sys_socket_h.c:40.
+[eva] using specification for function socket
+[eva] Done for function socket
+[eva] computing for function sendmsg <- main.
+  Called from sys_socket_h.c:42.
+[eva] using specification for function sendmsg
+[eva] sys_socket_h.c:42: 
+  function sendmsg: precondition 'available_sockfd' got status valid.
+[eva] sys_socket_h.c:42: 
+  function sendmsg: precondition 'valid_message' got status valid.
+[eva] sys_socket_h.c:42: 
+  function sendmsg: precondition 'valid_msg_iov' got status valid.
+[eva] Done for function sendmsg
+[eva] sys_socket_h.c:43: assertion 'valid' got status valid.
+[eva] computing for function sendmsg <- main.
+  Called from sys_socket_h.c:47.
+[eva] sys_socket_h.c:47: 
+  function sendmsg: precondition 'available_sockfd' got status valid.
+[eva] sys_socket_h.c:47: 
+  function sendmsg: precondition 'valid_message' got status valid.
+[eva:alarm] sys_socket_h.c:47: Warning: 
+  function sendmsg: precondition 'valid_msg_iov' got status invalid.
+[eva] Done for function sendmsg
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_sockfds[0..1023] ∈ [--..--]
+  __fc_socket_counter ∈ [--..--]
+  d1 ∈ {{ "message" }}
+  s1.a ∈ {42}
+    .b ∈ {65}
+    .[bits 40 to 63] ∈ {0}
+  s2.p ∈ {0}
+    .d ∈ {3.125}
+  n ∈ {501}
+  d ∈ {5.5}
+  iov[0].iov_base ∈ {{ "message" }}
+     [0].iov_len ∈ {7}
+     [1].iov_base ∈ {{ (void *)&s1 }}
+     [1].iov_len ∈ {8}
+     [2].iov_base ∈ {{ (void *)&s2 }}
+     [2].iov_len ∈ {12}
+     [3].iov_base ∈ {{ (void *)&n }}
+     [3].iov_len ∈ {4}
+     [4].iov_base ∈ {{ (void *)&d }}
+     [4].iov_len ∈ {8}
+  msg{.msg_name; .msg_namelen} ∈ {0}
+     .msg_iov ∈ {{ &iov[0] }}
+     .msg_iovlen ∈ {5; 6}
+     {.msg_control; .msg_controllen; .msg_flags} ∈ UNINITIALIZED
+  sockfd ∈ [-1..1023]
+  r ∈ [-1..2147483647]
+  __retres ∈ {0; 1}

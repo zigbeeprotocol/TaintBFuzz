@@ -1,0 +1,28 @@
+[kernel] Parsing from_pb.i (no preprocessing)
+[eva] Analyzing a complete application starting at main1
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  k ∈ {0}
+  i ∈ {0}
+  j ∈ {0}
+  x ∈ {0}
+  c ∈ {0}
+  d ∈ {0}
+  T[0..9] ∈ {0}
+[eva] Recording results for main1
+[eva] done for function main1
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  x ∈ {0}
+[from] Computing for function main1
+[from] Done for function main1
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  x FROM k; j
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    x
+[inout] Inputs for function main1:
+    k; j

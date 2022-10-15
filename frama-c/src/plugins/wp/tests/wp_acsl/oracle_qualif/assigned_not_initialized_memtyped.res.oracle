@@ -1,0 +1,26 @@
+# frama-c -wp [...]
+[kernel] Parsing assigned_not_initialized_memtyped.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 9 goals scheduled
+[wp] [Alt-Ergo] Goal typed_atomic_check_FAIL : Unsuccess
+[wp] [Alt-Ergo] Goal typed_comp_check_FAIL : Unsuccess
+[wp] [Alt-Ergo] Goal typed_array_check_FAIL : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigned_glob_atomic_check_FAIL : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigned_glob_atomic_check_OK : Valid
+[wp] [Alt-Ergo] Goal typed_assigned_glob_comp_check_FAIL : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigned_glob_comp_check_FAIL_2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigned_glob_array_check_FAIL : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigned_glob_array_check_OK : Valid
+[wp] Proved goals:    2 / 9
+  Qed:             0 
+  Alt-Ergo:        2  (unsuccess: 7)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  atomic                    -        -        1       0.0%
+  comp                      -        -        1       0.0%
+  array                     -        -        1       0.0%
+  assigned_glob_atomic      -        1        2      50.0%
+  assigned_glob_comp        -        -        2       0.0%
+  assigned_glob_array       -        1        2      50.0%
+------------------------------------------------------------

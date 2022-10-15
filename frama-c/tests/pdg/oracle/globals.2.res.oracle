@@ -1,0 +1,24 @@
+[kernel] Parsing globals.c (with preprocessing)
+[eva] Analyzing a complete application starting at f
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  X ∈ {3}
+  S ∈ [--..--]
+  P ∈ {{ &X }}
+[eva] Recording results for f
+[eva] done for function f
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  
+[from] Computing for function f
+[from] Done for function f
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  \result FROM X; p
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    tmp
+[inout] Inputs for function f:
+    X

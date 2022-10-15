@@ -1,0 +1,103 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing logicref_simple.i (no preprocessing)
+[wp] Running WP plugin...
+.................................................
+... Ref Usage
+.................................................
+Init: { }
+Function fsimple: { c __retres }
+Function fsimple_array: { &t __retres }
+Function ftwo_star: { d __retres }
+Function fvpositive: { b }
+.................................................
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function fsimple
+------------------------------------------------------------
+
+Goal Post-condition (file logicref_simple.i, line 14) in 'fsimple':
+Let x = Mint_0[c].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(1 + x).
+  (* Heap *)
+  Type: region(c.base) <= 0.
+  (* Pre-condition *)
+  Have: P_simple(Mint_0, c).
+}
+Prove: x = 0.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'fsimple':
+Effect at line 15
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fsimple_array
+------------------------------------------------------------
+
+Goal Post-condition (file logicref_simple.i, line 19) in 'fsimple_array':
+Let a = global(G_t_35).
+Let x = Mint_0[shift_sint32(a, 3)].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(1 + x).
+  (* Pre-condition *)
+  Have: P_simple_array(Mint_0, shift_sint32(a, 0)).
+}
+Prove: x = 0.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'fsimple_array':
+Effect at line 20
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function ftwo_star
+------------------------------------------------------------
+
+Goal Post-condition (file logicref_simple.i, line 22) in 'ftwo_star':
+Let x = Mint_0[Mptr_0[d]].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(1 + x).
+  (* Heap *)
+  Type: (region(d.base) <= 0) /\ framed(Mptr_0).
+  (* Pre-condition *)
+  Have: P_two_star(Mptr_0, Mint_0, d).
+}
+Prove: x = 0.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'ftwo_star':
+Effect at line 23
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fvpositive
+------------------------------------------------------------
+
+Goal Post-condition (file logicref_simple.i, line 26) in 'fvpositive':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'OK' (file logicref_simple.i, line 30):
+Assume {
+  (* Heap *)
+  Type: (region(b.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: P_vpositive(Malloc_0, Mint_0, b).
+}
+Prove: valid_rw(Malloc_0, b, 1).
+
+------------------------------------------------------------
+
+Goal Assigns (file logicref_simple.i, line 26) in 'fvpositive':
+Effect at line 31
+Prove: true.
+
+------------------------------------------------------------

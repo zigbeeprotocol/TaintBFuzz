@@ -1,0 +1,18 @@
+# frama-c -wp [...]
+[kernel] Parsing gnu_zero_array.i (no preprocessing)
+[rte:annot] annotating function main
+[wp] Running WP plugin...
+[wp] gnu_zero_array.i:14: Warning: 
+  Cast with incompatible pointers types (source: sint8*) (target: S*)
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file gnu_zero_array.i, line 15):
+gnu_zero_array.i:14: warning from Typed Model:
+ - Warning: Hide \result
+   Reason: Cast with incompatible pointers types (source: sint8*) (target: S*)
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rd(Malloc_0, shift_sint32(shiftfield_F1_S_fam(s), 0), 1).
+
+------------------------------------------------------------

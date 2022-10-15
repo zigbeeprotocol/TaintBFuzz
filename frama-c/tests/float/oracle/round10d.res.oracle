@@ -1,0 +1,25 @@
+[kernel] Parsing round10d.i (no preprocessing)
+[kernel:parser:decimal-float] round10d.i:9: Warning: 
+  Floating-point constant 0.1 is not represented exactly. Will use 0x1.999999999999ap-4.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] round10d.i:9: Frama_C_show_each_dixieme: {1.6000000000000000*2^-4}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.6000000000000000*2^-4}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.6000000000000000*2^-3}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.2000000000000001*2^-2}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.6000000000000000*2^-2}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.0000000000000000*2^-1}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.1999999999999999*2^-1}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.3999999999999999*2^-1}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.5999999999999998*2^-1}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.7999999999999998*2^-1}
+[eva] round10d.i:14: Frama_C_show_each_t: {1.9999999999999998*2^-1}
+[eva:alarm] round10d.i:16: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======

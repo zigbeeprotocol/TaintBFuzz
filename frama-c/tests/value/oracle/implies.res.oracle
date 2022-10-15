@@ -1,0 +1,27 @@
+[kernel] Parsing implies.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  A ∈ {0}
+  B ∈ {0}
+[eva:alarm] implies.i:6: Warning: assertion got status unknown.
+[eva:alarm] implies.i:8: Warning: assertion got status unknown.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  A ∈ {1}
+  __retres ∈ {1}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  A FROM d
+  \result FROM c
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    A; __retres
+[inout] Inputs for function main:
+    \nothing

@@ -1,0 +1,4 @@
+[kernel] Parsing split_return.i (no preprocessing)
+[eva] User Error: incorrect argument for option -eva-slevel-function
+  (no function 'NON_EXISTING').
+[kernel] Plug-in eva aborted: invalid user input.

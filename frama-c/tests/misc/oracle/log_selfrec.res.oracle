@@ -1,0 +1,5 @@
+[report] Monitoring events
+[kernel] User Error: option `-foobar' is unknown.
+  use `bin/toplevel.opt -help' for more information.
+[report] User Error: Invalid action ("JAZZ")
+[kernel] Plug-in report aborted: invalid user input.

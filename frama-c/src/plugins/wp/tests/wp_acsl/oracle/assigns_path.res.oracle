@@ -1,0 +1,96 @@
+# frama-c -wp [...]
+[kernel] Parsing assigns_path.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition 'N' in 'job':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'A' in 'job':
+Assume {
+  Type: is_sint32(i_1) /\ is_sint32(n).
+  (* Heap *)
+  Type: region(b.base) <= 0.
+  (* Goal *)
+  When: (0 <= i) /\ (i < n).
+  (* Pre-condition *)
+  Have: n <= 3.
+  (* Invariant *)
+  Have: 0 <= n.
+  (* Invariant *)
+  Have: (0 <= i_1) /\ (i_1 <= n).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i_1) ->
+      (Mint_0[shift_sint32(b, i_2)] = v[i_2]))).
+  (* Else *)
+  Have: n <= i_1.
+}
+Prove: Mint_0[shift_sint32(b, i)] = v[i].
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file assigns_path.i, line 16):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file assigns_path.i, line 16):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file assigns_path.i, line 17):
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(1 + i).
+  (* Heap *)
+  Type: region(b.base) <= 0.
+  (* Goal *)
+  When: (0 <= i_1) /\ (i_1 <= i).
+  (* Pre-condition *)
+  Have: n <= 3.
+  (* Invariant *)
+  Have: 0 <= n.
+  (* Invariant *)
+  Have: (0 <= i) /\ (i <= n).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i) ->
+      (Mint_0[shift_sint32(b, i_2)] = v[i_2]))).
+  (* Then *)
+  Have: i < n.
+  (* Invariant *)
+  Have: (-1) <= i.
+}
+Prove: v[i <- Mint_0[shift_sint32(b, i)]][i_1] = Mint_0[shift_sint32(b, i_1)].
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file assigns_path.i, line 17):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file assigns_path.i, line 18):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file assigns_path.i, line 9) in 'job' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file assigns_path.i, line 9) in 'job' (2/2):
+Effect at line 20
+Prove: true.
+
+------------------------------------------------------------
+[wp] assigns_path.i:12: Warning: 
+  Memory model hypotheses for function 'job':
+  /*@ behavior wp_typed:
+        requires \separated(b + (..), &p); */
+  void job(int n, int *b);

@@ -1,0 +1,97 @@
+# frama-c -wp [...]
+[kernel] Parsing cfg_loop.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function loop_continue
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file cfg_loop.i, line 40):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file cfg_loop.i, line 40):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file cfg_loop.i, line 41):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function loop_switch
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file cfg_loop.i, line 12) (1/3):
+Tags: Default.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file cfg_loop.i, line 12) (2/3):
+Tags: Case 2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file cfg_loop.i, line 12) (3/3):
+Tags: Case 1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file cfg_loop.i, line 12):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file cfg_loop.i, line 13) (1/3):
+Tags: Default.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file cfg_loop.i, line 13) (2/3):
+Tags: Case 2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file cfg_loop.i, line 13) (3/3):
+Tags: Case 1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file cfg_loop.i, line 13):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file cfg_loop.i, line 14) (1/4):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file cfg_loop.i, line 14) (2/4):
+Effect at line 16
+Tags: Default.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file cfg_loop.i, line 14) (3/4):
+Effect at line 16
+Tags: Case 2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file cfg_loop.i, line 14) (4/4):
+Effect at line 16
+Tags: Case 1.
+Prove: true.
+
+------------------------------------------------------------

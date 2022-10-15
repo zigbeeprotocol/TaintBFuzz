@@ -1,0 +1,61 @@
+# frama-c -wp [...]
+[kernel] Parsing assigned_initialized_memtyped.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 42 goals scheduled
+[wp] [Alt-Ergo] Goal typed_initialize_loop_invariant_CHECK_preserved : Valid
+[wp] [Qed] Goal typed_initialize_loop_invariant_CHECK_established : Valid
+[wp] [Alt-Ergo] Goal typed_initialize_check_CHECK : Valid
+[wp] [Qed] Goal typed_initialize_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_initialize_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_initialize_loop_assigns_part3 : Valid
+[wp] [Alt-Ergo] Goal typed_range_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_range_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_range_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_range_loop_assigns_part3 : Valid
+[wp] [Alt-Ergo] Goal typed_field_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_field_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_field_loop_assigns_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_array_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_array_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_array_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_array_loop_assigns_part3 : Valid
+[wp] [Alt-Ergo] Goal typed_index_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_index_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_index_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_index_loop_assigns_part3 : Valid
+[wp] [Alt-Ergo] Goal typed_descr_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_descr_loop_assigns_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_descr_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_descr_loop_assigns_part3 : Valid
+[wp] [Qed] Goal typed_descr_loop_assigns_part4 : Valid
+[wp] [Qed] Goal typed_descr_loop_assigns_part5 : Valid
+[wp] [Alt-Ergo] Goal typed_comp_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_comp_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_comp_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_comp_loop_assigns_part3 : Valid
+[wp] [Alt-Ergo] Goal typed_assigned_glob_check_FAILS : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigned_glob_loop_invariant_CHECK_preserved : Valid
+[wp] [Qed] Goal typed_assigned_glob_loop_invariant_CHECK_established : Valid
+[wp] [Alt-Ergo] Goal typed_assigned_glob_check_FAILS_2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigned_glob_check_FAILS_3 : Unsuccess
+[wp] [Qed] Goal typed_assigned_glob_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_assigned_glob_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_assigned_glob_loop_assigns_part3 : Valid
+[wp] [Qed] Goal typed_assigned_glob_loop_assigns_2_part1 : Valid
+[wp] [Qed] Goal typed_assigned_glob_loop_assigns_2_part2 : Valid
+[wp] [Qed] Goal typed_assigned_glob_loop_assigns_2_part3 : Valid
+[wp] Proved goals:   33 / 42
+  Qed:            29 
+  Alt-Ergo:        4  (unsuccess: 9)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  initialize                4        2        6       100%
+  range                     3        -        4      75.0%
+  field                     2        -        3      66.7%
+  array                     3        -        4      75.0%
+  index                     3        -        4      75.0%
+  descr                     4        1        6      83.3%
+  comp                      3        -        4      75.0%
+  assigned_glob             7        1       11      72.7%
+------------------------------------------------------------

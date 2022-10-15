@@ -1,0 +1,265 @@
+[kernel] Parsing bts0506.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function f <- main.
+  Called from bts0506.i:47.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function main2 <- main.
+  Called from bts0506.i:49.
+[kernel:annot:missing-spec] bts0506.i:15: Warning: 
+  Neither code nor specification for function f1, generating default assigns from the prototype
+[eva] computing for function f1 <- main2 <- main.
+  Called from bts0506.i:15.
+[eva] using specification for function f1
+[eva] Done for function f1
+[eva] computing for function f1 <- main2 <- main.
+  Called from bts0506.i:16.
+[eva] Done for function f1
+[eva] computing for function f1 <- main2 <- main.
+  Called from bts0506.i:17.
+[eva] Done for function f1
+[eva] computing for function f1 <- main2 <- main.
+  Called from bts0506.i:18.
+[eva] Done for function f1
+[kernel:annot:missing-spec] bts0506.i:20: Warning: 
+  Neither code nor specification for function f2, generating default assigns from the prototype
+[eva] computing for function f2 <- main2 <- main.
+  Called from bts0506.i:20.
+[eva] using specification for function f2
+[eva] Done for function f2
+[eva] computing for function f2 <- main2 <- main.
+  Called from bts0506.i:21.
+[eva] Done for function f2
+[eva] computing for function f2 <- main2 <- main.
+  Called from bts0506.i:22.
+[eva] Done for function f2
+[kernel:annot:missing-spec] bts0506.i:24: Warning: 
+  Neither code nor specification for function f3, generating default assigns from the prototype
+[eva] computing for function f3 <- main2 <- main.
+  Called from bts0506.i:24.
+[eva] using specification for function f3
+[eva] Done for function f3
+[eva] computing for function f3 <- main2 <- main.
+  Called from bts0506.i:25.
+[eva] Done for function f3
+[kernel:annot:missing-spec] bts0506.i:27: Warning: 
+  Neither code nor specification for function f4, generating default assigns from the prototype
+[eva] computing for function f4 <- main2 <- main.
+  Called from bts0506.i:27.
+[eva] using specification for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main2 <- main.
+  Called from bts0506.i:28.
+[eva] Done for function f4
+[eva:alarm] bts0506.i:28: Warning: 
+  non-finite float value. assert \is_finite(tmp_9);
+                          (tmp_9 from f4())
+[kernel:annot:missing-spec] bts0506.i:30: Warning: 
+  Neither code nor specification for function f5, generating default assigns from the prototype
+[eva] computing for function f5 <- main2 <- main.
+  Called from bts0506.i:30.
+[eva] using specification for function f5
+[eva] Done for function f5
+[eva:alarm] bts0506.i:30: Warning: 
+  non-finite double value. assert \is_finite(tmp_10);
+                           (tmp_10 from f5())
+[eva:alarm] bts0506.i:30: Warning: 
+  non-finite float value. assert \is_finite((float)tmp_10);
+                          (tmp_10 from f5())
+[eva] computing for function f5 <- main2 <- main.
+  Called from bts0506.i:31.
+[eva] Done for function f5
+[kernel:annot:missing-spec] bts0506.i:33: Warning: 
+  Neither code nor specification for function f6, generating default assigns from the prototype
+[eva] computing for function f6 <- main2 <- main.
+  Called from bts0506.i:33.
+[eva] using specification for function f6
+[eva] Done for function f6
+[eva] computing for function f6 <- main2 <- main.
+  Called from bts0506.i:34.
+[eva] Done for function f6
+[eva] computing for function f6 <- main2 <- main.
+  Called from bts0506.i:35.
+[eva] Done for function f6
+[kernel:annot:missing-spec] bts0506.i:37: Warning: 
+  Neither code nor specification for function f7, generating default assigns from the prototype
+[eva] computing for function f7 <- main2 <- main.
+  Called from bts0506.i:37.
+[eva] using specification for function f7
+[eva] Done for function f7
+[eva] computing for function f7 <- main2 <- main.
+  Called from bts0506.i:38.
+[eva] Done for function f7
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  __retres ∈ {43}
+[eva:final-states] Values at end of function main2:
+  r1 ∈ [--..--]
+  r2 ∈ [--..--]
+  r3 ∈ [--..--]
+  r4 ∈ [--..--]
+  r5 ∈ [--..--]
+  r6 ∈ [--..--]
+  r7 ∈ [--..--]
+  r8 ∈ [--..--]
+  r8bis ∈ [--..--]
+  r9 ∈ [-inf .. inf] ∪ {NaN}
+  r10 ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+  r11 ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+  r12 ∈ [-inf .. inf] ∪ {NaN}
+  r13 ∈ [--..--]
+  r14 ∈ [--..--]
+  r15 ∈ [--..--]
+  r16 ∈ [--..--]
+  r17 ∈ [--..--]
+[eva:final-states] Values at end of function main:
+  x ∈ {43}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main2
+[from] Computing for function f1 <-main2
+[from] Done for function f1
+[from] Computing for function f2 <-main2
+[from] Done for function f2
+[from] Computing for function f3 <-main2
+[from] Done for function f3
+[from] Computing for function f4 <-main2
+[from] Done for function f4
+[from] Computing for function f5 <-main2
+[from] Done for function f5
+[from] Computing for function f6 <-main2
+[from] Done for function f6
+[from] Computing for function f7 <-main2
+[from] Done for function f7
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  \result FROM x
+[from] Function f1:
+  \result FROM \nothing
+[from] Function f2:
+  \result FROM \nothing
+[from] Function f3:
+  \result FROM \nothing
+[from] Function f4:
+  \result FROM \nothing
+[from] Function f5:
+  \result FROM \nothing
+[from] Function f6:
+  \result FROM \nothing
+[from] Function f7:
+  \result FROM \nothing
+[from] Function main2:
+  NO EFFECTS
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    __retres
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function main2:
+    r1; r2; tmp_0; r3; r4; tmp_2; r5; r6; r7; tmp_5; r8; r8bis; tmp_7; 
+    r9; r10; tmp_9; r11; tmp_10; r12; r13; r14; r15; r16; r17
+[inout] Inputs for function main2:
+    \nothing
+[inout] Out (internal) for function main:
+    x; tmp
+[inout] Inputs for function main:
+    \nothing
+/* Generated by Frama-C */
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+int f1(void);
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+long f2(void);
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+unsigned int f3(void);
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+float f4(void);
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+double f5(void);
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+int *f6(void);
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+void *f7(void);
+
+void main2(void)
+{
+  int tmp_0;
+  int tmp_2;
+  long tmp_5;
+  unsigned int tmp_7;
+  float tmp_9;
+  double tmp_10;
+  long r1 = f1();
+  tmp_0 = f1();
+  short r2 = (short)tmp_0;
+  int r3 = f1();
+  tmp_2 = f1();
+  unsigned int r4 = (unsigned int)tmp_2;
+  long r5 = f2();
+  int r6 = f2();
+  tmp_5 = f2();
+  unsigned long r7 = (unsigned long)tmp_5;
+  unsigned int r8 = f3();
+  tmp_7 = f3();
+  int r8bis = (int)tmp_7;
+  float r9 = f4();
+  tmp_9 = f4();
+  /*@ assert Eva: is_nan_or_infinite: \is_finite(tmp_9); */
+  double r10 = (double)tmp_9;
+  tmp_10 = f5();
+  /*@ assert Eva: is_nan_or_infinite: \is_finite(tmp_10); */
+  /*@ assert Eva: is_nan_or_infinite: \is_finite((float)tmp_10); */
+  float r11 = (float)tmp_10;
+  double r12 = f5();
+  void *r13 = f6();
+  int *r14 = f6();
+  char *r15 = f6();
+  void *r16 = f7();
+  int *r17 = f7();
+  return;
+}
+
+int f(int x)
+{
+  int __retres;
+  __retres = x + 1;
+  return __retres;
+}
+
+void main(void)
+{
+  int tmp;
+  short x = (short)4;
+  tmp = f(42);
+  x = (short)tmp;
+  main2();
+  return;
+}
+
+

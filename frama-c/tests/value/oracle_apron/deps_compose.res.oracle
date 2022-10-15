@@ -1,0 +1,7 @@
+24c24,27
+< [eva] deps_compose.i:26: Reusing old results for call to f
+---
+> [eva] computing for function f <- main.
+>   Called from deps_compose.i:26.
+> [eva] Recording results for f
+> [eva] Done for function f

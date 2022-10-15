@@ -1,0 +1,200 @@
+\begin{frame}{Module}
+  \framesubtitle{Overview}
+
+  \begin{itemize}
+  \item small typed functional language by itself
+  \item based on the core language
+  \item namespace
+  \item encapsulation
+  \item generic programming
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Module}
+  \framesubtitle{Structure}
+
+  \begin{ocamlcode}
+(* implementation of rationals *)
+struct
+  type t = int * int
+  let pgcd n m = ...
+  let make n d = 
+    let p = pgcd n d in
+    n / p, d / p
+  let integer n = n, 1
+  let add (n1, d1) (n2, d2) = 
+    make (n1 * d2 + n2 * d1) (d1 * d2)
+  ...
+end
+  \end{ocamlcode}
+
+\end{frame}
+
+\begin{frame}[fragile]{Module}
+  \framesubtitle{Names, submodule and access}
+
+\begin{ocamlcode}
+(* modules can be named *)
+module Rational = 
+  ... (* code of the previous slide *)
+
+(* submodules are possible *)
+module M1 = struct 
+  module M2 = struct 
+    module M3 = struct let x = ... end 
+  end 
+end
+
+(* access through the dot notation *)
+let r_one: Rational.t = Rational.integer 1
+let x = M1.M2.M3.x
+\end{ocamlcode}
+\end{frame}
+
+\begin{frame}[fragile]{Module}
+  \framesubtitle{Typing}
+
+  \begin{itemize}
+  \item \ocaml infers a module type for each module
+  \item types of structure are signatures
+  \end{itemize}
+
+  \begin{ocamlcode}
+(* inferred type for module Rational *)
+sig
+  type t = int * int
+  val pgcd: int -> int -> int
+  val make: int -> int -> int * int
+  val integer: int -> int * int
+  val add: int * int -> int * int -> int * int
+  ...
+end
+  \end{ocamlcode}
+\end{frame}
+
+\begin{frame}[fragile]{Module}
+  \framesubtitle{Explicit Signature}
+
+  \begin{ocamlcode}
+module type Rational = sig
+  type t
+  val make: int -> int -> t
+  val integer: int -> t
+  val add: t -> t -> t
+  ...
+end
+module Rational: Rational
+  \end{ocamlcode}
+
+  \begin{itemize}
+  \item abstract types
+  \item hide implementation details through subtyping
+  \item encapsulation: easy to change the implementation without
+    changing its interface
+  \item unnamed signature
+  \end{itemize}
+
+\end{frame}
+
+%% \begin{frame}[fragile]{Module}
+%%   \framesubtitle{Compilation Unit}
+
+%%   \begin{itemize}
+%%   \item .ml files are particular structures
+%%   \item .mli files are particular signatures
+%%   \end{itemize}
+
+%%   \begin{ocamlcode}
+%% module L = List
+%% module C = Cil
+%% module type T = Cil_types
+%%   \end{ocamlcode}
+%% \end{frame}
+
+\begin{frame}[fragile]{Module}
+  \framesubtitle{Opening and inclusion}
+
+  \begin{ocamlcode}
+open Rational
+let r_one = zero
+open Cil_types
+
+module My_list = struct
+  include List
+  let singleton x = [ x ]
+  let tl _ = failwith "should never be used"
+end
+  \end{ocamlcode}
+
+  \begin{itemize}
+  \item `\lstinline+open+' provides a direct access to a structure's namespace
+    (or signature)
+  \item usually bad to have to many `\lstinline+open+' at the same time
+  \item `\lstinline+include+' allows to extends/redefine a structure or a
+    signature
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Module}
+  \framesubtitle{Functor definition}
+  
+\begin{ocamlcode}
+module type Ring = sig
+  type t
+  val zero: t         val one: t
+  val add: t -> t -> t  val opp: t -> t
+  val mult: t -> t -> t
+end
+module Polynomial(R: Ring) = struct
+  type ring = R.t    type t = R.t array
+  let zero = [| R.zero |]
+  let monomial c n =
+    let p = Array.create (n + 1) R.zero in
+    p.(n) <- c; p
+   ...
+end
+\end{ocamlcode}
+\end{frame}
+
+\begin{frame}[fragile]{Module}
+  \framesubtitle{Functor use}
+
+\begin{ocamlcode}
+module IntegerPolynomial =
+  Polynomial
+    (struct
+      type t = int
+      let zero = 0
+      let one = 1
+      let add = ( + )
+      let mult = ( * )
+      let opp n = - n
+    end)
+
+module RationalPolynomial = 
+  Polynomial(Rational)
+\end{ocamlcode}
+\end{frame}
+
+\begin{frame}[fragile]{Module}
+  \framesubtitle{Functor typing}
+
+\begin{ocamlcode}
+module Polynomial(R: Ring) = sig
+  type ring = R.t    type t
+  val zero: t      
+  val monomial: R.t -> int -> t
+  ...
+end
+  
+module type Polynomial: sig
+  type ring     type t
+  val zero: t   val monomial: R.t -> int -> t
+end
+module Polynomial(R: Ring):
+  Polynomial with type ring = R.t
+\end{ocamlcode}
+
+\end{frame}

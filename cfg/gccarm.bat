@@ -1,0 +1,1 @@
+"F:\Workspace\gccarm\8 2018-q4-major\bin\arm-none-eabi-gcc.exe" "F:\Workspace\zstack_iar_zf\Components\stack\zcl\zcl.c" -c -o "F:\Workspace\zigbfuzz\cfg\zcl.o" @"F:\Workspace\zigbfuzz\cfg\gccarm_extra_compile.cfg" -fdump-tree-cfg-lineno

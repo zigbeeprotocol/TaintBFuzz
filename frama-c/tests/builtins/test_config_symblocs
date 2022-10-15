@@ -1,0 +1,1 @@
+MACRO: EVA_OPTIONS @EVA_OPTIONS@ -eva-msg-key malloc -eva-warn-key malloc:weak=feedback -eva-no-alloc-returns-null

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>$if(document)$$document$ – $endif$$title$</title>
+  <link rel="stylesheet" href="$root$/style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div id="BODY">
+    <div id="NAVIGATION">
+      <nav id="TOC">
+        <a class="root" href="$root$/readme.md.html">$document$</a>
+        $if(chapter)$
+        <a class="chapter" href="$page$">$chapter$</a>
+        $endif$
+        $if(link)$
+        <ul>
+          $if(toc)$
+            $for(link)$
+              $if(link.toc)$
+                <div class="TOC">$table-of-contents$</div>
+              $else$
+                <li><a href="$link.href$.html">$link.title$</a></li>
+              $endif$
+            $endfor$
+          $else$
+            $for(link)$
+               <li><a href="$link.href$.html">$link.title$</a></li>
+            $endfor$
+          $endif$
+        </ul>
+        $else$
+        $table-of-contents$
+        $endif$
+      </nav>
+    </div>
+    <div id="CONTENT">
+      $body$
+    </div>
+  </div>
+</body>
+</html>

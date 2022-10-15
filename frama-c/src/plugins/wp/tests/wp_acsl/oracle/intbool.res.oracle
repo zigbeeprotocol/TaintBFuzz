@@ -1,0 +1,12 @@
+# frama-c -wp [...]
+[kernel] Parsing intbool.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function bug
+------------------------------------------------------------
+
+Goal Post-condition (file intbool.i, line 1) in 'bug':
+Prove: true.
+
+------------------------------------------------------------

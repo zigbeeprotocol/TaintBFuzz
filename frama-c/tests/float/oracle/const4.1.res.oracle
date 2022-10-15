@@ -1,0 +1,40 @@
+[eva] Warning: Option -eva-all-rounding-modes-constants is now deprecated.
+  Please contact us if you need it.
+[kernel] Parsing const4.i (no preprocessing)
+[kernel:parser:decimal-float] const4.i:6: Warning: 
+  Floating-point constant 3.4e38f is not represented exactly. Will use 0x1.ff933c0000000p127.
+[kernel:parser:decimal-float] const4.i:7: Warning: 
+  Floating-point constant 3.405e38f is not represented exactly. Will use inf.
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva:alarm] const4.i:7: Warning: 
+  non-finite float value. assert \is_finite((float)3.405e38f);
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  f1 ∈ [3.39999995214e+38 .. 3.40000015497e+38]
+  f2 ∈ {3.40282346639e+38}
+[eva] const4.i:11: 
+  Frama_C_dump_each:
+  # cvalue:
+  f1 ∈ [3.39999995214e+38 .. 3.40000015497e+38]
+  f2 ∈ {3.40282346639e+38}
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] Recording results for main
+[eva] done for function main
+[eva] const4.i:7: assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  d2 ∈ {3.40282346639e+38}
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    d2; __retres
+[inout] Inputs for function main:
+    f2

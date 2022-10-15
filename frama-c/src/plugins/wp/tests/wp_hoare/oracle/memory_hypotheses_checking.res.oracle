@@ -1,0 +1,486 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing memory_hypotheses_checking.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function add_return_ok
+------------------------------------------------------------
+
+Goal Post-condition (file memory_hypotheses_checking.i, line 76) in 'add_return_ok':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 74) in 'add_return_ok':
+Effect at line 79
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function add_return_ok with behavior wp_typed_ref
+------------------------------------------------------------
+
+Goal Post-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 78) in 'add_return_ok':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function assigns_ptr
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 57) in 'assigns_ptr':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function bad_return_formal
+------------------------------------------------------------
+
+Goal Assigns nothing in 'bad_return_formal':
+Effect at line 98
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function bad_return_formal with behavior wp_typed_ref
+------------------------------------------------------------
+
+Goal Post-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 97) in 'bad_return_formal':
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_add_return_bad
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 90) in 'call_add_return_bad':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 90) in 'call_add_return_bad' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 90) in 'call_add_return_bad' (2/3):
+Call Result at line 92
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 90) in 'call_add_return_bad' (3/3):
+Effect at line 93
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 78) in 'add_return_ok'' in 'call_add_return_bad' at initialization of 'p_0' (file memory_hypotheses_checking.i, line 92)
+:
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 78) in 'add_return_ok'' in 'call_add_return_bad' at initialization of 'p_0' (file memory_hypotheses_checking.i, line 92)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_add_return_ok
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 83) in 'call_add_return_ok':
+Call Effect at line 86
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 83) in 'call_add_return_ok' (1/3):
+Call Effect at line 86
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 83) in 'call_add_return_ok' (2/3):
+Call Result at line 86
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 83) in 'call_add_return_ok' (3/3):
+Effect at line 87
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: invalid(Malloc_0, global(L_l_71), 1).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 78) in 'add_return_ok'' in 'call_add_return_ok' at initialization of 'p_0' (file memory_hypotheses_checking.i, line 86)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 78) in 'add_return_ok'' in 'call_add_return_ok' at initialization of 'p_0' (file memory_hypotheses_checking.i, line 86)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_assigns_ptr_bad
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 68) in 'call_assigns_ptr_bad':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 68) in 'call_assigns_ptr_bad':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 58) in 'assigns_ptr'' in 'call_assigns_ptr_bad' at call 'assigns_ptr' (file memory_hypotheses_checking.i, line 70)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 58) in 'assigns_ptr'' in 'call_assigns_ptr_bad' at call 'assigns_ptr' (file memory_hypotheses_checking.i, line 70)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_assigns_ptr_ok
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_assigns_ptr_ok':
+Call Effect at line 65
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_assigns_ptr_ok':
+Call Effect at line 65
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 58) in 'assigns_ptr'' in 'call_assigns_ptr_ok' at call 'assigns_ptr' (file memory_hypotheses_checking.i, line 65)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 58) in 'assigns_ptr'' in 'call_assigns_ptr_ok' at call 'assigns_ptr' (file memory_hypotheses_checking.i, line 65)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_gptr_sep_bad
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 50) in 'call_gptr_sep_bad':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 50) in 'call_gptr_sep_bad':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 39) in 'gptr_sep'' in 'call_gptr_sep_bad' at call 'gptr_sep' (file memory_hypotheses_checking.i, line 53)
+:
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rw(Malloc_0, global(G_g_20), 1).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 39) in 'gptr_sep'' in 'call_gptr_sep_bad' at call 'gptr_sep' (file memory_hypotheses_checking.i, line 53)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_gptr_sep_ok
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 43) in 'call_gptr_sep_ok':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file memory_hypotheses_checking.i, line 43) in 'call_gptr_sep_ok':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 39) in 'gptr_sep'' in 'call_gptr_sep_ok' at call 'gptr_sep' (file memory_hypotheses_checking.i, line 47)
+:
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rw(Malloc_0[L_l_46 <- 1], global(L_l_46), 1).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 39) in 'gptr_sep'' in 'call_gptr_sep_ok' at call 'gptr_sep' (file memory_hypotheses_checking.i, line 47)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_sep_bad_sep
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_sep_bad_sep':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_sep_bad_sep':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 12) in 'sep'' in 'call_sep_bad_sep' at call 'sep' (file memory_hypotheses_checking.i, line 24)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 12) in 'sep'' in 'call_sep_bad_sep' at call 'sep' (file memory_hypotheses_checking.i, line 24)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_sep_bad_valid
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_sep_bad_valid' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_sep_bad_valid' (2/2):
+Effect at line 32
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_sep_bad_valid' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_sep_bad_valid' (2/2):
+Effect at line 32
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 12) in 'sep'' in 'call_sep_bad_valid' at call 'sep' (file memory_hypotheses_checking.i, line 34)
+:
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rw(Malloc_0[L_l_37 <- 0], global(L_l_37), 1).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 12) in 'sep'' in 'call_sep_bad_valid' at call 'sep' (file memory_hypotheses_checking.i, line 34)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_sep_ok
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_sep_ok':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_sep_ok':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 12) in 'sep'' in 'call_sep_ok' at call 'sep' (file memory_hypotheses_checking.i, line 19)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition for 'wp_typed_ref' (file memory_hypotheses_checking.i, line 12) in 'sep'' in 'call_sep_ok' at call 'sep' (file memory_hypotheses_checking.i, line 19)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function gptr_sep
+------------------------------------------------------------
+
+Goal Assigns nothing in 'gptr_sep':
+Effect at line 40
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function sep
+------------------------------------------------------------
+
+Goal Assigns nothing in 'sep':
+Effect at line 13
+Prove: true.
+
+------------------------------------------------------------
+/* Generated by Frama-C */
+int g;
+/*@ assigns \nothing;
+    
+    behavior wp_typed_ref:
+      requires \valid(p_0);
+      requires \separated(p_0, &g);
+ */
+int sep(int *p_0)
+{
+  int __retres;
+  __retres = *p_0 + g;
+  return __retres;
+}
+
+/*@ assigns \nothing; */
+void call_sep_ok(void)
+{
+  int l = 42;
+  sep(& l);
+  return;
+}
+
+/*@ assigns \nothing; */
+void call_sep_bad_sep(void)
+{
+  sep(& g);
+  return;
+}
+
+/*@ assigns \nothing; */
+void call_sep_bad_valid(void)
+{
+  int *p_0;
+  {
+    int l;
+    p_0 = & l;
+  }
+  sep(p_0);
+  return;
+}
+
+int *p;
+/*@ assigns \nothing;
+    
+    behavior wp_typed_ref:
+      requires \valid(p);
+      requires \separated(p, &g);
+ */
+int gptr_sep(void)
+{
+  int __retres;
+  __retres = *p + g;
+  return __retres;
+}
+
+/*@ assigns p;
+    assigns p \from \nothing; */
+void call_gptr_sep_ok(void)
+{
+  int l = 42;
+  p = & l;
+  gptr_sep();
+  return;
+}
+
+/*@ assigns p;
+    assigns p \from &g; */
+void call_gptr_sep_bad(void)
+{
+  p = & g;
+  gptr_sep();
+  return;
+}
+
+/*@ assigns *p_0;
+    
+    behavior wp_typed_ref:
+      requires \valid(p_0);
+      requires \separated(p_0, &g);
+ */
+void assigns_ptr(int *p_0)
+{
+  *p_0 = g + 42;
+  return;
+}
+
+/*@ assigns \nothing; */
+void call_assigns_ptr_ok(void)
+{
+  int l = 42;
+  assigns_ptr(& l);
+  return;
+}
+
+/*@ assigns g; */
+void call_assigns_ptr_bad(void)
+{
+  assigns_ptr(& g);
+  return;
+}
+
+/*@ ensures \result ≡ \old(p_0);
+    assigns \result, *p_0;
+    assigns \result \from p_0;
+    
+    behavior wp_typed_ref:
+      requires \separated(p_0 + (..), &g);
+      requires \separated(p_0, &g);
+      ensures \separated(\result, &g);
+ */
+int *add_return_ok(int *p_0)
+{
+  *p_0 += g;
+  return p_0;
+}
+
+/*@ assigns g; */
+void call_add_return_ok(void)
+{
+  int l = 0;
+  int *p_0 = add_return_ok(& l);
+  *p_0 = 0;
+  return;
+}
+
+/*@ assigns g; */
+void call_add_return_bad(void)
+{
+  int *p_0 = add_return_ok(& g);
+  *p_0 = 0;
+  return;
+}
+
+/*@ assigns \result;
+    assigns \result \from &x;
+    
+    behavior wp_typed_ref:
+      ensures \separated(\result, &x);
+ */
+int *bad_return_formal(int x)
+{
+  int *__retres;
+  __retres = & x;
+  return __retres;
+}
+
+

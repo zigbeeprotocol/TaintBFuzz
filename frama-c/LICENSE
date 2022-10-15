@@ -1,0 +1,8 @@
+Most sources are LGPLv2.1, with some isolated exceptions for
+external libraries modified for Frama-C (BSD, QPL) in src/libraries
+
+Each source file contains its own header. See the licenses directory for the
+complete text of each license.
+
+Documentation is licensed under CC-BY-SA 4.0. See doc/LICENSE for more
+information

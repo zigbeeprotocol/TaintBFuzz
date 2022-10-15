@@ -1,0 +1,3 @@
+[kernel] Warning: option `-non-existing-option' is unknown, ignoring. [-permissive]
+[kernel] Parsing permissive.i (no preprocessing)
+[kernel] Warning: ignoring non-existing function 'non_existing_function'.

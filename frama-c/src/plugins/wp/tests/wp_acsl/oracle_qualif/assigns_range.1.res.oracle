@@ -1,0 +1,19 @@
+# frama-c -wp -wp-steps 50 [...]
+[kernel] Parsing assigns_range.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 6 goals scheduled
+[wp] [Alt-Ergo] Goal typed_call_assigns_t1_assigns_exit : Unsuccess
+[wp] [Alt-Ergo] Goal typed_call_assigns_t1_assigns_normal : Unsuccess
+[wp] [Alt-Ergo] Goal typed_call_assigns_t2_assigns_exit : Unsuccess
+[wp] [Alt-Ergo] Goal typed_call_assigns_t2_assigns_normal : Unsuccess
+[wp] [Alt-Ergo] Goal typed_call_assigns_t4_assigns_exit : Unsuccess
+[wp] [Alt-Ergo] Goal typed_call_assigns_t4_assigns_normal : Unsuccess
+[wp] Proved goals:    0 / 6
+  Alt-Ergo:        0  (unsuccess: 6)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  call_assigns_t1           -        -        2       0.0%
+  call_assigns_t2           -        -        2       0.0%
+  call_assigns_t4           -        -        2       0.0%
+------------------------------------------------------------

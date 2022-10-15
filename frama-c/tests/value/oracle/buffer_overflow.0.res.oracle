@@ -1,0 +1,26 @@
+[kernel] Parsing buffer_overflow.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] buffer_overflow.i:15: starting to merge loop iterations
+[eva:alarm] buffer_overflow.i:18: Warning: 
+  accessing out of bounds index. assert loop_counter < 10;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[from] Computing for function main
+[from] Non-terminating function main (no dependencies)
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NON TERMINATING - NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    test_value; loop_counter; buf[1..9]
+[inout] Inputs for function main:
+    \nothing

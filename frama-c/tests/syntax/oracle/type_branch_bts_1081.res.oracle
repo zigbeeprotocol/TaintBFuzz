@@ -1,0 +1,5 @@
+[kernel] Parsing type_branch_bts_1081.i (no preprocessing)
+[kernel] type_branch_bts_1081.i:10: Failure: 
+  invalid implicit conversion from void to signed char
+[kernel] User Error: stopping on file "type_branch_bts_1081.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

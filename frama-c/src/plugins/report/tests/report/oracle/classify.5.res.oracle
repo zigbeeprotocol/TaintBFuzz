@@ -1,0 +1,17 @@
+[report] Monitoring events
+[report] Loading 'classify.json'
+# frama-c -wp [...]
+[kernel] Parsing classify.c (with preprocessing)
+[kernel:annot-error] classify.c:28: Warning: 
+  unbound logic variable ignored. Ignoring code annotation
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] Goal typed_f_ensures : not tried
+[wp] Goal typed_f_assigns : trivial
+[report] Classification
+[report] Output classified.5.json
+[report] Reviews     :    2
+[report] Errors      :    2
+[report] Unclassified:    1
+[report] User Error: Classified errors found
+[kernel] Plug-in report aborted: invalid user input.

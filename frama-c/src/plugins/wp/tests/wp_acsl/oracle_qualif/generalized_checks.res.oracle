@@ -1,0 +1,38 @@
+# frama-c -wp -wp-timeout 1 [...]
+[kernel] Parsing generalized_checks.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 21 goals scheduled
+[wp] [Alt-Ergo] Goal typed_check_lemma_C_ko : Unsuccess
+[wp] [Alt-Ergo] Goal typed_lemma_L_ko : Unsuccess
+[wp] [Alt-Ergo] Goal typed_job_ensures_B : Valid
+[wp] [Alt-Ergo] Goal typed_job_check_ensures_CB1 : Valid
+[wp] [Alt-Ergo] Goal typed_job_check_ensures_CB2_ko : Unsuccess
+[wp] [Qed] Goal typed_job_assigns_exit : Valid
+[wp] [Qed] Goal typed_job_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_job_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_caller_ensures_R : Valid
+[wp] [Alt-Ergo] Goal typed_caller_ensures_R1_ko : Unsuccess
+[wp] [Alt-Ergo] Goal typed_caller_ensures_R2_ko : Unsuccess
+[wp] [Qed] Goal typed_caller_assigns_exit : Valid
+[wp] [Qed] Goal typed_caller_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_caller_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_caller_call_job_requires_A : Valid
+[wp] [Qed] Goal typed_caller_call_job_check_requires_CA1 : Valid
+[wp] [Alt-Ergo] Goal typed_caller_call_job_check_requires_CA2_ko : Unsuccess
+[wp] [Qed] Goal typed_loop_check_loop_invariant_false_but_preserved_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_loop_check_loop_invariant_false_but_preserved_established : Unsuccess
+[wp] [Alt-Ergo] Goal typed_loop_check_implied_by_false_invariant : Unsuccess
+[wp] [Qed] Goal typed_loop_loop_assigns : Valid
+[wp] Proved goals:   13 / 21
+  Qed:            11 
+  Alt-Ergo:        2  (unsuccess: 8)
+------------------------------------------------------------
+ Axiomatics                WP     Alt-Ergo  Total   Success
+  Axiomatic Th              -        -        2       0.0%
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  job                       3        2        6      83.3%
+  caller                    6        -        9      66.7%
+  loop                      2        -        4      50.0%
+------------------------------------------------------------

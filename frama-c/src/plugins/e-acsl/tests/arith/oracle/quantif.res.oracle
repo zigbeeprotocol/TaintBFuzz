@@ -1,0 +1,107 @@
+[e-acsl] beginning translation.
+[e-acsl] quantif.i:88: Warning: 
+  invalid E-ACSL construct
+  `invalid guard 10 > i in quantification
+  failed_invalid_guards: \forall integer i; 10 > i >= 0 ==> p1(i, 2, 2).
+  Missing guard for i. Only < and <= are allowed to guard quantifier variables'.
+  Ignoring annotation.
+[e-acsl] quantif.i:90: Warning: 
+  invalid E-ACSL construct
+  `invalid guard p1(i, j, k) in quantification
+  failed_unguarded_k:
+    \forall integer i, integer j, integer k;
+      0 <= i < 10 && 1 < j <= 11 ==> p1(i, j, k).
+  Missing guard for k. '.
+  Ignoring annotation.
+[e-acsl] quantif.i:92: Warning: 
+  E-ACSL construct
+  `non integer variable i in quantification
+  failed_non_integer: \forall real i; 0 <= i < 10 ==> p1(\truncate(i), 2, 2)'
+  is not yet supported.
+  Ignoring annotation.
+[e-acsl] quantif.i:94: Warning: 
+  invalid E-ACSL construct
+  `missing lower bound for i in quantification
+  failed_missing_lower_bound: \forall integer i; i < 10 ==> p1(i, 2, 2)'.
+  Ignoring annotation.
+[e-acsl] quantif.i:96: Warning: 
+  invalid E-ACSL construct
+  `invalid guard p1(i, 2, 2) in quantification
+  failded_missing_upper_bound: \forall integer i; 0 <= i ==> p1(i, 2, 2). 
+  Missing upper bound for i. '.
+  Ignoring annotation.
+[e-acsl] quantif.i:98: Warning: 
+  invalid E-ACSL construct
+  `invalid guard p1(i, j, 2) in quantification
+  failed_invalid_upper_bound_1:
+    \forall integer i, integer j; 0 <= i < j ==> p1(i, j, 2).
+  Missing upper bound for j. '.
+  Ignoring annotation.
+[e-acsl] quantif.i:100: Warning: 
+  invalid E-ACSL construct
+  `missing lower bound for i when processing the linked upper bound i < j
+  in quantification
+  failed_invalid_upper_bound_2:
+    \forall integer i, integer j; i < j && 0 <= i ==> p1(i, 2, 2)'.
+  Ignoring annotation.
+[e-acsl] quantif.i:102: Warning: 
+  invalid E-ACSL construct
+  `found existing lower bound i < j when processing 3 <= j in quantification
+  failed_extra_constraint:
+    \forall integer i, integer j;
+      0 <= i < j && i < 10 && 3 <= j < 5 ==> p1(i, j, 2)'.
+  Ignoring annotation.
+[e-acsl] quantif.i:104: Warning: 
+  invalid E-ACSL construct
+  `found existing lower bound 0 <= i when processing j < i in quantification
+  failed_multiple_upper_bounds:
+    \forall integer i, integer j; 0 <= i < j < i && j <= 10 ==> p1(i, j, 2)'.
+  Ignoring annotation.
+[e-acsl] quantif.i:106: Warning: 
+  invalid E-ACSL construct
+  `found existing lower bound i < k when processing j < k in quantification
+  multiple_linked_upper:
+    \forall integer i, integer j, integer k;
+      0 <= i < k && 1 <= j < k && 2 <= k < 10 ==> p1(i, j, k)'.
+  Ignoring annotation.
+[e-acsl] quantif.i:108: Warning: 
+  invalid E-ACSL construct
+  `invalid constraint 2 <= i, both operands are constants or already bounded in quantification
+  multiple_guard:
+    \forall integer i, integer j;
+      0 <= i < 10 && 2 <= i < 8 && 4 <= j < 6 ==> p1(i, j, 2)'.
+  Ignoring annotation.
+[e-acsl] translation done in project "e-acsl".
+[eva:alarm] quantif.i:22: Warning: assertion got status unknown.
+[eva:alarm] quantif.i:31: Warning: assertion got status unknown.
+[eva:alarm] quantif.i:46: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] quantif.i:53: Warning: assertion got status unknown.
+[eva:alarm] quantif.i:62: Warning: 
+  assertion 'forall_multiple_binders_2' got status unknown.
+[eva:alarm] quantif.i:65: Warning: 
+  assertion 'forall_multiple_binders_3' got status unknown.
+[eva:alarm] quantif.i:71: Warning: 
+  assertion 'forall_unordered_binders' got status unknown.
+[eva:alarm] quantif.i:77: Warning: 
+  assertion 'exists_multiple_binders_2' got status unknown.
+[eva:alarm] quantif.i:80: Warning: 
+  assertion 'exists_multiple_binders_3' got status unknown.
+[eva:alarm] quantif.i:83: Warning: 
+  assertion 'exists_unordered_binders' got status unknown.
+[eva:alarm] quantif.i:90: Warning: 
+  assertion 'failed_unguarded_k' got status unknown.
+[eva:alarm] quantif.i:92: Warning: 
+  assertion 'failed_non_integer' got status unknown.
+[eva:alarm] quantif.i:94: Warning: 
+  assertion 'failed_missing_lower_bound' got status unknown.
+[eva:alarm] quantif.i:96: Warning: 
+  assertion 'failded_missing_upper_bound' got status unknown.
+[eva:alarm] quantif.i:98: Warning: 
+  assertion 'failed_invalid_upper_bound_1' got status unknown.
+[eva:alarm] quantif.i:100: Warning: 
+  assertion 'failed_invalid_upper_bound_2' got status unknown.
+[eva:alarm] quantif.i:104: Warning: 
+  assertion 'failed_multiple_upper_bounds' got status unknown.
+[eva:alarm] quantif.i:106: Warning: 
+  assertion 'multiple_linked_upper' got status unknown.

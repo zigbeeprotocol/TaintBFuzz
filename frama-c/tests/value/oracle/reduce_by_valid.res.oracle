@@ -1,0 +1,386 @@
+[kernel] Parsing reduce_by_valid.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..4] ∈ {0}
+  u[0..4] ∈ {0}
+  v ∈ [--..--]
+  sv ∈ [--..--]
+  vs ∈ {{ NULL ; &S_vs[0] }}
+  S_vs[0].f1 ∈ {{ NULL ; &S_f1_0_S_vs[0] }}
+      [1].f1 ∈ {{ NULL ; &S_f1_1_S_vs[0] }}
+  S_f1_0_S_vs[0..1] ∈ [--..--]
+  S_f1_1_S_vs[0..1] ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from reduce_by_valid.i:297.
+[eva:alarm] reduce_by_valid.i:14: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:17: Warning: assertion got status unknown.
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from reduce_by_valid.i:298.
+[eva:alarm] reduce_by_valid.i:29: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:31: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:33: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:35: Warning: assertion got status unknown.
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] computing for function main3 <- main.
+  Called from reduce_by_valid.i:299.
+[eva] reduce_by_valid.i:48: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:49: Warning: assertion got status unknown.
+[eva] Recording results for main3
+[eva] Done for function main3
+[eva] computing for function main4 <- main.
+  Called from reduce_by_valid.i:300.
+[eva:alarm] reduce_by_valid.i:54: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:55: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:57: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:59: Warning: assertion got status unknown.
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main5 <- main.
+  Called from reduce_by_valid.i:301.
+[eva:locals-escaping] reduce_by_valid.i:72: Warning: 
+  locals {x} escaping the scope of a block of main5 through p
+[eva] reduce_by_valid.i:74: assertion got status valid.
+[eva] reduce_by_valid.i:75: assertion got status valid.
+[eva] reduce_by_valid.i:76: assertion got status valid.
+[eva] reduce_by_valid.i:80: assertion got status valid.
+[eva] reduce_by_valid.i:82: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:85: Warning: assertion got status unknown.
+[eva] Recording results for main5
+[eva] Done for function main5
+[eva] computing for function main6 <- main.
+  Called from reduce_by_valid.i:302.
+[eva:alarm] reduce_by_valid.i:302: Warning: 
+  function main6: precondition 'r1' got status unknown.
+[eva:alarm] reduce_by_valid.i:302: Warning: 
+  function main6: precondition 'r2' got status unknown.
+[eva:alarm] reduce_by_valid.i:302: Warning: 
+  function main6: precondition 'r3' got status unknown.
+[eva] reduce_by_valid.i:302: function main6: precondition 'r4' got status valid.
+[eva:alarm] reduce_by_valid.i:302: Warning: 
+  function main6: precondition 'r5' got status unknown.
+[eva] reduce_by_valid.i:302: function main6: precondition 'r6' got status valid.
+[eva] Recording results for main6
+[eva] Done for function main6
+[eva] computing for function main7 <- main.
+  Called from reduce_by_valid.i:303.
+[eva] reduce_by_valid.i:111: assertion got status valid.
+[eva] reduce_by_valid.i:112: assertion got status valid.
+[eva] reduce_by_valid.i:113: assertion got status valid.
+[eva] reduce_by_valid.i:117: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:120: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:121: assertion got status valid.
+[eva] Recording results for main7
+[eva] Done for function main7
+[eva] computing for function main8 <- main.
+  Called from reduce_by_valid.i:304.
+[eva:alarm] reduce_by_valid.i:137: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:138: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:141: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:142: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:146: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:147: Warning: assertion got status unknown.
+[eva] Recording results for main8
+[eva] Done for function main8
+[eva] computing for function main9 <- main.
+  Called from reduce_by_valid.i:305.
+[eva:alarm] reduce_by_valid.i:162: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:165: assertion got status valid.
+[eva] Recording results for main9
+[eva] Done for function main9
+[eva] computing for function main10 <- main.
+  Called from reduce_by_valid.i:306.
+[eva:alarm] reduce_by_valid.i:176: Warning: 
+  out of bounds write. assert \valid((int *)p);
+[eva] reduce_by_valid.i:177: Frama_C_show_each_main10_1: {{ &t_0 + [0..36] }}
+[eva] reduce_by_valid.i:178: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:181: Warning: 
+  out of bounds write. assert \valid((int *)p + 2);
+[eva] reduce_by_valid.i:182: Frama_C_show_each_main10_2: {{ &t_0 + [-8..28] }}
+[eva] reduce_by_valid.i:183: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:186: Warning: 
+  out of bounds write. assert \valid((int *)(p + 2));
+[eva] reduce_by_valid.i:187: Frama_C_show_each_main10_3: {{ &t_0 + [-2..34] }}
+[eva] reduce_by_valid.i:188: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:197: Warning: 
+  out of bounds write. assert \valid(&((struct s_1 *)p)->b);
+[eva] reduce_by_valid.i:198: Frama_C_show_each_main10_4: {{ &t_0 + [-4..32] }}
+[eva] reduce_by_valid.i:200: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:203: Warning: 
+  out of bounds write. assert \valid(&((struct s_1 *)p + 2)->b);
+[eva] reduce_by_valid.i:204: Frama_C_show_each_main10_4: {{ &t_0 + [-20..16] }}
+[eva] reduce_by_valid.i:206: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:210: Warning: 
+  out of bounds write. assert \valid((char *)q);
+[eva] reduce_by_valid.i:211: Frama_C_show_each: {{ &u_0 + [0..79] }}
+[eva] reduce_by_valid.i:213: assertion got status valid.
+[eva:alarm] reduce_by_valid.i:216: Warning: 
+  out of bounds write. assert \valid((char *)q + 2);
+[eva] reduce_by_valid.i:217: Frama_C_show_each: {{ &u_0 + [-2..77] }}
+[eva] reduce_by_valid.i:219: assertion got status valid.
+[eva] Recording results for main10
+[eva] Done for function main10
+[eva] computing for function main11 <- main.
+  Called from reduce_by_valid.i:307.
+[eva:alarm] reduce_by_valid.i:228: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:230: Frama_C_show_each: {{ &TC + [10..410] }}
+[eva:alarm] reduce_by_valid.i:231: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:237: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:239: Frama_C_show_each: {{ &TU + [40..1640],0%4 }}
+[eva:alarm] reduce_by_valid.i:240: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:245: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:247: Frama_C_show_each: {{ &TU + [40..840] }}
+[eva:alarm] reduce_by_valid.i:248: Warning: assertion got status unknown.
+[eva:alarm] reduce_by_valid.i:253: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:255: Frama_C_show_each: {{ &TC + [10..410],2%4 }}
+[eva:alarm] reduce_by_valid.i:256: Warning: assertion got status unknown.
+[eva] Recording results for main11
+[eva] Done for function main11
+[eva] computing for function main12 <- main.
+  Called from reduce_by_valid.i:308.
+[eva] computing for function garbled_mix <- main12 <- main.
+  Called from reduce_by_valid.i:272.
+[eva] using specification for function garbled_mix
+[eva] Done for function garbled_mix
+[eva] reduce_by_valid.i:272: 
+  Assigning imprecise value to p.
+  The imprecision originates from Library function {reduce_by_valid.i:272}
+[eva] reduce_by_valid.i:273: 
+  Frama_C_show_each_gm:
+  {{ garbled mix of &{x; a}
+  (origin: Library function {reduce_by_valid.i:272}) }}
+[eva:alarm] reduce_by_valid.i:275: Warning: 
+  out of bounds write. assert \valid(p);
+[eva:alarm] reduce_by_valid.i:277: Warning: assertion got status unknown.
+[eva] reduce_by_valid.i:278: 
+  Frama_C_show_each_reduced_gm: {{ &x ; &a + [0..16] }}
+[eva] computing for function reduced_garbled_mix <- main12 <- main.
+  Called from reduce_by_valid.i:282.
+[eva] using specification for function reduced_garbled_mix
+[eva] Done for function reduced_garbled_mix
+[eva] reduce_by_valid.i:283: check got status valid.
+[eva] computing for function reduced_garbled_mix <- main12 <- main.
+  Called from reduce_by_valid.i:287.
+[eva] Done for function reduced_garbled_mix
+[eva:alarm] reduce_by_valid.i:288: Warning: 
+  out of bounds write. assert \valid(r);
+[eva] computing for function garbled_mix <- main12 <- main.
+  Called from reduce_by_valid.i:290.
+[eva] Done for function garbled_mix
+[eva] reduce_by_valid.i:290: 
+  Assigning imprecise value to r.
+  The imprecision originates from Library function {reduce_by_valid.i:290}
+[eva:alarm] reduce_by_valid.i:291: Warning: assertion got status unknown.
+[eva] Recording results for main12
+[eva] Done for function main12
+[eva] Recording results for main
+[eva] done for function main
+[scope:rm_asserts] removing 12 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  t[0..2] ∈ {0}
+   [3] ∈ {0; 1}
+   [4] ∈ {1}
+  p ∈ {{ &t{[0], [1]} }}
+  q ∈ {{ &t[1] }}
+[eva:final-states] Values at end of function main10:
+  t_0[0..39] ∈ [--..--] or UNINITIALIZED
+  p ∈ {{ &t_0 + [-20..16] }}
+  u_0[0..19]# ∈ {1} or UNINITIALIZED repeated %8 
+  q ∈ {{ &u_0 + [-2..77] }}
+[eva:final-states] Values at end of function main11:
+  p ∈ {{ &TU + [40..200] }}
+  off ∈ [0..100]
+  len ∈ [50..100]
+  q ∈ {{ &TC + [10..298],2%4 }}
+[eva:final-states] Values at end of function main2:
+  u[0].a ∈ {0; 1}
+   [0].b ∈ {0; 2; 4}
+   [1].a ∈ {0; 1; 3}
+   [1].b ∈ {0; 2; 4}
+   [2].a ∈ {0; 1; 3}
+   [2].b ∈ {0; 2; 4}
+   [3].a ∈ {0; 1; 3}
+   [3].b ∈ {0; 2; 4}
+   [4].a ∈ {0; 1; 3}
+   [4].b ∈ {0; 2}
+  p ∈ {{ &u{[0], [1], [2], [3], [4]} }}
+  q ∈ {{ (ts *)&u{[0].b, [1].b, [2].b, [3].b, [4].b} }}
+  r ∈ {{ (ts *)&u{[0].b, [1].b, [2].b, [3].b} }}
+  s ∈ {{ (ts *)&u{[0].b, [1].b, [2].b, [3].b} }}
+[eva:final-states] Values at end of function main3:
+  p ∈ {{ (int *)&t{[0], [1], [2], [3], [4]} }}
+  q ∈ {{ (int *)&c2 }}
+[eva:final-states] Values at end of function main4:
+  c1 ∈ [--..--]
+  c2 ∈ [--..--]
+  c3 ∈ [--..--]
+  c4 ∈ [--..--]
+  p ∈ {{ (int *)&t }}
+  q ∈ {{ &u[0] }}
+[eva:final-states] Values at end of function main5:
+  q ∈ {{ &y }}
+  p ∈ {0}
+  r ∈ {{ &y }} or UNINITIALIZED
+[eva:final-states] Values at end of function main6:
+  S_f1_0_S_vs[0] ∈ {1}
+             [1] ∈ [--..--]
+[eva:final-states] Values at end of function main7:
+  p ∈ {{ &t7_2 + [20..38996],0%4 }}
+[eva:final-states] Values at end of function main8:
+  tp[0] ∈ {{ &t8_1[0] }}
+    [1] ∈ {{ &t8_1 + [0..17179869180],0%4 }}
+    [2] ∈ {{ &t8_2 + [0..17179869180],0%4 }}
+    [3] ∈ {{ &t8_1 + [0..17179869180],0%4 ; &t8_2 + [0..17179869180],0%4 }}
+  p ∈ {{ &tp[0] }}
+[eva:final-states] Values at end of function main9:
+  tc[0..58] ∈ {1} or UNINITIALIZED
+    [59..98] ∈ UNINITIALIZED
+    [99..157] ∈ {2} or UNINITIALIZED
+  p ∈ {{ &tc + [-8..50] }}
+[eva:final-states] Values at end of function main12:
+  x ∈ {17; 18; 19; 20; 21} or UNINITIALIZED
+  y ∈ {16}
+  a[0..4] ∈ [--..--] or UNINITIALIZED
+  p ∈ {{ &x ; &a + [0..16] }}
+  q ∈ {{ &x ; &a + [0..16] }}
+  r ∈ {{ &x ; &a + [0..16] }}
+[eva:final-states] Values at end of function main:
+  t[0..2] ∈ {0}
+   [3] ∈ {0; 1}
+   [4] ∈ {1}
+  u[0].a ∈ {0; 1}
+   [0].b ∈ {0; 2; 4}
+   [1].a ∈ {0; 1; 3}
+   [1].b ∈ {0; 2; 4}
+   [2].a ∈ {0; 1; 3}
+   [2].b ∈ {0; 2; 4}
+   [3].a ∈ {0; 1; 3}
+   [3].b ∈ {0; 2; 4}
+   [4].a ∈ {0; 1; 3}
+   [4].b ∈ {0; 2}
+  S_f1_0_S_vs[0] ∈ {1}
+             [1] ∈ [--..--]
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main10
+[from] Done for function main10
+[from] Computing for function main11
+[from] Done for function main11
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main3
+[from] Done for function main3
+[from] Computing for function main4
+[from] Done for function main4
+[from] Computing for function main5
+[from] Done for function main5
+[from] Computing for function main6
+[from] Done for function main6
+[from] Computing for function main7
+[from] Done for function main7
+[from] Computing for function main8
+[from] Done for function main8
+[from] Computing for function main9
+[from] Done for function main9
+[from] Computing for function main12
+[from] Computing for function garbled_mix <-main12
+[from] Done for function garbled_mix
+[from] Computing for function reduced_garbled_mix <-main12
+[from] Done for function reduced_garbled_mix
+[from] Done for function main12
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function garbled_mix:
+  \result FROM p
+[from] Function main1:
+  t[3] FROM v (and SELF)
+   [4] FROM v
+[from] Function main10:
+  NO EFFECTS
+[from] Function main11:
+  NO EFFECTS
+[from] Function main2:
+  u[0..4] FROM v (and SELF)
+[from] Function main3:
+  NO EFFECTS
+[from] Function main4:
+  NO EFFECTS
+[from] Function main5:
+  NO EFFECTS
+[from] Function main6:
+  S_f1_0_S_vs[0] FROM p; S_vs[0]
+[from] Function main7:
+  NO EFFECTS
+[from] Function main8:
+  NO EFFECTS
+[from] Function main9:
+  NO EFFECTS
+[from] Function reduced_garbled_mix:
+  \result FROM p
+[from] Function main12:
+  NO EFFECTS
+[from] Function main:
+  t[3] FROM v (and SELF)
+   [4] FROM v
+  u[0..4] FROM v (and SELF)
+  S_f1_0_S_vs[0] FROM vs; S_vs[0]
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    t[3..4]; p; q
+[inout] Inputs for function main1:
+    v
+[inout] Out (internal) for function main10:
+    t_0[0..39]; p; u_0[0..19]; q
+[inout] Inputs for function main10:
+    sv
+[inout] Out (internal) for function main11:
+    p; off; len; q
+[inout] Inputs for function main11:
+    v
+[inout] Out (internal) for function main2:
+    u[0..4]; p; q; r; s
+[inout] Inputs for function main2:
+    v
+[inout] Out (internal) for function main3:
+    p; q
+[inout] Inputs for function main3:
+    \nothing
+[inout] Out (internal) for function main4:
+    c1; c2; c3; c4; p; q
+[inout] Inputs for function main4:
+    \nothing
+[inout] Out (internal) for function main5:
+    q; p; r; x
+[inout] Inputs for function main5:
+    v
+[inout] Out (internal) for function main6:
+    S_f1_0_S_vs[0]
+[inout] Inputs for function main6:
+    S_vs[0]
+[inout] Out (internal) for function main7:
+    p
+[inout] Inputs for function main7:
+    v
+[inout] Out (internal) for function main8:
+    tp[0..3]; p
+[inout] Inputs for function main8:
+    v
+[inout] Out (internal) for function main9:
+    tc{[0..58]; [99..157]}; p
+[inout] Inputs for function main9:
+    v
+[inout] Out (internal) for function main12:
+    x; y; a[0..4]; p; tmp; q; tmp_0; r; tmp_1; tmp_2
+[inout] Inputs for function main12:
+    v
+[inout] Out (internal) for function main:
+    t[3..4]; u[0..4]; S_f1_0_S_vs[0]
+[inout] Inputs for function main:
+    v; sv; vs; S_vs[0]

@@ -1,0 +1,169 @@
+[kernel] Parsing undefined_sequence2.i (no preprocessing)
+[kernel] undefined_sequence2.i:11: Warning: 
+  Unspecified sequence with side effect:
+  /* *x <- x */
+  tmp = 0;
+  *x = tmp;
+  /* *x <- x */
+  tmp_0 = 0;
+  *x = tmp_0;
+[kernel] undefined_sequence2.i:18: Warning: 
+  Unspecified sequence with side effect:
+  /* i <-  */
+  i ++;
+  /* i <-  */
+  i ++;
+[kernel] undefined_sequence2.i:26: Warning: 
+  Unspecified sequence with side effect:
+  /*  <-  */
+  tmp = i;
+  /* i <-  */
+  i ++;
+  /* a[tmp] <- tmp i */
+  a[tmp] = i;
+[kernel] undefined_sequence2.i:34: Warning: 
+  Unspecified sequence with side effect:
+  /* *x <- x */
+  tmp = 0;
+  *x = tmp;
+  /* *y <- y */
+  tmp_0 = 0;
+  *y = tmp_0;
+[kernel] undefined_sequence2.i:47: Warning: 
+  Unspecified sequence with side effect:
+  /* *x <- x */
+  tmp = 0;
+  *x = tmp;
+  /* *y <- y */
+  tmp_0 = 0;
+  *y = tmp_0;
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a[0..1] ∈ {0}
+  foo ∈ [--..--]
+[eva] computing for function multiple_update_wrong_1 <- main.
+  Called from undefined_sequence2.i:56.
+[eva:alarm] undefined_sequence2.i:11: Warning: 
+  undefined multiple accesses in expression. assert \separated(x, x);
+[eva] Recording results for multiple_update_wrong_1
+[eva] Done for function multiple_update_wrong_1
+[eva] computing for function multiple_update_wrong_2 <- main.
+  Called from undefined_sequence2.i:58.
+[eva:alarm] undefined_sequence2.i:18: Warning: 
+  undefined multiple accesses in expression. assert \separated(&i, &i);
+[eva] Recording results for multiple_update_wrong_2
+[eva] Done for function multiple_update_wrong_2
+[eva] computing for function multiple_update_wrong_3 <- main.
+  Called from undefined_sequence2.i:60.
+[eva:alarm] undefined_sequence2.i:26: Warning: 
+  undefined multiple accesses in expression. assert \separated(&i, &i);
+[eva] Recording results for multiple_update_wrong_3
+[eva] Done for function multiple_update_wrong_3
+[eva] computing for function multiple_update_unsafe <- main.
+  Called from undefined_sequence2.i:62.
+[eva] Recording results for multiple_update_unsafe
+[eva] Done for function multiple_update_unsafe
+[eva] undefined_sequence2.i:62: Frama_C_show_each_passed4:
+[eva] computing for function multiple_update_unsafe <- main.
+  Called from undefined_sequence2.i:64.
+[eva:alarm] undefined_sequence2.i:34: Warning: 
+  undefined multiple accesses in expression. assert \separated(x, y);
+[eva] Recording results for multiple_update_unsafe
+[eva] Done for function multiple_update_unsafe
+[eva] computing for function multiple_update_safe <- main.
+  Called from undefined_sequence2.i:66.
+[eva] Recording results for multiple_update_safe
+[eva] Done for function multiple_update_safe
+[eva] undefined_sequence2.i:66: Frama_C_show_each_passed6:
+[eva] computing for function multiple_update_safe <- main.
+  Called from undefined_sequence2.i:68.
+[eva] Recording results for multiple_update_safe
+[eva] Done for function multiple_update_safe
+[eva] undefined_sequence2.i:68: Frama_C_show_each_passed7:
+[eva] Recording results for main
+[eva] done for function main
+[eva] undefined_sequence2.i:11: 
+  assertion 'Eva,separation' got final status invalid.
+[eva] undefined_sequence2.i:18: 
+  assertion 'Eva,separation' got final status invalid.
+[eva] undefined_sequence2.i:26: 
+  assertion 'Eva,separation' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function multiple_update_safe:
+  b ∈ {0}
+  c ∈ {0}
+  __retres ∈ {0}
+[eva:final-states] Values at end of function multiple_update_unsafe:
+  b ∈ {0}
+  c ∈ {0}
+  __retres ∈ {0}
+[eva:final-states] Values at end of function multiple_update_wrong_1:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function multiple_update_wrong_2:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function multiple_update_wrong_3:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  b ∈ {0}
+  c ∈ {0}
+  __retres ∈ {0}
+[from] Computing for function multiple_update_safe
+[from] Done for function multiple_update_safe
+[from] Computing for function multiple_update_unsafe
+[from] Done for function multiple_update_unsafe
+[from] Computing for function multiple_update_wrong_1
+[from] Non-terminating function multiple_update_wrong_1 (no dependencies)
+[from] Done for function multiple_update_wrong_1
+[from] Computing for function multiple_update_wrong_2
+[from] Non-terminating function multiple_update_wrong_2 (no dependencies)
+[from] Done for function multiple_update_wrong_2
+[from] Computing for function multiple_update_wrong_3
+[from] Non-terminating function multiple_update_wrong_3 (no dependencies)
+[from] Done for function multiple_update_wrong_3
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function multiple_update_safe:
+  b FROM x; y (and SELF)
+  c FROM x; y (and SELF)
+  \result FROM x; y
+[from] Function multiple_update_unsafe:
+  b FROM x
+  c FROM y
+  \result FROM \nothing
+[from] Function multiple_update_wrong_1:
+  NON TERMINATING - NO EFFECTS
+[from] Function multiple_update_wrong_2:
+  NON TERMINATING - NO EFFECTS
+[from] Function multiple_update_wrong_3:
+  NON TERMINATING - NO EFFECTS
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function multiple_update_safe:
+    tmp; tmp_0; b; c; __retres
+[inout] Inputs for function multiple_update_safe:
+    \nothing
+[inout] Out (internal) for function multiple_update_unsafe:
+    tmp; tmp_0; b; c; __retres
+[inout] Inputs for function multiple_update_unsafe:
+    \nothing
+[inout] Out (internal) for function multiple_update_wrong_1:
+    \nothing
+[inout] Inputs for function multiple_update_wrong_1:
+    \nothing
+[inout] Out (internal) for function multiple_update_wrong_2:
+    \nothing
+[inout] Inputs for function multiple_update_wrong_2:
+    \nothing
+[inout] Out (internal) for function multiple_update_wrong_3:
+    \nothing
+[inout] Inputs for function multiple_update_wrong_3:
+    \nothing
+[inout] Out (internal) for function main:
+    b; c; __retres
+[inout] Inputs for function main:
+    foo

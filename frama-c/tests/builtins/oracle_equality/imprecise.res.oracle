@@ -1,0 +1,14 @@
+99a100,101
+> [kernel] imprecise.c:51: 
+>   imprecise size for variable v3 (abstract type 'struct u')
+220a223,224
+> [kernel] imprecise.c:111: 
+>   more than 200(300) elements to enumerate. Approximating.
+229,232d232
+< [eva:alarm] imprecise.c:116: Warning: assertion got status unknown.
+< [eva] Recording results for many_writes
+< [kernel] imprecise.c:111: 
+<   more than 200(300) elements to enumerate. Approximating.
+234a235,236
+> [eva:alarm] imprecise.c:116: Warning: assertion got status unknown.
+> [eva] Recording results for many_writes

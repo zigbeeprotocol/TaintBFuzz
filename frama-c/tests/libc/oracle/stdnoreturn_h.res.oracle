@@ -1,0 +1,23 @@
+[kernel] Parsing stdnoreturn_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] computing for function f <- main.
+  Called from stdnoreturn_h.c:18.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function g <- main.
+  Called from stdnoreturn_h.c:19.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function g:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  __retres ∈ {0}

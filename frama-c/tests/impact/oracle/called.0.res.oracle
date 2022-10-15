@@ -1,0 +1,25 @@
+[kernel] Parsing called.i (no preprocessing)
+[impact] beginning analysis
+[eva] Analyzing an incomplete application starting at g
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  X ∈ [--..--]
+[eva] computing for function f <- g.
+  Called from called.i:15.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] called.i:17: Reusing old results for call to f
+[eva] Recording results for g
+[eva] done for function g
+[pdg] computing for function g
+[from] Computing for function f
+[from] Done for function f
+[pdg] done for function g
+[pdg] computing for function f
+[pdg] done for function f
+[impact] impacted statements of stmt(s) 7 are:
+    called.i:8 (sid 1): X = x;called.i:8 (sid 3): return y;
+    called.i:15 (sid 8): c = f(a,b);called.i:16 (sid 9): d = X;
+    called.i:17 (sid 10): c = f(a,d);
+[impact] analysis done

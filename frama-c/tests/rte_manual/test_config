@@ -1,0 +1,3 @@
+PLUGIN: rtegen
+
+OPT: @RTE_TEST@ -then -print

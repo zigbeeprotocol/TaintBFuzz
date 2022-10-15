@@ -1,0 +1,79 @@
+%===============================================================================
+% Versions
+\section*{Versions}
+
+\begin{small}
+Seules les versions Vx.0 sont des documents achevés~;
+les autres sont à considérer comme des brouillons.
+
+\begin{enumerate}
+  \item[V4.0 -] 2 novembre 2020~:
+    \begin{itemize}
+    \item Document sous licence Creative Commons
+      ``Attribution-ShareAlike 4.0 International''
+      \url{https://creativecommons.org/licenses/by/4.0/}.
+    \end{itemize}
+  \item[V3.0 - ] 3 décembre 2008~:
+    \begin{itemize}
+      \item corrections mineures,
+      \item ajouts sur le \slicing des déclarations globales,
+      \item ajouts de la gestion des annotations.
+    \end{itemize}
+  \item[V2.0 - ] 26 juin 2007~:
+    \begin{itemize}
+      \item extraction de la documentation du PDG,
+      \item mise à jour vis à vis de l'état de l'outil,
+      \item fusion de la documentation sur l'interprocédural,
+      \item réorganisation de la partie sur l'interprocédural,
+      \item mise en annexe des projets non implémentés.
+    \end{itemize}
+  \item[V1.0 - ] 27 juin 2006~:
+    \begin{itemize}
+      \item ajout de la présentation du document,
+      \item ajout du chapitre "Utilisation" (manuel),
+      \item développement du calcul de certains ensembles sur les graphes de
+            dépendances,
+      \item mise à jour du chapitre sur l'interprocédural,
+      \item ajout d'une conclusion résumant l'état d'avancement des travaux.
+    \end{itemize}
+  \item[V0.2 - ] 27 avril 2006~:
+    \begin{itemize}
+      \item réorganisation de la définition des ensembles d'instructions,
+      \item corrections diverses.
+    \end{itemize}
+  \item[V0.1 - ] 22 février 2006~:
+    \begin{itemize}
+      \item bibliographie sur le \slicing,
+      \item analyse du document \cite{baudinImpact},
+      \item ce qu'on prévoit de faire,
+      \item premiers éléments sur la construction de graphe de dépendances,
+      \item intégration et tri des fichiers de l'ancien document (FLD),
+      \item algorithme de calcul des dépendances de contrôle.
+    \end{itemize}
+\end{enumerate}
+\end{small}
+%-------------------------------------------------------------------------------
+% Table des matières
+\cleardoublepage
+\tableofcontents
+%===============================================================================
+\cleardoublepage\input{intro.tex}
+\cleardoublepage\input{fonction.tex}
+\cleardoublepage\input{interproc.tex}
+\cleardoublepage\input{man.tex}
+\cleardoublepage\input{conclusion.tex}
+%===============================================================================
+\appendix
+%--------------------------------------
+\cleardoublepage \input{algo.tex}
+\cleardoublepage \input{interexples.tex}
+\cleardoublepage \input{intercmds.tex}
+\cleardoublepage \input{projets.tex}
+%-------------------------------------------------------------------------------
+\cleardoublepage
+\bibliographystyle{abbrvnat}
+\bibliography{bib-slicing}
+%--------------------------------------
+\cleardoublepage
+\printindex
+%===============================================================================

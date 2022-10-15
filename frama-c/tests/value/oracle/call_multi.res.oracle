@@ -1,0 +1,54 @@
+[kernel] Parsing call_multi.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+[eva] computing for function uppol2 <- main.
+  Called from call_multi.i:29.
+[eva] call_multi.i:23: Frama_C_show_each_GOT: {128}
+[eva] Recording results for uppol2
+[eva] Done for function uppol2
+[eva] computing for function uppol2 <- main.
+  Called from call_multi.i:30.
+[eva] call_multi.i:23: Frama_C_show_each_GOT: {128}
+[eva] Recording results for uppol2
+[eva] Done for function uppol2
+[eva] computing for function uppol2 <- main.
+  Called from call_multi.i:31.
+[eva] call_multi.i:23: Frama_C_show_each_GOT: {-128}
+[eva] Recording results for uppol2
+[eva] Done for function uppol2
+[eva] computing for function uppol2 <- main.
+  Called from call_multi.i:32.
+[eva] call_multi.i:23: Frama_C_show_each_GOT: {128}
+[eva] Recording results for uppol2
+[eva] Done for function uppol2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function uppol2:
+  wd2 ∈ {0}
+  wd4 ∈ {-128; 128}
+  apl2 ∈ {-128; 128}
+[eva:final-states] Values at end of function main:
+  G ∈ {256}
+[from] Computing for function uppol2
+[from] Done for function uppol2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function uppol2:
+  \result FROM al1; al2; plt; plt1; plt2
+[from] Function main:
+  G FROM G
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function uppol2:
+    wd2; wd4; apl2
+[inout] Inputs for function uppol2:
+    \nothing
+[inout] Out (internal) for function main:
+    G; tmp; tmp_0; tmp_1; tmp_2
+[inout] Inputs for function main:
+    G

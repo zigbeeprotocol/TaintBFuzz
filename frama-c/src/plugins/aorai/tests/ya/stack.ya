@@ -1,0 +1,30 @@
+%init: init;
+%accept: accept;
+%deterministic;
+
+$n : int;
+
+init:
+  { CALL(main) } $n := 0; -> empty_stack
+;
+
+empty_stack:
+  { RETURN(main) } -> accept
+| { CALL(push) } -> filling_stack
+;
+
+filling_stack:
+  { RETURN(push) } $n := $n + 1; -> filled_stack
+;
+
+filled_stack:
+  { CALL(push) } -> filling_stack
+| { CALL(pop) && $n > 0 } -> emptying_stack
+;
+
+emptying_stack:
+  { RETURN(pop) && $n > 1 } $n := $n - 1; -> filled_stack
+| { RETURN(pop) && $n == 1 } $n := $n - 1; -> empty_stack
+;
+
+accept: -> accept;

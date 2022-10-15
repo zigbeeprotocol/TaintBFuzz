@@ -1,0 +1,3 @@
+[kernel] Parsing other.c (with preprocessing)
+[kernel] Parsing TMPDIR/aorai_other_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

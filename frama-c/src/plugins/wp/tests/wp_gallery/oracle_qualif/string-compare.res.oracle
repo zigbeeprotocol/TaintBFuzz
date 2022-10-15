@@ -1,0 +1,90 @@
+# frama-c -wp [...]
+[kernel] Parsing string-compare.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] [CFG] Goal stringCompare_exits_never : Valid (Unreachable)
+[wp] [CFG] Goal stringLength_exits_never : Valid (Unreachable)
+[wp] 52 goals scheduled
+[wp] [Qed] Goal typed_stringCompare_complete_SomeDifferent_allEqual : Valid
+[wp] [Qed] Goal typed_stringCompare_disjoint_SomeDifferent_allEqual : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_equal_preserved : Valid
+[wp] [Qed] Goal typed_stringCompare_loop_invariant_equal_established : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_gauge_preserved : Valid
+[wp] [Qed] Goal typed_stringCompare_loop_invariant_gauge_established : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_gauge_s1_preserved : Valid
+[wp] [Qed] Goal typed_stringCompare_loop_invariant_gauge_s1_established : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_gauge_s2_preserved : Valid
+[wp] [Qed] Goal typed_stringCompare_loop_invariant_gauge_s2_established : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_not_eos_preserved : Valid
+[wp] [Qed] Goal typed_stringCompare_loop_invariant_not_eos_established : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_strlen_s1_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_strlen_s1_established : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_strlen_s2_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_loop_invariant_strlen_s2_established : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_assert_length : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_assert_different : Valid
+[wp] [Qed] Goal typed_stringCompare_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_stringCompare_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_stringCompare_loop_assigns_part3 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part1 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part2 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part3 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part4 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part5 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part6 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part7 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part8 : Valid
+[wp] [Qed] Goal typed_stringCompare_assigns_part9 : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_allEqual_ensures : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_SomeDifferent_ensures : Valid
+[wp] [Alt-Ergo] Goal typed_stringLength_ensures_rightResult : Valid
+[wp] [Alt-Ergo] Goal typed_stringLength_ensures_rightEndCharacter : Valid
+[wp] [Alt-Ergo] Goal typed_stringLength_loop_invariant_preserved : Valid
+[wp] [Qed] Goal typed_stringLength_loop_invariant_established : Valid
+[wp] [Alt-Ergo] Goal typed_stringLength_loop_invariant_2_preserved : Valid
+[wp] [Qed] Goal typed_stringLength_loop_invariant_2_established : Valid
+[wp] [Qed] Goal typed_stringLength_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_stringLength_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_stringLength_assigns_part1 : Valid
+[wp] [Qed] Goal typed_stringLength_assigns_part2 : Valid
+[wp] [Qed] Goal typed_stringLength_assigns_part3 : Valid
+[wp] [Qed] Goal typed_stringLength_assigns_part4 : Valid
+[wp] [Qed] Goal typed_stringLength_assigns_part5 : Valid
+[wp] [Alt-Ergo] Goal typed_main_ensures : Valid
+[wp] [Qed] Goal typed_main_exits_never : Valid
+[wp] [Qed] Goal typed_main_assert : Valid
+[wp] [Qed] Goal typed_main_assigns_exit : Valid
+[wp] [Qed] Goal typed_main_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_main_assigns_normal_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_main_call_stringCompare_requires_validStrings : Valid
+[wp] Proved goals:   54 / 54
+  Qed:            33 
+  Alt-Ergo:       19
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  stringCompare            19       13       32       100%
+  stringLength              9        4       13       100%
+  main                      5        2        7       100%
+------------------------------------------------------------
+[wp] Running WP plugin...
+[rte:annot] annotating function main
+[rte:annot] annotating function stringCompare
+[rte:annot] annotating function stringLength
+[wp] 8 goals scheduled
+[wp] [Alt-Ergo] Goal typed_stringCompare_assert_rte_mem_access : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_assert_rte_mem_access_2 : Valid
+[wp] [Qed] Goal typed_stringCompare_assert_rte_mem_access_3 : Valid
+[wp] [Qed] Goal typed_stringCompare_assert_rte_mem_access_4 : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_assert_rte_mem_access_5 : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_assert_rte_signed_overflow : Valid
+[wp] [Alt-Ergo] Goal typed_stringCompare_assert_rte_signed_overflow_2 : Valid
+[wp] [Alt-Ergo] Goal typed_stringLength_assert_rte_mem_access : Valid
+[wp] Proved goals:    8 / 8
+  Qed:             2 
+  Alt-Ergo:        6
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  stringCompare            21       18       39       100%
+  stringLength              9        5       14       100%
+  main                      5        2        7       100%
+------------------------------------------------------------

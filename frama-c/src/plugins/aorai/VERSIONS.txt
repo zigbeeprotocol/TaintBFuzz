@@ -1,0 +1,26 @@
+2010/08/09 - r9618 -
+ * Features :
+   # Finallize the generalisation of use of states name instead of their number in the annotated C code generated.
+   # Prune the states and transitions in an operation post-condition according to the existence of a path that make it reachable (Using Dijkstra).
+   # Add state number in the DOT trace
+   
+ * BUGS : 
+   # Check if a state reached by a transition in a YA property is declared
+   # Accept negative constants in properties
+  
+2010/04/14 - r8437 
+ * Feature :
+   # Improvement of the YA language : parameters of a function and its return value can now be accessed to describe the property. The syntax is :
+      + opName().result to acces the returned value of opName. It implies RETURN(opName).
+      + opName().a to acces the a parameter value of opName. It implies CALL(opName).
+  
+2010/??/?? - r? -
+ * Features :
+   # If a state/transition is never reach/crossed, then it is removed from the automata and another pre/post propagation is done.
+   # If an operation has no reachable state, then display a message.
+
+2010/08/?? - r? -
+ * Feature :
+   # Do not generates assumes clause, if there is only one behavior.
+
+

@@ -1,0 +1,45 @@
+[kernel] Parsing bug0245.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  R ∈ {0}
+  p ∈ {0}
+  S ∈ {0}
+  q ∈ {0}
+[eva:locals-escaping] bug0245.i:20: Warning: 
+  locals {v} escaping the scope of a block of main through q
+[eva:locals-escaping] bug0245.i:20: Warning: 
+  locals {u} escaping the scope of a block of main through p
+[eva:alarm] bug0245.i:23: Warning: 
+  accessing left-value that contains escaping addresses.
+  assert ¬\dangling(&p);
+[eva:alarm] bug0245.i:24: Warning: 
+  accessing left-value that contains escaping addresses.
+  assert ¬\dangling(&q);
+[eva] Recording results for main
+[eva] done for function main
+[eva] bug0245.i:23: assertion 'Eva,dangling_pointer' got final status invalid.
+[eva] bug0245.i:24: assertion 'Eva,dangling_pointer' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  R ∈ {0}
+  p ∈ ESCAPINGADDR
+  S ∈ {0}
+  q ∈ ESCAPINGADDR
+  a ∈ {2}
+  i ∈ {2}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  R FROM c (and SELF)
+  p FROM \nothing
+  S FROM d (and SELF)
+  q FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    R; p; S; q; a; i; u; v
+[inout] Inputs for function main:
+    p; q

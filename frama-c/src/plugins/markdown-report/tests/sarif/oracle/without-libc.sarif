@@ -1,0 +1,84 @@
+{
+  "$schema":
+    "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "frama-c",
+          "fullName": "frama-c-0+omitted-for-deterministic-output",
+          "version": "0+omitted-for-deterministic-output",
+          "downloadUri": "https://frama-c.com/download.html",
+          "informationUri": "https://frama-c.com"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine":
+            "frama-c -journal-disable -check -no-autoload-plugins -add-symbolic-path :. -load-module=eva,from,scope,markdown_report -eva -eva-no-results -mdr-gen sarif -mdr-sarif-deterministic libc.c -mdr-no-print-libc -mdr-out ./without-libc.sarif",
+          "arguments": [
+            "-journal-disable", "-check", "-no-autoload-plugins",
+            "-add-symbolic-path", ":.",
+            "-load-module=eva,from,scope,markdown_report", "-eva",
+            "-eva-no-results", "-mdr-gen", "sarif",
+            "-mdr-sarif-deterministic", "libc.c", "-mdr-no-print-libc",
+            "-mdr-out", "./without-libc.sarif"
+          ],
+          "exitCode": 0,
+          "executionSuccessful": true
+        }
+      ],
+      "originalUriBaseIds": {
+        ".": { "uri": "file:///omitted-for-deterministic-output/" },
+        "PWD": { "uri": "file:///omitted-for-deterministic-output/" }
+      },
+      "artifacts": [
+        {
+          "location": { "uri": "libc.c", "uriBaseId": "PWD" },
+          "roles": [ "analysisTarget" ],
+          "mimeType": "text/x-csrc"
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "user-spec",
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "specialization of valid_string_s at stmt 2."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "libc.c", "uriBaseId": "PWD" },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 10,
+                  "endLine": 13,
+                  "endColumn": 19,
+                  "byteLength": 9
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "defaultSourceLanguage": "C",
+      "taxonomies": [
+        {
+          "name": "frama-c",
+          "rules": [
+            {
+              "id": "user-spec",
+              "shortDescription": {
+                "text": "User-written ACSL specification."
+              }
+            }
+          ],
+          "contents": [ "nonLocalizedData" ]
+        }
+      ]
+    }
+  ]
+}

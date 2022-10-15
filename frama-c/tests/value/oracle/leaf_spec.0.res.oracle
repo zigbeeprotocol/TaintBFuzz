@@ -1,0 +1,74 @@
+[kernel] Parsing leaf_spec.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[kernel:annot:missing-spec] leaf_spec.i:19: Warning: 
+  Neither code nor specification for function f1, generating default assigns from the prototype
+[eva] computing for function f1 <- main.
+  Called from leaf_spec.i:19.
+[eva] using specification for function f1
+[eva] Done for function f1
+[kernel:annot:missing-spec] leaf_spec.i:20: Warning: 
+  Neither code nor specification for function g, generating default assigns from the prototype
+[eva] computing for function g <- main.
+  Called from leaf_spec.i:20.
+[eva] using specification for function g
+[eva] Done for function g
+[kernel:annot:missing-spec] leaf_spec.i:21: Warning: 
+  Neither code nor specification for function h, generating default assigns from the prototype
+[eva] computing for function h <- main.
+  Called from leaf_spec.i:21.
+[eva] using specification for function h
+[eva] Done for function h
+[kernel:annot:missing-spec] leaf_spec.i:22: Warning: 
+  Neither code nor specification for function k, generating default assigns from the prototype
+[eva] computing for function k <- main.
+  Called from leaf_spec.i:22.
+[eva] using specification for function k
+[eva:invalid-assigns] leaf_spec.i:22: 
+  Completely invalid destination for assigns clause *l. Ignoring.
+[eva] Done for function k
+[kernel:annot:missing-spec] leaf_spec.i:22: Warning: 
+  Neither code nor specification for function k0, generating default assigns from the prototype
+[eva] computing for function k0 <- main.
+  Called from leaf_spec.i:22.
+[eva] using specification for function k0
+[eva] Done for function k0
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  
+[from] Computing for function main
+[from] Computing for function f1 <-main
+[from] Done for function f1
+[from] Computing for function g <-main
+[from] Done for function g
+[from] Computing for function h <-main
+[from] Done for function h
+[from] Computing for function k <-main
+[from] Done for function k
+[from] Computing for function k0 <-main
+[from] Done for function k0
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f1:
+  NO EFFECTS
+[from] Function g:
+  \result FROM x
+[from] Function h:
+  \result FROM y
+[from] Function k:
+  \result FROM \nothing
+[from] Function k0:
+  \result FROM \nothing
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    \nothing
+[inout] Inputs for function main:
+    \nothing

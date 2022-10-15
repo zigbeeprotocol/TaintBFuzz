@@ -1,0 +1,960 @@
+%; whizzy-master "developpeur.tex"
+
+\chapter{Reference Manual}\label{chap:refman}
+
+\begin{target}
+Developers who would like to have a deep understanding of \framac.
+\end{target}
+
+This chapter is a reference manual for \framac developers. It provides details
+completing the previous chapters.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Configure.in} \label{refman:configure}\codeidxdef{configure.in}
+
+Figure~\ref{fig:configure-sections} presents the different parts of
+\texttt{configure.in} in the order in which they are introduced in the file. The
+second column of the table indicates whether the given part might need
+to be modified by a kernel-integrated plug-in
+developer\index{Plug-in!Kernel-integrated}. More details are provided below.
+\begin{figure}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Id} & \textbf{Name} & \textbf{Mod.} & \textbf{Reference} \\
+\hline \hline
+1 & Configuration of \make & no & \\
+2 & Configuration of \caml & no & \\
+3 & Configuration of mandatory tools/libraries & no & \\
+4 & Configuration of non-mandatory tools/libraries & no & \\
+5 & Platform configuration & no & \\
+6 & Wished \framac plug-in & \textbf{yes} &  Sections~\ref{conf:add}
+and~\ref{conf:dep-lib}\\
+7 & Configuration of plug-in tools/libraries & \textbf{yes} & Section~\ref{conf:lib} \\
+8 & Checking plug-in dependencies & \textbf{yes} & Section~\ref{conf:dep-plug} \\
+9 & Makefile creation & \textbf{yes} & Section~\ref{conf:add} \\
+10 & Summary & \textbf{yes} & Section~\ref{conf:add} \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Sections of \texttt{configure.in}.}\label{fig:configure-sections}
+\end{figure}
+\begin{enumerate}
+\item \textbf{Configuration of \make} checks whether the version of \make is
+  correct. Some useful option is \texttt{--enable-verbosemake} (resp.
+  \texttt{--disable-verbosemake}) which set (resp. unset) the verbose mode for
+  make. In verbose mode, full make commands are displayed on the user console:
+  it is useful for debugging the makefile. In non-verbose mode, only command
+  shortcuts are displayed for user readability.
+\item \textbf{Configuration of \caml} checks whether the version of \caml is
+  correct.
+\item \textbf{Configuration of other mandatory tools/libraries} checks
+  whether all the external mandatory tools and libraries required by the
+  \framac kernel are
+  present.\index{Library!Configuration}\index{Tool!Configuration}
+\item \textbf{Configuration of other non-mandatory tools/libraries} checks
+  which external non-mandatory tools and libraries used by the \framac kernel
+  are present.\index{Library!Configuration}\index{Tool!Configuration}
+\item \textbf{Platform Configuration} sets the necessary platform
+  characteristics (operating system, specific features of \gcc, \emph{etc}) for
+  compiling \framac.\index{Platform}
+\item \textbf{Wished \framac Plug-ins} sets which \framac plug-ins the user wants
+  to compile.\index{Plug-in!Wished}
+\item \textbf{Configuration of plug-in tools/libraries} checks the
+  availability of external tools and libraries required by plug-ins for
+  compilation and
+  execution.\index{Library!Configuration}\index{Tool!Configuration}
+\item \textbf{Checking Plug-in Dependencies} sets which plug-ins have to be
+  disabled (at least partially) because they depend on others plug-ins which are
+  not available (at least partially).\index{Plug-in!Dependency}
+\item \textbf{Makefile Creation} creates \texttt{Makefile.config} from
+  \texttt{Makefile.config.in}\codeidx{Makefile.config} including information
+  provided by this configuration.
+\item \textbf{Summary} displays summary of each plug-in availability.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Makefiles}\label{refman:make}\codeidxdef{Makefile}
+
+In this section, we detail the organization of the different Makefiles existing
+in \framac. First Section~\ref{make:overview} presents a general overview. Next
+Section~\ref{make:sections} details the different sections of
+\texttt{Makefile.config.in}, \texttt{Makefile.common},
+\texttt{Makefile.generic}, \texttt{Makefile.generating} and
+\texttt{Makefile}. Next Section~\ref{make:plugin} introduces the variables
+customizing \texttt{Makefile.dynamic}. Finally
+Section~\ref{make:dynamic} shows specific details of \texttt{Makefile.dynamic}.
+
+\subsection{Overview}\label{make:overview}
+
+\framac uses different Makefiles (plus the plug-in specific ones). They are:
+\begin{itemize}
+\item \texttt{Makefile}\codeidxdef{Makefile}: the general Makefile of
+  \framac;
+\item \texttt{Makefile.generating}\codeidxdef{Makefile.generating}:
+  it contains the complex rules that generate files. It is not
+  directly in the general Makefile in order to reduce the dependencies
+  of these rules to \texttt{Makefile.generating};
+\item \texttt{Makefile.config.in}\codeidxdef{Makefile.config.in}: the Makefile
+  configuring some general variables (especially the ones coming from
+  \texttt{configure});
+\item \texttt{Makefile.common}\codeidxdef{Makefile.common}: the Makefile
+  providing some other general variables;
+\item \texttt{Makefile.generic}\codeidxdef{Makefile.generic}: the Makefile
+  providing generic rules for compiling source files
+\item
+  \texttt{.Makefile.plugin.generated}\codeidxdef{.Makefile.plugin.generated}:
+  the Makefile introducing specific stuff for plug-in compilation which is
+  generated from
+  \texttt{Makefile.plugin.template}\codeidxdef{Makefile.plugin.template};
+\item \texttt{Makefile.dynamic}\codeidxdef{Makefile.dynamic}: the Makefile
+  usable by plug-in specific Makefiles.
+\item \texttt{Makefile.dynamic\_config}\codeidxdef{Makefile.dynamic\_config}:
+  this Makefile is automatically generated either from
+  \texttt{Makefile.dynamic\_config.internal}%
+  \codeidxdef{Makefile.dynamic\_config.internal} or
+  \texttt{Makefile.dynamic\_config.external}%
+  \codeidxdef{Makefile.dynamic\_config.external}. It sets variables which
+  automatically configure \texttt{Makefile.dynamic}.
+\item \texttt{Makefile.clean}\codeidxdef{Makefile.clean} contains specific
+  targets for cleaning which are separated from \texttt{Makefile} for
+  performance reasons.
+\item \texttt{.Makefile.user}\codeidxdef{.Makefile.user} is a per-user
+  Makefile that can be used to override some variables. If it is not present,
+  the default values of \texttt{Makefile} variables will be used.
+\end{itemize}
+\texttt{Makefile}\codeidxdef{Makefile} and
+\texttt{.Makefile.user}\codeidxdef{.Makefile.user} are part of the root
+directory of the \framac distribution while
+the other ones are part of directory \texttt{share}. Each Makefile either
+includes or is included into at least another one. Figure~\ref{fig:makefiles}
+shows these relationships.
+\begin{figure}[htbp]
+\codeidx{Makefile}
+\codeidx{Makefile.generating}
+\codeidx{Makefile.config.in}
+\codeidx{Makefile.plugin.generated}
+\codeidx{Makefile.dynamic}
+\begin{tikzpicture}[
+plugin/.style={fill=Orange,draw=Orange},
+generated/.style={fill=palered,draw=palered},
+kernel/.style={fill=darkgreen,draw=darkgreen},
+other/.style={fill=palered,draw=darkgreen},
+opt/.style={fill=palegreen,draw=palegreen},
+include/.style={-Latex,very thick,fill=none},
+generation/.style={-Latex,very thick,dashed,fill=none},
+]
+\begin{scope}[every node/.style={rounded corners,node font=\small}]
+  {[start chain=going right, node distance=\bigpaddelta]
+    \node[on chain,kernel,draw=black] (config)
+    { Makefile.config.in };
+    \node[on chain,kernel,draw=black] (dyn-internal)
+    { Makefile.dynamic\_config.internal};
+    \node[on chain,kernel,draw=black] (dyn-external)
+    { Makefile.dynamic\_config.external};
+  }
+  \coordinate[yshift=-\largepadding]
+  (common-basept) at ($(config.south west)!0.5!(dyn-internal.south east)$);
+  {[start chain=kernel-chain going below, node distance=\bigpaddelta]
+    \node[on chain,kernel,draw=black,anchor=north] at (common-basept)
+    (common) {Makefile.common};
+    \node[on chain,kernel,draw=black] (generic) {Makefile.generic};
+  }
+
+  \node[generated,draw=black,right=\largepadding]
+  at ($(kernel-chain-begin.north east)!0.5!(kernel-chain-end.south east)$)
+  (dyn) { Makefile.dynamic\_config };
+
+  {[start chain=main going right,node distance=\padding]
+    \node[on chain,kernel,draw=black,
+    below left=\largepadding and \padding]
+    at (kernel-chain-end.south west) (generating) { Makefile.generating };
+    \node[on chain,kernel,draw=black] (makefile) { Makefile };
+    \node[on chain] {\ldots};
+    \node[on chain,generated,draw=black]
+    (generated) {.Makefile.plugin.generated };
+    \node[on chain,kernel,draw=black,node distance=\bigpadding]
+    (dynamic) {Makefile.dynamic};
+  }
+  {[start chain=opt going left,node distance=\bigpaddelta]
+    \node[on chain,kernel,draw=black,anchor=north east,yshift=-\bigpadding]
+    at (generated.south east) (template) {Makefile.plugin.template};
+    \node[on chain,opt,draw=black] (clean) {Makefile.clean};
+    \node[on chain,opt,draw=black] (user) {.Makefile.user};
+  }
+  {[start chain=specific going right,node distance=\bigpaddelta]
+    \node[on chain,plugin,draw=black,anchor=north east,xshift=-\largepadding,yshift=-\largepadding]
+    at (opt-begin.south east) {Makefile for plug-in 1 };
+    \node[on chain] {\ldots};
+    \node[on chain,plugin,draw=black] {Makefile for plugin $n$};
+  }
+\end{scope}
+\matrix[anchor=north east,yshift=-\bigpadding,matrix of nodes,
+every node/.style={node font=\small,right}] at (specific-end.south east) {
+\textbf{Caption:} \\
+\node at(0,0) (m1) {$m_1$};
+\node at (\largepadding,0) (m2) {$m_2$};
+\draw[include] (m1) -- (m2);
+&
+Makefile $m_1$ is included in Makefile $m_2$
+\\
+\node at(0,0) (gm1) {$m_1$};
+\node at (\largepadding,0) (gm2) {$m_2$};
+\draw[generation] (gm1) -- (gm2);
+&
+ Makefile $m_2$ is generated from Makefile $m_1$ \\
+|[plugin,draw=none]| orange boxes & Plug-in Makefiles \\
+|[generated,draw=none]| red boxes & Generated Makefiles \\
+|[kernel,draw=none]| green boxes & Other kernel Makefiles \\
+|[opt,draw=none]| light green boxes & Optional kernel Makefiles \\
+};
+\draw[kernel,include] (config) -- (common);
+\draw[kernel,include] (dyn-internal) to[out=-60,in=20] (node cs:name=makefile,angle=60);
+\draw[generated,generation] (dyn-internal) -- (dyn);
+\draw [generated,generation] (dyn-external) -- (dyn);
+\draw[kernel,include] (common.west) to[out=200,in=135] (node cs:name=makefile,angle=170);
+\draw[kernel,include] (generic.west) to[out=200,in=120]
+ (node cs:name=makefile,angle=130);
+\draw[kernel,include] (common) -- (node cs:name=dynamic,angle=50);
+\draw[kernel,include] (generic) -- (node cs:name=dynamic,angle=120);
+\draw[kernel,include] (dyn) -- (node cs:name=dynamic,angle=20);
+\draw[kernel,include] (generating) -- (makefile);
+\draw[plugin,include,bend left] (generated.south west) to (makefile.south east);
+\draw[plugin,include,bend right] (generated.north west) to (makefile.north east);
+\draw[generated,generation] (template) -- (generated);
+\draw[kernel,include] (generated) -- (dynamic);
+\draw[plugin,include,bend left] (dynamic) to (node cs:name=specific-begin,angle=10);
+\draw[plugin,include] (dynamic) -- (specific-end);
+\draw[opt,include] (user) -- (makefile);
+\draw[opt,include] (clean) -- (makefile);
+\end{tikzpicture}
+\caption{Relationship between the Makefiles}\label{fig:makefiles}
+\end{figure}
+\texttt{Makefile} and \texttt{Makefile.dynamic} are independent: the first one
+is used to compile the \framac kernel while the second one is used to compile
+the \framac plug-ins. Their common variables are defined in
+\texttt{Makefile.common} (which includes
+\texttt{Makefile.config.in}). They also include \texttt{Makefile.generic},
+that defines default compilation rules for various kinds of source files.
+\texttt{Makefile.plugin.template} defines generic rules
+and variables for compiling plug-ins. It is used to generate
+\texttt{.Makefile.plugin.generated} for each plugin.
+\texttt{.Makefile.plugin.generated} is included either
+by \texttt{Makefile} for
+kernel-specific plug-ins integrated in \framac Makefile and by
+\texttt{Makefile.dynamic} for plug-ins with their own Makefiles.
+\texttt{.Makefile.user}\codeidxdef{.Makefile.user} is included by
+\texttt{Makefile} when the former exists. It is only used when compiling
+\framac itself, and has no effect for external plugins.
+
+\subsection{Sections of \texttt{Makefile},
+  \texttt{Makefile.generating},
+  \texttt{Makefile.config.in}, 
+  \texttt{Makefile.common} 
+  and \texttt{Makefile.generic}}
+\label{make:sections}
+\codeidxdef{Makefile}
+\codeidxdef{Makefile.generating}
+\codeidxdef{Makefile.config.in}
+\codeidxdef{Makefile.common}
+\codeidxdef{Makefile.generic}
+
+Figure~\ref{fig:make-sections} presents the different parts of
+\texttt{Makefile.config.in}, \texttt{Makefile.common},
+\texttt{Makefile.generic}, \texttt{Makefile.generating} and \texttt{Makefile} in
+the order that they are introduced in these files. The third row of the tabular
+says whether the given part may be modified by a kernel-integrated plug-in
+developer\index{Plug-in!Kernel-integrated}. More details are provided below.
+\begin{figure}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Id} & \textbf{Name} & \textbf{File} & \textbf{Mod.} &
+\textbf{Reference} \\
+\hline \hline
+1 & Working directories & Makefile.config.in & no & \\
+2 & Installation paths & Makefile.config.in & no & \\
+3 & Ocaml stuff & Makefile.config.in & no & \\
+4 & Libraries & Makefile.config.in & no & \\
+5 & Miscellaneous commands & Makefile.config.in & no & \\
+6 & Miscellaneous variables & Makefile.config.in & no & \\
+7 & Variables for plug-ins & Makefile.config.in & no & \\
+\hline
+1 (bis) & Working directories & Makefile.common & no & \\
+8 & Flags & Makefile.common & no & \\
+9 & Verbosing & Makefile.common & no & \\
+10 & Shell commands & Makefile.common & no & \\
+11 & Command pretty printing & Makefile.common & no & \\
+12 & Tests & Makefile.common & no & \\
+\hline
+13 & Generic rules & Makefile.generic & no & \\
+\hline
+14 & Source files generation & Makefile.generating & no & \\
+\hline
+15 & Global plug-in variables & Makefile & no & \\
+16 & Additional global variables & Makefile & no & \\
+17 & Main targets & Makefile & no & \\
+18 & Coverage & Makefile & no & \\
+19 & Ocamlgraph & Makefile & no & \\
+20 & \framac Kernel & Makefile & no & \\
+21 & Plug-in sections & Makefile & \textbf{yes} & Section~\ref{adv:make} \\
+22 & Generic variables & Makefile & no & \\
+23 & Toplevel & Makefile & no & \\
+24 & GUI & Makefile & no & \\
+25 & Standalone obfuscator & Makefile & no & \\
+26 & Tests & Makefile & no & \\
+27 & Emacs tags & Makefile & no & \\
+28 & Documentation & Makefile & no & \\
+29 & Installation & Makefile & \textbf{yes} & \todoshort \\
+30 & File headers: license policy & Makefile & \textbf{yes}
+ & % Section~\ref{adv:copyright}
+\\
+31 & Makefile rebuilding & Makefile & no & \\
+32 & Cleaning & Makefile & no & \\
+33 & Depend & Makefile & no & \\
+34 & \ptests & Makefile & no & \\
+35 & Source distribution & Makefile & no & \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Sections of \texttt{Makefile.config.in}, \texttt{Makefile.common} and
+ \texttt{Makefile}.}\label{fig:make-sections}
+\end{figure}
+\begin{enumerate}
+\item \textbf{Working directories} (split between
+  \texttt{Makefile.config.in} and \texttt{Makefile.common} defines the main
+  directories of \framac. In particular, it declares the variable
+  \texttt{FRAMAC\_SRC\_DIRS}\codeidxdef{FRAMAC\_SRC\_DIRS} which should be extended
+  by a plug-in developer if he uses files which do not belong to the plug-in
+  directory (that is if variable
+  \texttt{PLUGIN\_TYPES\_CMO}\codeidx{PLUGIN\_TYPES\_CMO} is set, see
+  Section~\ref{make:plugin}).
+\item \textbf{Installation paths} defines where \framac has to be installed.
+\item \textbf{Ocaml stuff} defines the \ocaml compilers and specific related
+  flags.
+\item \textbf{Libraries} defines variables for libraries required by \framac.
+\item \textbf{Miscellaneous commands} defines some additional commands.
+\item \textbf{Miscellaneous variables} defines some additional variables.
+\item \textbf{Variables for plug-ins} defines some variables used by plug-ins
+  distributed within \framac (and using the \texttt{configure} of \framac).
+\item \textbf{Flags} defines some variables setting compilation flags.
+\item \textbf{Verbosing} sets how \texttt{make} prints the command. In
+  particular, it defines the variable \texttt{VERBOSEMAKE}\codeidx{VERBOSEMAKE}
+  which must be set \texttt{yes} in order to see the full make commands in the
+  user console. The typical use is
+\begin{shell}
+$ make VERBOSEMAKE=yes
+\end{shell}
+\item \textbf{Shell commands} sets all the shell commands eventually executed
+  while calling \texttt{make}.
+\item \textbf{Command pretty printing} sets all the commands to be used for
+  pretty printing.
+\begin{example}
+Consider the following target \texttt{foo} in a plug-in specific Makefile.
+\codeidx{PRINT\_CP}\codeidx{CP}
+\begin{makefilecode}
+foo: bar
+	$(PRINT_CP) $@
+        $(CP) $< $@
+\end{makefilecode}
+Executing
+\begin{shell}
+$ make foo
+\end{shell}
+prints
+\begin{shell}
+Copying to  foo
+\end{shell}
+while executing\codeidx{VERBOSEMAKE}
+\begin{shell}
+$ make foo VERBOSEMAKE=yes
+\end{shell}
+prints
+\begin{shell}
+cp -f bar foo
+\end{shell}
+If one of the two commands is missing for the target \texttt{foo}, either
+\texttt{make foo} or \texttt{make foo VERBOSEMAKE=yes} will not work as
+expected.
+\end{example}
+\item \textbf{Tests} defines a generic template for testing plug-ins.
+\item \textbf{Generic rules} contains rules in order to automatically produces
+  different kinds of files (\emph{e.g.} \texttt{.cm[iox]} from \texttt{.ml} or
+  \texttt{.mli} for \ocaml files)
+\item \textbf{Source files generation} contains rules for generating files
+  that depend on the configuration and on which the main \texttt{Makefile}
+  depends on. They are put in an auxiliary \texttt{Makefile.generating} to
+  avoid unnecessary rebuilds.
+\item \textbf{Global plug-in variables} declares some plug-in specific variables
+  used throughout the makefile.
+\item \textbf{Additional global variables} declares some other variables used
+  throughout the makefile.
+\item \textbf{Main targets} provides the main rules of the makefile. The most
+  important ones are \texttt{top}, \texttt{byte} and \texttt{opt} which
+  respectively build the \framac interactive, bytecode and native toplevels.
+\item \textbf{Coverage} defines how compile the eponymous library.
+\item \textbf{Ocamlgraph} defines how compile the eponymous library.
+\item \textbf{\framac Kernel} provides variables and rules for the \framac
+  kernel\index{Kernel}. Each part is described in specific sub-sections.
+\item ~\\[-6mm]
+  \begin{important}
+    After Section ``Kernel'', there are several sections corresponding to
+    \textbf{plug-ins}\index{Plug-in!Compilation} (see
+    Section~\ref{make:plugin}). This is the part that a plug-in developer has to
+    modify in order to add compilation directives for its plug-in.
+  \end{important}
+\item \textbf{Generic variables} provides variables containing files to be
+  linked in different contexts.
+\item \textbf{Toplevel} provides rules for building the files of the form
+  \texttt{bin/toplevel.*}.
+\item \textbf{GUI} provides rules for building the files of the form
+  \texttt{bin/viewer.*}
+\item \textbf{Standalone obfuscator} provides rules for building the \framac
+  obfuscator.
+\item\label{make:sec:tests} 
+  \textbf{Tests} provides rules to execute tests\index{Test}.
+  \verb|make tests| takes care of generating the appropriate environment and 
+  launching \texttt{ptests} (see Section~\ref{adv:ptests}) for all
+  test suites of the kernel and enabled plugins. It is possible
+  to pass options to \texttt{ptests} through the 
+  \texttt{PTESTS\_OPTS}\codeidxdef{PTESTS\_OPTS} environment variable.
+\item \textbf{Emacs tags} provides rules which generate \emacs tags (useful for
+  a quick search of \caml definitions).\index{Tags}
+\item \textbf{Documentation} provides rules generating \framac source
+  documentation (see Section~\ref{adv:documentation}).\index{Documentation}
+\item \textbf{Installation} provides rules for installing different parts of
+  \framac.
+\item \textbf{File headers: license policy} provides variables and rules to
+  manage the \framac license policy.
+  \index{Header}\index{License}
+\item \textbf{Makefile rebuilding} provides rules in order to automatically
+  rebuild \texttt{Makefile} and \texttt{configure} when required.
+\item \textbf{Cleaning} provides rules in order to remove files generated by
+  makefile rules.
+\item \textbf{Depend} provides rules which compute \framac source dependencies.
+\item \textbf{Ptests} provides rules in order to build \ptests (see
+  Section~\ref{adv:ptests}).\index{Ptests}
+\item \textbf{Source distribution} provides rules usable for distributing
+  \framac.
+\end{enumerate}
+
+\subsection{Variables of \texttt{Makefile.dynamic}}
+\label{make:plugin}
+\codeidxdef{Makefile.dynamic}
+
+Figures~\ref{fig:make-parameters} and~\ref{fig:special-parameters}
+presents all the variables that can be set before including
+\texttt{Makefile.dynamic} (see Section~\ref{adv:dynamic-make}).
+Details are provided below.
+\begin{figure}[htbp]
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|c|X|}
+\hline
+\textbf{Kind} & \textbf{Name} & \textbf{Specification} \\
+\hline \multirow{5}{27mm}{\centering{Plug-in Declaration}}
+& \texttt{PLUGIN\_NAME} & Module name of the plug-in \\
+& \texttt{PLUGIN\_DIR} & Directory containing plug-in source files \\
+& \texttt{PLUGIN\_ENABLE} & Whether to compile the plug-in \\
+& \texttt{PLUGIN\_HAS\_META} & Provided \texttt{META} (default: \texttt{no})\\
+\hline \multirow{4}{27mm}{\centering{Packaging\\(for \texttt{META})}}
+& \texttt{PLUGIN\_DESCRIPTION} & Short description (defaults to name) \\
+& \texttt{PLUGIN\_VERSION} & Version number (defaults to \framac's) \\
+& \texttt{PLUGIN\_DEPENDENCIES} & Dependencies to other plug-ins\\
+& \texttt{PLUGIN\_REQUIRES} & Dependencies to \texttt{ocamlfind} packages\\
+\hline \multirow{4}{27mm}{\centering{Object Files}}
+& \texttt{PLUGIN\_CMO} & Object files (without \texttt{.cmo}) \\
+& \texttt{PLUGIN\_CMI} & Standalone interfaces (without \texttt{.cmi}) \\
+& \texttt{PLUGIN\_GUI\_CMO} & Additional objects files for the GUI \\
+& \texttt{PLUGIN\_TYPES\_CMO} & External \texttt{.cmo} files \\
+\hline \multirow{6}{27mm}{\centering{Compilation flags}}
+& \texttt{PLUGIN\_BFLAGS} & Plug-in specific flags for \texttt{ocamlc} \\
+& \texttt{PLUGIN\_OFLAGS} & Plug-in specific flags for \texttt{ocamlopt} \\
+& \texttt{PLUGIN\_EXTRA\_BYTE} & Additional bytecode files to link against \\
+& \texttt{PLUGIN\_EXTRA\_OPT} & Additional native files to link against \\
+& \texttt{PLUGIN\_EXTRA\_DIRS} & Additional directories containing source files, relative to the root directory of the plugin (i.e. \texttt{PLUGIN\_DIR}) \\
+& \texttt{PLUGIN\_LINK\_BFLAGS} & Plug-in specific flags for linking with
+\texttt{ocamlc} \\
+& \texttt{PLUGIN\_LINK\_OFLAGS} & Plug-in specific flags for linking with
+\texttt{ocamlopt} \\
+& \texttt{PLUGIN\_LINK\_GUI\_BFLAGS} & Plug-in specific flags for linking a GUI
+with \texttt{ocamlc} \\
+& \texttt{PLUGIN\_LINK\_GUI\_OFLAGS} & Plug-in specific flags for linking a GUI
+with \texttt{ocamlopt} \\
+\hline
+\end{tabularx}
+\end{center}
+\caption{Standard parameters of \texttt{Makefile.dynamic}.}\label{fig:make-parameters}
+\end{figure}
+\begin{itemize}
+\item Variable \texttt{PLUGIN\_NAME}\codeidxdef{PLUGIN\_NAME}
+  is the module name of the plug-in.\index{Plug-in!Name}
+
+  \begin{important}
+    This name must be capitalized (as is each \caml module name). It
+    must be distinct from all other visible modules in the plugin
+    directory, or in the \framac kernel.
+  \end{important}
+\item Variable \texttt{PLUGIN\_DIR}\codeidxdef{PLUGIN\_DIR}
+  is the directory containing plug-in source files\index{Plug-in!Directory}. It
+  is usually set to \texttt{src/plugins/$plugin$} where $plugin$ is the
+  plug-in name.
+\item Variable
+  \texttt{PLUGIN\_ENABLE}\codeidxdef{PLUGIN\_ENABLE} must be
+  set to \yes if the plug-in has to be compiled. It is usually set to
+  \texttt{@$plugin$\_ENABLE@} provided by \texttt{configure.in} where $plugin$
+  is the plug-in name.
+\item Variable
+  \texttt{PLUGIN\_HAS\_META}\codeidxdef{PLUGIN\_HAS\_META} must
+  be set to \yes if plug-in $plugin$ gets a \texttt{META} file
+  describing its packaging. Unless \texttt{PLUGIN\_HAS\_META} is \texttt{yes},
+  the following variables are used to generate a suitable \texttt{META}:
+  \begin{itemize}
+  \item \texttt{PLUGIN\_VERSION}\codeidxdef{PLUGIN\_VERSION}
+     short text with $plugin$ version number.
+     Default value is \framac's version number.
+  \item \texttt{PLUGIN\_REQUIRES}\codeidxdef{PLUGIN\_REQUIRES}
+     packages that must be loaded before the $plugin$.
+     By default, there is no such package.
+  \item \texttt{PLUGIN\_DEPENDENCIES}\codeidxdef{PLUGIN\_DEPENDENCIES}
+     other plug-ins that must be loaded before the $plugin$.
+     By default, there is no dependency.
+  \end{itemize}
+  \textbf{Remark:} the $plugin$ package name is defined to be \texttt{frama-c-$plugin$} with 
+  lowercased plugin name. You can refer to it directly with \texttt{ocamlfind}.
+\item Variables \texttt{PLUGIN\_CMO}\codeidxdef{PLUGIN\_CMO}
+  and \texttt{PLUGIN\_CMI}\codeidxdef{PLUGIN\_CMI} are
+  respectively \texttt{.cmo} plug-in files and \texttt{.cmi} files without
+  corresponding \texttt{.cmo} plug-in files. For each of them, do not write
+  their file path nor their file extension: they are automatically added
+  (\texttt{\$(PLUGIN\_DIR)/$f$.cm[io]} for a file $f$).
+\item Variable
+  \texttt{PLUGIN\_TYPES\_CMO}\codeidxdef{PLUGIN\_TYPES\_CMO}
+  is the \texttt{.cmo} plug-in files which do not belong to
+  \texttt{\$(PLUGIN\_DIR)}. They usually belong to
+  \texttt{src/plugins/$plugin$\_types} where $plugin$ is the plug-in name (see
+  Section~\ref{adv:static-registration}). Do not 
+  write file extension (which is \texttt{.cmo}): it is automatically
+  added.\index{Plug-in!Types}
+\item Variable
+  \texttt{PLUGIN\_GUI\_CMO}\codeidxdef{PLUGIN\_GUI\_CMO} is
+  the \texttt{.cmo} plug-in files which have to be linked with the GUI (see
+  Section~\ref{adv:gui}). As for variable \texttt{PLUGIN\_CMO}, do not write
+  their file path nor their file extension.\index{Plug-in!GUI}
+%
+\item Variables of the form \texttt{PLUGIN\_*\_FLAGS} are
+  plug-in specific flags for \texttt{ocamlc}, \texttt{ocamlopt},
+  \texttt{ocamldep} or \texttt{ocamldoc}.
+  \codeidxdef{PLUGIN\_BFLAGS}
+  \codeidxdef{PLUGIN\_OFLAGS}
+  \codeidxdef{PLUGIN\_EXTRA\_BYTE}
+  \codeidxdef{PLUGIN\_EXTRA\_OPT}
+  \codeidxdef{PLUGIN\_EXTRA\_DIRS}
+  \codeidxdef{PLUGIN\_LINK\_OFLAGS}
+  \codeidxdef{PLUGIN\_LINK\_GUI\_BFLAGS}
+  \codeidxdef{PLUGIN\_LINK\_GUI\_OFLAGS}
+  \codeidxdef{PLUGIN\_DEPFLAGS}
+  \codeidxdef{PLUGIN\_DOCFLAGS}
+\end{itemize}
+%%%%
+\begin{figure}[htbp]
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|c|X|c|}
+\hline
+\textbf{Kind} & \textbf{Name} & \textbf{Specification} & \\
+\hline
+\hline \multirow{3}{27mm}{\centering{Dependencies}}
+& \texttt{PLUGIN\_DEPFLAGS} & Plug-in specific flags for \texttt{ocamldep} &\\
+& \texttt{PLUGIN\_GENERATED} & Plug-in files to be generated before running
+\texttt{ocamldep} &\\
+& \texttt{PLUGIN\_DEPENDS} & Other plug-ins to be compiled before the considered
+one & no \\
+\hline \multirow{5}{27mm}{\centering{Documentation}}
+& \texttt{PLUGIN\_DOCFLAGS} & Plug-in specific flags for \texttt{ocamldoc}& \\
+& \texttt{PLUGIN\_UNDOC} & Source files with no provided documentation &\\
+& \texttt{PLUGIN\_TYPES\_TODOC} & Additional source files to document &\\
+& \texttt{PLUGIN\_INTRO} & Text file to append to the plug-in introduction & \\
+& \texttt{PLUGIN\_HAS\_EXT\_DOC} & Whether the plug-in has an external
+pdf manual &\\
+\hline \multirow{7}{27mm}{\centering{Testing}}
+& \texttt{PLUGIN\_NO\_TESTS} & Whether there is no plug-in specific test
+directory & \\
+& \texttt{PLUGIN\_TESTS\_DIRS} & Directories containing tests &\\
+& \texttt{PLUGIN\_TESTS\_DIRS\_DEFAULT} & tests to be included in the default
+test suite (all directories by default) & no \\
+& \texttt{PLUGIN\_TESTS\_LIBS} & Specific \texttt{.ml} files used by plug-in
+tests &\\
+& \texttt{PLUGIN\_NO\_DEFAULT\_TEST} & Whether to include tests
+in default test suite. &\\
+& \texttt{PLUGIN\_INTERNAL\_TEST} & Whether the test suite of the
+plug-in is located in \framac's own tests directory &\\
+& \texttt{PLUGIN\_PTESTS\_OPTS} & Plug-in specific options to ptests &\\
+\hline \multirow{3}{25mm}{\centering{Distribution}}
+& \texttt{PLUGIN\_DISTRIBUTED\_BIN} & Whether to include the plug-in
+in binary distribution & no \\
+& \texttt{PLUGIN\_DISTRIBUTED} & Whether to include the plug-in in
+source distribution & no \\
+& \texttt{PLUGIN\_DISTRIB\_EXTERNAL} & Additional files to be included
+in the distribution & no \\
+\hline
+\end{tabularx}
+\end{center}
+\caption{Special parameters of \texttt{Makefile.dynamic}.}\label{fig:special-parameters}
+\end{figure}
+\begin{itemize}
+\item Variable
+  \texttt{PLUGIN\_GENERATED}\codeidxdef{PLUGIN\_GENERATED} is
+  files which must be generated before computing plug-in dependencies. In
+  particular, this is where \texttt{.ml} files generated by \texttt{ocamlyacc}
+  and \texttt{ocamllex} must be placed if needed.
+\item Variable
+  \texttt{PLUGIN\_DEPENDS}\codeidxdef{PLUGIN\_DEPENDS} is the
+  other plug-ins which must be compiled before the considered plug-in. 
+
+  \begin{important}
+    Using this variable is deprecated: you should consider to use
+    \texttt{PLUGIN\_DEPENDENCIES} instead.
+  \end{important}
+%
+\item Variable
+  \texttt{PLUGIN\_UNDOC}\codeidxdef{PLUGIN\_UNDOC} is the
+  source files for which no documentation is provided. Do not write their file
+  path which is automatically set to
+  \texttt{\$(PLUGIN\_DIR)}.\index{Plug-in!Documentation}
+\item Variable \texttt{PLUGIN\_TYPES\_TODOC}%
+  \codeidxdef{PLUGIN\_TYPES\_TODOC} is the additional source
+  files to document with the plug-in. They usually belong to
+  \texttt{src/plugins/$plugin$\_types} where $plugin$ is the plug-in name (see
+  Section~\ref{adv:static-registration}).
+  \index{Plug-in!Documentation}\index{Plug-in!Types}
+\item Variable
+  \texttt{PLUGIN\_INTRO}\codeidxdef{PLUGIN\_INTRO} is the
+  text file to append to the plug-in documentation introduction. Usually this
+  file is \texttt{doc/code/intro\_$plugin$.txt} for a plug-in $plugin$. It can
+  contain any text understood by \texttt{ocamldoc}.\index{Plug-in!Documentation}
+\item Variable
+ \texttt{PLUGIN\_HAS\_EXT\_DOC}%
+ \codeidxdef{PLUGIN\_HAS\_EXT\_DOC} is set to yes if
+ the plug-in has its own reference manual. It is supposed to be a
+ \texttt{pdf} file generated by \texttt{make} in directory
+ \texttt{doc/\$(PLUGIN\_NAME)}\index{Plug-in!Documentation}
+%
+\item Variable
+  \texttt{PLUGIN\_NO\_TEST}\codeidxdef{PLUGIN\_NO\_TEST} must
+  be set to \yes if there is no specific test directory for the
+  plug-in.\index{Plug-in!Test}
+\item Variable
+  \texttt{PLUGIN\_TESTS\_DIRS}\codeidxdef{PLUGIN\_TESTS\_DIRS}
+  is the directories containing plug-in tests. Its default value is
+  \texttt{tests/\$(notdir \$(PLUGIN\_DIR))}).\index{Plug-in!Test}
+\item Variable
+  \texttt{PLUGIN\_TESTS\_LIB}\codeidxdef{PLUGIN\_TESTS\_LIB}
+  contains the \texttt{.ml} plug-in specific files used by plug-in
+  tests.\index{Plug-in!Test} Note that if you wish to have these files
+  compiled before launching the tests (as opposed to e.g. compile them via
+  an \verb|EXECNOW| directive in a test file), you should add the 
+  corresponding \verb|.cmo| and \verb|.cmxs| files as pre-requisite
+  of the \verb|$(PLUGIN_DIR)/tests/ptests_config| %$
+  target.
+\item Variable
+  \texttt{PLUGIN\_NO\_DEFAULT\_TEST}%
+  \codeidxdef{PLUGIN\_NO\_DEFAULT\_TEST} indicates
+  whether the test directory of the plug-in should be considered when
+  running \framac default test suite. When set to a non-empty value,
+  the plug-in tests are run only through \texttt{make
+    \$(PLUGIN\_NAME)\_tests}.\index{Plug-in!Test}
+\item Variable
+  \texttt{PLUGIN\_INTERNAL\_TEST}%
+  \codeidxdef{PLUGIN\_INTERNAL\_TEST} indicates
+  whether the tests of the plug-in are included in \framac's own tests
+  directory. When set to a non-empty value, the tests are searched
+  there. When unset, tests are assumed to be in the \texttt{tests}
+  directory of the plugin main directory itself. Having the tests of a
+  plugin inside \framac's own \texttt{tests} suite is
+  deprecated. Plugins should be self-contained.
+\item Variable
+  \texttt{PLUGIN\_PTESTS\_OPTS}%
+  \codeidxdef{PLUGIN\_PTESTS\_OPTS} allows to give specific options to
+  \texttt{ptests} when running the tests. It comes in addition to
+  \texttt{PTESTS\_OPTS} 
+  (see~\ref{make:sections}\textsection\ref{make:sec:tests}). 
+  For instance, 
+  \verb|PLUGIN_PTESTS_OPTS:=-j 1| will deactivate parallelization of tests in case
+  the plugin does not support concurrent runs.
+%
+\item Variable
+\texttt{PLUGIN\_DISTRIB\_BIN}%
+\codeidxdef{PLUGIN\_DISTRIB\_BIN}
+indicates whether the plug-in should be included in a binary distribution.%
+\index{Plug-in!Distribution}
+\item Variable
+\texttt{PLUGIN\_DISTRIBUTED}%
+\codeidxdef{PLUGIN\_DISTRIBUTED}
+indicates whether the plug-in should be included in a source distribution.%
+\index{Plug-in!Distribution}
+\item Variable
+\texttt{PLUGIN\_DISTRIB\_EXTERNAL}%
+\codeidxdef{PLUGIN\_DISTRIB\_EXTERNAL}
+is the list of files that should be included within the source
+distribution for this plug-in. They will be put at their proper place for a
+release.\index{Plug-in!Distribution}
+\end{itemize}
+As previously said, the above variables are set before including
+\texttt{Makefile.dynamic} in order to customize its behavior. They
+must not be use anywhere else in the Makefile. In order to deal with this
+issue, for each plug-in $p$, \texttt{Makefile.dynamic} provides some variables
+which may be used after its inclusion defining $p$. These variables are listed
+in Figure~\ref{fig:make-defvars}. For each variable of the form
+\texttt{$p$\_VAR}, its behavior is exactly equivalent to the value of the
+parameter \texttt{PLUGIN\_VAR} for the plug-in $p$\footnote{Variables of the
+  form \texttt{$p$\_*CMX} have no \texttt{PLUGIN\_*CMX} counterpart but their
+  meanings should be easy to understand.}.
+\begin{figure}[htbp]
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|c|X|}
+\hline
+\textbf{Kind} & \textbf{Name}\footnotemark & \textbf{Remarks}\\
+\hline
+\hline \multirow{1}{35mm}{\centering{Usual information}}
+& \texttt{$plugin$\_DIR}\index{plugin\_DIR@\texttt{$plugin$\_DIR}|bfit} & \\
+\hline \multirow{5}{35mm}{\centering{Source files}}
+& \texttt{$plugin$\_CMO}\index{plugin\_CMO@\texttt{$plugin$\_CMO}|bfit} & \\
+& \texttt{$plugin$\_CMI}\index{plugin\_CMI@\texttt{$plugin$\_CMI}|bfit} & \\
+& \texttt{$plugin$\_CMX}\index{plugin\_CMI@\texttt{$plugin$\_CMI}|bfit} & \\
+& \texttt{$plugin$\_TYPES\_CMO}%
+\index{plugin\_TYPES\_CMO@\texttt{$plugin$\_TYPES\_CMO}|bfit} & \\
+& \texttt{$plugin$\_TYPES\_CMX}%
+\index{plugin\_TYPES\_CMX@\texttt{$plugin$\_TYPES\_CMX}|bfit} & \\
+\hline \multirow{10}{35mm}{\centering{Targets}}
+& \texttt{$plugin$\_TARGET\_CMO}%
+\index{plugin\_TARGET_CMO@\texttt{$plugin$\_TARGET\_CMO}|bfit} & \\
+& \texttt{$plugin$\_TARGET\_CMX}%
+\index{plugin\_TARGET\_CMX@\texttt{$plugin$\_TARGET\_CMX}|bfit} & \\
+& \texttt{$plugin$\_TARGET\_CMA}%
+\index{plugin\_TARGET\_CMA@\texttt{$plugin$\_TARGET\_CMA}|bfit} 
+& Empty if plug-in does not have external dependencies
+\\
+& \texttt{$plugin$\_TARGET\_CMXA}%
+\index{plugin\_TARGET\_CMXA@\texttt{$plugin$\_TARGET\_CMXA}|bfit} 
+& Empty if plug-in does not have external dependencies
+\\
+& \texttt{$plugin$\_TARGET\_CMXS}%
+\index{plugin\_TARGET\_CMXS@\texttt{$plugin$\_TARGET\_CMXS}|bfit}
+& Empty if plugin is not dynamic
+\\
+& \texttt{$plugin$\_TARGET\_GUI\_CMO}%
+\index{plugin\_TARGET\_GUI\_CMO@\texttt{$plugin$\_TARGET\_GUI\_CMO}|bfit}
+& \rdelim\}{5}{\hsize}[\parbox{\hsize-7mm}{Empty if there is no plugin-specific GUI code}]
+\\
+& \texttt{$plugin$\_TARGET\_GUI\_CMX}%
+\index{plugin\_TARGET\_GUI\_CMX@\texttt{$plugin$\_TARGET\_GUI\_CMX}|bfit}
+&
+\\
+& \texttt{$plugin$\_TARGET\_GUI\_CMA}%
+\index{plugin\_TARGET\_GUI\_CMA@\texttt{$plugin$\_TARGET\_GUI\_CMA}|bfit}
+& \\
+& \texttt{$plugin$\_TARGET\_GUI\_CMXA}%
+\index{plugin\_TARGET\_GUI\_CMXA@\texttt{$plugin$\_TARGET\_GUI\_CMXA}|bfit}
+& \\
+& \texttt{$plugin$\_TARGET\_GUI\_CMXS}%
+\index{plugin\_TARGET\_GUI\_CMXS@\texttt{$plugin$\_TARGET\_GUI\_CMXS}|bfit}
+& \\
+\hline \multirow{6}{35mm}{\centering{Compilation flags}}
+& \texttt{$plugin$\_BFLAGS}%
+\index{plugin\_BFLAGS@\texttt{$plugin$\_BFLAGS}|bfit} & \\
+& \texttt{$plugin$\_OFLAGS}%
+\index{plugin\_OFLAGS@\texttt{$plugin$\_OFLAGS}|bfit} & \\
+& \texttt{$plugin$\_LINK\_BFLAGS}%
+\index{plugin\_LINK\_BFLAGS@\texttt{$plugin$\_LINK\_BFLAGS}|bfit} & \\
+& \texttt{$plugin$\_LINK\_OFLAGS}%
+\index{plugin\_LINK\_OFLAGS@\texttt{$plugin$\_LINK\_OFLAGS}|bfit} & \\
+& \texttt{$plugin$\_LINK\_GUI\_BFLAGS}%
+\index{plugin\_LINK\_GUI\_BFLAGS@\texttt{$plugin$\_LINK\_GUI\_BFLAGS}|bfit} & \\
+& \texttt{$plugin$\_LINK\_GUI\_OFLAGS}%
+\index{plugin\_GUI\_OFLAGS@\texttt{$plugin$\_GUI\_OFLAGS}|bfit} & \\
+\hline \multirow{2}{35mm}{\centering{Dependencies}}
+& \texttt{$plugin$\_DEPFLAGS}%
+\index{plugin\_DEPFLAGS@\texttt{$plugin$\_DEPFLAGS}|bfit} & \\
+& \texttt{$plugin$\_GENERATED}%
+\index{plugin\_GENERATED@\texttt{$plugin$\_GENERATED}|bfit} & \\
+\hline \multirow{2}{35mm}{\centering{Documentation}}
+& \texttt{$plugin$\_DOCFLAGS}%
+\index{plugin\_DOCFLAGS@\texttt{$plugin$\_DOCFLAGS}|bfit} & \\
+& \texttt{$plugin$\_TYPES\_TODOC}%
+\index{plugin\_TYPES\_TODOC@\texttt{$plugin$\_TYPES\_TODOC}|bfit} & \\
+\hline \multirow{2}{35mm}{\centering{Testing}}
+& \texttt{$plugin$\_TESTS\_DIRS}%
+\index{plugin\_TESTS\_DIRS@\texttt{$plugin$\_TESTS\_DIRS}|bfit} & \\
+& \texttt{$plugin$\_TESTS\_LIB}%
+\index{plugin\_TESTS\_LIB@\texttt{$plugin$\_TESTS\_LIB}|bfit} & \\
+\hline
+\end{tabularx}
+\end{center}
+\caption{Variables defined by \texttt{Makefile.dynamic}.}\label{fig:make-defvars}
+\end{figure}
+\footnotetext{$plugin$ is the module name of the considered plug-in (\emph{i.e.}
+  as set by
+  \texttt{\$(PLUGIN\_NAME)})\codeidx{PLUGIN\_NAME}.}
+
+\subsection{\texttt{.Makefile.user}}
+\codeidx{.Makefile.user}
+
+The following variables can be set inside \texttt{.Makefile.user}:
+\begin{itemize}
+\item \texttt{FRAMAC\_PARALLEL}: the contents of this variable are passed
+to \texttt{ptests} when it is called by \framac's Makefile. This variable
+can be used to override the default value of 4.
+
+\emph{Example value:} \texttt{-j 6}
+
+\item \texttt{OCAML\_ANNOT\_OPTION}: this variable of the Makefile
+can be overridden in \texttt{.Makefile.user}.
+By default, it is set to \texttt{-annot -bin-annot}. Users of
+\textsf{Merlin}\index{Merlin} do not need \texttt{-annot}.
+
+\emph{Example value:} \texttt{-bin-annot}
+
+\item \texttt{FRAMAC\_USER\_FLAGS}: the contents of this variable are
+passed to \texttt{ocamlc} and \texttt{ocamlopt}, \emph{after} the standard
+configuration options coming from the Makefile. It can be used to tweak
+the warnings emitted by OCaml, and whether they are emitted as errors.
+
+\emph{Example value:} \texttt{-warn-error -26-27} (do not consider warnings
+26 and 27 as fatal errors)
+
+\item \texttt{FRAMAC\_USER\_MERLIN\_FLAGS}: the contents of this variable are
+passed to a directive \texttt{FLG}, inside the \texttt{.merlin} file generated
+for \framac. (Through  the \texttt{merlin} target of the
+main \texttt{Makefile}.) It can be used to tailor \textsf{Merlin}\index{Merlin}
+to your needs. See \texttt{ocamlmerlin -help} for the list of flags.
+
+
+\end{itemize}
+
+\subsection{\texttt{Makefile.dynamic}}
+\label{make:dynamic}
+
+\todo
+
+\section{Ptests}\label{sec:ptests}
+\subsection{Pre-defined macros for tests commands}\label{sec:ptests-macros}
+Ptests pre-defines a certain number of macros for each test about to be run.
+Figure~\ref{fig:ptests-macros} gives their definition.
+\begin{longtable}{|p{4.5cm}|p{10cm}|}
+\hline
+Name & Expansion \\
+\hline
+\verb|frama-c| & path to \framac executable \\
+\hline
+\verb|PTEST_CONFIG| & either the empty string or \verb|_| followed by the
+name of the current alternative configuration 
+(see section~\ref{ptests:alternative}). \\
+\hline
+\verb|PTEST_DIR| & current test suite directory \\
+\hline
+\verb|PTEST_RESULT| & current result directory \\
+\hline
+\verb|PTEST_FILE| & path to the current test file \\
+\hline
+\verb|PTEST_NAME| & basename of the current test file (without suffix) \\
+\hline
+\verb|PTEST_NUMBER| & rank of current test in the test file. There are in
+fact two independent numbering schemes: one for \verb|EXECNOW| commands and
+one for regular tests (if more than one \verb|OPT|).\\
+\hline
+\verb|PTEST_RESULT| & shorthand alias to \verb|@PTEST_DIR@/result@PTEST_CONFIG@|
+(the result directory dedicated to the tested configuration)\\
+\hline
+\verb|PTEST_ORACLE| & basename of the current oracle file (macro only usable in FILTER directives)\\
+\hline
+\verb|PTEST_MODULE| & current list of module defined by the \verb|MODULE| directive\\
+\hline
+\verb|PTEST_LIBS| & current list of module defined by the \verb|LIBS| directive\\
+\hline
+\verb|PTEST_PLUGIN| & current list of plugins defined by the \verb|PLUGIN| directive\\
+\hline
+\verb|PTEST_SCRIPT| & current list of plugins defined by the \verb|SCRIPT| directive\\
+\hline
+\verb|PTEST_DEFAULT_OPTIONS| & the default option list: \verb|-journal-disable| \verb|-check| \verb|-no-autoload-plugins|\\
+\hline
+\verb|PTEST_LOAD_MODULE| & the \verb|-load-module| option related to the \verb|MODULE| directive\\
+\hline
+\verb|PTEST_LOAD_LIBS| & the \verb|-load-module| option related to the \verb|LIBS| directive\\
+\hline
+\verb|PTEST_LOAD_PLUGIN| & the \verb|-load-module| option related to the \verb|PLUGIN| directive\\
+\hline
+\verb|PTEST_LOAD_SCRIPT| & the \verb|-load-script| option related to the \verb|SCRIPT| directive\\
+\hline
+\verb|PTEST_LOAD_OPTIONS| & shorthand alias to \spverb|@PTEST_LOAD_PLUGIN@ @PTEST_LOAD_LIBS@ @PTEST_LOAD_MODULE@ @PTEST_LOAD_SCRIPT@|\\
+\hline
+\verb|PTEST_OPTIONS| & the current list of options related to \verb|OPT| and \verb|STDOPT| directives (for \verb|CMD| directives)\\
+\hline
+\verb|frama-c| & shortcut defined as follows: \spverb|@frama-c-exe@ @PTEST_DEFAULT_OPTIONS@ @PTEST_LOAD_OPTIONS@|\\
+\hline
+\verb|frama-c-cmd| & shortcut defined as follows: \spverb|@frama-c-exe@ @PTEST_DEFAULT_OPTIONS@|\\
+\hline
+\verb|frama-c-exe| & set to the value of the \verb|TOPLEVEL_PATH| variable from \verb|./tests/ptests_config| file\\
+\hline
+\caption{Predefined macros for ptests}\label{fig:ptests-macros}
+\end{longtable}
+
+\section{Profiling with Landmarks} \label{refman:landmarks}\codeidxdef{Landmarks}
+
+{\em Landmarks}\footnote{\url{https://github.com/LexiFi/landmarks}} is a
+library for ``quick and dirty'' profiling of OCaml programs. It allows the
+insertion of annotations in the code to enable profiling of specific parts of
+it, but also an automatic mode, in which every function call is instrumented.
+The Frama-C \texttt{configure} file is setup to enable usage of this library
+when it is available (the usual way to install it is via the \texttt{landmarks}
+opam package).
+
+For quick usage of the library:
+\begin{itemize}
+\item ensure that the \texttt{configure} script detected it
+  (there should be a line \texttt{checking for Landmarks... found});
+\item enable instrumentation {\em when compiling Frama-C's files}, that is,
+  when running \texttt{make}, by setting the environment variable
+  \verb+OCAML_LANDMARKS+. For instance, to enable automatic instrumentation
+  of every Frama-C function (note: this increases compilation time of Frama-C),
+  run:
+
+\begin{lstlisting}
+    OCAML_LANDMARKS=auto make
+\end{lstlisting}
+
+\item enable instrumentation {\em during execution} of Frama-C, again using
+  \verb+OCAML_LANDMARKS+. Note that the \texttt{auto} parameter here is
+  implicit if you enabled it on the previous step.
+  For instance, run:
+
+  \begin{lstlisting}
+    OCAML_LANDMARKS= bin/frama-c [files] [options]
+  \end{lstlisting}
+\end{itemize}
+
+Commonly used options include \verb+output=landmarks.log+ to output the result
+to a file instead of \texttt{stderr}.
+
+To instrument a single file: add \verb+[@@@landmark "auto"]+ at the beginning
+of the file.
+
+To instrument a single function: add \verb+[@landmark]+ after the \texttt{let},
+e.g.:
+
+\begin{lstlisting}
+  let[@landmark] add_visitor vis =
+\end{lstlisting}
+
+Check \url{https://github.com/LexiFi/landmarks} for its documentation.
+
+\textbf{Note:} if you intend to use \texttt{ocamlprof} (via \texttt{ocamlcp} or
+\texttt{ocamloptp}), which does not support ppx extensions, and you have
+Landmarks installed, you need to explicitly disable Landmarks during Frama-C's
+configure: \verb+./configure --disable-landmarks+.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Local Variables:
+%%% TeX-master: "developer.tex"
+%%% ispell-local-dictionary: "english"
+%%% End:

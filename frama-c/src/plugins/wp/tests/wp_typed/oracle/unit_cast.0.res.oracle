@@ -1,0 +1,17 @@
+# frama-c -wp [...]
+[kernel] Parsing unit_cast.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] unit_cast.i:4: Warning: 
+  Cast with incompatible pointers types (source: sint32*) (target: sint8*)
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Assertion 'OUT' (file unit_cast.i, line 5):
+unit_cast.i:4: warning from Typed Model:
+ - Warning: Hide sub-term definition
+   Reason: Cast with incompatible pointers types (source: sint32*) (target: sint8*)
+Prove: true.
+
+------------------------------------------------------------

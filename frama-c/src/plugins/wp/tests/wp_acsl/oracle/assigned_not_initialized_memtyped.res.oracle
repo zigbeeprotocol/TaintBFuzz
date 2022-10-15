@@ -1,0 +1,159 @@
+# frama-c -wp [...]
+[kernel] Parsing assigned_not_initialized_memtyped.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function array
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memtyped.i, line 28):
+Let a = havoc(Init_undef_0, Init_0, shift_sint32(array_0, 0), 10).
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: (region(array_0.base) <= 0) /\ cinits(Init_0).
+  (* Loop assigns ... *)
+  Have: cinits(a).
+  (* Else *)
+  Have: 10 <= i.
+}
+Prove: IsInitArray_sint32(array_0, 10, a).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function assigned_glob_array
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memtyped.i, line 60):
+Let a = havoc(Init_undef_1, Init_0, shift_sint32(global(G_glob_array_51), 0),
+          10).
+Let a_1 = havoc(Init_undef_0, a, shift_sint32(pg_array_0, 0), 10).
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: (region(G_glob_array_51) <= 0) /\ (region(pg_array_0.base) <= 0) /\
+      cinits(Init_0).
+  (* Loop assigns ... *)
+  Have: cinits(a) /\ cinits(a_1).
+  (* Else *)
+  Have: 10 <= i.
+}
+Prove: IsInitArray_sint32(pg_array_0, 10, a_1).
+
+------------------------------------------------------------
+
+Goal Check 'OK' (file assigned_not_initialized_memtyped.i, line 61):
+Let a = global(G_glob_array_51).
+Let a_1 = havoc(Init_undef_1, Init_0, shift_sint32(a, 0), 10).
+Let a_2 = havoc(Init_undef_0, a_1, shift_sint32(pg_array_0, 0), 10).
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: (region(G_glob_array_51) <= 0) /\ (region(pg_array_0.base) <= 0) /\
+      cinits(Init_0).
+  (* Loop assigns ... *)
+  Have: cinits(a_1) /\ cinits(a_2).
+  (* Else *)
+  Have: 10 <= i.
+}
+Prove: IsInitArray_sint32(a, 10, a_2).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function assigned_glob_atomic
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memtyped.i, line 38):
+Assume {
+  Type: is_sint32(i_1).
+  (* Heap *)
+  Type: region(G_glob_atomic_39) <= 0.
+  (* Else *)
+  Have: 10 <= i_1.
+}
+Prove: (i=true).
+
+------------------------------------------------------------
+
+Goal Check 'OK' (file assigned_not_initialized_memtyped.i, line 39):
+Let a = global(G_glob_atomic_39).
+Let m = Init_0[a <- i].
+Let m_1 = m[pg_atomic_0 <- i_1].
+Assume {
+  Type: is_sint32(i_2).
+  (* Heap *)
+  Type: (region(G_glob_atomic_39) <= 0) /\ (region(pg_atomic_0.base) <= 0) /\
+      cinits(Init_0).
+  (* Loop assigns ... *)
+  Have: cinits(m) /\ cinits(m_1).
+  (* Else *)
+  Have: 10 <= i_2.
+}
+Prove: (m_1[a]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function assigned_glob_comp
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memtyped.i, line 49):
+Let a = havoc(Init_undef_1, Init_0, global(G_glob_comp_45), 11).
+Let a_1 = havoc(Init_undef_0, a, pg_comp_0, 11).
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: (region(G_glob_comp_45) <= 0) /\ (region(pg_comp_0.base) <= 0) /\
+      cinits(Init_0).
+  (* Loop assigns ... *)
+  Have: cinits(a) /\ cinits(a_1).
+  (* Else *)
+  Have: 10 <= i.
+}
+Prove: IsInit_S1_S(pg_comp_0, a_1).
+
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memtyped.i, line 50):
+Let a = global(G_glob_comp_45).
+Let a_1 = havoc(Init_undef_1, Init_0, a, 11).
+Let a_2 = havoc(Init_undef_0, a_1, pg_comp_0, 11).
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: (region(G_glob_comp_45) <= 0) /\ (region(pg_comp_0.base) <= 0) /\
+      cinits(Init_0).
+  (* Loop assigns ... *)
+  Have: cinits(a_1) /\ cinits(a_2).
+  (* Else *)
+  Have: 10 <= i.
+}
+Prove: IsInit_S1_S(a, a_2).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function atomic
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memtyped.i, line 16):
+Assume { Type: is_sint32(i_1). (* Else *) Have: 10 <= i_1. }
+Prove: (i=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function comp
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memtyped.i, line 22):
+Let a = havoc(Init_undef_0, Init_0, s, 11).
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: (region(s.base) <= 0) /\ cinits(Init_0).
+  (* Loop assigns ... *)
+  Have: cinits(a).
+  (* Else *)
+  Have: 10 <= i.
+}
+Prove: IsInit_S1_S(s, a).
+
+------------------------------------------------------------

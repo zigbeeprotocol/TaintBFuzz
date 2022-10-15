@@ -1,0 +1,41 @@
+[kernel] Parsing overflow.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] overflow.i:20: Warning: 
+  signed overflow. assert 60000 * y ≤ 2147483647;
+[eva:alarm] overflow.i:21: Warning: 
+  signed overflow. assert (int)(y * 1000) * 1000 ≤ 2147483647;
+[eva:alarm] overflow.i:22: Warning: 
+  signed overflow. assert -2147483648 ≤ (int)(-y) * 10000000;
+[eva:alarm] overflow.i:31: Warning: signed overflow. assert -c ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  i ∈ {18446744073709551615}
+  j ∈ {4294967295}
+  is ∈ {-1}
+  js ∈ {-1}
+  minjs ∈ {-2147483648}
+  maxjs ∈ {2147483647}
+  i1 ∈ {0}
+  j1 ∈ {0}
+  y ∈ {1; 100000}
+  x ∈ {0}
+  z ∈ {1000000}
+  t ∈ {-10000000}
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    i; j; is; js; minjs; maxjs; i1; j1; y; tmp; x; z; t; __retres
+[inout] Inputs for function main:
+    \nothing

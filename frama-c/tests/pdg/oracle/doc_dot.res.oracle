@@ -1,0 +1,64 @@
+[kernel] Parsing doc_dot.c (with preprocessing)
+[eva] Analyzing an incomplete application starting at g
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G1 ∈ [--..--]
+  G2 ∈ [--..--]
+  T[0..9] ∈ [--..--]
+[eva] computing for function f <- g.
+  Called from doc_dot.c:14.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for g
+[eva] done for function g
+[pdg] computing for function g
+[from] Computing for function f
+[from] Done for function f
+[pdg] done for function g
+[pdg] dot file generated in ./doc.g.dot
+[pdg] PDG for g
+ {n1}: InCtrl
+ {n2}: VarDecl : x
+ {n3}: Call4-InCtrl : int x = f(G1,G2,0);
+   -[-c-]-> 1
+ {n4}: Call4-In1 : int x = f(G1,G2,0);
+   -[-c-]-> 1
+   -[-c-]-> 3
+   -[--d]-> 14
+ {n5}: Call4-In2 : int x = f(G1,G2,0);
+   -[-c-]-> 1
+   -[-c-]-> 3
+   -[--d]-> 13
+ {n6}: Call4-In3 : int x = f(G1,G2,0);
+   -[-c-]-> 1
+   -[-c-]-> 3
+ {n7}: Call4-OutRet : int x = f(G1,G2,0);
+   -[-c-]-> 1
+   -[a--]-> 2
+   -[-c-]-> 3
+   -[--d]-> 4
+   -[--d]-> 6
+ {n8}: 0 < x
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 7
+ {n9}: x < 10
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 7
+   -[-c-]-> 8
+ {n10}: T[x] = 0;
+   -[-c-]-> 1
+   -[a--]-> 2
+   -[a--]-> 7
+   -[-c-]-> 8
+   -[-c-]-> 9
+ {n11}: return x;
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 7
+ {n12}: OutRet
+   -[--d]-> 11
+ {n13}: In(G2)
+ {n14}: In(G1)

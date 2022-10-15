@@ -1,0 +1,7 @@
+18c18,21
+< [eva] long_const.i:25: Reusing old results for call to LL_ABS
+---
+> [eva] computing for function LL_ABS <- div64 <- main.
+>   Called from long_const.i:25.
+> [eva] Recording results for LL_ABS
+> [eva] Done for function LL_ABS

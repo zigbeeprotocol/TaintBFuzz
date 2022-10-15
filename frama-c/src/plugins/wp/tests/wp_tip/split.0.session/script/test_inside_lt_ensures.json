@@ -1,0 +1,5 @@
+[ { "header": "Split", "tactic": "Wp.split", "params": {},
+    "select": { "select": "inside-step", "at": 3, "kind": "have", "occur": 0,
+                "target": "a_0<b_0", "pattern": "<$a$b" },
+    "children": { "Lt": [], "Eq": [],
+                  "Gt": [ { "prover": "qed", "verdict": "valid" } ] } } ]

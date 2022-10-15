@@ -1,0 +1,13 @@
+# frama-c -wp [...]
+[kernel] Parsing old-assigns.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 2 goals scheduled
+[wp] [Qed] Goal typed_old_assigns_exit : Valid
+[wp] [Qed] Goal typed_old_assigns_normal : Valid
+[wp] Proved goals:    2 / 2
+  Qed:             2
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  old                       2        -        2       100%
+------------------------------------------------------------

@@ -1,0 +1,6 @@
+[kernel] Parsing unnamed_bitfields.c (with preprocessing)
+[kernel] unnamed_bitfields.c:18: User Error: 
+  named bitfield (zero_with_name) with zero width
+[kernel] User Error: stopping on file "unnamed_bitfields.c" that has errors. Add
+  '-kernel-msg-key pp' for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

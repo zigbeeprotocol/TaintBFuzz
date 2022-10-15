@@ -1,0 +1,27 @@
+208,209d207
+< [eva:alarm] auto_loop_unroll.c:234: Warning: 
+<   signed overflow. assert -2147483648 ≤ i_0 - 1;
+214,215d211
+< [eva:alarm] auto_loop_unroll.c:239: Warning: 
+<   signed overflow. assert -2147483648 ≤ i_1 - 1;
+242,243d237
+< [eva:alarm] auto_loop_unroll.c:279: Warning: 
+<   signed overflow. assert -2147483648 ≤ i - 1;
+296,297d289
+< [eva:alarm] auto_loop_unroll.c:360: Warning: 
+<   signed overflow. assert -2147483648 ≤ i - 1;
+312,313d303
+< [eva:alarm] auto_loop_unroll.c:392: Warning: 
+<   signed overflow. assert -2147483648 ≤ i - 1;
+365c355
+<   i ∈ [-2147483648..50]
+---
+>   i ∈ [-1..50]
+370,372c360,362
+<   i ∈ [0..2147483647]
+<   j ∈ [23..2147483647]
+<   k ∈ [22..2147483647]
+---
+>   i ∈ [23..2147483647]
+>   j ∈ [23..2147483646]
+>   k ∈ [22..2147483646]

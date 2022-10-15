@@ -1,0 +1,4 @@
+[kernel] Parsing copy_machdep.i (no preprocessing)
+[kernel] Machdep is preserved
+[kernel] Enums is preserved
+[kernel] Unicode is preserved

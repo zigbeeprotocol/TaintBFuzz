@@ -1,0 +1,24 @@
+31c31,39
+< [eva] logicdeps.i:25: Reusing old results for call to g
+---
+> [eva] computing for function g <- main.
+>   Called from logicdeps.i:25.
+> [eva] computing for function f <- g <- main.
+>   Called from logicdeps.i:13.
+> [eva] Done for function f
+> [eva] Recording results for g
+> [from] Computing for function g
+> [from] Done for function g
+> [eva] Done for function g
+51c59,67
+< [eva] logicdeps.i:32: Reusing old results for call to g
+---
+> [eva] computing for function g <- main.
+>   Called from logicdeps.i:32.
+> [eva] computing for function f <- g <- main.
+>   Called from logicdeps.i:13.
+> [eva] Done for function f
+> [eva] Recording results for g
+> [from] Computing for function g
+> [from] Done for function g
+> [eva] Done for function g

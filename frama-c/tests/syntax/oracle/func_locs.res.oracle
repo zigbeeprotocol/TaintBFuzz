@@ -1,0 +1,10 @@
+[kernel] Parsing func_locs.i (no preprocessing)
+[kernel] func_locs.i:20: Warning: 
+  found two contracts (old location: func_locs.i:13). Merging them
+func_locs.i:31 char 3 - func_locs.i:36 char 1 -> main
+func_locs.i:27 char 4 - func_locs.i:29 char 1 -> def_no_spec
+func_locs.i:25 char 20 - func_locs.i:25 char 26 -> id
+func_locs.i:25 char 0 - func_locs.i:25 char 16 -> decl_no_spec
+func_locs.i:20 char 3 - func_locs.i:23 char 6 -> id
+func_locs.i:13 char 3 - func_locs.i:18 char 6 -> id
+func_locs.i:7 char 3 - func_locs.i:9 char 1 -> with_spec

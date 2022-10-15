@@ -1,0 +1,24 @@
+[e-acsl] beginning translation.
+[e-acsl] Warning: annotating undefined function `posix_memalign':
+  the generated program may miss memory instrumentation
+  if there are memory-related annotations.
+[e-acsl] FRAMAC_SHARE/libc/stdlib.h:700: Warning: 
+  E-ACSL construct `\fresh' is not yet supported. Ignoring annotation.
+[e-acsl] FRAMAC_SHARE/libc/stdlib.h:710: Warning: 
+  E-ACSL construct `predicates with labels' is not yet supported.
+  Ignoring annotation.
+[e-acsl] FRAMAC_SHARE/libc/stdlib.h:717: Warning: 
+  E-ACSL construct `predicates with labels' is not yet supported.
+  Ignoring annotation.
+[e-acsl] FRAMAC_SHARE/libc/stdlib.h:700: Warning: 
+  Some assumes clauses could not be translated.
+  Ignoring complete and disjoint behaviors annotations.
+[e-acsl] FRAMAC_SHARE/libc/stdlib.h:700: Warning: 
+  E-ACSL construct `assigns clause in behavior' is not yet supported.
+  Ignoring annotation.
+[e-acsl] FRAMAC_SHARE/libc/stdlib.h:714: Warning: 
+  E-ACSL construct `\fresh' is not yet supported. Ignoring annotation.
+[e-acsl] FRAMAC_SHARE/libc/stdlib.h:715: Warning: 
+  E-ACSL construct `assigns clause in behavior' is not yet supported.
+  Ignoring annotation.
+[e-acsl] translation done in project "e-acsl".

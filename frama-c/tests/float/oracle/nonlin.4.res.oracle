@@ -1,0 +1,387 @@
+[kernel] Parsing nonlin.c (with preprocessing)
+[kernel:parser:decimal-float] nonlin.c:77: Warning: 
+  Floating-point constant 0.000000001 is not represented exactly. Will use 0x1.12e0be826d695p-30.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {0}
+  b ∈ {0}
+  c ∈ {0}
+  r1 ∈ {0}
+  r2 ∈ {0}
+  d ∈ {0}
+  i ∈ {0}
+  s ∈ {0}
+  zf ∈ {0}
+  s2 ∈ {0}
+  sq ∈ {0}
+  h ∈ {0}
+  t[0] ∈ {1}
+   [1] ∈ {2}
+   [2] ∈ {3}
+   [3] ∈ {4}
+   [4] ∈ {5}
+   [5] ∈ {6}
+   [6] ∈ {7}
+   [7] ∈ {8}
+   [8] ∈ {9}
+   [9] ∈ {10}
+  r ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+  z ∈ {0}
+  rbits1 ∈ {0}
+  rbits2 ∈ {0}
+  v ∈ [--..--]
+  nondet ∈ [--..--]
+[eva] computing for function nonlin_f <- main.
+  Called from nonlin.c:144.
+[eva] computing for function Frama_C_float_interval <- nonlin_f <- main.
+  Called from nonlin.c:18.
+[eva] using specification for function Frama_C_float_interval
+[eva] nonlin.c:18: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:18: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva] computing for function Frama_C_float_interval <- nonlin_f <- main.
+  Called from nonlin.c:19.
+[eva] nonlin.c:19: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:19: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva] nonlin.c:22: assertion got status valid.
+[eva:nonlin] nonlin.c:24: non-linear 'a + b * (c - a)', lv 'a'
+[eva:nonlin] nonlin.c:24: subdividing on a
+[eva] nonlin.c:26: assertion got status valid.
+[eva:nonlin] nonlin.c:43: non-linear 'b * (c - a) + a', lv 'a'
+[eva:nonlin] nonlin.c:43: subdividing on a
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.4000000000000p2 .. 0x1.4800000000000p2],
+  {{ "r2" }},
+  [0x1.4000000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.4800000000000p2 .. 0x1.5000000000000p2],
+  {{ "r2" }},
+  [0x1.4800000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.5000000000000p2 .. 0x1.5800000000000p2],
+  {{ "r2" }},
+  [0x1.5000000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.5800000000000p2 .. 0x1.6000000000000p2],
+  {{ "r2" }},
+  [0x1.5800000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.6000000000000p2 .. 0x1.6800000000000p2],
+  {{ "r2" }},
+  [0x1.6000000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.6800000000000p2 .. 0x1.7000000000000p2],
+  {{ "r2" }},
+  [0x1.6800000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.7000000000000p2 .. 0x1.7800000000000p2],
+  {{ "r2" }},
+  [0x1.7000000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.7800000000000p2 .. 0x1.8000000000000p2],
+  {{ "r2" }},
+  [0x1.7800000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.8000000000000p2 .. 0x1.8800000000000p2],
+  {{ "r2" }},
+  [0x1.8000000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.8800000000000p2 .. 0x1.9000000000000p2],
+  {{ "r2" }},
+  [0x1.8800000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.9000000000000p2 .. 0x1.9800000000000p2],
+  {{ "r2" }},
+  [0x1.9000000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.9800000000000p2 .. 0x1.a000000000000p2],
+  {{ "r2" }},
+  [0x1.9800000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.a000000000000p2 .. 0x1.a800000000000p2],
+  {{ "r2" }},
+  [0x1.a000000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.a800000000000p2 .. 0x1.b000000000000p2],
+  {{ "r2" }},
+  [0x1.a800000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.b000000000000p2 .. 0x1.b800000000000p2],
+  {{ "r2" }},
+  [0x1.b000000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] nonlin.c:44: 
+  Frama_C_show_each_a_r2:
+  {{ "a" }},
+  [0x1.b800000000000p2 .. 0x1.c000000000000p2],
+  {{ "r2" }},
+  [0x1.b800000000000p2 .. 0x1.c0fffe0000000p2]
+[eva] Recording results for nonlin_f
+[eva] Done for function nonlin_f
+[eva] computing for function other <- main.
+  Called from nonlin.c:145.
+[eva] computing for function Frama_C_float_interval <- other <- main.
+  Called from nonlin.c:61.
+[eva] nonlin.c:61: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:61: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva] computing for function Frama_C_float_interval <- other <- main.
+  Called from nonlin.c:62.
+[eva] nonlin.c:62: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:62: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva:nonlin] nonlin.c:63: non-linear 'i * i', lv 'i'
+[eva:nonlin] nonlin.c:63: subdividing on i
+[eva:alarm] nonlin.c:63: Warning: 
+  accessing out of bounds index.
+  assert (int)\add_double((double)\mul_float(i, i), (double)2.0) < 10;
+[eva:nonlin] nonlin.c:64: non-linear 's - s', lv 's'
+[eva:nonlin] nonlin.c:64: subdividing on s
+[eva:nonlin] nonlin.c:65: non-linear 's - s', lv 's'
+[eva:nonlin] nonlin.c:65: subdividing on s
+[eva:nonlin] nonlin.c:66: non-linear 's + s', lv 's'
+[eva:nonlin] nonlin.c:66: subdividing on s
+[eva:nonlin] nonlin.c:67: non-linear 's * s', lv 's'
+[eva:nonlin] nonlin.c:67: subdividing on s
+[eva:nonlin] nonlin.c:68: non-linear 's * ((float)1 - s)', lv 's'
+[eva:nonlin] nonlin.c:68: subdividing on s
+[eva] computing for function access_bits <- other <- main.
+  Called from nonlin.c:69.
+[eva] Recording results for access_bits
+[eva] Done for function access_bits
+[eva] computing for function Frama_C_interval <- other <- main.
+  Called from nonlin.c:71.
+[eva] using specification for function Frama_C_interval
+[eva] nonlin.c:71: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:nonlin] nonlin.c:72: non-linear '(1 / x) * x', lv 'x'
+[eva:nonlin] nonlin.c:72: subdividing on x
+[eva:alarm] nonlin.c:72: Warning: division by zero. assert x ≢ 0;
+[eva] Recording results for other
+[eva] Done for function other
+[eva] computing for function split_alarm <- main.
+  Called from nonlin.c:146.
+[eva:alarm] nonlin.c:76: Warning: non-finite float value. assert \is_finite(v);
+[eva:nonlin] nonlin.c:77: non-linear '(double)ff * (double)ff', lv 'ff'
+[eva:nonlin] nonlin.c:77: subdividing on ff
+[eva] Recording results for split_alarm
+[eva] Done for function split_alarm
+[eva] computing for function norm <- main.
+  Called from nonlin.c:147.
+[eva:alarm] nonlin.c:81: Warning: non-finite float value. assert \is_finite(v);
+[eva:alarm] nonlin.c:82: Warning: non-finite float value. assert \is_finite(v);
+[eva:nonlin] nonlin.c:83: non-linear '(double)v1 * (double)v1', lv 'v1'
+[eva:nonlin] nonlin.c:83: non-linear '(double)v2 * (double)v2', lv 'v2'
+[eva:nonlin] nonlin.c:83: subdividing on v1
+[eva:nonlin] nonlin.c:83: subdividing on v2
+[eva] computing for function Frama_C_float_interval <- norm <- main.
+  Called from nonlin.c:84.
+[eva] nonlin.c:84: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:84: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva] computing for function Frama_C_float_interval <- norm <- main.
+  Called from nonlin.c:85.
+[eva] nonlin.c:85: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:85: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva:nonlin] nonlin.c:92: non-linear 'v1 * v1', lv 'v1'
+[eva:nonlin] nonlin.c:92: non-linear 'v2 * v2', lv 'v2'
+[eva:nonlin] nonlin.c:92: subdividing on v1
+[eva:nonlin] nonlin.c:92: subdividing on v2
+[eva:alarm] nonlin.c:92: Warning: 
+  non-finite float value. assert \is_finite(\mul_float(v1, v1));
+[eva:alarm] nonlin.c:92: Warning: 
+  non-finite float value. assert \is_finite(\mul_float(v2, v2));
+[eva:alarm] nonlin.c:92: Warning: 
+  non-finite float value.
+  assert \is_finite(\add_float(\mul_float(v1, v1), \mul_float(v2, v2)));
+[eva] Recording results for norm
+[eva] Done for function norm
+[eva] computing for function garbled <- main.
+  Called from nonlin.c:148.
+[eva:alarm] nonlin.c:98: Warning: 
+  pointer downcast. assert (unsigned int)(&x_0) ≤ 2147483647;
+[eva:alarm] nonlin.c:98: Warning: 
+  pointer downcast. assert (unsigned int)(&x_0 + (int)(&x_0)) ≤ 2147483647;
+[eva:alarm] nonlin.c:98: Warning: 
+  non-finite float value.
+  assert \is_finite((float)((int)(&x_0 + (int)(&x_0))));
+[eva] nonlin.c:98: 
+  Assigning imprecise value to a_0.
+  The imprecision originates from Arithmetic {nonlin.c:98}
+[eva:alarm] nonlin.c:99: Warning: 
+  non-finite float value. assert \is_finite(a_0);
+[eva:alarm] nonlin.c:99: Warning: 
+  non-finite float value. assert \is_finite(\add_float(a_0, a_0));
+[eva] nonlin.c:99: 
+  Assigning imprecise value to f.
+  The imprecision originates from Arithmetic
+[eva] Recording results for garbled
+[eva] Done for function garbled
+[eva] computing for function around_zeros <- main.
+  Called from nonlin.c:149.
+[eva] computing for function Frama_C_float_interval <- around_zeros <- main.
+  Called from nonlin.c:108.
+[eva] nonlin.c:108: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:108: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva:nonlin] nonlin.c:113: non-linear '(f + f) - f', lv 'f'
+[eva:nonlin] nonlin.c:113: non-linear 'f1 / (((f + f) - f) - f1)', lv 'f1'
+[eva:nonlin] nonlin.c:113: subdividing on f
+[eva:alarm] nonlin.c:113: Warning: 
+  non-finite float value.
+  assert
+  \is_finite(\div_float(f1, \sub_float(\sub_float(\add_float(f, f), f), f1)));
+[eva] Recording results for around_zeros
+[eva] Done for function around_zeros
+[eva] computing for function subdivide_strategy <- main.
+  Called from nonlin.c:150.
+[eva] computing for function Frama_C_float_interval <- subdivide_strategy <- main.
+  Called from nonlin.c:126.
+[eva] nonlin.c:126: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:126: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva:nonlin] nonlin.c:130: non-linear 'x_0 * x_0', lv 'x_0'
+[eva:nonlin] nonlin.c:130: subdividing on x_0
+[eva:alarm] nonlin.c:131: Warning: 
+  non-finite float value. assert \is_finite(nondet);
+[eva:nonlin] nonlin.c:135: non-linear '(x_0 - d_0) * (x_0 - d_0)', lv 'd_0, x_0'
+[eva:nonlin] nonlin.c:135: subdividing on x_0
+[eva:alarm] nonlin.c:135: Warning: 
+  non-finite float value.
+  assert \is_finite(\mul_float(\sub_float(x_0, d_0), \sub_float(x_0, d_0)));
+[eva] computing for function Frama_C_float_interval <- subdivide_strategy <- main.
+  Called from nonlin.c:136.
+[eva] nonlin.c:136: 
+  function Frama_C_float_interval: precondition 'finite' got status valid.
+[eva] nonlin.c:136: 
+  function Frama_C_float_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_float_interval
+[eva:nonlin] nonlin.c:140: subdividing on x_0
+[eva] Recording results for subdivide_strategy
+[eva] Done for function subdivide_strategy
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function access_bits:
+  rbits1 ∈ {0; 1; 2}
+  x0 ∈ [0..3225911288]
+  __retres ∈ {0; 1}
+[eva:final-states] Values at end of function around_zeros:
+  Frama_C_entropy_source ∈ [--..--]
+  f1 ∈ {0x1.0000000000000p-149}
+  f ∈ [-0x0.0000000000000p0 .. 0x0.0000000000000p0]
+  res ∈ {-0x1.0000000000000p0}
+[eva:final-states] Values at end of function garbled:
+  a_0 ∈ {{ garbled mix of &{x_0} (origin: Arithmetic {nonlin.c:98}) }}
+  f ∈ {{ garbled mix of &{x_0} (origin: Arithmetic) }}
+[eva:final-states] Values at end of function nonlin_f:
+  Frama_C_entropy_source ∈ [--..--]
+  a ∈ [0x1.4000000000000p2 .. 0x1.c000000000000p2]
+  b ∈ [-0x0.0000000000000p0 .. 0x1.0000000000000p0]
+  c ∈ {0x1.c000000000000p2}
+  r1 ∈ [0x1.4000000000000p2 .. 0x1.cffffe0000000p2]
+  r2 ∈ [0x1.4000000000000p2 .. 0x1.c0fffe0000000p2]
+  d ∈ [0x1.4000000000000p2 .. 0x1.c000000000000p2]
+[eva:final-states] Values at end of function norm:
+  Frama_C_entropy_source ∈ [--..--]
+  v1 ∈ [-0x1.0f0cde0000000p64 .. 0x1.bc16d60000000p59]
+  v2 ∈ [-0x1.0f0cf00000000p73 .. 0x1.bc16d60000000p59]
+  square ∈ [0x0.0000000000000p0 .. 0x1.fffffc0000020p256]
+  square2 ∈ [0x0.0000000000000p0 .. 0x1.fffffe0000000p127]
+[eva:final-states] Values at end of function other:
+  Frama_C_entropy_source ∈ [--..--]
+  i ∈ [-0x1.8efff00000000p1 .. 0x1.8680000000000p1]
+  s ∈ [-0x1.0a00000000000p7 .. 0x1.1c00000000000p7]
+  zf ∈ [-0x1.1bfff80000000p4 .. 0x1.1bfff80000000p4]
+  s2 ∈ [-0x1.0a00000000000p8 .. 0x1.1c00000000000p8]
+  sq ∈ [0x0.0000000000000p0 .. 0x1.3b10000000000p14]
+  h ∈ [-0x1.38d8000000000p14 .. 0x1.f9dffc0000000p-2]
+  r ∈ {4; 5; 6; 7; 8; 9; 10; 11}
+  x ∈ [1..42]
+  y ∈ {0; 1}
+  z ∈ [-177499..177499]
+  rbits1 ∈ {0; 1; 2}
+  rbits2 ∈ {0; 1}
+[eva:final-states] Values at end of function split_alarm:
+  ff ∈ [-0x1.fffffe0000000p127 .. 0x1.fffffe0000000p127]
+  d_0 ∈ [0x1.0000020000030p-256 .. 0x1.dcd64ffffffffp29]
+[eva:final-states] Values at end of function subdivide_strategy:
+  Frama_C_entropy_source ∈ [--..--]
+  x_0 ∈ [-0x1.3880000000000p15 .. 0x1.3880000000000p15]
+  d_0 ∈ {0x1.3880000000000p13}
+  square1 ∈ [0x0.0000000000000p0 .. 0x1.3880000000000p13]
+  square2 ∈ [-0x1.fffffe0000000p105 .. 0x1.fffffe0000000p127]
+  square3 ∈ [-0x0.0000000000000p0 .. 0x1.2a05f20000000p31]
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+  a ∈ [0x1.4000000000000p2 .. 0x1.c000000000000p2]
+  b ∈ [-0x0.0000000000000p0 .. 0x1.0000000000000p0]
+  c ∈ {0x1.c000000000000p2}
+  r1 ∈ [0x1.4000000000000p2 .. 0x1.cffffe0000000p2]
+  r2 ∈ [0x1.4000000000000p2 .. 0x1.c0fffe0000000p2]
+  d ∈ [0x1.4000000000000p2 .. 0x1.c000000000000p2]
+  i ∈ [-0x1.8efff00000000p1 .. 0x1.8680000000000p1]
+  s ∈ [-0x1.0a00000000000p7 .. 0x1.1c00000000000p7]
+  zf ∈ [-0x1.1bfff80000000p4 .. 0x1.1bfff80000000p4]
+  s2 ∈ [-0x1.0a00000000000p8 .. 0x1.1c00000000000p8]
+  sq ∈ [0x0.0000000000000p0 .. 0x1.3b10000000000p14]
+  h ∈ [-0x1.38d8000000000p14 .. 0x1.f9dffc0000000p-2]
+  r ∈ {4; 5; 6; 7; 8; 9; 10; 11}
+  x ∈ [1..42]
+  y ∈ {0; 1}
+  z ∈ [-177499..177499]
+  rbits1 ∈ {0; 1; 2}
+  rbits2 ∈ {0; 1}

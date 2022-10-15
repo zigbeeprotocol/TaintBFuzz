@@ -1,0 +1,52 @@
+[kernel] Parsing usp.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {-12}
+  b ∈ {0}
+  p ∈ {{ (unsigned int *)&a }}
+  q ∈ {{ (unsigned int *)&b }}
+  X ∈ {0}
+  Y ∈ {0}
+  Z ∈ {0}
+  T ∈ {0}
+[eva] usp.i:17: Frama_C_show_each: {-1; 5}
+[eva] usp.i:18: 
+  Frama_C_dump_each:
+  # cvalue:
+  a ∈ {-12}
+  b ∈ {5; 4294967295}
+  p ∈ {{ (unsigned int *)&a }}
+  q ∈ {{ (unsigned int *)&b }}
+  X ∈ {0}
+  Y ∈ {-12}
+  Z ∈ {-1; 0}
+  T ∈ {0; 5}
+  c ∈ [--..--]
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  b ∈ {-1; 5}
+  Y ∈ {-12}
+  Z ∈ {-1; 0}
+  T ∈ {0; 5}
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  b FROM c
+  Y FROM a; p
+  Z FROM q; c (and SELF)
+  T FROM q; c (and SELF)
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    b; Y; Z; T; __retres
+[inout] Inputs for function main:
+    a; b; p; q

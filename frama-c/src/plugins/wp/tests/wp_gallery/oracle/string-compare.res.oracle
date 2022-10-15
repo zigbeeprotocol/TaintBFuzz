@@ -1,0 +1,68 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing string-compare.c (with preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function main
+[rte:annot] annotating function stringCompare
+[rte:annot] annotating function stringLength
+[wp] [CFG] Goal stringCompare_exits_never : Valid (Unreachable)
+[wp] [CFG] Goal stringLength_exits_never : Valid (Unreachable)
+[wp] Goal typed_stringCompare_complete_SomeDifferent_allEqual : trivial
+[wp] Goal typed_stringCompare_disjoint_SomeDifferent_allEqual : trivial
+[wp] Goal typed_stringCompare_loop_invariant_equal_preserved : not tried
+[wp] Goal typed_stringCompare_loop_invariant_equal_established : not tried
+[wp] Goal typed_stringCompare_loop_invariant_gauge_preserved : not tried
+[wp] Goal typed_stringCompare_loop_invariant_gauge_established : not tried
+[wp] Goal typed_stringCompare_loop_invariant_gauge_s1_preserved : not tried
+[wp] Goal typed_stringCompare_loop_invariant_gauge_s1_established : not tried
+[wp] Goal typed_stringCompare_loop_invariant_gauge_s2_preserved : not tried
+[wp] Goal typed_stringCompare_loop_invariant_gauge_s2_established : not tried
+[wp] Goal typed_stringCompare_loop_invariant_not_eos_preserved : not tried
+[wp] Goal typed_stringCompare_loop_invariant_not_eos_established : not tried
+[wp] Goal typed_stringCompare_loop_invariant_strlen_s1_preserved : not tried
+[wp] Goal typed_stringCompare_loop_invariant_strlen_s1_established : not tried
+[wp] Goal typed_stringCompare_loop_invariant_strlen_s2_preserved : not tried
+[wp] Goal typed_stringCompare_loop_invariant_strlen_s2_established : not tried
+[wp] Goal typed_stringCompare_assert_rte_mem_access : not tried
+[wp] Goal typed_stringCompare_assert_rte_mem_access_2 : not tried
+[wp] Goal typed_stringCompare_assert_rte_mem_access_3 : not tried
+[wp] Goal typed_stringCompare_assert_length : not tried
+[wp] Goal typed_stringCompare_assert_different : not tried
+[wp] Goal typed_stringCompare_assert_rte_mem_access_4 : not tried
+[wp] Goal typed_stringCompare_assert_rte_mem_access_5 : not tried
+[wp] Goal typed_stringCompare_assert_rte_signed_overflow : not tried
+[wp] Goal typed_stringCompare_assert_rte_signed_overflow_2 : not tried
+[wp] Goal typed_stringCompare_loop_assigns_part1 : trivial
+[wp] Goal typed_stringCompare_loop_assigns_part2 : not tried
+[wp] Goal typed_stringCompare_loop_assigns_part3 : not tried
+[wp] Goal typed_stringCompare_assigns_part1 : not tried
+[wp] Goal typed_stringCompare_assigns_part2 : not tried
+[wp] Goal typed_stringCompare_assigns_part3 : not tried
+[wp] Goal typed_stringCompare_assigns_part4 : not tried
+[wp] Goal typed_stringCompare_assigns_part5 : not tried
+[wp] Goal typed_stringCompare_assigns_part6 : not tried
+[wp] Goal typed_stringCompare_assigns_part7 : not tried
+[wp] Goal typed_stringCompare_assigns_part8 : not tried
+[wp] Goal typed_stringCompare_assigns_part9 : not tried
+[wp] Goal typed_stringCompare_allEqual_ensures : not tried
+[wp] Goal typed_stringCompare_SomeDifferent_ensures : not tried
+[wp] Goal typed_stringLength_ensures_rightResult : not tried
+[wp] Goal typed_stringLength_ensures_rightEndCharacter : not tried
+[wp] Goal typed_stringLength_loop_invariant_preserved : not tried
+[wp] Goal typed_stringLength_loop_invariant_established : not tried
+[wp] Goal typed_stringLength_loop_invariant_2_preserved : not tried
+[wp] Goal typed_stringLength_loop_invariant_2_established : not tried
+[wp] Goal typed_stringLength_assert_rte_mem_access : not tried
+[wp] Goal typed_stringLength_loop_assigns_part1 : trivial
+[wp] Goal typed_stringLength_loop_assigns_part2 : not tried
+[wp] Goal typed_stringLength_assigns_part1 : not tried
+[wp] Goal typed_stringLength_assigns_part2 : not tried
+[wp] Goal typed_stringLength_assigns_part3 : not tried
+[wp] Goal typed_stringLength_assigns_part4 : not tried
+[wp] Goal typed_stringLength_assigns_part5 : not tried
+[wp] Goal typed_main_ensures : not tried
+[wp] Goal typed_main_exits_never : trivial
+[wp] Goal typed_main_assert : not tried
+[wp] Goal typed_main_assigns_exit : trivial
+[wp] Goal typed_main_assigns_normal_part1 : trivial
+[wp] Goal typed_main_assigns_normal_part2 : not tried
+[wp] Goal typed_main_call_stringCompare_requires_validStrings : not tried

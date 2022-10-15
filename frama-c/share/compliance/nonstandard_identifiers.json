@@ -1,0 +1,22 @@
+{
+    "description": "Non-ISO C, Non-POSIX identifiers known to the Frama-C standard library",
+    "source":"Manpages, mostly Linux and BSD",
+    "data":{
+        "facilitynames": {"header":"syslog.h"},
+        "getresgid": {"header":"unistd.h"},
+        "getresuid": {"header":"unistd.h"},
+        "makedev": {"header":"sys/types.h"},
+        "option": {"header":"getopt.h"},
+        "prioritynames": {"header":"syslog.h"},
+        "pthread_getname_np": {"header":"pthread.h"},
+        "pthread_setname_np": {"header":"pthread.h"},
+        "sendfile": {"header":"sys/sendfile.h"},
+        "setresgid": {"header":"unistd.h"},
+        "setresuid": {"header":"unistd.h"},
+        "strcspn": {"header":"string.h"},
+        "strlcat": {"header":"string.h"},
+        "strlcpy": {"header":"string.h"},
+        "wcslcat": {"header":"wchar.h"},
+        "wcslcpy": {"header":"wchar.h"}
+    }
+}

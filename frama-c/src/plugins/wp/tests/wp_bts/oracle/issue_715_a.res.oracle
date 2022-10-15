@@ -1,0 +1,15 @@
+# frama-c -wp [...]
+[kernel] Parsing issue_715_a.i (no preprocessing)
+[wp] Running WP plugin...
+[kernel] issue_715_a.i:6: Warning: 
+  No code nor implicit assigns clause for function dummy, generating default assigns from the prototype
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function foo
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file issue_715_a.i, line 2) in 'dummy'' in 'foo' at call 'dummy' (file issue_715_a.i, line 9)
+:
+Prove: true.
+
+------------------------------------------------------------

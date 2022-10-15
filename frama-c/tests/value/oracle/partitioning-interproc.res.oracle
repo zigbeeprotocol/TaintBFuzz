@@ -1,0 +1,62 @@
+[kernel] Parsing tests/value/partitioning-interproc.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function conditional_assign <- main.
+  Called from tests/value/partitioning-interproc.c:23.
+[eva] computing for function Frama_C_nondet <- conditional_assign <- main.
+  Called from tests/value/partitioning-interproc.c:10.
+[eva] using specification for function Frama_C_nondet
+[eva] Done for function Frama_C_nondet
+[eva] Recording results for conditional_assign
+[eva] Done for function conditional_assign
+[eva] tests/value/partitioning-interproc.c:25: Frama_C_show_each: {1}
+[eva] tests/value/partitioning-interproc.c:29: 
+  Reusing old results for call to conditional_assign
+[eva] computing for function conditional_assign <- main.
+  Called from tests/value/partitioning-interproc.c:29.
+[eva] computing for function Frama_C_nondet <- conditional_assign <- main.
+  Called from tests/value/partitioning-interproc.c:10.
+[eva] Done for function Frama_C_nondet
+[eva] Recording results for conditional_assign
+[eva] Done for function conditional_assign
+[eva] tests/value/partitioning-interproc.c:31: Frama_C_show_each: {1}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function conditional_assign:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ {0} or UNINITIALIZED
+  __retres ∈ {0; 1}
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ {0} or UNINITIALIZED
+  y ∈ {1} or UNINITIALIZED
+[from] Computing for function conditional_assign
+[from] Computing for function Frama_C_nondet <-conditional_assign
+[from] Done for function Frama_C_nondet
+[from] Done for function conditional_assign
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_nondet:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; a; b
+[from] Function conditional_assign:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  x FROM Frama_C_entropy_source; p (and SELF)
+  \result FROM Frama_C_entropy_source
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function conditional_assign:
+    Frama_C_entropy_source; tmp; x; __retres
+[inout] Inputs for function conditional_assign:
+    Frama_C_entropy_source
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source; x; y; tmp; tmp_0
+[inout] Inputs for function main:
+    Frama_C_entropy_source

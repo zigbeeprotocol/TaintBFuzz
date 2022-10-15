@@ -1,0 +1,1 @@
+    "description": "POSIX.1-2008 reserved function identifiers (plus a few legacy POSIX identifiers)",

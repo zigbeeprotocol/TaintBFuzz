@@ -1,0 +1,92 @@
+[kernel] Parsing pthread_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  retval ∈ {0}
+  v ∈ [--..--]
+[eva] computing for function pthread_create <- main.
+  Called from pthread_h.c:17.
+[eva] using specification for function pthread_create
+[eva] pthread_h.c:17: 
+  function pthread_create: precondition 'valid_thread' got status valid.
+[eva] pthread_h.c:17: 
+  function pthread_create: precondition 'valid_null_attr' got status valid.
+[eva] pthread_h.c:17: 
+  function pthread_create: precondition 'valid_routine' got status valid.
+[eva] pthread_h.c:17: 
+  function pthread_create: precondition 'valid_null_arg' got status valid.
+[eva] Done for function pthread_create
+[eva] computing for function printf_va_2 <- main.
+  Called from pthread_h.c:19.
+[eva] using specification for function printf_va_2
+[eva] pthread_h.c:19: function printf_va_2: precondition got status valid.
+[eva] Done for function printf_va_2
+[eva] computing for function printf_va_3 <- main.
+  Called from pthread_h.c:22.
+[eva] using specification for function printf_va_3
+[eva] pthread_h.c:22: function printf_va_3: precondition got status valid.
+[eva] Done for function printf_va_3
+[eva] computing for function pthread_setname_np <- main.
+  Called from pthread_h.c:23.
+[eva] using specification for function pthread_setname_np
+[eva] pthread_h.c:23: 
+  function pthread_setname_np: precondition 'valid_name' got status valid.
+[eva] Done for function pthread_setname_np
+[eva] computing for function pthread_getname_np <- main.
+  Called from pthread_h.c:26.
+[eva] using specification for function pthread_getname_np
+[eva] pthread_h.c:26: 
+  function pthread_getname_np: precondition 'valid_name' got status valid.
+[eva] Done for function pthread_getname_np
+[eva] computing for function printf_va_4 <- main.
+  Called from pthread_h.c:27.
+[eva] using specification for function printf_va_4
+[eva:alarm] pthread_h.c:27: Warning: 
+  function printf_va_4: precondition valid_read_string(param0) got status unknown.
+[eva] pthread_h.c:27: 
+  function printf_va_4: precondition valid_read_string(format) got status valid.
+[eva] Done for function printf_va_4
+[eva] computing for function start_routine <- main.
+  Called from pthread_h.c:32.
+[eva] computing for function printf_va_1 <- start_routine <- main.
+  Called from pthread_h.c:8.
+[eva] using specification for function printf_va_1
+[eva] pthread_h.c:8: function printf_va_1: precondition got status valid.
+[eva] Done for function printf_va_1
+[eva] Recording results for start_routine
+[eva] Done for function start_routine
+[eva] computing for function pthread_join <- main.
+  Called from pthread_h.c:34.
+[eva] using specification for function pthread_join
+[eva] pthread_h.c:34: 
+  function pthread_join: precondition 'valid_or_null_retval' got status valid.
+[eva] Done for function pthread_join
+[eva] computing for function printf_va_5 <- main.
+  Called from pthread_h.c:36.
+[eva] using specification for function printf_va_5
+[eva] pthread_h.c:36: function printf_va_5: precondition got status valid.
+[eva] Done for function printf_va_5
+[eva:alarm] pthread_h.c:39: Warning: 
+  out of bounds read. assert \valid_read(retv);
+[eva] computing for function printf_va_6 <- main.
+  Called from pthread_h.c:39.
+[eva] using specification for function printf_va_6
+[eva] pthread_h.c:39: function printf_va_6: precondition got status valid.
+[eva] Done for function printf_va_6
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function start_routine:
+  retval ∈ {43}
+  __retres ∈ {{ (void *)&retval }}
+  S___fc_stdout[0..1] ∈ [--..--]
+[eva:final-states] Values at end of function main:
+  retval ∈ {0; 43}
+  thread ∈ [--..--] or UNINITIALIZED
+  thread_arg ∈ {42}
+  r ∈ [--..--]
+  buf[0..15] ∈ [--..--] or UNINITIALIZED
+  retv ∈ {{ NULL + [--..--] ; &retval }} or UNINITIALIZED
+  __retres ∈ {0; 1}
+  S___fc_stdout[0..1] ∈ [--..--]

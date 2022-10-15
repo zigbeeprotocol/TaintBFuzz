@@ -1,0 +1,172 @@
+# frama-c -wp [...]
+[kernel] Parsing generalized_checks.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Axiomatic 'Th'
+------------------------------------------------------------
+
+Lemma C:
+Assume: 'A'
+Prove: (P_Q x_0) -> (P_R x_0)
+
+------------------------------------------------------------
+
+Lemma L:
+Assume: 'A'
+Prove: (P_P x_0) -> (P_R x_0)
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function caller
+------------------------------------------------------------
+
+Goal Post-condition 'R' in 'caller':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'R1,ko' in 'caller':
+Assume {
+  Type: is_sint32(caller_0) /\ is_sint32(x).
+  (* Pre-condition *)
+  Have: P_A(x).
+  (* Pre-condition *)
+  Have: P_CA1(x).
+  (* Call 'job' *)
+  Have: P_B(caller_0).
+}
+Prove: P_CB1(caller_0).
+
+------------------------------------------------------------
+
+Goal Post-condition 'R2,ko' in 'caller':
+Assume {
+  Type: is_sint32(caller_0) /\ is_sint32(x).
+  (* Pre-condition *)
+  Have: P_A(x).
+  (* Pre-condition *)
+  Have: P_CA1(x).
+  (* Call 'job' *)
+  Have: P_B(caller_0).
+}
+Prove: P_CA2(x).
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'caller':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'caller' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'caller' (2/2):
+Call Result at line 65
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'A' in 'job'' in 'caller' at call 'job' (file generalized_checks.i, line 65)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'CA1' in 'job'' in 'caller' at call 'job' (file generalized_checks.i, line 65)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'CA2,ko' in 'job'' in 'caller' at call 'job' (file generalized_checks.i, line 65)
+:
+Assume {
+  Type: is_sint32(x).
+  (* Pre-condition *)
+  Have: P_A(x).
+  (* Pre-condition *)
+  Have: P_CA1(x).
+}
+Prove: P_CA2(x).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition 'B' in 'job':
+Let x_1 = L_F(x).
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Pre-condition 'A' *)
+  Have: P_A(x).
+}
+Prove: P_B(x_1).
+
+------------------------------------------------------------
+
+Goal Post-condition 'CB1' in 'job':
+Let x_1 = L_F(x).
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Pre-condition 'A' *)
+  Have: P_A(x).
+}
+Prove: P_CB1(x_1).
+
+------------------------------------------------------------
+
+Goal Post-condition 'CB2,ko' in 'job':
+Let x_1 = L_F(x).
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Pre-condition 'A' *)
+  Have: P_A(x).
+}
+Prove: P_CB2(x_1).
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'job':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'job' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'job' (2/2):
+Call Result at line 52
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function loop
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'false_but_preserved' (file generalized_checks.i, line 70):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'false_but_preserved' (file generalized_checks.i, line 70):
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check 'implied_by_false_invariant' (file generalized_checks.i, line 74):
+Assume { Type: is_sint32(i). (* Else *) Have: 10 <= i. }
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file generalized_checks.i, line 71):
+Prove: true.
+
+------------------------------------------------------------

@@ -1,0 +1,23 @@
+[variadic] FRAMAC_SHARE/libc/stdio.h:207: 
+  Declaration of variadic function fprintf.
+[variadic] FRAMAC_SHARE/libc/stdio.h:209: 
+  Declaration of variadic function fscanf.
+[variadic] FRAMAC_SHARE/libc/stdio.h:211: 
+  Declaration of variadic function printf.
+[variadic] FRAMAC_SHARE/libc/stdio.h:212: 
+  Declaration of variadic function scanf.
+[variadic] FRAMAC_SHARE/libc/stdio.h:213: 
+  Declaration of variadic function snprintf.
+[variadic] FRAMAC_SHARE/libc/stdio.h:215: 
+  Declaration of variadic function sprintf.
+[variadic] FRAMAC_SHARE/libc/stdio.h:217: 
+  Declaration of variadic function sscanf.
+[variadic] FRAMAC_SHARE/libc/stdio.h:548: 
+  Declaration of variadic function dprintf.
+[variadic] FRAMAC_SHARE/libc/stdio.h:608: 
+  Declaration of variadic function asprintf.
+[variadic:libc:format] printf.c:8: Warning: Multiple usage of flag '-'.
+[variadic:libc:format] printf.c:8: Warning: 
+  Flag ' ' and conversion specififer e are not compatibles.
+[variadic] printf.c:8: 
+  Fallback translation of call printf to a call to the specialized version printf_fallback_1.

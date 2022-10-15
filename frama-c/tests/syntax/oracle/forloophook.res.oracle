@@ -1,0 +1,6 @@
+[kernel] Parsing forloophook.i (no preprocessing)
+Found a for loop
+Local declaration
+Has a test
+Has an increment
+No body

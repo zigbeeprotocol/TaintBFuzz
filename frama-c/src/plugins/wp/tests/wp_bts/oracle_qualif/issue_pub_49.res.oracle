@@ -1,0 +1,49 @@
+# frama-c -wp [...]
+[kernel] Parsing issue_pub_49.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 33 goals scheduled
+[wp] [Qed] Goal typed_is_class_assigns_part1 : Valid
+[wp] [Qed] Goal typed_is_class_assigns_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_caller1_ensures_postcs : Unsuccess
+[wp] [Qed] Goal typed_caller1_assigns_exit : Valid
+[wp] [Qed] Goal typed_caller1_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_caller1_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_caller1_assigns_normal_part3 : Valid
+[wp] [Qed] Goal typed_caller1_assigns_normal_part4 : Valid
+[wp] [Qed] Goal typed_caller1_assigns_normal_part5 : Valid
+[wp] [Qed] Goal typed_caller1_assigns_normal_part6 : Valid
+[wp] [Alt-Ergo] Goal typed_caller2_ensures_postcs : Unsuccess
+[wp] [Qed] Goal typed_caller2_assigns_exit : Valid
+[wp] [Qed] Goal typed_caller2_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_caller2_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_caller2_assigns_normal_part3 : Valid
+[wp] [Qed] Goal typed_caller2_assigns_normal_part4 : Valid
+[wp] [Qed] Goal typed_caller2_assigns_normal_part5 : Valid
+[wp] [Qed] Goal typed_caller2_assigns_normal_part6 : Valid
+[wp] [Alt-Ergo] Goal typed_caller3_ensures_postcs : Unsuccess
+[wp] [Qed] Goal typed_caller3_assigns_exit : Valid
+[wp] [Qed] Goal typed_caller3_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_caller3_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_caller3_assigns_normal_part3 : Valid
+[wp] [Qed] Goal typed_caller3_assigns_normal_part4 : Valid
+[wp] [Qed] Goal typed_caller3_assigns_normal_part5 : Valid
+[wp] [Alt-Ergo] Goal typed_caller4_ensures_postcs : Unsuccess
+[wp] [Qed] Goal typed_caller4_assigns_exit : Valid
+[wp] [Qed] Goal typed_caller4_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_caller4_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_caller4_assigns_normal_part3 : Valid
+[wp] [Qed] Goal typed_caller4_assigns_normal_part4 : Valid
+[wp] [Qed] Goal typed_caller4_assigns_normal_part5 : Valid
+[wp] [Qed] Goal typed_caller4_assigns_normal_part6 : Valid
+[wp] Proved goals:   29 / 33
+  Qed:            29 
+  Alt-Ergo:        0  (unsuccess: 4)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  is_class                  2        -        2       100%
+  caller1                   7        -        8      87.5%
+  caller2                   7        -        8      87.5%
+  caller3                   6        -        7      85.7%
+  caller4                   7        -        8      87.5%
+------------------------------------------------------------

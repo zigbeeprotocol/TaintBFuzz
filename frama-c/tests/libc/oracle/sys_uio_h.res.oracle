@@ -1,0 +1,108 @@
+[kernel] Parsing sys_uio_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] computing for function __va_open_mode_t <- main.
+  Called from sys_uio_h.c:17.
+[eva] using specification for function __va_open_mode_t
+[eva] sys_uio_h.c:17: 
+  function __va_open_mode_t: precondition 'valid_filename' got status valid.
+[eva] Done for function __va_open_mode_t
+[eva] sys_uio_h.c:19: assertion got status valid.
+[eva] sys_uio_h.c:20: assertion got status valid.
+[eva] sys_uio_h.c:21: assertion got status valid.
+[eva] computing for function writev <- main.
+  Called from sys_uio_h.c:22.
+[eva] using specification for function writev
+[eva] sys_uio_h.c:22: function writev: precondition 'valid_fd' got status valid.
+[eva] sys_uio_h.c:22: 
+  function writev: precondition 'initialization,initialized_inputs' got status valid.
+[eva] sys_uio_h.c:22: 
+  function writev: precondition 'valid_read_iov' got status valid.
+[eva:alarm] sys_uio_h.c:22: Warning: 
+  function writev: precondition 'valid_read_iov_bases' got status unknown.
+[eva] sys_uio_h.c:22: 
+  function writev: precondition 'bounded_iovcnt' got status valid.
+[eva] FRAMAC_SHARE/libc/sys/uio.h:67: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function \sum
+[eva:alarm] sys_uio_h.c:22: Warning: 
+  function writev: precondition 'bounded_lengths' got status unknown.
+[eva] FRAMAC_SHARE/libc/sys/uio.h:72: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function \sum
+[eva] Done for function writev
+[eva] computing for function close <- main.
+  Called from sys_uio_h.c:23.
+[eva] using specification for function close
+[eva] sys_uio_h.c:23: function close: precondition 'valid_fd' got status valid.
+[eva] Done for function close
+[eva] computing for function __va_open_void <- main.
+  Called from sys_uio_h.c:24.
+[eva] using specification for function __va_open_void
+[eva] sys_uio_h.c:24: 
+  function __va_open_void: precondition 'valid_filename' got status valid.
+[eva] sys_uio_h.c:24: 
+  function __va_open_void: precondition 'flag_not_CREAT' got status valid.
+[eva] Done for function __va_open_void
+[eva] computing for function readv <- main.
+  Called from sys_uio_h.c:25.
+[eva] using specification for function readv
+[eva:alarm] sys_uio_h.c:25: Warning: 
+  function readv: precondition 'valid_fd' got status unknown.
+[eva] sys_uio_h.c:25: 
+  function readv: precondition 'initialization,initialized_inputs' got status valid.
+[eva:alarm] sys_uio_h.c:25: Warning: 
+  function readv: precondition 'valid_iov' got status unknown.
+[eva] sys_uio_h.c:25: 
+  function readv: precondition 'bounded_iovcnt' got status valid.
+[eva] FRAMAC_SHARE/libc/sys/uio.h:52: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function \sum
+[eva] Done for function readv
+[eva] computing for function close <- main.
+  Called from sys_uio_h.c:26.
+[eva] sys_uio_h.c:26: function close: precondition 'valid_fd' got status valid.
+[eva] Done for function close
+[eva] computing for function __va_open_mode_t <- main.
+  Called from sys_uio_h.c:37.
+[eva] sys_uio_h.c:37: 
+  function __va_open_mode_t: precondition 'valid_filename' got status valid.
+[eva] Done for function __va_open_mode_t
+[eva] computing for function writev <- main.
+  Called from sys_uio_h.c:39.
+[eva] sys_uio_h.c:39: function writev: precondition 'valid_fd' got status valid.
+[eva] sys_uio_h.c:39: 
+  function writev: precondition 'initialization,initialized_inputs' got status valid.
+[eva] sys_uio_h.c:39: 
+  function writev: precondition 'valid_read_iov' got status valid.
+[eva:alarm] sys_uio_h.c:39: Warning: 
+  function writev: precondition 'valid_read_iov_bases' got status unknown.
+[eva] sys_uio_h.c:39: 
+  function writev: precondition 'bounded_iovcnt' got status valid.
+[eva:alarm] sys_uio_h.c:39: Warning: 
+  function writev: precondition 'bounded_lengths' got status unknown.
+[eva] Done for function writev
+[eva:alarm] sys_uio_h.c:40: Warning: 
+  assertion 'unreachable' got status invalid (stopping propagation).
+[eva:alarm] sys_uio_h.c:43: Warning: 
+  signed overflow. assert w + r ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_fds[0..1023] ∈ [--..--]
+  str ∈ {{ "A small string" }}
+  empty_buf ∈ {0}
+  buf[0..9] ∈ [--..--]
+  buf2[0..13] ∈ [--..--] or UNINITIALIZED
+  v[0].iov_base ∈ {{ "A small string" }}
+   [0].iov_len ∈ {15}
+   [1] ∈ {0}
+   [2].iov_base ∈ {{ (void *)&buf }}
+   [2].iov_len ∈ {10}
+   [3].iov_base ∈ {{ (void *)&buf2 }}
+   [3].iov_len ∈ {14}
+  fd ∈ [-1..1023]
+  w ∈ [-1..2147483647]
+  r ∈ [-1..2147483647]
+  __retres ∈ [-2..2147483647]

@@ -1,0 +1,580 @@
+[kernel] Parsing test5.i (no preprocessing)
+[kernel:typing:implicit-function-declaration] test5.i:21: Warning: 
+  Calling undeclared function my_switch. Old style K&R code?
+[eva:experimental] Warning: The traces domain is experimental.
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[kernel:annot:missing-spec] test5.i:21: Warning: 
+  Neither code nor specification for function my_switch, generating default assigns from the prototype
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] using specification for function my_switch
+[eva] Done for function my_switch
+[eva:alarm] test5.i:21: Warning: 
+  signed overflow.
+  assert tmp_0 + tmp ≤ 2147483647;
+  (tmp_0 from my_switch(tmp))
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva:alarm] test5.i:21: Warning: 
+  signed overflow.
+  assert -2147483648 ≤ tmp_0 + tmp;
+  (tmp_0 from my_switch(tmp))
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] test5.i:20: starting to merge loop iterations
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] test5.i:19: starting to merge loop iterations
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] computing for function my_switch <- main.
+  Called from test5.i:21.
+[eva] Done for function my_switch
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  tmp ∈ [--..--]
+[eva:d-traces] Trace domains:
+ start: 0; globals = ; main_formals = c;
+ {[ 0 -> initialize formal variable using type
+c -> 1
+    1 -> EnterScope: tmp -> 2
+    2 -> initialize variable: tmp -> 3
+    3 -> Assign: tmp = 1 -> 4
+    4 -> EnterScope: i -> 5
+    5 -> initialize variable: i -> 6
+    6 -> Assign: i = 0 -> 7
+    7 -> enter_loop -> 8
+    8 -> Assume: i < 10 true -> 9
+    9 -> EnterScope: j -> 10
+    10 -> initialize variable: j -> 11
+    11 -> Assign: j = 0 -> 12
+    12 -> enter_loop -> 13
+    13 -> Assume: j < 10 true -> 14
+    14 -> EnterScope: tmp_0 -> 15
+    15 -> EnterScope: \result<my_switch> -> 16
+    16 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 17
+    17 -> Assign: tmp_0 = \result<my_switch> -> 18
+    18 -> LeaveScope: \result<my_switch> -> 19
+    19 -> Assign: tmp = tmp_0 + tmp -> 20
+    20 -> LeaveScope: tmp_0 -> 21
+    21 -> Assign: j = j + 1 -> 22
+    22 -> Assume: j < 10 true -> 23
+    23 -> EnterScope: tmp_0 -> 24
+    24 -> EnterScope: \result<my_switch> -> 25
+    25 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 26
+    26 -> Assign: tmp_0 = \result<my_switch> -> 28
+    28 -> LeaveScope: \result<my_switch> -> 29
+    29 -> Assign: tmp = tmp_0 + tmp -> 30
+    30 -> LeaveScope: tmp_0 -> 31
+    31 -> Assign: j = j + 1 -> 32
+    32 -> Assume: j < 10 true -> 33
+    33 -> EnterScope: tmp_0 -> 34
+    34 -> EnterScope: \result<my_switch> -> 35
+    35 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 36
+    36 -> Assign: tmp_0 = \result<my_switch> -> 38
+    38 -> LeaveScope: \result<my_switch> -> 39
+    39 -> Assign: tmp = tmp_0 + tmp -> 40
+    40 -> LeaveScope: tmp_0 -> 41
+    41 -> Assign: j = j + 1 -> 42
+    42 -> Assume: j < 10 true -> 43
+    43 -> EnterScope: tmp_0 -> 44
+    44 -> EnterScope: \result<my_switch> -> 45
+    45 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 46
+    46 -> Assign: tmp_0 = \result<my_switch> -> 48
+    48 -> LeaveScope: \result<my_switch> -> 49
+    49 -> Assign: tmp = tmp_0 + tmp -> 50
+    50 -> LeaveScope: tmp_0 -> 51
+    51 -> Assign: j = j + 1 -> 52
+    52 -> Assume: j < 10 true -> 53
+    53 -> EnterScope: tmp_0 -> 54
+    54 -> EnterScope: \result<my_switch> -> 55
+    55 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 56
+    56 -> Assign: tmp_0 = \result<my_switch> -> 58
+    58 -> LeaveScope: \result<my_switch> -> 59
+    59 -> Assign: tmp = tmp_0 + tmp -> 60
+    60 -> LeaveScope: tmp_0 -> 61
+    61 -> Assign: j = j + 1 -> 62
+    62 -> Assume: j < 10 true -> 63
+    63 -> EnterScope: tmp_0 -> 64
+    64 -> EnterScope: \result<my_switch> -> 65
+    65 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 66
+    66 -> Assign: tmp_0 = \result<my_switch> -> 68
+    68 -> LeaveScope: \result<my_switch> -> 69
+    69 -> Assign: tmp = tmp_0 + tmp -> 70
+    70 -> LeaveScope: tmp_0 -> 71
+    71 -> Assign: j = j + 1 -> 72
+    72 -> Assume: j < 10 true -> 73
+    73 -> EnterScope: tmp_0 -> 74
+    74 -> EnterScope: \result<my_switch> -> 75
+    75 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 76
+    76 -> Assign: tmp_0 = \result<my_switch> -> 78
+    78 -> LeaveScope: \result<my_switch> -> 79
+    79 -> Assign: tmp = tmp_0 + tmp -> 80
+    80 -> LeaveScope: tmp_0 -> 81
+    81 -> Assign: j = j + 1 -> 82
+    82 -> Assume: j < 10 true -> 83
+    83 -> EnterScope: tmp_0 -> 84
+    84 -> EnterScope: \result<my_switch> -> 85
+    85 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 86
+    86 -> Assign: tmp_0 = \result<my_switch> -> 88
+    88 -> LeaveScope: \result<my_switch> -> 89
+    89 -> Assign: tmp = tmp_0 + tmp -> 90
+    90 -> LeaveScope: tmp_0 -> 91
+    91 -> Assign: j = j + 1 -> 92
+    92 -> Assume: j < 10 true -> 93
+    93 -> EnterScope: tmp_0 -> 94
+    94 -> EnterScope: \result<my_switch> -> 95
+    95 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 96
+    96 -> Assign: tmp_0 = \result<my_switch> -> 98
+    98 -> LeaveScope: \result<my_switch> -> 99
+    99 -> Assign: tmp = tmp_0 + tmp -> 100
+    100 -> LeaveScope: tmp_0 -> 101
+    101 -> Assign: j = j + 1 -> 102
+    102 -> Assume: j < 10 true -> 103
+    103 -> EnterScope: tmp_0 -> 104
+    104 -> EnterScope: \result<my_switch> -> 105
+    105 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 106
+    106 -> Assign: tmp_0 = \result<my_switch> -> 108
+    108 -> LeaveScope: \result<my_switch> -> 109
+    109 -> Assign: tmp = tmp_0 + tmp -> 110
+    110 -> LeaveScope: tmp_0 -> 111
+    111 -> Assign: j = j + 1 -> 112
+    112 -> Assume: j < 10 false -> 113; join -> 121
+    113 -> LeaveScope: j -> 114
+    114 -> Assign: i = i + 1 -> 115
+    115 -> Assume: i < 10 true -> 116
+    116 -> EnterScope: j -> 117
+    117 -> initialize variable: j -> 118
+    118 -> Assign: j = 0 -> 119
+    119 -> enter_loop -> 120
+    120 -> join -> 121
+    121 -> Assume: j < 10 true -> 122; join -> 132
+    122 -> EnterScope: tmp_0 -> 123; join -> 134
+    123 -> EnterScope: \result<my_switch> -> 124; join -> 136
+    124 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 125
+    125 -> Assign: tmp_0 = \result<my_switch> -> 127
+    127 -> LeaveScope: \result<my_switch> -> 128
+    128 -> Assign: tmp = tmp_0 + tmp -> 129; join -> 142
+    129 -> LeaveScope: tmp_0 -> 130
+    130 -> Assign: j = j + 1 -> 131; join -> 145
+    131 -> join -> 132
+    132 -> Assume: j < 10 true -> 133; join -> 147
+    133 -> join -> 134
+    134 -> EnterScope: tmp_0 -> 135; join -> 150
+    135 -> join -> 136
+    136 -> EnterScope: \result<my_switch> -> 137; join -> 152
+    137 -> CallDeclared: \result<my_switch> = my_switch(tmp) -> 138
+    138 -> Assign: tmp_0 = \result<my_switch> -> 140
+    140 -> LeaveScope: \result<my_switch> -> 141
+    141 -> join -> 142
+    142 -> Assign: tmp = tmp_0 + tmp -> 143; join -> 158
+    143 -> LeaveScope: tmp_0 -> 144
+    144 -> join -> 145
+    145 -> Assign: j = j + 1 -> 146; join -> 161
+    146 -> join -> 147
+    147 -> join -> 150
+    150 -> join -> 152
+    152 -> join -> 158
+    158 -> join -> 161
+    161 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 165;
+           join -> 175
+    165 -> Assume: j < 10 false -> 166
+    166 -> leave_loop -> 167
+    167 -> LeaveScope: j -> 168
+    168 -> Assign: i = i + 1 -> 169
+    169 -> Assume: i < 10 true -> 170
+    170 -> EnterScope: j -> 171
+    171 -> initialize variable: j -> 172
+    172 -> Assign: j = 0 -> 173
+    173 -> enter_loop -> 174
+    174 -> join -> 175
+    175 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 177;
+           join -> 187
+    177 -> Assume: j < 10 false -> 178
+    178 -> leave_loop -> 179
+    179 -> LeaveScope: j -> 180
+    180 -> Assign: i = i + 1 -> 181
+    181 -> Assume: i < 10 true -> 182
+    182 -> EnterScope: j -> 183
+    183 -> initialize variable: j -> 184
+    184 -> Assign: j = 0 -> 185
+    185 -> enter_loop -> 186
+    186 -> join -> 187
+    187 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 189;
+           join -> 199
+    189 -> Assume: j < 10 false -> 190
+    190 -> leave_loop -> 191
+    191 -> LeaveScope: j -> 192
+    192 -> Assign: i = i + 1 -> 193
+    193 -> Assume: i < 10 true -> 194
+    194 -> EnterScope: j -> 195
+    195 -> initialize variable: j -> 196
+    196 -> Assign: j = 0 -> 197
+    197 -> enter_loop -> 198
+    198 -> join -> 199
+    199 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 201;
+           join -> 211
+    201 -> Assume: j < 10 false -> 202
+    202 -> leave_loop -> 203
+    203 -> LeaveScope: j -> 204
+    204 -> Assign: i = i + 1 -> 205
+    205 -> Assume: i < 10 true -> 206
+    206 -> EnterScope: j -> 207
+    207 -> initialize variable: j -> 208
+    208 -> Assign: j = 0 -> 209
+    209 -> enter_loop -> 210
+    210 -> join -> 211
+    211 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 213;
+           join -> 223
+    213 -> Assume: j < 10 false -> 214
+    214 -> leave_loop -> 215
+    215 -> LeaveScope: j -> 216
+    216 -> Assign: i = i + 1 -> 217
+    217 -> Assume: i < 10 true -> 218
+    218 -> EnterScope: j -> 219
+    219 -> initialize variable: j -> 220
+    220 -> Assign: j = 0 -> 221
+    221 -> enter_loop -> 222
+    222 -> join -> 223
+    223 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 225;
+           join -> 235
+    225 -> Assume: j < 10 false -> 226
+    226 -> leave_loop -> 227
+    227 -> LeaveScope: j -> 228
+    228 -> Assign: i = i + 1 -> 229
+    229 -> Assume: i < 10 true -> 230
+    230 -> EnterScope: j -> 231
+    231 -> initialize variable: j -> 232
+    232 -> Assign: j = 0 -> 233
+    233 -> enter_loop -> 234
+    234 -> join -> 235
+    235 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 237;
+           join -> 247
+    237 -> Assume: j < 10 false -> 238
+    238 -> leave_loop -> 239
+    239 -> LeaveScope: j -> 240
+    240 -> Assign: i = i + 1 -> 241
+    241 -> Assume: i < 10 true -> 242
+    242 -> EnterScope: j -> 243
+    243 -> initialize variable: j -> 244
+    244 -> Assign: j = 0 -> 245
+    245 -> enter_loop -> 246
+    246 -> join -> 247
+    247 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 249;
+           join -> 259
+    249 -> Assume: j < 10 false -> 250
+    250 -> leave_loop -> 251
+    251 -> LeaveScope: j -> 252
+    252 -> Assign: i = i + 1 -> 253
+    253 -> Assume: i < 10 true -> 254
+    254 -> EnterScope: j -> 255
+    255 -> initialize variable: j -> 256
+    256 -> Assign: j = 0 -> 257
+    257 -> enter_loop -> 258
+    258 -> join -> 259
+    259 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 261;
+           join -> 271
+    261 -> Assume: j < 10 false -> 262
+    262 -> leave_loop -> 263
+    263 -> LeaveScope: j -> 264
+    264 -> Assign: i = i + 1 -> 265
+    265 -> Assume: i < 10 true -> 266; join -> 278
+    266 -> EnterScope: j -> 267; join -> 280
+    267 -> initialize variable: j -> 268
+    268 -> Assign: j = 0 -> 269
+    269 -> enter_loop -> 270
+    270 -> join -> 271
+    271 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 273;
+           join -> 285
+    273 -> Assume: j < 10 false -> 274
+    274 -> leave_loop -> 275
+    275 -> LeaveScope: j -> 276; join -> 290
+    276 -> Assign: i = i + 1 -> 277; join -> 292
+    277 -> join -> 278
+    278 -> Assume: i < 10 true -> 279; join -> 294
+    279 -> join -> 280
+    280 -> EnterScope: j -> 281; join -> 296
+    281 -> initialize variable: j -> 282
+    282 -> Assign: j = 0 -> 283
+    283 -> enter_loop -> 284
+    284 -> join -> 285
+    285 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 287;
+           join -> 301
+    287 -> Assume: j < 10 false -> 288
+    288 -> leave_loop -> 289
+    289 -> join -> 290
+    290 -> LeaveScope: j -> 291; join -> 306
+    291 -> join -> 292
+    292 -> Assign: i = i + 1 -> 293; join -> 308
+    293 -> join -> 294
+    294 -> Assume: i < 10 true -> 295; join -> 310
+    295 -> join -> 296
+    296 -> EnterScope: j -> 297; join -> 313
+    297 -> initialize variable: j -> 298
+    298 -> Assign: j = 0 -> 299
+    299 -> enter_loop -> 300
+    300 -> join -> 301
+    301 -> Loop(16) 148 {[ 148 -> Assume: j < 10 true -> 149
+                           149 -> EnterScope: tmp_0 -> 151
+                           151 -> EnterScope: \result<my_switch> -> 153
+                           153 -> CallDeclared:
+                                    \result<my_switch> =
+                                    my_switch(tmp) -> 154
+                           154 -> Assign: tmp_0 = \result<my_switch> -> 156
+                           156 -> LeaveScope: \result<my_switch> -> 157
+                           157 -> Assign: tmp = tmp_0 + tmp -> 159
+                           159 -> LeaveScope: tmp_0 -> 160
+                           160 -> Assign: j = j + 1 -> 162 ]} -> 303;
+           join -> 318
+    303 -> Assume: j < 10 false -> 304
+    304 -> leave_loop -> 305
+    305 -> join -> 306
+    306 -> LeaveScope: j -> 307; join -> 323
+    307 -> join -> 308
+    308 -> Assign: i = i + 1 -> 309; join -> 325
+    309 -> join -> 310
+    310 -> join -> 313
+    313 -> join -> 318
+    318 -> join -> 323
+    323 -> join -> 325
+    325 -> Loop(10) 311 {[ 311 -> Assume: i < 10 true -> 312
+                           312 -> EnterScope: j -> 314
+                           314 -> initialize variable: j -> 315
+                           315 -> Assign: j = 0 -> 316
+                           316 -> enter_loop -> 317
+                           317 -> Loop(16) 148 {[ 148 -> Assume:
+                                                           j < 10 true 
+                                                           -> 149
+                                                  149 -> EnterScope:
+                                                           tmp_0 -> 151
+                                                  151 -> EnterScope:
+                                                           \result<my_switch> 
+                                                           -> 153
+                                                  153 -> CallDeclared:
+                                                           \result<my_switch> =
+                                                           my_switch(
+                                                           tmp) -> 154
+                                                  154 -> Assign:
+                                                           tmp_0 = \result<my_switch> 
+                                                           -> 156
+                                                  156 -> LeaveScope:
+                                                           \result<my_switch> 
+                                                           -> 157
+                                                  157 -> Assign:
+                                                           tmp = tmp_0 + tmp 
+                                                           -> 159
+                                                  159 -> LeaveScope:
+                                                           tmp_0 -> 160
+                                                  160 -> Assign:
+                                                           j = j + 1 
+                                                           -> 162 ]} 
+                                    -> 320
+                           320 -> Assume: j < 10 false -> 321
+                           321 -> leave_loop -> 322
+                           322 -> LeaveScope: j -> 324
+                           324 -> Assign: i = i + 1 -> 326 ]} -> 329
+    329 -> Assume: i < 10 false -> 330
+    330 -> leave_loop -> 331
+    331 -> LeaveScope: i -> 332
+    332 -> EnterScope: \result<main> -> 333
+    333 -> Assign: \result<main> = tmp -> 334 ]} at 334
+[from] Computing for function main
+[from] Computing for function my_switch <-main
+[from] Done for function my_switch
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function my_switch:
+  \result FROM x_0
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    tmp; i; j; tmp_0
+[inout] Inputs for function main:
+    \nothing
+[kernel] User Error: no known last created project.
+[kernel] Frama-C aborted: invalid user input.

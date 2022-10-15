@@ -1,0 +1,995 @@
+\section{Principe et notations}
+
+On rappelle ici les aspects du calcul intraprocédural, et diverses notations,
+qui vont être utilisées par la suite.
+On s'appuie en grande partie sur la représentation des entrées/sortie
+et des appels de fonction dans le PDG présenté dans \cite{ppcPdg}.
+
+\subsection{Marques élémentaires}
+
+On considère qu'on a un ensemble de marques élémentaires,
+non détaillées ici, muni~:
+\begin{itemize}
+  \item d'un ordre partiel ($\leq$),
+  \item d'une opération d'union ($+$),
+  \item d'un plus petit élément ($\botm$) utilisé pour marquer les éléments
+    invisibles,
+  \item et d'un plus grand élément ($\topm$) correspondant au marquage des
+    élément de la fonction source.
+\end{itemize}
+
+On considère de plus un élément appelé \spare{} tel que~:
+\begin{itemize}
+  \item $\forall m. m \neq \botm \imply m = \spare \lor \spare \leq m$
+\end{itemize}
+On a donc~:
+\begin{equation*}
+\forall m. m \neq \botm \imply m + \spare = m  
+\end{equation*}
+Cette marque est donc la plus petite qui rende un élément visible.
+Elle est utilisée pour marquer les élément dit {\it superflus}, c'est-à-dire
+ceux qui ne seraient pas nécessaire si la réduction était plus précise.
+
+\subsection{Marquage}
+
+On a vu au chapitre \ref{sec-filtrage-fct} que l'on dispose d'une procédure
+permettant de marquer une instruction et de la propager
+selon les dépendances (PDG). 
+
+Au cours de ce calcul,
+les relations de dépendances entre les entrées et les sorties des fonctions
+appelées sont données par la spécification\footnote{c'est peut-être un problème
+si on fait de la coupure de branche, car les dépendances peuvent être réduites
+par une telle spécialisation.}.\bb
+
+Dans le résultat obtenu, lorsqu'un élément de fonction $e1$ est utilisé par un
+élément de fonction $e2$, la marque $m1$ associée à $e1$ 
+est supérieure ou
+égale à la marque $m2$ associée à $e2$ car  $m1$ est l'union des marques
+de tous les éléments qui dépendent de $e1$.
+
+\subsection{Fonctions}
+
+Chaque fonction source peut être spécialisée une ou plusieurs fois. 
+Au niveau {\it intraprocédural},
+cela signifie qu'on lui attribue un certain marquage.\bb
+
+Dans la suite, on note~:
+\begin{itemize}
+  \item $f, g, h, ...$ une fonction quelconque (source ou spécialisée),
+  \item une fonction source est munie d'un indice 0~: $f_0, g_0, h_0, ...$
+  \item les fonctions spécialisées ont un autre indice~: $f_i, g_j, h_k, ...$
+    (sauf mention contraire, quand on précise l'indice, 
+    on suppose donc qu'il est différent de 0).
+\end{itemize}
+
+\subsection{Entrées/sorties}
+
+Le graphe de dépendance contient des éléments particuliers qui représentent
+les entrées et les sorties de la fonction.
+On note $\inout(f)$ l'ensemble de ces éléments pour la fonction $f$.\bb
+
+On ne précise pas de quelle fonction $f$ il s'agit, car on considère le même
+ensemble d'entrées/sorties pour toutes les spécialisations~:
+\begin{equation*}
+    \forall i. \inout(f_0) = \inout(f_i)
+\end{equation*}
+
+\subsection{Signature}
+
+On appelle {\bf signature}, et on note $\sig$, une fonction 
+qui associe une marque aux éléments d'un ensemble d'entrées/sorties.
+
+On définit $\tops$ qui représente une signature dont tous les éléments
+ont une marque $\topm$~:
+\begin{equation*}
+\sig = \tops \equiv \forall e \in dom(\sig). \sig(e) = \topm
+\end{equation*}
+et de même, $\bots$ qui représente une signature dont tous les éléments 
+ont une marque $\botm$~:
+\begin{equation*}
+\sig = \bots \equiv \forall e \in dom(\sig). \sig(e) = \botm
+\end{equation*}
+
+% A TERMINER~: il faut sans doute déjà introduire la notion de précondition dans
+% la signature, car si deux spécialisations ont la même marque pour une même
+% sortie, mais qu'elles ne se placent pas dans les mêmes conditions, il faut tenir
+% compte de la relation d'ordre sur les préconditions (implication).
+% 
+% Exemple~: si on spécialise une fonction avec une entrée $x=2$,
+% elle est plus précise qu'une spécialisation avec $x>0$,
+% par contre, elle est incomparable avec la spécialisation dans le cas $x<0$.\bb
+
+
+On définit $\sigf(f)$ la {\bf signature d'une fonction} $f$ telle que~:
+\begin{itemize}
+  \item $dom(\sigf(f)) = \inout(f)$
+  \item $\sigf(f_0) = \tops$
+  \item $\sigf(f_i)(e)$ est la marque attribuée à $e$ dans $f_i$.
+\end{itemize}
+\bb
+
+On notera parfois $\insigf(f)$ et $\outsigf(f)$ les fonctions dont le domaine
+est réduit aux entrées ou aux sorties.
+
+% La relation d'ordre sur les signatures de fonction traduit la précision
+% des spécialisations.
+% Une spécialisation est plus petite qu'une autre si elle calcule moins
+% de chose, ou si elle calcule la même chose, mais qu'elle
+% nécessite moins d'entrée (c'est possible si le choix des fonctions appelées
+% n'est pas le même).
+
+\subsection{Appel de fonction}
+
+Comme nous parlons ici de la partie interprocédurale du traitement, on
+s'intéresse principalement aux appels de fonction.  On considère que l'on sait
+identifier de manière unique un appel de fonction $c$, (par exemple par
+l'identification de la fonction appelante et un élément du PDG, ou un numéro
+d'ordre). Dans la suite, pour préciser le nom de la fonction appelée,
+on notera $c_g$ un appel à une fonction $g$.\bb
+
+On note $\call(f)$ l'ensemble des appels de fonction de $f$.
+On remarque que l'on ne précise pas la spécialisation, car~:
+\begin{equation*}
+\forall i. \call(f_i) = \call(f_0)
+\end{equation*}
+\bb
+
+Pour chaque appel de fonction $c_g$ de $f_i$, 
+le graphe de dépendance contient des éléments qui
+représentent les entrées/sorties de la fonction appelée.
+
+On définit la {\bf signature d'un appel} de fonction $c$
+dans la fonction $f_i$, et on note $\sigc(c, f_i)$,
+la fonction qui donne les marques de ces éléments dans $f_i$.
+
+\section{Calcul interprocédural}
+
+\subsection{Gestion des fonctions}
+
+Au niveau {\it intraprocédural}, une fonction spécialisée est caractérisée par
+un certain marquage de ses éléments. 
+En interprocédural, on s'intéresse à la propagation des marques aux appels
+de fonction. On se propose donc d'ajouter aux fonctions spécialisées
+une fonction $\Call$, décrite en \S\ref{sec-Call}, qui associe, à chaque appel
+de fonction, l'identification de la fonction à appeler.  L'objectif est de
+remplacer certains appels par des appels à des fonctions spécialisées.\bb
+
+La réduction d'une application consiste à construire un {\bf projet} qui
+contient une liste de fonction, initialisée à la liste des fonctions source, et
+complétée au cours de l'étude par les fonctions spécialisées calculées.
+
+L'objectif est d'obtenir un projet cohérent, tel que défini en
+\S\ref{sec-coherence}.
+
+\subsection{Appels de fonction}\label{sec-Call}
+
+On appelle $\Call(f_i)$ la fonction qui fait correspondre
+chaque appel de $f_i$ à une fonction appelée.
+$\Call(f_i)(c)$ donne donc la fonction appelée par $f_i$ pour l'appel $c$.\bb
+
+On note $\Call(f_i)(c) = \botc$ quand l'appel est invisible.
+
+Par ailleurs, $\Call(f_i)(c) = \topc$ signifie que l'appel
+n'est pas encore attribué, c'est-à-dire que l'on n'a pas encore choisi la
+fonction à appeler.\bb
+
+Si la fonction appelée est déterminée par l'accès à un pointeur de fonction,
+il n'est pris en considération dans $\Call$ que si on connaît
+statiquement la fonction appelée à partir de l'analyse de valeur. 
+Dans les autres cas, on laissera
+l'appel tel qu'il est dans la fonction source.\bb
+
+
+Les fonctions source appellent forcement des fonctions source~:
+\begin{equation*}
+\forall c \in \call(f), \exists g. \Call(f_0)(c) = g_0
+\end{equation*}
+
+Quand l'appel est attribué, il correspond forcement à une spécialisation
+de la fonction initialement appelée~:
+\begin{equation*}
+\forall c \in \call(f), \Call(f_0)(c) = g_0 
+\imply \forall f_i. (\Call(f_i)(c)  = \botc \lor \Call(f_i)(c)  = \topc 
+\lor \exists j. \Call(f_i)(c)  = g_j)
+\end{equation*}
+
+Par ailleurs, si $\Call(f_i)(c)  = g_j$
+on veut que la signature de la fonction appelée 
+$\sigf(g_j)$ soit {\it compatible}
+à la signature de l'appel $\sigc(c, f_i)$.
+Voyons maintenant ce que cela veut dire...
+
+\subsection{Problème de compatibilité des signatures}\label{sec-compat-sig}
+
+La première idée qui vient lorsque l'on souhaite propager le marquage
+aux fonctions appelées est d'appliquer les mêmes règles de propagation dans les
+dépendances que pour le calcul
+intraprocédural. Mais lorsque l'on souhaite utiliser une même fonction
+spécialisée dans différents contextes, cela conduit à avoir une trop grande
+perte de précision. On veut par exemple pouvoir marquer
+comme \spare{} les entrées qui ne sont pas réellement utilisées pour un certain
+appel, même si elles portent d'autres marques par ailleurs.
+\bb
+
+Par exemple, dans le cas suivant~:
+
+\noindent\begin{tabular}{p{5cm}p{4cm}p{4cm}}
+\begin{verbatim}
+int X, Y;
+
+void g (int x, int y) {
+  X = x; Y = y;
+  }
+\end{verbatim}
+&
+\begin{verbatim}
+
+int f_a (int x_a, 
+        int y_a) {
+  g (x_a, y_a);
+  return X;
+  }
+\end{verbatim}
+&
+\begin{verbatim}
+
+int f_b (int x_b, 
+        int y_b) {
+  g (x_b, y_b);
+  return Y;
+  }
+\end{verbatim}
+\end{tabular}
+
+si l'utilisateur demande le marquage 
+des sorties 0 de \verb$f_a$ et \verb$f_b$, et la construction d'une seule
+spécialisation pour \verb$g$, on aimerait que \verb$x_a$ et \verb$y_b$ soient
+marquées \spare{}
+
+
+\bb
+Pour obtenir un tel comportement, on décide d'étendre le marquage
+comme suit.
+
+\subsection{Couple de marques}
+
+Pour garder un maximum de précision, il faut distinguer les sélections
+réellement effectuées par l'utilisateur des marques introduites par une
+approximation.
+Pour cela, on marque chaque élément d'une spécialisation non plus par une seule
+marque, mais par un couple $<m_1, m_2>$ où~:
+\begin{itemize}
+  \item la marque $m_1$ correspond à la propagation d'une sélection par
+    l'utilisateur dans la fonction d'origine et dans ses appelants,
+    {\sc MAIS}
+    on ne la propage pas directement dans les fonctions appelées
+    car cela conduit à avoir une trop grande perte de précision.
+    Il faut noter que $m_1$ ne peut en principe pas être \spare,
+    sauf si l'utilisateur le demande explicitement.
+  \item la marque $m_2$ correspond à la propagation d'une marque $m_1$
+    d'un appelant. Donc, lorsque la sortie d'un appel a une marque $m_1$, la
+    sortie correspondante de la fonction appelée est marquée $m_2$. 
+    Par ailleurs, si une fonction a une entrée marquée 
+    $m = <m_1, m_2>$ avec $m_2 \neq \botm$, ses appelants doivent propager 
+    $m' = <m_1, \spare>$ sur l'entrée correspondante.
+    Attention, comme on le verra plus loin,
+    cela ne veut pas dire que les entrées des appelants ont la
+    marque $m'$, car il faut combiner cette marque avec les marques de
+    l'appelante.
+\end{itemize}
+\bb
+
+Du point de vue de l'utilisateur, la marque associée à un élément est l'union de
+$m_1$ et de $m_2$.
+\bb
+
+Dans l'exemple précédent, les entrées $x$ et $y$ de $g$
+seront marquées en $m_2$, et cela conduira bien à marquer $\spare{}$ les entrées
+inutiles dans $f\_a$ et $f\_b$.
+
+\subsection{Cohérence du projet} \label{sec-coherence}
+
+Avant de voir comment calculer le résultat, voyons les propriétés que doit avoir
+un marquage final pour être cohérent.
+Les éléments qui nous intéressent sont les signatures des fonctions et des
+appels.
+
+Nous ne parlons ci-dessous que des marques propagées,
+sachant qu'en plus, chacune peut contenir aussi une marque mise manuellement par
+l'utilisateur.
+
+\begin{itemize}
+  \item les marques des sorties d'un appel $(c_g, f_i)$ ne dépendent que du
+    contexte d'appel, c'est-à-dire des marques de leurs dépendances dans $f_i$.
+    Néanmoins, il semble qu'une marque $m_2$ ne puisse venir que de marques
+    $m_2$ sur les sorties de $f_i$, sauf la marque \spare{} qui peut venir 
+    d'entrées d'appels de fonction.
+  \item les marques des sorties d'une fonction spécialisée sont déterminées
+    par les marques des sorties des appels à cette fonction.
+    On ne peut avoir $m_1 \neq \botm$ que si l'utilisateur a placé
+    explicitement une marques sur la sortie. La marque $m_2$ est l'union 
+    des marques $m_1$ et $m_2$ des sorties des appels.
+  \item les marques des entrées d'une fonction sont uniquement déterminées par
+    la propagation des marques des autres éléments de la fonction.
+    Une marque $m_1$ provient nécessairement d'une sélection utilisateur dans la
+    fonction considérée ou une de ses fonctions appelées.
+  \item les marques des entrées d'un appel $(c_g, f_i)$ sont une combinaison des
+    marques des entrées de $g$ et des sorties de $(c_g, f_i)$ 
+    Si l'on remplace la fonction appelée, il faut recalculer ces
+    marques d'entrées.
+\end{itemize}
+\bb
+
+En résumé,
+considérons une entrée $e$ et une sortie $s$ d'une fonction spécialisée $g_i$,
+on note $m(e) = \sigf(g_i)(e)$, $m(s) = \sigf(g_i)(s)$.
+
+\labcenterepsfig{call}{Propagation des marques dans les appels de
+fonction}{fig-mark-call}
+
+Soit $c$ un appel quelconque à cette fonction, 
+on note $m(ce) = \sigc(c)(e)$ et $m(cs) = \sigc(c)(s)$.
+Pour avoir un projet cohérent, on doit avoir les propriétés suivantes~:
+
+
+\begin{itemize}
+  \item $m_2(s) \geq m_1(cs) + m_2(cs)$
+  \item $m_1(e) \leq m_1(ce)$
+  \item $m_2(e) \neq \botm \imply m_1(ce) \geq \spare$
+\end{itemize}
+
+Par ailleurs, si la sortie $s$ dépend de l'entrée $e$~:
+\begin{itemize}
+  \item $m_1(cs) \leq m_2(s) \leq m_2(e) \leq m_2(ce)$
+  \item $m_1(cs) \leq m_1(ce)$
+  \item $m_1(s) \leq m_1(e) \leq m_1(ce)$
+\end{itemize}
+\bb
+
+On a vu que le calcul du résultat final se décompose en actions élémentaires.
+Entre deux actions, on impose que le projet soit {\bf partiellement cohérent},
+c'est-à-dire que pour tous $\Call(f_i)(c)$~:
+\begin{itemize}
+  \item $\Call(f_i)(c) = \botc \Longleftrightarrow \sigc(c, f_i) = \bots$
+  \item $\Call(f_i)(c) = \topc$ et il doit y avoir une action en attente pour
+    attribuer l'appel,
+  \item $\Call(f_i)(c) = g_j$ et~:
+    \begin{itemize}
+      \item $g_j$ doit exister et avoir une signature compatible à l'appel,
+      ou une action de modification en attente
+	(car dans ce cas, on ne sait pas forcement évaluer la compatibilité des
+	signatures).
+      \item ou $g_j$ n'existe pas encore, mais fait l'objet d'une action de
+	construction en attente.
+    \end{itemize}
+\end{itemize}
+\bb
+
+Lorsque la liste des actions est vide, le projet doit être {\bf cohérent}
+c'est-à-dire que tous les appels de fonction doivent être affectés
+à une fonction ayant une signature compatible avec celle de l'appel.
+
+
+\section{Actions pour le calcul interprocédural}\label{sec-def-actions}
+
+La difficulté du traitement est d'enchaîner correctement les actions pour
+obtenir une application cohérente.  De plus, pour avoir une boite à outils
+suffisamment flexible, les actions doivent correspondre à des traitements
+suffisamment élémentaires, et parfaitement spécifiés (surtout leur comportement
+vis à vis des différentes options). 
+
+On  décide donc que toute action doit être décomposée et traduite 
+en une séquence d'{\bf actions élémentaires} définies ci-dessous.
+Elles doivent être simples, et
+le moins paramétrables possible, la flexibilité venant plutôt de la
+traduction d'une action de haut niveau en actions élémentaires.
+Ces dernières ne sont donc pas toutes accessibles par l'utilisateur,
+mais peuvent être vues comme des étapes de calcul qui seront combinées 
+par la suite en fonction des besoins.
+\bb
+
+L'application d'une action élémentaire~:
+\begin{itemize}
+  \item peut éventuellement générer de nouvelles actions,
+  \item mais ne peut créer ou modifier qu'une seule fonction (ou aucune).
+\end{itemize}
+\bb
+
+Cette partie présente donc tout d'abord les actions élémentaires,
+et le détail de l'application de chacune d'entre elles.
+Puis, on verra que la génération de ces actions dépend du mode de fonctionnement
+choisi. Les modes proposés sont exposés en \S\ref{sec-modes}.
+
+Les actions sont résumées sous forme de fiches signalétiques, en annexe
+\ref{app-actions}.
+
+\defaction{NewSlice}
+\subsection{Création une spécialisation~: \actNewSlice}\labact{NewSlice}{1}
+
+On appelle $f_i = \actNewSlice(f_0)$ l'action qui permet de construire
+une spécialisation $f_i$ de $f_0$ . Initialement, toutes les marques sont
+mises à $\botm$ et la fonction $\Call(f_i)(c) = \topc$.
+Les modifications peuvent ensuite être faite à l'aide des actions présentées
+ci-dessous. Cela permet d'avoir un traitement cohérent.
+
+\subsection{Modification d'une spécialisation}
+
+Les actions suivantes permettent de modifier la marquage une spécialisation 
+Elles ne créent pas de nouvelles fonctions.
+\bb
+
+{\bf Attention}~: pour l'instant, les actions {\bf ajoutent} des marques.
+Veut-on pouvoir réduire une spécialisation~?
+
+\defaction{ExamineCalls}
+Dans tous les cas, lorsque le marquage d'une fonction est modifié,
+il faut ensuite gérer ses appels de fonction.
+Toutes les actions de modification ci-dessous génèrent donc une requête 
+\actExamineCalls{} qui permet d'effectuer cette tâche.
+Son application est présentée en \refact{ExamineCalls}{1}.
+
+\defaction{AddUserMark}
+\subsubsection{Ajout d'une marque utilisateur~: \actAddUserMark}\labact{AddUserMark}{1}
+
+L'action $\actAddUserMark(f_i, (e, m)$  permet d'ajouter et de propager
+une marque sur
+n'importe quel élément de $f_i$. Il s'agit d'une marque utilisateur,
+elle est donc ajoutée en $m_1$.
+
+\defaction{AddOutputMarks}
+\subsubsection{Propagation d'une marque de sortie ~: \actAddOutputMarks}\labact{AddOutputMarks}{1}
+
+L'action $\actAddOutputMarks(f_i, \outsigc)$
+est générée lorsque $f_i$ est appelée, mais qu'elle ne calcule pas assez de
+choses. Pour chaque sortie $s$, si $\outsigc(s) = <m_1, m_2>$,
+il faut ajouter $<\botm, m_1+m_2>$ à $\outsigf(f_i)(s)$ et propager
+la nouvelle marque dans $f_i$.
+
+\defaction{ModifCallInputs}
+\subsubsection{Marquage des entrées d'un appel~: \actModifCallInputs}\labact{ModifCallInputs}{1}
+
+L'action $\actModifCallInputs(c_g, f_i)$ est générée lorsque
+les marques d'entrée d'un appel $g_j = \Call(f_i)(c_g)$ dans $f_i$
+sont insuffisantes pour la fonction appelée. Pour chaque entrée $e$ de l'appel, 
+on commence par recalculer sa marque en fonction des marques de ses dépendances.
+Cela permet d'obtenir un résultat correct même si on avait besoin de plus
+d'entrée avant d'appeler $g_j$. Puis, si
+$\insigf(g_j)(e) = <m_1, m_2>$, il faut ajouter $<m_1, \spare>$ à
+$\insigc(c_g, f_i)$ si $m_2 \neq \botm$ et $<m_1, \botm>$ sinon,
+et propager la nouvelle marque ainsi obtenue dans $f_i$.
+
+
+\subsubsection{Gestion des appels~: $\actExamineCalls$}\labact{ExamineCalls}{1}
+
+L'action $\actExamineCalls(f_i)$ est automatiquement appliquée
+après toute modification du marquage de la fonction $f_i$
+car il faut examiner $\Call(f_i)$ afin d'en vérifier la cohérence,
+c'est-à-dire pour voir si les fonctions appelées conviennent toujours.
+\bb
+
+
+\defaction{ChooseCall}
+Pour chaque appel, on regarde donc~:
+\begin{itemize}
+  \item si $\outsigc(c, f_i) = \bots$ (on n'utilise pas les sorties de l'appel
+    de fonction), alors $\Call(f_i)(c) = \botc$,
+  \item sinon (certaines sorties sont marquées)~:
+    \begin{itemize}
+      \item si $\Call(f_i)(c) = \botc$~:
+	rien n'était appelé précédemment, il faire faire comme si 
+	$\Call(f_i)(c) = \topc$ (voir ci-dessous),
+      \item si $\Call(f_i)(c) = \topc$~:
+	aucune fonction n'a encore été attribuée à cet appel.
+	Une action \actChooseCall est chargée d'affecter une fonction à cet
+	appel (cf. \refact{ChooseCall}{1}).
+      \item si $\Call(f_i)(c) = g_j$~: il faut comparer $\outsigc(c, f_i)$ à
+	$outsigf(g_j)$ comme nous allons le voir.
+    \end{itemize}
+\end{itemize}
+
+Pour que la fonction appelée $g_j$ convienne, il faut qu'elle calcule au moins
+toutes les sorties nécessaires à cet appel. C'est-à-dire que si une sortie de
+l'appel est marquée $<m_1, m_2>$, et que la sortie correspondante de $g_j$ est
+marquée $<m_1', m_2'>$, on doit avoir~:
+\begin{equation*}
+m_2' \geq m_1 + m_2
+\end{equation*}
+
+\defaction{MissingOutputs}
+Si ce n'est pas le cas, une action \actMissingOutputs{} est générée
+(cf. \refact{MissingOutputs}{1}).
+On pourrait générer directement $\actAddOutputMarks(g_j, \outsigc(c, f_i)$ mais
+ça ne permettrait pas de choisir une autre fonction $g$ plutôt que d'étendre
+$g_j$.
+\bb
+
+\defaction{MissingInputs}
+Par ailleurs, $\actExamineCalls$ s'occupe également de la propagation des
+marques aux appelants, c'est-à-dire que si $f_i$ est appelée par $h_k$ et que
+les marques de ses entrées ont été modifiées, il faut les propager aux entrées
+des appels.  Pour cela, on génère une action \actMissingInputs
+(cf. \refact{MissingInputs}{1}).  On
+pourrait directement générer $\actModifCallInputs(c_f, h_k)$, mais cela ne
+permettrait pas de modifier l'appel de fonction pour choisir d'appeler une autre
+spécialisation de $f$ dans $h_k$.
+
+Les étapes de l'attribution, puis de la modification des appels de fonction
+peuvent sembler complexes au premier abord, 
+d'autant plus que leur enchaînement dépend d'un mode
+de fonctionnement qui sera explicité en \S\ref{sec-modes} et éventuellement des
+interventions ponctuelles de l'utilisateur.
+La figure \ref{fig-modifcall} tente de résumer ce processus.
+
+\clearpage
+\begin{center}
+  \rotatebox{90}{%
+     \resizebox{200mm}{!}{\includegraphics{choose_call}}}
+
+Fig.~\thefigure~:\label{fig-modifcall} 
+Gestion d'un appel $c$ à une fonction $g$
+
+suite à la modification des marques de la signature de $c$ dans la fonction appelante
+
+ou à celle des entrées de $g$.
+\stepcounter{figure}
+\end{center}
+\clearpage
+
+\subsection{Affecter ou modifier un appel de fonction}
+
+On a vu que lors de la création ou la modification du marquage d'une fonction
+$f_i$, des actions $\actChooseCall(c, f_i)$, 
+$\actMissingOutputs(c, f_i)$ ou
+$\actMissingInputs(c, f_i)$ pouvaient être générées lorsqu'un appel $c$
+doit être attribué ou modifié.
+Dans tous les cas, on se pose la question de la fonction à appeler car soit on
+ne l'a pas encore choisie, soit elle ne convient plus. 
+\bb
+
+\subsubsection{Attribution d'un appel : $\actChooseCall$}\labact{ChooseCall}{1}
+
+Une action $\actChooseCall(c, f_i)$ peut-être générée (selon le mode choisi)
+lorsque
+$\Call(f_i)(c)$ doit être modifié car le marquage de $f_i$ a changé~: 
+il s'agit de trouver une fonction $g_k$ pour remplacer l'ancienne valeur de
+$\Call(f_i)(c)$ qui pouvait être $\topc$, $\botc$ ou encore $g_j$,
+mais cette dernière ne convient plus.
+\bb
+
+Lors de l'application de cette action, outre le mode de fonctionnement,
+le critère principal de choix est le marquage des sorties dans l'appel 
+($\outsigc(c, f_i)$) qui est confronté  
+au marquage des spécialisations de $g$ déjà calculées,
+en appliquant éventuellement un traitement particulier à $g_j$,
+la fonction initialement appelée.
+
+En fonction du mode~:
+\begin{itemize}
+  \item soit on trouve une $g_k$ qui convient,
+  \item soit on trouve une $g_k$ que l'on souhaite utiliser,
+    mais qui ne calcule pas assez de choses~: 
+    il faut donc créer $\actAddOutputMarks (g_k, \sigc(c, f_i))$,
+  \item soit on ne trouve pas de spécialisation existante et on lance alors la
+    création d'une nouvelle spécialisation soit en partant de $g_0$, soit en
+    partant de $g_j$ (à voir...)
+\end{itemize}
+\bb
+
+\defaction{ChangeCall}
+Dans tous les cas, après avoir choisi $g_k$, 
+on applique une action \actChangeCall (cf. \refact{ChangeCall}{1}).
+
+\subsubsection{Action $\actMissingInputs$}\labact{MissingInputs}{1}
+
+On rappelle qu'une action $\actMissingInputs(c, f_i)$ est générée lorsque la
+fonction $g_j$ attribuée à $\Call(f_i)(c) = g_j$ a été modifiée, et qu'elle
+nécessite le marquage d'entrées qui ne le sont pas $\sigc(c,f_i)$.
+\bb
+
+En fonction du mode de fonctionnement, une telle action peut conduire à~:
+\begin{itemize}
+  \item la modification du marquage de $f_i$, 
+    c'est-à-dire l'application de $\actModifCallInputs(c, f_i)$,
+  \item le choix d'une autre fonction, c'est-à-dire l'application de
+    $\actChooseCall(c, f_i)$ (dont le résultat dépend du mode courant),
+  \item une transformation manuelle par l'utilisateur de cette action par 
+    un $\actChangeCall(c, f_i, g_k)$ où $g_k$ doit nécessairement calculer
+    suffisamment de sorties.
+\end{itemize}
+
+\subsubsection{Action $\actMissingOutputs$}\labact{MissingOutputs}{1}
+
+L'action $\actMissingOutputs(c, f_i)$ est générée lorsque le marquage de $f_i$
+a été modifié et que la
+fonction $g_j$ attribuée à $\Call(f_i)(c) = g_j$ ne calcule pas suffisamment 
+de sorties pour le nouveau marquage.
+\bb
+
+En fonction du mode de fonctionnement, une telle action peut conduire à~:
+\begin{itemize}
+  \item la modification du marquage de $g_j$,
+    c'est-à-dire l'application de $\actAddOutputMarks(g_j, \sigc(c, f_i))$,
+  \item le choix d'une autre fonction, c'est-à-dire l'application de
+    $\actChooseCall(c, f_i)$ (dont le résultat dépend du mode courant),
+  \item une transformation manuelle par l'utilisateur de cette action par
+    un $\actChangeCall(c, f_i, g_k)$ où $g_k$ doit nécessairement calculer
+    suffisamment de sorties.
+\end{itemize}
+
+\subsubsection{Changement d'un appel : $\actChangeCall$}\labact{ChangeCall}{1}
+
+L'action $\actChangeCall(c, f_i, g_j)$ permet de transformer $f_i$
+pour avoir $\Call(f_i)(c) = g_j$.  
+Elle ne peut être appliqué que si
+$g_j$ calcule bien toutes les sorties nécessaire à l'appel $c$ dans $f_i$.
+Il faut donc appliquer $\actAddOutputMarks$ à $g_j$ avant d'appliquer
+$\actChangeCall$ s'il en manque.
+\bb
+
+L'application de $\actChangeCall(c, f_i, g_j)$ consiste à modifier
+$\Call(f_i)(c)$, mais aussi à appliquer $\actModifCallInputs(c, f_i)$ dans le
+cas où la signature de $g_j$ nécessite des entrées qui ne sont pas visibles dans
+$\sigc(c, f_i)$.
+
+\subsection{Modes de fonctionnement}\label{sec-modes}
+
+La génération de ces actions, ainsi que l'effet de leur application sur le
+projet, dépend du choix d'un mode de fonctionnement
+qui décide de la précision des spécialisations. 
+Ce mode peut offrir de nombreuses possibilités, 
+mais on se limite dans un premier temps à quatre comportements~:
+\begin{enumerate}
+  \item pas de spécialisation des appels de fonction (\option{DontSliceCalls}) 
+    (cf. \S\ref{sec-DontSliceCalls})~;
+  \item pas de spécialisation, mais propagation du marquage aux fonctions
+    appelées (\option{PropagateMarksOnly})(cf. \S\ref{sec-PropagateMarksOnly})~;
+  \item le moins de spécialisations possibles 
+    (\option{MinimizeNbSlice}) (cf. \S\ref{sec-MinimizeNbSlice})~: 
+    l'outil ne crée pas plus d'une spécialisation par fonction~;
+  \item spécialisations les plus précises possible 
+    (\option{PreciseSlices}) (cf. \S\ref{sec-PreciseSlices})~:
+    on regroupe néanmoins les fonctions ayant la même visibilité,
+    même si le marquage n'est pas le même.
+\end{enumerate}
+
+Pour plus de flexibilité,
+du point de vue de la boîte à outil décrite ici, on suppose que le mode peut
+être changé à tout moment.
+
+\subsubsection{Réduction avec {\it DontSliceCalls}}\label{sec-DontSliceCalls}
+
+Il s'agit du choix qui permet d'utiliser le marquage intraprocédural sans
+propagation aux fonctions appelées.
+Il peut être utilisé si l'on s'intéresse aux liens de dépendance 
+dans une fonction, sans s'intéresser au reste de l'application.
+Tous les appels visibles sont donc attribués aux fonctions source~:
+$$\forall c. \exists o. \outsigc(c, f_i)(o) \neq \botm 
+\imply \Call(f_i)(c) = \Call(f_0)(c)$$
+
+Dans ce cas, il n'est pas utile de générer d'action $\actChooseCall$,
+et les $\actMissingInputs$ (marquage à \spare{} des entrées non utilisées)
+sont directement appliquées. 
+Par ailleurs, il n'y a pas non plus d'actions
+$\actMissingOutputs$ puisque les fonctions source calculent toutes les sorties.
+\bb
+
+Si un autre mode a été utilisé, il est possible néanmoins d'être amené à
+appliquer les actions suivantes~:
+
+\begin{itemize}
+  \item $\actChooseCall(c, f_i)$ est traduite en $\actChangeCall(c, f_i, g_0)$,
+  \item $\actMissingInputs(c, f_i)$ en $\actModifCallInputs(c, f_i)$
+  \item $\actMissingOutputs(c, f_i)$ en $\actAddOutputMarks$ ?
+    ou $\actChangeCall(c, f_i, g_0)$ ?
+\end{itemize}
+
+\subsubsection{Réduction avec {\it PropagateMarksOnly}}\label{sec-PropagateMarksOnly}
+
+Ce mode est à utiliser si l'on veut voir la propagation des dépendances
+dans l'ensemble de l'application sans calculer de spécialisations.
+Il est donc très semblable au mode précédent sauf que l'on calcule un marquage
+également pour les fonctions appelées. Néanmoins, il ne s'agit pas d'une
+réduction à proprement parlé puisque tout reste visible.
+
+\subsubsection{Réduction avec {\it MinimizeNbSlice}}\label{sec-MinimizeNbSlice}
+
+Lorsque l'on applique une action $\actChooseCall$ 
+sur un appel à une fonction $g$
+et qu'il n'y a pas encore de spécialisation, on en crée une nouvelle.
+
+S'il y a une spécialisation $g_j$ (et une seule), 
+elle est choisie  pour être appelée, indépendamment de son marquage. 
+\bb
+
+Si plusieurs $g_j$ existent, c'est 
+{\it la plus proche}\footnote{Les critères de choix restent à définir.}
+qui doit être choisie.
+\bb
+
+S'il manque des marques aux sorties de la fonction choisie,
+il faut les lui ajouter. Pour cela,
+il n'y a pas de génération de $\actMissingOutputs$ puisqu'on ne souhaite avoir
+qu'une seule spécialisation~: elle est directement remplacée 
+par $\actAddOutputMarks$.
+\bb
+
+Enfin, l'action $\actChangeCall$ permet d'appeler la fonction choisie.
+C'est cette dernière action qui s'occupe
+ensuite de propager le marquage des entrées dans $f_i$
+en appliquant automatiquement le $\actModifCallInputs(c, f_i)$.
+
+\subsubsection{Réduction avec {\it PreciseSlices}}\label{sec-PreciseSlices}
+
+Dans ce mode, lors de l'application de $\actChooseCall(c, f_i)$,
+le choix de la fonction à appeler s'effectue de la façon suivante~:
+\begin{itemize}
+  \item on sélectionne les spécialisations qui ont la même visibilité
+    que $\outsigc(c, f_i)$ (même si elles n'ont pas exactement le même
+    marquage)~;
+  \item s'il n'y en a pas, on en crée une nouvelle~;
+  \item s'il n'y en a qu'une, elle est choisie~;
+  \item s'il y en a plusieurs, il faut en choisir une.
+Dans le cas, on choisit pour l'instant la première 
+spécialisation trouvée. Il est clair que ce choix peut être amélioré
+si on définit des critères de choix.
+
+    Il faut remarquer que cette situation ne peut se produire que si
+    l'utilisateur est intervenu.
+\end{itemize}
+
+
+Remarque~: Si $\Call(f_i)(c)$ est déjà attribué avant l'application de 
+$\actChooseCall$, on ignore son ancienne valeur.\\
+
+Dans ce mode, l'application des actions $\actMissingOutputs(c, f_i)$ et 
+$\actMissingInputs(c, f_i)$ est équivalente à l'application
+de $\actChooseCall(c, f_i)$.
+\bb
+
+Il faut noter que ce mode peut être également être choisi si l'on veut piloter
+tous les choix manuellement car les actions sont toutes générées, et l'outil ne
+fait un choix que lorsqu'elles sont appliquées. Elles peuvent donc être
+préalablement transformées en $\actChangeCall$ par l'utilisateur.
+
+
+\subsection{Autres actions}
+
+\defaction{CopySlice}
+\subsubsection{Duplication d'une spécialisation~: \actCopySlice}\labact{CopySlice}{1}
+
+L'action $f_j = \actCopySlice(f_i)$ permet simplement de dupliquer $f_i$
+et donc de créer une nouvelle fonction spécialisée $f_j$.
+Le marquage, ainsi que la fonction $\Call(f_i)$ sont simplement copiés.
+
+Il faut noter que, initialement, $f_j$ n'est pas appelée.
+
+\defaction{Combine}
+\subsubsection{Combinaison de spécialisations~: \actCombine}\labact{Combine}{1}
+
+On peut combiner deux spécialisations (c'est-à-dire en faire l'union) 
+à l'aide de $f_3 = \actCombine(f_1, f_2)$.\bb
+
+La table de marquage se
+calcule simplement en combinant les marques, sans qu'il y ait besoin de
+propager.  Il faut ensuite résoudre les appels de fonction, c'est-à-dire
+calculer $\Call(f_3)$.  Ce qui est fait
+pour un appel donné $c$ dépend de sa signature dans le résultat $f_3$
+par rapport à ce qu'on a dans $f_1$ et $f_2$.
+On sait que, par construction 
+$\sigc(c, f_3) = \sigc(c, f_1) \cup \sigc(c, f_2)$
+et qu'elle est donc supérieure ou égale.
+
+\begin{itemize}
+  \item si $\sigc(c, f_1)=\sigc(c, f_2)$~:
+    \begin{itemize}
+      \item si $\Call(f_1)(c) = \Call(f_2)(c)$~: $\Call(f_3)(c) = \Call(f_1)(c)$
+      \item si $\Call(f_1)(c) = \topc$~: $\Call(f_3)(c) = \Call(f_2)(c)$
+      \item si $\Call(f_2)(c) = \topc$~: $\Call(f_3)(c) = \Call(f_1)(c)$
+      \item sinon, cela veut dire que les deux appels sont attribués à des
+	fonctions différentes~: on choisit celle qui a la plus petite signature
+	(ie. la plus précise).
+    \end{itemize}
+  \item sinon, si $\sigc(c, f_3)=\sigc(c, f_1)$~: $\Call(f_3)(c) = \Call(f_1)(c)$
+  \item sinon, si $\sigc(c, f_3)=\sigc(c, f_2)$~: $\Call(f_3)(c) = \Call(f_2)(c)$
+  \item sinon, $\Call(f_3)(c) = g_i$, et on crée une action 
+    $g_i = \actCombine(\Call(f_1)(c), \Call(f_2)(c))$.
+\end{itemize}
+\bb
+
+Il faut noter que la création de $f_3$ ne modifie ni $f_1$, ni $f_2$.
+Si l'objectif est de remplacer $f_1$ et $f_2$ par $f_3$,
+cela peut être fait par une combinaison d'actions élémentaires
+(cf. \S\ref{sec-fusion}).
+
+\defaction{DeleteSlice}
+\subsubsection{Suppression d'une spécialisation~: \actDeleteSlice}\labact{DeleteSlice}{1}
+
+Une fonction spécialisée peut être supprimée à l'aide de l'action
+\actDeleteSlice$(f_i)$, mais cette action ne peut être appliquée que 
+que si $f_i$ n'est pas appelée, sauf si elle n'est appelée que par elle même.
+Cela signifie que ses appels doivent être supprimés au préalable à l'aide
+d'actions \actChangeCall{} (ou de \actDeleteSlice{} sur les appelant...).
+
+
+\section{Sélection persistante}
+
+Après une première utilisation des fonctions présentées ci-dessus, il est apparu
+qu'un besoin utilisateur pouvait également être de marquer une instruction (ou
+une donnée à un point de programme) pour toutes les spécialisations d'une
+fonction. Ce type de sélection a été nommée
+\indextxtdef{persistante}{sélection!persistante}.
+Cela signifie que chaque fonction a, en parallèle de ses différents marquages,
+un marquage minimum qui est utilisé à la création de toute nouvelle
+spécialisation. Lorsque l'utilisateur ajoute une sélection persistante,
+elle est ajoutée à la fois dans ce marquage minimum, et dans toutes les
+spécialisations existantes. L'ajout d'une sélection persistante dans une
+fonction peut également rendre tous ses appels visibles (si l'option est
+positionnée) car l'utilisateur souhaite que le programme réduit passe aussi
+souvent au point marqué que le programme source~: cela suppose donc que tous les
+chemins qui mènent à la fonction soit visibles.
+
+\section{Gérer des actions élémentaires}\label{sec-multi-actions}
+
+Les actions élémentaires présentées ci-dessus doivent être combinées pour
+répondre à des requêtes de plus haut niveau.
+L'utilisateur exprime ses requêtes en ajoutant des actions dans la liste
+du projet, mais celles-ci doivent ensuite être décomposées pour être appliquées,
+et l'application d'actions élémentaires en génère d'autres.\\
+
+La granularité à laquelle l'utilisateur peut intervenir reste à
+définir en fonction de ce que l'on souhaite faire de l'outil.\\
+
+Nous allons tout d'abord examiner comment peut être gérée la liste d'action
+(\S\ref{sec-gestion-actions}), puis nous verrons un certain nombre d'exemple de
+combinaison d'actions élémentaires pour répondre à des requêtes de plus haut
+niveau.
+
+\subsection{Modification ou suppression d'actions}\label{sec-gestion-actions}
+
+Les actions de l'utilisateur peuvent être supprimées par ses soins avant d'être
+appliquée.  En revanche, les actions générées telles que \actChooseCall{},
+\actMissingInputs{} ou \actMissingOutputs{} consistent à rendre un appel de
+fonction cohérent, elles ne peuvent donc pas être supprimées. Par contre,
+l'utilisateur peut les transformer en \actChangeCall{} pour préciser la fonction
+qu'il souhaite voir appeler. Dans ce cas, cette nouvelle action ne pourra à son
+tour pas être supprimée.
+
+\subsection{Ordre des actions}\label{sec-ordre}
+
+A priori, le marquage étant parfaitement défini, il ne dépend pas de l'ordre des
+calculs. Néanmoins, le résultat obtenu peut dépendre de l'ordre d'application
+des actions, car si on applique une action qui construit une nouvelle
+fonction $g_j$, puis une autre pour construire $f_i$ qui appelle une fonction
+$g$, $g_j$ va pouvoir être choisie pour l'appel, alors que si la première action
+n'avait pas encore été appliquée, c'est peut-être une autre spécialisation qui
+aurait été appelée, ou une nouvelle action qui aurait été générée.
+De plus, certaines actions ont une précondition qui n'est éventuellement
+satisfaite que si les actions générées sont appliquées dans l'ordre.
+On ne prévoit donc pas dans un premier temps
+de pouvoir modifier l'ordre des actions.
+
+\subsection{Propagation aux appelants}\label{sec-propagate-to-calls}
+
+Les actions élémentaires ne propagent le marquage des entrées d'une certaine
+fonction $f_i$ qu'aux appels $(c, h_k)$ tels que $\Call(h_k)(c) = f_i$.
+Si on souhaite construire de nouvelles fonctions spécialisées pour toutes les
+fonctions $h$ qui appellent $f$ afin de propager le marquage, il faut enchaîner
+différentes actions élémentaires.
+
+Voyons par exemple comment piloter l'ajout d'une marque utilisateur $m$ sur un
+élément $e$ de $f$ avec propagation dans les appelants~:
+\begin{itemize}
+  \item $f_i = \actNewSlice (f_0)$
+  \item $\actAddUserMark (f_i, (e, m))$
+  \item $\forall h_0. \exists c_f \in \call(h_0) 
+    \imply h_k = \actNewSlice (h_0) \land \forall c_f. \actChangeCall(c_f, h_k,
+    f_i)$
+\end{itemize}
+
+\subsection{Fusion de deux spécialisation}\label{sec-fusion}
+
+Si deux spécialisations $f_1$ et $f_2$ ont été calculées, l'utilisateur peut
+vouloir les fusionner. Pour cela, il faut appliquer les actions suivantes~:
+\begin{itemize}
+  \item $f_3 = \actCombine (f_1, f_2)$
+  \item $\forall c, h_k. \Call(h_k)(c) = f_1 \imply \actChangeCall(c, h_k, f_3)$
+  \item $\forall c, h_k. \Call(h_k)(c) = f_2 \imply \actChangeCall(c, h_k, f_3)$
+  \item $\actDeleteSlice(f_1), \actDeleteSlice(f_2)$
+\end{itemize}
+
+% \subsection{autres exemples...}
+% \afaire{ compléter au fur et à mesure, en fonction des besoins.}
+
+%--------------------------------------
+\section{Production du résultat}
+
+On rappelle que l'objectif est de générer des fichiers source compilables.
+Or, après avoir effectué tout le travail de filtrage présenté précédemment,
+on obtient un projet contenant, pour chaque fonction, zéro, une, ou plusieurs
+fonctions filtrées, avec pour chaque fonction filtrée, une table de marquage
+permettant de déterminer les instruction visibles,
+et les appels de fonction.
+Voyons ce qu'il manque pour obtenir le résultat final.
+
+\subsection{Déclarations globales}
+
+Pour produire des fichiers de résultats, il faut avant tout être capable d'y
+mettre ce qui est en dehors des fonctions, à savoir les déclarations globales.
+
+Il aurait été possible de calculer des liens de dépendance vers les déclarations
+globales, mais on a considéré que la suppression de 
+déclarations inutiles était une fonctionnalité intéressante en soi,
+et cela est donc fait sous forme d'une passe supplémentaire sur le résultat.
+
+\subsection{Fonctions}
+
+Pour une fonction qui a été analysée, on a calculé la représentation de la
+fonction source, ainsi qu'une ou plusieurs spécialisations.
+Les fonctions non analysées ne figureront pas dans le résultat
+car elles ne participent pas au calcul demandé.
+
+\subsubsection{Fonction spécialisée}
+
+Pour générer le code correspondant à une fonction spécialisée,
+il faut lui donner un nom qui n'entre pas en conflit avec celui de des fonctions
+source ou des autres spécialisation.
+Il faut également avoir sa signature pour savoir si elle possède une valeur
+de retour, et connaître la liste de ses arguments visibles.
+
+\subsubsection{Garder ou non la fonction source}
+
+Une fonction source n'a besoin d'être présente dans l'application générée
+que si elle est appelée.
+Le traitement d'un appel de fonction qui ne conduit pas à appeler une
+spécialisation doit donc mémoriser un lien avec la fonction source.
+
+\subsubsection{Variables locales statiques}
+
+Lorsqu'une fonction est présente en plusieurs exemplaires dans le résultat,
+il faut penser à sortir les éventuelles variables statiques communes à plusieurs
+spécialisations afin qu'elles soient partagées par les différentes fonctions.
+
+\subsubsection{Modification des appels}\label{sec-filtre-call}
+
+Pour générer un appel à une fonction spécialisée,
+il faut avoir les mêmes informations que celles qui sont utilisées pour la
+définition de la fonction, à savoir~:
+\begin{itemize}
+\item son nom,
+\item la liste des paramètres formels nécessaires au calcul des sorties
+sélectionnées,
+\item le type de retour pour savoir si la fonction produit un résultat.
+\end{itemize}
+
+\subsubsection{Génération des nouveaux prototypes}
+
+Lorsque l'on produit des fonctions spécialisées, il faut aussi 
+générer les prototypes associés. Comme elles ont forcément la même portée que la
+fonction source, il suffit de générer ces nouveaux prototypes à l'endroit où
+l'on rencontre le prototype initial.
+
+\subsubsection{Gestion des blocs}
+
+Même si le graphe de dépendance contient des éléments représentant les blocs,
+et donc que le \slicing associe des marques à ces éléments,
+il est délicat de supprimer un bloc, même si est sensé être invisible.
+En effet, cela peut parfois changer la sémantique,
+et dans une construction \verb!if (c) { S1; } else { S2; }!,
+on peut même obtenir un résultat syntaxiquement incorrect
+si on n'y prend pas garde.\\
+
+Comme il peut être utile par ailleurs d'avoir un outil de nettoyage de code
+qui supprime proprement les blocs vide, on décide de ne pas les traiter 
+au niveau du \slicing. Tous les blocs sont donc considérés comme visibles
+indépendamment de leur marque, et le nettoyage est effectué lors d'une passe
+supplémentaire sur le code généré.
+
+\subsection{Annotations}
+
+Les annotations peuvent être utilisées pour construire des requêtes de \slicing,
+mais au delà de cette possibilité, il faut déterminer si les annotations
+présentes dans le code source doivent être mises dans le résultat.
+On regarde pour cela si les données qui permettent d'évaluer la propriété sont
+préservées dans le programme réduit : si c'est le cas, l'annotation va être
+gardée, dans le cas contraire, elle va être slicée.

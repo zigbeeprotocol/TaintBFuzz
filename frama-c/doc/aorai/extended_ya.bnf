@@ -1,0 +1,21 @@
+\begin{syntax}
+guard ::= seq-elt
+\\
+seq-elt ::= condition
+         |  basic-elt repetition
+\\
+basic-elt ::= '[' non-empty-seq ']' 
+           | id pre-cond '(' seq ')' post-cond
+\\
+seq ::= epsilon | non-empty-seq
+\\
+non-empty-seq ::= seq-elt | seq-elt ';' seq
+\\
+repetition ::= epsilon | '+' | '*' | '?'; 
+           | '{' expr ',' expr '}' | '{' expr '}' ;
+           | '{' expr ',' '}' | '{' ',' expr '}'
+\\
+pre-cond ::= epsilon | '::' id | '{{' condition '}}'
+\\
+post-cond ::= epsilon | '{{' condition '}}';
+\end{syntax}

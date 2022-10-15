@@ -1,0 +1,12 @@
+# frama-c -wp [...]
+[kernel] Parsing unit_ite.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function check
+------------------------------------------------------------
+
+Goal Post-condition (file unit_ite.i, line 2) in 'check':
+Prove: true.
+
+------------------------------------------------------------

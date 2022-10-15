@@ -1,0 +1,3 @@
+PLUGIN: server
+LOG: @PTEST_NAME@.out.json
+OPT: -server-batch %{dep:@PTEST_DIR@/@PTEST_NAME@.json} -server-batch-output-dir @PTEST_RESULT@ -server-msg-key use-relative-filepath

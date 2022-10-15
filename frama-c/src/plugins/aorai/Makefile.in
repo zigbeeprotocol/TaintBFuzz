@@ -1,0 +1,169 @@
+##########################################################################
+#                                                                        #
+#  This file is part of Aorai plug-in of Frama-C.                        #
+#                                                                        #
+#  Copyright (C) 2007-2022                                               #
+#    CEA (Commissariat à l'énergie atomique et aux énergies              #
+#         alternatives)                                                  #
+#    INRIA (Institut National de Recherche en Informatique et en         #
+#           Automatique)                                                 #
+#    INSA  (Institut National des Sciences Appliquees)                   #
+#                                                                        #
+#  you can redistribute it and/or modify it under the terms of the GNU   #
+#  Lesser General Public License as published by the Free Software       #
+#  Foundation, version 2.1.                                              #
+#                                                                        #
+#  It is distributed in the hope that it will be useful,                 #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#  GNU Lesser General Public License for more details.                   #
+#                                                                        #
+#  See the GNU Lesser General Public License version 2.1                 #
+#  for more details (enclosed in the file licenses/LGPLv2.1).            #
+#                                                                        #
+##########################################################################
+
+# Makefile for compiling Aorai independently of Frama-C.
+#
+# To be used independently of Frama-C, a version of Frama-C compatible with
+# Aorai has to be properly installed as long as the Aorai-specific stuff.
+
+# Do not use ?= to initialize both below variables
+# (fixed efficiency issue, see GNU Make manual, Section 8.11)
+ifndef FRAMAC_SHARE
+FRAMAC_SHARE  :=$(shell frama-c-config -print-share-path)
+endif
+ifndef FRAMAC_LIBDIR
+FRAMAC_LIBDIR :=$(shell frama-c-config -print-libpath)
+endif
+PLUGIN_DIR ?=.
+
+PLUGIN_ENABLE:=@ENABLE_AORAI@
+PLUGIN_NAME:=Aorai
+PLUGIN_GENERATED:= $(addprefix ${PLUGIN_DIR}/, \
+		aorai_eva_analysis.ml \
+		promelalexer_withexps.ml promelaparser_withexps.ml \
+		promelaparser_withexps.mli \
+		promelalexer.ml promelaparser.ml promelaparser.mli \
+		ltllexer.ml ltlparser.ml ltlparser.mli \
+		yalexer.ml yaparser.ml yaparser.mli)
+PLUGIN_CMO:= bool3 \
+	aorai_option \
+	path_analysis \
+	promelaoutput \
+	logic_simplification \
+	aorai_graph \
+	aorai_metavariables \
+	data_for_aorai \
+	aorai_utils \
+	ltl_output \
+	utils_parser \
+	ltlparser \
+	ltllexer \
+	yaparser \
+	yalexer \
+	promelaparser \
+	promelalexer \
+	promelaparser_withexps \
+	promelalexer_withexps \
+	aorai_dataflow \
+	aorai_visitors \
+	aorai_eva_analysis \
+	aorai_register
+PLUGIN_CMI:= ltlast promelaast
+
+PLUGIN_DISTRIBUTED:=$(PLUGIN_ENABLE)
+PLUGIN_DISTRIB_EXTERNAL:= \
+	aorai_eva_analysis.enabled.ml aorai_eva_analysis.disabled.ml \
+	Makefile.in configure.ac configure
+PLUGIN_HAS_EXT_DOC:=no # [JS 2010/07/28] was 'yes'
+                       # but prevent 'make src-distrib to work
+PLUGIN_DEPENDENCIES:=
+
+# Dynamic dependencies
+
+ifneq "$(ENABLE_EVA)" "no"
+PLUGIN_DEPENDENCIES+= Eva
+AORAI_EVA_ANALYSIS:= $(PLUGIN_DIR)/aorai_eva_analysis.enabled.ml
+else
+AORAI_EVA_ANALYSIS:= $(PLUGIN_DIR)/aorai_eva_analysis.disabled.ml
+endif
+
+$(PLUGIN_DIR)/aorai_eva_analysis.ml: $(AORAI_EVA_ANALYSIS)
+	$(PRINT_MAKING) $@
+	$(CP) $(AORAI_EVA_ANALYSIS) $@
+	$(CHMOD_RO) $@
+
+$(PLUGIN_DIR)/aorai_eva_analysis.ml: $(PLUGIN_DIR)/Makefile share/Makefile.config
+
+# Tests
+
+# aorai_ya can always be run
+PLUGIN_TESTS_DIRS:=ya
+
+ifeq (@HAS_LTLTOBA@,yes)
+PLUGIN_TESTS_DIRS+=ltl
+endif
+
+PLUGIN_TESTS_LIB:=$(PLUGIN_DIR)/tests/Aorai_test.ml $(PLUGIN_DIR)/tests/ya/name_projects.ml
+
+include $(FRAMAC_SHARE)/Makefile.dynamic
+
+ifeq ("$(FRAMAC_INTERNAL)","yes")
+CONFIG_STATUS_DIR=$(FRAMAC_SRC)
+AORAI_WP_SHARE=-aorai-test-wp-share $(FRAMAC_ROOT_SRCDIR)/src/plugins/wp/share
+else
+CONFIG_STATUS_DIR=.
+AORAI_WP_SHARE=
+endif
+
+TEST_DEPENDENCIES:= \
+  $(Aorai_DIR)/tests/Aorai_test.cmxs \
+  $(Aorai_DIR)/tests/Aorai_test.cmo \
+  $(Aorai_DIR)/tests/ya/name_projects.cmxs \
+  $(Aorai_DIR)/tests/ya/name_projects.cmo
+
+Aorai_DEFAULT_TESTS: $(TEST_DEPENDENCIES)
+
+# 'prove' ptests config: ensure ACSL and C instrumentation coincide
+# Launch this configuration for all tests with
+# make aorai-test-prove
+# To launch only one test, you can use PTESTS_OPTS, as in
+# PTESTS_OPTS="tests/ya/stack.i -add-options '-wp-verbose 1'" make aorai-test-prove
+#
+# This requires to have a copy of the wp-cache repository
+# (see ../wp/tests/README.md for more information). If it is not
+# in its default place of ../wp-cache, use AORAI_WP_CACHE variable to give the
+# proper absolute path.
+# Don't forget to add the new cache files to the repo if needed,
+# in particular if CI complains about its aorai-prove target.
+
+$(Aorai_DIR)/tests/ptests_config: $(Aorai_DIR)/tests/test_config_prove
+
+$(Aorai_DIR)/tests/test_config_prove: \
+  $(Aorai_DIR)/tests/test_config_prove.in $(Aorai_DIR)/Makefile
+	$(PRINT_MAKING) $@
+	$(RM) $@
+	$(SED) -e 's!@AORAI_WP_SHARE@!$(AORAI_WP_SHARE)!' $< > $@
+	$(CHMOD_RO) $@
+
+AORAI_WP_CACHEDIR?=$(abspath $(Aorai_DIR)/../wp-cache)
+AORAI_WP_CACHE?=update
+
+.PHONY: aorai-test-prove
+aorai-test-prove: $(TEST_DEPENDENCIES) $(Aorai_DIR)/tests/test_config_prove
+	FRAMAC_WP_CACHE=$(AORAI_WP_CACHE) \
+	FRAMAC_WP_CACHEDIR=$(AORAI_WP_CACHEDIR) \
+	PTESTS_OPTS="$$PTESTS_OPTS -config prove" \
+	$(MAKE) Aorai_TESTS
+
+# Regenerating the Makefile on need
+
+$(Aorai_DIR)/Makefile: $(Aorai_DIR)/Makefile.in \
+			$(CONFIG_STATUS_DIR)/config.status
+	cd $(CONFIG_STATUS_DIR) && ./config.status --file $@
+
+headers::
+	$(SED) -e 's/This file is/Files in this archive are/' \
+	       $(FRAMAC_SRC)/headers/open-source/INSA_INRIA_LGPL \
+	> $(FRAMAC_SRC)/doc/aorai/example/LICENSE

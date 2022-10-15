@@ -1,0 +1,14 @@
+[kernel] Parsing spurious_brace_bts_1273.i (no preprocessing)
+[kernel] spurious_brace_bts_1273.i:6: 
+  syntax error:
+  Location: between lines 6 and 8, before or at token: }
+  4     */
+  5     
+  
+  6     void foo() {
+  7     }
+  8     }
+  
+  9     
+  10    void main () {
+[kernel] Frama-C aborted: invalid user input.

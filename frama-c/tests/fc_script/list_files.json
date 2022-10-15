@@ -1,0 +1,18 @@
+[
+    {
+        "arguments": [
+            "cc",
+            "main.c"
+        ],
+        "directory": ".",
+        "file": "main.c"
+    },
+    { "directory": ".",
+      "command": "gcc -DUH",
+      "file": "main2.c"
+    },
+    { "directory": ".",
+      "command": "gcc",
+      "file": "main3.c"
+    }
+]

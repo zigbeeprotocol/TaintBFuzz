@@ -1,0 +1,80 @@
+# frama-c -wp [...]
+[kernel] Parsing call.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Post-condition (file call.i, line 17) in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'main' (1/6):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'main' (2/6):
+Call Result at line 28
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'main' (3/6):
+Effect at line 28
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'main' (4/6):
+Call Result at line 29
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'main' (5/6):
+Effect at line 29
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'main' (6/6):
+Effect at line 30
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file call.i, line 13) in 'job'' in 'main' at call 'job' (file call.i, line 28)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file call.i, line 13) in 'job'' in 'main' at call 'job' (file call.i, line 29)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main with behavior A
+------------------------------------------------------------
+
+Goal Post-condition for 'A' (file call.i, line 21) in 'main':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main with behavior B
+------------------------------------------------------------
+
+Goal Post-condition for 'B' (file call.i, line 24) in 'main':
+Prove: true.
+
+------------------------------------------------------------

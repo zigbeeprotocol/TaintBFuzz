@@ -1,0 +1,10 @@
+\begin{syntax}
+  guarded-quantif ::= "\forall" binders ";" (guards "==>")+ pred ;
+       | "\exists" binders ";" guards "&&" pred ;
+  \
+  guards ::= interv  ("&&" interv)* ;
+  \
+  interv  ::= term (guard-op id)+ guard-op term ;
+  \
+  guard-op ::= "<=" | "<" ;
+\end{syntax}

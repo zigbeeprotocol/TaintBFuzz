@@ -1,0 +1,81 @@
+[kernel] Parsing pointer.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+  c ∈ {0}
+  p ∈ {0}
+  q ∈ {0}
+  T[0..9] ∈ {0}
+  cc1 ∈ {0}
+  cc2 ∈ {0}
+[eva] computing for function k <- main.
+  Called from pointer.i:37.
+[eva] computing for function l <- k <- main.
+  Called from pointer.i:29.
+[eva] Recording results for l
+[eva] Done for function l
+[eva] Recording results for k
+[eva] Done for function k
+[eva] computing for function k <- main.
+  Called from pointer.i:38.
+[eva] computing for function l <- k <- main.
+  Called from pointer.i:29.
+[eva] Recording results for l
+[eva] Done for function l
+[eva] Recording results for k
+[eva] Done for function k
+[eva:alarm] pointer.i:40: Warning: 
+  pointer comparison.
+  assert \pointer_comparable((void *)((int *)T - 1), (void *)((int *)T));
+[eva:alarm] pointer.i:41: Warning: 
+  pointer comparison.
+  assert \pointer_comparable((void *)((int *)T), (void *)(&T[12]));
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function l:
+  x ∈ {19}
+  c ∈ {19}
+[eva:final-states] Values at end of function k:
+  x ∈ {19}
+  c ∈ {19}
+[eva:final-states] Values at end of function main:
+  x ∈ {19}
+  c ∈ {19}
+  cc1 ∈ {1; 99}
+  cc2 ∈ {1; 99}
+[from] Computing for function l
+[from] Done for function l
+[from] Computing for function k
+[from] Done for function k
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function l:
+  x FROM x; y_0 (and SELF)
+  c FROM x; y_0 (and SELF)
+[from] Function k:
+  x FROM x; x_0 (and SELF)
+  c FROM x; x_0 (and SELF)
+[from] Function main:
+  x FROM \nothing
+  c FROM \nothing
+  cc1 FROM en
+  cc2 FROM en
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function l:
+    x; c
+[inout] Inputs for function l:
+    x
+[inout] Out (internal) for function k:
+    x; c
+[inout] Inputs for function k:
+    x
+[inout] Out (internal) for function main:
+    x; c; cc1; cc2
+[inout] Inputs for function main:
+    x; cc2

@@ -1,0 +1,7 @@
+8,9d7
+< [eva:alarm] unroll_simple.i:11: Warning: 
+<   signed overflow. assert -2147483648 ≤ j - 1;
+21c19
+<   j ∈ [-2147483648..-126]
+---
+>   j ∈ {-250}

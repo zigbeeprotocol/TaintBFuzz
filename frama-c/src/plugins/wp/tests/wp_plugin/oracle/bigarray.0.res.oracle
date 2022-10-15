@@ -1,0 +1,20 @@
+# frama-c -wp [...]
+[kernel] Parsing bigarray.c (with preprocessing)
+[kernel] bigarray.c:28: Warning: 
+  Cannot represent length of array as an attribute
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Loop assigns (file bigarray.c, line 27):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'f':
+Effect at line 28
+Prove: true.
+
+------------------------------------------------------------

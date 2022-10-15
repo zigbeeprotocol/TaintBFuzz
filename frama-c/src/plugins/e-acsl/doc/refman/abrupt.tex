@@ -1,0 +1,17 @@
+\begin{syntax}
+    { abrupt-clause } ::= { exits-clause }
+    \
+    { exits-clause } ::= { "exits" pred ";" }
+    \
+    { abrupt-clause-stmt } ::= { breaks-clause } | { continues-clause } |
+    { returns-clause } ;
+    { exits-clause }
+    \
+    { breaks-clause } ::= { "breaks" pred ";" }
+    \
+    { continues-clause } ::= { "continues" pred ";" }
+    \
+    { returns-clause } ::= { "returns" pred ";" }
+    \
+    { term } ::= { "\exit_status" }
+  \end{syntax}

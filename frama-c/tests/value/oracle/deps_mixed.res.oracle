@@ -1,0 +1,85 @@
+[kernel] Parsing deps_mixed.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  p ∈ {0}
+  q ∈ {0}
+  a ∈ {0}
+  b ∈ {0}
+  r ∈ {2}
+  s ∈ {0}
+  v ∈ [--..--]
+  t[0] ∈ {{ &f }}
+   [1] ∈ {{ &g }}
+[eva:alarm] deps_mixed.i:20: Warning: 
+  pointer downcast. assert (unsigned int)q ≤ 2147483647;
+[eva:alarm] deps_mixed.i:20: Warning: 
+  out of bounds read. assert \valid_read(p + (int)q);
+[eva:alarm] deps_mixed.i:22: Warning: 
+  accessing out of bounds index. assert 0 ≤ i0;
+[eva:alarm] deps_mixed.i:22: Warning: 
+  accessing out of bounds index. assert i0 < 2;
+[eva] computing for function g <- main.
+  Called from deps_mixed.i:22.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] computing for function f <- main.
+  Called from deps_mixed.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva:alarm] deps_mixed.i:24: Warning: 
+  pointer downcast. assert (unsigned int)q ≤ 2147483647;
+[eva:alarm] deps_mixed.i:24: Warning: 
+  pointer downcast. assert (unsigned int)(p + (int)q) ≤ 2147483647;
+[eva] deps_mixed.i:24: 
+  Assigning imprecise value to __retres.
+  The imprecision originates from Arithmetic {deps_mixed.i:24}
+[eva] deps_mixed.i:24: 
+  Assigning imprecise value to \result<main>.
+  The imprecision originates from Arithmetic {deps_mixed.i:24}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  
+[eva:final-states] Values at end of function g:
+  
+[eva:final-states] Values at end of function main:
+  p ∈ {{ NULL + {3} ; &a }}
+  q ∈ {{ NULL + {2} ; &b }}
+  r ∈ {2}
+  s ∈ [--..--]
+  __retres ∈
+          {{ garbled mix of &{a; b} (origin: Arithmetic {deps_mixed.i:24}) }}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  \result FROM x
+[from] Function g:
+  \result FROM y
+[from] Function main:
+  p FROM c
+  q FROM d
+  r FROM v; c; d (and SELF)
+  s FROM t[0..1]; i0; i1; i2
+  \result FROM c; d
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    \nothing
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function g:
+    \nothing
+[inout] Inputs for function g:
+    \nothing
+[inout] Out (internal) for function main:
+    p; q; r; s; __retres
+[inout] Inputs for function main:
+    p; q; v; t[0..1]

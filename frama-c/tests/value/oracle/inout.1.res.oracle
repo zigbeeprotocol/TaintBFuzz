@@ -1,0 +1,43 @@
+[kernel] Parsing inout.i (no preprocessing)
+[eva] Analyzing a complete application starting at inout_11_3
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  Xt ∈ {0}
+  Xs ∈ {0}
+  Xs_I ∈ {0}
+  Ys ∈ {0}
+  Ys_I ∈ {0}
+  Z ∈ {0}
+  I ∈ {0}
+  I_size ∈ {8}
+  Itab[0] ∈ {-40}
+      [1] ∈ {-25}
+      [2] ∈ {-15}
+      [3] ∈ {-5}
+      [4] ∈ {5}
+      [5] ∈ {15}
+      [6] ∈ {25}
+      [7] ∈ {40}
+  I5_nt ∈ {0}
+[eva] inout.i:37: starting to merge loop iterations
+[eva:alarm] inout.i:42: Warning: 
+  accessing uninitialized left-value. assert \initialized(&r);
+[eva] Recording results for inout_11_3
+[eva] done for function inout_11_3
+[from] Computing for function inout_11_3
+[from] Done for function inout_11_3
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function inout_11_3:
+  Xs FROM i1
+  Z FROM I_size; Itab{[0]; [7]}; i2 (and SELF)
+  \result FROM I_size; Itab[0..7]; i2
+[from] ====== END OF DEPENDENCIES ======
+[inout] InOut (internal) for function inout_11_3:
+  Operational inputs:
+    I_size; Itab[0..7]; i1; i2; r
+  Operational inputs on termination:
+    I_size; Itab[0..7]; i1; i2; r
+  Sure outputs:
+    Xs; es

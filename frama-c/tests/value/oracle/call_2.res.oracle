@@ -1,0 +1,46 @@
+[kernel] Parsing call_2.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] call_2.i:15: Warning: 
+  accessing uninitialized left-value. assert \initialized(&z);
+[eva:alarm] call_2.i:15: Warning: non-finite float value. assert \is_finite(f);
+[eva:alarm] call_2.i:15: Warning: signed overflow. assert -2147483648 ≤ i + j;
+[eva:alarm] call_2.i:15: Warning: signed overflow. assert i + j ≤ 2147483647;
+[eva] computing for function ff <- main.
+  Called from call_2.i:15.
+[eva] call_2.i:6: 
+  Frama_C_show_each:
+  [-2147483648..2147483647], [-3.40282346639e+38 .. 3.40282346639e+38], {1}
+[eva] Recording results for ff
+[eva] Done for function ff
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function ff:
+  
+[eva:final-states] Values at end of function main:
+  f ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+  z ∈ {1}
+  p ∈ {{ (int *)&f }}
+[from] Computing for function ff
+[from] Done for function ff
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function ff:
+  NO EFFECTS
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function ff:
+    \nothing
+[inout] Inputs for function ff:
+    \nothing
+[inout] Out (internal) for function main:
+    f; z; p
+[inout] Inputs for function main:
+    \nothing

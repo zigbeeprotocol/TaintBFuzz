@@ -1,0 +1,22 @@
+# frama-c -wp -wp-no-let [...]
+[kernel] Parsing dynamic.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 5 goals scheduled
+[wp] [Alt-Ergo] Goal typed_guarded_call_call_point_g_s9 : Valid
+[wp] [Alt-Ergo] Goal typed_guarded_call_ensures_part1 : Valid
+[wp] [Qed] Goal typed_guarded_call_ensures_part2 : Valid
+[wp] [Qed] Goal typed_guarded_call_ensures_2_part1 : Valid
+[wp] [Qed] Goal typed_guarded_call_ensures_2_part2 : Valid
+[wp] Proved goals:    5 / 5
+  Qed:             3 
+  Alt-Ergo:        2
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  guarded_call              3        2        5       100%
+------------------------------------------------------------
+[wp] dynamic.i:43: Warning: 
+  Memory model hypotheses for function 'guarded_call':
+  /*@ behavior wp_typed:
+        requires \separated(p, &X); */
+  void guarded_call(struct S *p);

@@ -1,0 +1,7 @@
+[ { "header": "Sequence", "tactic": "Wp.sequence",
+    "params": { "seq.side": "sum" },
+    "select": { "select": "inside-goal", "occur": 0,
+                "target": "(repeat a_0 (p_0+q_0))",
+                "pattern": "repeat$a+$p$q" },
+    "children": { "Positive": [ { "prover": "qed", "verdict": "valid" } ],
+                  "Unroll": [ { "prover": "qed", "verdict": "valid" } ] } } ]

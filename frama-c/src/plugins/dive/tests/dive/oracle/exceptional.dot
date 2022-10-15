@@ -1,0 +1,26 @@
+digraph G {
+  cp2 [label=<__retres>, shape=box, style="bold", ];
+  cp3 [label=<a>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+       style="filled", ];
+  cp5 [label=<x>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+       style="filled", ];
+  cp7 [label=<c>, shape=box, fillcolor="#AACCFF", color="#88AAFF",
+       style="filled", ];
+  cp9 [label=<0x10000000-0x1fffffff>, shape=box3d, fillcolor="#FFBBBB",
+       color="#FF0000", style="filled", ];
+  cp11 [label=<*p>, shape=parallelogram, fillcolor="#FFBBBB",
+        color="#FF0000", style="filled,dotted", ];
+  cp13 [label=<"lorem ipsum">, shape=box3d, fillcolor="#AACCFF",
+        color="#88AAFF", style="filled", ];
+  
+  subgraph cluster_cs_1 { label=<main>; cp13;cp11;cp9;cp7;cp5;cp3;cp2;
+     };
+  
+  cp3 -> cp2;
+  cp5 -> cp2;
+  cp7 -> cp2;
+  cp9 -> cp3;
+  cp11 -> cp5;
+  cp13 -> cp7;
+  
+  }

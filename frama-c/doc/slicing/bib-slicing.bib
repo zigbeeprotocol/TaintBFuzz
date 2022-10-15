@@ -1,0 +1,519 @@
+%--------------------------------------------
+% voir aussi : http://www.infosun.fmi.uni-passau.de/st/staff/krinke/slicing/
+% pour une énorme biblio.
+%===============================================================================
+% Nos documents :
+%--------------------------------------------
+@techreport{ CEAlocations,
+  author = "Anne Pacalet",
+  title = "Emplacements, pointeurs, et opérations associées",
+  INSTITUTION = "CEA",
+  number = "DTSI/SLA/03-49/AP",
+  month = "janvier",
+  year = "2003"
+}
+%--------------------------------------------
+@techreport{ baudinImpact,
+  author = "P. Baudin",
+  title = "Analyse d'impact~: spécification de l'outil",
+  INSTITUTION = "CEA",
+  number = "DTSI/SOL/04-187",
+  month = "juin",
+  year = "2004"
+}
+%--------------------------------------------
+@techreport{ slicingCaveat,
+  author = "A. Pacalet and P. Baudin", 
+  title = "Analyse d'impact ; L'outil de slicing",
+  INSTITUTION = "CEA",
+  number = "DTSI/SOL/05-141",
+  month = "mai",
+  year = "2005",
+  note = "(Note : {\it Il existe, en interne,  une version plus récente de ce document})."
+}
+%--------------------------------------------
+@techreport{ ppcPdg,
+  author = "A. Pacalet",
+  title = "Calcul de dépendances dans un programme C",
+  INSTITUTION = "INRIA",
+  month = "juin",
+  year = "2007",
+  note = "(Note : {\it document de travail en cours d'évolution})"
+}
+%--------------------------------------------
+@techreport{ ppcSlicing,
+  author = "A. Pacalet",
+  title = "Conception d'un outil de slicing",
+  INSTITUTION = "INRIA",
+  month = "juin",
+  year = "2007",
+  note = "(Note : {\it document de travail en cours d'évolution})"
+}
+
+%===============================================================================
+% Etat de l'art sur le slicing en 1995
+@article{ tip95survey,
+    author = "F. Tip",
+    title = "A survey of program slicing techniques",
+    journal = "Journal of programming languages",
+    volume = "3",
+    pages = "121--189",
+    year = "1995",
+    url = "http://citeseer.nj.nec.com/tip95survey.html" 
+}
+%--------------------------------------------
+@misc{wwwSlicing,
+  key = "SlicingWebLinks",
+  title = "Slicing Web Links",
+  url = "http://www.infosun.fmi.uni-passau.de/st/staff/krinke/slicing/"
+}
+%--------------------------------------------
+@inproceedings{873584,
+  author = {Andrea De Lucia and Mark Harman and Robert Hierons and Jens
+    Krinke},
+  title = {Unions of Slices Are Not Slices},
+  booktitle = {CSMR '03: Proceedings of the Seventh European Conference on
+    Software Maintenance and Reengineering},
+  year = {2003},
+  isbn = {0-7695-1902-4},
+  pages = {363},
+  publisher = {IEEE Computer Society},
+  address = {Washington, DC, USA},
+}
+%--------------------------------------------
+% Travaux de M. Ernst :
+% VDG (Value Dependance Graph) pour representer le programme 
+% afin de faciliter le slicing. Traitement de tout ANSI-C (sauf longjump)
+% Utilise une analyse d'alias (point-to, flow-insensitive ?) 
+% mais elle n'est pas détaillée.
+% Traite des structures, 
+% mais pas de précision sur le traitement des éléments de tableaux...
+% Dans l'un des articles, représentation intéressante de l'état mémoire 
+% considéré dans son ensemble  avec fonctions Lookup/Update.
+% Traitement des appels de fonctions en utilisant les "froms".
+% A LIRE plus en détail.
+@techreport{Ernst95,
+   author = {Michael D. Ernst},
+   title = {Slicing pointers and procedures (abstract)},
+   institution = {Microsoft Research},
+   number = {MSR-TR-95-23},
+   address = {Redmond, WA},
+   month = {January~13,},
+   year = {1995},
+   url = "http://pag.csail.mit.edu/~mernst/pubs/slicing-tr9523-abstract.html"
+}
+@inproceedings{177907,
+ author = {Daniel Weise and Roger F. Crew and Michael Ernst and Bjarne Steensgaard},
+ title = {Value dependence graphs: representation without taxation},
+ booktitle = {POPL '94: Proceedings of the 21st ACM SIGPLAN-SIGACT symposium on Principles of programming languages},
+ year = {1994},
+ isbn = {0-89791-636-0},
+ pages = {297--310},
+ location = {Portland, Oregon, United States},
+ url = {http://doi.acm.org/10.1145/174675.177907},
+ doi = {10.1145/174675.177907},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+@techreport{Ernst94,
+  author = "Michael D. Ernst",
+  title = "Practical fine-grained static slicing of optimized code",
+  institution = "Microsoft Research",
+  number = "MSR-TR-94-14",
+  month = "July",
+  year = "1994",
+  address = {Redmond, WA},
+  url = "http://pag.csail.mit.edu/~mernst/pubs/slicing-tr9414-abstract.html"
+}
+%--------------------------------------------
+% notion d'intersection entre les données pour traitement 
+% des champs de structure et des éléments de tableau 
+% (traitement de a[i] pas clair)
+% Presentation d'un slicing static, 
+% mais considère que les pointeurs peuvent sont potentiellement en alias 
+% avec n'importe quoi ! En fait, leur but est de faire du slicing dynamique, 
+% ça résoud donc le problème.
+@inproceedings{ agrawal91dynamic,
+    author = "Hiralal Agrawal and Richard A. {DeMillo} and Eugene H. Spafford",
+    title = "Dynamic Slicing in the Presence of Unconstrained Pointers",
+    booktitle = "Symposium on Testing, Analysis, and Verification",
+    pages = "60--73",
+    year = "1991",
+    url = "http://citeseer.nj.nec.com/agrawal91dynamic.html" 
+}
+
+%--------------------------------------------
+% Attention : une version de 88 + version révisée de 1990
+% System dependance graph et discussion sur l'interprocedural
+@inproceedings{ horwitz88interprocedural,
+    author = "Susan Horwitz and Thomas Reps and David Binkley",
+    title = "Interprocedural slicing using dependence graphs",
+    booktitle = "Proceedings of the {ACM} {SIGPLAN} '88 Conference on Programming Language Design and Implementation",
+    journal = "SIGPLAN Notices",
+    volume = "23-7",
+    month = "June",
+    address = "Atlanta, GA",
+    pages = "35--46",
+    year = "1988",
+    url = "http://citeseer.nj.nec.com/horwitz90interprocedural.html" 
+}
+%--------------------------------------------
+% Critère original :
+% "Statements are removed if they cannot lead to satisfaction of the negation
+% of the postcondition when executed in an initial state
+% which satisfies the precondition".
+% En gros, on veux vérifier une post, et on élimine déjà les cas
+% où on arrive à voir qu'elle est déjà vérifier pour ne garder que les
+% bouts de programme o`la vérif demande plus de travail.
+% Si le programme satisfait le pré-post, la réduction est vide.
+@inproceedings{Harman2001,
+ title = {Pre/Post Conditioned Slicing},
+  author = "Mark Harman and Rob Hierons and Chris Fox and Sebastian Danicic and John Howroyd",
+ booktitle = {ICSM '01: Proceedings of the IEEE International Conference on Software Maintenance (ICSM'01)},
+ year = {2001},
+ isbn = {0-7695-1189-9},
+ pages = {138},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+ }
+%--------------------------------------------
+% le slicing utiliser pour confronter deux versions d'un programme.
+@article{65980,
+ author = {Susan Horwitz and Jan Prins and Thomas Reps},
+ title = {Integrating noninterfering versions of programs},
+ journal = {ACM Trans. Program. Lang. Syst.},
+ volume = {11},
+ number = {3},
+ year = {1989},
+ issn = {0164-0925},
+ pages = {345--387},
+ url = {http://doi.acm.org/10.1145/65979.65980},
+ doi = {10.1145/65979.65980},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ comment = {Slicing to compare two versions of a program},
+ }
+%--------------------------------------------
+@article{Ferrante87,
+ author = {Jeanne Ferrante and Karl J. Ottenstein and Joe D. Warren},
+ title = {The program dependence graph and its use in optimization},
+ journal = {ACM Trans. Program. Lang. Syst.},
+ volume = {9},
+ number = {3},
+ year = {1987},
+ issn = {0164-0925},
+ pages = {319--349},
+ url = {http://doi.acm.org/10.1145/24039.24041},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ comment = {Introduce the function PDG (program dependence graph)},
+ }
+%--------------------------------------------
+@inproceedings{Ottenstein84,
+ author = {Karl J. Ottenstein and Linda M. Ottenstein},
+ title = {The program dependence graph in a software development environment},
+ booktitle = {SDE 1: Proceedings of the first ACM SIGSOFT/SIGPLAN software engineering symposium on Practical software development environments},
+ year = {1984},
+ isbn = {0-89791-131-8},
+ pages = {177--184},
+ url = {http://doi.acm.org/10.1145/800020.808263},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+%--------------------------------------------
+@inproceedings{ sinha99systemdependencegraphbased,
+    author = "Saurabh Sinha and Mary Jean Harrold and Gregg Rothermel",
+    title = "System-Dependence-Graph-Based Slicing of Programs with Arbitrary Interprocedural Control Flow",
+    booktitle = "International Conference on Software Engineering",
+    pages = "432--441",
+    year = "1999",
+    url = "http://citeseer.nj.nec.com/article/sinha98systemdependencegraphbased.html" 
+}
+
+
+%--------------------------------------------
+@misc{ reps93wisconsin,
+  author = "T. Reps",
+  title = "The wisconsin program-integration system reference manual: Release",
+  text = "T. Reps. The wisconsin program-integration system reference manual: Release
+    2.0. Technical Report Unpublished report, University of Wisconsin, Madison,
+    WI, July 1993.",
+  year = "1993",
+  url = "http://citeseer.nj.nec.com/reps93wisconsin.html" 
+}
+
+%--------------------------------------------
+@inproceedings{ lyle97using,
+  author = "J. Lyle and D. Wallace",
+  title = "Using the Unravel Program Slicing Tool to Evaluate High Integrity Software",
+  booktitle = "Proceedings of Software Quality Week",
+  month = "May",
+  year = "1997",
+  url = "http://citeseer.ist.psu.edu/lyle97using.html" 
+}
+%--------------------------------------------
+@misc{unravel, 
+  key = "Unravel",
+  title = "Unravel",
+  url = "http://www.itl.nist.gov/div897/sqg/unravel/unravel.html"
+}
+%--------------------------------------------
+@misc{CodeSurfeur, 
+  key = "CodeSurfeur",
+  title = "CodeSurfeur",
+  url = "http://www.codesurfer.com/" 
+}
+%--------------------------------------------
+@PHDTHESIS{ weiser79,
+  author = "Mark Weiser",
+  title = "Program slices: formal, psychological, and practical investigations
+    of an automatic program abstraction method.",
+  school = "University of Michigan, Ann Arbor",
+  year = "1979"
+  }
+%--------------------------------------------
+@inproceedings{weiser81,
+ author = {Mark Weiser},
+ title = {Program slicing},
+ booktitle = {ICSE '81: Proceedings of the 5th international conference on Software engineering},
+ year = {1981},
+ isbn = {0-89791-146-6},
+ pages = {439--449},
+ location = {San Diego, California, United States},
+ publisher = {IEEE Press},
+ address = {Piscataway, NJ, USA},
+ }
+%--------------------------------------------
+% A LIRE : discution sur différents types de flots de données.
+@inproceedings{ cartwright89semantics,
+    author = "R. Cartwright and M. Felleisen",
+    title = "The semantics of program dependence",
+    booktitle = "Proceedings of the {ACM} {SIGPLAN} '89 Conference on Programming Language Design and Implementation",
+    journal = "SIGPLAN Notices",
+    volume = "24-7",
+    month = "June",
+    address = "Portland, OR",
+    pages = "13--27",
+    year = "1989",
+    url = "http://citeseer.ist.psu.edu/cartwright89semantic.html" 
+}
+%--------------------------------------------
+% Bonne idée de slicing avec des Pre/Post mais ne dit pas grand chose...
+% Je ne comprend pas bien comment on peut enlever des affectations 
+% en propageant une precondition en avant...
+@inproceedings{Chung-2001,
+ author = {I. S. Chung and W. K. Lee and G. S. Yoon and Y. R. Kwon},
+ title = {Program slicing based on specification},
+ booktitle = {SAC '01: Proceedings of the 2001 ACM symposium on Applied computing},
+ year = {2001},
+ isbn = {1-58113-287-5},
+ pages = {605--609},
+ location = {Las Vegas, Nevada, United States},
+ url = {http://doi.acm.org/10.1145/372202.372784},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+
+%--------------------------------------------
+@article{survey2005,
+ author = {Baowen Xu and Ju Qian and Xiaofang Zhang and Zhongqiang Wu and Lin Chen},
+ title = {A brief survey of program slicing},
+ journal = {SIGSOFT Softw. Eng. Notes},
+ volume = {30},
+ number = {2},
+ year = {2005},
+ issn = {0163-5948},
+ pages = {1--36},
+ url = {http://doi.acm.org/10.1145/1050849.1050865},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+%--------------------------------------------
+% Article très clair avec une bonne introduction (def. CFG, PDG, postdom, ...)
+% Deux méthodes pour calculer un slicing en présence de GOTO.
+% Définition et preuve d'une "correct executable slice"
+@article{Choi94,
+ author = {Jong-Deok Choi and Jeanne Ferrante},
+ title = {Static slicing in the presence of goto statements},
+ journal = {ACM Trans. Program. Lang. Syst.},
+ volume = {16},
+ number = {4},
+ year = {1994},
+ issn = {0164-0925},
+ pages = {1097--1113},
+ url = {http://doi.acm.org/10.1145/183432.183438},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ }
+%--------------------------------------------
+% Traitement des goto après slicing normal : bonne idée.
+% On ne modifie pas les graphes de dépendances,
+% mais on sélectionne après coup les GOTO dont le 1er postdominateur sélectionné% diffère du 1er successeur lexical sélectionné.
+@inproceedings{ agrawal94slicing,
+    author = "Hiralal Agrawal",
+    title = "On Slicing Programs with Jump Statements",
+    booktitle = "{SIGPLAN} Conference on Programming Language Design and Implementation",
+    pages = "302--312",
+    year = "1994",
+    url = "http://citeseer.ist.psu.edu/agrawal94slicing.html" 
+}
+%--------------------------------------------
+% A LIRE : amélioration de agrawal94slicing
+@misc{ harman98new,
+  author = "M. Harman and S. Danicic",
+  title = "A new algorithm for slicing unstructured programs",
+  text = "Harman, M. and Danicic, S. (1998). A new algorithm for slicing unstructured
+    programs. Journal of Software Maintenance, 10(6):415-441.",
+  year = "1998",
+  url = "http://citeseer.ist.psu.edu/harman98new.html" 
+}
+%--------------------------------------------
+% A LIRE : amélioration récente (2002) du traitement des goto
+% + traitement spécifique des switch.
+@inproceedings{ kumar02better,
+    author = "Sumit Kumar and Susan Horwitz",
+    title = "Better Slicing of Programs with Jumps and Switches",
+    booktitle = "Fundamental Approaches to Software Engineering",
+    pages = "96--112",
+    year = "2002",
+    url = "http://citeseer.ist.psu.edu/kumar02better.html" 
+}
+%--------------------------------------------
+% Très bon résumé de la problématique des dépendances de contrôle.
+% Traitement des cas sans point unique de sortie
+% Slicing préservant la non-terminaison et la terminaison prématurée (exit)
+% version courte publiée à ESOP2005.
+@techreport{ ranganath04new,
+  author = "V. Ranganath and T. Amtoft and A. Banerjee and M. Dwyer and J.
+Hatcliff",
+  title = "A new foundation for control-dependence and slicing for modern
+program structures",
+  institution = "SAnToS Lab., Kansas State University",
+  number = "8",
+  year = "2004",
+  url = "citeseer.ist.psu.edu/ranganath05new.html", 
+  note = "(Note : {\it Une version courte de ce document a été publiée à ESOP'2005})."
+}
+%--------------------------------------------
+% Intéressant : à étudier plus en détail en ce qui concerne les transformations
+%  code et les problèmes que ça pose.
+@misc{ danicic-syntaxdirected,
+  author = "Sebastian Danicic and Mark Harman and Malcolm Munro and Dave Binkley and
+    Mohammed Daoudi and Lin Hu and Xingyuan Zhang",
+  title = "Syntax-Directed Amorphous Slicing",
+  url = "http://citeseer.ist.psu.edu/579941.html" 
+}
+%--------------------------------------------
+% Slicing avec transformation des instructions 
+% Règles de transformation 
+%+ détail de 2 cas d'étude (A LIRE)
+@article{harman03,
+  author = "Mark Harman, David Binkley and Sebastian Danicic",
+  title = "Amorphous Program Slicing",
+  journal = "Journal of Systems and Software",
+  volume = "68",
+  number = "1",
+  pages = "45--64",  
+  year = "2003"
+}
+%--------------------------------------------
+@inproceedings{ harman01gustt,
+    author = "Mark Harman and Lin Hu and Malcolm C. Munro and Xingyuan Zhang",
+    title = "{GUSTT}: An Amorphous Slicing System which Combines Slicing and Transformation",
+    booktitle = "Working Conference on Reverse Engineering",
+    pages = "271--280",
+    year = "2001",
+    url = "http://citeseer.ist.psu.edu/harman01gustt.html" 
+}
+%--------------------------------------------
+% 
+@misc{ daoudi-consus,
+  author = "M. Daoudi and L. Ouarbya and J. Howroyd and S. Danicic and Mark Marman
+    and Chris Fox and M. P. Ward",
+  title = "ConSUS: A Scalable Approach to Conditional Slicing",
+  year = "2002",
+  url = "http://citeseer.ist.psu.edu/daoudi02consus.html"
+}
+%--------------------------------------------
+% Intro bien intéressante : A LIRE !
+@misc{ ward2002,
+  author = "Ward, Martin",
+  title = "Program Slicing via FermaT Transformations",
+  year = "2002",
+  url = "http://citeseer.ist.psu.edu/ward02program.html" }
+%--------------------------------------------
+% Description détaillée d'un outil de slicing conditionel 
+% sur un sous ensemble 'simple' de C.
+% différence entre
+% * "Control Dependance Sensive"
+%   = suppression des instructions qui ne sont pas executées 
+%     lorsque les entrées satisfont la pré
+% * et "Control Dependance Inensive"
+  % = suppression de tout ce qui est inutile pour que le pg slicé 
+% et le programme d'origine donnent les mêmes résultats en tout point 
+% lorsque les entrées satisfont la pré 
+% (par exemple, on peut supprimer un if si on sait dans quelle branche on passe)
+
+@article{fox-consit,
+  author = "Chris Fox and Sebastian Danicic and Mark Harman and Robert M. Hierons",
+  title = "ConSIT: A Fully Automated Conditioned Program Slicer",
+  journal = "Software: Practice and Experience",
+ volume = {34}, 
+ number = {1},
+ year = {2004},
+ pages = {15--46},
+ url = {http://dx.doi.org/10.1002/spe.556}
+}
+%--------------------------------------------
+@inproceedings{Field95,
+ author = {John Field and G. Ramalingam and Frank Tip},
+ title = {Parametric program slicing},
+ booktitle = {POPL '95: Proceedings of the 22nd ACM SIGPLAN-SIGACT symposium on Principles of programming languages},
+ year = {1995},
+ isbn = {0-89791-692-1},
+ pages = {379--392},
+ address = {San Francisco, California, United States},
+ url = {http://doi.acm.org/10.1145/199448.199534},
+ publisher = {ACM Press},
+ }
+%--------------------------------------------
+@article{176473,
+ author = {David Binkley},
+ title = {Precise executable interprocedural slices},
+ journal = {ACM Lett. Program. Lang. Syst.},
+ volume = {2},
+ number = {1-4},
+ year = {1993},
+ issn = {1057-4514},
+ pages = {31--45},
+ url = {http://doi.acm.org/10.1145/176454.176473},
+ publisher = {ACM Press},
+ address = {New York, NY, USA},
+ comment = {about generating a program slice that is compilable},
+ }
+%--------------------------------------------
+@inproceedings{Comuzzi,
+ author = {Joseph J. Comuzzi and Johnson M. Hart},
+ title = {Program Slicing Using Weakest Preconditions},
+ booktitle = {FME '96: Proceedings of the Third International Symposium of Formal Methods Europe on Industrial Benefit and Advances in Formal Methods},
+ year = {1996},
+ isbn = {3-540-60973-3},
+ pages = {557--575},
+ publisher = {Springer-Verlag},
+ address = {London, UK},
+url = {http://portal.acm.org/citation.cfm?id=729684},
+ comment = {about a slicing that keeps all that impact a property ?},
+ }
+%--------------------------------------------
+@inproceedings{ fox01backward,
+  author = "C. Fox and M. Harman and R. Hierons and S. Danicic",
+ title = {Backward Conditioning: A New Program Specialisation Technique and Its Application to Program Comprehension},
+ booktitle = {IWPC '01: Proceedings of the 9th International Workshop on Program Comprehension},
+ year = {2001},
+ pages = {89--97},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+ url = "http://citeseer.ist.psu.edu/fox01backward.html" 
+}
+%--------------------------------------------
+%--------------------------------------------

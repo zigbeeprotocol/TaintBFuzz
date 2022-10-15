@@ -1,0 +1,4 @@
+LOG: @PTEST_NAME@.dot
+PLUGIN: from,inout,eva,variadic,scope,dive
+OPT: -eva-msg-key=-initial-state -eva-no-show-progress -dive-output-dot @PTEST_RESULT@/@PTEST_NAME@.dot
+FILTER: perl -0777 -pe 's/\[server[^[]*//g'

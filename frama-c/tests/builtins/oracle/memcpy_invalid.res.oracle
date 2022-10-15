@@ -1,0 +1,59 @@
+[kernel] Parsing memcpy_invalid.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] computing for function test <- main.
+  Called from memcpy_invalid.c:22.
+[eva] computing for function Frama_C_interval <- test <- main.
+  Called from memcpy_invalid.c:16.
+[eva] using specification for function Frama_C_interval
+[eva] Done for function Frama_C_interval
+[eva] memcpy_invalid.c:17: Call to builtin memcpy
+[eva:alarm] memcpy_invalid.c:17: Warning: 
+  function memcpy: precondition 'valid_dest' got status unknown.
+[eva:alarm] memcpy_invalid.c:17: Warning: 
+  function memcpy: precondition 'valid_src' got status unknown.
+[eva] memcpy_invalid.c:17: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:101: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] Recording results for test
+[from] Computing for function test
+[from] Done for function test
+[eva] Done for function test
+[eva] computing for function test <- main.
+  Called from memcpy_invalid.c:23.
+[eva] computing for function Frama_C_interval <- test <- main.
+  Called from memcpy_invalid.c:16.
+[eva] Done for function Frama_C_interval
+[eva] memcpy_invalid.c:17: Call to builtin memcpy
+[eva] Recording results for test
+[from] Computing for function test
+[from] Done for function test
+[eva] Done for function test
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function test:
+  dst ∈ {0}
+  src ∈ {0}
+  i ∈ [0..16],0%2
+[eva:final-states] Values at end of function main:
+  __retres ∈ {0}
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to Frama_C_interval at memcpy_invalid.c:16 (by test):
+  \result FROM min; max
+[from] call to memcpy at memcpy_invalid.c:17 (by test):
+  dst FROM src
+  \result FROM dest
+[from] call to test at memcpy_invalid.c:22 (by main):
+  NO EFFECTS
+[from] call to test at memcpy_invalid.c:23 (by main):
+  NO EFFECTS
+[from] entry point:
+  \result FROM \nothing
+[from] ====== END OF CALLWISE DEPENDENCIES ======

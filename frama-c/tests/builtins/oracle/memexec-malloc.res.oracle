@@ -1,0 +1,112 @@
+[kernel] Parsing memexec-malloc.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..1999] ∈ {0}
+[eva] computing for function f <- main.
+  Called from memexec-malloc.c:23.
+[eva] memexec-malloc.c:10: starting to merge loop iterations
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from memexec-malloc.c:24.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] memexec-malloc.c:25: Reusing old results for call to f
+[eva] memexec-malloc.c:26: Frama_C_show_each: [0..1999]
+[eva] memexec-malloc.c:27: Frama_C_show_each: [0..1999]
+[eva] memexec-malloc.c:28: Frama_C_show_each: [0..1999]
+[eva] memexec-malloc.c:29: Reusing old results for call to f
+[eva] computing for function alloc <- main.
+  Called from memexec-malloc.c:31.
+[eva] memexec-malloc.c:15: Call to builtin malloc
+[eva] memexec-malloc.c:15: allocating variable __malloc_main_l31
+[eva] Recording results for alloc
+[eva] Done for function alloc
+[eva] computing for function alloc <- main.
+  Called from memexec-malloc.c:32.
+[eva] memexec-malloc.c:15: Call to builtin malloc
+[eva] memexec-malloc.c:15: allocating variable __malloc_main_l32
+[eva] Recording results for alloc
+[eva] Done for function alloc
+[eva] computing for function k <- main.
+  Called from memexec-malloc.c:34.
+[eva] computing for function alloc <- k <- main.
+  Called from memexec-malloc.c:19.
+[eva] memexec-malloc.c:15: Call to builtin malloc
+[eva] memexec-malloc.c:15: allocating variable __malloc_k_l19
+[eva] Recording results for alloc
+[eva] Done for function alloc
+[eva] Recording results for k
+[eva] Done for function k
+[eva] computing for function k <- main.
+  Called from memexec-malloc.c:35.
+[eva] computing for function alloc <- k <- main.
+  Called from memexec-malloc.c:19.
+[eva] memexec-malloc.c:15: Call to builtin malloc
+[eva] memexec-malloc.c:15: allocating variable __malloc_k_l19_0
+[eva] Recording results for alloc
+[eva] Done for function alloc
+[eva] Recording results for k
+[eva] Done for function k
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  t[0..1999] ∈ [0..1999]
+  i ∈ {2000}
+[eva:final-states] Values at end of function alloc:
+  __fc_heap_status ∈ [--..--]
+[eva:final-states] Values at end of function k:
+  __fc_heap_status ∈ [--..--]
+[eva:final-states] Values at end of function main:
+  __fc_heap_status ∈ [--..--]
+  t[0..1999] ∈ [0..1999]
+  p1 ∈ {{ &__malloc_main_l31 }}
+  p2 ∈ {{ &__malloc_main_l32 }}
+  p3 ∈ {{ &__malloc_k_l19 }}
+  p4 ∈ {{ &__malloc_k_l19_0 }}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function alloc
+[from] Computing for function malloc <-alloc
+[from] Done for function malloc
+[from] Done for function alloc
+[from] Computing for function k
+[from] Done for function k
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  t[0..1999] FROM \nothing (and SELF)
+[from] Function malloc:
+  __fc_heap_status FROM __fc_heap_status; size (and SELF)
+  \result FROM __fc_heap_status; size
+[from] Function alloc:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+  \result FROM __fc_heap_status
+[from] Function k:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+  \result FROM __fc_heap_status
+[from] Function main:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+  t[0..1999] FROM \nothing (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    t[0..1999]; i
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function alloc:
+    __fc_heap_status; tmp
+[inout] Inputs for function alloc:
+    __fc_heap_status
+[inout] Out (internal) for function k:
+    __fc_heap_status; tmp
+[inout] Inputs for function k:
+    __fc_heap_status
+[inout] Out (internal) for function main:
+    __fc_heap_status; t[0..1999]; p1; p2; p3; p4
+[inout] Inputs for function main:
+    __fc_heap_status; t[1..2]

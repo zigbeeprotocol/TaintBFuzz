@@ -1,0 +1,1 @@
+OPT: @PTEST_FILE@ -instantiate -print

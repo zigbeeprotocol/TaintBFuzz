@@ -1,0 +1,42 @@
+# frama-c -wp [...]
+[kernel] Parsing doomed_report_ko.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 10 goals scheduled
+[wp] [Failed] Smoke-test typed_foo_wp_smoke_dead_loop_s2
+  Alt-Ergo: Valid
+[wp] doomed_report_ko.i:29: Warning: Failed smoke-test
+[wp] [Failed] Smoke-test typed_foo_wp_smoke_dead_code_s7
+  Alt-Ergo: Valid
+[wp] doomed_report_ko.i:29: Warning: Failed smoke-test
+[wp] [Failed] Smoke-test typed_foo_wp_smoke_dead_code_s9
+  Alt-Ergo: Valid
+[wp] doomed_report_ko.i:30: Warning: Failed smoke-test
+[wp] [Alt-Ergo] Goal typed_foo_loop_invariant_A_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_foo_loop_invariant_A_established : Valid
+[wp] [Alt-Ergo] Goal typed_foo_loop_invariant_B_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_foo_loop_invariant_B_established : Valid
+[wp] [Alt-Ergo] Goal typed_foo_loop_invariant_C_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_foo_loop_invariant_C_established : Valid
+[wp] [Qed] Goal typed_foo_loop_assigns : Valid
+[wp] Proved goals:    7 / 10
+  Qed:             1 
+  Alt-Ergo:        6  (failed: 3)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  foo                       1        6       10      70.0%
+------------------------------------------------------------
+                                 Qed Ergo Failed
+  foo_loop_assigns                1    -    -
+  foo_loop_invariant_A            -    2    -
+  foo_loop_invariant_B            -    2    -
+  foo_loop_invariant_C            -    2    -
+  foo_wp_smoke_dead_code_s7       -    -    1
+  foo_wp_smoke_dead_code_s9       -    -    1
+  foo_wp_smoke_dead_loop_s2       -    -    1
+-------------------------------------------------------------
+Success:  57.1%
+   Total  :     7 properties
+   Valid  :     4
+   Failed :     3
+-------------------------------------------------------------

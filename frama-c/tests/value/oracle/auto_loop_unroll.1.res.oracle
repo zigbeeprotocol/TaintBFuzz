@@ -1,0 +1,575 @@
+[kernel] Parsing auto_loop_unroll.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  undet ∈ [--..--]
+  g ∈ {0}
+[eva] computing for function simple_loops <- main.
+  Called from auto_loop_unroll.c:428.
+[eva:loop-unroll:auto] auto_loop_unroll.c:24: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:24: Trace partitioning superposing up to 100 states
+[eva] auto_loop_unroll.c:27: Frama_C_show_each_auto: {100}
+[eva] auto_loop_unroll.c:30: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:31: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:33: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] auto_loop_unroll.c:38: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:39: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:41: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] auto_loop_unroll.c:49: Frama_C_show_each_singleton: {100}
+[eva] Recording results for simple_loops
+[eva] Done for function simple_loops
+[eva] computing for function various_loops <- main.
+  Called from auto_loop_unroll.c:429.
+[eva:loop-unroll:auto] auto_loop_unroll.c:57: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:59: Frama_C_show_each_64: {64}
+[eva:loop-unroll:auto] auto_loop_unroll.c:62: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:64: Frama_C_show_each_40: {40}
+[eva:loop-unroll:auto] auto_loop_unroll.c:67: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:72: Frama_C_show_each_80: {80}
+[eva:loop-unroll:auto] auto_loop_unroll.c:75: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:75: Trace partitioning superposing up to 100 states
+[eva] auto_loop_unroll.c:82: Frama_C_show_each_32_80: [32..80]
+[eva] computing for function Frama_C_interval <- various_loops <- main.
+  Called from auto_loop_unroll.c:86.
+[eva] using specification for function Frama_C_interval
+[eva] auto_loop_unroll.c:86: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:loop-unroll:auto] auto_loop_unroll.c:87: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:89: Frama_C_show_each_40_50: [40..50]
+[eva:loop-unroll:auto] auto_loop_unroll.c:92: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:95: Frama_C_show_each_101: {101}
+[eva:loop-unroll:auto] auto_loop_unroll.c:98: Automatic loop unrolling.
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] computing for function incr_g <- various_loops <- main.
+  Called from auto_loop_unroll.c:99.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr <- various_loops <- main.
+  Called from auto_loop_unroll.c:100.
+[eva] Recording results for incr
+[eva] Done for function incr
+[eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+[eva] auto_loop_unroll.c:103: Frama_C_show_each_25: {25}
+[eva:loop-unroll:auto] auto_loop_unroll.c:107: Automatic loop unrolling.
+[eva:loop-unroll:auto] auto_loop_unroll.c:108: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:112: Frama_C_show_each_120: {120}
+[eva:loop-unroll:auto] auto_loop_unroll.c:115: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:122: Frama_C_show_each_32_64: [32..64]
+[eva:loop-unroll:auto] auto_loop_unroll.c:125: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:132: Frama_C_show_each_1_28: [1..28]
+[eva] auto_loop_unroll.c:134: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:139: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:141: Frama_C_show_each_top: [0..2147483647]
+[eva] Recording results for various_loops
+[eva] Done for function various_loops
+[eva] computing for function complex_loops <- main.
+  Called from auto_loop_unroll.c:430.
+[eva] auto_loop_unroll.c:152: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:154: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:156: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] auto_loop_unroll.c:160: starting to merge loop iterations
+[eva] auto_loop_unroll.c:161: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:165: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:168: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] auto_loop_unroll.c:171: starting to merge loop iterations
+[eva] auto_loop_unroll.c:172: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:176: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:179: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] auto_loop_unroll.c:183: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:186: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:188: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] computing for function incr_g <- complex_loops <- main.
+  Called from auto_loop_unroll.c:193.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] auto_loop_unroll.c:192: starting to merge loop iterations
+[eva] computing for function incr_g <- complex_loops <- main.
+  Called from auto_loop_unroll.c:193.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr_g <- complex_loops <- main.
+  Called from auto_loop_unroll.c:193.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] computing for function incr_g <- complex_loops <- main.
+  Called from auto_loop_unroll.c:193.
+[eva] Recording results for incr_g
+[eva] Done for function incr_g
+[eva] auto_loop_unroll.c:193: Reusing old results for call to incr_g
+[eva] auto_loop_unroll.c:193: Reusing old results for call to incr_g
+[eva:alarm] auto_loop_unroll.c:195: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:197: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] auto_loop_unroll.c:202: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:204: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:206: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] auto_loop_unroll.c:210: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:212: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva:alarm] auto_loop_unroll.c:211: Warning: 
+  signed overflow. assert i + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:214: Frama_C_show_each_imprecise: [0..2147483647]
+[eva] Recording results for complex_loops
+[eva] Done for function complex_loops
+[eva] computing for function various_conditions <- main.
+  Called from auto_loop_unroll.c:431.
+[eva:loop-unroll:auto] auto_loop_unroll.c:223: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:226: Frama_C_show_each_11: {11}
+[eva:loop-unroll:auto] auto_loop_unroll.c:228: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:231: Frama_C_show_each_12: {12}
+[eva:loop-unroll:auto] auto_loop_unroll.c:234: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:237: Frama_C_show_each_0_13: [0..13]
+[eva:loop-unroll:auto] auto_loop_unroll.c:239: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:242: Frama_C_show_each_0_14: [0..14]
+[eva:loop-unroll:auto] auto_loop_unroll.c:245: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:250: Frama_C_show_each_0_15: [0..15]
+[eva:loop-unroll:auto] auto_loop_unroll.c:252: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:252: Trace partitioning superposing up to 100 states
+[eva] auto_loop_unroll.c:257: Frama_C_show_each_11_111: [11..111]
+[eva:loop-unroll:auto] auto_loop_unroll.c:262: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:265: Frama_C_show_each_16: {16}
+[eva] Recording results for various_conditions
+[eva] Done for function various_conditions
+[eva] computing for function temporary_variables <- main.
+  Called from auto_loop_unroll.c:432.
+[eva:loop-unroll:auto] auto_loop_unroll.c:274: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:277: Frama_C_show_each_20: {20}
+[eva:loop-unroll:auto] auto_loop_unroll.c:279: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:282: Frama_C_show_each_21: {21}
+[eva:loop-unroll:auto] auto_loop_unroll.c:284: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:288: Frama_C_show_each_22: {22}
+[eva:loop-unroll:auto] auto_loop_unroll.c:291: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:296: Frama_C_show_each_23: {23}
+[eva] auto_loop_unroll.c:299: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:302: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva:alarm] auto_loop_unroll.c:299: Warning: 
+  signed overflow. assert i + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:304: Frama_C_show_each_top: [0..2147483647]
+[eva] Recording results for temporary_variables
+[eva] Done for function temporary_variables
+[eva] computing for function loops_with_goto <- main.
+  Called from auto_loop_unroll.c:433.
+[eva:loop-unroll:auto] auto_loop_unroll.c:310: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:315: Frama_C_show_each_30: {30}
+[eva:loop-unroll:auto] auto_loop_unroll.c:319: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:319: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:320: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:319: Trace partitioning superposing up to 100 states
+[eva] auto_loop_unroll.c:324: Frama_C_show_each_top: [31..2147483647]
+[eva:loop-unroll:auto] auto_loop_unroll.c:327: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:333: Frama_C_show_each_32: {32}
+[eva:loop-unroll:auto] auto_loop_unroll.c:336: Automatic loop unrolling.
+[eva:alarm] auto_loop_unroll.c:337: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:341: Frama_C_show_each_33_inf: [33..2147483647]
+[eva:alarm] auto_loop_unroll.c:345: Warning: 
+  signed overflow. assert i + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:344: starting to merge loop iterations
+[eva:alarm] auto_loop_unroll.c:344: Warning: 
+  signed overflow. assert res + 1 ≤ 2147483647;
+[eva] auto_loop_unroll.c:349: Frama_C_show_each_top: [0..2147483647]
+[eva:loop-unroll:auto] auto_loop_unroll.c:352: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:357: Frama_C_show_each_0_35: [0..35]
+[eva:loop-unroll:auto] auto_loop_unroll.c:360: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:364: Frama_C_show_each_36: {36}
+[eva:loop-unroll:auto] auto_loop_unroll.c:367: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:372: Frama_C_show_each_27: {27}
+[eva] Recording results for loops_with_goto
+[eva] Done for function loops_with_goto
+[eva] computing for function non_natural_loops <- main.
+  Called from auto_loop_unroll.c:434.
+[eva:loop-unroll:auto] auto_loop_unroll.c:382: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:387: Frama_C_show_each_50: {50}
+[eva:loop-unroll:auto] auto_loop_unroll.c:391: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:395: Frama_C_show_each_1_51: [1..51]
+[eva] Recording results for non_natural_loops
+[eva] Done for function non_natural_loops
+[eva] computing for function following_loops <- main.
+  Called from auto_loop_unroll.c:435.
+[eva:loop-unroll:auto] auto_loop_unroll.c:402: Automatic loop unrolling.
+[eva:loop-unroll:auto] auto_loop_unroll.c:406: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:410: Frama_C_show_each_30: {30}
+[eva:loop-unroll:auto] auto_loop_unroll.c:413: Automatic loop unrolling.
+[eva:loop-unroll:auto] auto_loop_unroll.c:417: Automatic loop unrolling.
+[eva] auto_loop_unroll.c:424: Frama_C_show_each_30: [15..45]
+[eva] Recording results for following_loops
+[eva] Done for function following_loops
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function following_loops:
+  i ∈ {30}
+  j ∈ [15..45]
+[eva:final-states] Values at end of function incr:
+  __retres ∈ [1..25]
+[eva:final-states] Values at end of function incr_g:
+  g ∈ [1..126]
+[eva:final-states] Values at end of function complex_loops:
+  g ∈ {64}
+  res ∈ [0..2147483647]
+  i ∈ [64..2147483647]
+  j ∈ {64}
+  p ∈ {{ &j }}
+  t[0] ∈ {0}
+   [1] ∈ {1}
+   [2] ∈ {2}
+   [3] ∈ {3}
+   [4] ∈ {4}
+   [5] ∈ {5}
+   [6] ∈ {6}
+   [7] ∈ {7}
+   [8] ∈ {8}
+   [9] ∈ {9}
+[eva:final-states] Values at end of function loops_with_goto:
+  i ∈ {37}
+  res ∈ {0}
+[eva:final-states] Values at end of function non_natural_loops:
+  i ∈ [-1..50]
+  res ∈ {0}
+[eva:final-states] Values at end of function simple_loops:
+  res ∈ {100}
+[eva:final-states] Values at end of function temporary_variables:
+  i ∈ [0..2147483647]
+  j ∈ [23..2147483647]
+  k ∈ {22}
+  res ∈ [0..2147483647]
+[eva:final-states] Values at end of function various_conditions:
+  i ∈ {12}
+  res ∈ {0}
+  x ∈ {16}
+  p ∈ {{ &x }}
+[eva:final-states] Values at end of function various_loops:
+  Frama_C_entropy_source ∈ [--..--]
+  g ∈ {126}
+  res ∈ {0}
+  x ∈ {24}
+  k ∈ [0..10]
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+  g ∈ {64}
+[from] Computing for function following_loops
+[from] Done for function following_loops
+[from] Computing for function incr
+[from] Done for function incr
+[from] Computing for function incr_g
+[from] Done for function incr_g
+[from] Computing for function complex_loops
+[from] Done for function complex_loops
+[from] Computing for function loops_with_goto
+[from] Done for function loops_with_goto
+[from] Computing for function non_natural_loops
+[from] Done for function non_natural_loops
+[from] Computing for function simple_loops
+[from] Done for function simple_loops
+[from] Computing for function temporary_variables
+[from] Done for function temporary_variables
+[from] Computing for function various_conditions
+[from] Done for function various_conditions
+[from] Computing for function various_loops
+[from] Computing for function Frama_C_interval <-various_loops
+[from] Done for function Frama_C_interval
+[from] Done for function various_loops
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function following_loops:
+  NO EFFECTS
+[from] Function incr:
+  \result FROM i
+[from] Function incr_g:
+  g FROM g
+[from] Function complex_loops:
+  g FROM \nothing
+[from] Function loops_with_goto:
+  NO EFFECTS
+[from] Function non_natural_loops:
+  NO EFFECTS
+[from] Function simple_loops:
+  NO EFFECTS
+[from] Function temporary_variables:
+  NO EFFECTS
+[from] Function various_conditions:
+  NO EFFECTS
+[from] Function various_loops:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  g FROM \nothing
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  g FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function following_loops:
+    i; j
+[inout] Inputs for function following_loops:
+    undet
+[inout] Out (internal) for function incr:
+    __retres
+[inout] Inputs for function incr:
+    \nothing
+[inout] Out (internal) for function incr_g:
+    g
+[inout] Inputs for function incr_g:
+    g
+[inout] Out (internal) for function complex_loops:
+    g; res; i; j; p; j_0; j_1; t[0..9]
+[inout] Inputs for function complex_loops:
+    undet; g
+[inout] Out (internal) for function loops_with_goto:
+    i; res; tmp
+[inout] Inputs for function loops_with_goto:
+    undet
+[inout] Out (internal) for function non_natural_loops:
+    i; res; tmp
+[inout] Inputs for function non_natural_loops:
+    undet
+[inout] Out (internal) for function simple_loops:
+    res; i; i_0; i_1; i_2
+[inout] Inputs for function simple_loops:
+    \nothing
+[inout] Out (internal) for function temporary_variables:
+    i; j; k; res; tmp; tmp_0
+[inout] Inputs for function temporary_variables:
+    undet
+[inout] Out (internal) for function various_conditions:
+    i; res; i_0; tmp; i_1; tmp_0; i_2; i_3; x; p; i_4
+[inout] Inputs for function various_conditions:
+    undet
+[inout] Out (internal) for function various_loops:
+    Frama_C_entropy_source; g; res; i; i_0; i_1; i_2; x; k; i_3; i_4; t; 
+    i_5; j; i_6; i_7; i_8
+[inout] Inputs for function various_loops:
+    Frama_C_entropy_source; undet; g
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source; g
+[inout] Inputs for function main:
+    Frama_C_entropy_source; undet; g

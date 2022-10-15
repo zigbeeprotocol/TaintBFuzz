@@ -1,0 +1,25 @@
+# frama-c -wp [...]
+[kernel] Parsing doomed.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 7 goals scheduled
+[wp] [Passed] Smoke-test typed_foo_wp_smoke_default_requires
+[wp] [Failed] Smoke-test typed_foo_wp_smoke_A_requires
+       Qed: Valid
+[wp] doomed.i:27: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_foo_wp_smoke_B_requires
+[wp] [Passed] Smoke-test typed_bar_wp_smoke_default_requires
+[wp] [Qed] Goal typed_bar_ensures : Valid
+[wp] [Failed] Smoke-test typed_buzz_wp_smoke_default_requires
+       Qed: Valid
+[wp] doomed.i:41: Warning: Failed smoke-test
+[wp] [Qed] Goal typed_buzz_ensures : Valid
+[wp] Proved goals:    5 / 7
+  Qed:             2  (failed: 2)
+  Alt-Ergo:        3
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  foo                       -        2        3      66.7%
+  bar                       1        1        2       100%
+  buzz                      1        -        2      50.0%
+------------------------------------------------------------

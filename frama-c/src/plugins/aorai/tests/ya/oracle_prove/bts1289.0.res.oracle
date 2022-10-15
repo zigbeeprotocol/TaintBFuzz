@@ -1,0 +1,4 @@
+[kernel] Parsing bts1289.i (no preprocessing)
+[aorai] Warning: Call to main does not follow automaton's specification. This path is assumed to be dead
+[kernel] Parsing TMPDIR/aorai_bts1289_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

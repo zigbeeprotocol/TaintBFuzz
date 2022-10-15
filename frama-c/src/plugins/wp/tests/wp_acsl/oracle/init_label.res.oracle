@@ -1,0 +1,54 @@
+# frama-c -wp [...]
+[kernel] Parsing init_label.i (no preprocessing)
+[wp] Running WP plugin...
+[kernel] init_label.i:27: Warning: 
+  No code nor implicit assigns clause for function main, generating default assigns from the prototype
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function extra
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 'extra':
+Let x = A[2].
+Assume { Type: is_sint32(x). (* Heap *) Type: IsArray_sint32(A). }
+Prove: x = 12.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function foreign
+------------------------------------------------------------
+
+Goal Post-condition 'OK' in 'foreign':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition 'OK' in 'job':
+Let x = A[2].
+Assume {
+  Type: IsArray_sint32(A) /\ IsArray_sint32(A_1) /\ is_sint32(x).
+  (* Initializer *)
+  Init: A_1[0] = 10.
+  (* Initializer *)
+  Init: A_1[1] = 11.
+  (* Initializer *)
+  Init: A_1[2] = 12.
+  (* Initializer *)
+  Init: forall i : Z. ((3 <= i) -> ((i <= 19) -> (A_1[i] = 0))).
+  (* Pre-condition 'Init' *)
+  Have: EqArray_int(20, A, A_1).
+}
+Prove: x = 12.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Pre-condition 'OK' in 'main':
+Prove: true.
+
+------------------------------------------------------------

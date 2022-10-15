@@ -1,0 +1,3 @@
+[kernel] Parsing vla_goto_same_block_below.i (no preprocessing)
+[kernel] User Error: vla_goto_same_block_below.i:11, cannot jump from goto statement bypassing initialization of variable vla, declared at vla_goto_same_block_below.i:14
+[kernel] Frama-C aborted: invalid user input.

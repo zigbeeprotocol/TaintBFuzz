@@ -1,0 +1,56 @@
+# frama-c -wp [...]
+[kernel] Parsing logic.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] logic.i:65: Warning: 
+  Cast with incompatible pointers types (source: __anonstruct_Buint_4*)
+     (target: uint32*)
+[wp] logic.i:62: Warning: 
+  Logic cast to struct (Tint2) from (int [6]) not implemented yet
+[wp] logic.i:61: Warning: Logic cast from struct (Tint6) not implemented yet
+[wp] logic.i:60: Warning: 
+  Logic cast to sized array (int [2]) from (int [6]) not implemented yet
+[wp] logic.i:59: Warning: Logic cast from struct (Tint6) not implemented yet
+[wp] logic.i:58: Warning: Logic cast from struct (Tint6) not implemented yet
+[wp] logic.i:57: Warning: 
+  Logic cast to sized array (Triangle) from (int [6]) not implemented yet
+[wp] logic.i:56: Warning: Logic cast from struct (Tint6) not implemented yet
+[wp] logic.i:55: Warning: 
+  Logic cast to struct (Buint) from (unsigned int) not implemented yet
+[wp] logic.i:54: Warning: Logic cast from struct (Buint) not implemented yet
+[wp] logic.i:53: Warning: Logic cast from struct (Tint2) not implemented yet
+[wp] logic.i:52: Warning: Logic cast from struct (Point) not implemented yet
+[wp] logic.i:51: Warning: 
+  Logic cast to struct (Point) from (int [2]) not implemented yet
+[wp] logic.i:50: Warning: Logic cast from struct (Point) not implemented yet
+[wp] logic.i:49: Warning: Logic cast from struct (Tint2) not implemented yet
+[wp] 21 goals scheduled
+[wp] [Alt-Ergo] Goal typed_h_ensures : Valid
+[wp] [Qed] Goal typed_h_assigns_exit : Valid
+[wp] [Qed] Goal typed_h_assigns_normal : Valid
+[wp] [Qed] Goal typed_main_requires_qed_ok : Valid
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_2 : Valid
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_3 : Valid
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_4 : Valid
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_5 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_6 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_7 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_8 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_9 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_10 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_11 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_12 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_13 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_14 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_15 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_16 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_17 : Unsuccess (Stronger)
+[wp] [Alt-Ergo] Goal typed_main_requires_qed_ok_18 : Unsuccess (Stronger)
+[wp] Proved goals:    7 / 21
+  Qed:             3 
+  Alt-Ergo:        4  (unsuccess: 14)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  h                         2        1        3       100%
+  main                      1        3       18      22.2%
+------------------------------------------------------------

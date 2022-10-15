@@ -1,0 +1,132 @@
+[kernel] Parsing decl_dpds.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ [--..--]
+  S ∈ [--..--]
+[eva:alarm] decl_dpds.c:16: Warning: 
+  signed overflow. assert argc + 1 ≤ 2147483647;
+[eva:alarm] decl_dpds.c:18: Warning: 
+  out of bounds read. assert \valid_read(argv + (int)(argc - 1));
+[eva:alarm] decl_dpds.c:18: Warning: 
+  out of bounds read. assert \valid_read(*(argv + (int)(argc - 1)) + 0);
+[eva:alarm] decl_dpds.c:19: Warning: 
+  out of bounds read. assert \valid_read(argv + (int)(argc - 1));
+[eva:alarm] decl_dpds.c:19: Warning: 
+  out of bounds write. assert \valid(*(argv + (int)(argc - 1)) + 0);
+[eva:alarm] decl_dpds.c:23: Warning: 
+  signed overflow. assert *p + 1 ≤ 2147483647;
+[eva:alarm] decl_dpds.c:25: Warning: 
+  signed overflow. assert -2147483648 ≤ argc0 + argc1;
+[eva:alarm] decl_dpds.c:25: Warning: 
+  signed overflow. assert argc0 + argc1 ≤ 2147483647;
+[eva:alarm] decl_dpds.c:25: Warning: 
+  signed overflow. assert -2147483648 ≤ (int)(argc0 + argc1) + G;
+[eva:alarm] decl_dpds.c:25: Warning: 
+  signed overflow. assert (int)(argc0 + argc1) + G ≤ 2147483647;
+[eva:alarm] decl_dpds.c:25: Warning: 
+  signed overflow.
+  assert -2147483648 ≤ (int)((int)(argc0 + argc1) + G) + S.a;
+[eva:alarm] decl_dpds.c:25: Warning: 
+  signed overflow. assert (int)((int)(argc0 + argc1) + G) + S.a ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[scope:rm_asserts] removing 1 assertion(s)
+[pdg] computing for function main
+[pdg] done for function main
+[pdg] PDG for main
+ {n1}: InCtrl
+ {n2}: VarDecl : argc
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: VarDecl : argv
+   -[a--]-> 5
+ {n5}: In2
+   -[a--]-> 4
+ {n6}: VarDecl : argc0
+ {n7}: VarDecl : tmp
+ {n8}: VarDecl : argc1
+ {n9}: VarDecl : c
+ {n10}: VarDecl : p
+ {n11}: VarDecl : __retres
+ {n12}: unspecified sequence
+   -[-c-]-> 1
+ {n13}: tmp = argc;
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+   -[a--]-> 7
+   -[-c-]-> 12
+ {n14}: argc ++;
+   -[-c-]-> 1
+   -[a-d]-> 2
+   -[--d]-> 3
+   -[-c-]-> 12
+ {n15}: int argc0 = tmp;
+   -[-c-]-> 1
+   -[a--]-> 6
+   -[--d]-> 7
+   -[--d]-> 13
+ {n16}: int argc1 = argc;
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[a--]-> 8
+   -[--d]-> 14
+ {n17}: char c = *(*(argv + (argc - 1)) + 0);
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 4
+   -[--d]-> 5
+   -[a--]-> 9
+   -[--d]-> 14
+   -[--d]-> 28
+   -[--d]-> 29
+   -[--d]-> 30
+ {n18}: *(*(argv + (argc - 1)) + 0) = (char)'a';
+   -[-c-]-> 1
+   -[a--]-> 2
+   -[a--]-> 4
+   -[a--]-> 5
+   -[a--]-> 14
+   -[a--]-> 28
+ {n19}: argc = 0;
+   -[-c-]-> 1
+   -[a--]-> 2
+ {n20}: argc0
+   -[-c-]-> 1
+   -[--d]-> 6
+   -[--d]-> 15
+ {n21}: int *p = & argc0;
+   -[-c-]-> 1
+   -[--d]-> 6
+   -[a--]-> 10
+   -[-c-]-> 20
+ {n22}: (*p) ++;
+   -[-c-]-> 1
+   -[a-d]-> 10
+   -[--d]-> 15
+   -[-c-]-> 20
+   -[a-d]-> 21
+ {n23}: __retres = ((argc0 + argc1) + G) + S.a;
+   -[-c-]-> 1
+   -[--d]-> 6
+   -[--d]-> 8
+   -[a--]-> 11
+   -[--d]-> 15
+   -[--d]-> 16
+   -[--d]-> 22
+   -[--d]-> 26
+   -[--d]-> 27
+ {n24}: return __retres;
+   -[-c-]-> 1
+   -[--d]-> 11
+   -[--d]-> 23
+ {n25}: OutRet
+   -[--d]-> 24
+ {n26}: In(G)
+ {n27}: In(S.a)
+ {n28}: In(S_argv[0..3])
+ {n29}: In(S_0_S_argv[0])
+ {n30}: In(S_1_S_argv[0])

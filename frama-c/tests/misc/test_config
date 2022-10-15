@@ -1,0 +1,13 @@
+PLUGIN:
+
+# COMMENT: The next directive is a hack because the module is used
+# COMMENT: by more than one test file (./global_decl_loc.i & ./global_decl_loc2.c)
+# COMMENT: and it can be compiled only once due to ptests concurency.
+# COMMENT: That line should be removed with dune and modifications have to be done in ./global_decl_loc.i and ./global_decl_loc2.c.
+MODULE: global_decl_loc
+
+MODULE:
+STDOPT:
+
+# COMMENT: Directive to add in your test file when using STDOPT:
+# COMMENT: PLUGIN: @EVA_PLUGINS@

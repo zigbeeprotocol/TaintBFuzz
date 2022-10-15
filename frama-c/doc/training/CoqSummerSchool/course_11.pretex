@@ -1,0 +1,690 @@
+\documentclass[pdf]{beamer}
+\usepackage{alltt}
+\usepackage{array}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{beamerthemesplit}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{xkeyval}
+\usepackage{hevea}
+\usepackage{mathpartir}
+
+\usepackage{pifont}
+
+\newcommand{\pro}{\textcolor{green}{\ding{52}}}
+\newcommand{\con}{\textcolor{red}{\ding{56}}}
+
+\usetikzlibrary{shadows}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes.callouts}
+
+\setbeamercovered{transparent}
+
+\definecolor{lightgreen}{HTML}{95F4A2}
+\definecolor{lightred}{HTML}{F4959D}
+\definecolor{darkgreen}{HTML}{01802A}
+\usetheme{frama-c}
+
+\setbeamerfont{smaller}{size=\footnotesize}
+
+\pgfdeclareimage[width=\textwidth,interpolate=true]{gwhy}{gwhy}
+
+\title[Course 11]{1st Asian-Pacific Summer School on Formal Methods\\
+Course 11: Hoare Logic with Pointers}
+\author[Virgile Prevosto]{Virgile Prevosto}
+\date[08-29-2009]{August 29, 2009}
+\institute[CEA List]{CEA List}
+
+\AtBeginSection[]{
+\begin{frame}
+ \frametitle{}
+ \tableofcontents[currentsection]
+ \end{frame}
+ }
+
+% Exemples de verification:
+% - moyenne ?
+% - listes ou tableaux ?
+% Choses à faire passer:
+% - les différentes composantes d'une spec, invariant (et variant) de
+% boucle
+% - comment lire la fenetre gwhy
+% - les debordements
+% - "collaboration" analyse de valeur jessie
+% - les alias et les preconditions a respecter
+% - terminaison et ensures \false
+
+%\newcommand<>{\onlyverbatim}[1]{\verb!#1!}
+
+\newcommand{\vfilll}{\vspace*{0pt plus1filll}}
+
+\newcommand{\launch}[2]{%
+\only<beamer>{%
+  \leavevmode%
+  \pdfstartlink user {%
+    /Subtype /Link
+    /A <</S /Launch
+    /F (#1)
+       >>
+       }%
+  #2%
+  \pdfendlink%
+}
+\only<handout>{#2}
+}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{outline}
+\tableofcontents
+\end{frame}
+
+\section{Summary}
+\begin{frame}[fragile]{Hoare logic}
+\begin{itemize}
+\item Hoare triples \(\{P\}s\{Q\}\), meaning ``\emph{If we enter statement
+  $s$ in a state verifying $P$, the state after executing $s$ will
+  verify $Q$}''.
+\item Function contracts, pre- and post-conditions.
+\item Weakest pre-condition calculus and program verification.
+\item The \emph{Why} language.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Position of the problem}
+\begin{minipage}[t]{0.47\textwidth}
+\begin{block}{Memory update}
+\begin{itemize}
+\item in ``classical'' Hoare logic, variables are manipulated directly
+\item What happens if we add pointers, arrays, structures?
+\end{itemize}
+\end{block}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\textwidth}
+\begin{block}<2->{Example}
+\begin{c}
+int x[2];
+
+/*@ ensures x[0]==0 &&
+            x[1] == 1;*/
+int main () {
+  int i = 0;
+  \tikz[remember picture,overlay] \node[xshift=1em,yshift=0.5ex] (pre) {};x[\only<2-5|handout:0>??<0??>\only<6-8>??<i??>] = i;
+  \tikz[remember picture,overlay] \node [xshift=1em,yshift=0.5ex] (med) {};i=i+1;
+  x[\only<2-5|handout:0>??<1??>\only<6-8>??<i??>] = i;
+\tikz[remember picture] \node (post) {};}
+\end{c}
+\end{block}
+\end{minipage}
+
+\begin{tikzpicture}[remember picture,overlay,draw]
+\only<3,7|handout:0>{
+ \node[ellipse callout, fill=lightred, callout absolute pointer=(post),
+       xshift=0.5cm, yshift=1cm,at=(current page.south west), above right]
+      {$x_0 == 0 \wedge x_1 == 1$};}
+\only<4|handout:0>{
+\node[ellipse callout, fill=lightred, callout absolute pointer=(med),
+       xshift=0.5cm, yshift=1cm,at=(current page.south west), above right]
+      {$x_0 == 0 \wedge i+1 == 1$};}
+ \only<5|handout:0>{
+ \node[ellipse callout, fill=lightred, callout absolute pointer=(pre),
+       xshift=0.5cm, yshift=1cm,at=(current page.south west), above right]
+      {$i == 0 \wedge i+1 == 1$};}
+ \only<8>{
+ \node[ellipse callout, fill=lightred,
+       callout absolute pointer={(med.north west)},
+       xshift=0.5cm, yshift=1cm,
+       text width=4cm,
+       at=(current page.south west), above right]
+      {\begin{minipage}{4cm}
+          $(i+1 == 0 \Rightarrow$ \\
+          $(i+1 == 0 \wedge x_1 == 1)) \wedge$ \\
+          $(i+1 == 1 \Rightarrow$\\
+          $(x_0 == 0 \wedge i+1 == 1))$
+       \end{minipage}
+     };}
+\end{tikzpicture}
+\end{frame}
+
+\section{Functional Arrays}
+\begin{frame}[fragile]{Presentation}
+\begin{block}{Operations}
+\begin{why}[dutch.why,pointer.why,pointer2.why]
+type 'a farray
+logic select: 'a farray, int -> 'a
+logic store: 'a farray, int, 'a -> 'a farray
+\end{why}
+\end{block}
+\vfill
+\begin{block}{Axioms}
+\begin{why}[dutch.why,pointer.why,pointer2.why]
+\uncover<2->??<axiom select_store_eq:
+forall a:'a farray. forall i: int. forall v: 'a.
+   select(store(a,i,v),i) = v??>
+\uncover<3->??<axiom select_store_neq:
+forall a:'a farray. forall i,j: int. forall v: 'a.
+   i <> j ->
+   select(store(a,i,v),j) = select(a,j)??>
+\end{why}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Usage}
+\begin{minipage}[t]{0.47\textwidth}
+\begin{block}{Correspondence}
+\begin{itemize}
+\item array assignment is represented with \texttt{store}
+\item array access is represented with \texttt{select}
+\end{itemize}
+\end{block}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.47\textwidth}
+\begin{block}{Example}
+\begin{c}
+int x[2];
+
+/*@ ensures x[0]==0 &&
+            x[1] == 1;*/
+int main () {
+  int i = 0;
+  \tikz[remember picture,overlay] \node[xshift=1em,yshift=0.5ex] (pre) {};x[i] = i;
+  \tikz[remember picture,overlay] \node [xshift=1em,yshift=0.5ex] (med) {};i=i+1;
+  x[i] = i;
+\tikz[remember picture] \node (post) {};}
+\end{c}
+\end{block}
+\end{minipage}
+
+\begin{tikzpicture}[remember picture,overlay,draw]
+\only<2|handout:0>{
+ \node[ellipse callout, fill=lightred, callout absolute pointer=(post),
+       xshift=0.5cm, yshift=1cm,at=(current page.south west), above right]
+      {$access(x,0) == 0 \wedge access(x,1) == 1$};}
+\only<3|handout:0>{
+\node[ellipse callout, fill=lightred, callout absolute pointer=(med),
+       xshift=0.5cm, yshift=1cm,at=(current page.south west), above right]
+      {$access(store(x,i+1,i+1),0) == 0 \wedge ...$};}
+ \only<4|handout:0>{
+ \node[ellipse callout, fill=lightred, callout absolute pointer=(pre),
+       xshift=0.5cm, yshift=1cm,at=(current page.south west), above right]
+      {$access(store(store(x,i,i),i+1,i+1),0) == 0 \wedge ...$};}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{Length and Validity of Accesses}
+Up to now our arrays are infinite: we can access or update any cell.
+\begin{itemize}
+\item Each array has a length
+\item \texttt{select} and \texttt{store} have to be guarded
+\item Use imperative arrays, \textit{i.e.} references to functional arrays
+\end{itemize}
+\begin{block}{Length}
+\begin{why}[dutch.why,pointer.why,pointer2.why]
+logic length: 'a farray -> int
+\uncover<2->??<axiom length_pos: forall a: 'a farray. length(a) >= 0??>
+\uncover<3->??<axiom store_length:
+forall a:'a farray. forall i: int. forall v: 'a.
+length(store(a,i,v)) = length(a)??>
+\end{why}
+\end{block}
+\end{frame}
+\begin{frame}{Imperative arrays}
+\begin{block}{Guarded accesses}
+\begin{why}[dutch.why,pointer.why,pointer2.why]
+parameter select_:
+  a:'a farray ref -> i: int ->
+  { 0 <= i < length(a) } 
+  'a reads a 
+  { result = select(a,i) }
+parameter store_:
+  a: 'a farray ref -> i: int -> v:'a ->
+  { 0 <= i < length(a) } 
+  unit writes a 
+  { a = store(a@,i,v) }
+\end{why}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Dijkstra's dutch flag}
+\begin{block}{Description}
+Let $x$ be an array whose elements are either \texttt{BLUE},
+\texttt{WHITE}, or \texttt{RED}. We want to sort $x$'s elements, so
+that all \texttt{BLUE} are at the beginning, \texttt{WHITE} in the
+middle, and \texttt{RED} at the end.
+\end{block}
+
+\begin{tikzpicture}
+\node (top) at (0,3.8) {};
+\node (first) at (0,3.5) {initial state};
+\draw[fill=red] (0,3) rectangle +(1,-0.5);
+\draw[fill=blue] (0,2.5) rectangle +(1,-0.5);
+\draw[fill=white] (0,2) rectangle +(1,-0.5);
+\draw[dashed] (0,1.5) rectangle +(1,-1);
+\draw[fill=blue] (0,0.5) rectangle +(1,-0.5);
+\only<3>{
+\node (med) at (3,3.5) {processing};
+\draw[fill=blue] (3,3) rectangle +(1,-0.5);
+\draw[fill=blue] (3,2.5) rectangle +(1,-0.5);
+\draw[fill=white] (3,2) rectangle +(1,-0.5);
+\draw[dashed] (3,1.5) rectangle +(1,-1);
+\draw[fill=red] (3,0.5) rectangle +(1,-0.5);
+\node (u) at (3.5,1) {?};
+\node[right] (b) at (5,2) {blue};
+\draw[->] (b.west) -- (4.1,2);
+\node[right] (c) at (5,1) {current};
+\draw[->] (c.west) -- (4.1,1);
+\node[right] (r) at (5,0.5) {red};
+\draw[->] (r.west) -- (4.1,0.5);
+}
+\only<2->{
+\node (final) at (7,3.5) {final state};
+\draw[fill=blue] (7,3) rectangle +(1,-0.5);
+\draw[fill=blue] (7,2.5) rectangle +(1,-0.5);
+\draw[fill=white] (7,2) rectangle +(1,-0.5);
+\draw[fill=white] (7,1.5) rectangle +(1,-0.5);
+\draw[fill=red] (7,1) rectangle +(1,-0.5);
+\draw[fill=red] (7,0.5) rectangle +(1,-0.5);
+}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{Dutch flag in C}
+
+\begin{c}
+typedef enum { BLUE, WHITE, RED } color;
+
+void dutch(color a[], int length) {
+  int blue = 0, current = 0, red = length - 1;
+  while (current < red) {
+    switch (a[current]) {
+      case BLUE : a[current]=a[blue]; a[blue]=BLUE;
+                  white++; current++; break;
+      case WHITE: current++; break;
+      case RED  : red--; a[current]=a[red];
+                  a[red]=RED; break;
+      }
+    }
+}
+\end{c}
+
+\end{frame}
+
+\begin{frame}{in Why: colors}
+\begin{why}[dutch.why]
+type color
+logic BLUE,WHITE,RED: color
+
+axiom is_color: forall c: color.
+  c = BLUE or c = WHITE or c = RED
+
+parameter eq_color: c1:color -> c2:color ->
+{} bool { if result then c1 = c2 else c1 <> c2 }
+\end{why}
+\end{frame}
+
+\begin{frame}{Specification}
+\begin{why}[dutch.why]
+logic monochrome:
+  color farray, int, int, color -> prop
+
+axiom monochrome_def_1:
+  forall a: color farray. forall low,high: int.
+  forall c: color.
+  monochrome(a,low,high,c) ->
+    forall i:int. low<=i<high -> select(a,i) = c
+
+axiom monochrome_def_2:
+  forall a: color farray. forall low,high: int.
+  forall c: color.
+    (forall i:int. low<=i<high -> select(a,i) = c) ->
+    monochrome(a,low,high,c)
+\end{why}
+\end{frame}
+
+\begin{frame}{Why Program}
+\begin{why}[dutch.why]
+let flag = fun (t: color farray ref) ->
+begin
+  let blue = ref 0 in
+  let current = ref 0 in
+  let red = ref (length !t) in
+  while !current < !red do
+    let c = select_ t !current in
+    if (eq_color c BLUE) then begin
+      store_ t !current (select_ t !blue);
+      store_ t !blue BLUE;
+      blue:=!blue+1;
+      current:=!current + 1
+    end
+\end{why}
+...
+\end{frame}
+\begin{frame}{Why Program(cont'd)}
+...
+\begin{why}[dutch.why]
+else if (eq_color c WHITE) then
+      current:=!current + 1
+    else begin
+      red:=!red-1;
+      store_ t !current (select_ t !red);
+      store_ t !red RED
+    end
+  done
+end
+\end{why}
+\end{frame}
+
+\begin{frame}{Function contract}
+No pre-condition
+
+Post-condition:
+\begin{why}[dutch.why]
+{ exists blue: int. exists red: int.
+    monochrome(t,0,blue,BLUE) and
+    monochrome(t,blue,red,WHITE) and
+    monochrome(t,red,length(t),RED)
+}
+\end{why}
+\end{frame}
+
+\begin{frame}{Don't forget the loop invariant}
+\begin{why}[dutch.why@after "while !current < !red do"]
+{ invariant
+  0<=blue and blue <= current and
+  current <= red and red <= length(t) and
+  monochrome(t,0,blue,BLUE) and
+  monochrome(t,blue,current,WHITE) and
+  monochrome(t,red,length(t),RED)
+}
+\end{why}
+\end{frame}
+
+\begin{frame}{Proof}
+\begin{block}{Is the program correct?}
+All proof obligations are discharged by alt-ergo:
+
+\launch{./dutch.sh}{\texttt{gwhy dutch.why}}
+\end{block}
+
+\begin{block}{Further specification}
+Currently, we have only proved that at the end we have a dutch
+flag. Other points remain:
+\begin{itemize}
+\item Do we have the same number of blue (resp. white and red) cells
+  than at the start of the function?
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Aliasing}
+
+\begin{frame}{Position of the Problem}
+\begin{block}{Assignment Rule}
+Arrays are not the only objects which reflects poorly in the logic.
+
+The assignment rule in Hoare logic:
+\[
+\{P[x\leftarrow e]\} x = e\{P\}
+\]
+contains implicit assumptions:
+\begin{itemize}
+\item Expressions $e$ are shared between the original language and the logic
+\item We can always find a unique location $x$ which is modified (no
+  alias)
+\end{itemize}
+\end{block}
+
+\begin{block}{Examples of Problematic Constructions}
+\begin{itemize}
+\item Pointers
+\item Structures
+\item Casts
+\item ...
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Pointers}
+\begin{itemize}
+\item<+-> Pointer $\sim$ base address + index
+\item<+-> Must take care of variables whose address is taken
+\end{itemize}
+\pause
+\begin{block}{Example}
+\begin{minipage}{0.47\textwidth}
+\begin{c}
+int x;
+/*@ ensures
+*p == \old(*p) + 1; */
+void incr (int* p)
+  { (*p)++ }
+\end{c}
+\end{minipage}
+\hfill
+\begin{minipage}{0.53\textwidth}
+\begin{why}[pointer.why]
+parameter x: int farray ref
+let incr =
+fun (p: int farray ref) ->
+{ length(p) >= 1 }
+ store_ p 0 
+   ((select_ p 0)+1)
+{ select(p,0) =
+    select(p@,0) + 1 
+  and length(p)=length(p@)
+}
+\end{why}
+\end{minipage}
+\end{block}
+\end{frame}
+\begin{frame}{Pointers (cont'd)}
+\begin{minipage}{0.47\textwidth}
+\begin{c}
+/*@ ensures x == 1; */
+int main ()
+ {incr(&x);
+  return x}
+\end{c}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+\begin{why}[pointer.why]
+let main = fun (_:unit) ->
+{ length(x) = 1 and 
+  select(x,0) = 0 }
+begin 
+  incr x; 
+  select_ x 0 
+end
+{ length(x) = 1 and
+  select(x,0) = 1 }
+\end{why}
+\end{minipage}
+
+\launch{./pointer.sh}{Demo}
+\end{frame}
+
+\begin{frame}[fragile]{Aliases}
+\begin{block}{Position of the Problem}
+In the previous example, we only had one pointer. In practice,
+programs use usually more than that. What happens if two pointers
+refer to the same location?
+\end{block}
+\pause
+\begin{block}{Example}
+\begin{c}[pointer2.c]
+/*@ ensures *p == \old(*p + 1) && \tikz[remember picture]\node(post) {};
+            *q == \old(*q + 1); */
+void incr2(int* p, int* q) { (*p)++; (*q)++ }
+int x;
+/*@ ensures x == 1; */
+int main () { incr2(&x,&x); return 0 }
+\end{c}
+\begin{tikzpicture}[remember picture,overlay,draw]
+\only<3>{\node[ellipse callout,fill=lightred,callout absolute
+pointer=(post),text width = 4cm,left, xshift=-0.5cm, yshift=1cm]
+at (current page.east)
+{this is true only if \texttt{p} and \texttt{q} are distinct};}
+\end{tikzpicture}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{An erroneous why translation}
+\begin{why}[pointer2.why]
+parameter x: int farray ref
+let incr2 = fun (p: int farray ref) ->
+fun (q: int farray ref) ->
+begin store_ p 0 ((select_ p 0)+1);
+ store_ q 0 ((select q 0)+1) end
+{ select(p,0) = select(p@,0) + 1 and
+  select(q,0) = select(q@,0) + 1}
+let main = fun (_:unit) -> { select(x,0) = 0 }
+begin let _ = incr2 x x \tikz[remember picture] \node (error) {};in select_ x 0 end
+{ select(x,0) = 1 }
+\end{why}
+\begin{uncoverenv}<2>
+\begin{block}{result}
+\begin{verbatim}
+Computation of VCs...
+File "pointer2.why", line 28, characters 22-23:
+Application to x creates an alias
+\end{verbatim}
+\end{block}
+\end{uncoverenv}
+\begin{onlyenv}<2>
+\begin{tikzpicture}[remember picture,overlay]
+\node[ellipse callout, fill=lightred, xshift=-3.5cm, yshift=2cm,
+      callout absolute pointer=(error)] at (current page.south east)
+      { error is here };
+\end{tikzpicture}
+\end{onlyenv}
+\end{frame}
+
+\begin{frame}{Separation Logic}
+\begin{itemize}
+\item Extension of Hoare logic dealing allowing to deal with the heap
+\item introduced by O'Hearn and Reynolds in 2001-2002
+\item new logic operators:
+\begin{itemize}
+  \item $l\mapsto v$: the heap contains a single location $l$ with
+    value $v$
+  \item $e_1 * e_2$: the heap is composed of two \alert{distinct}
+    parts, verifying $e_1$ and $e_2$ respectively
+\end{itemize}
+\end{itemize}
+\pause
+\begin{block}{Example}
+Pre-condition for \texttt{incr2}:
+\[\exists n,m: int. p\mapsto n * q\mapsto m\]
+\end{block}
+\end{frame}
+
+\begin{frame}{Frame rule}
+Most Hoare logic inference rules apply to separation logic. A new rule
+indicates that it is always possible to extend the heap:
+\begin{mathpar}
+\inferrule{\{P\}s\{Q\}}{\{P*R\}s\{Q*R\}}
+\end{mathpar}
+provided the free variables of $R$ are not modified by $s$.
+\end{frame}
+
+\begin{frame}{Summary}
+\begin{itemize}
+\item Separation logic is a very powerful formalism to deal explicitly
+  with memory.
+\item Very few tools deal directly with separation logic
+\item Some of its concepts are incorporated in memory models
+\end{itemize}
+\end{frame}
+
+\section{Memory models}
+\begin{frame}{Memory as array}
+\begin{block}{Presentation}
+In order to deal with pointers, we have to represent somehow the whole
+memory state of the program in the logic. This is called a
+\alert{memory model}.
+\end{block}
+\pause
+\begin{block}{A first attempt}
+\begin{itemize}
+\item<+-> See the memory as one big array, with pointers as indices.
+\item<+->[\pro] very close to the concrete execution.
+\item<+->[\pro] allows to represent all program constructions.
+\item<+->[\con] each \texttt{store} can potentially modify something anywhere
+\item<+->[\con] in practice formulas quickly become untractable.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Burstall-Bornat Model}
+In order to overcome the scalability issues of the memory-as-array
+model, more abstract models can be used.
+
+\begin{itemize}
+\item Split the memory in distinct, smaller arrays, for locations
+  which are known not to overlap.
+\item For programs with structures, we use an array per field
+  (\texttt{x->a} and \texttt{y->b} are necessarily distinct).
+\item<+-> Can be extended to distinguish \texttt{int} and
+  \texttt{float}, \texttt{int} and \texttt{struct}
+\item<+->[\pro] gives smaller formulas
+\item<+->[\con] some low-level operations (casts, pointer arithmetic)
+  are out of the scope of the model.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Memory Regions}
+\begin{itemize}
+\item It is possible to go beyond the Burstall-Bornat partition by
+  using some static analysis to identify regions which do not overlap
+\item Used by the Jessie tool to refine its model
+\item New preconditions (separation of pointers) that need to be checked
+\end{itemize}
+\begin{block}{example}
+\begin{c}[pointer3.c]
+int a[2];
+\tikz[remember picture] \node(pre) {};void incr2(int* x, int* y) { ... }
+
+int main() {
+  \tikz[remember picture] \node(app) {};incr2(&a[0],&a[1]);
+  return 0;
+}
+\end{c}
+\end{block}
+\begin{tikzpicture}[remember picture,overlay]
+\only<2>{
+\node[ellipse callout, callout absolute pointer=(pre), fill=lightred,
+      xshift=-2.7cm, yshift=0.7cm,left,above] at (current page.south east)
+     {pre condition: $separated(x,y)$};
+}
+\only<3|handout:0>{
+\node[ellipse callout, callout absolute pointer=(app), fill=lightred,
+      xshift=-2.7cm, yshift=2.7cm,left,above] at (current page.south east)
+     {$separated(\pp{&a[0]},\pp{&a[1]})$ holds};
+}
+\end{tikzpicture}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}{Summary}
+\begin{itemize}
+\item Dealing with memory can be tricky
+\item Functional arrays play a central role
+\item Aliases and separation properties
+\item Need for memory models
+\item How to do that in practice: see tomorrow
+\end{itemize}
+\end{frame}
+
+\end{document}
+
+Local Variables:
+mode: latex
+ispell-local-dictionary: "english"
+End:

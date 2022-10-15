@@ -1,0 +1,173 @@
+# frama-c -wp [...]
+[kernel] Parsing caveat.i (no preprocessing)
+[kernel] caveat.i:41: Warning: 
+  parsing obsolete ACSL construct 'logic declaration'. 'an axiomatic block' should be used instead.
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function explicit
+------------------------------------------------------------
+
+Goal Post-condition (file caveat.i, line 28) in 'explicit':
+Let a_1 = shiftfield_F1_S_f(a).
+Let x = Mint_0[a_1].
+Let a_2 = shiftfield_F1_S_g(a).
+Let x_1 = Mint_0[a_2].
+Let m = Mint_0[r <- x + x_1].
+Let x_2 = m[a_1].
+Let x_3 = m[a_2].
+Let x_4 = 1 + x_2.
+Let x_5 = 1 + x_3.
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_2) /\ is_sint32(x_3) /\
+      is_sint32(x_4) /\ is_sint32(x_5) /\
+      is_sint32(m[a_1 <- x_4][a_2 <- x_5][r]).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(r.base) <= 0).
+  (* Pre-condition *)
+  Have: separated(a, 2, r, 1).
+}
+Prove: x_2 = x.
+
+------------------------------------------------------------
+
+Goal Post-condition (file caveat.i, line 29) in 'explicit':
+Let a_1 = shiftfield_F1_S_f(a).
+Let x = Mint_0[a_1].
+Let a_2 = shiftfield_F1_S_g(a).
+Let x_1 = Mint_0[a_2].
+Let m = Mint_0[r <- x + x_1].
+Let x_2 = m[a_1].
+Let x_3 = m[a_2].
+Let x_4 = 1 + x_2.
+Let x_5 = 1 + x_3.
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_2) /\ is_sint32(x_3) /\
+      is_sint32(x_4) /\ is_sint32(x_5) /\
+      is_sint32(m[a_1 <- x_4][a_2 <- x_5][r]).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(r.base) <= 0).
+  (* Pre-condition *)
+  Have: separated(a, 2, r, 1).
+}
+Prove: x_3 = x_1.
+
+------------------------------------------------------------
+
+Goal Post-condition (file caveat.i, line 30) in 'explicit':
+Let a_1 = shiftfield_F1_S_f(a).
+Let x = Mint_0[a_1].
+Let a_2 = shiftfield_F1_S_g(a).
+Let x_1 = Mint_0[a_2].
+Let x_2 = x + x_1.
+Let m = Mint_0[r <- x_2].
+Let x_3 = m[a_1].
+Let x_4 = m[a_2].
+Let x_5 = 1 + x_3.
+Let x_6 = 1 + x_4.
+Let x_7 = m[a_1 <- x_5][a_2 <- x_6][r].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_3) /\ is_sint32(x_4) /\
+      is_sint32(x_5) /\ is_sint32(x_6) /\ is_sint32(x_7).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(r.base) <= 0).
+  (* Pre-condition *)
+  Have: separated(a, 2, r, 1).
+}
+Prove: x_7 = x_2.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function implicit
+------------------------------------------------------------
+
+Goal Post-condition (file caveat.i, line 13) in 'implicit':
+Let a_1 = shiftfield_F1_S_f(a).
+Let x = Mint_0[a_1].
+Let a_2 = shiftfield_F1_S_g(a).
+Let x_1 = Mint_0[a_2].
+Let m = Mint_0[r <- x + x_1].
+Let x_2 = m[a_1].
+Let x_3 = m[a_2].
+Let x_4 = 1 + x_2.
+Let x_5 = 1 + x_3.
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_2) /\ is_sint32(x_3) /\
+      is_sint32(x_4) /\ is_sint32(x_5) /\
+      is_sint32(m[a_1 <- x_4][a_2 <- x_5][r]).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(r.base) <= 0).
+}
+Prove: x_2 = x.
+
+------------------------------------------------------------
+
+Goal Post-condition (file caveat.i, line 14) in 'implicit':
+Let a_1 = shiftfield_F1_S_f(a).
+Let x = Mint_0[a_1].
+Let a_2 = shiftfield_F1_S_g(a).
+Let x_1 = Mint_0[a_2].
+Let m = Mint_0[r <- x + x_1].
+Let x_2 = m[a_1].
+Let x_3 = m[a_2].
+Let x_4 = 1 + x_2.
+Let x_5 = 1 + x_3.
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_2) /\ is_sint32(x_3) /\
+      is_sint32(x_4) /\ is_sint32(x_5) /\
+      is_sint32(m[a_1 <- x_4][a_2 <- x_5][r]).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(r.base) <= 0).
+}
+Prove: x_3 = x_1.
+
+------------------------------------------------------------
+
+Goal Post-condition (file caveat.i, line 15) in 'implicit':
+Let a_1 = shiftfield_F1_S_f(a).
+Let x = Mint_0[a_1].
+Let a_2 = shiftfield_F1_S_g(a).
+Let x_1 = Mint_0[a_2].
+Let x_2 = x + x_1.
+Let m = Mint_0[r <- x_2].
+Let x_3 = m[a_1].
+Let x_4 = m[a_2].
+Let x_5 = 1 + x_3.
+Let x_6 = 1 + x_4.
+Let x_7 = m[a_1 <- x_5][a_2 <- x_6][r].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_3) /\ is_sint32(x_4) /\
+      is_sint32(x_5) /\ is_sint32(x_6) /\ is_sint32(x_7).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(r.base) <= 0).
+}
+Prove: x_7 = x_2.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function observer
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 'observer':
+Let a_1 = shiftfield_F1_S_f(a).
+Let x = Mint_0[a_1].
+Let a_2 = shiftfield_F1_S_g(a).
+Let x_1 = Mint_0[a_2].
+Let x_2 = Mint_0[r].
+Let m = Mint_0[r <- x + x_1].
+Let x_3 = m[a_1].
+Let x_4 = m[a_2].
+Let x_5 = 1 + x_3.
+Let x_6 = 1 + x_4.
+Let x_7 = m[a_1 <- x_5][a_2 <- x_6][r].
+Assume {
+  Type: is_sint32(x_2) /\ is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_3) /\
+      is_sint32(x_4) /\ is_sint32(x_5) /\ is_sint32(x_6) /\ is_sint32(x_7).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(r.base) <= 0).
+  (* Pre-condition 'KO' *)
+  Have: P_OBS(x, x_1, x_2).
+}
+Prove: P_OBS(x_5, x_6, x_7).
+
+------------------------------------------------------------

@@ -1,0 +1,24 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_1828.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 6 goals scheduled
+[wp] [Alt-Ergo] Goal typed_local_frame_assert_ok : Valid
+[wp] [Alt-Ergo] Goal typed_global_frame_ensures_sep_iff_ref : Unsuccess
+[wp] [Alt-Ergo] Goal typed_global_frame_ensures_one_iff_ref : Unsuccess
+[wp] [Qed] Goal typed_global_frame_ensures_zero_always : Valid
+[wp] [Qed] Goal typed_global_frame_assert_ok : Valid
+[wp] [Qed] Goal typed_global_frame_assert_ok_2 : Valid
+[wp] Proved goals:    4 / 6
+  Qed:             3 
+  Alt-Ergo:        1  (unsuccess: 2)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  local_frame               -        1        1       100%
+  global_frame              3        -        5      60.0%
+------------------------------------------------------------
+[wp] bts_1828.i:56: Warning: 
+  Memory model hypotheses for function 'global_frame':
+  /*@ behavior wp_typed:
+        requires \separated(one, &zero); */
+  void global_frame(int *one, int arg);

@@ -1,0 +1,7 @@
+[e-acsl] beginning translation.
+[e-acsl] translation done in project "e-acsl".
+[kernel:annot:missing-spec] hidden_malloc.c:11: Warning: 
+  Neither code nor specification for function realpath, generating default assigns from the prototype
+[eva:invalid-assigns] hidden_malloc.c:11: 
+  Completely invalid destination for assigns clause *(resolved_name + (0 ..)).
+  Ignoring.

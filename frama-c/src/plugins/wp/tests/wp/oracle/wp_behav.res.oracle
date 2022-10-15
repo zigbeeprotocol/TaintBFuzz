@@ -1,0 +1,201 @@
+# frama-c -wp [...]
+[kernel] Parsing wp_behav.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] wp_behav.c:82: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+------------------------------------------------------------
+  Function assert_needed
+------------------------------------------------------------
+
+Goal Assertion 'ko' (file wp_behav.c, line 59):
+Assume { Type: is_sint32(x). }
+Prove: 0 < x.
+
+------------------------------------------------------------
+
+Goal Assertion 'qed_ok,ok_with_hyp' (file wp_behav.c, line 62):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function bhv
+------------------------------------------------------------
+
+Goal Complete behaviors 'neg', 'pos':
+Assume { Type: is_sint32(n). (* Pre-condition *) Have: n != 0. }
+Prove: (0 < n) \/ (n < 0).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function bhv with behavior neg
+------------------------------------------------------------
+
+Goal Post-condition for 'neg' 'qed_ok' in 'bhv':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function bhv with behavior pos
+------------------------------------------------------------
+
+Goal Post-condition for 'pos' 'qed_ok' in 'bhv':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function bts0513
+------------------------------------------------------------
+
+Goal Post-condition 'ko1' in 'bts0513':
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko2' in 'bts0513':
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'f':
+Assume { Type: is_sint32(f) /\ is_sint32(f - 2) /\ is_sint32(f - 1). }
+Prove: 0 < f.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f with behavior x1
+------------------------------------------------------------
+
+Goal Post-condition for 'x1' 'qed_ok' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'x1' 'qed_ko' in 'f':
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Assertion for 'x1' 'qed_ok' (file wp_behav.c, line 23):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f with behavior x2
+------------------------------------------------------------
+
+Goal Post-condition for 'x2' 'qed_ok' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'x2' 'qed_ko' in 'f':
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Assertion for 'x2' 'qed_ok' (file wp_behav.c, line 24):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function min
+------------------------------------------------------------
+
+Goal Complete behaviors 'bx', 'by':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Disjoint behaviors 'bx', 'by':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function min with behavior bx
+------------------------------------------------------------
+
+Goal Post-condition for 'bx' 'qed_ok' in 'min':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bx' 'qed_ko' in 'min':
+Assume {
+  Type: is_sint32(min_0) /\ is_sint32(y).
+  (* Pre-condition for 'bx' *)
+  Have: min_0 <= y.
+}
+Prove: y = min_0.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function min with behavior by
+------------------------------------------------------------
+
+Goal Post-condition for 'by' 'qed_ok' in 'min':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'by' 'qed_ko' in 'min':
+Assume {
+  Type: is_sint32(min_0) /\ is_sint32(x).
+  (* Pre-condition for 'by' *)
+  Have: min_0 < x.
+}
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function razT
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'qed_ok' (file wp_behav.c, line 81):
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(n_1).
+  (* Goal *)
+  When: (0 <= i_1) /\ (i_1 <= i).
+  (* Pre-condition *)
+  Have: n_1 <= 9.
+  (* Invariant 'qed_ok' *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i) -> (T[i_2] = 0))).
+  (* Then *)
+  Have: i < n.
+}
+Prove: T[i <- 0][i_1] = 0.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'qed_ok' (file wp_behav.c, line 81):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function razT with behavior b1
+------------------------------------------------------------
+
+Goal Post-condition for 'b1' 'e1' in 'razT':
+Let x = T[0].
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(n_1) /\ is_sint32(x).
+  (* Pre-condition *)
+  Have: n_1 <= 9.
+  (* Pre-condition for 'b1' *)
+  Have: 0 < n_1.
+  (* Invariant 'qed_ok' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 < i) -> (T[i_1] = 0))).
+  (* Else *)
+  Have: n <= i.
+}
+Prove: x = 0.
+
+------------------------------------------------------------

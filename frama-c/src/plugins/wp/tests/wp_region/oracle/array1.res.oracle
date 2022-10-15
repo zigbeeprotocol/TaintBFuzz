@@ -1,0 +1,4 @@
+[kernel] Parsing array1.i (no preprocessing)
+[wp] Region Graph: array1.0.dot
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards

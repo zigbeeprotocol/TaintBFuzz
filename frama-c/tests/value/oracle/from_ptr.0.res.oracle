@@ -1,0 +1,46 @@
+[kernel] Parsing from_ptr.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  i ∈ {0}
+  j ∈ {0}
+  x ∈ {0}
+  k ∈ {0}
+  l ∈ {0}
+  m ∈ {0}
+  n ∈ {0}
+  d ∈ {0}
+  a ∈ {0}
+  b ∈ {0}
+  p[0..9][0..9][0..9] ∈ {0}
+  q ∈ {0}
+[eva:alarm] from_ptr.i:12: Warning: 
+  pointer downcast. assert (unsigned int)(&p[11]) ≤ 2147483647;
+[eva:alarm] from_ptr.i:13: Warning: 
+  pointer downcast. assert (unsigned int)(&p[10]) ≤ 2147483647;
+[eva:alarm] from_ptr.i:17: Warning: 
+  out of bounds write. assert \valid((int *)i);
+[kernel] from_ptr.i:17: Warning: 
+  all target addresses were invalid. This path is assumed to be dead.
+[eva] Recording results for main
+[eva] done for function main
+[eva] from_ptr.i:17: assertion 'Eva,mem_access' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  i ∈ {{ (long)&p[10] }}
+  d ∈ {0}
+  q ∈ {{ &b }}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  i FROM \nothing
+  d FROM b; c
+  q FROM c
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    i; d; q
+[inout] Inputs for function main:
+    i; a; b; q

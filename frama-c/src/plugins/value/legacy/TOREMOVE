@@ -1,0 +1,11 @@
+**Function_args**: only there to fill Db.Value.add_formals_to_state, itself used
+  by Inout/Cumulative_analysis. [compute_actual] is now in [Transfer_stmt],
+  [actualize_formals] is in [Cvalue_transfer]
+
+**Eval_op**: multiple dependencies in Eval_terms and builtins. Must be rewritten
+  into the corresponding functionality in Cvalue_forward. This requires having
+  contexts for logic terms, though.
+
+
+To be moved elsewhere, probably in domains/cvalue or in engine:
+  eval_annots, eval_terms

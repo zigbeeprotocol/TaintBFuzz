@@ -1,0 +1,38 @@
+[kernel] Parsing goto.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function stop <- main.
+  Called from goto.i:10.
+[eva] Recording results for stop
+[eva] Done for function stop
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function stop:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  c ∈ [--..--]
+  __retres ∈ {0}
+[from] Computing for function stop
+[from] Non-terminating function stop (no dependencies)
+[from] Done for function stop
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function stop:
+  NON TERMINATING - NO EFFECTS
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function stop:
+    \nothing
+[inout] Inputs for function stop:
+    \nothing
+[inout] Out (internal) for function main:
+    c; __retres
+[inout] Inputs for function main:
+    \nothing

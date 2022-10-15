@@ -1,0 +1,44 @@
+[kernel] Parsing array_initializer.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..1] ∈ {0}
+   [2] ∈ {3}
+   [3..4] ∈ {0}
+  s.a ∈ {97}
+   {.t[0..1]; .[bits 8 to 31]} ∈ {0}
+   .t[2] ∈ {3}
+   .t[3..4] ∈ {0}
+  u[0..1] ∈ {0}
+   [2] ∈ {2}
+   [3] ∈ {0}
+   [4] ∈ {4}
+   [5] ∈ {0}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..1] ∈ {0}
+   [2] ∈ {3}
+   [3..4] ∈ {0}
+  s.a ∈ {97}
+   .[bits 8 to 31] ∈ {0} or UNINITIALIZED
+   .t[0..1] ∈ {0}
+   .t[2] ∈ {3}
+   .t[3..4] ∈ {0}
+  u[0..1] ∈ {0}
+   [2] ∈ {2}
+   [3] ∈ {0}
+   [4] ∈ {4}
+   [5] ∈ {0}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  

@@ -1,0 +1,58 @@
+# frama-c -wp [...]
+[kernel] Parsing terminates_call_options.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] terminates_call_options.c:20: Warning: 
+  Missing terminates clause for definition, populates 'terminates \true'
+[wp] [CFG] Goal definition_terminates : Valid (Trivial)
+[wp] terminates_call_options.c:32: Warning: 
+  Missing terminates clause for no_spec_generates_goal, populates 'terminates \true'
+[wp] terminates_call_options.c:17: Warning: 
+  Missing terminates clause for declaration, populates 'terminates \true'
+[wp] terminates_call_options.c:33: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+[wp] FRAMAC_SHARE/libc/stdlib.h:510: Warning: 
+  Missing terminates clause for exit, populates 'terminates \true'
+[wp] FRAMAC_SHARE/libc/stdlib.h:641: Warning: 
+  Missing terminates clause for div, populates 'terminates \true'
+------------------------------------------------------------
+  Function call_declaration
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_call_options.c, line 22) in 'call_declaration':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_definition
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_call_options.c, line 27) in 'call_definition':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function definition
+------------------------------------------------------------
+
+Goal Assigns nothing in 'definition':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function libc_call
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_call_options.c, line 36) in 'libc_call':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_spec_generates_goal
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_spec_generates_goal':
+Effect at line 33
+Prove: false.
+
+------------------------------------------------------------

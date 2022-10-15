@@ -1,0 +1,223 @@
+\chapter{Réduction d'une fonction}\label{sec-filtrage-fct}
+
+\section{Fonction spécialisée}
+
+On appelle \indextxtdef{fonction spécialisée}{fonction!spécialisée}
+la réduction d'une fonction source obtenue suite à l'application d'une ou
+plusieurs actions. Ce chapitre expose comment est représentée
+cette réduction, et comment elle est calculée.\\
+
+La réduction d'une fonction doit distinguer les instructions visibles
+de celles qui ne le sont pas.
+Une information booléenne, attachée à chaque instruction,
+devrait donc suffire à
+indiquer si celle-ci appartient ou non à la fonction spécialisée, mais
+la mise en place d'un outil de navigation incite à enrichir les informations
+calculées. On décide donc d'avoir
+une annotation plus précise du flot de données, que l'on appelle
+{\bf marquage},
+pour préciser la raison de la présence ou de l'absence d'un certain élément.
+Cela peut permettre de visualiser l'impact des instructions d'une
+fonction sur un point de programme (contrôle, données utilisées, déclaration
+nécessaires, etc.)\\
+
+Le document qui présente le calcul de PDG expose les éléments qui composent le
+graphe de dépendance. La plupart correspondent à une instruction.
+Quelques exceptions néanmoins~:
+\begin{itemize}
+\item les éléments représentant les entrées/sorties d'une fonction
+  ne sont pas associés à une instruction,
+\item le label d'une instruction est représenté par un élément en plus de ceux
+qui représentent l'instruction,
+\item un appel de fonction est représenté par plusieurs éléments.\\
+\end{itemize}
+
+Nous ne nous considérons pas, dans un premier temps,
+la spécialisation des fonctions appelées qui sera étudiée
+dans le chapitre \ref{sec-interproc}. 
+L'appel de fonction est donc simplement vu pour l'instant comme
+une instruction représentée par plusieurs éléments.
+
+
+Par contre, nous distinguons la visibilité d'un label de celle de l'instruction
+associée. Dans la suite, le label sera souvent considéré comme une instruction à
+part entière.\\
+
+On peut donc dire que
+la fonction spécialisée contient un \indexdef{marquage}
+qui fait correspondre une \indexdef{marque} 
+aux instructions et labels d'une fonction.
+
+\section{Marquage}
+
+On calcule le marquage d'une fonction en réponse à une requête.
+Celle-ci se traduit en général en terme d'éléments du PDG.\\
+
+Initialement, le marquage
+peut contenir le résultat de précédents calculs ou être
+nouvellement créé, c'est-à-dire vide.\\
+
+Le calcul élémentaire est très simple~:
+il consiste à parcourir le PDG,
+à calculer la marque pour chaque élément,
+et à l'associer à l'instruction ou au label correspondant
+en la combinant avec l'éventuelle valeur précédente.\\
+
+Une idée de l'algorithme appliqué est présenté en \ref{sec-algo-mark-fct}.
+
+
+\subsection{Passage à un point de programme}
+
+Une première requête consiste à marquer les éléments du flot
+qui servent à déterminer ce qui permet de passer
+à un point de programme.\\
+
+La marque propagée s'appelle
+\indextxtdef{marque de contrôle}{marque!de contrôle},
+et se note {\it mC}.
+% , mais on utilise une
+% \indextxtdef{marque de contrôle initiale}{marque!de contrôle initiale}
+% ($mC_0$) pour annoter le point de
+% départ de la recherche.
+% Cela permet de retrouver ce point par la suite, et de ne
+% pas sélectionner l'instruction concernée.\\
+
+Pour faire ce calcul, on propage la marque dans les dépendances de contrôle du
+point choisi, puis récursivement dans toutes les dépendances des points ainsi
+sélectionnés. Cela correspond à marquer  {\it mC} tous les éléments
+de l'ensemble $R_{L0}$.
+
+\begin{exemple}
+\begin{tabular}{l|p{8cm}}
+\begin{tabular}{>{\itshape}c c l}
+mC  && \verb!x = y+1;!\\
+  && \verb!a = 0;!\\
+  && \verb!b = 10;!\\
+  && \verb!...!\\
+mC  && \verb!if (x > 0) {!\\
+  && \verb!...!\\
+  && \verb!L: a += b;!\\
+  && \verb!...!\\
+  && \verb!}!\\
+\end{tabular}
+&
+Il s'agit ici de sélectionner ce qui contrôle le passage au point \verbtt{L}.
+Le test \verb!x>0! est donc marqué {\it mC} ainsi que le calcul de \verbtt{x}
+dont dépend ce test.
+\end{tabular}
+\end{exemple}
+
+\subsection{Valeur d'une donnée}
+
+On peut également demander à sélectionner ce qui permet de calculer une donnée
+à un point de programme.
+On peut par exemple demander à ne garder que ce qui permet de calculer l'une des
+sorties d'une fonction.\\
+
+La première étape consiste à trouver l'élément, ou les éléments,
+correspondant dans le graphe.
+Des éléments particuliers représentent les sorties de la fonction.
+Pour des calculs internes,
+on peut utiliser l'identification d'une affectation pour parler de la donnée
+affectée, ou alors
+il faut disposer de l'état utilisé lors de la construction du graphe.
+On peut alors retrouver les éléments qui ont participé au calcul en un point
+de n'importe quelle
+donnée, du moins lorsque le point considéré se trouve dans sa portée.\\
+
+La marque associée au calcul d'une donnée s'appelle
+\indextxtdef{marque de valeur}{marque!de valeur}
+et se note {\it mV}. Elle sert, comme son nom l'indique,
+à annoter les éléments qui participent au calcul
+de la valeur de la donnée demandée. \\
+
+Les données qui permettent de calculer l'adresse de la case modifiée (partie
+gauche de l'affectation)
+sont annotés par une \indextxtdef{marque d'adresse}{marque!d'adresse} ($mA$).
+Il s'agit par exemple du calcul de l'indice d'un élément de tableau ou d'un
+pointeur.\\
+
+Les éléments
+qui permettent d'atteindre le point de programme sont marqués {\it mC}.
+
+\begin{exemple}
+\begin{tabular}{m{4cm} c | m{8cm}}
+\begin{tabular}{>{\itshape}c c l}
+mCA  && \verb!x = y+1;!\\
+mV  && \verb!b = 10;!\\
+  && \verb!...!\\
+mC  && \verb!if (x > 0) {!\\
+  && \verb!...!\\
+  && \verb!L: t[x] = b;!\\
+  && \verb!...!\\
+  && \verb!}!\\
+\end{tabular}
+&&
+Il s'agit ici de sélectionner ce qui participe au calcul de l'instruction
+située au point \verbtt{L}.
+Le test \verb!x>0! est donc marqué {\it mC} ainsi que le calcul de \verbtt{x}
+dont dépend ce test. La valeur de \verbtt{b} participe au calcul de la partie
+droite et est donc marqué {\it mV}. La partie gauche dépend de
+\verbtt{x} qui doit donc avoir la marque {\it mA}. On voit donc que \verbtt{x}
+cumule deux informations et est donc marqué {\it mCA}.
+\end{tabular}
+\end{exemple}
+
+
+\subsection{Éléments superflus}
+
+On a vu que le marquage est relatif aux instructions,
+et que certaines instructions (appels de fonctions) sont représentées
+par plusieurs éléments du PDG. Si on ne souhaite pas décomposer les
+instructions (ie. spécialiser les appels de fonctions),
+il peut arriver qu'une même instruction corresponde à des éléments
+visibles et d'autres invisibles. Ces derniers, et leurs dépendances,
+sont alors marqués
+\indextxtdef{superflus}{marque!superflu} (marque $mS$).
+Certaines instructions deviennent alors visibles alors qu'elles ne sont pas
+strictement nécessaires au calcul demandé.\\
+
+\begin{exemple}
+\begin{center}
+\begin{tabular}{m{4cm}p{1cm}m{6cm}}
+\begin{verbatim}
+int G;
+int f (int x, int y) {
+  G = x + 1;
+  return y + 2;
+}
+int g (void) {
+  int a = 1;
+  int b = a+1;
+  return f (b, a);
+}
+\end{verbatim}
+&&
+Si l'utilisateur demande à sélectionner ce qui permet de calculer la valeur
+de retour de \verbtt{g}, on n'aurait en fait besoin que de la valeur de \verbtt{a},
+mais comme on ne spécialise pas \verbtt{f}, il faut aussi marquer
+l'instruction qui calcule \verbtt{b}  comme superflue.
+\end{tabular}
+\end{center}
+\end{exemple}
+
+\subsection{Marques}
+
+En résumé, les marques possibles sont les suivantes~:
+\begin{center}
+\begin{tabular}{|>{\itshape}c!{:}l|}
+  \hline
+  mV & marque de valeur \\
+  mC & marque de contrôle \\
+  mA & marque d'adresse \\
+  mS & marque pour un élément superflu\\
+  \hline
+\end{tabular}
+\end{center}
+
+Les marques $mV,mC,mA$ peuvent se superposer lorsqu'un élément participe au
+calcul pour plusieurs raisons. On notera par exemple $mVA$ la marque associée à
+un élément qui participe à la valeur et au calcul d'adresse. Par la suite,
+on appelle marque $mCAV$ toute marque de cette famille.\\
+
+La marque $mS$ est l'élément neutre de la combinaison.

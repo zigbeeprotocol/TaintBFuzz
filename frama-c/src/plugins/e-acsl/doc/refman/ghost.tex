@@ -1,0 +1,39 @@
+\begin{syntax}
+
+  C-type-qualifier ::= { "\ghost" } ; only in ghost
+  \
+  C-type-specifier ::= { logic-type }
+  \
+  logic-def ::= "ghost" C-declaration ;
+  \
+  C-direct-declarator ::=
+      C-direct-declarator ; function declarator
+      "(" C-parameter-type-list? ;
+      ")" "/*@" "ghost" "(" ;
+          C-parameter-type-list; with ghost params
+      ")" "*/";
+  \
+  C-postfix-expression ::=
+      C-postfix-expression ; function call
+      "(" C-argument-expression-list? ;
+       ")" "/*@" "ghost" "(" ;
+           C-argument-expression-list; with ghost args
+       ")";
+      "*/" ;
+   \
+  C-statement ::=
+      "/*@" "ghost";
+            C-statement+ ; ghost code
+      "*/" ;
+    | "if" "(" C-expression ")";
+       statement;
+       "/*@" "ghost" ;
+             "else" C-statement ; ghost alternative
+        C-statement* ; unconditional ghost code
+      "*/"
+  \
+  C-struct-declaration ::=
+    {"/*@" "ghost" };
+          {C-struct-declaration} ; ghost field
+    {"*/"}
+\end{syntax}

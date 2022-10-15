@@ -1,0 +1,433 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing reference_array.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function add_1_5
+------------------------------------------------------------
+
+Goal Post-condition (file reference_array.i, line 49) in 'add_1_5':
+Let a = shift_A5_sint32(ap_0, 0).
+Assume {
+  (* Heap *)
+  Type: (region(ap_0.base) <= 0) /\ IsArray_sint32(reg_load_0) /\
+      linked(Malloc_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, shift_sint32(a, 0), 5).
+  (* Call 'add_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + Mint_0[shift_sint32(a, i_1)])))).
+}
+Prove: reg_add_0[i] = (reg_load_0[i] + Mint_0[shift_sint32(a, i)]).
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 48) in 'add_1_5':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 48) in 'add_1_5':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 26) in 'add_5'' in 'add_1_5' at call 'add_5' (file reference_array.i, line 52)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function calls_on_array_dim_1
+------------------------------------------------------------
+
+Goal Post-condition 'Pload' in 'calls_on_array_dim_1':
+Assume {
+  (* Heap *)
+  Type: IsArray_sint32(t).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (t[i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (t_1[i_1] = 0))).
+  (* Call Effects *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 19) ->
+      (((i_1 < 0) \/ (5 <= i_1)) -> (t[i_1] = t_1[i_1])))).
+  (* Call 'add_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + t_1[i_1])))).
+}
+Prove: t[i] = reg_load_0[i].
+
+------------------------------------------------------------
+
+Goal Post-condition 'Preset' in 'calls_on_array_dim_1':
+Assume {
+  (* Heap *)
+  Type: IsArray_sint32(t_1).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (t_1[i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (t[i_1] = 0))).
+  (* Call Effects *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 19) ->
+      (((i_1 < 0) \/ (5 <= i_1)) -> (t_1[i_1] = t[i_1])))).
+  (* Call 'add_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + t[i_1])))).
+}
+Prove: t[i] = 0.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Padd' in 'calls_on_array_dim_1':
+Assume {
+  (* Heap *)
+  Type: IsArray_sint32(t).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (t[i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (t_1[i_1] = 0))).
+  (* Call Effects *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 19) ->
+      (((i_1 < 0) \/ (5 <= i_1)) -> (t[i_1] = t_1[i_1])))).
+  (* Call 'add_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + t_1[i_1])))).
+}
+Prove: t[i] = reg_add_0[i].
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 58) in 'calls_on_array_dim_1':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 58) in 'calls_on_array_dim_1':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 19) in 'load_5'' in 'calls_on_array_dim_1' at call 'load_5' (file reference_array.i, line 65)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 9) in 'reset_5'' in 'calls_on_array_dim_1' at call 'reset_5' (file reference_array.i, line 66)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 26) in 'add_5'' in 'calls_on_array_dim_1' at call 'add_5' (file reference_array.i, line 67)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function calls_on_array_dim_2
+------------------------------------------------------------
+
+Goal Post-condition 'Pload' in 'calls_on_array_dim_2':
+Let m = tt_0[0].
+Assume {
+  (* Heap *)
+  Type: IsArray_d2_sint32(tt_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (m[i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (v[i_1] = 0))).
+  (* Call 'add_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + v[i_1])))).
+}
+Prove: m[i] = reg_load_0[i].
+
+------------------------------------------------------------
+
+Goal Post-condition 'Preset' in 'calls_on_array_dim_2':
+Assume {
+  (* Heap *)
+  Type: IsArray_d2_sint32(tt_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (tt_0[0][i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (v[i_1] = 0))).
+  (* Call 'add_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + v[i_1])))).
+}
+Prove: v[i] = 0.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Padd' in 'calls_on_array_dim_2':
+Let m = tt_0[0].
+Assume {
+  (* Heap *)
+  Type: IsArray_d2_sint32(tt_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (m[i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (v[i_1] = 0))).
+  (* Call 'add_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + v[i_1])))).
+}
+Prove: m[i] = reg_add_0[i].
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 91) in 'calls_on_array_dim_2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 91) in 'calls_on_array_dim_2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 40) in 'load_1_5'' in 'calls_on_array_dim_2' at call 'load_1_5' (file reference_array.i, line 98)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 33) in 'reset_1_5'' in 'calls_on_array_dim_2' at call 'reset_1_5' (file reference_array.i, line 99)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 47) in 'add_1_5'' in 'calls_on_array_dim_2' at call 'add_1_5' (file reference_array.i, line 100)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function calls_on_array_dim_2_to_1
+------------------------------------------------------------
+
+Goal Post-condition 'Pload' in 'calls_on_array_dim_2_to_1':
+Let m = tt_1[0].
+Let m_1 = tt_0[0].
+Assume {
+  (* Heap *)
+  Type: IsArray_d2_sint32(tt_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (m_1[i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (m[i_1] = 0))).
+  (* Call Effects *)
+  Have: forall i_1 : Z. ((i_1 != 0) -> (tt_0[i_1] = tt_1[i_1])).
+  (* Call 'add_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + m[i_1])))).
+}
+Prove: m_1[i] = reg_load_0[i].
+
+------------------------------------------------------------
+
+Goal Post-condition 'Preset' in 'calls_on_array_dim_2_to_1':
+Let m = tt_0[0].
+Assume {
+  (* Heap *)
+  Type: IsArray_d2_sint32(tt_1).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (tt_1[0][i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (m[i_1] = 0))).
+  (* Call Effects *)
+  Have: forall i_1 : Z. ((i_1 != 0) -> (tt_1[i_1] = tt_0[i_1])).
+  (* Call 'add_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + m[i_1])))).
+}
+Prove: m[i] = 0.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Padd' in 'calls_on_array_dim_2_to_1':
+Let m = tt_1[0].
+Let m_1 = tt_0[0].
+Assume {
+  (* Heap *)
+  Type: IsArray_d2_sint32(tt_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (m_1[i_1] = reg_load_0[i_1]))).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) -> (m[i_1] = 0))).
+  (* Call Effects *)
+  Have: forall i_1 : Z. ((i_1 != 0) -> (tt_0[i_1] = tt_1[i_1])).
+  (* Call 'add_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (reg_add_0[i_1] = (reg_load_0[i_1] + m[i_1])))).
+}
+Prove: m_1[i] = reg_add_0[i].
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 73) in 'calls_on_array_dim_2_to_1':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 73) in 'calls_on_array_dim_2_to_1':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 19) in 'load_5'' in 'calls_on_array_dim_2_to_1' at call 'load_5' (file reference_array.i, line 83)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 9) in 'reset_5'' in 'calls_on_array_dim_2_to_1' at call 'reset_5' (file reference_array.i, line 84)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 26) in 'add_5'' in 'calls_on_array_dim_2_to_1' at call 'add_5' (file reference_array.i, line 85)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function load_1_5
+------------------------------------------------------------
+
+Goal Post-condition (file reference_array.i, line 42) in 'load_1_5':
+Let a = shift_A5_sint32(lp_0, 0).
+Assume {
+  (* Heap *)
+  Type: (region(lp_0.base) <= 0) /\ linked(Malloc_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, shift_sint32(a, 0), 5).
+  (* Call 'load_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (Mint_0[shift_sint32(a, i_1)] = reg_load_0[i_1]))).
+}
+Prove: Mint_0[shift_sint32(a, i)] = reg_load_0[i].
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 41) in 'load_1_5':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 41) in 'load_1_5':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 19) in 'load_5'' in 'load_1_5' at call 'load_5' (file reference_array.i, line 45)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reset_1_5
+------------------------------------------------------------
+
+Goal Post-condition (file reference_array.i, line 36) in 'reset_1_5':
+Let a = shift_A5_sint32(rp_0, 0).
+Let a_1 = shift_sint32(a, 0).
+Let a_2 = havoc(Mint_undef_0, Mint_0, a_1, 5).
+Assume {
+  (* Heap *)
+  Type: (region(rp_0.base) <= 0) /\ linked(Malloc_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, a_1, 5).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (a_2[shift_sint32(a, i_1)] = 0))).
+}
+Prove: a_2[shift_sint32(a, i)] = 0.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 34) in 'reset_1_5':
+Call Effect at line 38
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_array.i, line 34) in 'reset_1_5':
+Call Effect at line 38
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_array.i, line 9) in 'reset_5'' in 'reset_1_5' at call 'reset_5' (file reference_array.i, line 38)
+:
+Prove: true.
+
+------------------------------------------------------------
+[wp] reference_array.i:24: Warning: 
+  Memory model hypotheses for function 'load_5':
+  /*@
+     behavior wp_typed_ref:
+       requires \separated(hp + (..), (int *)reg_load + (..));
+     */
+  void load_5(int *hp);
+[wp] reference_array.i:31: Warning: 
+  Memory model hypotheses for function 'add_5':
+  /*@
+     behavior wp_typed_ref:
+       requires
+         \separated(gp + (..), (int *)reg_load + (..), (int *)reg_add + (..));
+     */
+  void add_5(int *gp);
+[wp] reference_array.i:45: Warning: 
+  Memory model hypotheses for function 'load_1_5':
+  /*@
+     behavior wp_typed_ref:
+       requires \separated(lp + (..), (int *)reg_load + (..));
+     */
+  void load_1_5(int (*lp)[5]);
+[wp] reference_array.i:52: Warning: 
+  Memory model hypotheses for function 'add_1_5':
+  /*@
+     behavior wp_typed_ref:
+       requires
+         \separated(ap + (..), (int *)reg_load + (..), (int *)reg_add + (..));
+     */
+  void add_1_5(int (*ap)[5]);

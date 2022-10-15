@@ -1,0 +1,439 @@
+[kernel] Parsing split_return.i (no preprocessing)
+[eva] Splitting return states on:
+  \full_split(@all)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  i2 ∈ [--..--]
+  i3 ∈ [--..--]
+  i4 ∈ [--..--]
+  i5 ∈ [--..--]
+  v ∈ [--..--]
+  v7 ∈ {0}
+  rand ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from split_return.i:209.
+[eva] computing for function init <- main1 <- main.
+  Called from split_return.i:22.
+[eva] using specification for function init
+[eva] Done for function init
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from split_return.i:210.
+[eva] computing for function f2 <- main2 <- main.
+  Called from split_return.i:53.
+[eva] Recording results for f2
+[eva] Done for function f2
+[eva] split_return.i:54: Frama_C_show_each_f2: {0}, {0}
+[eva] split_return.i:54: Frama_C_show_each_f2: {5}, {5}
+[eva] split_return.i:54: Frama_C_show_each_f2: {7}, {5}
+[eva] split_return.i:56: assertion got status valid.
+[eva] split_return.i:58: Frama_C_show_each_f2_2: {5}, {5}
+[eva] split_return.i:58: Frama_C_show_each_f2_2: {7}, {5}
+[eva] split_return.i:59: assertion got status valid.
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] computing for function main3 <- main.
+  Called from split_return.i:211.
+[eva] computing for function f3 <- main3 <- main.
+  Called from split_return.i:78.
+[eva] Recording results for f3
+[eva] Done for function f3
+[eva] split_return.i:79: Frama_C_show_each_f3: {7}, {5}
+[eva] split_return.i:79: Frama_C_show_each_f3: {-2}, {0}
+[eva] split_return.i:81: assertion got status valid.
+[eva] split_return.i:83: assertion got status valid.
+[eva] Recording results for main3
+[eva] Done for function main3
+[eva] computing for function main3 <- main.
+  Called from split_return.i:211.
+[eva] computing for function f3 <- main3 <- main.
+  Called from split_return.i:78.
+[eva] Recording results for f3
+[eva] Done for function f3
+[eva] split_return.i:79: Frama_C_show_each_f3: {7}, {5}
+[eva] split_return.i:79: Frama_C_show_each_f3: {-2}, {0}
+[eva] Recording results for main3
+[eva] Done for function main3
+[eva] computing for function main4 <- main.
+  Called from split_return.i:212.
+[eva] computing for function f4 <- main4 <- main.
+  Called from split_return.i:99.
+[eva] Recording results for f4
+[eva] Done for function f4
+[eva] split_return.i:100: Frama_C_show_each_f4: {4}, {0}
+[eva] split_return.i:100: Frama_C_show_each_f4: {7}, {5}
+[eva] split_return.i:102: assertion got status valid.
+[eva] split_return.i:104: assertion got status valid.
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main4 <- main.
+  Called from split_return.i:212.
+[eva] computing for function f4 <- main4 <- main.
+  Called from split_return.i:99.
+[eva] Recording results for f4
+[eva] Done for function f4
+[eva] split_return.i:100: Frama_C_show_each_f4: {4}, {0}
+[eva] split_return.i:100: Frama_C_show_each_f4: {7}, {5}
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main4 <- main.
+  Called from split_return.i:212.
+[eva] computing for function f4 <- main4 <- main.
+  Called from split_return.i:99.
+[eva] Recording results for f4
+[eva] Done for function f4
+[eva] split_return.i:100: Frama_C_show_each_f4: {4}, {0}
+[eva] split_return.i:100: Frama_C_show_each_f4: {7}, {5}
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main4 <- main.
+  Called from split_return.i:212.
+[eva] computing for function f4 <- main4 <- main.
+  Called from split_return.i:99.
+[eva] Recording results for f4
+[eva] Done for function f4
+[eva] split_return.i:100: Frama_C_show_each_f4: {4}, {0}
+[eva] split_return.i:100: Frama_C_show_each_f4: {7}, {5}
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main5 <- main.
+  Called from split_return.i:213.
+[eva] computing for function f5 <- main5 <- main.
+  Called from split_return.i:122.
+[eva] Recording results for f5
+[eva] Done for function f5
+[eva] split_return.i:123: Frama_C_show_each_f5: {7}, {5}
+[eva] split_return.i:123: Frama_C_show_each_f5: {-2}, {0}
+[eva] split_return.i:125: assertion got status valid.
+[eva] split_return.i:127: assertion got status valid.
+[eva] Recording results for main5
+[eva] Done for function main5
+[eva] computing for function main6 <- main.
+  Called from split_return.i:214.
+[eva] computing for function f6 <- main6 <- main.
+  Called from split_return.i:140.
+[eva:alarm] split_return.i:135: Warning: assertion got status unknown.
+[eva] Recording results for f6
+[eva] Done for function f6
+[eva] Recording results for main6
+[eva] Done for function main6
+[eva] computing for function main6 <- main.
+  Called from split_return.i:214.
+[eva] computing for function f6 <- main6 <- main.
+  Called from split_return.i:140.
+[eva] Recording results for f6
+[eva] Done for function f6
+[eva] Recording results for main6
+[eva] Done for function main6
+[eva] computing for function main7 <- main.
+  Called from split_return.i:215.
+[eva] computing for function f7 <- main7 <- main.
+  Called from split_return.i:153.
+[eva] Recording results for f7
+[eva] Done for function f7
+[eva] split_return.i:158: Frama_C_show_each_NULL: {0}, {0}
+[eva] split_return.i:158: Frama_C_show_each_NULL: {{ &v }}, {1}
+[eva] Recording results for main7
+[eva] Done for function main7
+[eva] computing for function main7 <- main.
+  Called from split_return.i:215.
+[eva] computing for function f7 <- main7 <- main.
+  Called from split_return.i:153.
+[eva] Recording results for f7
+[eva] Done for function f7
+[eva] split_return.i:158: Frama_C_show_each_NULL: {0}, {0}
+[eva] split_return.i:158: Frama_C_show_each_NULL: {{ &v }}, {1}
+[eva] Recording results for main7
+[eva] Done for function main7
+[eva] computing for function main8 <- main.
+  Called from split_return.i:216.
+[eva] computing for function f8 <- main8 <- main.
+  Called from split_return.i:176.
+[eva] Recording results for f8
+[eva] Done for function f8
+[eva] split_return.i:177: Frama_C_show_each_then8: {4}, {{ &x }}
+[eva] split_return.i:177: Frama_C_show_each_then8: {-1}, {0}
+[eva] Recording results for main8
+[eva] Done for function main8
+[eva] computing for function main8 <- main.
+  Called from split_return.i:216.
+[eva] computing for function f8 <- main8 <- main.
+  Called from split_return.i:176.
+[eva] Recording results for f8
+[eva] Done for function f8
+[eva] split_return.i:177: Frama_C_show_each_then8: {4}, {{ &x }}
+[eva] split_return.i:177: Frama_C_show_each_then8: {-1}, {0}
+[eva] Recording results for main8
+[eva] Done for function main8
+[eva] computing for function main8 <- main.
+  Called from split_return.i:216.
+[eva] computing for function f8 <- main8 <- main.
+  Called from split_return.i:176.
+[eva] Recording results for f8
+[eva] Done for function f8
+[eva] split_return.i:177: Frama_C_show_each_then8: {4}, {{ &x }}
+[eva] split_return.i:177: Frama_C_show_each_then8: {-1}, {0}
+[eva] Recording results for main8
+[eva] Done for function main8
+[eva] computing for function main8 <- main.
+  Called from split_return.i:216.
+[eva] computing for function f8 <- main8 <- main.
+  Called from split_return.i:176.
+[eva] Recording results for f8
+[eva] Done for function f8
+[eva] split_return.i:177: Frama_C_show_each_then8: {4}, {{ &x }}
+[eva] split_return.i:177: Frama_C_show_each_then8: {-1}, {0}
+[eva] Recording results for main8
+[eva] Done for function main8
+[eva] computing for function main9 <- main.
+  Called from split_return.i:217.
+[eva] computing for function uninit <- main9 <- main.
+  Called from split_return.i:204.
+[eva] Recording results for uninit
+[eva] Done for function uninit
+[eva] computing for function escaping <- main9 <- main.
+  Called from split_return.i:205.
+[eva:locals-escaping] split_return.i:197: Warning: 
+  locals {x} escaping the scope of a block of escaping through p
+[eva] Recording results for escaping
+[eva] Done for function escaping
+[eva] computing for function escaping <- main9 <- main.
+  Called from split_return.i:205.
+[eva] Recording results for escaping
+[eva] Done for function escaping
+[eva] Recording results for main9
+[eva] Done for function main9
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function escaping:
+  p ∈ ESCAPINGADDR
+[eva:final-states] Values at end of function f2:
+  i2 ∈ {0; 5}
+  __retres ∈ {0; 5; 7}
+[eva:final-states] Values at end of function f3:
+  i3 ∈ {0; 5}
+  res1 ∈ {-2; 7}
+  res2 ∈ {-2; 7}
+[eva:final-states] Values at end of function f4:
+  i4 ∈ {0; 5}
+  __retres ∈ {4; 7}
+[eva:final-states] Values at end of function f5:
+  i5 ∈ {0; 5}
+  res ∈ {-2; 7}
+[eva:final-states] Values at end of function f6:
+  i ∈ [-5..5]
+[eva:final-states] Values at end of function f7:
+  v7 ∈ {0; 1}
+  __retres ∈ {{ NULL ; &v }}
+[eva:final-states] Values at end of function f8:
+  x ∈ {-1; 4}
+  __retres ∈ {{ NULL ; &x }}
+[eva:final-states] Values at end of function main1:
+  x ∈ [0..2147483649]
+  r ∈ {0; 1}
+[eva:final-states] Values at end of function main2:
+  i2 ∈ {0; 5}
+  r ∈ {0; 5; 7}
+[eva:final-states] Values at end of function main3:
+  i3 ∈ {0; 5}
+  r ∈ {-2; 7}
+[eva:final-states] Values at end of function main4:
+  i4 ∈ {0; 5}
+  r ∈ {4; 7}
+[eva:final-states] Values at end of function main5:
+  i5 ∈ {0; 5}
+  r ∈ {-2; 7}
+[eva:final-states] Values at end of function main6:
+  
+[eva:final-states] Values at end of function main7:
+  v7 ∈ {0; 1}
+  p ∈ {{ NULL ; &v }}
+[eva:final-states] Values at end of function main8:
+  x ∈ {-1; 4}
+  pf ∈ {{ &f8 }}
+  p ∈ {{ NULL ; &x }}
+[eva:final-states] Values at end of function uninit:
+  x ∈ {0} or UNINITIALIZED
+[eva:final-states] Values at end of function main9:
+  y ∈ {0} or UNINITIALIZED
+  q ∈ ESCAPINGADDR
+[eva:final-states] Values at end of function main:
+  i2 ∈ {0; 5}
+  i3 ∈ {0; 5}
+  i4 ∈ {0; 5}
+  i5 ∈ {0; 5}
+  v7 ∈ {0; 1}
+[from] Computing for function escaping
+[from] Done for function escaping
+[from] Computing for function f2
+[from] Done for function f2
+[from] Computing for function f3
+[from] Done for function f3
+[from] Computing for function f4
+[from] Done for function f4
+[from] Computing for function f5
+[from] Done for function f5
+[from] Computing for function f6
+[from] Done for function f6
+[from] Computing for function f7
+[from] Done for function f7
+[from] Computing for function f8
+[from] Done for function f8
+[from] Computing for function main1
+[from] Computing for function init <-main1
+[from] Done for function init
+[from] Done for function main1
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main3
+[from] Done for function main3
+[from] Computing for function main4
+[from] Done for function main4
+[from] Computing for function main5
+[from] Done for function main5
+[from] Computing for function main6
+[from] Done for function main6
+[from] Computing for function main7
+[from] Done for function main7
+[from] Computing for function main8
+[from] Done for function main8
+[from] Computing for function uninit
+[from] Done for function uninit
+[from] Computing for function main9
+[from] Done for function main9
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function escaping:
+  \result FROM \nothing
+[from] Function f2:
+  i2 FROM i2
+  \result FROM i2
+[from] Function f3:
+  i3 FROM i3
+  \result FROM i3
+[from] Function f4:
+  i4 FROM i4
+  \result FROM i4
+[from] Function f5:
+  i5 FROM i5
+  \result FROM i5
+[from] Function f6:
+  \result FROM v
+[from] Function f7:
+  v7 FROM v
+  \result FROM v
+[from] Function f8:
+  x FROM v; p
+  \result FROM v; p
+[from] Function init:
+  x FROM \nothing
+  \result FROM \nothing
+[from] Function main1:
+  \result FROM \nothing
+[from] Function main2:
+  i2 FROM i2
+[from] Function main3:
+  i3 FROM i3
+[from] Function main4:
+  i4 FROM i4
+[from] Function main5:
+  i5 FROM i5
+[from] Function main6:
+  NO EFFECTS
+[from] Function main7:
+  v7 FROM v
+[from] Function main8:
+  NO EFFECTS
+[from] Function uninit:
+  \result FROM rand
+[from] Function main9:
+  NO EFFECTS
+[from] Function main:
+  i2 FROM i2
+  i3 FROM i3
+  i4 FROM i4
+  i5 FROM i5
+  v7 FROM v
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function escaping:
+    p
+[inout] Inputs for function escaping:
+    \nothing
+[inout] Out (internal) for function f2:
+    i2; __retres
+[inout] Inputs for function f2:
+    i2
+[inout] Out (internal) for function f3:
+    i3; res1; res2
+[inout] Inputs for function f3:
+    i3
+[inout] Out (internal) for function f4:
+    i4; __retres
+[inout] Inputs for function f4:
+    i4
+[inout] Out (internal) for function f5:
+    i5; res
+[inout] Inputs for function f5:
+    i5
+[inout] Out (internal) for function f6:
+    i
+[inout] Inputs for function f6:
+    v
+[inout] Out (internal) for function f7:
+    v7; __retres
+[inout] Inputs for function f7:
+    v
+[inout] Out (internal) for function f8:
+    x; __retres
+[inout] Inputs for function f8:
+    v
+[inout] Out (internal) for function main1:
+    x; r
+[inout] Inputs for function main1:
+    \nothing
+[inout] Out (internal) for function main2:
+    i2; r
+[inout] Inputs for function main2:
+    i2
+[inout] Out (internal) for function main3:
+    i3; r
+[inout] Inputs for function main3:
+    i3
+[inout] Out (internal) for function main4:
+    i4; r
+[inout] Inputs for function main4:
+    i4
+[inout] Out (internal) for function main5:
+    i5; r
+[inout] Inputs for function main5:
+    i5
+[inout] Out (internal) for function main6:
+    tmp
+[inout] Inputs for function main6:
+    v
+[inout] Out (internal) for function main7:
+    v7; p
+[inout] Inputs for function main7:
+    v; v7
+[inout] Out (internal) for function main8:
+    x; pf; p; tmp
+[inout] Inputs for function main8:
+    v
+[inout] Out (internal) for function uninit:
+    x
+[inout] Inputs for function uninit:
+    rand
+[inout] Out (internal) for function main9:
+    y; q
+[inout] Inputs for function main9:
+    rand
+[inout] Out (internal) for function main:
+    i2; i3; i4; i5; v7
+[inout] Inputs for function main:
+    i2; i3; i4; i5; v; v7; rand

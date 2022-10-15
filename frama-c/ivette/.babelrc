@@ -1,0 +1,33 @@
+// --------------------------------------------------------------------------
+// --- Template .babelrc configuration file for Dome
+// --------------------------------------------------------------------------
+
+/*
+   Template from $(DOME)/template/babelrc.json
+
+   This configuration is a necessary extension to electron-webpack
+   for enabling react-hot-reloading.
+*/
+
+{
+  "presets": [
+    [
+      "@babel/preset-env", {
+        "modules": false
+      }
+    ],
+    [
+      "@babel/typescript", {
+        "isTSX": true,
+        "allExtensions": true
+      }
+    ],
+    "@babel/react"
+  ],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/proposal-object-rest-spread",
+    "react-hot-loader/babel"
+  ]
+}

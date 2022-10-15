@@ -1,0 +1,22 @@
+\chapter{Algorithmes}
+
+\section{Hypothèses}
+
+On se donne quelques types et fonctions de base~:\\
+
+\camlListingInput{algoH.mli}
+
+\section{Marquage d'une fonction}\label{sec-algo-mark-fct}
+
+Il s'agit de voir comment sont marquées les instructions d'une fonction
+à partir d'une requête donnant un élément du PDG et une marque.\\
+
+L'algorithme présenté ici est une version simplifiée
+de celui qui existe dans
+l'outil afin d'être plus facilement compréhensible.
+Il est très inefficace et risque de boucler car on ne teste pas
+si l'instruction à marquer contient déjà la nouvelle marque (test d'arrêt).
+
+Il s'agit de plus d'une version sans spécialisation des appels de fonction.\\
+
+\camlListingInput{algo.ml}

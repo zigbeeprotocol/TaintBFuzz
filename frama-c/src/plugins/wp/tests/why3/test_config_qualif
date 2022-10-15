@@ -1,0 +1,5 @@
+FILEREG: .*\.why
+CMD: why3 -L @PTEST_SHARE_DIR@/why3 prove -P alt-ergo
+OPT:
+COMMENT: the filter remove the information about time and steps
+FILTER: sed -e 's|\(.*\)\( (.*)\)|\1|'

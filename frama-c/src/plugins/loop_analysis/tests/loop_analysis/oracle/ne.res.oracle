@@ -1,0 +1,54 @@
+[kernel] Parsing ne.i (no preprocessing)
+[loop] ne.i:38: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != 7; i += 2)
+[loop] ne.i:46: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != -9; i -= 2)
+[loop] ne.i:54: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != 18; i += 15)
+[loop] ne.i:62: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != -5; i -= 15)
+[loop] ne.i:70: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != 3; i += 2)
+[loop] ne.i:78: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != -11; i -= 2)
+[loop] ne.i:86: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != 25; i += 15)
+[loop] ne.i:94: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != -35; i -= 15)
+[loop] ne.i:103: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != 7; i -= 2)
+[loop] ne.i:111: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != -9; i += 2)
+[loop] ne.i:119: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != 18; i -= 15)
+[loop] ne.i:127: Warning: 
+  termination condition may not be reached (infinite loop?)
+  loop amounts to: for (i = 0; i != -5; i += 15)
+[loop] Maximum number of iterations by loop:
+  ne.i:2: 43
+  ne.i:6: 146
+  ne.i:10: 51
+  ne.i:14: 154
+  ne.i:18: 46
+  ne.i:22: 46
+  ne.i:26: 54
+  ne.i:30: 54
+  ne.i:34: 4
+  ne.i:42: 4
+  ne.i:50: 1
+  ne.i:58: 1
+  ne.i:66: 1
+  ne.i:74: 6
+  ne.i:82: 4
+  ne.i:90: 1

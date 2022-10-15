@@ -1,0 +1,220 @@
+# Inspired by https://github.com/Frederic-Boulanger-UPS/docker-framac and
+# https://gitlab.inria.fr/why3/why3/-/blob/master/misc/Dockerfile.deploy
+
+FROM @ALPINE_OPAM_BASE@ AS base
+
+# Stage 1: switch opam if needed (only for very old versions),
+# then install external provers (see .template files)
+
+FROM base AS frama-c
+
+## Install packages from reference configuration
+## Note: Python and time packages are only required for tests, but if so,
+## they need to be present before running './configure'
+RUN \
+@OPAM_CACHE_FIX@ \
+opam update -y && \
+opam install depext -y
+
+RUN @OPAM_SWITCH@
+
+# "RUN eval $(opam env)" does not work, so we manually set its variables
+@ENV@
+
+# Install external provers
+@CVC4@
+@Z3@
+
+RUN opam depext --install -y @OPAM_DEPS@
+
+RUN @WHY3_CONFIG@
+
+# from_archive: if "git", clone from public Git; if prefixed with http,
+# wget it; otherwise, use the given archive name.
+# Note: the archive must contain a root directory
+# starting with 'frama-c'
+ARG from_archive=git
+
+# The following line copies a frama-c archive if it exists, else nothing
+COPY --chown=opam:opam README.md frama-c-*.tar.gz /frama-c/
+
+RUN \
+if [ "${from_archive}" != "git" ]; then \
+  (cd /frama-c && \
+    case "${from_archive}" in \
+    "http"*) wget "${from_archive}" ;; \
+          *) ;; \
+    esac && \
+    tar xvf "${from_archive##*/}" --strip 1 && \
+    rm -f frama-c-*.tar.gz) \
+; else \
+   sudo apk add git && \
+   (cd /frama-c && rm -f * && git clone --depth 1 https://git.frama-c.com/pub/frama-c.git .) \
+; fi
+
+RUN cd /frama-c && @PATCH_FRAMAC@ && autoconf && ./configure --disable-gui
+RUN cd /frama-c && make -j && sudo make install
+
+# Run quick sanity checks
+RUN \
+printf "int g;\n//@assigns g;\nvoid f(){g = 1;}\nint main() {f(); return g;}" > /tmp/simple.c && \
+frama-c -val @WP_REPORT@ /tmp/simple.c && \
+rm -f /tmp/simple.c
+
+## Cleanup
+RUN \
+opam clean --yes --switch-cleanup && \
+rm -rf /home/opam/opam-repository && \
+rm -rf /home/opam/.opam/repo/default/.git*
+
+# Stage 3 (optional): tests
+
+FROM frama-c AS tests
+
+# Run standard Frama-C tests
+RUN @FRAMAC_TESTS@
+
+# Run an extra test for WP with provers
+# Note: we use ';' instead of '&&' because, for older Frama-C's, such directory
+#       does not exist.
+RUN cd /frama-c/ && cd src/plugins/wp/tests/; @WP_TEST@
+
+
+# Stage 4 (optional): GUI
+
+FROM frama-c AS frama-c-gui
+
+RUN sudo apk add adwaita-icon-theme font-noto gdk-pixbuf @GUI_ALPINE_DEPS@
+RUN opam depext -y --install @GUI_OPAM_DEPS@
+RUN cd /frama-c && @GUI_REMAKE@
+
+# Stage 5 (to be deployed): 'slim' image
+
+FROM @ALPINE_BASE@ AS frama-c-slim
+
+RUN adduser --disabled-password --gecos '' opam
+
+COPY --from=frama-c /bin /bin/
+COPY --from=frama-c /etc /etc/
+COPY --from=frama-c /lib /lib/
+COPY --from=frama-c /sbin /sbin/
+# RUN true cmds are a workaround against
+# obscure docker bug (https://github.com/moby/moby/issues/37965)
+# manifesting in sequences of COPY
+RUN true
+COPY --from=frama-c /usr /usr/
+RUN true
+COPY --from=frama-c --chown=opam:opam /home/opam/.opam /home/opam/.opam/
+COPY --from=frama-c /home/opam/.profile /home/opam/
+
+RUN apk add sudo
+USER opam
+WORKDIR /home/opam
+@ENV@
+
+RUN @WHY3_CONFIG@
+
+# Stage 6 (optional, to be deployed): 'slim' image with frama-c-gui
+
+FROM @ALPINE_BASE@ AS frama-c-gui-slim
+
+RUN adduser --disabled-password --gecos '' opam
+
+COPY --from=frama-c-gui /bin /bin/
+COPY --from=frama-c-gui /etc /etc/
+COPY --from=frama-c-gui /lib /lib/
+COPY --from=frama-c-gui /sbin /sbin/
+RUN true
+COPY --from=frama-c-gui /usr /usr/
+RUN true
+COPY --from=frama-c-gui --chown=opam:opam /home/opam/.opam /home/opam/.opam/
+COPY --from=frama-c-gui /home/opam/.profile /home/opam/
+
+RUN apk add sudo
+USER opam
+WORKDIR /home/opam
+@ENV@
+
+RUN @WHY3_CONFIG@
+
+# sanity check
+RUN which frama-c-gui
+
+# Stage 7: preparation of 'stripped' image (~200 MB compressed)
+# Note: this image only contains the Frama-C binaries and files closely
+# related to it; most other OCaml tools have been removed.
+# Even recompilation of Frama-C is not guaranteed to work.
+
+FROM frama-c-slim AS frama-c-stripped-prepare
+
+@ENV@
+
+# Remove all non-essential ocaml binaries
+RUN \
+mkdir -p /home/opam/.opam/minimal/bin && \
+(cd /home/opam/.opam/*/bin && \
+  cp -P $(ls -d alt-ergo ocaml ocamlc ocamlc.opt ocamlfind ocamlopt ocamlopt.opt why3 2>/dev/null) /home/opam/.opam/minimal/bin/) && \
+rm -rf /home/opam/.opam/@OCAMLV@/bin && \
+mv /home/opam/.opam/minimal/bin /home/opam/.opam/@OCAMLV@/bin/
+
+# Remove non-essential opam files
+RUN rm -rf /home/opam/.opam/repo/default/packages
+RUN rm -rf /home/opam/.opam/download-cache
+RUN rm -rf /home/opam/.opam/repo/state.cache
+
+# Further stripping: remove non-essential files from tools used by Frama-C
+# (Apron, Alt-Ergo, large OCaml compiler files, etc)
+RUN rm -f /home/opam/.opam/@OCAMLV@/share/apron/lib/*.a
+RUN rm -f /home/opam/.opam/@OCAMLV@/share/apron/lib/*_debug.so
+RUN rm -rf /home/opam/.opam/@OCAMLV@/share/apron/bin
+RUN rm -rf /home/opam/.opam/@OCAMLV@/share/apron/include
+RUN rm -rf /home/opam/.opam/@OCAMLV@/lib/alt-ergo
+RUN rm -rf /home/opam/.opam/@OCAMLV@/lib/lablgtk2
+RUN rm -rf /home/opam/.opam/@OCAMLV@/lib/ppx_tools
+RUN rm -rf /home/opam/.opam/@OCAMLV@/lib/psmt2-frontend
+RUN rm -rf /home/opam/.opam/*/lib/ocaml/expunge
+RUN rm -rf /home/opam/.opam/*/lib/ocaml-migrate-parsetree
+RUN (cd /home/opam/.opam/@OCAMLV@/lib/why3/commands && mv why3config config && rm -f why3* && mv config why3config) || true
+
+# Remove all non-essential OCaml files (everything else other than
+# *.cmxs, *.cmx and *.cmi)
+RUN find /home/opam/.opam \( -name "*.cmt*" -o -name "*.[ao]" -o -name "*.cm[ao]" -o -name "*.cmxa" \) -exec rm {} \;
+
+# Remove non-essential installed files
+RUN sudo rm -f /usr/bin/opam-2.*
+RUN sudo rm /usr/local/bin/frama-c.byte
+RUN sudo find /usr/local/lib/frama-c \( -name "*.[ao]" -o -name "*.cm[ao]" -o -name "*.cmxa" \) -exec rm {} \;
+RUN cd /usr/share && sudo rm -rf gtk-2.0 X11 xml/docbook
+
+# Remove non-essential apk libraries
+RUN sudo apk del libxcb libx11-dev graphviz pango cairo gtk+2.0-dev gtksourceview2-dev pango-dev
+
+# Stage 7 (optional): stripped, slimmest image (running Frama-C works,
+# but almost everything else does not (e.g. recompiling OCaml modules))
+
+FROM @ALPINE_BASE@ AS frama-c-stripped
+
+RUN adduser --disabled-password --gecos '' opam
+
+COPY --from=frama-c-stripped-prepare /bin /bin/
+COPY --from=frama-c-stripped-prepare /etc /etc/
+COPY --from=frama-c-stripped-prepare /lib /lib/
+COPY --from=frama-c-stripped-prepare /sbin /sbin/
+RUN true
+COPY --from=frama-c-stripped-prepare /usr /usr/
+RUN true
+COPY --from=frama-c-stripped-prepare --chown=opam:opam /home/opam/.opam /home/opam/.opam/
+COPY --from=frama-c-stripped-prepare /home/opam/.profile /home/opam/
+
+RUN apk add sudo
+USER opam
+WORKDIR /home/opam
+@ENV@
+
+RUN @WHY3_CONFIG@
+
+# Re-run quick sanity checks
+RUN \
+printf "int g;\n//@assigns g;\nvoid f(){g = 1;}\nint main() {f(); return g;}" > /tmp/simple.c && \
+frama-c -val @WP_REPORT@ /tmp/simple.c && \
+rm -f /tmp/simple.c

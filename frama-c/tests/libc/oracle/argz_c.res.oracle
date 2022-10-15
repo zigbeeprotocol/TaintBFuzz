@@ -1,0 +1,1241 @@
+[kernel] Parsing argz_c.c (with preprocessing)
+[eva] Option -eva-precision 6 detected, automatic configuration of the analysis:
+  option -eva-min-loop-unroll set to 0 (default value).
+  option -eva-auto-loop-unroll set to 192.
+  option -eva-widening-delay set to 4.
+  option -eva-partition-history set to 1.
+  option -eva-slevel set to 160.
+  option -eva-ilevel set to 64.
+  option -eva-plevel set to 200 (default value).
+  option -eva-subdivide-non-linear set to 120.
+  option -eva-remove-redundant-alarms set to true (default value).
+  option -eva-domains set to 'cvalue,equality,gauges,octagon,symbolic-locations'.
+  option -eva-split-return set to 'auto'.
+  option -eva-equality-through-calls set to 'formals' (default value).
+  option -eva-octagon-through-calls set to false (default value).
+[eva] Splitting return states on:
+  \return(seed48) == 0 (auto)
+  \return(calloc) == 0 (auto)
+  \return(malloc) == 0 (auto)
+  \return(realloc) == 0 (auto)
+  \return(reallocarray) == 0 (auto)
+  \return(getenv) == 0 (auto)
+  \return(bsearch) == 0 (auto)
+  \return(memchr) == 0 (auto)
+  \return(memrchr) == 0 (auto)
+  \return(memcpy) == 0 (auto)
+  \return(mempcpy) == 0 (auto)
+  \return(memmove) == 0 (auto)
+  \return(memset) == 0 (auto)
+  \return(strchr) == 0 (auto)
+  \return(strchrnul) == 0 (auto)
+  \return(strrchr) == 0 (auto)
+  \return(strpbrk) == 0 (auto)
+  \return(strstr) == 0 (auto)
+  \return(strcasestr) == 0 (auto)
+  \return(strtok) == 0 (auto)
+  \return(strtok_r) == 0 (auto)
+  \return(strsep) == 0 (auto)
+  \return(strerror) == 0 (auto)
+  \return(strcpy) == 0 (auto)
+  \return(strncpy) == 0 (auto)
+  \return(stpcpy) == 0 (auto)
+  \return(strcat) == 0 (auto)
+  \return(strncat) == 0 (auto)
+  \return(strdup) == 0 (auto)
+  \return(strndup) == 0 (auto)
+  \return(strsignal) == 0 (auto)
+  \return(argz_count) == 0, 6 (auto)
+  \return(argz_append) == 0, 6 (auto)
+  \return(argz_add) == 0, 6 (auto)
+  \return(argz_insert) == 0, 6 (auto)
+  \return(argz_replace) == 0, 6 (auto)
+  \return(argz_next) == 0 (auto)
+  \return(Frama_C_nondet_ptr) == 0 (auto)
+  \return(char_equal_ignore_case) == 0 (auto)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function argz_create <- main.
+  Called from argz_c.c:20.
+[eva] FRAMAC_SHARE/libc/argz.c:240: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:240: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:240: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:240: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:245: Call to builtin malloc
+[eva] FRAMAC_SHARE/libc/argz.c:245: 
+  allocating variable __malloc_argz_create_l245
+[eva] computing for function stpcpy <- argz_create <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:250.
+[eva] Recording results for stpcpy
+[eva] Done for function stpcpy
+[eva] computing for function stpcpy <- argz_create <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:250.
+[eva] Recording results for stpcpy
+[eva] Done for function stpcpy
+[eva] computing for function stpcpy <- argz_create <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:250.
+[eva] Recording results for stpcpy
+[eva] Done for function stpcpy
+[eva] Recording results for argz_create
+[eva] Done for function argz_create
+[eva] computing for function exit <- main.
+  Called from argz_c.c:21.
+[eva] using specification for function exit
+[eva] Done for function exit
+[eva] argz_c.c:22: assertion got status valid.
+[eva] argz_c.c:23: Call to builtin free
+[eva] argz_c.c:23: function free: precondition 'freeable' got status valid.
+[eva] computing for function argz_create_sep <- main.
+  Called from argz_c.c:25.
+[eva] FRAMAC_SHARE/libc/argz.c:196: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:196: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:202: Call to builtin malloc
+[eva] FRAMAC_SHARE/libc/argz.c:202: 
+  allocating variable __malloc_argz_create_sep_l202
+[eva] Recording results for argz_create_sep
+[eva] Done for function argz_create_sep
+[eva] computing for function exit <- main.
+  Called from argz_c.c:26.
+[eva] Done for function exit
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:27.
+[eva] using specification for function __FC_assert
+[eva] argz_c.c:27: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_count <- main.
+  Called from argz_c.c:28.
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:260: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] Recording results for argz_count
+[eva] Done for function argz_count
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:29.
+[eva] argz_c.c:29: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_add <- main.
+  Called from argz_c.c:30.
+[eva] FRAMAC_SHARE/libc/argz.c:282: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:282: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] computing for function argz_append <- argz_add <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:282.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  function realloc: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] FRAMAC_SHARE/libc/argz.c:273: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:273: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:273: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:101: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] Recording results for argz_add
+[eva] Done for function argz_add
+[eva] computing for function exit <- main.
+  Called from argz_c.c:31.
+[eva] Done for function exit
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:32.
+[eva] argz_c.c:32: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_add_sep <- main.
+  Called from argz_c.c:33.
+[eva] FRAMAC_SHARE/libc/argz.c:287: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:287: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:293: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:293: 
+  function realloc: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:293: 
+  allocating variable __realloc_argz_add_sep_l293
+[eva] Recording results for argz_add_sep
+[eva] Done for function argz_add_sep
+[eva] computing for function exit <- main.
+  Called from argz_c.c:34.
+[eva] Done for function exit
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:35.
+[eva] argz_c.c:35: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_count <- main.
+  Called from argz_c.c:36.
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:260: Call to builtin strlen
+[eva] Recording results for argz_count
+[eva] Done for function argz_count
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:37.
+[eva] argz_c.c:37: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_append <- main.
+  Called from argz_c.c:38.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_0
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] computing for function exit <- main.
+  Called from argz_c.c:39.
+[eva] Done for function exit
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:40.
+[eva] argz_c.c:40: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_add <- main.
+  Called from argz_c.c:41.
+[eva] FRAMAC_SHARE/libc/argz.c:282: Call to builtin strlen
+[eva] computing for function argz_append <- argz_add <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:282.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_1
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] Recording results for argz_add
+[eva] Done for function argz_add
+[eva] computing for function exit <- main.
+  Called from argz_c.c:42.
+[eva] Done for function exit
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:43.
+[eva] argz_c.c:43: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_replace <- main.
+  Called from argz_c.c:45.
+[eva] FRAMAC_SHARE/libc/argz.c:72: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:72: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:72: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:72: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:75.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] FRAMAC_SHARE/libc/argz.c:129: 
+  function strchr: precondition 'valid_string_s' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:181: 
+  cannot evaluate ACSL term, unsupported logic var p
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:75.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:75.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:75.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strndup <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:79.
+[eva:loop-unroll:auto] FRAMAC_SHARE/libc/string.c:333: Automatic loop unrolling.
+[eva] FRAMAC_SHARE/libc/string.c:336: Call to builtin malloc
+[eva] FRAMAC_SHARE/libc/string.c:336: allocating variable __malloc_strndup_l336
+[eva] FRAMAC_SHARE/libc/string.c:341: Call to builtin memcpy
+[eva] FRAMAC_SHARE/libc/string.c:341: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] FRAMAC_SHARE/libc/string.c:341: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] FRAMAC_SHARE/libc/string.c:341: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] Recording results for strndup
+[eva] Done for function strndup
+[eva] computing for function str_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:82.
+[eva] FRAMAC_SHARE/libc/argz.c:49: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:49: 
+  function realloc: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:49: allocating variable __realloc_str_append_l49
+[eva] computing for function mempcpy <- str_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:52.
+[eva:loop-unroll:auto] FRAMAC_SHARE/libc/string.c:54: Automatic loop unrolling.
+[eva] Recording results for mempcpy
+[eva] Done for function mempcpy
+[eva] FRAMAC_SHARE/libc/argz.c:56: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:56: 
+  function free: precondition 'freeable' got status valid.
+[eva] Recording results for str_append
+[eva] Done for function str_append
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:84.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] FRAMAC_SHARE/libc/argz.c:89: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:89: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] computing for function str_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:89.
+[eva] FRAMAC_SHARE/libc/argz.c:49: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:49: 
+  allocating variable __realloc_str_append_l49_0
+[eva] computing for function mempcpy <- str_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:52.
+[eva] Recording results for mempcpy
+[eva] Done for function mempcpy
+[eva] FRAMAC_SHARE/libc/argz.c:56: Call to builtin free
+[eva] Recording results for str_append
+[eva] Done for function str_append
+[eva] computing for function argz_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:98.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_2
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] computing for function argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:102.
+[eva] FRAMAC_SHARE/libc/argz.c:282: Call to builtin strlen
+[eva] computing for function argz_append <- argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:282.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_3
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] Recording results for argz_add
+[eva] Done for function argz_add
+[eva] FRAMAC_SHARE/libc/argz.c:103: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:103: 
+  function free: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:103: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:103: Call to builtin free
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:75.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:110.
+[eva] FRAMAC_SHARE/libc/argz.c:282: Call to builtin strlen
+[eva] computing for function argz_append <- argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:282.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_4
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] Recording results for argz_add
+[eva] Done for function argz_add
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:75.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:110.
+[eva] FRAMAC_SHARE/libc/argz.c:282: Call to builtin strlen
+[eva] computing for function argz_append <- argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:282.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_5
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] Recording results for argz_add
+[eva] Done for function argz_add
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:75.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:110.
+[eva] FRAMAC_SHARE/libc/argz.c:282: Call to builtin strlen
+[eva] computing for function argz_append <- argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:282.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_6
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] Recording results for argz_add
+[eva] Done for function argz_add
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:75.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strndup <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:79.
+[eva] FRAMAC_SHARE/libc/string.c:336: Call to builtin malloc
+[eva] FRAMAC_SHARE/libc/string.c:336: 
+  allocating variable __malloc_strndup_l336_0
+[eva] FRAMAC_SHARE/libc/string.c:341: Call to builtin memcpy
+[eva] Recording results for strndup
+[eva] Done for function strndup
+[eva] computing for function str_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:82.
+[eva] FRAMAC_SHARE/libc/argz.c:49: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:49: 
+  allocating variable __realloc_str_append_l49_1
+[eva] computing for function mempcpy <- str_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:52.
+[eva] Recording results for mempcpy
+[eva] Done for function mempcpy
+[eva] FRAMAC_SHARE/libc/argz.c:56: Call to builtin free
+[eva] Recording results for str_append
+[eva] Done for function str_append
+[eva] computing for function strstr <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:84.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] FRAMAC_SHARE/libc/argz.c:89: Call to builtin strlen
+[eva] computing for function str_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:89.
+[eva] FRAMAC_SHARE/libc/argz.c:49: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:49: 
+  allocating variable __realloc_str_append_l49_2
+[eva] computing for function mempcpy <- str_append <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:52.
+[eva] Recording results for mempcpy
+[eva] Done for function mempcpy
+[eva] FRAMAC_SHARE/libc/argz.c:56: Call to builtin free
+[eva] Recording results for str_append
+[eva] Done for function str_append
+[eva] computing for function argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:102.
+[eva] FRAMAC_SHARE/libc/argz.c:282: Call to builtin strlen
+[eva] computing for function argz_append <- argz_add <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:282.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_7
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] Recording results for argz_add
+[eva] Done for function argz_add
+[eva] FRAMAC_SHARE/libc/argz.c:103: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:103: Call to builtin free
+[eva] computing for function argz_next <- argz_replace <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:74.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] FRAMAC_SHARE/libc/argz.c:115: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:115: 
+  function free: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:120: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:120: 
+  function free: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:120: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:120: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:120: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:120: Call to builtin free
+[eva] FRAMAC_SHARE/libc/argz.c:120: Call to builtin free
+[eva] Recording results for argz_replace
+[eva] Done for function argz_replace
+[eva] computing for function exit <- main.
+  Called from argz_c.c:46.
+[eva] Done for function exit
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:47.
+[eva] argz_c.c:47: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:48.
+[eva] argz_c.c:48: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_next <- main.
+  Called from argz_c.c:49.
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:50.
+[eva] argz_c.c:50: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_next <- main.
+  Called from argz_c.c:52.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function argz_delete <- main.
+  Called from argz_c.c:54.
+[eva] FRAMAC_SHARE/libc/argz.c:184: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:184: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:186: Call to builtin memmove
+[eva] FRAMAC_SHARE/libc/argz.c:186: 
+  function memmove: precondition 'valid_dest' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:186: 
+  function memmove: precondition 'valid_src' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:124: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] Recording results for argz_delete
+[eva] Done for function argz_delete
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:55.
+[eva] argz_c.c:55: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_next <- main.
+  Called from argz_c.c:56.
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function argz_next <- main.
+  Called from argz_c.c:58.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function argz_next <- main.
+  Called from argz_c.c:58.
+[eva] FRAMAC_SHARE/libc/argz.c:129: Call to builtin strchr
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:60.
+[eva] argz_c.c:60: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_delete <- main.
+  Called from argz_c.c:61.
+[eva] FRAMAC_SHARE/libc/argz.c:184: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:186: Call to builtin memmove
+[eva] Recording results for argz_delete
+[eva] Done for function argz_delete
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:62.
+[eva] argz_c.c:62: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_next <- main.
+  Called from argz_c.c:63.
+[eva] Recording results for argz_next
+[eva] Done for function argz_next
+[eva] computing for function argz_insert <- main.
+  Called from argz_c.c:64.
+[eva] FRAMAC_SHARE/libc/argz.c:153: Call to builtin strlen
+[eva] FRAMAC_SHARE/libc/argz.c:153: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:157: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:157: 
+  function realloc: precondition 'freeable' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:157: 
+  allocating variable __realloc_argz_insert_l157
+[eva] FRAMAC_SHARE/libc/argz.c:161: Call to builtin memmove
+[eva] FRAMAC_SHARE/libc/argz.c:161: 
+  function memmove: precondition 'valid_dest' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:161: 
+  function memmove: precondition 'valid_src' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:162: Call to builtin memmove
+[eva] FRAMAC_SHARE/libc/argz.c:162: 
+  function memmove: precondition 'valid_dest' got status valid.
+[eva] FRAMAC_SHARE/libc/argz.c:162: 
+  function memmove: precondition 'valid_src' got status valid.
+[eva] Recording results for argz_insert
+[eva] Done for function argz_insert
+[eva] computing for function exit <- main.
+  Called from argz_c.c:65.
+[eva] Done for function exit
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:66.
+[eva] argz_c.c:66: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] computing for function argz_insert <- main.
+  Called from argz_c.c:67.
+[eva] computing for function argz_add <- argz_insert <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:142.
+[eva] FRAMAC_SHARE/libc/argz.c:282: Call to builtin strlen
+[eva] computing for function argz_append <- argz_add <- argz_insert <- main.
+  Called from FRAMAC_SHARE/libc/argz.c:282.
+[eva] FRAMAC_SHARE/libc/argz.c:271: Call to builtin realloc
+[eva] FRAMAC_SHARE/libc/argz.c:271: 
+  allocating variable __realloc_argz_append_l271_8
+[eva] FRAMAC_SHARE/libc/argz.c:273: Call to builtin memcpy
+[eva] Recording results for argz_append
+[eva] Done for function argz_append
+[eva] Recording results for argz_add
+[eva] Done for function argz_add
+[eva] Recording results for argz_insert
+[eva] Done for function argz_insert
+[eva] computing for function exit <- main.
+  Called from argz_c.c:68.
+[eva] Done for function exit
+[eva] computing for function __FC_assert <- main.
+  Called from argz_c.c:69.
+[eva] argz_c.c:69: 
+  function __FC_assert: precondition 'nonnull_c' got status valid.
+[eva] Done for function __FC_assert
+[eva] argz_c.c:71: Call to builtin free
+[eva] argz_c.c:71: function free: precondition 'freeable' got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function mempcpy:
+  i ∈ {0; 3}
+  __retres ∈
+          {{ (void *)&__realloc_str_append_l49[3] ;
+             (void *)&__realloc_str_append_l49_0[3] ;
+             (void *)&__realloc_str_append_l49_1[3] ;
+             (void *)&__realloc_str_append_l49_2[3] }}
+  __realloc_str_append_l49[0] ∈ {98}
+                          [1] ∈ {108}
+                          [2] ∈ {97}
+                          [3] ∈ UNINITIALIZED
+  __realloc_str_append_l49_1[0] ∈ {98}
+                            [1] ∈ {108}
+                            [2] ∈ {97}
+                            [3] ∈ UNINITIALIZED
+[eva:final-states] Values at end of function argz_append:
+  dst ∈
+     {{ NULL ; &__realloc_argz_append_l271_2[0] ;
+        &__realloc_argz_append_l271_3[0] ; &__realloc_argz_append_l271_4[0] ;
+        &__realloc_argz_append_l271_5[0] ; &__realloc_argz_append_l271_6[0] ;
+        &__realloc_argz_append_l271_7[0] }}
+  dst_len ∈ {0; 7; 11; 14; 17; 19; 23}
+  new_argz_len ∈ {7; 10; 11; 14; 17; 18; 19; 21; 23; 24}
+  new_argz ∈
+          {{ NULL ; &__realloc_argz_append_l271[0] ;
+             &__realloc_argz_append_l271_0[0] ;
+             &__realloc_argz_append_l271_1[0] ;
+             &__realloc_argz_append_l271_2[0] ;
+             &__realloc_argz_append_l271_3[0] ;
+             &__realloc_argz_append_l271_4[0] ;
+             &__realloc_argz_append_l271_5[0] ;
+             &__realloc_argz_append_l271_6[0] ;
+             &__realloc_argz_append_l271_7[0] ;
+             &__realloc_argz_append_l271_8[0] }}
+  argz ∈
+      {{ &__malloc_argz_create_sep_l202[0] ; &__realloc_argz_append_l271[0] ;
+         &__realloc_argz_add_sep_l293[0] ; &__realloc_argz_append_l271_0[0] ;
+         &__realloc_argz_append_l271_1[0] ; &__realloc_argz_insert_l157[0] ;
+         &__realloc_argz_append_l271_8[0] }}
+  len ∈ {7; 10; 16; 18; 21; 24}
+  __retres ∈ {0; 12}
+  __realloc_argz_append_l271[0] ∈ {97}
+                            [1] ∈ {0}
+                            [2] ∈ {98}
+                            [3] ∈ {0}
+                            [4] ∈ {99}
+                            [5] ∈ {100}
+                            [6] ∈ {0}
+                            [7] ∈ {101}
+                            [8] ∈ {102}
+                            [9] ∈ {0}
+  __realloc_argz_append_l271_0[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {101}
+                              [8] ∈ {102}
+                              [9] ∈ {0}
+                              [10] ∈ {103}
+                              [11] ∈ {104}
+                              [12] ∈ {0}
+                              [13] ∈ {105}
+                              [14] ∈ {106}
+                              [15] ∈ {0}
+                              [16] ∈ {107}
+                              [17] ∈ {0}
+  __realloc_argz_append_l271_1[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {101}
+                              [8] ∈ {102}
+                              [9] ∈ {0}
+                              [10] ∈ {103}
+                              [11] ∈ {104}
+                              [12] ∈ {0}
+                              [13] ∈ {105}
+                              [14] ∈ {106}
+                              [15] ∈ {0}
+                              [16] ∈ {107}
+                              [17] ∈ {0}
+                              [18] ∈ {101}
+                              [19] ∈ {102}
+                              [20] ∈ {0}
+  __realloc_argz_append_l271_2[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+  __realloc_argz_append_l271_3[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+  __realloc_argz_append_l271_4[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+  __realloc_argz_append_l271_5[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+                              [14] ∈ {105}
+                              [15] ∈ {106}
+                              [16] ∈ {0}
+  __realloc_argz_append_l271_6[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+                              [14] ∈ {105}
+                              [15] ∈ {106}
+                              [16] ∈ {0}
+                              [17] ∈ {107}
+                              [18] ∈ {0}
+  __realloc_argz_append_l271_7[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+                              [14] ∈ {105}
+                              [15] ∈ {106}
+                              [16] ∈ {0}
+                              [17] ∈ {107}
+                              [18] ∈ {0}
+                              [19] ∈ {98}
+                              [20] ∈ {108}
+                              [21] ∈ {97}
+                              [22] ∈ {0}
+  __realloc_argz_append_l271_8[0] ∈ {109}
+                              [1] ∈ {110}
+                              [2] ∈ {111}
+                              [3] ∈ {0}
+                              [4] ∈ {97}
+                              [5] ∈ {0}
+                              [6] ∈ {99}
+                              [7] ∈ {100}
+                              [8] ∈ {0}
+                              [9] ∈ {103}
+                              [10] ∈ {104}
+                              [11] ∈ {0}
+                              [12] ∈ {105}
+                              [13] ∈ {106}
+                              [14] ∈ {0}
+                              [15] ∈ {107}
+                              [16] ∈ {0}
+                              [17] ∈ {98}
+                              [18] ∈ {108}
+                              [19] ∈ {97}
+                              [20] ∈ {0}
+                              [21..22] ∈ {122}
+                              [23] ∈ {0}
+[eva:final-states] Values at end of function stpcpy:
+  i ∈ {2; 4}
+  __retres ∈ {{ &__malloc_argz_create_l245{[4], [7], [12]} }}
+  __malloc_argz_create_l245[0] ∈ {116}
+                           [1] ∈ {104}
+                           [2] ∈ {105}
+                           [3] ∈ {115}
+                           [4] ∈ {0}
+                           [5] ∈ {105} or UNINITIALIZED
+                           [6] ∈ {115} or UNINITIALIZED
+                           [7] ∈ {0} or UNINITIALIZED
+                           [8] ∈ {97} or UNINITIALIZED
+                           [9] ∈ {114} or UNINITIALIZED
+                           [10] ∈ {103} or UNINITIALIZED
+                           [11] ∈ {122} or UNINITIALIZED
+                           [12] ∈ {0} or UNINITIALIZED
+[eva:final-states] Values at end of function str_append:
+  new_len ∈ {3}
+  new_to ∈
+        {{ NULL ; &__realloc_str_append_l49[0] ;
+           &__realloc_str_append_l49_0[0] ; &__realloc_str_append_l49_1[0] ;
+           &__realloc_str_append_l49_2[0] }}
+  to_len ∈ {0; 3}
+  to ∈
+    {{ NULL ; &__realloc_str_append_l49[0] ; &__realloc_str_append_l49_0[0] ;
+       &__realloc_str_append_l49_1[0] ; &__realloc_str_append_l49_2[0] }}
+  __realloc_str_append_l49[0] ∈ {98}
+                          [1] ∈ {108}
+                          [2] ∈ {97}
+                          [3] ∈ {0}
+  __realloc_str_append_l49_0[0] ∈ {98}
+                            [1] ∈ {108}
+                            [2] ∈ {97}
+                            [3] ∈ {0}
+  __realloc_str_append_l49_1[0] ∈ {98}
+                            [1] ∈ {108}
+                            [2] ∈ {97}
+                            [3] ∈ {0}
+  __realloc_str_append_l49_2[0] ∈ {98}
+                            [1] ∈ {108}
+                            [2] ∈ {97}
+                            [3] ∈ {0}
+[eva:final-states] Values at end of function argz_next:
+  entry ∈
+       {{ NULL ;
+          &__realloc_argz_append_l271_1{[2], [4], [7], [10], [13], [16],
+                                        [18], [21]} ;
+          &__realloc_argz_append_l271_7{[2], [5]} }}
+  __retres ∈
+          {{ NULL ;
+             &__realloc_argz_append_l271_1{[0], [2], [4], [7], [10], [13],
+                                           [16], [18]} ;
+             &__realloc_argz_append_l271_7{[0], [2], [5]} }}
+[eva:final-states] Values at end of function argz_add:
+  dst ∈
+     {{ &__realloc_argz_append_l271_2[0] ; &__realloc_argz_append_l271_3[0] ;
+        &__realloc_argz_append_l271_4[0] ; &__realloc_argz_append_l271_5[0] ;
+        &__realloc_argz_append_l271_6[0] ;
+        &__realloc_argz_append_l271_7[0] }}
+  dst_len ∈ {7; 11; 14; 17; 19; 23}
+  argz ∈
+      {{ &__malloc_argz_create_sep_l202[0] ; &__realloc_argz_append_l271[0] ;
+         &__realloc_argz_append_l271_0[0] ;
+         &__realloc_argz_append_l271_1[0] ; &__realloc_argz_insert_l157[0] ;
+         &__realloc_argz_append_l271_8[0] }}
+  len ∈ {7; 10; 18; 21; 24}
+  __realloc_argz_append_l271[0] ∈ {97}
+                            [1] ∈ {0}
+                            [2] ∈ {98}
+                            [3] ∈ {0}
+                            [4] ∈ {99}
+                            [5] ∈ {100}
+                            [6] ∈ {0}
+                            [7] ∈ {101}
+                            [8] ∈ {102}
+                            [9] ∈ {0}
+  __realloc_argz_append_l271_1[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {101}
+                              [8] ∈ {102}
+                              [9] ∈ {0}
+                              [10] ∈ {103}
+                              [11] ∈ {104}
+                              [12] ∈ {0}
+                              [13] ∈ {105}
+                              [14] ∈ {106}
+                              [15] ∈ {0}
+                              [16] ∈ {107}
+                              [17] ∈ {0}
+                              [18] ∈ {101}
+                              [19] ∈ {102}
+                              [20] ∈ {0}
+  __realloc_argz_append_l271_3[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+  __realloc_argz_append_l271_4[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+  __realloc_argz_append_l271_5[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+                              [14] ∈ {105}
+                              [15] ∈ {106}
+                              [16] ∈ {0}
+  __realloc_argz_append_l271_6[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+                              [14] ∈ {105}
+                              [15] ∈ {106}
+                              [16] ∈ {0}
+                              [17] ∈ {107}
+                              [18] ∈ {0}
+  __realloc_argz_append_l271_7[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+                              [14] ∈ {105}
+                              [15] ∈ {106}
+                              [16] ∈ {0}
+                              [17] ∈ {107}
+                              [18] ∈ {0}
+                              [19] ∈ {98}
+                              [20] ∈ {108}
+                              [21] ∈ {97}
+                              [22] ∈ {0}
+  __realloc_argz_append_l271_8[0] ∈ {109}
+                              [1] ∈ {110}
+                              [2] ∈ {111}
+                              [3] ∈ {0}
+                              [4] ∈ {97}
+                              [5] ∈ {0}
+                              [6] ∈ {99}
+                              [7] ∈ {100}
+                              [8] ∈ {0}
+                              [9] ∈ {103}
+                              [10] ∈ {104}
+                              [11] ∈ {0}
+                              [12] ∈ {105}
+                              [13] ∈ {106}
+                              [14] ∈ {0}
+                              [15] ∈ {107}
+                              [16] ∈ {0}
+                              [17] ∈ {98}
+                              [18] ∈ {108}
+                              [19] ∈ {97}
+                              [20] ∈ {0}
+                              [21..22] ∈ {122}
+                              [23] ∈ {0}
+[eva:final-states] Values at end of function argz_add_sep:
+  nlen ∈ {6}
+  argz ∈ {{ NULL ; &__realloc_argz_add_sep_l293[0] }}
+  len ∈ {10; 16}
+  __retres ∈ {0; 12}
+  __realloc_argz_add_sep_l293[0] ∈ {97}
+                             [1] ∈ {0}
+                             [2] ∈ {98}
+                             [3] ∈ {0}
+                             [4] ∈ {99}
+                             [5] ∈ {100}
+                             [6] ∈ {0}
+                             [7] ∈ {101}
+                             [8] ∈ {102}
+                             [9] ∈ {0}
+                             [10] ∈ {103}
+                             [11] ∈ {104}
+                             [12] ∈ {0}
+                             [13] ∈ {105}
+                             [14] ∈ {106}
+                             [15] ∈ {0}
+[eva:final-states] Values at end of function argz_count:
+  argz ∈
+      {{ &__malloc_argz_create_sep_l202[7] ;
+         &__realloc_argz_add_sep_l293[16] }}
+  len ∈ {0}
+  count ∈ {3; 6}
+[eva:final-states] Values at end of function argz_create:
+  __fc_heap_status ∈ [--..--]
+  argc ∈ {3}
+  tlen ∈ {13}
+  ap ∈ {{ &argv[3] }} or UNINITIALIZED
+  p ∈ {{ &__malloc_argz_create_l245[13] }} or UNINITIALIZED
+  argz ∈ {{ NULL ; &__malloc_argz_create_l245[0] }}
+  len ∈ {13} or UNINITIALIZED
+  __retres ∈ {0; 12}
+  __malloc_argz_create_l245[0] ∈ {116}
+                           [1] ∈ {104}
+                           [2] ∈ {105}
+                           [3] ∈ {115}
+                           [4] ∈ {0}
+                           [5] ∈ {105}
+                           [6] ∈ {115}
+                           [7] ∈ {0}
+                           [8] ∈ {97}
+                           [9] ∈ {114}
+                           [10] ∈ {103}
+                           [11] ∈ {122}
+                           [12] ∈ {0}
+[eva:final-states] Values at end of function argz_create_sep:
+  __fc_heap_status ∈ [--..--]
+  nlen ∈ {7; 8}
+  argz ∈ {{ NULL ; &__malloc_argz_create_sep_l202[0] }}
+  len ∈ {7; 13}
+  __retres ∈ {0; 12}
+  __malloc_argz_create_sep_l202[0] ∈ {97}
+                               [1] ∈ {0}
+                               [2] ∈ {98}
+                               [3] ∈ {0}
+                               [4] ∈ {99}
+                               [5] ∈ {100}
+                               [6] ∈ {0}
+                               [7] ∈ UNINITIALIZED
+[eva:final-states] Values at end of function argz_delete:
+  len ∈ {17; 21}
+  __realloc_argz_append_l271_7[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {99}
+                              [3] ∈ {100}
+                              [4] ∈ {0}
+                              [5] ∈ {98; 103}
+                              [6] ∈ {104; 108}
+                              [7] ∈ {0; 97}
+                              [8] ∈ {0; 105}
+                              [9] ∈ {103; 106}
+                              [10] ∈ {0; 104}
+                              [11] ∈ {0; 107}
+                              [12] ∈ {0; 105}
+                              [13] ∈ {98; 106}
+                              [14] ∈ {0; 108}
+                              [15] ∈ {97; 107}
+                              [16] ∈ {0}
+                              [17] ∈ {98}
+                              [18] ∈ {108}
+                              [19] ∈ {97}
+                              [20] ∈ {0}
+                              [21] ∈ {97}
+                              [22] ∈ {0}
+[eva:final-states] Values at end of function argz_insert:
+  before ∈
+        {{ NULL ; &__realloc_argz_append_l271_7[0] ;
+           &__realloc_argz_insert_l157[0] }}
+  argz ∈
+      {{ &__realloc_argz_append_l271_7[0] ; &__realloc_argz_insert_l157[0] ;
+         &__realloc_argz_append_l271_8[0] }}
+  len ∈ {17; 21; 24}
+  p ∈ {{ &__realloc_argz_append_l271_7[0] }} or ESCAPINGADDR
+  __retres ∈ {0; 12}
+  __realloc_argz_insert_l157[0] ∈ {109}
+                            [1] ∈ {110}
+                            [2] ∈ {111}
+                            [3] ∈ {0}
+                            [4] ∈ {97}
+                            [5] ∈ {0}
+                            [6] ∈ {99}
+                            [7] ∈ {100}
+                            [8] ∈ {0}
+                            [9] ∈ {103}
+                            [10] ∈ {104}
+                            [11] ∈ {0}
+                            [12] ∈ {105}
+                            [13] ∈ {106}
+                            [14] ∈ {0}
+                            [15] ∈ {107}
+                            [16] ∈ {0}
+                            [17] ∈ {98}
+                            [18] ∈ {108}
+                            [19] ∈ {97}
+                            [20] ∈ {0}
+  __realloc_argz_append_l271_8[0] ∈ {109}
+                              [1] ∈ {110}
+                              [2] ∈ {111}
+                              [3] ∈ {0}
+                              [4] ∈ {97}
+                              [5] ∈ {0}
+                              [6] ∈ {99}
+                              [7] ∈ {100}
+                              [8] ∈ {0}
+                              [9] ∈ {103}
+                              [10] ∈ {104}
+                              [11] ∈ {0}
+                              [12] ∈ {105}
+                              [13] ∈ {106}
+                              [14] ∈ {0}
+                              [15] ∈ {107}
+                              [16] ∈ {0}
+                              [17] ∈ {98}
+                              [18] ∈ {108}
+                              [19] ∈ {97}
+                              [20] ∈ {0}
+                              [21..22] ∈ {122}
+                              [23] ∈ {0}
+[eva:final-states] Values at end of function strndup:
+  __fc_errno ∈ [--..--]
+  __fc_heap_status ∈ [--..--]
+  l ∈ {0}
+  p ∈ {{ NULL ; &__malloc_strndup_l336 ; &__malloc_strndup_l336_0 }}
+  __retres ∈ {{ NULL ; &__malloc_strndup_l336 ; &__malloc_strndup_l336_0 }}
+  __malloc_strndup_l336 ∈ {0}
+  __malloc_strndup_l336_0 ∈ {0}
+[eva:final-states] Values at end of function strstr:
+  __retres ∈ {{ NULL ; &__realloc_argz_append_l271_1{[7], [18]} }}
+[eva:final-states] Values at end of function argz_replace:
+  __fc_errno ∈ [--..--]
+  __fc_heap_status ∈ [--..--]
+  er ∈ {0; 12}
+  argz ∈
+      {{ &__realloc_argz_append_l271_1[0] ;
+         &__realloc_argz_append_l271_7[0] }}
+  len ∈ {21; 23}
+  replace_count ∈ {2; 3}
+  __realloc_argz_append_l271_7[0] ∈ {97}
+                              [1] ∈ {0}
+                              [2] ∈ {98}
+                              [3] ∈ {0}
+                              [4] ∈ {99}
+                              [5] ∈ {100}
+                              [6] ∈ {0}
+                              [7] ∈ {98}
+                              [8] ∈ {108}
+                              [9] ∈ {97}
+                              [10] ∈ {0}
+                              [11] ∈ {103}
+                              [12] ∈ {104}
+                              [13] ∈ {0}
+                              [14] ∈ {105}
+                              [15] ∈ {106}
+                              [16] ∈ {0}
+                              [17] ∈ {107}
+                              [18] ∈ {0}
+                              [19] ∈ {98}
+                              [20] ∈ {108}
+                              [21] ∈ {97}
+                              [22] ∈ {0}
+[eva:final-states] Values at end of function main:
+  __fc_errno ∈ [--..--]
+  __fc_heap_status ∈ [--..--]
+  res ∈ {0}
+  argv[0] ∈ {{ "this" }}
+      [1] ∈ {{ "is" }}
+      [2] ∈ {{ "argz" }}
+      [3] ∈ {0}
+  argz ∈ ESCAPINGADDR
+  len ∈ {24}
+  replace_count ∈ {3}
+  p ∈ ESCAPINGADDR
+  __retres ∈ {0}

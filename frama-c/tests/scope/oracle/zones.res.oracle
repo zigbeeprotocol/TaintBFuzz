@@ -1,0 +1,209 @@
+[kernel] Parsing zones.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0..9] ∈ {0}
+  S ∈ {0}
+  X ∈ {0}
+  Y ∈ {0}
+  Z ∈ {0}
+  Xf ∈ {0}
+  Xg ∈ {0}
+  Yf ∈ {0}
+  Yg ∈ {0}
+[eva] computing for function simple <- main.
+  Called from zones.c:73.
+[eva:alarm] zones.c:15: Warning: signed overflow. assert x + 1 ≤ 2147483647;
+[eva:alarm] zones.c:16: Warning: signed overflow. assert y + z ≤ 2147483647;
+[eva] Recording results for simple
+[eva] Done for function simple
+[eva] computing for function array1 <- main.
+  Called from zones.c:74.
+[eva:alarm] zones.c:21: Warning: accessing out of bounds index. assert 0 ≤ x;
+[eva:alarm] zones.c:21: Warning: accessing out of bounds index. assert x < 10;
+[eva:alarm] zones.c:22: Warning: 
+  signed overflow. assert T[0] + y ≤ 2147483647;
+[eva] Recording results for array1
+[eva] Done for function array1
+[eva] computing for function struct1 <- main.
+  Called from zones.c:75.
+[eva] Recording results for struct1
+[eva] Done for function struct1
+[eva] computing for function ctrl1 <- main.
+  Called from zones.c:76.
+[eva] Recording results for ctrl1
+[eva] Done for function ctrl1
+[eva] computing for function caller <- main.
+  Called from zones.c:78.
+[eva] computing for function f <- caller <- main.
+  Called from zones.c:66.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function g <- caller <- main.
+  Called from zones.c:67.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] computing for function g <- caller <- main.
+  Called from zones.c:68.
+[eva:alarm] zones.c:60: Warning: signed overflow. assert a + b ≤ 2147483647;
+[eva] Recording results for g
+[eva] Done for function g
+[eva] computing for function f <- caller <- main.
+  Called from zones.c:68.
+[eva:alarm] zones.c:54: Warning: signed overflow. assert x + y ≤ 2147483647;
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for caller
+[eva] Done for function caller
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function array1:
+  T[0] ∈ [--..--]
+   [1..9] ∈ {0; 3}
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function ctrl1:
+  a ∈ [--..--]
+[eva:final-states] Values at end of function f:
+  Xf ∈ [0..9]
+  Yf ∈ [-2147483648..2147483644]
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function g:
+  Xg ∈ [--..--]
+  Yg ∈ [-2147483648..2147483644]
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function caller:
+  Xf ∈ [0..9]
+  Xg ∈ [--..--]
+  Yf ∈ [-2147483648..2147483644]
+  Yg ∈ [-2147483648..2147483644]
+  x1 ∈ {0}
+  y1 ∈ {0}
+  z1 ∈ {0}
+  a1 ∈ {0}
+  b1 ∈ {0}
+  c1 ∈ {0}
+  pf ∈ {{ &f ; &g }}
+[eva:final-states] Values at end of function simple:
+  x ∈ [-2147483645..2147483647]
+  y ∈ {3}
+[eva:final-states] Values at end of function struct1:
+  s.a ∈ [0..9]
+   .b ∈ [--..--]
+  __retres ∈ [0..9]
+[eva:final-states] Values at end of function main:
+  T[0] ∈ [--..--]
+   [1..9] ∈ {0; 3}
+  Xf ∈ [0..9]
+  Xg ∈ [--..--]
+  Yf ∈ [-2147483648..2147483644]
+  Yg ∈ [-2147483648..2147483644]
+  __retres ∈ {0}
+[pdg] computing for function simple
+[pdg] done for function simple
+Current program point = return in function simple
+Zones for x at current program point =
+Stmt:1 -> z
+Stmt:2 -> y; z
+Stmt:3 -> y; z
+Stmt:5 -> x
+[pdg] computing for function array1
+[pdg] done for function array1
+
+
+Current program point = return in function array1
+Zones for T[0] at current program point =
+Stmt:7 -> T[0]; x; y
+Stmt:8 -> T[0]; y
+Stmt:10 -> T[0]
+Stmt:61 -> T[0]
+
+
+Zones for T[1] at current program point =
+Stmt:7 -> T[1]; x
+Stmt:8 -> T[1]
+Stmt:10 -> T[1]
+Stmt:61 -> T[1]
+
+
+Zones for T[x] at current program point =
+Stmt:7 -> T[0..9]; x; y
+Stmt:8 -> T[0..9]; x; y
+Stmt:10 -> T[0..9]; x
+Stmt:61 -> T[0..9]; x
+[pdg] computing for function struct1
+[pdg] done for function struct1
+
+
+Current program point = return in function struct1
+Zones for s.a at current program point =
+Stmt:12 -> x
+Stmt:13 -> x
+Stmt:14 -> s.a
+Stmt:16 -> s.a
+Stmt:63 -> s.a
+
+
+Zones for s.b at current program point =
+Stmt:12 -> S; y
+Stmt:13 -> y; s.b
+Stmt:14 -> y; s.b
+Stmt:16 -> s.b
+Stmt:63 -> s.b
+
+
+Zones for s at current program point =
+Stmt:12 -> S; x; y
+Stmt:13 -> x; y; s.b
+Stmt:14 -> y; s
+Stmt:16 -> s
+Stmt:63 -> s
+[pdg] computing for function ctrl1
+[pdg] done for function ctrl1
+
+
+Current program point = return in function ctrl1
+Zones for a at current program point =
+Stmt:19 -> x; y; z
+Stmt:20 -> y
+Stmt:21 -> a
+Stmt:22 -> a
+Stmt:23 -> z
+Stmt:25 -> a
+
+
+Current program point = label Lt2 in function ctrl1
+Zones for a at current program point =
+Stmt:19 -> x; y
+Stmt:20 -> y
+Stmt:21 -> a
+Stmt:22 -> a
+Stmt:23 -> \nothing
+Stmt:25 -> \nothing
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[pdg] computing for function caller
+[pdg] done for function caller
+
+
+Current program point = return in function caller
+Zones for Yf at current program point =
+Stmt:37 -> cond; v
+Stmt:38 -> cond; v
+Stmt:39 -> cond; v
+Stmt:40 -> cond; v; z1
+Stmt:41 -> cond; v; z1
+Stmt:42 -> cond; v; z1
+Stmt:44 -> cond; v; z1
+Stmt:45 -> v; z1
+Stmt:46 -> v; z1
+Stmt:47 -> v; z1; tmp
+Stmt:48 -> v; z1; pf
+Stmt:49 -> Yf; v; pf
+Stmt:50 -> Yf; v; pf
+Stmt:51 -> Yf
+
+

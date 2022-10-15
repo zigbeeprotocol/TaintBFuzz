@@ -1,0 +1,54 @@
+[kernel] Parsing label.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {0}
+  b ∈ {0}
+  d ∈ {0}
+  e ∈ {0}
+  i ∈ {0}
+  p ∈ {0}
+  q ∈ {0}
+[eva:alarm] label.i:14: Warning: 
+  pointer downcast. assert (unsigned int)(&d + 1) ≤ 2147483647;
+[eva] label.i:18: 
+  Assigning imprecise value to *((char *)(& p) + i)
+  (pointing to p with offsets {0}).
+  The imprecision originates from Misaligned {label.i:18}
+[eva] label.i:18: 
+  Assigning imprecise value to *((char *)(& p) + i)
+  (pointing to p with offsets {0; 8}).
+  The imprecision originates from Misaligned {label.i:18}
+[eva] label.i:18: 
+  Assigning imprecise value to *((char *)(& p) + i)
+  (pointing to p with offsets {0; 8; 16}).
+  The imprecision originates from Misaligned {label.i:18}
+[eva] label.i:18: 
+  Assigning imprecise value to *((char *)(& p) + i)
+  (pointing to p with offsets {0; 8; 16; 24}).
+  The imprecision originates from Misaligned {label.i:18}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  a ∈ {{ &d + {4} }}
+  b ∈ {1; 2}
+  i ∈ {4}
+  p ∈ {{ garbled mix of &{a; b} (origin: Misaligned {label.i:18}) }}
+  q ∈ {{ &a }}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  a FROM \nothing
+  b FROM c
+  i FROM i
+  p FROM i; c
+  q FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    a; b; i; p; q
+[inout] Inputs for function main:
+    i; p; q

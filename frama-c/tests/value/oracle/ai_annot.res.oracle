@@ -1,0 +1,41 @@
+[kernel] Parsing ai_annot.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  u ∈ {0}
+  v ∈ {0}
+  w ∈ {0}
+[eva:alarm] ai_annot.i:9: Warning: assertion got status unknown.
+[eva:alarm] ai_annot.i:10: Warning: assertion got status unknown.
+[eva:alarm] ai_annot.i:11: Warning: assertion got status unknown.
+[eva:alarm] ai_annot.i:12: Warning: out of bounds write. assert \valid(p + 1);
+[eva:alarm] ai_annot.i:14: Warning: 
+  out of bounds read. assert \valid_read(p + 2);
+[eva:alarm] ai_annot.i:14: Warning: 
+  signed overflow. assert x + *(p + 2) ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[scope:rm_asserts] removing 2 assertion(s)
+[scope:rm_asserts] ai_annot.i:12: 
+  removing redundant assert Eva: mem_access: \valid(p + 1);
+[scope:rm_asserts] ai_annot.i:14: 
+  removing redundant assert Eva: mem_access: \valid_read(p + 2);
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __retres ∈ [--..--]
+  S_p[0] ∈ [--..--]
+     [1] ∈ [0..2147483647]
+     [2] ∈ [--..--]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  S_p[1] FROM x; p
+  \result FROM x; p; S_p[2]
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    __retres; S_p[1]
+[inout] Inputs for function main:
+    S_p[2]

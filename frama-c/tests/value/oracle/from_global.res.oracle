@@ -1,0 +1,49 @@
+[kernel] Parsing from_global.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  A ∈ {0}
+  B ∈ {0}
+  C ∈ {0}
+  D ∈ {0}
+  E ∈ {0}
+[eva] computing for function f <- main.
+  Called from from_global.i:13.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  B ∈ {0}
+  C ∈ {0}
+[eva:final-states] Values at end of function main:
+  A ∈ {0}
+  B ∈ {0}
+  C ∈ {0}
+  __retres ∈ {0}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  B FROM A
+  C FROM x
+  \result FROM x
+[from] Function main:
+  A FROM D
+  B FROM D
+  C FROM E
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    B; C
+[inout] Inputs for function f:
+    A; C
+[inout] Out (internal) for function main:
+    A; B; C; __retres
+[inout] Inputs for function main:
+    A; C; D; E

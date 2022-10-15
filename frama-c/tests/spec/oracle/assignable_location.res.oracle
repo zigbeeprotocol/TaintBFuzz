@@ -1,0 +1,30 @@
+[kernel] Parsing assignable_location.i (no preprocessing)
+[kernel:annot-error] assignable_location.i:43: Warning: unexpected token ';'
+[kernel:annot-error] assignable_location.i:35: Warning: 
+  not an addressable left value: \result. Ignoring logic specification of function annotations_to_reject
+[kernel:annot-error] assignable_location.i:37: Warning: 
+  not an assignable left value: *t. Ignoring code annotation
+[kernel:annot-error] assignable_location.i:38: Warning: 
+  not an assignable left value: *(t + 0). Ignoring code annotation
+[kernel:annot-error] assignable_location.i:39: Warning: 
+  not an assignable left value: *(t + (0 .. 0)). Ignoring code annotation
+[kernel:annot-error] assignable_location.i:40: Warning: 
+  not an assignable left value: (int)x. Ignoring code annotation
+[kernel:annot-error] assignable_location.i:41: Warning: 
+  not an assignable left value: (char)x. Ignoring code annotation
+[kernel:annot-error] assignable_location.i:42: Warning: 
+  not an addressable left value: (char)x. Ignoring code annotation
+[kernel:annot-error] assignable_location.i:44: Warning: 
+  not an addressable left value: \empty. Ignoring code annotation
+[kernel:annot-error] assignable_location.i:45: Warning: 
+  not an assignable left value: lx. Ignoring code annotation
+[kernel:annot-error] assignable_location.i:46: Warning: 
+  not a valid dependency: lx. Ignoring code annotation
+[kernel:annot-error] assignable_location.i:50: Warning: 
+  unbound logic variable l. Ignoring logic specification of function from_address_to_reject
+[kernel:annot-error] assignable_location.i:53: Warning: 
+  not an addressable left value: lx. Ignoring code annotation
+[kernel:annot-error] assignable_location.i:70: Warning: 
+  not an addressable left value: m.t. Ignoring specification of function refuse_address_of_model_field
+[kernel:annot-error] assignable_location.i:73: Warning: 
+  not an addressable left value: m.z.y. Ignoring specification of function refuse_subfield_of_model_field

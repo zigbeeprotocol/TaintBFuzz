@@ -1,0 +1,321 @@
+# frama-c -wp [...]
+[kernel] Parsing initialized_memtyped.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function formal
+------------------------------------------------------------
+
+Goal Assertion 'provable' (file initialized_memtyped.i, line 83):
+Assume { (* Heap *) Type: cinits(Init_0). }
+Prove: (Init_0[global(P_x_59)]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function glob_arr
+------------------------------------------------------------
+
+Goal Post-condition 'provable' in 'glob_arr':
+Assume {
+  (* Heap *)
+  Type: (region(G_ga_47) <= 0) /\ cinits(Init_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+}
+Prove: (Init_0[shift_sint32(global(G_ga_47), i)]=true).
+
+------------------------------------------------------------
+
+Goal Post-condition 'unknown' in 'glob_arr':
+Assume {
+  (* Heap *)
+  Type: (region(G_ga_47) <= 0) /\ (region(pga_0.base) <= 0) /\
+      cinits(Init_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+}
+Prove: (Init_0[shift_sint32(pga_0, i)]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function glob_var
+------------------------------------------------------------
+
+Goal Post-condition 'provable' in 'glob_var':
+Assume { (* Heap *) Type: (region(G_gx_41) <= 0) /\ cinits(Init_0). }
+Prove: (Init_0[global(G_gx_41)]=true).
+
+------------------------------------------------------------
+
+Goal Post-condition 'unknown' in 'glob_var':
+Assume {
+  (* Heap *)
+  Type: (region(G_gx_41) <= 0) /\ (region(px_0.base) <= 0) /\ cinits(Init_0).
+}
+Prove: (Init_0[px_0]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function ptr_on_local
+------------------------------------------------------------
+
+Goal Assertion 'provable' (file initialized_memtyped.i, line 89):
+Let a = global(L_x_63).
+Assume {
+  (* Heap *)
+  Type: cinits(Init_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 2).
+  (* Initializer *)
+  Init: (Init_0[shift_sint32(a, 0)]=true).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 < i_1) -> ((i_1 <= 2) ->
+      (Init_0[shift_sint32(a, i_1)]=true))).
+}
+Prove: (Init_0[shift_sint32(a, i)]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function test
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 12):
+Assume { (* Heap *) Type: (region(x.base) <= 0) /\ cinits(Init_0). }
+Prove: (Init_0[x]=true).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 13):
+Assume { (* Heap *) Type: (region(a.base) <= 0) /\ cinits(Init_0). }
+Prove: IsInitArray_sint32(a, 2, Init_0).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 14):
+Assume { (* Heap *) Type: (region(c.base) <= 0) /\ cinits(Init_0). }
+Prove: IsInit_S2_C(c, Init_0).
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memtyped.i, line 17):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memtyped.i, line 20):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 21):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: (Init_0[x <- true][shift_sint32(a, 1)]=true).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 22):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInitArray_sint32(a, 2,
+         Init_0[x <- true][shift_sint32(a, 0) <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memtyped.i, line 25):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memtyped.i, line 26):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memtyped.i, line 27):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInitArray_sint32(a, 2,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memtyped.i, line 30):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 31):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInit_S1_S(shiftfield_F2_C_s(c),
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 32):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInitArray_sint32(shiftfield_F2_C_a(c), 10,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 33):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInit_S2_C(c,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memtyped.i, line 36):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 37):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: (Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+          <- true][shiftfield_F1_S_y(shiftfield_F2_C_s(c))]=true).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 38):
+Let a_1 = shiftfield_F2_C_s(c).
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInit_S1_S(a_1,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true][shiftfield_F1_S_x(a_1)
+           <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 39):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInit_S2_C(c,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true]
+           [shiftfield_F1_S_x(shiftfield_F2_C_s(c)) <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memtyped.i, line 42):
+Let a_1 = shiftfield_F2_C_s(c).
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInit_S1_S(a_1,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true][shiftfield_F1_S_x(a_1)
+           <- true][shiftfield_F1_S_y(a_1) <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 43):
+Let a_1 = shiftfield_F2_C_s(c).
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInit_S2_C(c,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true][shiftfield_F1_S_x(a_1)
+           <- true][shiftfield_F1_S_y(a_1) <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memtyped.i, line 46):
+Let a_1 = shiftfield_F2_C_s(c).
+Let a_2 = shiftfield_F2_C_a(c).
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 8).
+}
+Prove: (Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+          <- true][shiftfield_F2_C_x(c) <- true][shiftfield_F1_S_x(a_1)
+          <- true][shiftfield_F1_S_y(a_1) <- true][shift_sint32(a_2, 8)
+          <- true][shift_sint32(a_2, 7) <- true][shift_sint32(a_2, 6)
+          <- true][shift_sint32(a_2, 5) <- true][shift_sint32(a_2, 4)
+          <- true][shift_sint32(a_2, 3) <- true][shift_sint32(a_2, 2)
+          <- true][shift_sint32(a_2, 1) <- true][shift_sint32(a_2, 0)
+          <- true][shift_sint32(a_2, i)]=true).
+
+------------------------------------------------------------
+
+Goal Check 'unknown' (file initialized_memtyped.i, line 47):
+Let a_1 = shiftfield_F2_C_s(c).
+Let a_2 = shiftfield_F2_C_a(c).
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInit_S2_C(c,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true][shiftfield_F1_S_x(a_1)
+           <- true][shiftfield_F1_S_y(a_1) <- true][shift_sint32(a_2, 8)
+           <- true][shift_sint32(a_2, 7) <- true][shift_sint32(a_2, 6)
+           <- true][shift_sint32(a_2, 5) <- true][shift_sint32(a_2, 4)
+           <- true][shift_sint32(a_2, 3) <- true][shift_sint32(a_2, 2)
+           <- true][shift_sint32(a_2, 1) <- true][shift_sint32(a_2, 0)
+           <- true]).
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memtyped.i, line 50):
+Let a_1 = shiftfield_F2_C_s(c).
+Let a_2 = shiftfield_F2_C_a(c).
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(x.base) <= 0) /\ cinits(Init_0).
+}
+Prove: IsInit_S2_C(c,
+         Init_0[x <- true][shift_sint32(a, 0) <- true][shift_sint32(a, 1)
+           <- true][shiftfield_F2_C_x(c) <- true][shiftfield_F1_S_x(a_1)
+           <- true][shiftfield_F1_S_y(a_1) <- true][shift_sint32(a_2, 8)
+           <- true][shift_sint32(a_2, 7) <- true][shift_sint32(a_2, 6)
+           <- true][shift_sint32(a_2, 5) <- true][shift_sint32(a_2, 4)
+           <- true][shift_sint32(a_2, 3) <- true][shift_sint32(a_2, 2)
+           <- true][shift_sint32(a_2, 1) <- true][shift_sint32(a_2, 0)
+           <- true][shift_sint32(a_2, 9) <- true]).
+
+------------------------------------------------------------

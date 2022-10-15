@@ -1,0 +1,115 @@
+%% Chapter WP Models
+
+\section{Runtime}\label{sec-runtime}
+
+\subsection{Description and limitations}
+
+This model is a very low level one, where the memory is just a big array of bits
+indexed by addresses. The values, represented by bit vectors 
+(\whyinline{bits}),
+are stored in memory zones (\whyinline{rt_zone})
+represented by a starting address, and a size (number of bits).
+The  \whyinline{rt_load(m, z)} operation returns the bits stored in the zone
+\whyinline{z}
+of the memory \whyinline{m}, and \whyinline{rt_store (m, a, b)} returns a memory similar to
+\whyinline{m} except that the bits \whyinline{b} have been stored at the address
+\whyinline{a}.
+
+Operations \whyinline{rt_to_bits} and \whyinline{rt_from_bits} specify
+how to interpret the bit vectors into typed values.
+In simple cases, we don't need to go into representation details,
+but it can be necessary when the C program uses some casts
+and other architecture dependent features
+such as endianness for instance.
+
+This model also deals with memory management of variables 
+(see \whyinline{rt_valloc} and \whyinline{rt_vfree})
+to be able to prove the validity of pointers,
+but the dynamic allocations are not handled yet.
+
+\subsection{Examples}
+
+\subsubsection{Simple variable assignment}
+
+Let's begin with the simple assignment example used in Hoare presentation.
+To check this assertion after this statement:
+\begin{ccode}
+  x = y+1;
+  //@ assert x > 0;
+\end{ccode}
+the proof obligation with the Runtime model is a lot more complex:
+\begin{whycode}
+  forall ma:memalloc.
+  forall mb:memory.
+  let mb=
+    rt_store(mb,rt_vaddr(ma,X_x),
+      rt_to_bits(sint32_format,
+        (rt_from_bits(rt_load(mb,rt_vzone(ma,X_y)),sint32_format)+1))) in
+  (0 < rt_from_bits(rt_load(mb,rt_vzone(ma,X_x)),sint32_format))
+\end{whycode}
+First of all, we see that the memory state is represented by two variables:
+$ma$ is used for allocation information, and $mb$ for the values (bits).
+The last line is the translated initial property which say that if we read
+(\whyinline{
+rt_load}) in $mb$ the bits stored in the zone where $x$ is allocated
+(\whyinline{
+rt_vzone(ma,X_x)}), and if we interpret (\whyinline{rt_from_bits})
+those bits as a signed 32 bit integer (which is the type of $x$),
+then we should get a positive value.
+The other lines represent the bit memory update (\whyinline{rt_store(mb,...)})
+due to the assignment.
+
+Trying to complete the proof, the Runtime model requires us to prove
+that \cinline{(y+1)} still fits in the \whyinline{sint32_format} which hasn't
+been requested by the Hoare model because of its abstraction level.
+This condition is implied by the RTE generated annotations
+that should be check separately (see \verb!-rte! option).
+
+This example might look a little frightening because of the size of the proof
+obligation compared to the size of the code, and that is precisely why 
+it is not advisable to use the Runtime model when its low level features are not
+required. But we will see in \S\ref{sec-funvar} that in some simple cases,
+such as this one, dramatic simplifications can be done.
+
+
+\subsubsection{Simple variable allocation}
+
+Runtime model defines the operation \whyinline{rt_valloc} to represent
+a modification of the allocation information. So checking the assertion
+\begin{ccode}
+  int x;
+  //@ assert \valid (&x);
+\end{ccode}
+gives the following the proof obligation:
+\begin{whycode}
+  forall ma:memalloc.
+  let ma= rt_valloc(ma,X_x,32) in
+  rt_valid(ma, rt_vzone(ma,X_x))
+\end{whycode}
+which is trivially true according to Runtime properties.
+
+Conversely, the operation \whyinline{rt_vfree} is used to represent
+the deallocation. It makes possible to check this kind of property:
+\begin{ccode}
+  { int x; p = &x; }
+  //@ assert ! \valid (p);
+  \end{ccode}
+That gives the following proof obligation:
+\begin{whycode}
+  forall ma:memalloc.
+  forall mb:memory.
+  let ma1 = rt_valloc(ma,X_x,32) in
+  let mb= rt_store(mb,rt_vaddr(ma1,X_p),
+             rt_to_bits(rt_addr_format,rt_vaddr(ma1,X_x_0_1))) in
+  let ma2= rt_vfree(ma1,X_x_0_1) in
+  (not rt_valid(ma2,
+      rt_zone(rt_from_bits(rt_load(mb,rt_vzone(ma2,X_p)),rt_addr_format),32)))
+\end{whycode}
+but could be simplified, using Runtime rules, to:
+\begin{whycode}
+  forall ma:memalloc.
+  let ma1 = rt_valloc(ma0,X_x,32) in
+  let ma2= rt_vfree(ma1,X_x) in
+  not rt_valid (ma2, rt_zone(rt_vaddr(ma1,X_x), 32))
+\end{whycode}
+which is true because, of course, a zone is not valid after having been freed.

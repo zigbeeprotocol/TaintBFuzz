@@ -1,0 +1,28 @@
+# frama-c -wp [...]
+[kernel] Parsing doomed_call.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 10 goals scheduled
+[wp] [Qed] Goal typed_f1_ok_ensures : Valid
+[wp] [Qed] Goal typed_f1_ok_exits : Valid
+[wp] [Qed] Goal typed_f2_ok_ensures : Valid
+[wp] [Qed] Goal typed_f2_ok_exits : Valid
+[wp] [Qed] Goal typed_f3_ko_ensures : Valid
+[wp] [Qed] Goal typed_f3_ok_ensures : Valid
+[wp] [Qed] Goal typed_f4_ok_ensures : Valid
+[wp] [Qed] Goal typed_f4_ko_ensures : Valid
+[wp] [Qed] Goal typed_f5_ok_ensures : Valid
+[wp] [Qed] Goal typed_f5_ko_ensures : Valid
+[wp] Proved goals:   10 / 10
+  Qed:            10
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f1_ok                     2        -        2       100%
+  f2_ok                     2        -        2       100%
+  f3_ko                     1        -        1       100%
+  f3_ok                     1        -        1       100%
+  f4_ok                     1        -        1       100%
+  f4_ko                     1        -        1       100%
+  f5_ok                     1        -        1       100%
+  f5_ko                     1        -        1       100%
+------------------------------------------------------------

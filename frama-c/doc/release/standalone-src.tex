@@ -1,0 +1,90 @@
+\appendix
+
+\chapter{Standalone Source Release}
+\label{chap:make-src-distrib}
+
+Requirements and tips to create a source release of Frama-C
+(i.e. \texttt{make src-distrib}).
+
+\section{Requirements}
+
+You will need the following programs:
+
+\begin{itemize}
+\item a custom (unreleased) version of \texttt{headache};
+\item on Mac OS, binaries \texttt{gtar} and \texttt{gzip}.
+\end{itemize}
+
+Details about how to install them are presented below.
+
+\section{Custom headache}
+
+Clone the following repository (by default, every Frama-C developer has
+access to it):
+
+\texttt{git clone git@git.frama-c.com/dev/headache.git}
+
+Then run:
+
+\verb+./configure && make && make install+
+
+Note that some extra opam packages may be needed, such as \texttt{camomile}.
+
+This version of \texttt{headache} needs to be in your PATH for the next steps.
+
+\section{Check your headers}
+
+Before making a source distribution, make sure your headers are up-to-date,
+by running:
+
+\texttt{make check-headers}
+
+Any plug-ins you are distributing along with Frama-C should have their
+distributed files (all OCaml sources, plus those listed in
+\verb+PLUGIN_DISTRIBUTED_EXTERNAL+) listed in file:
+
+\verb+headers/header_spec.txt+
+
+Their headers will then be checked by the above make target.
+
+\textbf{Note:} if you fail to check your headers, the distribution script may
+corrupt your files. You were warned.
+
+\section{(Mac OS only) GNU tools}
+
+Some GNU-specific tools are necessary to generate a source distribution. They
+are:
+
+\begin{itemize}
+\item \texttt{gtar}: available via \texttt{brew install gnu-tar}
+\item \texttt{gzip}: available via \texttt{brew install gzip}
+\end{itemize}
+
+Both commands must be available in your PATH.
+
+\section{Making a distribution archive}
+
+You can make an {\em closed-source} distribution (default),
+or an {\em open-source} distribution.
+
+\begin{itemize}
+\item closed-source: headers contain the CEA closed-souce license; safe to
+  distribute (receiver cannot re-distribute them publicly).
+\item open-source: headers are LGPL; used for public releases, but not for
+  intermediate versions (e.g. when uploading a specific version of Frama-C
+  inside a virtual machine for a paper).
+\end{itemize}
+
+Use Makefile variable \verb+OPEN_SOURCE=yes+ to create an open-source release,
+as in:
+
+\verb+make src-distrib OPEN_SOURCE=yes+
+
+Otherwise, by default a closed-source archive will be created.
+
+\subsection{Reproducible builds}
+
+Archives try to follow recommendations from \url{https://reproducible-builds.org/docs/archives/},
+that is, sorted file order, no user metadata, deterministic timestamps
+(one per day). Still, the version of \verb+autoconf+ used and other factors
+may affect the generated archive.

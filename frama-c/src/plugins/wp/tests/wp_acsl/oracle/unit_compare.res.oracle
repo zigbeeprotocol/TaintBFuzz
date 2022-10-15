@@ -1,0 +1,115 @@
+# frama-c -wp [...]
+[kernel] Parsing unit_compare.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_X_Y' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_X1_Y' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x < y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_X_Y1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= (1 + y).
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_X1_Y1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_Xm1_Y' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= (1 + y).
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_X_Ym1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x < y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_Xm1_Ym1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_X1_Ym1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: (2 + x) <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LE_Xm1_Y1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= (2 + y).
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_X_Y' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x < y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_X1_Y' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: (2 + x) <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_X_Y1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_X1_Y1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x < y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_Xm1_Y' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_X_Ym1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: (2 + x) <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_Xm1_Ym1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x < y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_X1_Ym1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: (3 + x) <= y.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'LT_Xm1_Y1' in 'main':
+Assume { Type: is_sint32(x) /\ is_sint32(y). }
+Prove: x <= (1 + y).
+
+------------------------------------------------------------

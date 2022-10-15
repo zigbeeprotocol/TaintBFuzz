@@ -1,0 +1,198 @@
+\newcommand{\bb}{\bigskip}
+
+\newcommand{\spare}{\ensuremath{\mathit{Spare}}}
+\newcommand{\sigc}{\ensuremath{\mathit{sig_c}}}
+\newcommand{\insigc}{\ensuremath{\mathit{inSig_c}}}
+\newcommand{\outsigc}{\ensuremath{\mathit{outSig_c}}}
+\newcommand{\sigf}{\ensuremath{\mathit{sig_f}}}
+\newcommand{\insigf}{\ensuremath{\mathit{inSig_f}}}
+\newcommand{\outsigf}{\ensuremath{\mathit{outSig_f}}}
+\newcommand{\sig}{\ensuremath{\mathit{sig}}}
+\newcommand{\true}{\ensuremath{\mathit{true}}}
+\newcommand{\false}{\ensuremath{\mathit{false}}}
+ 
+\newcommand{\imply}{\Rightarrow}
+\newcommand{\lt}{<}
+ 
+\newcommand{\inout}{\ensuremath{\mathit{InOut}}}
+\newcommand{\call}{\ensuremath{\mathit{call}}}
+\newcommand{\length}{\ensuremath{\mathit{length}}}
+\newcommand{\none}{\ensuremath{\mathit{None}}}
+ 
+ 
+\newcommand{\topm}{{\top}_m}
+\newcommand{\tops}{{\top}_s}
+\newcommand{\topc}{{\top}_c}
+\newcommand{\botm}{{\bot}_m}
+\newcommand{\bots}{{\bot}_s}
+\newcommand{\botc}{{\bot}_c}
+ 
+\newcommand{\option}[1]{\motcle{#1}{Options}{opt}{\textbf{#1}}}
+
+\newcommand{\defaction}[1]{\motcle{#1}{Actions}{act}}
+\newcommand{\labact}[2]{\index{Actions!#1}\label{sec-#1-#2}}
+\newcommand{\refact}[2]{\S\ref{sec-#1-#2}}
+%===============================================================================
+
+\chapter{Réduction interprocédurale}\label{sec-interproc}
+
+\section{Objectif}
+
+Le filtrage élémentaire vu précédemment n'est qu'un préalable à la réduction
+d'une application car lorsqu'une fonction a été réduite, il faut également
+traiter ses appels pour rester cohérent, et on peut aussi vouloir réduire les
+fonctions appelées.
+
+\subsection{Spécification du problème}
+
+Pour étendre le marquage intraprocédural
+déjà effectué à un calcul interprocédural,
+une première approche serait
+de propager le marquage à travers les appels de fonctions, mais cela conduit
+soit à un trop grand nombre de fonctions spécialisées si l'on distingue tous les
+appels, soit à trop de perte de précision si l'on en fait l'union.
+Ce problème est exposé plus en détail en \S\ref{sec-compat-sig}.
+L'objectif est donc d'obtenir un compromis acceptable et paramétrable.\\
+
+Dès lors que l'on décide de pouvoir avoir plusieurs spécialisations d'une même
+fonction source dans l'application finale,
+le mécanisme permettant d'obtenir un résultat cohérent devient relativement
+complexe. Par exemple,
+lorsqu'on s'intéresse au calcul de certaines données $d$ dans une fonction $g$, 
+on a vu au chapitre précédent comment calculer le marquage des éléments du PDG
+pour pouvoir réduire $g$. 
+Si $g$ appelle $h$, et que toutes les sorties de $h$ ne sont pas nécessaires au
+calcul de $d$ dans $g$, on peut aussi vouloir demander la spécialisation de $h$.
+Par ailleurs, si $g$ est appelée, 
+il est possible de remplacer un ou plusieurs appels par un appel
+à $g_1$. Ce traitement doit être appliqué récursivement puisque dès que l'on
+modifie le marquage d'une fonction, on peut avoir besoin également de modifier
+les fonctions appelées et appelantes.\\
+
+On décide donc de décomposer un traitement complet en différentes
+actions élémentaires parfaitement définies. Elles pourront ensuite être
+combinées automatiquement en fonction d'options de plus haut niveau.
+
+\subsection{Organisation des résultats}
+
+Le processus complet consiste à appliquer successivement 
+un certain nombre de requêtes exprimées par l'utilisateur
+afin de construire une nouvelle application.
+Nous appellerons \indexdef{projet courant} 
+l'état de cette nouvelle application à un instant donné.
+Il est composé~:
+\begin{itemize}
+  \item d'un ensemble de résultats (initialement vide)
+    sur les fonctions tels qu'ils ont été
+    présentés en \ref{sec-filtrage-fct}, c'est-à-dire de fonctions
+    spécialisées~;
+  \item et d'une liste d'actions qui sont
+encore à appliquer pour obtenir une application cohérente.
+\end{itemize}
+\bb
+
+Lorsque l'utilisateur exprime des requêtes, elles sont traduites en
+{\bf actions} qui sont rangées dans la liste des tâches en attente. 
+Les actions s'appliquent en séquence, c'est-à-dire qu'on ne peut pas appliquer
+une action si la précédente n'est pas terminée.
+L'application d'une action peut éventuellement générer de nouvelles actions.
+\bb
+
+Une action peut dans certains cas être supprimée ou modifiée~: 
+ce point est abordé en \S\ref{sec-gestion-actions}.
+\bb
+
+A la fin de l'analyse, il n'y a plus d'action à appliquer,
+et l'application résultante peut être générée.
+
+\subsection{Appel de fonction}
+
+Lors du marquage intraprocédural, on obtient les marques strictement nécessaires
+au calcul demandé. On peut en particulier en extraire les signatures des appels
+de fonction. Pour chacun d'entre eux, dès lors qu'il y a au moins un élément
+visible, il va falloir décider quelle est la fonction appelée.
+On a vu par exemple qu'on peut choisir de ne pas spécialiser les appels de
+fonction~: les entrées invisibles des appels devront alors être marqué comme
+superflus.
+
+\subsection{Propagation aux fonctions appelées}\label{sec-callee}
+
+Pour se laisser la possibilité de faire évoluer l'outil,
+  on décide d'offrir plusieurs possibilités~:
+\begin{itemize}
+\item une spécialisation par appel~: 
+pour chaque appel, on détermine les sorties
+utiles, et on génère la fonction appelée correspondante (si elle n'existe pas
+déjà),
+\item pas de spécialisation de fonction~: dès qu'on a besoin d'une des sorties
+d'une fonction, on laisse l'appel, et on a donc besoin de sélectionner tous les
+arguments d'appel,
+\item une seule spécialisation par fonction~: regroupement de toutes les 
+spécialisations nécessaires à l'application en une seule fonction,
+\item regroupement de fonctions spécialisées {\it a posteriori}, 
+à la demande de l'utilisateur.
+\end{itemize}
+
+\subsection{Propagation aux fonctions appelantes}\label{sec-caller}
+
+  Lorsqu'une fonction spécialisée a été calculée, on peut vouloir l'appeler
+  à la place de la fonction initiale, et ainsi propager la réduction.
+  Il faut pour cela pouvoir créer une requête qui désigne le point d'appel,
+  et la fonction spécialisée à utiliser. Cette requête revient à s'intéresser au
+  calcul des entrées visibles de la spécialisation au dessus du point d'appel.
+  
+  L'application d'une telle requête peut à son tour générer une demande de
+  spécialisation, éventuellement de la même fonction comme dans l'exemple
+  ci-dessous.
+
+\begin{exemple}
+La figure suivante montre un exemple de différentes étapes de la
+transformation des appels à $g$ dans $f$ par des appels à la fonction filtrée
+$g_1$, et comment on peut envisager de propager l'information.
+
+\begin{center}
+\uneimage{propagation}
+\end{center}
+
+\begin{enumerate}
+  \item calcul de la fonction $g_1$ : seule la seconde entrée est visible, les
+    sorties ne sont pas visibles;
+  \item remplacement du second appel à $g$ dans $f$ par un appel à $g_1$,
+    et sélection des éléments qui permettent de calculer l'entrée visible.
+    On voit que ce calcul nécessite de calculer la seconde sortie du premier
+    appel à $g_1$. Il faut donc calculer une seconde fonction $g_2$.
+  \item calcul de la fonction $g_2$ : elle doit avoir les mêmes éléments que
+    $g_1$ et calculer en plus sa seconde sortie. On voit ce cela nécessite la
+    visibilité de la première entrée.
+  \item sélection de ce qui permet de calculer la première entrée de $g_2$ dans
+    $f$.
+\end{enumerate}
+\end{exemple}
+
+\subsection{Sélection des appels d'une fonction}
+
+  En plus des critères de \slicing déjà vus qui consiste à sélectionner une
+  donnée à un point de programme, l'aspect interprocédural conduit à
+  définir un nouveau critère qui permet 
+  de ne garder que ce qui permet d'appeler une fonction donnée, 
+  et de calculer les contextes d'appels. 
+  La fonction peut être~:
+  \begin{itemize}
+    \item une fonction externe dont on n'a pas le code,
+    \item une fonction présente dans le code source,
+    \item une fonction issue d'un précédent filtrage,
+  \end{itemize}
+  et on peut choisir de sélectionner~:
+  \begin{itemize}
+    \item uniquement ce qui permet d'atteindre les points de programme des
+      appels à cette fonction,
+    \item ou bien également ce qui permet de calculer les entrées.
+  \end{itemize}
+
+  Ce filtrage peut par exemple être utilisé pour réduire une application
+  afin de permettre une analyse des fuites mémoire.
+  Il suffit pour cela de sélectionner les fonctions d'allocation (\verbtt{alloc},
+  \verbtt{malloc}, etc.) et la fonction de libération (\verbtt{free}).\\
+
+\input{interproc2.tex}
+

@@ -1,0 +1,206 @@
+
+\chapter{Exemple de marquage interprocédural}
+
+Cette partie présente comment les actions élémentaires précédemment présentées
+peuvent être utilisées pour répondre à des requêtes utilisateur de plus haut
+niveau. 
+
+
+\section{Présentation de l'exemple}
+
+Nous allons voir différents exemple de marquage de l'exemple ci-dessous.
+Dans tous les cas, on considère que l'utilisateur souhaite n'avoir qu'une
+spécialisation par fonction source dans le résultat, et qu'il demande
+systématiquement la propagation de son marquage aux appelants.
+\bb
+
+Pour simplifier la présentation,
+comme on ne s'intéresse ici qu'à la propagation interprocédurale,
+on n'utilise qu'une marque élémentaire $m$ quelconque qui rend un élément
+visible et la marque \spare{} déjà mentionnée.
+
+\noindent\begin{tabular}{p{4cm}p{4.5cm}p{5cm}}
+\begin{verbatim}
+int X, Y;
+int g (int u, int v, 
+       int w) {
+  lg1: X = u;
+  lg2: Y = u + v;
+  return w;
+  }
+\end{verbatim}
+&
+\begin{verbatim}
+int Z;
+int f (int a, int b, 
+       int c, int d, 
+       int e) {
+  int r;
+  lf1: r = g (a, b, c);
+  lf2: Z = g (r, d, e);
+  return X;
+  }
+\end{verbatim}
+&
+\begin{verbatim}
+int I, J, K, L, M, N;
+int main () {
+  lm1: /* ... */
+  lm2: N = f (I, J, K, L, M);
+  lm3: /* ... */
+  }
+\end{verbatim}
+\end{tabular}
+
+\bb\centerline{\uneimage{exple2v0}}\bb
+
+La légende indique comment sont représentées les marques sur les figures
+suivantes.
+
+\section{Cas 1}
+
+Supposons tout d'abord que l'utilisateur veuille sélectionner la sortie 0
+de $f$, et voyons comment se déroule le calcul.\bb
+
+On a vu en \S\ref{sec-propagate-to-calls} que cette requête de l'utilisateur se
+traduit par la séquence d'actions élémentaires suivantes~:
+\begin{itemize}
+  \item $f_1 = \actNewSlice (f_0)$,
+  \item $\actAddOutputMarks(f_1, (out_0, m))$
+  \item ${\mathit main}_1 = \actNewSlice ({\mathit main}_0)$,
+  \item $\actChangeCall(c, {\mathit main}_1, f_1)$.
+\end{itemize}
+
+On calcule tout d'abord le marquage de $f_1$ par simple propagation~:
+
+\bb{\centerline{\uneimage{exple2v1-1}}}\bb
+
+Puis, la seconde action
+génère $\actChooseCall(c_1, f_1)$ et $\actChooseCall(c_2, f_1)$.
+
+A l'application de la première de ces nouvelles actions,
+comme il n'y a pas encore de spécialisation pour $g$, 
+on génère~:
+
+\begin{itemize}
+  \item $g_1 = \actNewSlice (g_0)$,
+  \item $\actAddOutputMarks(g_1, (out_0, m))$
+  \item $\actChangeCall(c_1, f_1, g_1)$
+\end{itemize}
+
+A l'issue de la construction de $g_1$, l'entrée $w$ a une marque $m_2$.
+L'application du \actChangeCall{}
+va donc déclencher un $\actModifCallInputs(c_1, f_1)$ qui va conduire à marquer
+l'entrée $c$ de $f_1$ comme $\spare$ (en plus de $m$ en $m_1$).
+
+\bb{\centerline{\uneimage{exple2v1-2}}}\bb
+
+L'application de $\actChooseCall(c_2, f_1)$ produit~:
+\begin{itemize}
+  \item $\actAddOutputMarks(g_1, (out_X, m))$ puisqu'on a choisi de n'avoir
+    qu'une spécialisation par fonction source,
+  \item et $\actChangeCall(c_2, f_1, g_1)$.
+\end{itemize}
+
+Comme $g_1$ est appelée en $c_1$, 
+la modification de son marquage conduit à générer $\actMissingInputs(c_1, f_1)$,
+qui, vues les options, est directement traduit par 
+$\actModifCallInputs(c_1, f_1)$.
+
+Puis, le $\actChangeCall{}$ va déclencher $\actModifCallInputs(c_2, f_1)$
+qui va marquer $e$ comme $\spare$.
+
+\bb{\centerline{\uneimage{exple2v1-3}}}\bb
+
+Finalement, il ne reste plus qu'à appliquer $\actChangeCall(c, {\mathit main}_1,
+f_1)$ qui conduit à appliquer $\actModifCallInputs(c, {\mathit main}_1)$
+et donc à propager le marquage de $f_1$ dans ${\mathit main}_1$.
+
+\bb{\centerline{\uneimage{exple2v1-4}}}
+
+
+\section{Cas 2}
+
+A partir du résultat du cas 1, l'utilisateur souhaite sélectionner le calcul de
+$Y$ dans $g_1$. \bb
+
+$\actAddUserMark(g_1, (out_Y, m))$ propage le marquage en $m_1$ à l'entrée $v$
+de $g_1$ ($u$ est déjà marquée).
+
+\bb{\centerline{\uneimage{exple2v2-1}}}\bb
+
+Puis comme $g_1$ est appelée, et qu'il manque des marques, deux actions
+$\actMissingInputs{}$ sont générées. Les options indiquent qu'elles doivent être
+traduites en $\actModifCallInputs(c_1, f_1)$ et $\actModifCallInputs(c_2, f_1)$.
+Ce qui conduit à marquer en $m_1$ les entrées $a, b, d$ de $f_1$.
+
+\bb{\centerline{\uneimage{exple2v2-2}}}\bb
+
+De même, la propagation va être effectuée dans ${\mathit main}_1$
+par l'application de $\actModifCallInputs(c, {\mathit main}_1)$.
+
+\bb{\centerline{\uneimage{exple2v2-3}}}\bb
+
+
+\section{Cas 3}
+
+Dans une nouvelle étude, l'utilisateur souhaite sélectionner le calcul de $X$
+dans $g$.
+\bb
+
+Comme dans le cas 1, cette requête se traduit par la création d'une fonction
+spécialisée $g_1$ et la propagation de son marquage à tous ses appels~:
+\begin{itemize}
+  \item $g_1 = \actNewSlice (g_0)$,
+  \item $\actAddOutputMarks(g_1, (out_X, m))$
+  \item $f_1 = \actNewSlice (f_0)$,
+  \item $\actChangeCall(c_1, f_1, g_1)$.
+  \item $\actChangeCall(c_2, f_1, g_1)$.
+  \item ${\mathit main}_1 = \actNewSlice ({\mathit main}_0)$,
+  \item $\actChangeCall(c, {\mathit main}_1, f_1)$.
+\end{itemize}
+
+On calcule tout d'abord le marquage de $g_1$~:
+
+\bb{\centerline{\uneimage{exple2v3-1}}}\bb
+
+Puis, les deux \actChangeCall{} dans $f_1$ conduisent à propager $m_1$~:
+
+\bb{\centerline{\uneimage{exple2v3-2}}}\bb
+
+La seconde propagation (lors de la modification de $c_2$)
+déclenche $\actMissingOutputs(c_1, f_1)$
+qui, au vue des options, se transforme en $\actAddOutputMarks(g_1,
+\outsigc(c_1))$. Ceci conduit à marquer $m_2$ la sortie 0 de $g_1$.
+Les $\actMissingInputs$ générés se transforme en $\actModifCallInputs(c_1, f_1)$
+et $\actModifCallInputs(c_2, f_1)$, qui propage \spare{} aux entrées $c$ et $e$ de
+$f_1$.
+
+\bb{\centerline{\uneimage{exple2v3-3}}}\bb
+
+Enfin, le $\actChangeCall(c, {\mathit main}_1, f_1)$ propage le marquage de
+$f_1$ dans ${\mathit main}_1$. On remarque que même si ce changement avait été
+effectué plus tôt, la propagation du marquage aurait été effectué grâce à des
+$\actMissingInputs$.
+
+\bb{\centerline{\uneimage{exple2v3-4}}}\bb
+
+
+\section{Cas 4}
+
+A partir du cas 3, l'utilisateur souhaite ajouter la sélection du calcul de $Y$
+dans $g_1$.\bb
+
+$\actAddUserMark(g_1, (out_Y, m))$ conduit à marquer $Y$ en $m_1$,
+puis, par propagation, $v$ en $m_1$ également~:
+
+\bb{\centerline{\uneimage{exple2v4-1}}}\bb
+
+Des actions $\actMissingInputs$ transformée en $\actModifCallInputs$ propage
+$m_1$ aux entrées $b$ et $d$ de $f_1$, puis aux entrées $J$ et $L$ de ${\mathit
+main}_1$.
+
+\bb{\centerline{\uneimage{exple2v4-2}}}\bb
+
+
+

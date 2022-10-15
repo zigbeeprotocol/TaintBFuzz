@@ -1,0 +1,3 @@
+[kernel] Parsing hoare_seq.i (no preprocessing)
+[kernel] Parsing TMPDIR/aorai_hoare_seq_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

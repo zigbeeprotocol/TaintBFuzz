@@ -1,0 +1,4 @@
+library "abs":
+logic integer ABS (integer) = "my_abs" ;
+
+why3.file := "abs.why";

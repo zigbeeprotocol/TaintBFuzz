@@ -1,0 +1,5 @@
+[kernel] Parsing bts892.i (no preprocessing)
+[kernel] bts892.i:17: User Error: 
+  Forbidden access to local variable i in static initializer
+[kernel] User Error: stopping on file "bts892.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

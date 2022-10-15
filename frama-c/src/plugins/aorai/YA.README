@@ -1,0 +1,35 @@
+The buchi automaton can be described with the following syntax:
+ 
+ - Initial states are specified using the %accept keyword
+  followed by a coma separated list containing the state name
+ 
+ %init: S1, S2, ..., Sn;
+ 
+ 
+ - Acceptation states are specified using the %accept keyword
+  followed by a coma separated list containing the state name
+ 
+ %accept: S1, S2, ..., Sn;
+ 
+ 
+ - States and transitions are described by sets of the following form
+ 
+ state : { condition_1 } -> new_state_1
+       | { condition_2 } -> new_state_2
+       | { condition_n } -> new_state_n
+       ;
+ 
+ if a condition is always true, it can be omitted with its surrounding
+ parenthesis:  state: -> new_state;
+ 
+ 
+ Condition is a logical expression based on the C syntax:
+  - identifier are global variable from the verifed programme
+  - CALL, RETURN and COR are functions taking as parameter
+      the function name of the verified programme, and testing
+      respectively the call, the return, the call or the return
+      of this function
+ 
+ 
+ 
+For an example, see the test_factorial.ya file

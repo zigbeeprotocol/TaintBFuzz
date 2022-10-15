@@ -1,0 +1,15 @@
+[kernel] Parsing ghost_else_bad_oneline.i (no preprocessing)
+[kernel] ghost_else_bad_oneline.i:6: 
+  syntax error:
+  Location: between lines 6 and 8, before or at token: 
+  
+  4     */
+  5     void if_ghost_else_one_line_bad(int x, int y) {
+  
+  6       if (x) {
+  7         x++;
+  8       } //@ ghost else
+  
+  9       y++;
+  10    }
+[kernel] Frama-C aborted: invalid user input.

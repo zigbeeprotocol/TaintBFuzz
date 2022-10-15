@@ -1,0 +1,66 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing unit_alloc.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Assigns nothing in 'f':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function g
+------------------------------------------------------------
+
+Goal Assigns nothing in 'g':
+Effect at line 31
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function h
+------------------------------------------------------------
+
+Goal Post-condition (file unit_alloc.i, line 33) in 'h':
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: !valid_rw(Malloc_0[P_x_40 <- 0], global(P_x_40), 1).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Assertion (file unit_alloc.i, line 15):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file unit_alloc.i, line 21):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rw(Malloc_0[L_y_25 <- 1], global(L_y_25), 1).
+
+------------------------------------------------------------
+
+Goal Assertion (file unit_alloc.i, line 22):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file unit_alloc.i, line 24):
+Let a = global(L_y_25).
+Assume {
+  (* Heap *)
+  Type: linked(Malloc_0).
+  (* Assertion *)
+  Have: valid_rw(Malloc_0[L_y_25 <- 1], a, 1).
+}
+Prove: !valid_rw(Malloc_0[L_y_25 <- 0], a, 1).
+
+------------------------------------------------------------
+[wp] unit_alloc.i:34: Warning: 
+  Memory model hypotheses for function 'h':
+  /*@ behavior wp_typed_ref:
+        ensures \separated(\result, &x); */
+  int *h(int x);

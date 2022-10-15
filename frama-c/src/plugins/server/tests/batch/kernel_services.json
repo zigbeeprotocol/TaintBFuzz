@@ -1,0 +1,4 @@
+[
+  { id:"getLogs", request:"kernel.services.getLogs", data:null },
+  { id:"setLogs", request:"kernel.services.setLogs", data:false }
+]

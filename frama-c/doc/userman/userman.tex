@@ -1,0 +1,103 @@
+% rubber: depend ../../VERSION
+\documentclass[web]{frama-c-book}
+
+\usepackage{graphicx}
+\usepackage{calc}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+
+\include{macros}
+\input{./frama-c-affiliation.tex}
+
+\makeindex
+
+\begin{document}
+
+\coverpage{User Manual}
+
+\begin{titlepage}
+\begin{flushleft}
+\includegraphics[height=14mm]{cealistlogo.jpg}
+\end{flushleft}
+\vfill
+\title{Frama-C User Manual}{Release \framacversion}
+\author{Loïc Correnson, Pascal Cuoq, Florent Kirchner, André
+  Maroneze, Virgile Prevosto, Armand Puccetti, Julien Signoles and Boris
+  Yakobowski}
+\begin{tabular}{l}
+  \fcaffiliationen
+\end{tabular}
+\vfill
+\begin{flushleft}
+  \textcopyright 2009-2021 CEA LIST
+\end{flushleft}
+\end{titlepage}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Foreword}
+\markright{}
+\addcontentsline{toc}{chapter}{Foreword}
+
+This is the user manual of \FramaC\footnote{\url{http://frama-c.com}}.  The
+content of this document corresponds to the version \framacversion, on \today, of
+\FramaC.
+
+\section*{Acknowledgements}
+
+We gratefully thank all the people who contributed to this document: Patrick
+Baudin, Mickaël Delahaye, Philippe Hermann, Benjamin Monate and Dillon Pariente.
+
+\acknowledgeANR
+
+\acknowledgeEU
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{user-intro}
+\include{user-overview}
+\include{user-start}
+\include{user-plugins}
+\include{user-sources}
+\include{user-analysis}
+\include{user-properties}
+\include{user-services}
+\include{user-gui}
+\include{user-report}
+\include{user-variadic}
+\include{user-analysis-scripts}
+\include{user-compliance}
+\include{user-errors}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\include{user-changes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{plain}
+\bibliography{./userman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\indexname}
+\printindex
+
+\end{document}

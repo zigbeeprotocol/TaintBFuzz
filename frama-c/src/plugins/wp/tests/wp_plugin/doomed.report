@@ -1,0 +1,13 @@
+@CONSOLE
+@ZERO "   -"
+        &30:   Qed Ergo Failed
+@PROPERTY
+  %name &30: %qed %alt-ergo %failed
+@END
+@TAIL
+-------------------------------------------------------------
+Success:  %prop%%
+   Total  :  %prop:total properties
+   Valid  :  %prop:valid
+   Failed :  %prop:failed
+-------------------------------------------------------------

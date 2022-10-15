@@ -1,0 +1,27 @@
+[kernel] Parsing empty_struct.c (with preprocessing)
+[eva] Analyzing a complete application starting at main2
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  NULL[rbits 0 to 15] ∈ [--..--]
+  s2 ∈ {0}
+  pgs ∈ {{ &gs }}
+[eva:alarm] empty_struct.c:70: Warning: 
+  out of bounds read. assert \valid_read(ptr_ret);
+[eva] Recording results for main2
+[eva] done for function main2
+[eva] empty_struct.c:70: assertion 'Eva,mem_access' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main2:
+  ptr_ret ∈ {2}
+[from] Computing for function main2
+[from] Done for function main2
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main2:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main2:
+    ptr_ret
+[inout] Inputs for function main2:
+    \nothing

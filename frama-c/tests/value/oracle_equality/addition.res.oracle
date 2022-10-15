@@ -1,0 +1,18 @@
+138,141d137
+< [eva:alarm] addition.i:61: Warning: 
+<   signed overflow. assert -2147483648 ≤ (int)*((char *)(&q1)) + 2;
+< [eva:alarm] addition.i:61: Warning: 
+<   signed overflow. assert (int)*((char *)(&q1)) + 2 ≤ 2147483647;
+168c164
+< [scope:rm_asserts] removing 9 assertion(s)
+---
+> [scope:rm_asserts] removing 7 assertion(s)
+384,387d379
+< [eva:alarm] addition.i:61: Warning: 
+<   signed overflow. assert -2147483648 ≤ (int)*((char *)(&q1)) + 2;
+< [eva:alarm] addition.i:61: Warning: 
+<   signed overflow. assert (int)*((char *)(&q1)) + 2 ≤ 2147483647;
+410c402
+< [scope:rm_asserts] removing 9 assertion(s)
+---
+> [scope:rm_asserts] removing 7 assertion(s)

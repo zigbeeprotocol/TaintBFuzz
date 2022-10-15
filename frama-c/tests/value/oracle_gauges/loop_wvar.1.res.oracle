@@ -1,0 +1,11 @@
+25,26c25
+< [eva] loop_wvar.i:71: Frama_C_show_each: [0..9], [0..17], [0..11]
+< [eva] loop_wvar.i:71: Frama_C_show_each: [0..9], [0..18], [0..12]
+---
+> [eva] loop_wvar.i:71: Frama_C_show_each: [0..9], [0..9], [0..9]
+35,36c34,35
+<   j ∈ [0..18]
+<   k ∈ [0..12]
+---
+>   j ∈ [0..17]
+>   k ∈ [0..11]

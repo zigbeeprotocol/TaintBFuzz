@@ -1,0 +1,21 @@
+24,27d23
+< [eva:alarm] redundant_alarms.c:21: Warning: 
+<   accessing uninitialized left-value. assert \initialized(&t[i]);
+< [eva:alarm] redundant_alarms.c:22: Warning: 
+<   accessing uninitialized left-value. assert \initialized(&t[i]);
+38,39d33
+< [eva:alarm] redundant_alarms.c:32: Warning: 
+<   accessing uninitialized left-value. assert \initialized(&t[j]);
+61c55
+< [scope:rm_asserts] removing 3 assertion(s)
+---
+> [scope:rm_asserts] removing 2 assertion(s)
+64,65d57
+< [scope:rm_asserts] redundant_alarms.c:32: 
+<   removing redundant assert Eva: initialization: \initialized(&t[j]);
+125d116
+<   /*@ assert Eva: initialization: \initialized(&t[i]); */
+127d117
+<   /*@ assert Eva: initialization: \initialized(&t[i]); */
+140d129
+<     /*@ assert Eva: initialization: \initialized(&t[j]); */

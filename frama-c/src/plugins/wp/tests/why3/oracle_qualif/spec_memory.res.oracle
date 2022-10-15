@@ -1,0 +1,60 @@
+File "spec_memory.why", line 24, characters 4-56:
+Goal check_valid_rd.
+Prover result is: Valid.
+
+File "spec_memory.why", line 27, characters 4-56:
+Goal check_valid.
+Prover result is: Valid.
+
+File "spec_memory.why", line 30, characters 4-62:
+Goal invalid_spec.
+Prover result is: Valid.
+
+File "spec_memory.why", line 34, characters 4-76:
+Goal invalid_null_spec.
+Prover result is: Valid.
+
+File "spec_memory.why", line 38, characters 4-51:
+Goal invalid_null.
+Prover result is: Valid.
+
+File "spec_memory.why", line 42, characters 4-79:
+Goal invalid_empty.
+Prover result is: Valid.
+
+File "spec_memory.why", line 46, characters 4-59:
+Goal valid_rd_null.
+Prover result is: Valid.
+
+File "spec_memory.why", line 49, characters 4-59:
+Goal valid_rw_null.
+Prover result is: Valid.
+
+File "spec_memory.why", line 52, characters 4-34:
+Goal valid_obj_null.
+Prover result is: Valid.
+
+File "spec_memory.why", line 56, characters 4-77:
+Goal INC_P.
+Prover result is: Valid.
+
+File "spec_memory.why", line 60, characters 4-169:
+Goal INC_A.
+Prover result is: Valid.
+
+File "spec_memory.why", line 67, characters 4-63:
+Goal INC_1.
+Prover result is: Valid.
+
+File "spec_memory.why", line 71, characters 4-64:
+Goal INC_2.
+Prover result is: Valid.
+
+File "spec_memory.why", line 75, characters 4-161:
+Goal INC_3.
+Prover result is: Valid.
+
+File "spec_memory.why", line 82, characters 4-178:
+Goal INC_4.
+Prover result is: Valid.
+

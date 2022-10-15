@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# -*- mode: bash
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+    against=HEAD
+else
+    # Initial commit: diff against an empty tree object
+    against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+
+if git config --get frama-c.makelevel > /dev/null 2>&1 ; then
+  MAKELEVEL=-j$(git config --int --get frama-c.makelevel);
+else
+  MAKELEVEL=-j4;
+fi
+
+MANUAL_ML_FILES=\
+$(git diff-index --name-only --diff-filter d $against | \
+    grep -e '^src/.*\.mli\?$' | tr '\n' ' ') \
+make ${MAKELEVEL} lint

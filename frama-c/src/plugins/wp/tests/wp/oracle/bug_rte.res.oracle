@@ -1,0 +1,23 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing bug_rte.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function bug
+------------------------------------------------------------
+  Function bug
+------------------------------------------------------------
+
+Goal Assertion 'rte,signed_overflow' (file bug_rte.i, line 7):
+Assume { Type: is_sint32(i) /\ is_sint32(j). }
+Prove: if (j = 1) then ((-2147483647) <= i) else ((-2147483648) <= i).
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,signed_overflow' (file bug_rte.i, line 7):
+Assume {
+  Type: is_sint32(i) /\ is_sint32(j).
+  (* Assertion 'rte,signed_overflow' *)
+  Have: if (j = 1) then ((-2147483647) <= i) else ((-2147483648) <= i).
+}
+Prove: i <= (2147483647 + (if (j = 1) then 1 else 0)).
+
+------------------------------------------------------------

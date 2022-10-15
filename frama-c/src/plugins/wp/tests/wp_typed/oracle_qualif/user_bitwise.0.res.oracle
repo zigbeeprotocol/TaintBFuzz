@@ -1,0 +1,29 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing user_bitwise.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 12 goals scheduled
+[wp] [Qed] Goal typed_ref_rl1_ensures_b0 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rl1_ensures_bk : Valid
+[wp] [Qed] Goal typed_ref_rr1_ensures_b0 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rr1_ensures_bk : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rln32_ensures_b1 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rln32_ensures_b2 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rrn32_ensures_b1 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rrn32_ensures_b2 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rln64_ensures_b1 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rln64_ensures_b2 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rrn64_ensures_b1 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_rrn64_ensures_b2 : Valid
+[wp] Proved goals:   12 / 12
+  Qed:             2 
+  Alt-Ergo:       10
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  rl1                       1        1        2       100%
+  rr1                       1        1        2       100%
+  rln32                     -        2        2       100%
+  rrn32                     -        2        2       100%
+  rln64                     -        2        2       100%
+  rrn64                     -        2        2       100%
+------------------------------------------------------------

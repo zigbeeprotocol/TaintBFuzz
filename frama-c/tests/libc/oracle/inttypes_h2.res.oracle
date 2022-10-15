@@ -1,0 +1,57 @@
+[kernel] Parsing inttypes_h2.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] computing for function imaxdiv <- main.
+  Called from inttypes_h2.c:11.
+[eva] using specification for function imaxdiv
+[eva] inttypes_h2.c:11: 
+  function imaxdiv: precondition 'no_div_by_zero' got status valid.
+[eva:alarm] inttypes_h2.c:11: Warning: 
+  function imaxdiv: precondition 'no_overflow' got status invalid.
+[eva] Done for function imaxdiv
+[eva] computing for function imaxdiv <- main.
+  Called from inttypes_h2.c:17.
+[eva:alarm] inttypes_h2.c:17: Warning: 
+  function imaxdiv: precondition 'no_div_by_zero' got status invalid.
+[eva] inttypes_h2.c:17: 
+  function imaxdiv: no state left, precondition 'no_overflow' got status valid.
+[eva] Done for function imaxdiv
+[eva] computing for function imaxdiv <- main.
+  Called from inttypes_h2.c:22.
+[eva] inttypes_h2.c:22: 
+  function imaxdiv: precondition 'no_div_by_zero' got status valid.
+[eva] inttypes_h2.c:22: 
+  function imaxdiv: precondition 'no_overflow' got status valid.
+[eva] Done for function imaxdiv
+[eva] inttypes_h2.c:23: assertion got status valid.
+[eva] inttypes_h2.c:24: assertion got status valid.
+[eva] computing for function imaxabs <- main.
+  Called from inttypes_h2.c:26.
+[eva] using specification for function imaxabs
+[eva] inttypes_h2.c:26: 
+  function imaxabs: precondition 'abs_representable' got status valid.
+[eva] Done for function imaxabs
+[eva] inttypes_h2.c:27: assertion got status valid.
+[eva] computing for function imaxabs <- main.
+  Called from inttypes_h2.c:28.
+[eva] inttypes_h2.c:28: 
+  function imaxabs: precondition 'abs_representable' got status valid.
+[eva] Done for function imaxabs
+[eva] inttypes_h2.c:29: assertion got status valid.
+[eva] computing for function imaxabs <- main.
+  Called from inttypes_h2.c:30.
+[eva] inttypes_h2.c:30: 
+  function imaxabs: precondition 'abs_representable' got status valid.
+[eva] Done for function imaxabs
+[eva] inttypes_h2.c:31: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  a ∈ {0}
+  b ∈ {4611686018427387903}
+  r.quot ∈ {2}
+   .rem ∈ {1}

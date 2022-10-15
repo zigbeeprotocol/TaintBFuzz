@@ -1,0 +1,28 @@
+%% Typed Memory Model
+\section{Generated Symbols}
+
+The \textsf{Typed} memory model generates on the fly some symbols
+documented here.
+
+For each \textsf{C} variable \texttt{x} that might be aliased, the
+following symbols are generated:
+\begin{itemize}
+\item \verb+G_x_n+ is the base address of \verb+x+. \verb+G+ is replaced by
+  \verb+P+ for formal parameters and \verb+L+ for locals. \verb+n+ is
+  the \textsf{CIL} variable identifier.
+\item \verb+G_x_n_linked+ is the predicate defining the allocation
+  of the variable inside its scope.
+\item \verb+G_x_n_region+ defines the region in which the variable is defined
+  (heap, stack frame or local variables).
+\end{itemize}
+
+For each struct \verb+R+, the \textsf{Typed} memory model generates a
+symbol \verb+Load_R+ that reads field-by-field the associated logic
+record. For arrays of type \verb+t+, the \textsf{Typed} memory model
+generates a symbol \verb+Array<d>_<t>+ where \verb+d+ represent the
+dimensions of the array.
+
+For both records and arrays, the \textsf{Typed} memory also generates
+lemmas that asserts monotony properties of load symbols with respect
+to updates and equalities between two memory states.
+

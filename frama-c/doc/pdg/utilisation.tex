@@ -1,0 +1,49 @@
+\chapter{Retrouver l'information}\label{sec-find}
+
+Jusqu'à présent, on a vu comment calculer le graphe de dépendances.
+Dans ce chapitre, nous présentons les fonctions fournies pour
+trouver des éléments du PDG suivant un certain nombre de critères.
+L'annexe \ref{sec-impact} rappelle certains objectifs initiaux
+d'une utilisation de ces fonctions pour effectuer une analyse d'impact.\\
+
+Par ailleurs, outre la manipulation d'ensemble d'éléments du PDG,
+un système de gestion et de propagation de marques est également proposé.
+Il est présenté au chapitre \ref{sec-mark}.
+
+\section{A partir de leur clé}
+
+Au cours du calcul, chaque élément du PDG est associé à une clé
+qui correspond à l'élément de programme qu'il représente (cf. {\tt
+pdgIndex.mli}).
+On peut par la suite retrouver un élément à partir de cette clé
+comme par exemple l'élément correspondant à une instruction simple,
+à un paramètre d'entrée, à une déclaration locale, etc.
+
+\section{A partir d'une zone mémoire}
+
+Grâce à l'état qui est propagé lors de la construction
+des dépendances de données (cf. \S\ref{sec-propagation-etat})
+on peut retrouver les éléments qui participent au calcul
+d'une zone mémoire à un point de programme.
+
+Cette fonction doit également vérifier si les éléments trouvés
+définissent complètement la donnée recherchée ou non,
+et si ce n'est pas le cas, indiquer la zone susceptible de ne pas être
+complètement définie au point considéré.
+
+\section{A partir de propriétés}
+
+D'autres fonctionnalités de \ppc permettent d'interpréter une propriété
+du programme et d'en extraire les zones mémoire nécessaires à son évaluation.
+Comme on sait par ailleurs trouver les éléments qui correspondent
+a une zone mémoire en un point de programme (voir ci-dessus),
+on peut ainsi trouver par exemple les éléments dont dépendent une assertion
+ou tout autre propriété.
+
+\section{En exploitant les dépendances}
+
+Après avoir retrouver des éléments dans le graphe, on veut en général exploiter
+leurs dépendances. On peut facilement retrouver les dépendances avant ou
+arrière,
+avec ou sans filtrage sur leur type (donnée, contrôle,...),
+récursivement ou non.

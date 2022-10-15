@@ -1,0 +1,42 @@
+[kernel] Parsing mini_pointrer.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0..1] ∈ {0}
+  ppp ∈ {0}
+  pp[0..1] ∈ {0}
+  p ∈ {0}
+[eva:alarm] mini_pointrer.i:6: Warning: 
+  accessing out of bounds index. assert 0 ≤ c1;
+[eva:alarm] mini_pointrer.i:6: Warning: 
+  accessing out of bounds index. assert c1 < 2;
+[eva:alarm] mini_pointrer.i:6: Warning: 
+  pointer downcast. assert (unsigned int)(&T[c1]) ≤ 2147483647;
+[eva:alarm] mini_pointrer.i:8: Warning: 
+  out of bounds read. assert \valid_read(ppp);
+[eva:alarm] mini_pointrer.i:8: Warning: 
+  out of bounds write. assert \valid(*ppp);
+[eva:alarm] mini_pointrer.i:10: Warning: 
+  accessing out of bounds index. assert c2 < 2;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  T[0..1] ∈ {0; 4; 9}
+  ppp ∈ {{ (int **)&pp }}
+  pp[0] ∈ {{ (int)&T{[0], [1]} }}
+    [1] ∈ {{ NULL ; (int)&T{[0], [1]} }}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  T[0..1] FROM pp[0]; c1; c2 (and SELF)
+  ppp FROM c2
+  pp[0..1] FROM c1 (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    T[0..1]; ppp; pp[0..1]
+[inout] Inputs for function main:
+    ppp; pp[0]

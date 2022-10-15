@@ -1,0 +1,3 @@
+[kernel] Parsing test_boucle1.c (with preprocessing)
+[kernel] Parsing TMPDIR/aorai_test_boucle1_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

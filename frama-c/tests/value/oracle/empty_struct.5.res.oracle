@@ -1,0 +1,52 @@
+[kernel] Parsing empty_struct.c (with preprocessing)
+[eva] Analyzing a complete application starting at main3
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  NULL[rbits 0 to 15] ∈ [--..--]
+  s2 ∈ {0}
+  nondet ∈ [--..--]
+  pgs ∈ {{ &gs }}
+[eva] empty_struct.c:78: Call to builtin malloc
+[eva] empty_struct.c:78: allocating variable __malloc_main3_l78
+[eva] empty_struct.c:79: Call to builtin realloc
+[eva] empty_struct.c:79: 
+  function realloc: precondition 'freeable' got status valid.
+[eva] empty_struct.c:79: allocating variable __realloc_main3_l79
+[eva] empty_struct.c:81: starting to merge loop iterations
+[eva] empty_struct.c:86: Call to builtin free
+[eva] empty_struct.c:86: 
+  function free: precondition 'freeable' got status valid.
+[eva] Recording results for main3
+[eva] done for function main3
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main3:
+  __fc_heap_status ∈ [--..--]
+  q ∈ {{ NULL ; &__malloc_main3_l78[-1] }} or ESCAPINGADDR
+  r ∈ {{ NULL ; &__realloc_main3_l79[-1] }} or ESCAPINGADDR
+  p ∈ {{ &empties[-1] }}
+[from] Computing for function main3
+[from] Computing for function malloc <-main3
+[from] Done for function malloc
+[from] Computing for function realloc <-main3
+[from] Done for function realloc
+[from] Computing for function free <-main3
+[from] Done for function free
+[from] Done for function main3
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function free:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+[from] Function malloc:
+  __fc_heap_status FROM __fc_heap_status; size (and SELF)
+  \result FROM __fc_heap_status; size
+[from] Function realloc:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+  \result FROM __fc_heap_status; ptr; size
+[from] Function main3:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main3:
+    __fc_heap_status; q; r; p; i
+[inout] Inputs for function main3:
+    __fc_heap_status

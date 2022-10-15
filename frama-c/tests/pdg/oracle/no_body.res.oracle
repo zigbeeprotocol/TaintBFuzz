@@ -1,0 +1,84 @@
+[kernel] Parsing no_body.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+[kernel:annot:missing-spec] no_body.c:24: Warning: 
+  Neither code nor specification for function f, generating default assigns from the prototype
+[eva] computing for function f <- main.
+  Called from no_body.c:24.
+[eva] using specification for function f
+[eva] Done for function f
+[eva] computing for function loop <- main.
+  Called from no_body.c:25.
+[eva] computing for function f <- loop <- main.
+  Called from no_body.c:16.
+[eva] Done for function f
+[eva:alarm] no_body.c:18: Warning: signed overflow. assert G + 1 ≤ 2147483647;
+[eva] no_body.c:16: starting to merge loop iterations
+[eva] computing for function f <- loop <- main.
+  Called from no_body.c:16.
+[eva] Done for function f
+[eva] computing for function f <- loop <- main.
+  Called from no_body.c:16.
+[eva] Done for function f
+[eva] computing for function f <- loop <- main.
+  Called from no_body.c:16.
+[eva] Done for function f
+[eva:alarm] no_body.c:17: Warning: signed overflow. assert x + 1 ≤ 2147483647;
+[eva] Recording results for loop
+[eva] Done for function loop
+[eva] Recording results for main
+[eva] done for function main
+[inout] InOut (internal) for function loop:
+  Operational inputs:
+    G; x
+  Operational inputs on termination:
+    G; x
+  Sure outputs:
+    tmp
+[inout] InOut (internal) for function main:
+  Operational inputs:
+    \nothing
+  Operational inputs on termination:
+    \nothing
+  Sure outputs:
+    G; x
+[pdg] computing for function main
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function loop
+[from] Done for function loop
+[pdg] done for function main
+[pdg] PDG for main
+ {n1}: InCtrl
+ {n2}: VarDecl : x
+ {n3}: int x = 1;
+   -[-c-]-> 1
+   -[a--]-> 2
+ {n4}: Call11-InCtrl : G = f(x);
+   -[-c-]-> 1
+ {n5}: Call11-In1 : G = f(x);
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+   -[-c-]-> 4
+ {n6}: Call11-OutRet : G = f(x);
+   -[-c-]-> 1
+   -[-c-]-> 4
+   -[--d]-> 5
+ {n7}: Call12-InCtrl : loop(x);
+   -[-c-]-> 1
+ {n8}: Call12-In1 : loop(x);
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+   -[-c-]-> 7
+ {n9}: Call12-Out(G) : loop(x);
+   -[-c-]-> 1
+   -[--d]-> 6
+   -[-c-]-> 7
+   -[--d]-> 8
+ {n10}: return;
+   -[-c-]-> 1

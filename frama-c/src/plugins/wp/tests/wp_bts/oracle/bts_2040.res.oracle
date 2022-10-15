@@ -1,0 +1,12 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_2040.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function call
+------------------------------------------------------------
+
+Goal Assertion (file bts_2040.i, line 17):
+Prove: true.
+
+------------------------------------------------------------

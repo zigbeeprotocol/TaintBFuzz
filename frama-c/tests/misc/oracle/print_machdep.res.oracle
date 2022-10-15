@@ -1,0 +1,19 @@
+Machine: gcc 4.0.3 AMD64
+   sizeof       short =  2 (16 bits, aligned on 16 bits)
+   sizeof         int =  4 (32 bits, aligned on 32 bits)
+   sizeof        long =  8 (64 bits, aligned on 64 bits)
+   sizeof   long long =  8 (64 bits, aligned on 64 bits)
+   sizeof       float =  4 (32 bits, aligned on 32 bits)
+   sizeof      double =  8 (64 bits, aligned on 64 bits)
+   sizeof long double = 16 (128 bits, aligned on 128 bits)
+   sizeof     pointer =  8 (64 bits, aligned on 64 bits)
+   sizeof        void = error (alignof error)
+   sizeof    function = error (alignof error)
+   typeof   sizeof(T) = unsigned long
+   typeof     wchar_t = int
+   typeof   ptrdiff_t = long
+   char is signed
+   machine is little endian
+   strings are const chars
+   assembly names have no leading '_'
+   compiler has builtin __va_list

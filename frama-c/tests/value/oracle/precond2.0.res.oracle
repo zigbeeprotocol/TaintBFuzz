@@ -1,0 +1,105 @@
+[kernel] Parsing precond2.c (with preprocessing)
+[rte:annot] annotating function f
+[rte:annot] annotating function main
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+[eva] computing for function f <- main.
+  Called from precond2.c:21.
+[eva] precond2.c:21: function f: precondition 'i_plus_one' got status valid.
+[eva] precond2.c:21: function f: precondition 'i' got status valid.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from precond2.c:22.
+[eva] precond2.c:22: function f: precondition 'i_plus_one' got status valid.
+[eva:alarm] precond2.c:22: Warning: 
+  function f: precondition 'i' got status invalid.
+[eva] Recording results for f
+[eva] Done for function f
+[kernel] precond2.c:24: Warning: 
+  No code nor implicit assigns clause for function g, generating default assigns from the prototype
+[eva] computing for function g <- main.
+  Called from precond2.c:24.
+[eva] using specification for function g
+[eva] precond2.c:24: function g: precondition got status valid.
+[eva] Done for function g
+[eva] computing for function g <- main.
+  Called from precond2.c:24.
+[eva] precond2.c:24: function g: precondition got status valid.
+[eva] Done for function g
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  x ∈ {1}
+[eva:final-states] Values at end of function main:
+  x ∈ {0; 1}
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'f'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Pre-condition 'i_plus_one'
+            requires i_plus_one: i + 1 ≥ 0
+            by Call Preconditions.
+[  Alarm  ] Pre-condition 'i'
+            requires i: i ≥ 0
+            By Call Preconditions, with pending:
+             - Unreachable call 'f' (file precond2.c, line 22)
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'g'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Pre-condition (file precond2.c, line 16)
+            requires x ≤ 8
+            by Call Preconditions.
+[    -    ] Assigns nothing
+            assigns \nothing;
+            tried with Inferred annotations.
+[    -    ] Default behavior
+            default behavior
+            tried with Frama-C kernel.
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Instance of 'Pre-condition 'i_plus_one'' at call 'f' (file precond2.c, line 21)
+
+            status of 'requires i_plus_one: i + 1 ≥ 0' of f at stmt 6
+            by Eva.
+[  Valid  ] Instance of 'Pre-condition 'i'' at call 'f' (file precond2.c, line 21)
+
+            status of 'requires i: i ≥ 0' of f at stmt 6
+            by Eva.
+[  Valid  ] Instance of 'Pre-condition 'i_plus_one'' at call 'f' (file precond2.c, line 22)
+
+            status of 'requires i_plus_one: i + 1 ≥ 0' of f at stmt 9
+            by Eva.
+[  Alarm  ] Instance of 'Pre-condition 'i'' at call 'f' (file precond2.c, line 22)
+
+            status of 'requires i: i ≥ 0' of f at stmt 9
+            By Eva, with pending:
+             - Unreachable call 'f' (file precond2.c, line 22)
+[  Valid  ] Instance of 'Pre-condition (file precond2.c, line 16)' at call 'g' (file precond2.c, line 24)
+
+            status of 'requires x ≤ 8' of g at stmt 12
+            by Eva.
+[  Valid  ] Instance of 'Pre-condition (file precond2.c, line 16)' at call 'g' (file precond2.c, line 24)
+
+            status of 'requires x ≤ 8' of g at stmt 13
+            by Eva.
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     7 Completely validated
+     2 To be validated
+     2 Alarms emitted
+    11 Total
+--------------------------------------------------------------------------------

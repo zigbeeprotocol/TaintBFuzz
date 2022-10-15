@@ -1,0 +1,119 @@
+# frama-c -wp [...]
+[kernel] Parsing induction_typing.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 2 goals scheduled
+[wp:script:allgoals] 
+  Goal Preservation of Invariant 'X' (file induction_typing.i, line 42):
+  Let a = L_list(LIST_0).
+  Let a_1 = a ^ [ 1 ].
+  Let x = 1 + i.
+  Assume {
+    Type: is_uint32(Max_0) /\ is_uint32(i).
+    (* Heap *)
+    Type: IsArray_uint32(A) /\ is_sint32(LIST_1).
+    (* Pre-condition *)
+    Have: L_list(LIST_1) = nil.
+    (* Invariant *)
+    Have: (x = to_uint32(x)) /\ (0 <= i) /\ (i <= 42).
+    (* Invariant 'X' *)
+    Have: ([ 1 ] *^ i) = a.
+    (* Then *)
+    Have: i < Max_0.
+    (* Call 'f' *)
+    Have: (A[i] = i) /\ (L_list(LIST_2) = a_1).
+    (* Invariant *)
+    Have: i <= 41.
+  }
+  Prove: ([ 1 ] *^ x) = a_1.
+  
+  ------------------------------------------------------------
+[wp] [Qed] Goal typed_function_loop_invariant_X_established : Valid
+[wp:script:allgoals] 
+  typed_function_loop_invariant_X_preserved subgoal:
+  
+  Goal Wp.Tactical.typed_function_loop_invariant_X_preserved-0 (generated):
+  Let a = L_list(LIST_1).
+  Assume {
+    Type: is_uint32(Max_0) /\ is_uint32(i).
+    (* Heap *)
+    Type: IsArray_uint32(A) /\ is_sint32(LIST_0).
+    (* Pre-condition *)
+    Have: L_list(LIST_0) = nil.
+    (* Invariant *)
+    Have: (0 <= i) /\ (i <= 42).
+    (* Invariant 'X' *)
+    Have: ([ 1 ] *^ i) = a.
+    (* Then *)
+    Have: i < Max_0.
+    (* Call 'f' *)
+    Have: (A[i] = i) /\ (L_list(LIST_2) = a ^ [ 1 ]).
+    (* Invariant *)
+    Have: i <= 41.
+  }
+  Prove: false.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_function_loop_invariant_X_preserved : Unsuccess
+[wp:script:allgoals] 
+  typed_function_loop_invariant_X_preserved subgoal:
+  
+  Goal Wp.Tactical.typed_function_loop_invariant_X_preserved-1 (generated):
+  Let a = L_list(LIST_0).
+  Let a_1 = a ^ [ 1 ].
+  Assume {
+    Have: to_uint32(n) = n.
+    Have: 0 < n.
+    Have: forall i_1 : Z. ((to_uint32(i_1) = i_1) -> ((0 <= i_1) ->
+        ((i_1 < n) -> (([ 1 ] *^ i_1) = a_1)))).
+    Type: is_uint32(Max_0) /\ is_uint32(i).
+    (* Heap *)
+    Type: IsArray_uint32(A) /\ is_sint32(LIST_1).
+    (* Pre-condition *)
+    Have: L_list(LIST_1) = nil.
+    (* Invariant *)
+    Have: (0 <= i) /\ (i <= 42).
+    (* Invariant 'X' *)
+    Have: ([ 1 ] *^ i) = a.
+    (* Then *)
+    Have: i < Max_0.
+    (* Call 'f' *)
+    Have: (A[i] = i) /\ (L_list(LIST_2) = a_1).
+    (* Invariant *)
+    Have: i <= 41.
+  }
+  Prove: ([ 1 ] *^ n) = a_1.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_function_loop_invariant_X_preserved subgoal:
+  
+  Goal Wp.Tactical.typed_function_loop_invariant_X_preserved-2 (generated):
+  Let a = L_list(LIST_0).
+  Let a_1 = a ^ [ 1 ].
+  Assume {
+    Have: to_uint32(n) = n.
+    Have: n < 0.
+    Have: forall i_1 : Z. ((to_uint32(i_1) = i_1) -> ((i_1 <= 0) ->
+        ((n < i_1) -> (([ 1 ] *^ i_1) = a_1)))).
+    Type: is_uint32(Max_0) /\ is_uint32(i).
+    (* Heap *)
+    Type: IsArray_uint32(A) /\ is_sint32(LIST_1).
+    (* Pre-condition *)
+    Have: L_list(LIST_1) = nil.
+    (* Invariant *)
+    Have: (0 <= i) /\ (i <= 42).
+    (* Invariant 'X' *)
+    Have: ([ 1 ] *^ i) = a.
+    (* Then *)
+    Have: i < Max_0.
+    (* Call 'f' *)
+    Have: (A[i] = i) /\ (L_list(LIST_2) = a_1).
+    (* Invariant *)
+    Have: i <= 41.
+  }
+  Prove: ([ 1 ] *^ n) = a_1.
+  
+  ------------------------------------------------------------
+[wp] Proved goals:    1 / 2
+  Qed:             1

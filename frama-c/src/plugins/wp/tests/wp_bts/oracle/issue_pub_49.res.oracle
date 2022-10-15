@@ -1,0 +1,208 @@
+# frama-c -wp [...]
+[kernel] Parsing issue_pub_49.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function caller1
+------------------------------------------------------------
+
+Goal Post-condition 'postcs' in 'caller1':
+Assume { Type: is_sint32(codeCursor_1) /\ is_sint32(codeCursor_0). }
+Prove: codeCursor_0 = codeCursor_1.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 25) in 'caller1':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 25) in 'caller1' (1/6):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 25) in 'caller1' (2/6):
+Effect at line 33
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 25) in 'caller1' (3/6):
+Call Result at line 35
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 25) in 'caller1' (4/6):
+Effect at line 35
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 25) in 'caller1' (5/6):
+Call Result at line 37
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 25) in 'caller1' (6/6):
+Effect at line 37
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function caller2
+------------------------------------------------------------
+
+Goal Post-condition 'postcs' in 'caller2':
+Assume { Type: is_sint32(codeCursor_1) /\ is_sint32(codeCursor_0). }
+Prove: codeCursor_0 = codeCursor_1.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 42) in 'caller2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 42) in 'caller2' (1/6):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 42) in 'caller2' (2/6):
+Effect at line 50
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 42) in 'caller2' (3/6):
+Call Result at line 52
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 42) in 'caller2' (4/6):
+Effect at line 52
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 42) in 'caller2' (5/6):
+Call Result at line 54
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 42) in 'caller2' (6/6):
+Effect at line 54
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function caller3
+------------------------------------------------------------
+
+Goal Post-condition 'postcs' in 'caller3':
+Assume { Type: is_sint32(codeCursor_1) /\ is_sint32(codeCursor_0). }
+Prove: codeCursor_0 = codeCursor_1.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 59) in 'caller3':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 59) in 'caller3' (1/5):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 59) in 'caller3' (2/5):
+Call Result at line 69
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 59) in 'caller3' (3/5):
+Effect at line 69
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 59) in 'caller3' (4/5):
+Call Result at line 71
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 59) in 'caller3' (5/5):
+Effect at line 71
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function caller4
+------------------------------------------------------------
+
+Goal Post-condition 'postcs' in 'caller4':
+Assume { Type: is_sint32(codeCursor_1) /\ is_sint32(codeCursor_0). }
+Prove: codeCursor_0 = codeCursor_1.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 76) in 'caller4':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 76) in 'caller4' (1/6):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 76) in 'caller4' (2/6):
+Effect at line 84
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 76) in 'caller4' (3/6):
+Call Result at line 87
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 76) in 'caller4' (4/6):
+Effect at line 87
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 76) in 'caller4' (5/6):
+Call Result at line 88
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 76) in 'caller4' (6/6):
+Effect at line 88
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function is_class
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 15) in 'is_class' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file issue_pub_49.i, line 15) in 'is_class' (2/2):
+Effect at line 20
+Prove: true.
+
+------------------------------------------------------------

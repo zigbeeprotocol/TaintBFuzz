@@ -1,0 +1,32 @@
+19c19
+< [eva] domains_function.c:92: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:92: Frama_C_show_each_top: {3}
+27c27
+< [eva] domains_function.c:77: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:77: Frama_C_show_each_top: {1}
+30c30
+< [eva] domains_function.c:96: Frama_C_show_each_top: [-2147483648..2147483647]
+---
+> [eva] domains_function.c:96: Frama_C_show_each_top: {1}
+47,51c47
+< [eva] computing for function not_enabled <- recursively_enabled <- main.
+<   Called from domains_function.c:110.
+< [eva] domains_function.c:77: Frama_C_show_each_top: {1}
+< [eva] Recording results for not_enabled
+< [eva] Done for function not_enabled
+---
+> [eva] domains_function.c:110: Reusing old results for call to not_enabled
+53,57c49
+< [eva] computing for function disabled <- recursively_enabled <- main.
+<   Called from domains_function.c:112.
+< [eva] domains_function.c:84: Frama_C_show_each_top: [-2147483648..2147483647]
+< [eva] Recording results for disabled
+< [eva] Done for function disabled
+---
+> [eva] domains_function.c:112: Reusing old results for call to disabled
+120c112
+<   result ∈ [--..--]
+---
+>   result ∈ {1}

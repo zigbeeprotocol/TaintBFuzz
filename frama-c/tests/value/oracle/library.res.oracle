@@ -1,0 +1,588 @@
+[kernel] Parsing library.i (no preprocessing)
+[eva] Analyzing an incomplete application starting at main
+[eva] Computing initial state
+[eva:initial-state] 
+  creating variable S_0_p_ss with imprecise size (type struct ss [2])
+[eva:unknown-size] library.i:57: Warning: 
+  during initialization of variable 'ss', size of type 'struct ss' cannot be
+  computed (abstract type 'struct ss')
+[eva:initial-state] 
+  creating variable S_1_p_ss with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_0_0_S_q_ss with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_1_0_S_q_ss with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_0_1_S_q_ss with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_1_1_S_q_ss with imprecise size (type struct ss [2])
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  gpi ∈ {{ NULL ; &S_gpi[0] }}
+  G ∈ {{ NULL ; &S_G[0] }}
+  v ∈ [--..--]
+  G0 ∈ [--..--]
+  G1 ∈ {{ NULL ; &S_G1[0] }}
+  f ∈ {0}
+  gpf ∈ {{ NULL ; &S_gpf[0] }}
+  gpd ∈ {{ NULL ; &S_gpd[0] }}
+  s ∈ {0}
+  ss.p[0] ∈ {{ NULL ; (struct ss *)&S_0_p_ss }}
+    .p[1] ∈ {{ NULL ; (struct ss *)&S_1_p_ss }}
+    .p[2..7] ∈ {{ NULL ; (struct ss *)&S_0_p_ss ; (struct ss *)&S_1_p_ss }}
+    .q ∈ {{ NULL ; &S_q_ss[0] }}
+  ff ∈ {0}
+  s_bitfield.bf1 ∈ [--..--]
+            .[bits 5 to 15] ∈ UNINITIALIZED
+            .control ∈ [--..--]
+            .[bits 30 to 31] ∈ UNINITIALIZED
+  S_gpi[0..1] ∈ [--..--]
+  S_G[0] ∈ {{ NULL ; &S_0_S_G[0] }}
+     [1] ∈ {{ NULL ; &S_1_S_G[0] }}
+  S_0_S_G[0] ∈ {{ NULL ; &S_0_S_0_S_G[0] }}
+         [1] ∈ {{ NULL ; &S_1_S_0_S_G[0] }}
+  S_0_S_0_S_G[0] ∈ {{ NULL ; &S_0_S_0_S_0_S_G[0] }}
+             [1] ∈ {{ NULL ; &S_1_S_0_S_0_S_G[0] }}
+  S_0_S_0_S_0_S_G[0..1] ∈ [--..--]
+  S_1_S_0_S_0_S_G[0..1] ∈ [--..--]
+  S_1_S_0_S_G[0] ∈ {{ NULL ; &S_0_S_1_S_0_S_G[0] }}
+             [1] ∈ {{ NULL ; &S_1_S_1_S_0_S_G[0] }}
+  S_0_S_1_S_0_S_G[0..1] ∈ [--..--]
+  S_1_S_1_S_0_S_G[0..1] ∈ [--..--]
+  S_1_S_G[0] ∈ {{ NULL ; &S_0_S_1_S_G[0] }}
+         [1] ∈ {{ NULL ; &S_1_S_1_S_G[0] }}
+  S_0_S_1_S_G[0] ∈ {{ NULL ; &S_0_S_0_S_1_S_G[0] }}
+             [1] ∈ {{ NULL ; &S_1_S_0_S_1_S_G[0] }}
+  S_0_S_0_S_1_S_G[0..1] ∈ [--..--]
+  S_1_S_0_S_1_S_G[0..1] ∈ [--..--]
+  S_1_S_1_S_G[0] ∈ {{ NULL ; &S_0_S_1_S_1_S_G[0] }}
+             [1] ∈ {{ NULL ; &S_1_S_1_S_1_S_G[0] }}
+  S_0_S_1_S_1_S_G[0..1] ∈ [--..--]
+  S_1_S_1_S_1_S_G[0..1] ∈ [--..--]
+  S_G1[0..1] ∈ [--..--]
+  S_gpf[0..1] ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+  S_gpd[0..1] ∈ [-1.79769313486e+308 .. 1.79769313486e+308]
+  S_0_p_ss[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_p_ss[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_q_ss[0][0] ∈ {{ NULL ; (struct ss *)&S_0_0_S_q_ss }}
+        [0][1] ∈ {{ NULL ; (struct ss *)&S_1_0_S_q_ss }}
+        [0][2..7] ∈
+        {{ NULL ; (struct ss *)&S_0_0_S_q_ss ; (struct ss *)&S_1_0_S_q_ss }}
+        [1][0] ∈ {{ NULL ; (struct ss *)&S_0_1_S_q_ss }}
+        [1][1] ∈ {{ NULL ; (struct ss *)&S_1_1_S_q_ss }}
+        [1][2..7] ∈
+        {{ NULL ; (struct ss *)&S_0_1_S_q_ss ; (struct ss *)&S_1_1_S_q_ss }}
+  S_0_0_S_q_ss[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_0_S_q_ss[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_0_1_S_q_ss[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_1_S_q_ss[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+[kernel:annot:missing-spec] library.i:30: Warning: 
+  Neither code nor specification for function f_int, generating default assigns from the prototype
+[eva] computing for function f_int <- main.
+  Called from library.i:30.
+[eva] using specification for function f_int
+[eva] Done for function f_int
+[eva] computing for function f_star_int <- main.
+  Called from library.i:31.
+[eva] using specification for function f_star_int
+[eva] Done for function f_star_int
+[eva] library.i:31: 
+  Assigning imprecise value to G1.
+  The imprecision originates from Library function {library.i:31}
+[eva:alarm] library.i:32: Warning: out of bounds write. assert \valid(G1);
+[eva:alarm] library.i:33: Warning: out of bounds read. assert \valid_read(G);
+[eva:alarm] library.i:33: Warning: out of bounds read. assert \valid_read(*G);
+[eva:alarm] library.i:33: Warning: 
+  out of bounds read. assert \valid_read(*(*G));
+[eva:alarm] library.i:33: Warning: out of bounds write. assert \valid(*(*(*G)));
+[kernel:annot:missing-spec] library.i:37: Warning: 
+  Neither code nor specification for function gen, generating default assigns from the prototype
+[eva] computing for function gen <- main.
+  Called from library.i:37.
+[eva] using specification for function gen
+[eva] Done for function gen
+[eva:alarm] library.i:38: Warning: 
+  pointer to function with incompatible type. assert \valid_function(f);
+[eva:alarm] library.i:39: Warning: 
+  pointer to function with incompatible type. assert \valid_function(g);
+[eva:alarm] library.i:40: Warning: 
+  pointer to function with incompatible type. assert \valid_function(h);
+[eva] computing for function i <- main.
+  Called from library.i:41.
+[eva] using specification for function i
+[eva] Done for function i
+[eva] library.i:41: 
+  Assigning imprecise value to pf.
+  The imprecision originates from Library function {library.i:41}
+[eva:alarm] library.i:42: Warning: out of bounds read. assert \valid_read(pf);
+[eva:alarm] library.i:42: Warning: 
+  non-finite float value. assert \is_finite(*pf);
+[eva:alarm] library.i:43: Warning: out of bounds write. assert \valid(pf);
+[eva:alarm] library.i:44: Warning: out of bounds write. assert \valid(pf);
+[eva:alarm] library.i:44: Warning: 
+  non-finite float value. assert \is_finite(*pf);
+[eva:alarm] library.i:44: Warning: 
+  non-finite float value. assert \is_finite(\add_float(*pf, *pf));
+[eva] computing for function k <- main.
+  Called from library.i:45.
+[eva] using specification for function k
+[eva] Done for function k
+[eva] library.i:45: 
+  Assigning imprecise value to pd.
+  The imprecision originates from Library function {library.i:45}
+[eva:alarm] library.i:46: Warning: out of bounds write. assert \valid(pd);
+[eva] Recording results for main
+[eva] done for function main
+[eva] library.i:38: assertion 'Eva,function_pointer' got final status invalid.
+[eva] library.i:39: assertion 'Eva,function_pointer' got final status invalid.
+[eva] library.i:40: assertion 'Eva,function_pointer' got final status invalid.
+[scope:rm_asserts] removing 1 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  G0 ∈ [--..--]
+  G1 ∈ {{ &S_gpi + {0; 1; 2; 3; 4} }}
+  x ∈ {3}
+  y ∈ {4}
+  h ∈ [--..--]
+  pf ∈ {{ &S_gpf + {0; 1; 2; 3; 4} }}
+  vf ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+  pd ∈ {{ &S_gpd + [0..8] }}
+  S_gpi[0..1] ∈ [--..--]
+  S_0_S_0_S_0_S_G[0] ∈ {1}
+                 [1] ∈ [--..--]
+  S_gpf[0][bits 0 to 7]# ∈
+       [-3.40282346639e+38 .. 3.40282346639e+38]%32, bits 0 to 7 
+       {[0][bits 8 to 31]; [1][bits 0 to 23]} ∈ [--..--]
+       [1][bits 24 to 31]# ∈
+       [-3.40282346639e+38 .. 3.40282346639e+38]%32, bits 24 to 31 
+  S_gpd[0..1] ∈ [--..--]
+[from] Computing for function main
+[from] Computing for function f_int <-main
+[from] Done for function f_int
+[from] Computing for function f_star_int <-main
+[from] Done for function f_star_int
+[from] Computing for function gen <-main
+[from] Done for function gen
+[from] Computing for function i <-main
+[from] Done for function i
+[from] Computing for function k <-main
+[from] Done for function k
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f_int:
+  \result FROM x
+[from] Function f_star_int:
+  \result FROM gpi; x
+[from] Function gen:
+  \result FROM \nothing
+[from] Function i:
+  \result FROM gpf
+[from] Function k:
+  \result FROM gpd
+[from] Function main:
+  G0 FROM \nothing
+  G1 FROM gpi
+  S_gpi[0..1] FROM gpi (and SELF)
+  S_0_S_0_S_0_S_G[0] FROM G; S_G[0]; S_0_S_G[0]; S_0_S_0_S_G[0]
+  S_gpf[0..1] FROM gpf; S_gpf[0..1] (and SELF)
+  S_gpd[0..1] FROM gpd (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    G0; G1; x; y; h; tmp_0; tmp_1; tmp_2; pf; vf; pd; S_gpi[0..1];
+    S_0_S_0_S_0_S_G[0]; S_gpf[0..1]; S_gpd[0..1]
+[inout] Inputs for function main:
+    gpi; G; v; G1; f; gpf; gpd; S_G[0]; S_0_S_G[0]; S_0_S_0_S_G[0]; S_gpf[0..1]
+[eva] Analyzing an incomplete application starting at main2
+[eva] Computing initial state
+[eva:initial-state] 
+  creating variable S_0_p_ss_0 with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_1_p_ss_0 with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_0_0_S_q_ss_0 with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_1_0_S_q_ss_0 with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_0_1_S_q_ss_0 with imprecise size (type struct ss [2])
+[eva:initial-state] 
+  creating variable S_1_1_S_q_ss_0 with imprecise size (type struct ss [2])
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  gpi ∈ {{ NULL ; &S_gpi_0[0] }}
+  G ∈ {{ NULL ; &S_G_0[0] }}
+  v ∈ [--..--]
+  G0 ∈ [--..--]
+  G1 ∈ {{ NULL ; &S_G1_0[0] }}
+  f ∈ {0}
+  gpf ∈ {{ NULL ; &S_gpf_0[0] }}
+  gpd ∈ {{ NULL ; &S_gpd_0[0] }}
+  s ∈ {0}
+  ss.p[0] ∈ {{ NULL ; (struct ss *)&S_0_p_ss_0 }}
+    .p[1] ∈ {{ NULL ; (struct ss *)&S_1_p_ss_0 }}
+    .p[2..7] ∈
+    {{ NULL ; (struct ss *)&S_0_p_ss_0 ; (struct ss *)&S_1_p_ss_0 }}
+    .q ∈ {{ NULL ; &S_q_ss_0[0] }}
+  ff ∈ {0}
+  s_bitfield.bf1 ∈ [--..--]
+            .[bits 5 to 15] ∈ UNINITIALIZED
+            .control ∈ [--..--]
+            .[bits 30 to 31] ∈ UNINITIALIZED
+  S_gpi_0[0..1] ∈ [--..--]
+  S_G_0[0] ∈ {{ NULL ; &S_0_S_G_0[0] }}
+       [1] ∈ {{ NULL ; &S_1_S_G_0[0] }}
+  S_0_S_G_0[0] ∈ {{ NULL ; &S_0_S_0_S_G_0[0] }}
+           [1] ∈ {{ NULL ; &S_1_S_0_S_G_0[0] }}
+  S_0_S_0_S_G_0[0] ∈ {{ NULL ; &S_0_S_0_S_0_S_G_0[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_0_S_0_S_G_0[0] }}
+  S_0_S_0_S_0_S_G_0[0..1] ∈ [--..--]
+  S_1_S_0_S_0_S_G_0[0..1] ∈ [--..--]
+  S_1_S_0_S_G_0[0] ∈ {{ NULL ; &S_0_S_1_S_0_S_G_0[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_1_S_0_S_G_0[0] }}
+  S_0_S_1_S_0_S_G_0[0..1] ∈ [--..--]
+  S_1_S_1_S_0_S_G_0[0..1] ∈ [--..--]
+  S_1_S_G_0[0] ∈ {{ NULL ; &S_0_S_1_S_G_0[0] }}
+           [1] ∈ {{ NULL ; &S_1_S_1_S_G_0[0] }}
+  S_0_S_1_S_G_0[0] ∈ {{ NULL ; &S_0_S_0_S_1_S_G_0[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_0_S_1_S_G_0[0] }}
+  S_0_S_0_S_1_S_G_0[0..1] ∈ [--..--]
+  S_1_S_0_S_1_S_G_0[0..1] ∈ [--..--]
+  S_1_S_1_S_G_0[0] ∈ {{ NULL ; &S_0_S_1_S_1_S_G_0[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_1_S_1_S_G_0[0] }}
+  S_0_S_1_S_1_S_G_0[0..1] ∈ [--..--]
+  S_1_S_1_S_1_S_G_0[0..1] ∈ [--..--]
+  S_G1_0[0..1] ∈ [--..--]
+  S_gpf_0[0..1] ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+  S_gpd_0[0..1] ∈ [-1.79769313486e+308 .. 1.79769313486e+308]
+  S_0_p_ss_0[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_p_ss_0[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_q_ss_0[0][0] ∈ {{ NULL ; (struct ss *)&S_0_0_S_q_ss_0 }}
+          [0][1] ∈ {{ NULL ; (struct ss *)&S_1_0_S_q_ss_0 }}
+          [0][2..7] ∈
+          {{ NULL ; (struct ss *)&S_0_0_S_q_ss_0 ;
+             (struct ss *)&S_1_0_S_q_ss_0 }}
+          [1][0] ∈ {{ NULL ; (struct ss *)&S_0_1_S_q_ss_0 }}
+          [1][1] ∈ {{ NULL ; (struct ss *)&S_1_1_S_q_ss_0 }}
+          [1][2..7] ∈
+          {{ NULL ; (struct ss *)&S_0_1_S_q_ss_0 ;
+             (struct ss *)&S_1_1_S_q_ss_0 }}
+  S_0_0_S_q_ss_0[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_0_S_q_ss_0[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_0_1_S_q_ss_0[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_1_S_q_ss_0[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+[eva:alarm] library.i:69: Warning: assertion 'Unknown' got status unknown.
+[eva] library.i:70: assertion got status valid.
+[eva] library.i:71: assertion got status valid.
+[eva:alarm] library.i:73: Warning: assertion 'Unknown' got status unknown.
+[eva] library.i:74: Frama_C_show_each_reached_1:
+[eva:alarm] library.i:77: Warning: assertion 'Unknown' got status unknown.
+[eva] library.i:78: Frama_C_show_each_reached_2:
+[eva:alarm] library.i:81: Warning: 
+  assertion 'Unknown_Invalid' got status invalid (stopping propagation).
+[eva] Recording results for main2
+[eva] done for function main2
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main2:
+  
+[from] Computing for function main2
+[from] Done for function main2
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main2:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main2:
+    \nothing
+[inout] Inputs for function main2:
+    v
+[eva] Analyzing an incomplete application starting at main2
+[eva] Computing initial state
+[eva:initial-state] 
+  creating variable S_0_p_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_1_p_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_2_p_ss with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_3_p_ss with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_0_0_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_1_0_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_2_0_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_3_0_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_0_1_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_1_1_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_2_1_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_3_1_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_0_2_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_1_2_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_2_2_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_3_2_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_0_3_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_1_3_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_2_3_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva:initial-state] 
+  creating variable S_3_3_S_q_ss_1 with imprecise size (type struct ss [4])
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  gpi ∈ {{ NULL ; &S_gpi_1[0] }}
+  G ∈ {{ NULL ; &S_G_1[0] }}
+  v ∈ [--..--]
+  G0 ∈ [--..--]
+  G1 ∈ {{ NULL ; &S_G1_1[0] }}
+  f ∈ {0}
+  gpf ∈ {{ NULL ; &S_gpf_1[0] }}
+  gpd ∈ {{ NULL ; &S_gpd_1[0] }}
+  s ∈ {0}
+  ss.p[0] ∈ {{ NULL ; (struct ss *)&S_0_p_ss_1 }}
+    .p[1] ∈ {{ NULL ; (struct ss *)&S_1_p_ss_1 }}
+    .p[2] ∈ {{ NULL ; (struct ss *)&S_2_p_ss }}
+    .p[3] ∈ {{ NULL ; (struct ss *)&S_3_p_ss }}
+    .p[4..7] ∈
+    {{ NULL ; (struct ss *)&S_0_p_ss_1 ; (struct ss *)&S_1_p_ss_1 ;
+       (struct ss *)&S_2_p_ss ; (struct ss *)&S_3_p_ss }}
+    .q ∈ {{ NULL ; &S_q_ss_1[0] }}
+  ff ∈ {0}
+  s_bitfield.bf1 ∈ [--..--]
+            .[bits 5 to 15] ∈ UNINITIALIZED
+            .control ∈ [--..--]
+            .[bits 30 to 31] ∈ UNINITIALIZED
+  S_gpi_1[0..3] ∈ [--..--]
+  S_G_1[0] ∈ {{ NULL ; &S_0_S_G_1[0] }}
+       [1] ∈ {{ NULL ; &S_1_S_G_1[0] }}
+       [2] ∈ {{ NULL ; &S_2_S_G_1[0] }}
+       [3] ∈ {{ NULL ; &S_3_S_G_1[0] }}
+  S_0_S_G_1[0] ∈ {{ NULL ; &S_0_S_0_S_G_1[0] }}
+           [1] ∈ {{ NULL ; &S_1_S_0_S_G_1[0] }}
+           [2] ∈ {{ NULL ; &S_2_S_0_S_G_1[0] }}
+           [3] ∈ {{ NULL ; &S_3_S_0_S_G_1[0] }}
+  S_0_S_0_S_G_1[0] ∈ {{ NULL ; &S_0_S_0_S_0_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_0_S_0_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_0_S_0_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_0_S_0_S_G_1[0] }}
+  S_0_S_0_S_0_S_G_1[0..3] ∈ [--..--]
+  S_1_S_0_S_0_S_G_1[0..3] ∈ [--..--]
+  S_2_S_0_S_0_S_G_1[0..3] ∈ [--..--]
+  S_3_S_0_S_0_S_G_1[0..3] ∈ [--..--]
+  S_1_S_0_S_G_1[0] ∈ {{ NULL ; &S_0_S_1_S_0_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_1_S_0_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_1_S_0_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_1_S_0_S_G_1[0] }}
+  S_0_S_1_S_0_S_G_1[0..3] ∈ [--..--]
+  S_1_S_1_S_0_S_G_1[0..3] ∈ [--..--]
+  S_2_S_1_S_0_S_G_1[0..3] ∈ [--..--]
+  S_3_S_1_S_0_S_G_1[0..3] ∈ [--..--]
+  S_2_S_0_S_G_1[0] ∈ {{ NULL ; &S_0_S_2_S_0_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_2_S_0_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_2_S_0_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_2_S_0_S_G_1[0] }}
+  S_0_S_2_S_0_S_G_1[0..3] ∈ [--..--]
+  S_1_S_2_S_0_S_G_1[0..3] ∈ [--..--]
+  S_2_S_2_S_0_S_G_1[0..3] ∈ [--..--]
+  S_3_S_2_S_0_S_G_1[0..3] ∈ [--..--]
+  S_3_S_0_S_G_1[0] ∈ {{ NULL ; &S_0_S_3_S_0_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_3_S_0_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_3_S_0_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_3_S_0_S_G_1[0] }}
+  S_0_S_3_S_0_S_G_1[0..3] ∈ [--..--]
+  S_1_S_3_S_0_S_G_1[0..3] ∈ [--..--]
+  S_2_S_3_S_0_S_G_1[0..3] ∈ [--..--]
+  S_3_S_3_S_0_S_G_1[0..3] ∈ [--..--]
+  S_1_S_G_1[0] ∈ {{ NULL ; &S_0_S_1_S_G_1[0] }}
+           [1] ∈ {{ NULL ; &S_1_S_1_S_G_1[0] }}
+           [2] ∈ {{ NULL ; &S_2_S_1_S_G_1[0] }}
+           [3] ∈ {{ NULL ; &S_3_S_1_S_G_1[0] }}
+  S_0_S_1_S_G_1[0] ∈ {{ NULL ; &S_0_S_0_S_1_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_0_S_1_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_0_S_1_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_0_S_1_S_G_1[0] }}
+  S_0_S_0_S_1_S_G_1[0..3] ∈ [--..--]
+  S_1_S_0_S_1_S_G_1[0..3] ∈ [--..--]
+  S_2_S_0_S_1_S_G_1[0..3] ∈ [--..--]
+  S_3_S_0_S_1_S_G_1[0..3] ∈ [--..--]
+  S_1_S_1_S_G_1[0] ∈ {{ NULL ; &S_0_S_1_S_1_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_1_S_1_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_1_S_1_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_1_S_1_S_G_1[0] }}
+  S_0_S_1_S_1_S_G_1[0..3] ∈ [--..--]
+  S_1_S_1_S_1_S_G_1[0..3] ∈ [--..--]
+  S_2_S_1_S_1_S_G_1[0..3] ∈ [--..--]
+  S_3_S_1_S_1_S_G_1[0..3] ∈ [--..--]
+  S_2_S_1_S_G_1[0] ∈ {{ NULL ; &S_0_S_2_S_1_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_2_S_1_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_2_S_1_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_2_S_1_S_G_1[0] }}
+  S_0_S_2_S_1_S_G_1[0..3] ∈ [--..--]
+  S_1_S_2_S_1_S_G_1[0..3] ∈ [--..--]
+  S_2_S_2_S_1_S_G_1[0..3] ∈ [--..--]
+  S_3_S_2_S_1_S_G_1[0..3] ∈ [--..--]
+  S_3_S_1_S_G_1[0] ∈ {{ NULL ; &S_0_S_3_S_1_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_3_S_1_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_3_S_1_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_3_S_1_S_G_1[0] }}
+  S_0_S_3_S_1_S_G_1[0..3] ∈ [--..--]
+  S_1_S_3_S_1_S_G_1[0..3] ∈ [--..--]
+  S_2_S_3_S_1_S_G_1[0..3] ∈ [--..--]
+  S_3_S_3_S_1_S_G_1[0..3] ∈ [--..--]
+  S_2_S_G_1[0] ∈ {{ NULL ; &S_0_S_2_S_G_1[0] }}
+           [1] ∈ {{ NULL ; &S_1_S_2_S_G_1[0] }}
+           [2] ∈ {{ NULL ; &S_2_S_2_S_G_1[0] }}
+           [3] ∈ {{ NULL ; &S_3_S_2_S_G_1[0] }}
+  S_0_S_2_S_G_1[0] ∈ {{ NULL ; &S_0_S_0_S_2_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_0_S_2_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_0_S_2_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_0_S_2_S_G_1[0] }}
+  S_0_S_0_S_2_S_G_1[0..3] ∈ [--..--]
+  S_1_S_0_S_2_S_G_1[0..3] ∈ [--..--]
+  S_2_S_0_S_2_S_G_1[0..3] ∈ [--..--]
+  S_3_S_0_S_2_S_G_1[0..3] ∈ [--..--]
+  S_1_S_2_S_G_1[0] ∈ {{ NULL ; &S_0_S_1_S_2_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_1_S_2_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_1_S_2_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_1_S_2_S_G_1[0] }}
+  S_0_S_1_S_2_S_G_1[0..3] ∈ [--..--]
+  S_1_S_1_S_2_S_G_1[0..3] ∈ [--..--]
+  S_2_S_1_S_2_S_G_1[0..3] ∈ [--..--]
+  S_3_S_1_S_2_S_G_1[0..3] ∈ [--..--]
+  S_2_S_2_S_G_1[0] ∈ {{ NULL ; &S_0_S_2_S_2_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_2_S_2_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_2_S_2_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_2_S_2_S_G_1[0] }}
+  S_0_S_2_S_2_S_G_1[0..3] ∈ [--..--]
+  S_1_S_2_S_2_S_G_1[0..3] ∈ [--..--]
+  S_2_S_2_S_2_S_G_1[0..3] ∈ [--..--]
+  S_3_S_2_S_2_S_G_1[0..3] ∈ [--..--]
+  S_3_S_2_S_G_1[0] ∈ {{ NULL ; &S_0_S_3_S_2_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_3_S_2_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_3_S_2_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_3_S_2_S_G_1[0] }}
+  S_0_S_3_S_2_S_G_1[0..3] ∈ [--..--]
+  S_1_S_3_S_2_S_G_1[0..3] ∈ [--..--]
+  S_2_S_3_S_2_S_G_1[0..3] ∈ [--..--]
+  S_3_S_3_S_2_S_G_1[0..3] ∈ [--..--]
+  S_3_S_G_1[0] ∈ {{ NULL ; &S_0_S_3_S_G_1[0] }}
+           [1] ∈ {{ NULL ; &S_1_S_3_S_G_1[0] }}
+           [2] ∈ {{ NULL ; &S_2_S_3_S_G_1[0] }}
+           [3] ∈ {{ NULL ; &S_3_S_3_S_G_1[0] }}
+  S_0_S_3_S_G_1[0] ∈ {{ NULL ; &S_0_S_0_S_3_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_0_S_3_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_0_S_3_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_0_S_3_S_G_1[0] }}
+  S_0_S_0_S_3_S_G_1[0..3] ∈ [--..--]
+  S_1_S_0_S_3_S_G_1[0..3] ∈ [--..--]
+  S_2_S_0_S_3_S_G_1[0..3] ∈ [--..--]
+  S_3_S_0_S_3_S_G_1[0..3] ∈ [--..--]
+  S_1_S_3_S_G_1[0] ∈ {{ NULL ; &S_0_S_1_S_3_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_1_S_3_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_1_S_3_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_1_S_3_S_G_1[0] }}
+  S_0_S_1_S_3_S_G_1[0..3] ∈ [--..--]
+  S_1_S_1_S_3_S_G_1[0..3] ∈ [--..--]
+  S_2_S_1_S_3_S_G_1[0..3] ∈ [--..--]
+  S_3_S_1_S_3_S_G_1[0..3] ∈ [--..--]
+  S_2_S_3_S_G_1[0] ∈ {{ NULL ; &S_0_S_2_S_3_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_2_S_3_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_2_S_3_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_2_S_3_S_G_1[0] }}
+  S_0_S_2_S_3_S_G_1[0..3] ∈ [--..--]
+  S_1_S_2_S_3_S_G_1[0..3] ∈ [--..--]
+  S_2_S_2_S_3_S_G_1[0..3] ∈ [--..--]
+  S_3_S_2_S_3_S_G_1[0..3] ∈ [--..--]
+  S_3_S_3_S_G_1[0] ∈ {{ NULL ; &S_0_S_3_S_3_S_G_1[0] }}
+               [1] ∈ {{ NULL ; &S_1_S_3_S_3_S_G_1[0] }}
+               [2] ∈ {{ NULL ; &S_2_S_3_S_3_S_G_1[0] }}
+               [3] ∈ {{ NULL ; &S_3_S_3_S_3_S_G_1[0] }}
+  S_0_S_3_S_3_S_G_1[0..3] ∈ [--..--]
+  S_1_S_3_S_3_S_G_1[0..3] ∈ [--..--]
+  S_2_S_3_S_3_S_G_1[0..3] ∈ [--..--]
+  S_3_S_3_S_3_S_G_1[0..3] ∈ [--..--]
+  S_G1_1[0..3] ∈ [--..--]
+  S_gpf_1[0..3] ∈ [-3.40282346639e+38 .. 3.40282346639e+38]
+  S_gpd_1[0..3] ∈ [-1.79769313486e+308 .. 1.79769313486e+308]
+  S_0_p_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_p_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_2_p_ss[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_3_p_ss[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_q_ss_1[0][0] ∈ {{ NULL ; (struct ss *)&S_0_0_S_q_ss_1 }}
+          [0][1] ∈ {{ NULL ; (struct ss *)&S_1_0_S_q_ss_1 }}
+          [0][2] ∈ {{ NULL ; (struct ss *)&S_2_0_S_q_ss_1 }}
+          [0][3] ∈ {{ NULL ; (struct ss *)&S_3_0_S_q_ss_1 }}
+          [0][4..7] ∈
+          {{ NULL ; (struct ss *)&S_0_0_S_q_ss_1 ;
+             (struct ss *)&S_1_0_S_q_ss_1 ; (struct ss *)&S_2_0_S_q_ss_1 ;
+             (struct ss *)&S_3_0_S_q_ss_1 }}
+          [1][0] ∈ {{ NULL ; (struct ss *)&S_0_1_S_q_ss_1 }}
+          [1][1] ∈ {{ NULL ; (struct ss *)&S_1_1_S_q_ss_1 }}
+          [1][2] ∈ {{ NULL ; (struct ss *)&S_2_1_S_q_ss_1 }}
+          [1][3] ∈ {{ NULL ; (struct ss *)&S_3_1_S_q_ss_1 }}
+          [1][4..7] ∈
+          {{ NULL ; (struct ss *)&S_0_1_S_q_ss_1 ;
+             (struct ss *)&S_1_1_S_q_ss_1 ; (struct ss *)&S_2_1_S_q_ss_1 ;
+             (struct ss *)&S_3_1_S_q_ss_1 }}
+          [2][0] ∈ {{ NULL ; (struct ss *)&S_0_2_S_q_ss_1 }}
+          [2][1] ∈ {{ NULL ; (struct ss *)&S_1_2_S_q_ss_1 }}
+          [2][2] ∈ {{ NULL ; (struct ss *)&S_2_2_S_q_ss_1 }}
+          [2][3] ∈ {{ NULL ; (struct ss *)&S_3_2_S_q_ss_1 }}
+          [2][4..7] ∈
+          {{ NULL ; (struct ss *)&S_0_2_S_q_ss_1 ;
+             (struct ss *)&S_1_2_S_q_ss_1 ; (struct ss *)&S_2_2_S_q_ss_1 ;
+             (struct ss *)&S_3_2_S_q_ss_1 }}
+          [3][0] ∈ {{ NULL ; (struct ss *)&S_0_3_S_q_ss_1 }}
+          [3][1] ∈ {{ NULL ; (struct ss *)&S_1_3_S_q_ss_1 }}
+          [3][2] ∈ {{ NULL ; (struct ss *)&S_2_3_S_q_ss_1 }}
+          [3][3] ∈ {{ NULL ; (struct ss *)&S_3_3_S_q_ss_1 }}
+          [3][4..7] ∈
+          {{ NULL ; (struct ss *)&S_0_3_S_q_ss_1 ;
+             (struct ss *)&S_1_3_S_q_ss_1 ; (struct ss *)&S_2_3_S_q_ss_1 ;
+             (struct ss *)&S_3_3_S_q_ss_1 }}
+  S_0_0_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_0_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_2_0_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_3_0_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_0_1_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_1_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_2_1_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_3_1_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_0_2_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_2_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_2_2_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_3_2_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_0_3_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_1_3_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_2_3_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_3_3_S_q_ss_1[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+[eva] library.i:74: Frama_C_show_each_reached_1:
+[eva] library.i:78: Frama_C_show_each_reached_2:
+[eva:alarm] library.i:81: Warning: 
+  assertion 'Unknown_Invalid' got status unknown.
+[eva] library.i:82: Frama_C_show_each_reached_3:
+[eva] Recording results for main2
+[eva] done for function main2
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main2:
+  
+[from] Computing for function main2
+[from] Done for function main2
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main2:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main2:
+    \nothing
+[inout] Inputs for function main2:
+    v

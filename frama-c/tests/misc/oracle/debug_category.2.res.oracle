@@ -1,0 +1,5 @@
+[kernel] Parsing debug_category.i (no preprocessing)
+[test] Warning: Uncategorized warning
+[test:a] A is enabled
+[test:a] A is enabled
+[test:a] A is enabled

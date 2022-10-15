@@ -1,0 +1,49 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{center}
+\large
+1st Asian-Pacific Summer School on Formal Methods\\
+Class 11-12: Deductive verification with Frama-C: strings
+\end{center}
+\section{Introduction}
+The goal of these classes is to prove with Frama-C and its jessie
+plugin some properties over functions that manipulate strings.
+
+Recall that a C string is a block of characters with a terminating null 
+({\tt '\textbackslash 0}).
+
+\section{Logic Specifications}
+
+\begin{enumerate}
+  \item Write an axiomatic definition of a logic function {\tt string\_length}
+    which takes as argument a \verb+char *+ and returns the position of the 
+    first null character or {\tt -1} if there is no such character (assume that
+    all accesses succeed. Validity will be taken care of thereafter)
+  \item Define a predicate \verb+\valid_string+ which takes as arguments a 
+    \verb+char *+,\verb+c+ and holds iff \verb+string_length(c)+ is 
+    non-negative and the block starting from \verb+c+ up to 
+    \verb+string_length(c)+ is valid.
+\end{enumerate}
+
+\section{Length of a string in C}
+\begin{enumerate}
+\item Write the specification of a C function 
+  \verb+strlen+ which given a valid string returns its length
+({\it i.e.} the number of elements before the first null character).
+\item Give an implementation for the function
+\item Prove that the implementation is correct with respect to your 
+  specification (Don't forget loop invariants).
+\end{enumerate}
+
+\section{Copy of string}
+Same questions as above for the function \verb+strcpy+ which given two 
+\verb+char *+ \verb+src+ and \verb+dest+, with \verb+src+ a valid string
+copies the content of \verb+src+ to \verb+dest+ (NB: as a pre-condition, 
+\verb+dest+ must be large enough to store it)
+\end{document}
+
+Local Variables:
+mode: latex
+ispell-local-dictionary: "english"
+End:

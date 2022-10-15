@@ -1,0 +1,55 @@
+[kernel] Parsing widen_on_non_monotonic.i (no preprocessing)
+[kernel:typing:implicit-function-declaration] widen_on_non_monotonic.i:57: Warning: 
+  Calling undeclared function fn1. Old style K&R code?
+[kernel:typing:implicit-function-declaration] widen_on_non_monotonic.i:58: Warning: 
+  Calling undeclared function fn2. Old style K&R code?
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {0}
+  b ∈ {0}
+  c ∈ {0}
+  d ∈ {0}
+  u ∈ {0}
+  g ∈ {0}
+  i ∈ {0}
+  j ∈ {0}
+  k ∈ {0}
+[eva] computing for function main1 <- main.
+  Called from widen_on_non_monotonic.i:71.
+[eva] widen_on_non_monotonic.i:25: starting to merge loop iterations
+[eva] widen_on_non_monotonic.i:23: starting to merge loop iterations
+[eva] widen_on_non_monotonic.i:26: starting to merge loop iterations
+[eva:alarm] widen_on_non_monotonic.i:27: Warning: 
+  signed overflow. assert -2147483648 ≤ b - 1;
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[from] Computing for function main1
+[from] Non-terminating function main1 (no dependencies)
+[from] Done for function main1
+[from] Computing for function main
+[from] Non-terminating function main (no dependencies)
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  NON TERMINATING - NO EFFECTS
+[from] Function main:
+  NON TERMINATING - NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    a; b; c; d
+[inout] Inputs for function main1:
+    a{.f0[bits 0 to 15]; .f1[bits 0 to 15]; .f3}; b; c; d
+[inout] Out (internal) for function main:
+    a; b; c; d
+[inout] Inputs for function main:
+    a{.f0[bits 0 to 15]; .f1[bits 0 to 15]; .f3}; b; c; d

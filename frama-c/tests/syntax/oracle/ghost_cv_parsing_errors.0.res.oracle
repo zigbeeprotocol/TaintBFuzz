@@ -1,0 +1,14 @@
+[kernel] Parsing ghost_cv_parsing_errors.c (with preprocessing)
+[kernel] ghost_cv_parsing_errors.c:12: 
+  Use of \ghost out of ghost code:
+  Location: between lines 12 and 14, before or at token: \ghost
+  10    #ifdef IN_TYPE
+  11    
+  
+  12    struct S {
+  13      int a ;
+  14    } \ghost ;
+  
+  15    
+  16    #endif
+[kernel] Frama-C aborted: invalid user input.

@@ -1,0 +1,134 @@
+\begin{frame}[fragile]{\ocaml, a functional language}
+  
+  \begin{itemize}
+  \item \ocaml is a \orangepale{functional language}
+  \item functions are first-class values
+  \end{itemize}
+  \pause
+  \begin{alltt}
+    \# let l = [ 1; -4; 5; 3 ];;\pause
+    \gris{val l : int list = [1; -4; 5; 3]}\pause
+    \# List.map (fun x -> x * 2) l;;\pause
+    \gris{- : int list = [2; -8; 10; 6]}\pause
+    \# List.sort Pervasives.compare l;;\pause
+    \gris{- : int list = [-4; 1; 3; 5]}\pause
+    \# List.fold\_left ( + ) 0 l;;\pause
+    \gris{- : int = 5}
+  \end{alltt}
+  
+\end{frame}
+
+\begin{frame}[fragile]{\ocaml, an imperative language}
+  \framesubtitle{Reference and mutable records}
+
+  \begin{itemize}
+  \item \ocaml is also an \orangepale{imperative language}
+  \item \orangepale{references}
+%{\small
+    \begin{ocamlcode}
+let x = ref 0
+let () = x := 3
+(* let () = x := "three" *) (* incorrect! *)
+let n = !x       (* n is 3 *)
+let y = x        (* aliasing *)
+let () = x := 2
+let m = !y       (* m is 2 *)
+    \end{ocamlcode}%}
+  \item \orangepale{mutable records}
+    \begin{ocamlcode}
+type t = { mutable int a; bool b }
+let x = { a = 0; b = true; }
+let () = x.a <- 1
+    \end{ocamlcode}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{\ocaml, an imperative language}
+  \framesubtitle{Printers}
+
+  \begin{itemize}
+  \item printers \emph{\`a la} printf (even more powerful)
+\begin{ocamlcode}
+let three = "three"
+let () = Format.printf "%s is %d" three 3
+
+type t = A | B of int
+let print fmt = function
+  | A -> Format.fprintf fmt "A"
+  | B n -> Format.fprintf fmt "B %d" n
+let () = 
+  List.iter
+    (fun x -> Format.printf "%a " print x) 
+    [ A; B 3; B (-4) ]
+\end{ocamlcode}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{\ocaml, an imperative language}
+  \framesubtitle{Standard imperative datastructures}
+
+  \begin{itemize}
+  \item Hashtables
+\begin{ocamlcode}
+let h = Hashtbl.create 7
+let () = 
+  List.iter
+    (fun (n, s) -> Hashtbl.add h n s)
+    [ 1, "one"; 2, "two"; 3, "three" ]
+let two = Hashtbl.find h 2
+let () = 
+  Hashtbl.iter
+    (fun (n, s) -> 
+      Format.printf "%d --> %s" n s)
+    h
+\end{ocamlcode}
+  \item Array, Stack, Queue
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\ocaml, an imperative language}
+  \framesubtitle{Exception}
+
+    \begin{ocamlcode}
+let h = (* hashtbl of the previous slide *)
+let four = 
+  try Hashtbl.find h 4 
+  with Not_found -> "four"
+
+exception Found of string
+let mem_value p =
+  try
+    Hashtbl.iter
+      (fun _ s -> if p s then raise (Found s))
+      h;
+    None
+  with Found s ->
+    Some s
+  \end{ocamlcode}
+
+\end{frame}
+
+\begin{frame}{\ocaml, an imperative language}
+\framesubtitle{Summary}
+
+\begin{itemize}
+\item sharing and backwards links 
+  \begin{itemize}
+  \item aliasing
+  \item \framac's AST
+  \end{itemize}
+\item complexity 
+  \begin{itemize}
+  \item random access in an array \emph{vs} in a list
+  \item search in an hashtbl \emph{vs} in a map or a list
+  \end{itemize}
+\item ease of implementation 
+  \begin{itemize}
+  \item raising an exception \emph{vs} returning an option type
+  \item no need to push an environment across call stack
+  \end{itemize}
+\end{itemize}
+
+\end{frame}

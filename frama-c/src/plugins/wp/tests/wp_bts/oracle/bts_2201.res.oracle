@@ -1,0 +1,13 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_2201.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Assigns nothing in 'main':
+Effect at line 8
+Prove: true.
+
+------------------------------------------------------------

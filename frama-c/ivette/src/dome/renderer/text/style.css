@@ -1,0 +1,108 @@
+/* -------------------------------------------------------------------------- */
+/* --- Styling Code Editors                                               --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xText {
+    flex: 1 1 auto ;
+    overflow: hidden ;
+    position: relative ;
+    fontSize: smaller ;
+}
+
+.dome-xText .CodeMirror {
+    width: 100% ;
+    height: 100% ;
+    line-height: 1.2 !important;
+    text-shadow: none !important;
+}
+
+.dome-xText-hover {
+    background: var(--code-hover) ;
+}
+
+.dome-xText-select {
+    background: var(--code-select) !important ;
+}
+
+.dome-xText-select.dome-xText-hover {
+    background: var(--code-select-hover) !important ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Styling Page                                                       --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xPages-note {
+    padding: 2px ;
+}
+
+.dome-xPages-page {
+    flex: 1 1 auto ;
+    overflow: hidden ;
+}
+
+.dome-xPages-sheet {
+    position: relative ;
+    width: calc(100% - 16px) ;
+    height: calc(100% - 16px) ;
+    margin: 8px ;
+    padding: 8px ;
+    border-radius: 2px ;
+    overflow: auto ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Styling Content                                                    --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-pages * {
+    user-select: text ;
+}
+
+.dome-pages h1:first-child {
+    margin-top: 0px ;
+}
+
+.dome-pages h1 {
+    margin-top: 24px ;
+    margin-bottom: 5px ;
+}
+
+.dome-pages h2 {
+    margin-top: 16px ;
+    margin-bottom: 5px ;
+}
+
+.dome-pages h3 {
+    margin-top: 10px ;
+    margin-bottom: 5px ;
+}
+
+.dome-pages h4 {
+    margin-top: 6px ;
+    margin-bottom: 3px ;
+}
+
+.dome-pages h5 {
+    margin-top: 3px ;
+    margin-bottom: 3px ;
+}
+
+.dome-pages p
+{
+    margin-top: 3px ;
+    margin-bottom: 3px ;
+}
+
+.dome-pages ul
+{
+    padding-left: 6px ;
+    margin-left: 16px ;
+}
+
+.dome-pages li
+{
+
+}
+
+/* -------------------------------------------------------------------------- */

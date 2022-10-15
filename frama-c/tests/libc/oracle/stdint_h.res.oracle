@@ -1,0 +1,15 @@
+[kernel] Parsing stdint_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] stdint_h.c:7: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  min ∈ {-9223372036854775808}
+  max ∈ {9223372036854775807}
+  umax ∈ {18446744073709551615}
+  __retres ∈ {0}

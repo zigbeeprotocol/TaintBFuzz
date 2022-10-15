@@ -1,0 +1,69 @@
+[kernel] Parsing inversion2.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0] ∈ {3}
+   [1] ∈ {1}
+   [2] ∈ {2}
+  TT[0][0..2] ∈ {3}
+    [0][3..4] ∈ {0}
+    [1][0] ∈ {1}
+    [1][1..4] ∈ {0}
+    [2][0..1] ∈ {2}
+    [2][2..4] ∈ {0}
+  G ∈ {99}
+[eva] inversion2.i:11: starting to merge loop iterations
+[eva] inversion2.i:10: starting to merge loop iterations
+[eva:alarm] inversion2.i:12: Warning: division by zero. assert TT[i][j] ≢ 0;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  G ∈ [5..99],1%2
+  i ∈ {3}
+  j ∈ {1; 2; 3; 4; 77}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  G FROM T[0..2]; TT{[0][0..2]; [1][0..2]; [2][0..2]} (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    G; i; j
+[inout] Inputs for function main:
+    T[0..2]; TT{[0][0..2]; [1][0..2]; [2][0..2]}
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0] ∈ {3}
+   [1] ∈ {1}
+   [2] ∈ {2}
+  TT[0][0..2] ∈ {3}
+    [0][3..4] ∈ {0}
+    [1][0] ∈ {1}
+    [1][1..4] ∈ {0}
+    [2][0..1] ∈ {2}
+    [2][2..4] ∈ {0}
+  G ∈ {99}
+[eva:alarm] inversion2.i:12: Warning: division by zero. assert TT[i][j] ≢ 0;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  G ∈ {5; 7; 15; 99}
+  i ∈ {3}
+  j ∈ {1; 2; 3; 77}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  G FROM T[0..2]; TT{[0][0..2]; [1][0..2]; [2][0..2]} (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    G; i; j
+[inout] Inputs for function main:
+    T[0..2]; TT{[0][0..2]; [1][0..2]; [2][0..2]}

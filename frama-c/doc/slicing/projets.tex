@@ -1,0 +1,335 @@
+\chapter{Projets}\label{sec-projets}
+
+Ce chapitre regroupe diverses idées qui ont été évoquées à un moment ou un
+autre, et qui ont soit été abandonnées, soit remises à plus tard.
+
+\section{Autres critères}
+
+\subsection{Spécifier ce qu'on ne veut plus}
+
+Un autre critère intéressant de \slicing, qui n'apparaît dans aucun papier,
+serait, je pense, de pouvoir spécifier ce que l'on veut enlever.
+Par exemple, {\it "que devient le programme si on ne s'intéresse pas
+à telle sortie ou à tel traitement"}.\\
+
+Par ailleurs, l'analyse de dépendance utilisée pour le \slicing
+peut également être utilisée pour calculer des informations utiles à d'autres
+analyses. On peut par exemple s'intéresser aux variables dont la valeur
+détermine la sortie d'une boucle; ce qui peut être utiliser comme un indice
+sur les élargissements à effectuer dans une interprétation abstraite.
+
+\subsection{Calcul d'une variable globale}
+
+Le premier filtrage global vise à sélectionner les instructions qui
+participent au calcul d'une variable globale donnée.
+Comme on a accès par ailleurs à la liste des sorties de chaque fonction,
+il suffit de générer les filtres permettant de calculer
+cette variable sur chaque fonction l'ayant comme sortie.
+
+\section{Utilisation de la sémantique}
+
+Cette partie regroupe quelques idées d'évolutions pour améliorer le \slicing
+d'une fonction en utilisant la sémantique des instructions.
+Certaines d'entre elles ont été implémentées dans l'outil précédent;
+d'autres ne sont que des pistes qui restent à explorer.
+
+\subsection{Réduction relative à une contrainte}
+
+Dans l'outil précédent, une commande permettait de couper une branche
+en remplaçant le test de la condition de chemin par un {\tt assert}.\\
+
+Plus généralement,
+on s'intéresse ici à une contrainte représentant une assertion dans le code.
+On aimerait déplacer cette contrainte
+afin de déterminer un point où elle est impossible (réduite à {\it false}).
+On pourrait alors {\it couper} alors la branche correspondante.
+
+Le test conditionnel
+permettant d'accéder à cette branche peut être transformé en assertion,
+ou être supprimé (option ?).
+Dans le premier cas, les données utilisées dans le test
+sont visibles alors que dans le second,
+elles peuvent éventuellement être supprimées
+si elles ne servent pas par ailleurs.
+
+On peut aussi ôter les instructions qui ne sont plus utiles.
+La détection de code mort permet par exemple de supprimer les éléments qui
+n'étaient utilisés que dans la branche supprimée.
+
+\begin{exemple}
+Dans la séquence suivante~:
+\begin{center}
+\mbox{\texttt x = c+1; a = 2; if (c) x += a; y = x+1;}
+\end{center}
+
+si on demande à sélectionner les dépendances de \verbtt{y}, puis à supprimer la
+branche \verb!if (c)!, on obtient~:
+\begin{center}
+\mbox{\texttt x = c+1; \sout{a = 2;} {\bf assert (!c);} \sout{x += a;} y = x+1;}
+\end{center}
+
+où l'on voit que l'instruction \verb!a=2;! disparaît puis qu'elle ne sert plus.\\
+
+On verra ci-dessous comment on peut aussi déterminer que \verbtt{x} vaut alors $1$
+à l'aide du calcul de WP, et que donc, \verbtt{y} vaut 2 à l'aide de la
+propagation de constantes.
+\end{exemple}
+
+Le problème général lorsque l'on impose des contraintes,
+c'est qu'elles peuvent aussi influencer les résultats d'autres analyses
+comme l'analyse de valeur. On en verra un cas particulier
+ci-dessous avec la propagation de constante.
+
+%--------------------------------------
+\subsection{Passage à un point de programme}
+
+La contrainte dont nous venons de parler peut également être donnée
+implicitement en spécifiant un point de programme. Il s'agit alors d'être
+capable de supprimer ce qui ne sert pas lorsque l'exécution de la fonction passe
+par ce point. Une telle requête peut par exemple être utilisée dans le cadre
+d'une analyse d'impact.\\
+
+Une première étape peut consister à supprimer les branches incompatibles avec le
+point en ne regardant que la syntaxe.
+
+\begin{exemple}
+Dans la séquence suivante~:
+\begin{center}
+\mbox{\texttt if (c) P: x += a; else y = x+1;}
+\end{center}
+si l'utilisateur souhaite examiner le passage au
+point P, on peut éliminer la branche {\texttt else}~:
+\begin{center}
+\mbox{\texttt {\bf assert (c);} P: x += a; \sout{else y = x+1;}}
+\end{center}
+Attention, ceci n'est vrai que si la séquence n'est pas dans une boucle...
+\end{exemple}
+
+Mais il peut être plus intéressant de calculer une précondition qui assure que
+l'on passe par le point donné, et d'utiliser ce résultat comme une contrainte.\\
+
+\remarque{rem-wp} Attention,
+il faut noter que cette précondition ne peut généralement pas être
+calculée par un simple WP car celui-ci assure qu'une propriété est vraie
+si la fonction est exécutée avec des entrées satisfaisant la précondition,
+mais il n'assure pas qu'il n'y a pas d'autres cas possibles.
+Ceci est du à l'approximation introduite par le calcul de WP des boucles.
+
+%--------------------------------------
+\subsection{Propagation de constantes}
+
+D'autres réductions peuvent être effectuées en exploitant
+les constantes du programme.
+
+\begin{exemple}
+Dans la séquence suivante~:
+\begin{center}
+  \verb!x = c ? 1 : -1; if (x<0) f(x); else g(x); !
+\end{center}
+si l'on étudie cette séquence avec une valeur initiale 0 pour \verbtt{c}
+on aimerait savoir déterminer que :
+\begin{itemize}
+\item \verb!x=-1!,
+\item donc que le second test est vrai,
+\item que donc \verbtt{g} ne sera pas appelé,
+\item et que \verbtt{f} sera appelé dans ce contexte avec la valeur \verb!-1!.\\
+\end{itemize}
+
+On souhaite donc obtenir~:
+\begin{center}
+  \verb!assert (c == 0); x = -1; f(-1); !
+\end{center}
+\end{exemple}
+
+Ce calcul peut facilement être effectué par une analyse de valeur externe,
+mais il faut pouvoir lui transmettre la contrainte (ici~: $c=0;$).\\
+
+
+Dans l'outil précédent, le module de \slicing (FLD) avait été couplé à
+un module de propagation de constante (CST) de la façon suivante~:
+\begin{itemize}
+  \item pour chaque fonction filtrée, on calcule les états CST correspondants,
+  \item si une branche est supprimée à la demande de l'utilisateur,
+    CST en est informé pour réduire l'état,
+  \item si une constante est associée à une donnée,
+    (par exemple lors de la spécialisation d'une fonction avec un paramètre
+constant)
+    CST en est également informé,
+  \item lors du calcul d'une fonction filtrée, pour chaque saut conditionnel,
+    on interroge CST pour savoir si une branche est inaccessible ($\bot$),
+    et si c'est le cas, les éléments correspondant sont marqués $mM$ (code
+    mort),
+  \item pour chaque appel de fonction, si l'on sait déterminer qu'une ou
+    plusieurs entrées sont constantes, on demande la spécialisation de cette
+    fonction,
+  \item pour chaque appel de fonction, si l'on sait déterminer qu'une ou
+    plusieurs sorties sont constantes, on fournit l'information à CST pour qu'il
+    puisse la propager.
+\end{itemize}
+
+\begin{exemple}
+  Reprenons l'exemple précédent où l'on sait que $c=0$ en 1~:
+\begin{center}
+  \verb!/*1*/ x = c ? /*2*/1 : /*3*/-1; /*4*/if (x<0) /*5*/f(x); else /*6*/g(x); !
+\end{center}
+On a donc~:
+\begin{itemize}
+  \item en \verb!/*1*/! : $c=0$,
+  \item en \verb!/*2*/! : $\bot$ puisque le test est faux,
+  \item en \verb!/*4*/! : $x=-1$,
+  \item en \verb!/*5*/! : toujours $x=-1$,
+  \item en \verb!/*6*/! : $\bot$ puisque le test est toujours vrai,
+\end{itemize}
+Cette séquence est donc réduite à~:
+\begin{alltt}
+  x = \sout{ c ? 1 : } -1; \sout{ if (x>0)} f\_1(x); \sout{ else  g(x); }
+\end{alltt}
+où \verbtt{f\_1} est la fonction \verbtt{f} spécialisée avec son entrée à -1.\\
+\end{exemple}
+
+Quand l'analyse permet de déterminer la valeur précise d'une variable,
+il peut également être intéressant d'utiliser cette information pour effectuer
+une transformation de programme juste avant de produire le résultat.
+On ne peut pas vraiment le faire avant, car on peut être amené à regrouper
+plusieurs fonctions où la valeur peut être différente.\\
+
+
+L'implémentation des points suivants n'a pas été fait dans l'outil précédent,
+et il faudrait donc voir s'il est possible de les intégrer
+dans le nouveau~:
+  \begin{itemize}
+    \item supprimer l'argument correspondant à une entrée constante.
+En effet, lors du calcul de la fonction spécialisée, on ne savait
+pas supprimer l'argument correspondant,
+mais on propageait tout de même la valeur pour supprimer les éventuelles
+branchesmortes. 
+\begin{exemple}
+Dans l'exemple précédent,
+on peut spécialiser \verbtt{f} en \verbtt{f\_1} car on sait que $x=-1$.
+\begin{tabular}{ccl}
+Mais on aimerait aussi transformer &:& \verb! void f_1 (int x) { ... }!\\
+en &:& \verb! void f_1 (void) { int x = -1; ... }!
+\end{tabular}
+\end{exemple}
+\item supprimer le calcul d'une condition de \verbtt{if} toujours vraie quand il
+  n'y a pas de \verbtt{else}. Cela n'avait pas été fait car dans
+le module de propagation de constante,
+il n'y avait pas de point de programme correspondant à la branche
+\verbtt{else} manquante. L'état $\bot$ qui lui aurait été
+ associé n'était donc pas là pour permettre cette suppression.
+
+  \end{itemize}
+
+%--------------------------------------
+\subsection{Utilisation de WP}
+
+Comme on l'a vu, la propagation de constante peut permettre de
+spécialiser les fonctions et de couper des branches de programme.
+
+Ce type calcul s'effectue a priori par propagation avant. 
+Pour faire de la propagation arrière, 
+nous aimerions utiliser un calcul de WP.
+
+Le principe d'utilisation serait le suivant~:
+
+\begin{exemple1}
+  L'utilisateur s'intéresse uniquement à la branche {\it then} du {\it if}.
+  On introduit donc l'assertion $y<0$~:\\
+
+\begin{center}
+\begin{footnotesize}
+\begin{tabular}{|p{5cm}|p{5cm}|}
+  \hline
+Programme source & coupure de branche \\
+  \hline
+\begin{verbatim}
+int f (int c, int x) {
+
+  int y = c ?  1 : -1;
+  if (y < 0) {
+    int z = y - 1;
+    g (z);
+    return z + x;
+    }
+  else
+    return 0;
+}
+\end{verbatim}
+&
+\begin{alltt}
+int f (int c, int x) \{
+
+  int y = c ?  1 : -1;
+ {\bf assert (y < 0); }\{
+  int z = y - 1;
+  g (z);
+  return z + x;
+  \}
+
+
+\}
+\end{alltt}
+\\
+\hline
+\end{tabular}
+\end{footnotesize}
+\end{center}
+\end{exemple1}
+\begin{exemple2}
+\begin{center}
+\begin{footnotesize}
+\begin{tabular}{|p{5cm}|p{5cm}|}
+\hline
+WP & Propagation de constante \\
+\hline
+\begin{alltt}
+int f (int c, int x) \{
+ {\bf /* (c == 0); */ }
+  int y = c ?  1 : -1;
+  assert (y < 0); \{
+    int z = y - 1;
+    g (z);
+    return z + x;
+  \}
+
+\}
+\end{alltt}
+&
+\begin{alltt}
+int f (int c, int x) \{
+  /* (c == 0);  */
+  int y = {\bf /* 0 ?  1 : */} -1;
+  assert ({\bf -1} < 0); \{
+    int z = {\bf -1} - 1;
+    g ({\bf -2});
+    return {\bf -2} + x;
+  \}
+
+\}
+\end{alltt}
+\\
+\hline
+\end{tabular}
+\end{footnotesize}
+\end{center}
+
+Sur cet exemple, l'utilisation du WP permet de déterminer que $c$ vaut 0,
+et qu'il est alors possible de propager cette constante.\\
+
+\end{exemple2}
+
+
+La principale difficulté de l'utilisation d'un tel calcul est le pilotage des
+opérations.
+
+Le plus simple est de laisser l'utilisateur contrôler la propagation
+en utilisant des commandes interactives.
+
+L'idée est de lui permettre de donner une contrainte,
+de la remonter à l'aide de WP, et d'en déduire d'autres propriétés,
+utilisable par exemple par l'analyse de valeur.\\
+
+Attention, ici encore, comme dans la remarque \vref{rem-wp},
+il faudra préalablement
+s'assurer que l'approximation introduite par le WP des boucles est
+bien dans le bon sens relativement à ce que l'on souhaite obtenir...

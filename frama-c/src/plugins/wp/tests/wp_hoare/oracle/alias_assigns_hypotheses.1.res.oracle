@@ -1,0 +1,350 @@
+# frama-c -wp [...]
+[kernel] Parsing alias_assigns_hypotheses.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function comprehension_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 90) in 'comprehension_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 91) in 'comprehension_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 89) in 'comprehension_alias':
+Effect at line 93
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function field_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 59) in 'field_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 60) in 'field_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 58) in 'field_alias':
+Effect at line 62
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function field_range_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 71) in 'field_range_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 72) in 'field_range_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 70) in 'field_range_alias':
+Effect at line 74
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function formal_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 30) in 'formal_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 31) in 'formal_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 29) in 'formal_alias':
+Effect at line 33
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function formal_alias_array
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 45) in 'formal_alias_array':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 46) in 'formal_alias_array':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 47) in 'formal_alias_array':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 44) in 'formal_alias_array' (1/2):
+Effect at line 49
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 44) in 'formal_alias_array' (2/2):
+Effect at line 50
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function formal_no_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 38) in 'formal_no_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 37) in 'formal_no_alias':
+Effect at line 40
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function global_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 15) in 'global_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 16) in 'global_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 14) in 'global_alias':
+Effect at line 18
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function global_no_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 23) in 'global_no_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 22) in 'global_no_alias':
+Effect at line 25
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function set_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 79) in 'set_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 80) in 'set_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 78) in 'set_alias':
+Effect at line 82
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function union_alias
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 100) in 'union_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file alias_assigns_hypotheses.i, line 101) in 'union_alias':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_assigns_hypotheses.i, line 99) in 'union_alias':
+Effect at line 103
+Prove: true.
+
+------------------------------------------------------------
+/* Generated by Frama-C */
+struct X {
+   int x ;
+};
+int global[1];
+int *g_alias;
+/*@ requires \valid(g_alias);
+    ensures *g_alias ≡ 1;
+    ensures \old(global[0]) ≡ global[0];
+    assigns *g_alias;
+    
+    behavior wp_typed:
+      requires \separated(g_alias, (int *)global + (..), &g_alias);
+ */
+void global_alias(void)
+{
+  *g_alias = 1;
+  return;
+}
+
+/*@ requires \valid(g_alias);
+    ensures *g_alias ≡ 1;
+    assigns *g_alias;
+    
+    behavior wp_typed:
+      requires \separated(g_alias, &g_alias);
+ */
+void global_no_alias(void)
+{
+  *g_alias = 1;
+  return;
+}
+
+/*@ requires \valid(f_alias);
+    ensures *\old(f_alias) ≡ 1;
+    ensures \old(global[0]) ≡ global[0];
+    assigns *f_alias;
+    
+    behavior wp_typed:
+      requires \separated(f_alias, (int *)global + (..));
+ */
+void formal_alias(int *f_alias)
+{
+  *f_alias = 1;
+  return;
+}
+
+/*@ requires \valid(f_alias);
+    ensures *\old(f_alias) ≡ 1;
+    assigns *f_alias;
+ */
+void formal_no_alias(int *f_alias)
+{
+  *f_alias = 1;
+  return;
+}
+
+/*@ requires \valid(alias_array);
+    ensures (*\old(alias_array))[0] ≡ 1;
+    ensures (*\old(alias_array))[1] ≡ 1;
+    ensures \old(global[0]) ≡ global[0];
+    assigns (*alias_array)[0 .. 1];
+    
+    behavior wp_typed:
+      requires \separated((int *)global + (..), &(*alias_array)[0 .. 1]);
+      requires \separated(alias_array + (..), (int *)global + (..));
+ */
+void formal_alias_array(int (*alias_array)[2])
+{
+  (*alias_array)[0] = 1;
+  (*alias_array)[1] = 1;
+  return;
+}
+
+/*@ requires \valid(x);
+    ensures \old(x)->x ≡ 1;
+    ensures \old(global[0]) ≡ global[0];
+    assigns x->x;
+    
+    behavior wp_typed:
+      requires \separated((int *)global + (..), &x->x);
+      requires \separated(x, (int *)global + (..));
+ */
+void field_alias(struct X *x)
+{
+  x->x = 1;
+  return;
+}
+
+/*@ requires \valid(x);
+    ensures \old(x)->x ≡ 1;
+    ensures \old(global[0]) ≡ global[0];
+    assigns (x + (0 .. 3))->x;
+    
+    behavior wp_typed:
+      requires \separated((int *)global + (..), &(x + (0 .. 3))->x);
+      requires \separated(x + (..), (int *)global + (..));
+ */
+void field_range_alias(struct X *x)
+{
+  x->x = 1;
+  return;
+}
+
+/*@ requires \valid(g_alias);
+    ensures *g_alias ≡ 1;
+    ensures \old(global[0]) ≡ global[0];
+    assigns {*g_alias, *f_alias};
+    
+    behavior wp_typed:
+      requires
+        \separated((int *)global + (..), &g_alias, {g_alias, f_alias});
+      requires \separated(f_alias, (int *)global + (..), &g_alias);
+ */
+void set_alias(int *f_alias)
+{
+  *g_alias = 1;
+  return;
+}
+
+/*@ requires \valid(g_alias);
+    ensures *g_alias ≡ 1;
+    ensures \old(global[0]) ≡ global[0];
+    assigns {*alias | int *alias; alias ≡ \at(g_alias,Pre)};
+    
+    behavior wp_typed:
+      requires
+        \separated(
+          (int *)global + (..), &g_alias,
+          {alias | int *alias; alias ≡ \at(g_alias,Pre)}
+          );
+ */
+void comprehension_alias(void)
+{
+  *g_alias = 1;
+  return;
+}
+
+/*@ requires \valid(g_alias);
+    ensures *g_alias ≡ 1;
+    ensures \old(global[0]) ≡ global[0];
+    assigns {*g_alias, *f_alias};
+    
+    behavior wp_typed:
+      requires
+        \separated((int *)global + (..), &g_alias, {g_alias, f_alias});
+      requires \separated(f_alias, (int *)global + (..), &g_alias);
+ */
+void union_alias(int *f_alias)
+{
+  *g_alias = 1;
+  return;
+}
+
+

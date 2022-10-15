@@ -1,0 +1,4 @@
+[ { "header": "Split", "tactic": "Wp.split", "params": {},
+    "select": { "select": "clause-goal", "target": "P_P /\\ P_Q /\\ P_R",
+                "pattern": "&P_PP_QP_R" },
+    "children": { "Goal 1/3": [], "Goal 2/3": [], "Goal 3/3": [] } } ]

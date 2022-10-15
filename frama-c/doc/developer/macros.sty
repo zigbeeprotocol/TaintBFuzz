@@ -1,0 +1,265 @@
+%; whizzy-master "developpeur.tex"
+% rubber: depend ../../VERSION
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Substitutions
+
+\newcommand{\framacversion}%
+           {\input{../../VERSION}(\input{../../VERSION_CODENAME}\unskip)}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ie}{\emph{i.e.}\xspace}
+\newcommand{\eg}{\emph{e.g.}\xspace}
+\newcommand{\via}{\emph{via}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Index
+
+\makeatother
+
+\newcommand{\codeidx}[1]{\index{#1@\texttt{#1}}}
+\newcommand{\scodeidx}[2]{\index{#1@\texttt{#1}!#2@\texttt{#2}}}
+\newcommand{\sscodeidx}[3]{%
+  \index{#1@\texttt{#1}!#2@\texttt{#2}!#3@\texttt{#3}}}
+\newcommand{\bfit}[1]{\textbf{\textit{\hyperpage{#1}}}}
+\newcommand{\codeidxdef}[1]{\index{#1@\texttt{#1}|bfit}}
+\newcommand{\scodeidxdef}[2]{\index{#1@\texttt{#1}!#2@\texttt{#2}|bfit}}
+\newcommand{\scodeidxdefsmall}[2]{%
+  \index{#1@\texttt{#1}!#2@\texttt{\fontsize{8}{10}\selectfont #2}|bfit}}
+\newcommand{\sscodeidxdef}[3]{%
+  \index{#1@\texttt{#1}!#2@\texttt{#2}!#3@\texttt{#3}|bfit}}
+\newcommand{\nscodeidx}[2]{\index{#1!#2@\texttt{#2}}}
+\newcommand{\nscodeidxdef}[2]{\index{#1!#2@\texttt{#2}|bfit}}
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Langage
+
+\newcommand{\langage}[1]{{\textnormal{\textsf{#1}}}\xspace}
+\newcommand{\framac}{\langage{Frama-C}}
+\newcommand{\cil}{\langage{Cil}}
+\newcommand{\C}{\langage{C}}
+\newcommand{\caml}{\langage{OCaml}}
+\newcommand{\ocaml}{\langage{OCaml}}
+\newcommand{\lablgtk}{\langage{Lablgtk2}}
+\newcommand{\gnomecanvas}{\langage{GnomeCanvas}}
+\newcommand{\lablgtksourceview}{\langage{Lablgtksourceview2}}
+\newcommand{\dottool}{\langage{DOT}}
+\newcommand{\ocamldoc}{\langage{ocamldoc}}
+\newcommand{\make}{\langage{make}}
+\newcommand{\jessie}{\langage{Jessie}}
+\newcommand{\why}{\langage{Why}}
+\newcommand{\autoconf}{\langage{autoconf}}
+\newcommand{\ptests}{\langage{ptests}}
+\newcommand{\ptestsbyte}{\texttt{ptests.byte}\xspace}
+\newcommand{\cvs}{\langage{CVS}}
+\newcommand{\svn}{\langage{SVN}}
+\newcommand{\emacs}{\langage{emacs}}
+\newcommand{\gcc}{\langage{gcc}}
+\newcommand{\acsl}{\langage{ACSL}}
+\providecommand\html{}
+\renewcommand{\html}{\langage{html}}
+\newcommand{\ocamlgraph}{\langage{OcamlGraph}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\yes}{\texttt{yes}\xspace}
+\definecolor{gris}{gray}{0.85}
+
+\newcommand{\bs}{\ensuremath{\backslash\!\!\!}}
+\newcommand{\bss}{\ensuremath{\backslash}}
+\newcommand{\escstring}{\ensuremath{\backslash"\!\!}}
+\newcommand{\fl}{\ensuremath{\rightarrow}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\todoshort}{\textit{\textbf{Not written yet.}}}
+\newcommand{\todo}{\textit{\textbf{Not written yet}: please report as ``feature
+    request'' on \url{http://bts.frama-c.com} if you really need this section.}}
+
+
+\newcommand{\outofdate}[1]{%
+  \begin{important}
+    This #1 is out-of-date. Please report as ``feature request'' on
+    \url{http://bts.frama-c.com} if you really need it.
+  \end{important}%
+}
+
+
+%\reversemarginpar
+\font\manual=manfnt
+\def\dbend{{\manual\char127}}
+
+%\newlength{\longueur}
+\newenvironment{important}%
+{\hspace{5pt plus \linewidth minus \marginparsep}%
+ \begin{lrbox}{\@tempboxa}%
+   \begin{minipage}{\linewidth - 2\fboxsep}}
+{\end{minipage}\end{lrbox}\colorbox{gris}{\usebox{\@tempboxa}}}
+
+\newtheorem{convention}{Recommendation}[chapter]
+\newtheorem{myexample}{Example}[chapter]
+
+\newtheorem{prereq}{Prerequisite:}[chapter]
+\renewcommand{\theprereq}{\empty{}}
+
+\newtheorem{target}{Target readers:}[chapter]
+\renewcommand{\thetarget}{\empty{}}
+
+\newenvironment{example}{\begin{myexample}%
+\renewcommand{\firstsepline}{%
+  \makebox[0pt]{%
+    \hspace{-\textwidth}\hspace{3pt}%
+    \rule{\linewidth / 2 - 25pt}{\fboxrule}\ %
+    \textbf{\dots\raisebox{-1pt}{/}\dots}\ %
+    \rule{\linewidth / 2 - 27pt}{\fboxrule}}}
+\renewcommand{\lastsepline}{%
+  \rule{\linewidth / 2 - 26pt}{\fboxrule}\ %
+  \textbf{\dots\raisebox{-1pt}{/}\dots}\ %
+  \rule{\linewidth / 2 - 25pt}{\fboxrule}}
+}
+{\end{myexample}}
+
+\newcommand{\filename}[1]{%
+{{\setlength{\fboxsep}{5pt}%
+    \colorbox{gris}{\textnormal{\textbf{File \emph{#1}}}}}}}
+
+\addtolength{\fboxsep}{5pt}
+\setlength{\fboxrule}{1pt}
+
+\newcommand{\firstsepline}{%
+  \makebox[0pt]{%
+    \hspace{-\textwidth}\hspace{1pt}%
+    \rule{\linewidth / 2 - 25pt}{\fboxrule}\ %
+    \textbf{\dots\raisebox{-1pt}{/}\dots}\ %
+    \rule{\linewidth / 2 - 25pt}{\fboxrule}}}
+
+\newcommand{\lastsepline}{%
+  \rule{\linewidth / 2 - 26pt}{\fboxrule}\ %
+  \textbf{\dots\raisebox{-1pt}{/}\dots}\ %
+  \rule{\linewidth / 2 - 23pt}{\fboxrule}}
+
+\newdimen\ps@tempdima
+\newbox\ps@tempboxa
+\long\def\firstfbox#1{%
+  \leavevmode\setbox\ps@tempboxa\hbox{#1}\ps@tempdima\fboxrule%
+    \advance\ps@tempdima \fboxsep \advance\ps@tempdima \dp\ps@tempboxa%
+   \hbox{\lower \ps@tempdima\hbox%
+  {\vbox{\hrule height \fboxrule%
+          \hbox{\vrule width \fboxrule \hskip\fboxsep%
+          \vbox{\vskip\fboxsep \box\ps@tempboxa\vskip\fboxsep}\hskip%
+                 \fboxsep\vrule width \fboxrule}}\firstsepline}}%
+}
+
+\newdimen\ps@tempdima
+\newbox\ps@tempboxa
+\long\def\lastfbox#1{
+  \leavevmode\setbox\ps@tempboxa\hbox{#1}\ps@tempdima\fboxrule
+    \advance\ps@tempdima \fboxsep \advance\ps@tempdima \dp\ps@tempboxa
+   \hbox{\lower \ps@tempdima\hbox
+  {\vbox{\vspace{-7mm}\lastsepline\\[-5pt]
+          \hbox{\vrule width \fboxrule \hskip\fboxsep
+          \vbox{\vskip\fboxsep \box\ps@tempboxa\vskip\fboxsep}\hskip
+                 \fboxsep\vrule width \fboxrule}%
+                 \hspace{-\textwidth}\hspace{2pt}%
+                 \rule{\linewidth - 2pt}{\fboxrule}}}}}
+
+\setlength{\FrameRule}{\fboxrule}
+\newenvironment{gencode}[1][]%
+{\def\firstparam{#1}%
+  % \def\FrameCommand{\fbox}
+  \def\FirstFrameCommand{\firstfbox}%
+  % \def\MidFrameCommand{\midfbox}
+  \def\LastFrameCommand{\lastfbox}%
+  \MakeFramed {\advance\hsize-\width \FrameRestore\@setminipage}%
+  \ifx\firstparam\empty\else\filename{\firstparam}\fi}
+{\par\unskip\endMakeFramed\everyhbox{}}
+
+\newenvironment{code}{\begin{gencode}\begin{alltt}}{\end{alltt}\end{gencode}}
+
+% Tikz utilities.
+
+\definecolor{external}{rgb}{1,0.65,0}
+\definecolor{darkgreen}{rgb}{0.2,0.8,0.2}
+\definecolor{palered}{rgb}{0.98,0.5,0.45}
+\definecolor{palegreen}{rgb}{0.78,1,0.59}
+
+\newlength{\padding}\setlength{\padding}{15bp}
+\newlength{\bigpadding}\setlength{\bigpadding}{30bp}
+\newlength{\largepadding}\setlength{\largepadding}{50bp}
+\newlength{\paddelta}\setlength{\paddelta}{5bp}
+\newlength{\bigpaddelta}\setlength{\bigpaddelta}{10bp}
+
+\tikzset{
+big-title/.style={font=\bfseries\Large},
+small-title/.style={font=\bfseries\itshape\large},
+st/.style={transform shape},
+structural/.style={inner sep=0pt},
+plain/.style={inner sep=0.333em,scale=0.9},
+bigarrow/.style={thick,>=Latex,red}
+}
+
+\newenvironment{tikz-vbox}[2][]
+{\begin{tikzpicture}[
+    inner sep=0pt,
+    every node/.style={transform shape},
+    start chain=#2 going below,
+    node distance=\padding,
+    every on chain/.style={rectangle},
+    remember picture,
+    #1]
+}
+{\end{tikzpicture}}
+
+\newenvironment{tikz-hbox}[2][]
+{\begin{tikzpicture}[
+    remember picture,
+    inner sep=0pt,
+    every node/.style={transform shape},
+    start chain=#2 going right,
+    node distance=\padding,
+    every on chain/.style={rectangle},#1]
+}
+{\end{tikzpicture}}
+
+\newcommand{\tikztitlebox}[3][]{%
+\begin{tikzpicture}[every node/.style={transform shape},#1,inner sep=0pt,remember picture]
+\node[structural] (#2-content) {#3};
+\node[structural,above=\bigpaddelta,small-title] at (#2-content.north) (#2-title) {#2};
+\node[fit=(#2-content) (#2-title),
+      inner xsep=\padding, inner ysep=\paddelta, draw, rounded corners=10pt,outer sep=0pt] {};
+\end{tikzpicture}%
+}
+\newcommand{\tikztitleboxbig}[4][]{%
+\def\name{\detokenize{#2}}
+\begin{tikzpicture}[inner sep=0pt,every node/.style={transform shape},#1,remember picture]
+\node[structural] (\name-content) {#4};
+\node[above=1.5\bigpaddelta,big-title,structural,align=center] at (\name-content.north) (\name-title) {#2};
+\begin{scope}[on background layer]
+\node[fit=(\name-content) (\name-title), fill=#3,
+      inner xsep=\padding, inner ysep=\bigpaddelta, draw, rounded corners=20pt,
+      outer sep=0pt] {};
+\end{scope}
+\end{tikzpicture}%
+}
+
+\newlength{\tikzvboxmaxwidth}
+\newlength{\tikzvboxtmpwidth}
+\newcommand{\tikzvboxsamewidth}[1]{%
+  \setlength{\tikzvboxmaxwidth}{0pt}
+  \tikz[inner sep=0pt]{
+   \foreach \mynode in { #1 }
+   {
+     \settowidth{\tikzvboxtmpwidth}{\tikz{\mynode;}}
+     \ifdim\tikzvboxtmpwidth>\tikzvboxmaxwidth
+     \setlength{\tikzvboxmaxwidth}{\tikzvboxtmpwidth}
+     \fi
+   }
+  \setlength{\tikzvboxmaxwidth}{0}
+   \begin{scope}[every node/.style={minimum text width=\tikzvboxmaxwidth}]
+   \foreach \mynode in { #1 } { \mynode; }
+   \end{scope}
+  }
+}

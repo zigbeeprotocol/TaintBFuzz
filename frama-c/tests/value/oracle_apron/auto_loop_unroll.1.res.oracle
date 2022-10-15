@@ -1,0 +1,308 @@
+14,16c14
+< [eva:alarm] auto_loop_unroll.c:31: Warning: 
+<   signed overflow. assert res + 1 ≤ 2147483647;
+< [eva] auto_loop_unroll.c:33: Frama_C_show_each_imprecise: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:33: Frama_C_show_each_imprecise: {1000}
+18,20c16
+< [eva:alarm] auto_loop_unroll.c:39: Warning: 
+<   signed overflow. assert res + 1 ≤ 2147483647;
+< [eva] auto_loop_unroll.c:41: Frama_C_show_each_imprecise: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:41: Frama_C_show_each_imprecise: {100}
+54c50,53
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+63c62,65
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+72c74,77
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+81c86,89
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+90c98,101
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+99c110,113
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+108c122,125
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+117c134,137
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+126c146,149
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+135c158,161
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+144c170,173
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+153c182,185
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+162c194,197
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+171c206,209
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+180c218,221
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+189c230,233
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+198c242,245
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+207c254,257
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+216c266,269
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+225c278,281
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+234c290,293
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+243c302,305
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+252c314,317
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+261c326,329
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+270c338,341
+< [eva] auto_loop_unroll.c:101: Reusing old results for call to incr
+---
+> [eva] computing for function incr <- various_loops <- main.
+>   Called from auto_loop_unroll.c:101.
+> [eva] Recording results for incr
+> [eva] Done for function incr
+282c353
+< [eva] auto_loop_unroll.c:141: Frama_C_show_each_top: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:141: Frama_C_show_each_top: [3..2147483647]
+293,295c364
+< [eva:alarm] auto_loop_unroll.c:165: Warning: 
+<   signed overflow. assert res + 1 ≤ 2147483647;
+< [eva] auto_loop_unroll.c:168: Frama_C_show_each_imprecise: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:168: Frama_C_show_each_imprecise: [0..65]
+300c369
+< [eva] auto_loop_unroll.c:179: Frama_C_show_each_imprecise: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:179: Frama_C_show_each_imprecise: [64..2147483647]
+304c373
+< [eva] auto_loop_unroll.c:188: Frama_C_show_each_imprecise: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:188: Frama_C_show_each_imprecise: [10..2147483647]
+322,326c391,399
+< [eva] auto_loop_unroll.c:193: Reusing old results for call to incr_g
+< [eva] auto_loop_unroll.c:193: Reusing old results for call to incr_g
+< [eva:alarm] auto_loop_unroll.c:195: Warning: 
+<   signed overflow. assert res + 1 ≤ 2147483647;
+< [eva] auto_loop_unroll.c:197: Frama_C_show_each_imprecise: [0..2147483647]
+---
+> [eva] computing for function incr_g <- complex_loops <- main.
+>   Called from auto_loop_unroll.c:193.
+> [eva] Recording results for incr_g
+> [eva] Done for function incr_g
+> [eva] computing for function incr_g <- complex_loops <- main.
+>   Called from auto_loop_unroll.c:193.
+> [eva] Recording results for incr_g
+> [eva] Done for function incr_g
+> [eva] auto_loop_unroll.c:197: Frama_C_show_each_imprecise: [0..64]
+328,330c401
+< [eva:alarm] auto_loop_unroll.c:204: Warning: 
+<   signed overflow. assert res + 1 ≤ 2147483647;
+< [eva] auto_loop_unroll.c:206: Frama_C_show_each_imprecise: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:206: Frama_C_show_each_imprecise: [0..9]
+332,333d402
+< [eva:alarm] auto_loop_unroll.c:212: Warning: 
+<   signed overflow. assert res + 1 ≤ 2147483647;
+336c405
+< [eva] auto_loop_unroll.c:214: Frama_C_show_each_imprecise: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:214: Frama_C_show_each_imprecise: [64..2147483647]
+341c410
+< [eva:loop-unroll:auto] auto_loop_unroll.c:223: Automatic loop unrolling.
+---
+> [eva] auto_loop_unroll.c:223: starting to merge loop iterations
+343c412
+< [eva:loop-unroll:auto] auto_loop_unroll.c:228: Automatic loop unrolling.
+---
+> [eva] auto_loop_unroll.c:228: starting to merge loop iterations
+345,350c414,427
+< [eva:loop-unroll:auto] auto_loop_unroll.c:234: Automatic loop unrolling.
+< [eva] auto_loop_unroll.c:237: Frama_C_show_each_0_13: [0..13]
+< [eva:loop-unroll:auto] auto_loop_unroll.c:239: Automatic loop unrolling.
+< [eva] auto_loop_unroll.c:242: Frama_C_show_each_0_14: [0..14]
+< [eva:loop-unroll:auto] auto_loop_unroll.c:245: Automatic loop unrolling.
+< [eva] auto_loop_unroll.c:250: Frama_C_show_each_0_15: [0..15]
+---
+> [eva] auto_loop_unroll.c:234: starting to merge loop iterations
+> [eva:alarm] auto_loop_unroll.c:234: Warning: 
+>   signed overflow. assert -2147483648 ≤ i_0 - 1;
+> [eva:alarm] auto_loop_unroll.c:235: Warning: 
+>   signed overflow. assert res + 1 ≤ 2147483647;
+> [eva] auto_loop_unroll.c:237: Frama_C_show_each_0_13: [0..2147483647]
+> [eva] auto_loop_unroll.c:239: starting to merge loop iterations
+> [eva:alarm] auto_loop_unroll.c:239: Warning: 
+>   signed overflow. assert -2147483648 ≤ i_1 - 1;
+> [eva:alarm] auto_loop_unroll.c:240: Warning: 
+>   signed overflow. assert res + 1 ≤ 2147483647;
+> [eva] auto_loop_unroll.c:242: Frama_C_show_each_0_14: [0..2147483647]
+> [eva] auto_loop_unroll.c:245: starting to merge loop iterations
+> [eva] auto_loop_unroll.c:250: Frama_C_show_each_0_15: [0..2147483647]
+362c439,443
+< [eva:loop-unroll:auto] auto_loop_unroll.c:279: Automatic loop unrolling.
+---
+> [eva] auto_loop_unroll.c:279: starting to merge loop iterations
+> [eva:alarm] auto_loop_unroll.c:279: Warning: 
+>   signed overflow. assert -2147483648 ≤ i - 1;
+> [eva:alarm] auto_loop_unroll.c:280: Warning: 
+>   signed overflow. assert res + 1 ≤ 2147483647;
+371,373c452
+< [eva:alarm] auto_loop_unroll.c:299: Warning: 
+<   signed overflow. assert i + 1 ≤ 2147483647;
+< [eva] auto_loop_unroll.c:304: Frama_C_show_each_top: [0..2147483647]
+---
+> [eva] auto_loop_unroll.c:304: Frama_C_show_each_top: [23..2147483647]
+395,396d473
+< [eva:alarm] auto_loop_unroll.c:344: Warning: 
+<   signed overflow. assert res + 1 ≤ 2147483647;
+400c477,481
+< [eva:loop-unroll:auto] auto_loop_unroll.c:360: Automatic loop unrolling.
+---
+> [eva] auto_loop_unroll.c:360: starting to merge loop iterations
+> [eva:alarm] auto_loop_unroll.c:360: Warning: 
+>   signed overflow. assert -2147483648 ≤ i - 1;
+> [eva:alarm] auto_loop_unroll.c:360: Warning: 
+>   signed overflow. assert res + 1 ≤ 2147483647;
+410,411c491,493
+< [eva:loop-unroll:auto] auto_loop_unroll.c:391: Automatic loop unrolling.
+< [eva] auto_loop_unroll.c:395: Frama_C_show_each_1_51: [1..51]
+---
+> [eva:alarm] auto_loop_unroll.c:391: Warning: 
+>   signed overflow. assert res + 1 ≤ 2147483647;
+> [eva] auto_loop_unroll.c:395: Frama_C_show_each_1_51: [1..2147483647]
+421c503
+< [eva] auto_loop_unroll.c:424: Frama_C_show_each_30: [15..45]
+---
+> [eva] auto_loop_unroll.c:424: Frama_C_show_each_30: {30}
+429c511
+<   j ∈ [15..45]
+---
+>   j ∈ [15..30]
+454c536
+<   i ∈ [-1..50]
+---
+>   i ∈ [-2147483648..50]

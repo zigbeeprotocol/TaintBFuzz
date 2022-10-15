@@ -1,0 +1,67 @@
+\chapter{Introduction}
+\label{user-intro}
+
+This is \FramaC's user manual. 
+\FramaC is an open-source platform dedicated to
+the analysis of source code written in the \tool{C} programming
+language. The \FramaC platform gathers several analysis techniques into
+a single collaborative framework. 
+
+This manual gives an overview of \FramaC for newcomers, 
+and serves as a reference for expert users.
+It only describes those platform features that are common to all analyzers. 
+Thus it \emph{does not cover} the use of the analyzers provided in the \FramaC
+distribution (Eva, WP, E-ACSL, \ldots). Each of these analyses has its
+own specific documentation~\cite{wp,value,eacsl}. Furthermore, research
+papers~\cite{sefm12,fac15} give a synthetic view of the platform, its main and
+composite analyses, and some of its industrial achievements, while the
+development of new analyzers is described in the Plug-in Development
+Guide~\cite{plugin-dev-guide}.
+
+\section{About this document}
+
+Appendix \ref{chap:changes} references all the changes made to this document
+between successive \FramaC releases.
+
+In the index, page numbers written in bold italics (e.g.  
+\textcolor{red}{\textit{\textbf{1}}}) reference the defining sections for the
+corresponding entries while other numbers (e.g. \textcolor{red}{1}) are
+less important references. 
+
+\begin{important}
+The most important paragraphs are displayed inside gray boxes like this one.
+A plug-in developer \textbf{must} follow them very carefully.
+\end{important}
+
+\section{Outline}
+
+The remainder of this manual is organized in several chapters. 
+
+\begin{description}
+\item[Chapter~\ref{user-overview}] provides a general overview of the platform.
+\item[Chapter~\ref{user-start}] describes the basic elements for starting the
+  tool, in terms of installation and commands.
+\item[Chapter~\ref{user-plugins}] explains the basics of plug-in categories,
+  installation, and usage.
+\item[Chapter~\ref{user-sources}] presents the options of the source code
+  pre-processor.
+\item[Chapter~\ref{user-analysis}] gives some general options for parameterizing
+  analyzers.
+\item[Chapter~\ref{user-properties}] touches on the topic of code properties,
+  and their validation by the platform.
+\item[Chapter~\ref{user-services}] introduces the general services offered by
+  the platform.
+\item[Chapter~\ref{user-gui}] gives a detailed description of the graphical
+  user interface of \FramaC.
+\item[Chapter~\ref{user-report}] describes the \texttt{Report} plug-in, used
+  for textual consolidation and export of warnings, errors and properties.
+\item[Chapter~\ref{user-variadic}] presents the \texttt{Variadic} plug-in,
+  used to help other plug-ins handle code containing variadic functions, such
+  as \texttt{printf} and \texttt{scanf}.
+\item[Chapter~\ref{user-analysis-scripts}] details several scripts used to
+  help setup and run analyses on large code bases.
+\item[Chapter~\ref{user-compliance}] contains information related to compliance
+  to standards and coding guidelines (ISO C, CERT, CWEs, etc).
+\item[Chapter~\ref{user-errors}] explains how to report errors \via \FramaC's
+  public Gitlab repository.
+\end{description}

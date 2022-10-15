@@ -1,0 +1,432 @@
+\documentclass[a4paper,twoside]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+\usepackage{url}
+\usepackage{hevea}
+\begin{htmlonly}
+\loadcssfile{../hevea.css}
+\loadcssfile{local.css}
+\end{htmlonly}
+\begin{latexonly}
+\renewcommand{\cite}[1]{\citep{#1}}
+\end{latexonly}
+
+\newcommand{\latexurl}[1]{\url{#1}}
+\renewcommand{\url}[1]{\ahrefurl{#1}}
+
+%------------------------------------
+\renewcommand{\sc}{\mathcal{S}}
+\newcommand{\sca}{\mathcal{S}_a}
+\newcommand{\scb}{\mathcal{S}_b}
+%------------------------------------
+\newcommand{\letitre}{Portée d'une donnée et d'une propriété}
+\title{\letitre}
+\author{Anne Pacalet}
+\newcommand{\ladate}{\today}
+
+% \usepackage{fancyheadings} obsolete : replace by \usepackage{fancyhdr}
+\usepackage{fancyhdr}
+%------------------------------------
+
+\toplinks{}{../index.html}{}
+
+%==============================================================================
+\begin{document}
+
+\maketitle
+\begin{htmlonly}
+\begin{center}
+Existe aussi au format
+\ahref{spec.ps}{postscript}
+ou
+\ahref{spec.pdf}{pdf}.
+\end{center}
+\end{htmlonly}
+
+% Table des matières
+%\tableofcontents
+%\clearpage
+
+% entête et pied de page
+\pagestyle{fancyplain}
+\lhead{\small{\letitre}}
+\rhead{\small{\ladate}}
+\chead{}
+\cfoot{\thepage}
+
+%==============================================================================
+
+\section{Introduction}
+
+On utilise souvent le terme de portée ({\it scope} en anglais)
+en parlant d'une variable pour désigner la zone du programme
+dans laquelle il est valide de l'utiliser.
+Nous parlerons ici de la {\bf portée d'une donnée} pour désigner 
+de l'ensemble des points de programme pour lesquels la donnée n'est pas
+modifiée. Nous préciserons en \S\ref{data-scope} ce que cela veut dire.\\
+
+Puis, nous généraliserons en \S\ref{prop-scope} à la 
+{\bf portée d'une propriété}.
+
+\section{Portée d'une donnée}\label{data-scope}
+
+\subsection{Donnée vs. {\it lvalue}}
+
+Nous utilisons ici le terme de {\bf donnée} pour représenter une zone mémoire. 
+Une donnée est généralement désignée
+par une expression de la famille des {\it lvalues} qui caractérise
+les expressions qui apparaissent à gauche d'une affectation.
+Lorsqu'on parle de la donnée correspondant à une variable X,
+il n'y a pas d'ambiguïté, il s'agit précisement la zone mémoire allouée pour 
+ranger la valeur de X.
+En revanche, lorsque la donnée est désignée par {\tt T[i]},
+la traduction en terme de zone mémoire fait intervenir la valeur de i.
+La donnée est alors une sur-approximation de la zone mémoire
+dont il faut connaître la valeur pour évaluer l'expression.
+La donnée doit donc contenir la zone mémoire allouée pour i,
+et une partie de la zone allouée pour T, éventuellement toute si on n'a aucune
+information sur i.
+
+\subsection{Discussion sur la portée}
+
+On souhaite déterminer l'ensemble $\sc(D@L)$ des points 
+pour lesquels la donnée D a la même valeur qu'au point L.
+Cette définition semble relativement claire au premier abord,
+mais nous allons voir qu'elle manque quelque peu de précision...\\
+
+Pour parler de la valeur d'une donnée en différents points,
+nous allons raisonner en terme de traces d'exécution.
+Si on cherche à déterminer $\sc(D@L)$, 
+il peut sembler naturel de ne s'intéresser qu'aux traces qui passent par L
+car que signifierait {\it avoir la même valeur qu'en L} pour les autres traces~?
+
+Mais qu'en est-il des points appartenant à $\sc$ ?
+
+Pour la séquence~: 
+
+\centerline{\verb!L: if (c) L1:.. else L2:...!}
+
+les points L1 et L2 n'apparaîtront pas dans une même trace, et pourtant,
+on aimerait bien qu'ils appartiennent tous les deux à $\sc(D@L)$.
+
+Re-formulons donc : si $P \in \sc$, on veut que pour toutes les traces qui passent
+par L et P, D ait la même valeur.
+Mais avec cette définition, si on a :
+
+\begin{verbatim}
+L0 :... 
+if (c) { 
+  L1:.. 
+  } 
+else { 
+  L2a:... 
+  D=x; 
+  L2b:... 
+} 
+L3:...
+\end{verbatim}
+
+on va avoir $L3 \in \sc(D@L1)$. Est-ce que c'est bien ce qu'on veut avoir ?
+Comme par ailleurs, on a évidemment $L0 \in \sc(D@L1)$, est-ce qu'on aura pas
+tendance à penser que D à la même valeur en L0 et en L3 ?
+Il faudra mettre en évidence le fait qu'on s'intéresse uniquement 
+aux traces passant pas L1...\\
+ 
+Au premier abord, on a l'intuition qu'une relation 
+{\it avoir la même valeur pour D} est une relation d'équivalence, mais ce n'est
+si simple étant donné qu'on
+ne considère pas les mêmes traces. Si c'était le cas, on se retrouverait
+rapidement à dire que D a la même valeur en L2a et L2b en propageant en
+arrière à partir de L3, et en avant à partir de L0 !!!
+
+Par ailleurs, qu'est-ce que ça veut dire pour les traces 
+qui contiennent plusieurs fois L et/ou P ?
+
+Prenons quelques exemples :
+
+\begin{itemize}
+  \item si on a \verb!L:... P:... D=x;... P:...!
+     ou \verb!P:... D=x;... P:... L:...!
+     \begin{itemize}\item[$\rightarrow$]
+   $P \notin \sc(D@L)$
+   car il y a des chemins de L à P ou de P à L, pour lesquels D est modifiée.
+     \end{itemize}
+
+   \item si on a une boucle \verb!Lp:... L:... n1:... D=x; n2:... goto Lp;!
+     \begin{itemize}\item[$\rightarrow$]
+	   quand on va en avant de L à n1, D n'est pas modifié,
+	   mais elle l'est quand on va de n1 à L, et inversement pour n2.
+     \end{itemize}
+\end{itemize}
+
+Il semble alors judicieux de distinguer une sélection avant $\sca$
+et une sélection arrière $\scb$, pour pouvoir avoir $n1 \in \sca$ et $n2 \in \scb$.  
+La signification serait alors : 
+$P \in \sca$ ssi à chaque fois que l'on va de L à P, 
+D a la même valeur en ces deux points, 
+mais il faut se restreindre aux chemins qui ne font pas un tour de boucles... 
+càd ceux qui ne repassent pas par L.
+
+Mais si on a : 
+
+\centerline{\verb!P:... Lp:... L:... D=x; ... goto Lp;!}
+
+quel est l'argument pour exclure P de $\scb$ ?
+On a bien : pour tous les chemins qui vont de P à L sans repasser par L,
+  D a la même valeur ! alors quoi ???
+
+En avant, on a le même problème avec :
+
+\centerline{\verb!Lp:... D=x; ... L:... goto Lp; P:...!}
+
+Pourquoi est-ce qu'on n'aurait pas $P \in \sca(D@L)$ ?\\
+
+Ou alors, on dit que c'est normal~?
+
+\subsection{Définitions}
+
+On définit finalement les ensembles en considérant les traces d'exécution
+qui traversent une fonction 
+sans rentrer dans les appels de fonction (en cas d'appel récursif, on ne
+considère donc qu'une exécution de la fonction).
+On considère les exécutions de la fonction
+qui passent par L, et on observe la valeur de la donnée en L et en P
+comme si on en regardait la trace dans un débogueur.
+
+
+\begin{itemize}
+  \item $P \in \sca(D@L)$ si et seulement pour toute exécution de la fonction
+    qui passe par L, si on s'arrête en P,
+    D a toujours la même valeur 
+    que la {\bf dernière} fois que l'on est passé en L~;
+  \item $P \in \scb(D@L)$ si et seulement si pour toute exécution
+    de la fonction qui passe par L, si on s'arrête en P,
+    D a toujours la même valeur que 
+    la {\bf prochaine} fois que l'on passe en L.
+\end{itemize}
+
+\subsection{Algorithmes}
+
+En pratique, les résultats sont présentés comme une liste d'instructions et non
+directement de points de programme. Il faut donc préciser
+qu'on choisit de considérer l'étiquette de départ L comme une instruction 
+à part entière, et l'instruction $I_L$ comme étant l'instruction suivante~:
+donc en suivant la définition, si on place un point d'arrêt en $I_L$,
+D a toujours la même valeur que la dernière fois que l'on est passé en L,
+et on a donc toujours $I_L \in \sca(D,L)$.\\
+
+On calcule tout d'abord pour chaque donnée modifiée par la fonction,
+une liste des instructions qui la modifie.\\
+
+Puis, on fait une analyse {\it dataflow} en avant et une autre en arrière
+dans lesquelles on associe une marque à chaque point de la fonction parmi :
+
+\begin{itemize}
+  \item {\tt Start}~: point de départ de l'analyse (marque du point L)~;
+  \item {\tt NotSeen}~: point non rencontré~;
+  \item {\tt Modif}~: donnée modifiée~;
+  \item {\tt SameVal}~: donnée non modifiée.\\
+\end{itemize}
+
+L'opération qui permet d'accumuler la valeur en un point, que ça soit lors de
+l'analyse avant ou l'analyse arrière, est~:
+\begin{verbatim}
+let merge b1 b2 = match b1, b2 with
+    | Start, _ | _, Start -> Start
+    | NotSeen, b | b, NotSeen -> b
+    | Modif, _ | _, Modif -> Modif
+    | SameVal, SameVal -> SameVal
+\end{verbatim}
+
+On se donne aussi une fonction de transfert $T(I,m)$ qui vaut~:
+\begin{itemize}
+  \item {\tt Modif} si l'instruction I modifie la donnée qui nous intéresse,
+  \item {\tt SameVal} si m={\tt Start}
+  \item m sinon.
+\end{itemize}
+
+\subsubsection{Analyse avant}
+
+Il s'agit de calculer une marque $m_a(P)$ pour chaque point P.
+
+On commence en initialisant le point de départ $m_a(L)$ à {\tt Start}.
+Puis on lance le calcul en indiquant qu'il faut traiter l'instruction L.
+
+Pour chaque chaque instruction I à traiter, le calcul consiste à
+calculer la marque $m' = T(I, m_a(I))$ à propager à ses successeurs.
+Pour chaque successeur I' de I, on va ajoute la marque m'
+à un éventuel résultat précédent $m_a(I')$ 
+à l'aide de l'opération {\tt merge}
+($m_a(I')=m'$ si on n'a encore rien calculé).
+Si $m_a(I')$ n'est pas modifiée par l'opération, on arrête de propager par ce
+chemin. Sinon, on met I' dans la liste des instructions à traiter.
+
+Quand le résultat est stabilisé (plus d'instructions à traiter), 
+on a donc~:
+$$
+m_a(I') = \bigcup_{I \in pred(I')} T(I, m_a(I))
+$$
+
+On récupère la liste des instructions
+marquées {\tt Start} ou {\tt SameVal}, et cela nous donne $\sca(D,L)$.\\
+
+Pour tout $P \in \sca(D,L)$, si P n'est pas L, on a donc~:
+$$
+\bigcup_{I \in pred(P)} T(I, m_a(I)) = {\tt SameVal}
+$$
+c'est-à-dire que dans les prédécesseurs de $P$ on ne peut avoir que des
+instructions I ne modifiant pas D et ayant une marque
+{\tt Start} ou {\tt SameVal}, c'est-à-dire des éléments de $\sca(D,L)$
+ou bien une marque {\tt NotSeen} c'est-à-dire une instruction que l'on ne peut
+pas atteindre depuis L.
+
+On peut remarquer que l'on n'a pas d'information sur les prédécesseurs de L,
+car quelque soient leurs marques, la marque de L reste à  {\tt Start}.
+
+\subsubsection{Analyse arrière}
+
+L'analyse est similaire à l'analyse avant, sauf qu'elle s'effectue en arrière~!
+Il s'agit encore de calculer une marque $m_b(P)$ pour chaque point P.
+
+Cela nécessite d'initialiser tous les points à {\tt NotSeen},
+sauf le point de départ L qui est initialisé à  {\tt Start}.
+Puis on lance le calcul en indiquant qu'il faut traiter 
+les prédécesseurs de L.
+
+Pour chaque chaque instruction I à traiter, le calcul consiste à
+calculer la marque m' en combinant
+les marques associées aux successeurs de I à l'aide de l'opération
+{\tt merge}.
+On calcule ensuite $m = T(I, m')$.
+On remarque que c'est la même fonction de transfert qu'en avant.
+
+Si $m_b(I) = m_b(I) \cup m$, on arrête la propagation,
+et sinon, on ajoute m à $m_b(I)$
+et on ajoute les prédécesseurs de I dans les  instructions à traiter.\\
+
+Quand le résultat est stabilisé, on a donc~:
+$$
+m_b(I) = T(I, \bigcup_{I' \in succ(I)} m_b(I'))
+$$
+On récupère la liste des instructions
+marquées {\tt SameVal}, 
+et on ajoute l'instruction L de départ marquée {\tt Start} 
+si $T(L, \bigcup_{I \in succ(L)} m_b(I))$ vaut {\tt SameVal}.
+Cela nous donne $\scb(D,L)$.\\
+
+Pour tout $P \in \scb(D,L)$, on a donc~:
+$$
+T(P, \bigcup_{I \in succ(P)} m_b(I)) = {\tt SameVal}
+$$
+c'est-à-dire que P ne modifie pas D, et que pour tout successeur I de P,
+soit il s'agit du point de départ L, soit I est aussi dans $\scb(D,L)$.
+
+\subsection{Propriétés}
+
+
+
+Pour tout $P \in \sca(D@L)$, il existe nécessairement un chemin entre L et P,
+et tous les points du chemin sont aussi dans $ \sca(D@L)$.
+De même, pour tout $P \in \scb(D@L)$,  
+il existe nécessairement un chemin entre P et L,
+
+Il n'y a pas forcement de relation de domination/postdomination entre P et L.\\
+
+Relation entre $\sc(D@L)$ et $\sc(D@P)$ quand $P \in \sc(D@L)$~?...
+
+\section{Portée d'une propriété}\label{prop-scope}
+
+\subsection{Problème général}
+
+On s'intéresse maintenant au déplacement d'une propriété dans une fonction.
+On pourrait penser qu'il suffit de déterminer les données qui servent à évaluer
+la propriété et de calculer la portée de ces données pour pouvoir déplacer la
+propriété en un point appartenant à la portée de ces données.
+Mais ce n'est pas si simple car  si on considère la séquence~:
+
+\centerline{\verb!L1:...  if (c) \{ L2:... \} else \{ L3a: x = 2;
+L3b:... \} L4:...!}
+
+
+\begin{itemize}
+  \item si on a une propriété P portant sur x en L2 (disons $x>0$), on ne peut pas
+    forcement la déplacer en L1 car elle peut très bien n'être vraie que dans le
+    cas où la condition c est vraie (par exemple, grâce à une précondition :  
+    $c \Rightarrow x>0$);
+  \item par contre, si on a P en L1, elle est aussi vraie en L2, mais il n'y a pas équivalence, car il faut aussi qu'elle soit vraie en L3a.
+  \item idem dans l'autre sens :
+    \begin{itemize}
+      \item $P@L4 \Rightarrow P@L3b$
+      \item mais on n'a pas~: $P@L3b \Rightarrow P@L4$
+    \end{itemize}
+\end{itemize}
+
+\subsection{Menaces redondantes}
+
+Dans un premier temps, pour allons nous intéresser aux propriétés générées
+pour exprimer les menaces. Il s'agit d'assertions qui expriment les conditions
+qu'il faut vérifier pour que les instructions ne {\it plantent} pas.
+Si on a un accès à un pointeur p par exemple, et que l'analyse de valeur
+détecte que ce pointeur ne contient pas toujours une adresse valide,
+on va voir apparaître~:
+
+\begin{verbatim}
+/*@ assert \valid(p);
+      // synthesized 
+ */
+x = *p;
+\end{verbatim}
+
+L'analyse de valeur considère dans la suite des calculs que cette propriété
+est vérifiée. Néanmoins, dans certains cas, elle n'est pas suffisamment précise
+pour retenir cette information, et la menace est donc émise plusieurs fois, à
+chaque accès au pointeur. Par exemple, si on ne sait rien sur p,
+on a~:
+\begin{verbatim}
+/*@ assert \valid(p);
+        // synthesized
+ */
+   x = *p;
+ /*@ assert \valid(p);
+       // synthesized
+ */
+  *p = 3;
+\end{verbatim}
+
+\subsection{Réduction des menaces}
+
+On travaille uniquement sur la portée des données,
+c'est-à-dire sur le déplacement de propriétés à travers des instructions
+qui ne modifient pas les données utilisées.
+La comparaison des menaces sera donc uniquement syntaxique.\\
+
+Si une propriété P est vraie à un point de programme L1, 
+elle est aussi vraie pour les points L2 qui suivent L1 tels que~:
+\begin{itemize}
+  \item L2 est dominé par L1 
+(ie. si on passe en L2, on est forcement passé en L1) 
+\item et la propriété n'est pas modifiée entre L1 et L2.
+\end{itemize}
+Donc si on rencontre une menace identique à P en un point L2
+qui vérifie ces caractéristiques, elle peut être éliminée.\\
+
+Si une propriété est vraie à un point de programme L1, 
+on pourrait aussi se dire qu'elle est
+vraie pour les points L0 qui précèdent L1 tels que~:
+\begin{itemize}
+  \item L1 postdomine L0
+    (ie. si on passe en L0, on passe forcement en L1)
+  \item  et la propriété n'est pas modifiée entre L0 et L1.
+\end{itemize}
+Mais le déplacement d'une propriété en arrière est plus délicate,
+car à cause des problèmes de terminaison des instructions que l'on traverse,
+ça peut conduire à la rendre plus forte que nécessaire.
+
+
+%------------------------------------------------------------------------------
+\end{document}
+%==============================================================================
+ 

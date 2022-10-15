@@ -1,0 +1,137 @@
+[kernel] Parsing dataflow_order.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  c ∈ [--..--]
+  j ∈ {0}
+  k ∈ {0}
+[eva] dataflow_order.i:18: Frama_C_show_each_1: {0}, {0}
+[eva] dataflow_order.i:21: Frama_C_show_each_then: {1}, {0}
+[eva] computing for function f <- main.
+  Called from dataflow_order.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] dataflow_order.i:24: Frama_C_show_each_else: {1}, {0}
+[eva] computing for function g <- main.
+  Called from dataflow_order.i:25.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] dataflow_order.i:17: starting to merge loop iterations
+[eva] dataflow_order.i:18: Frama_C_show_each_1: {0; 1}, {0; 1}
+[eva] dataflow_order.i:21: Frama_C_show_each_then: {1; 2}, {0; 1}
+[eva] computing for function f <- main.
+  Called from dataflow_order.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] dataflow_order.i:24: Frama_C_show_each_else: {1; 2}, {0; 1}
+[eva] computing for function g <- main.
+  Called from dataflow_order.i:25.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] dataflow_order.i:18: Frama_C_show_each_1: {0; 1; 2}, {0; 1; 2}
+[eva] dataflow_order.i:21: Frama_C_show_each_then: {1; 2; 3}, {0; 1; 2}
+[eva] computing for function f <- main.
+  Called from dataflow_order.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] dataflow_order.i:24: Frama_C_show_each_else: {1; 2; 3}, {0; 1; 2}
+[eva] computing for function g <- main.
+  Called from dataflow_order.i:25.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] dataflow_order.i:18: Frama_C_show_each_1: [0..64999], {0; 1; 2; 3}
+[eva] dataflow_order.i:21: Frama_C_show_each_then: [1..65000], {0; 1; 2; 3}
+[eva] computing for function f <- main.
+  Called from dataflow_order.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] dataflow_order.i:24: Frama_C_show_each_else: [1..65000], {0; 1; 2; 3}
+[eva] computing for function g <- main.
+  Called from dataflow_order.i:25.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] dataflow_order.i:18: Frama_C_show_each_1: [0..64999], {0; 1; 2; 3; 4}
+[eva] dataflow_order.i:21: Frama_C_show_each_then: [1..65000], {0; 1; 2; 3; 4}
+[eva] computing for function f <- main.
+  Called from dataflow_order.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] dataflow_order.i:24: Frama_C_show_each_else: [1..65000], {0; 1; 2; 3; 4}
+[eva] computing for function g <- main.
+  Called from dataflow_order.i:25.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] dataflow_order.i:18: Frama_C_show_each_1: [0..64999], [0..2147483647]
+[eva] dataflow_order.i:21: Frama_C_show_each_then: [1..65000], [0..2147483647]
+[eva] computing for function f <- main.
+  Called from dataflow_order.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] dataflow_order.i:24: Frama_C_show_each_else: [1..65000], [0..2147483647]
+[eva] computing for function g <- main.
+  Called from dataflow_order.i:25.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] dataflow_order.i:18: Frama_C_show_each_1: [0..64999], [0..2147483648]
+[eva] dataflow_order.i:21: Frama_C_show_each_then: [1..65000], [0..2147483648]
+[eva] computing for function f <- main.
+  Called from dataflow_order.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] dataflow_order.i:24: Frama_C_show_each_else: [1..65000], [0..2147483648]
+[eva] computing for function g <- main.
+  Called from dataflow_order.i:25.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] dataflow_order.i:18: Frama_C_show_each_1: [0..64999], [0..4294967295]
+[eva] dataflow_order.i:21: Frama_C_show_each_then: [1..65000], [0..4294967295]
+[eva] computing for function f <- main.
+  Called from dataflow_order.i:22.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] dataflow_order.i:24: Frama_C_show_each_else: [1..65000], [0..4294967295]
+[eva] computing for function g <- main.
+  Called from dataflow_order.i:25.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] dataflow_order.i:28: Frama_C_show_each_end:
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  j ∈ [--..--]
+[eva:final-states] Values at end of function g:
+  k ∈ [--..--]
+[eva:final-states] Values at end of function main:
+  j ∈ [--..--]
+  k ∈ [--..--]
+  i ∈ {65000}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  j FROM j
+[from] Function g:
+  k FROM k
+[from] Function main:
+  j FROM c; j (and SELF)
+  k FROM c; k (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    j
+[inout] Inputs for function f:
+    j
+[inout] Out (internal) for function g:
+    k
+[inout] Inputs for function g:
+    k
+[inout] Out (internal) for function main:
+    j; k; i
+[inout] Inputs for function main:
+    c; j; k

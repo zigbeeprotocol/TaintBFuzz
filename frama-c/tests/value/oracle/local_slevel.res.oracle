@@ -1,0 +1,513 @@
+[kernel] Parsing local_slevel.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  p ∈ {0}
+  t[0..99] ∈ {0}
+  vol ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from local_slevel.i:48.
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0}, {0}
+[eva] local_slevel.i:10: starting to merge loop iterations
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {0; 1}
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0}, {0; 1}
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {0; 1; 2}
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0; 2}, {0; 1; 2}
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {0; 1; 2; 3}
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, {0; 1; 2; 3}
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {0; 1; 2; 3; 4}
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, {0; 1; 2; 3; 4}
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..2147483647]
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..2147483647]
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..2147483648]
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..2147483648]
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..4294967295]
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..4294967295]
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from local_slevel.i:49.
+[eva] local_slevel.i:37: Frama_C_show_each: {0}
+[eva] local_slevel.i:37: Frama_C_show_each: {1}
+[eva] local_slevel.i:37: Frama_C_show_each: {2}
+[eva] local_slevel.i:37: Frama_C_show_each: {3}
+[eva] local_slevel.i:37: Frama_C_show_each: {4}
+[eva] local_slevel.i:37: Frama_C_show_each: {5}
+[eva] local_slevel.i:37: Frama_C_show_each: {6}
+[eva] local_slevel.i:37: Frama_C_show_each: {7}
+[eva] local_slevel.i:37: Frama_C_show_each: {8}
+[eva] local_slevel.i:37: Frama_C_show_each: {9}
+[eva] local_slevel.i:37: Frama_C_show_each: {10}
+[eva] local_slevel.i:37: Frama_C_show_each: {11}
+[eva] local_slevel.i:37: Frama_C_show_each: {12}
+[eva] local_slevel.i:37: Frama_C_show_each: {13}
+[eva] local_slevel.i:37: Frama_C_show_each: {14}
+[eva] local_slevel.i:37: Frama_C_show_each: {15}
+[eva] local_slevel.i:37: Frama_C_show_each: {16}
+[eva] local_slevel.i:37: Frama_C_show_each: {17}
+[eva] local_slevel.i:37: Frama_C_show_each: {18}
+[eva] local_slevel.i:37: Frama_C_show_each: {19}
+[eva] local_slevel.i:37: Frama_C_show_each: {20}
+[eva] local_slevel.i:37: Frama_C_show_each: {21}
+[eva] local_slevel.i:37: Frama_C_show_each: {22}
+[eva] local_slevel.i:37: Frama_C_show_each: {23}
+[eva] local_slevel.i:37: Frama_C_show_each: {24}
+[eva] local_slevel.i:37: Frama_C_show_each: {25}
+[eva] local_slevel.i:37: Frama_C_show_each: {26}
+[eva] local_slevel.i:37: Frama_C_show_each: {27}
+[eva] local_slevel.i:37: Frama_C_show_each: {28}
+[eva] local_slevel.i:37: Frama_C_show_each: {29}
+[eva] local_slevel.i:37: Frama_C_show_each: {30}
+[eva] local_slevel.i:37: Frama_C_show_each: {31}
+[eva] local_slevel.i:37: Frama_C_show_each: {32}
+[eva] local_slevel.i:37: Frama_C_show_each: {33}
+[eva] local_slevel.i:37: Frama_C_show_each: {34}
+[eva] local_slevel.i:37: Frama_C_show_each: {35}
+[eva] local_slevel.i:37: Frama_C_show_each: {36}
+[eva] local_slevel.i:37: Frama_C_show_each: {37}
+[eva] local_slevel.i:37: Frama_C_show_each: {38}
+[eva] local_slevel.i:37: Frama_C_show_each: {39}
+[eva] local_slevel.i:37: Frama_C_show_each: {40}
+[eva] local_slevel.i:37: Frama_C_show_each: {41}
+[eva] local_slevel.i:37: Frama_C_show_each: {42}
+[eva] local_slevel.i:37: Frama_C_show_each: {43}
+[eva] local_slevel.i:37: Frama_C_show_each: {44}
+[eva] local_slevel.i:37: Frama_C_show_each: {45}
+[eva] local_slevel.i:37: Frama_C_show_each: {46}
+[eva] local_slevel.i:37: Frama_C_show_each: {47}
+[eva] local_slevel.i:37: Frama_C_show_each: {48}
+[eva] local_slevel.i:37: Frama_C_show_each: {49}
+[eva] local_slevel.i:43: Trace partitioning superposing up to 100 states
+[eva] local_slevel.i:37: Frama_C_show_each: {50}
+[eva] local_slevel.i:37: Frama_C_show_each: {51}
+[eva] local_slevel.i:37: Frama_C_show_each: {52}
+[eva] local_slevel.i:37: Frama_C_show_each: {53}
+[eva] local_slevel.i:37: Frama_C_show_each: {54}
+[eva] local_slevel.i:37: Frama_C_show_each: {55}
+[eva] local_slevel.i:37: Frama_C_show_each: {56}
+[eva] local_slevel.i:37: Frama_C_show_each: {57}
+[eva] local_slevel.i:37: Frama_C_show_each: {58}
+[eva] local_slevel.i:37: Frama_C_show_each: {59}
+[eva] local_slevel.i:37: Frama_C_show_each: {60}
+[eva] local_slevel.i:37: Frama_C_show_each: {61}
+[eva] local_slevel.i:37: Frama_C_show_each: {62}
+[eva] local_slevel.i:37: Frama_C_show_each: {63}
+[eva] local_slevel.i:37: Frama_C_show_each: {64}
+[eva] local_slevel.i:37: Frama_C_show_each: {65}
+[eva] local_slevel.i:37: Frama_C_show_each: {66}
+[eva] local_slevel.i:37: Frama_C_show_each: {67}
+[eva] local_slevel.i:37: Frama_C_show_each: {68}
+[eva] local_slevel.i:37: Frama_C_show_each: {69}
+[eva] local_slevel.i:37: Frama_C_show_each: {70}
+[eva] local_slevel.i:37: Frama_C_show_each: {71}
+[eva] local_slevel.i:37: Frama_C_show_each: {72}
+[eva] local_slevel.i:37: Frama_C_show_each: {73}
+[eva] local_slevel.i:37: Frama_C_show_each: {74}
+[eva] local_slevel.i:37: Frama_C_show_each: {75}
+[eva] local_slevel.i:37: Frama_C_show_each: {76}
+[eva] local_slevel.i:37: Frama_C_show_each: {77}
+[eva] local_slevel.i:37: Frama_C_show_each: {78}
+[eva] local_slevel.i:37: Frama_C_show_each: {79}
+[eva] local_slevel.i:37: Frama_C_show_each: {80}
+[eva] local_slevel.i:37: Frama_C_show_each: {81}
+[eva] local_slevel.i:37: Frama_C_show_each: {82}
+[eva] local_slevel.i:37: Frama_C_show_each: {83}
+[eva] local_slevel.i:37: Frama_C_show_each: {84}
+[eva] local_slevel.i:37: Frama_C_show_each: {85}
+[eva] local_slevel.i:37: Frama_C_show_each: {86}
+[eva] local_slevel.i:37: Frama_C_show_each: {87}
+[eva] local_slevel.i:37: Frama_C_show_each: {88}
+[eva] local_slevel.i:37: Frama_C_show_each: {89}
+[eva] local_slevel.i:37: Frama_C_show_each: {90}
+[eva] local_slevel.i:37: Frama_C_show_each: {91}
+[eva] local_slevel.i:37: Frama_C_show_each: {92}
+[eva] local_slevel.i:37: Frama_C_show_each: {93}
+[eva] local_slevel.i:37: Frama_C_show_each: {94}
+[eva] local_slevel.i:37: Frama_C_show_each: {95}
+[eva] local_slevel.i:37: Frama_C_show_each: {96}
+[eva] local_slevel.i:37: Frama_C_show_each: {97}
+[eva] local_slevel.i:37: Frama_C_show_each: {98}
+[eva] local_slevel.i:37: Frama_C_show_each: {99}
+[eva] local_slevel.i:43: Trace partitioning superposing up to 200 states
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  v ∈ {1} or UNINITIALIZED
+  r ∈ [--..--]
+[eva:final-states] Values at end of function main2:
+  t[0..99] ∈ [-1073741823..2147483647]
+  i ∈ {100}
+[eva:final-states] Values at end of function main:
+  t[0..99] ∈ [-1073741823..2147483647]
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  NO EFFECTS
+[from] Function main2:
+  t[0..99] FROM vol (and SELF)
+[from] Function main:
+  t[0..99] FROM vol (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    v; r; i
+[inout] Inputs for function main1:
+    \nothing
+[inout] Out (internal) for function main2:
+    t[0..99]; i; n
+[inout] Inputs for function main2:
+    vol
+[inout] Out (internal) for function main:
+    t[0..99]
+[inout] Inputs for function main:
+    vol
+/* Generated by Frama-C */
+int *p;
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_show_each)();
+
+void main1(void)
+{
+  int v;
+  unsigned int r = (unsigned int)0;
+  {
+    int i = 0;
+    while (i < 80) {
+      /*@ ensures \true;
+          assigns v; */
+      /*@ slevel 50; */
+      if (i % 2) v = 1; else v = -1;
+      Frama_C_show_each(v,i,r);
+      v *= v;
+      r += (unsigned int)(2 / (v + 1));
+      /*@ slevel default; */ ;
+      i ++;
+    }
+  }
+  return;
+}
+
+void g(void)
+{
+  int i = 0;
+  if (! (i < 5)) goto unrolling_2_loop;
+  i ++;
+  unrolling_3_loop: ;
+  /*@ loop pragma UNROLL 1;
+      loop pragma UNROLL "done", 1; */
+  while (i < 5) i ++;
+  unrolling_2_loop: ;
+  return;
+}
+
+int t[100];
+int volatile vol;
+void main2(void)
+{
+  int i = 0;
+  while (i < 100) {
+    {
+      Frama_C_show_each(i);
+      int n = vol;
+      if (n >= 3) t[i] = n; else t[i] = (n + (1 << 30)) + 1;
+      /*@ slevel merge; */ ;
+    }
+    i ++;
+  }
+  return;
+}
+
+void main(void)
+{
+  main1();
+  main2();
+  return;
+}
+
+
+[scf] beginning constant propagation
+/* Generated by Frama-C */
+int *p;
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_show_each)();
+
+void main1(void)
+{
+  int v;
+  unsigned int r = 0U;
+  {
+    int i = 0;
+    while (i < 80) {
+      /*@ ensures \true;
+          assigns v; */
+      /*@ slevel 50; */
+      if (i % 2) v = 1; else v = -1;
+      Frama_C_show_each(v,i,r);
+      v *= v;
+      r ++;
+      /*@ slevel default; */ ;
+      i ++;
+    }
+  }
+  return;
+}
+
+void g(void)
+{
+  int i = 0;
+  if (! (i < 5)) goto unrolling_2_loop;
+  i ++;
+  unrolling_3_loop: ;
+  /*@ loop pragma UNROLL 1;
+      loop pragma UNROLL "done", 1; */
+  while (i < 5) i ++;
+  unrolling_2_loop: ;
+  return;
+}
+
+int t[100];
+int volatile vol;
+void main2(void)
+{
+  int i = 0;
+  while (i < 100) {
+    {
+      Frama_C_show_each(i);
+      int n = vol;
+      if (n >= 3) t[i] = n; else t[i] = (n + 1073741824) + 1;
+      /*@ slevel merge; */ ;
+    }
+    i ++;
+  }
+  return;
+}
+
+void main(void)
+{
+  main1();
+  main2();
+  return;
+}
+
+
+[scf] constant propagation done
+/* Generated by Frama-C */
+int *p;
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_show_each)();
+
+void main1(void)
+{
+  int v;
+  unsigned int r = (unsigned int)0;
+  {
+    int i = 0;
+    while (i < 80) {
+      /*@ ensures \true;
+          assigns v; */
+      /*@ slevel 50; */
+      if (i % 2) v = 1; else v = -1;
+      Frama_C_show_each(v,i,r);
+      v *= v;
+      r += (unsigned int)(2 / (v + 1));
+      /*@ slevel default; */ ;
+      i ++;
+    }
+  }
+  return;
+}
+
+void g(void)
+{
+  int i = 0;
+  if (! (i < 5)) goto unrolling_2_loop;
+  i ++;
+  unrolling_3_loop: ;
+  /*@ loop pragma UNROLL 1;
+      loop pragma UNROLL "done", 1; */
+  while (i < 5) i ++;
+  unrolling_2_loop: ;
+  return;
+}
+
+int t[100];
+int volatile vol;
+void main2(void)
+{
+  int i = 0;
+  while (i < 100) {
+    {
+      Frama_C_show_each(i);
+      int n = vol;
+      if (n >= 3) t[i] = n; else t[i] = (n + (1 << 30)) + 1;
+      /*@ slevel merge; */ ;
+    }
+    i ++;
+  }
+  return;
+}
+
+void main(void)
+{
+  main1();
+  main2();
+  return;
+}
+
+
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  p ∈ {0}
+  t[0..99] ∈ {0}
+  vol ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from local_slevel.i:48.
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0}, {0}
+[eva] local_slevel.i:10: starting to merge loop iterations
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {0; 1}
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0}, {0; 1}
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {0; 1; 2}
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0; 2}, {0; 1; 2}
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {0; 1; 2; 3}
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, {0; 1; 2; 3}
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {0; 1; 2; 3; 4}
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, {0; 1; 2; 3; 4}
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..2147483647]
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..2147483647]
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..2147483648]
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..2147483648]
+[eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..4294967295]
+[eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..4294967295]
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from local_slevel.i:49.
+[eva] local_slevel.i:37: Frama_C_show_each: {0}
+[eva] local_slevel.i:37: Frama_C_show_each: {1}
+[eva] local_slevel.i:37: Frama_C_show_each: {2}
+[eva] local_slevel.i:37: Frama_C_show_each: {3}
+[eva] local_slevel.i:37: Frama_C_show_each: {4}
+[eva] local_slevel.i:37: Frama_C_show_each: {5}
+[eva] local_slevel.i:37: Frama_C_show_each: {6}
+[eva] local_slevel.i:37: Frama_C_show_each: {7}
+[eva] local_slevel.i:37: Frama_C_show_each: {8}
+[eva] local_slevel.i:37: Frama_C_show_each: {9}
+[eva] local_slevel.i:37: Frama_C_show_each: {10}
+[eva] local_slevel.i:37: Frama_C_show_each: {11}
+[eva] local_slevel.i:37: Frama_C_show_each: {12}
+[eva] local_slevel.i:37: Frama_C_show_each: {13}
+[eva] local_slevel.i:37: Frama_C_show_each: {14}
+[eva] local_slevel.i:37: Frama_C_show_each: {15}
+[eva] local_slevel.i:37: Frama_C_show_each: {16}
+[eva] local_slevel.i:37: Frama_C_show_each: {17}
+[eva] local_slevel.i:37: Frama_C_show_each: {18}
+[eva] local_slevel.i:37: Frama_C_show_each: {19}
+[eva] local_slevel.i:37: Frama_C_show_each: {20}
+[eva] local_slevel.i:37: Frama_C_show_each: {21}
+[eva] local_slevel.i:37: Frama_C_show_each: {22}
+[eva] local_slevel.i:37: Frama_C_show_each: {23}
+[eva] local_slevel.i:37: Frama_C_show_each: {24}
+[eva] local_slevel.i:37: Frama_C_show_each: {25}
+[eva] local_slevel.i:37: Frama_C_show_each: {26}
+[eva] local_slevel.i:37: Frama_C_show_each: {27}
+[eva] local_slevel.i:37: Frama_C_show_each: {28}
+[eva] local_slevel.i:37: Frama_C_show_each: {29}
+[eva] local_slevel.i:37: Frama_C_show_each: {30}
+[eva] local_slevel.i:37: Frama_C_show_each: {31}
+[eva] local_slevel.i:37: Frama_C_show_each: {32}
+[eva] local_slevel.i:37: Frama_C_show_each: {33}
+[eva] local_slevel.i:37: Frama_C_show_each: {34}
+[eva] local_slevel.i:37: Frama_C_show_each: {35}
+[eva] local_slevel.i:37: Frama_C_show_each: {36}
+[eva] local_slevel.i:37: Frama_C_show_each: {37}
+[eva] local_slevel.i:37: Frama_C_show_each: {38}
+[eva] local_slevel.i:37: Frama_C_show_each: {39}
+[eva] local_slevel.i:37: Frama_C_show_each: {40}
+[eva] local_slevel.i:37: Frama_C_show_each: {41}
+[eva] local_slevel.i:37: Frama_C_show_each: {42}
+[eva] local_slevel.i:37: Frama_C_show_each: {43}
+[eva] local_slevel.i:37: Frama_C_show_each: {44}
+[eva] local_slevel.i:37: Frama_C_show_each: {45}
+[eva] local_slevel.i:37: Frama_C_show_each: {46}
+[eva] local_slevel.i:37: Frama_C_show_each: {47}
+[eva] local_slevel.i:37: Frama_C_show_each: {48}
+[eva] local_slevel.i:37: Frama_C_show_each: {49}
+[eva] local_slevel.i:43: Trace partitioning superposing up to 100 states
+[eva] local_slevel.i:37: Frama_C_show_each: {50}
+[eva] local_slevel.i:37: Frama_C_show_each: {51}
+[eva] local_slevel.i:37: Frama_C_show_each: {52}
+[eva] local_slevel.i:37: Frama_C_show_each: {53}
+[eva] local_slevel.i:37: Frama_C_show_each: {54}
+[eva] local_slevel.i:37: Frama_C_show_each: {55}
+[eva] local_slevel.i:37: Frama_C_show_each: {56}
+[eva] local_slevel.i:37: Frama_C_show_each: {57}
+[eva] local_slevel.i:37: Frama_C_show_each: {58}
+[eva] local_slevel.i:37: Frama_C_show_each: {59}
+[eva] local_slevel.i:37: Frama_C_show_each: {60}
+[eva] local_slevel.i:37: Frama_C_show_each: {61}
+[eva] local_slevel.i:37: Frama_C_show_each: {62}
+[eva] local_slevel.i:37: Frama_C_show_each: {63}
+[eva] local_slevel.i:37: Frama_C_show_each: {64}
+[eva] local_slevel.i:37: Frama_C_show_each: {65}
+[eva] local_slevel.i:37: Frama_C_show_each: {66}
+[eva] local_slevel.i:37: Frama_C_show_each: {67}
+[eva] local_slevel.i:37: Frama_C_show_each: {68}
+[eva] local_slevel.i:37: Frama_C_show_each: {69}
+[eva] local_slevel.i:37: Frama_C_show_each: {70}
+[eva] local_slevel.i:37: Frama_C_show_each: {71}
+[eva] local_slevel.i:37: Frama_C_show_each: {72}
+[eva] local_slevel.i:37: Frama_C_show_each: {73}
+[eva] local_slevel.i:37: Frama_C_show_each: {74}
+[eva] local_slevel.i:37: Frama_C_show_each: {75}
+[eva] local_slevel.i:37: Frama_C_show_each: {76}
+[eva] local_slevel.i:37: Frama_C_show_each: {77}
+[eva] local_slevel.i:37: Frama_C_show_each: {78}
+[eva] local_slevel.i:37: Frama_C_show_each: {79}
+[eva] local_slevel.i:37: Frama_C_show_each: {80}
+[eva] local_slevel.i:37: Frama_C_show_each: {81}
+[eva] local_slevel.i:37: Frama_C_show_each: {82}
+[eva] local_slevel.i:37: Frama_C_show_each: {83}
+[eva] local_slevel.i:37: Frama_C_show_each: {84}
+[eva] local_slevel.i:37: Frama_C_show_each: {85}
+[eva] local_slevel.i:37: Frama_C_show_each: {86}
+[eva] local_slevel.i:37: Frama_C_show_each: {87}
+[eva] local_slevel.i:37: Frama_C_show_each: {88}
+[eva] local_slevel.i:37: Frama_C_show_each: {89}
+[eva] local_slevel.i:37: Frama_C_show_each: {90}
+[eva] local_slevel.i:37: Frama_C_show_each: {91}
+[eva] local_slevel.i:37: Frama_C_show_each: {92}
+[eva] local_slevel.i:37: Frama_C_show_each: {93}
+[eva] local_slevel.i:37: Frama_C_show_each: {94}
+[eva] local_slevel.i:37: Frama_C_show_each: {95}
+[eva] local_slevel.i:37: Frama_C_show_each: {96}
+[eva] local_slevel.i:37: Frama_C_show_each: {97}
+[eva] local_slevel.i:37: Frama_C_show_each: {98}
+[eva] local_slevel.i:37: Frama_C_show_each: {99}
+[eva] local_slevel.i:43: Trace partitioning superposing up to 200 states
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  v ∈ {1} or UNINITIALIZED
+  r ∈ [--..--]
+[eva:final-states] Values at end of function main2:
+  t[0..99] ∈ [-1073741823..2147483647]
+  i ∈ {100}
+[eva:final-states] Values at end of function main:
+  t[0..99] ∈ [-1073741823..2147483647]

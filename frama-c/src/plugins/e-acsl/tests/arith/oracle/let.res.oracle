@@ -1,0 +1,67 @@
+[e-acsl] beginning translation.
+[e-acsl] let.c:34: Warning: 
+  E-ACSL construct `let-binding on array or pointer' is not yet supported.
+  Ignoring annotation.
+[e-acsl] translation done in project "e-acsl".
+[eva:alarm] let.c:7: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] let.c:7: Warning: 
+  function __e_acsl_assert_register_long: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] let.c:7: Warning: assertion got status unknown.
+[eva:alarm] let.c:9: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] let.c:10: Warning: 
+  function __e_acsl_assert_register_long: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] let.c:10: Warning: 
+  function __e_acsl_assert_register_long: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] let.c:9: Warning: assertion got status unknown.
+[eva:alarm] let.c:13: Warning: assertion got status unknown.
+[eva:alarm] let.c:16: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] let.c:15: Warning: assertion got status unknown.
+[eva:alarm] let.c:20: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] let.c:19: Warning: assertion got status unknown.
+[eva:alarm] let.c:24: Warning: 
+  function __e_acsl_assert_register_long: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] let.c:24: Warning: 
+  function __e_acsl_assert_register_long: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] let.c:24: Warning: 
+  function __e_acsl_assert_register_long: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] let.c:24: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] let.c:24: Warning: assertion got status unknown.
+[eva:alarm] let.c:27: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] let.c:27: Warning: assertion got status unknown.
+[eva:alarm] let.c:30: Warning: 
+  function __e_acsl_assert_register_float: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] let.c:30: Warning: 
+  function __e_acsl_assert_register_float: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] let.c:30: Warning: assertion got status unknown.
+[eva:alarm] let.c:34: Warning: assertion got status unknown.
+[eva:alarm] let.c:36: Warning: assertion got status unknown.
+[eva:alarm] let.c:41: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] let.c:41: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] let.c:41: Warning: assertion got status unknown.
+[eva:alarm] let.c:48: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] let.c:48: Warning: assertion got status unknown.

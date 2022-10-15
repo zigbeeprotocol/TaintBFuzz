@@ -1,0 +1,2 @@
+FRAMAC_DOC_ROOT_DIR:=../../../../../doc
+include $(FRAMAC_DOC_ROOT_DIR)/MakeLaTeXModern

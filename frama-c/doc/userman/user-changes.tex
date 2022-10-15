@@ -1,0 +1,271 @@
+\chapter{Changes}\label{chap:changes}
+
+This chapter summarizes the changes in this documentation between each \FramaC
+release. First we list changes of the last release.
+
+\section*{24.0 (Chromium)}
+\begin{itemize}
+\item \textbf{Standard library (libc):} Section added
+\end{itemize}
+
+\section*{23.0 (Vanadium)}
+
+\begin{itemize}
+\item \textbf{Platform-wide Analysis Option:} swap argument order of
+  \texttt{-add-symbolic-path} (now uses \texttt{path:name}).
+\end{itemize}
+
+\section*{22.0 (Titanium)}
+
+\begin{itemize}
+\item \textbf{Getting Started:} added option
+  \texttt{-print-config-json}.
+\item \textbf{Getting Started:} added option
+  \texttt{-autocomplete}.
+\item \textbf{Getting Started:} updated installation instructions.
+\item \textbf{Preparing the Sources:} added option
+  \texttt{-print-cpp-commands}.
+\item \textbf{Reports:} add section about SARIF output
+  (via \textsf{Markdown Report}).
+\end{itemize}
+
+\section*{21.0 (Scandium)}
+
+\begin{itemize}
+\item \textbf{Preparing the Sources:} added option
+  \texttt{-cpp-extra-args-per-file}.
+\item \textbf{Customizing Analyzers:} added options
+  \texttt{-warn-invalid-pointer} and \texttt{-warn-pointer-downcast}
+\end{itemize}
+
+\section*{20.0 (Calcium)}
+
+\begin{itemize}
+\item \textbf{Normalizing the Source Code:} added options
+  \texttt{-keep-unused-types} and its opposite,
+  \texttt{-remove-unused-types}.
+\end{itemize}
+
+\section*{18.0 (Argon)}
+
+\begin{itemize}
+\item \textbf{Feedback Options:} change options governing status of warning categories
+\item \textbf{Normalizing the Source Code:} added category \texttt{@inline} to
+option \texttt{-inline-calls}, and added option \texttt{-remove-inlined}.
+\item \textbf{Customizing Analyzers:} added options
+  \texttt{-warn-left-shift-negative}, \\
+  \texttt{-warn-right-shift-negative} and \\
+  \texttt{-warn-invalid-bool}.
+\end{itemize}
+
+\section*{Chlorine-20180501}
+
+\begin{itemize}
+\item \textbf{Normalizing the Source Code:} added option \texttt{-inline-calls}.
+\item \textbf{Preparing the Sources:} documentation of macros that can be
+  defined to customize the standard C library.
+\item \textbf{Preparing the Sources:} deprecated option
+  \texttt{-implicit-function-declaration} (superseded by
+  warning categories; equivalent to\\
+  \texttt{-kernel-warn-\{key,abort,feedback\} typing:implicit-function-declaration}).
+\item \textbf{Setting Up Plug-ins:} remove obsolete references
+ to static plug-ins and \texttt{--with-all-static} configure option.
+\item \textbf{Feedback Options:} introduction of warning categories and statuses.
+\item \textbf{Customizing Analyzers:} added option \texttt{-warn-special-float}.
+\item \textbf{Preparing the Sources:} added option
+  \texttt{-json-compilation-database}.
+\item \textbf{Reports:} new chapter documenting reporting facilities.
+\item \textbf{Variadic Plug-in:} new chapter documenting the Variadic plug-in.
+\end{itemize}
+
+\section*{Sulfur-20171101}
+
+\begin{itemize}
+\item \textbf{Preparing the Sources:} removed option
+  \texttt{-force-rl-arg-eval}.
+\item \textbf{Normalizing the Source Code:} added section about compiler
+  and language extensions (Section~\ref{sec:extensions}).
+\item \textbf{Normalizing the Source Code:} removed option
+  \texttt{-custom-annot-char}.
+\end{itemize}
+
+\section*{Phosphorus-20170501}
+
+\begin{itemize}
+\item \textbf{Getting Started:} \tool{Zarith} package is now mandatory.
+\item \textbf{Setting Up Plug-ins:} added option \texttt{-autoload-plugins}.
+\item \textbf{Preparing the Sources:} renamed option \texttt{-cpp-gnu-like}
+  to \texttt{-cpp-frama-c-compliant}.
+\item \textbf{Getting Started:} document new bash completion script.
+\item \textbf{Getting Started:} added option \texttt{-print-libc}.
+\end{itemize}
+
+\section*{Silicon-20161101}
+
+\begin{itemize}
+\item \textbf{Getting Started:} OCaml version greater or equal than 4.05.0 is required
+\item \textbf{Normalizing the Source Code:} New option \texttt{-c11}
+\end{itemize}
+
+\section*{Aluminium-20160501}
+
+\begin{itemize}
+\item \textbf{Getting Started:} document new option \texttt{-then-replace}.
+\item \textbf{Getting Started:} document new option
+\texttt{-set-project-as-default}.
+\item \textbf{Project:} document new option \texttt{-remove-projects}.
+\item \textbf{Getting Started:} document new option
+  \texttt{-<plug-in shortname>-log}.
+\item \textbf{Normalizing the Source Code:} document new options
+  \texttt{-asm-contracts} and\\ \texttt{-asm-contracts-auto-validate}
+\item \textbf{Graphical User Interface:} Option \texttt{-collect-messages} is
+  active by default, and cannot be deactivated.
+\end{itemize}
+
+\section*{Magnesium-20151001}
+\begin{itemize}
+\item \textbf{Getting Started:} support is not guaranteed for OCaml versions
+below 4.x.
+\item \textbf{Getting Started:} the recommended installation method now consists
+in using the Frama-C OPAM package.
+\item \textbf{Normalizing the Source Code:} option \texttt{-pp-annot} is now
+active by default.
+\item \textbf{Normalizing the Source Code:} added section about macros
+predefined by \FramaC (Section~\ref{sec:predefined-macros}).
+\item \textbf{Normalizing the Source Code:} document new option 
+  \texttt{-custom-annot-char} (Section~\ref{sec:normalize})
+\item \textbf{Normalizing the Source Code:} document handling of 
+  new file suffix \texttt{.ci} (Section~\ref{sec:preprocessing})
+\item \textbf{Preparing the Sources:} option \texttt{-warn-undefined-callee}
+  changed to \\ \texttt{-implicit-function-declaration warn}.
+\item \textbf{Setting Up Plug-ins:} removed option \texttt{-dynlink}.
+\end{itemize}
+
+\section*{Sodium-20150201}
+\begin{itemize}
+\item \textbf{Normalizing the Source Code:} new options
+  \texttt{-initialized-padding-locals} and \texttt{-simplify-trivial-loops}.
+\item \textbf{Pre-processing the Source Files:} new options
+  \texttt{-cpp-gnu-like} and \texttt{-frama-c-stdlib}.
+\item \textbf{Customizing Analyzers:} new options
+  \texttt{-add-symbolic-path} and \texttt{-permissive}.
+\item \textbf{Getting Started:} document options containing several values
+  (\emph{aka} set and map).
+\item \textbf{Getting Started:} improve documentation of options.
+\item \textbf{Getting Started:} document new option \texttt{-then-last}.
+\item \textbf{Getting Started:} document new option \texttt{-tty}.
+\end{itemize}
+
+\section*{Neon-20140*01}
+\begin{itemize}
+\item \textbf{Getting Started:} fixes list of requirements 
+  for compiling \FramaC.
+\item \textbf{Preparing the Sources:} new option \texttt{-aggressive-merging}
+\item \textbf{General Kernel Services:} change the default name of the journal.
+\item \textbf{Getting Started:} 
+  new options \texttt{-config} and \texttt{-<plug-in shortname>-config}, as
+  well as new environment variable \texttt{FRAMAC\_CONFIG}.
+\item \textbf{Getting Started:} 
+  new options \texttt{-session} and \texttt{-<plug-in shortname>-session}, as
+  well as new environment variable \texttt{FRAMAC\_SESSION}.
+\item \textbf{Getting Started:} document option \texttt{-unicode}.
+\item \textbf{General Kernel Services:} clarify when saving is done.
+\end{itemize}
+
+\section*{Fluorine-20130*01}
+\begin{itemize}
+\item \textbf{Getting Started:} update installation requirements.
+\item \textbf{Customizing Analyzers:} document the following new options:
+  \begin{itemize}
+  \item \texttt{-warn-signed-overflow},
+  \item \texttt{-warn-unsigned-overflow},
+  \item \texttt{-warn-signed-downcast}, and
+  \item \texttt{-warn-unsigned-downcast}.
+  \end{itemize}
+\item \textbf{Preparing the Sources:} document new option \texttt{-enums}
+\end{itemize}
+
+\section*{Oxygen-20120901}
+
+\begin{itemize}
+\item \textbf{Analysis Option:} better documentation of 
+\texttt{-unspecified-access}
+\item \textbf{Preparing the Sources:} better documentation of \texttt{-pp-annot}
+\item \textbf{Preparing the Sources:} pragma \texttt{UNROLL\_LOOP} is
+deprecated in favor of \texttt{UNROLL}
+\item \textbf{Preparing the Sources:} document new normalization options
+  \texttt{-warn-decimal-float}, \texttt{-warn-undeclared-callee} and
+  \texttt{-keep-unused-specified-functions}
+\item \textbf{General Kernel Services:} document special cases of saving and
+  journalisation.
+\item \textbf{Getting Started:} optional \tool{Zarith} package.
+\item \textbf{Getting Started:} new option \texttt{-<plug-in shortname>-share}.
+\end{itemize}
+
+\section*{Nitrogen-20111001}
+
+\begin{itemize}
+\item \textbf{Overview:} report on Frama-C' usage as an educational tool.
+\item \textbf{Getting Started:} exit status 127 is now 125 (127 and 126 are
+reserved by POSIX).
+\item \textbf{Getting Started:} update options for controlling display of
+  floating-point numbers
+\item \textbf{Preparing the sources:} document generation of \texttt{assigns}
+  clause for function prototypes without body and proper specification
+\item \textbf{Property Statuses:} new chapter to document property statuses.
+\item \textbf{GUI:} document new interface elements.
+\end{itemize}
+
+\section*{Carbon-20110201}
+
+\begin{itemize}
+\item \textbf{Getting Started:} exit status 5 is now 127;
+new exit status 5 and 6.
+\item \textbf{GUI:} document new options \texttt{-collect-messages}.
+\end{itemize}
+
+\section*{Carbon-20101201}
+
+\begin{itemize}
+\item \textbf{Getting Started:} document new options \texttt{-then} and
+  \texttt{-then-on}.
+\item \textbf{Getting Started:} option \texttt{-obfuscate} is no more a kernel
+  option since the obfuscator is now a plug-in.
+\end{itemize}
+
+\section*{Boron-20100401}
+
+\begin{itemize}
+\item \textbf{Preparing the Sources:} document usage of the C standard library
+  delivered with \FramaC
+\item \textbf{Graphical User Interface:} simplified and updated according to
+  the new implementation
+\item \textbf{Getting Started:} document environment variables altogether
+\item \textbf{Getting Started:} document all the ways to getting help
+\item \textbf{Getting Started:} \tool{OcamlGraph} 1.4 instead 1.3 will be used
+  if previously installed
+\item \textbf{Getting Started:} \tool{GtkSourceView} 2.x instead of 1.x is now
+  required for building the GUI
+\item \textbf{Getting Started:} documentation of the option
+  \texttt{-float-digits}
+\item \textbf{Preparing the Sources:} documentation of the option
+  \texttt{-continue-annot-error}
+\item \textbf{Using plug-ins:} new option \texttt{-dynlink}
+\item \textbf{Journalisation:} a journal is generated only whenever \FramaC
+  crashes on the GUI
+\item \textbf{Configure:} new option \texttt{-{}-with-no-plugin}
+\item \textbf{Configure:} option \texttt{-{}-with-all-static} set by default
+  when native dynamic loading is not available
+\end{itemize}
+
+\section*{Beryllium-20090902}
+
+\begin{itemize}
+\item First public release
+\end{itemize}
+
+%% Local Variables:
+%% compile-command: "make"
+%% ispell-local-dictionary: "english"
+%% TeX-master: "userman.tex"
+%% End:

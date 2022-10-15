@@ -1,0 +1,8 @@
+Makefile.config:
+
+It contains references to the external programs used to compile the
+developer documentation.
+
+Instead of fig2pdf some might want to use fig2dev (part of the xfig
+package).
+Use "figdev -L pdf" instead of for the FIG2PDF macros in this case. 

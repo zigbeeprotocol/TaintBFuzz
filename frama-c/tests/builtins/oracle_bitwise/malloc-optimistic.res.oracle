@@ -1,0 +1,4 @@
+1872a1873,1875
+> [eva] malloc-optimistic.c:90: Call to builtin malloc
+> [eva:malloc] malloc-optimistic.c:90: 
+>   resizing variable `__malloc_main7_l90' (0..31/3231) to fit 0..511/3231

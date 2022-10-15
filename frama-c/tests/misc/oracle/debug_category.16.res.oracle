@@ -1,0 +1,15 @@
+[kernel] Parsing debug_category.i (no preprocessing)
+[test] Warning: Uncategorized warning
+[test:a] Warning: Warning A
+[test] Failure: Testing failure function
+[test:a] Warning: Another Warning A
+[test] Failure: Deferred internal error message was emitted during execution. See above messages for more information.
+[kernel] Current source was: :0
+  The full backtrace is:
+  
+  Plug-in test aborted: internal error.
+  Please report as 'crash' at https://git.frama-c.com/pub/frama-c/issues
+  Your Frama-C version is VERSION
+  Note that a version and a backtrace alone often do not contain enough
+  information to understand the bug. Guidelines for reporting bugs are at:
+  https://git.frama-c.com/pub/frama-c/-/wikis/Guidelines-for-reporting-bugs

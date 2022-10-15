@@ -1,0 +1,62 @@
+# frama-c -wp [...]
+[kernel] Parsing doomed_call.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 33 goals scheduled
+[wp] [Passed] Smoke-test typed_call_exit_ok_wp_smoke_dead_call_s2
+[wp] [Passed] Smoke-test typed_f1_ok_wp_smoke_dead_code_s2
+[wp] [Passed] Smoke-test typed_f1_ok_wp_smoke_dead_code_s4
+[wp] [Qed] Goal typed_f1_ok_ensures : Valid
+[wp] [Qed] Goal typed_f1_ok_exits : Valid
+[wp] [Passed] Smoke-test typed_call_post_ok_wp_smoke_dead_call_s9
+[wp] [Passed] Smoke-test typed_call_exit_ok_wp_smoke_dead_call_s10
+[wp] [Passed] Smoke-test typed_f2_ok_wp_smoke_dead_code_s9
+[wp] [Passed] Smoke-test typed_f2_ok_wp_smoke_dead_code_s10
+[wp] [Passed] Smoke-test typed_f2_ok_wp_smoke_dead_code_s11
+[wp] [Qed] Goal typed_f2_ok_ensures : Valid
+[wp] [Qed] Goal typed_f2_ok_exits : Valid
+[wp] [Failed] Smoke-test typed_call_ko_wp_smoke_dead_call_s14
+       Qed: Valid
+[wp] doomed_call.i:68: Warning: Failed smoke-test
+[wp] [Failed] Smoke-test typed_f3_ko_wp_smoke_dead_code_s15
+       Qed: Valid
+[wp] doomed_call.i:69: Warning: Failed smoke-test
+[wp] [Qed] Goal typed_f3_ko_ensures : Valid
+[wp] [Passed] Smoke-test typed_call_exit_ok_wp_smoke_dead_call_s18
+[wp] [Qed] Goal typed_f3_ok_ensures : Valid
+[wp] [Passed] Smoke-test typed_call_ko_global_wp_smoke_dead_call_s22
+[wp] [Qed] Goal typed_f4_ok_ensures : Valid
+[wp] [Failed] Smoke-test typed_call_ko_global_wp_smoke_dead_call_s26
+       Qed: Valid
+[wp] doomed_call.i:89: Warning: Failed smoke-test
+[wp] [Qed] Goal typed_f4_ko_ensures : Valid
+[wp] [Passed] Smoke-test typed_call_effect_wp_smoke_dead_call_s29
+[wp] [Passed] Smoke-test typed_call_effect_wp_smoke_dead_call_s30
+[wp] [Passed] Smoke-test typed_call_effect_wp_smoke_dead_call_s31
+[wp] [Passed] Smoke-test typed_f5_ok_wp_smoke_dead_code_s30
+[wp] [Passed] Smoke-test typed_f5_ok_wp_smoke_dead_code_s31
+[wp] [Qed] Goal typed_f5_ok_ensures : Valid
+[wp] [Passed] Smoke-test typed_call_wrong_wp_smoke_dead_call_s35
+[wp] [Passed] Smoke-test typed_call_effect_wp_smoke_dead_call_s34
+[wp] [Failed] Smoke-test typed_call_effect_wp_smoke_dead_call_s36
+       Qed: Valid
+[wp] doomed_call.i:121: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_f5_ko_wp_smoke_dead_code_s35
+[wp] [Failed] Smoke-test typed_f5_ko_wp_smoke_dead_code_s36
+       Qed: Valid
+[wp] doomed_call.i:121: Warning: Failed smoke-test
+[wp] [Qed] Goal typed_f5_ko_ensures : Valid
+[wp] Proved goals:   28 / 33
+  Qed:            10  (failed: 5)
+  Alt-Ergo:       18
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f1_ok                     2        3        5       100%
+  f2_ok                     2        5        7       100%
+  f3_ko                     1        -        3      33.3%
+  f3_ok                     1        1        2       100%
+  f4_ok                     1        1        2       100%
+  f4_ko                     1        -        2      50.0%
+  f5_ok                     1        5        6       100%
+  f5_ko                     1        3        6      66.7%
+------------------------------------------------------------

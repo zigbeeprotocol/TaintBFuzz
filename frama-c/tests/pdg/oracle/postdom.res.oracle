@@ -1,0 +1,135 @@
+[kernel] Parsing postdom.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function __VERIFIER_assert <- main.
+  Called from postdom.c:23.
+[eva] Recording results for __VERIFIER_assert
+[eva] Done for function __VERIFIER_assert
+[eva] postdom.c:20: starting to merge loop iterations
+[eva] computing for function __VERIFIER_assert <- main.
+  Called from postdom.c:23.
+[eva] Recording results for __VERIFIER_assert
+[eva] Done for function __VERIFIER_assert
+[eva] postdom.c:23: Reusing old results for call to __VERIFIER_assert
+[eva:alarm] postdom.c:21: Warning: 
+  signed overflow. assert sn + 2 ≤ 2147483647;
+[eva] postdom.c:23: Reusing old results for call to __VERIFIER_assert
+[eva] postdom.c:23: Reusing old results for call to __VERIFIER_assert
+[eva] postdom.c:23: Reusing old results for call to __VERIFIER_assert
+[eva] Recording results for main
+[eva] done for function main
+[pdg] computing for function __VERIFIER_assert
+[pdg] done for function __VERIFIER_assert
+[pdg] computing for function main
+[from] Computing for function __VERIFIER_assert
+[from] Done for function __VERIFIER_assert
+[pdg] postdom.c:20: Warning: no final state. Probably unreachable...
+[pdg] done for function main
+[pdg] ====== PDG GRAPH COMPUTED ======
+[pdg] PDG for __VERIFIER_assert
+ {n1}: InCtrl
+ {n2}: VarDecl : cond
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: ! cond
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+ {n5}: ERROR:
+   -[-c-]-> 1
+   -[-c-]-> 4
+   -[-c-]-> 6
+ {n6}: ERROR: goto ERROR;
+   -[-c-]-> 1
+   -[-c-]-> 4
+   -[-c-]-> 5
+   -[-c-]-> 6
+ {n7}: return;
+   -[-c-]-> 1
+[pdg] PDG for main
+ {n8}: InCtrl
+ {n9}: VarDecl : loop1
+   -[a--]-> 10
+ {n10}: In1
+   -[a--]-> 9
+ {n11}: VarDecl : m1
+   -[a--]-> 12
+ {n12}: In2
+   -[a--]-> 11
+ {n13}: VarDecl : sn
+ {n14}: VarDecl : x
+ {n15}: VarDecl : tmp
+ {n16}: VarDecl : __retres
+ {n17}: int sn = 0;
+   -[-c-]-> 8
+   -[a--]-> 13
+ {n18}: return __retres;
+   -[-c-]-> 8
+   -[--d]-> 16
+ {n19}: OutRet
+ {n20}: unsigned int x = (unsigned int)0;
+   -[-c-]-> 8
+   -[a--]-> 14
+ {n21}: while(1)
+   -[-c-]-> 8
+   -[-c-]-> 21
+ {n22}: block
+   -[-c-]-> 8
+   -[-c-]-> 21
+ {n23}: sn += 2;
+   -[-c-]-> 8
+   -[a-d]-> 13
+   -[--d]-> 17
+   -[-c-]-> 21
+   -[-c-]-> 22
+   -[--d]-> 23
+ {n24}: x ++;
+   -[-c-]-> 8
+   -[a-d]-> 14
+   -[--d]-> 20
+   -[-c-]-> 21
+   -[-c-]-> 22
+   -[--d]-> 24
+ {n25}: (unsigned int)sn == x * (unsigned int)2
+   -[-c-]-> 8
+   -[--d]-> 13
+   -[--d]-> 14
+   -[-c-]-> 21
+   -[-c-]-> 22
+   -[--d]-> 23
+   -[--d]-> 24
+ {n26}: tmp = 1;
+   -[-c-]-> 8
+   -[a--]-> 15
+   -[-c-]-> 21
+   -[-c-]-> 22
+   -[-c-]-> 25
+ {n27}: sn == 0
+   -[-c-]-> 8
+   -[--d]-> 13
+   -[-c-]-> 21
+   -[-c-]-> 22
+   -[--d]-> 23
+   -[-c-]-> 25
+ {n28}: tmp = 0;
+   -[-c-]-> 8
+   -[a--]-> 15
+   -[-c-]-> 21
+   -[-c-]-> 22
+   -[-c-]-> 25
+ {n29}: Call19-InCtrl : __VERIFIER_assert(tmp);
+   -[-c-]-> 8
+   -[-c-]-> 21
+   -[-c-]-> 22
+ {n30}: Call19-In1 : __VERIFIER_assert(tmp);
+   -[-c-]-> 8
+   -[--d]-> 15
+   -[-c-]-> 21
+   -[-c-]-> 22
+   -[--d]-> 26
+   -[--d]-> 28
+   -[-c-]-> 29

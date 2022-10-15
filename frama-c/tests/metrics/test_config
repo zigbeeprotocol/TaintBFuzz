@@ -1,0 +1,2 @@
+PLUGIN: metrics,scope
+OPT: -metrics

@@ -1,0 +1,16 @@
+[kernel] Parsing n7.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] n7.i:5: starting to merge loop iterations
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[nonterm:stmt] n7.i:4: Warning: 
+  non-terminating loop
+  stack: main
+[nonterm] Analysis done.

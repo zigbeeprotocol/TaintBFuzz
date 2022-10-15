@@ -1,0 +1,601 @@
+[kernel] Parsing bitfield.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  h ∈ {0}
+  k ∈ {0}
+  k8 ∈ {0}
+  kr8 ∈ {0}
+  ll ∈ {0}
+  ini.a ∈ {2}
+     .b ∈ {-7}
+     .c ∈ {99999}
+     {.d; .[bits 28 to 31]} ∈ {0}
+  VV ∈ {55}
+  q4 ∈ {40000}
+  X ∈ {0}
+  x{.f; .sf} ∈ {28349}
+  us ∈ {56355}
+  G ∈ {0}
+  H ∈ {0}
+  b ∈ {0}
+  c ∈ {0}
+  ee ∈ {0}
+  foo ∈ [--..--]
+  y ∈ [--..--]
+[eva] computing for function main_old <- main.
+  Called from bitfield.i:164.
+[eva] bitfield.i:113: Frama_C_show_each: {1}
+[eva] bitfield.i:117: Frama_C_show_each: {3}
+[eva:alarm] bitfield.i:123: Warning: 
+  pointer downcast. assert (unsigned int)(&v) ≤ 2147483647;
+[eva] bitfield.i:123: 
+  Assigning imprecise value to v.c.
+  The imprecision originates from Arithmetic {bitfield.i:123}
+[eva:alarm] bitfield.i:124: Warning: 
+  pointer downcast. assert (unsigned int)(&v + 1) ≤ 2147483647;
+[eva:alarm] bitfield.i:125: Warning: 
+  signed overflow. assert -2147483648 ≤ (int)v.d + 1;
+[eva:alarm] bitfield.i:125: Warning: 
+  signed overflow. assert (int)v.d + 1 ≤ 2147483647;
+[eva] computing for function f <- main_old <- main.
+  Called from bitfield.i:128.
+[eva] bitfield.i:21: 
+  Frama_C_dump_each:
+  # cvalue:
+  h ∈ {0}
+  k ∈ {0}
+  k8 ∈ {0}
+  kr8 ∈ {0}
+  ll ∈ {0}
+  ini.a ∈ {2}
+     .b ∈ {-7}
+     .c ∈ {99999}
+     {.d; .[bits 28 to 31]} ∈ {0}
+  VV ∈ {0}
+  q4 ∈ {40000}
+  X ∈ {7}
+  x_0 ∈ {7}
+  x{.f; .sf} ∈ {28349}
+  us ∈ {56355}
+  G ∈ {0}
+  H ∈ {0}
+  b ∈ {0}
+  c ∈ {0}
+  ee ∈ {0}
+  foo ∈ [--..--]
+  y ∈ [--..--]
+  v.a ∈ {0}
+   .b ∈ {7}
+   .c ∈ {{ garbled mix of &{v} (origin: Arithmetic {bitfield.i:123}) }}
+   .[bits 28 to 31] ∈ UNINITIALIZED
+   .d ∈ {{ &v + {9} }}
+  l_161{.f0; .f1[bits 0 to 31]} ∈ {-1}
+  tmp ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] Recording results for f
+[eva] Done for function f
+[eva:alarm] bitfield.i:129: Warning: 
+  signed overflow. assert -2147483648 ≤ foo + foo;
+[eva:alarm] bitfield.i:129: Warning: 
+  signed overflow. assert foo + foo ≤ 2147483647;
+[eva:alarm] bitfield.i:130: Warning: 
+  pointer downcast. assert (unsigned int)(&v + 1) ≤ 2147483647;
+[eva] bitfield.i:130: 
+  Assigning imprecise value to h.c.
+  The imprecision originates from Arithmetic {bitfield.i:130}
+[eva] computing for function return_8 <- main_old <- main.
+  Called from bitfield.i:133.
+[eva] Recording results for return_8
+[eva] Done for function return_8
+[eva] computing for function g <- main_old <- main.
+  Called from bitfield.i:136.
+[eva] Recording results for g
+[eva] Done for function g
+[eva] Recording results for main_old
+[eva] Done for function main_old
+[eva:locals-escaping] bitfield.i:164: Warning: 
+  locals {v} escaping the scope of main_old through h
+[eva] computing for function imprecise_bts_1671 <- main.
+  Called from bitfield.i:165.
+[kernel:annot:missing-spec] bitfield.i:70: Warning: 
+  Neither code nor specification for function leaf, generating default assigns from the prototype
+[eva] computing for function leaf <- imprecise_bts_1671 <- main.
+  Called from bitfield.i:70.
+[eva] using specification for function leaf
+[eva] Done for function leaf
+[eva] bitfield.i:71: 
+  Frama_C_show_each:
+  {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}
+[eva] bitfield.i:73: 
+  Frama_C_show_each:
+  .next ∈ {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}
+  .bitf ∈ {0}
+  .[bits 65 to 95] ∈
+  {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}
+[eva] bitfield.i:74: 
+  Assigning imprecise value to c.
+  The imprecision originates from Misaligned {bitfield.i:70}
+[eva] bitfield.i:69: starting to merge loop iterations
+[eva] computing for function leaf <- imprecise_bts_1671 <- main.
+  Called from bitfield.i:70.
+[eva] Done for function leaf
+[eva] bitfield.i:71: 
+  Frama_C_show_each:
+  {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}
+[eva:alarm] bitfield.i:72: Warning: 
+  out of bounds write. assert \valid(&c->bitf);
+[eva] bitfield.i:73: 
+  Frama_C_show_each:
+  {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}
+[eva:alarm] bitfield.i:74: Warning: 
+  out of bounds read. assert \valid_read(&c->next.next);
+[eva] computing for function leaf <- imprecise_bts_1671 <- main.
+  Called from bitfield.i:70.
+[eva] Done for function leaf
+[eva] Recording results for imprecise_bts_1671
+[eva] Done for function imprecise_bts_1671
+[eva] computing for function logic <- main.
+  Called from bitfield.i:166.
+[eva] bitfield.i:89: 
+  Frama_C_show_each: .v0_3 ∈ [--..--]
+                     .v4 ∈ {0}
+                     .v5_31 ∈ [--..--]
+[eva] bitfield.i:91: 
+  Frama_C_show_each: .v0_3 ∈ [--..--]
+                     .v4 ∈ {0}
+                     .v5_31 ∈ [--..--]
+[eva] bitfield.i:92: Frama_C_show_each: {0}
+[eva] bitfield.i:93: assertion got status valid.
+[eva] bitfield.i:95: Frama_C_show_each: [0..4294967287]
+[eva] bitfield.i:99: assertion got status valid.
+[eva] bitfield.i:100: assertion got status valid.
+[eva:alarm] bitfield.i:102: Warning: 
+  accessing uninitialized left-value. assert \initialized(&w.v4);
+[eva] bitfield.i:105: assertion got status valid.
+[eva] Recording results for logic
+[eva] Done for function logic
+[eva] computing for function eq_bitfields <- main.
+  Called from bitfield.i:167.
+[eva] bitfield.i:146: 
+  Frama_C_dump_each:
+  # cvalue:
+  h.a ∈ {0}
+   .b ∈ [--..--]
+   .c ∈ [--..--] or ESCAPINGADDR
+   {.d; .[bits 28 to 31]} ∈ {0}
+  k ∈ {0}
+  k8.a ∈ {0}
+    .b ∈ {-8}
+    {.c; .d; .[bits 28 to 31]} ∈ {0}
+  kr8.a ∈ {0}
+     .b ∈ {-8}
+     {.c; .d; .[bits 28 to 31]} ∈ {0}
+  ll.b ∈ {-25536}
+    .[bits 16 to 31] ∈ {0}
+  ini.a ∈ {2}
+     .b ∈ {-7}
+     .c ∈ {99999}
+     {.d; .[bits 28 to 31]} ∈ {0}
+  VV ∈ {0}
+  q4 ∈ {40000}
+  X ∈ {7}
+  x{.f; .sf} ∈ {28349}
+  us ∈ {56355}
+  G ∈ {1}
+  H ∈ {0}
+  b ∈ {0}
+  c ∈ {{ garbled mix of &{b; ee} (origin: Misaligned {bitfield.i:70}) }}
+  ee ∈ {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}
+  foo ∈ [--..--]
+  y.v0_3 ∈ [--..--]
+   .v4 ∈ {0}
+   .v5_31 ∈ [--..--]
+  i ∈ {16; 17}
+  s.a ∈ {0; 1}
+   .b ∈ UNINITIALIZED
+   .c ∈ {16; 17}
+   {.d; .[bits 28 to 31]} ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] Recording results for eq_bitfields
+[eva] Done for function eq_bitfields
+[eva] computing for function char_short <- main.
+  Called from bitfield.i:168.
+[eva] Recording results for char_short
+[eva] Done for function char_short
+[eva] Recording results for main
+[eva] done for function main
+[eva] bitfield.i:102: assertion 'Eva,initialization' got final status invalid.
+[scope:rm_asserts] removing 1 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function char_short:
+  S.c ∈ {1}
+   .s ∈ {2}
+   .[bits 3 to 15] ∈ {0}
+  x_0 ∈ {1}
+  y_0 ∈ {2}
+[eva:final-states] Values at end of function eq_bitfields:
+  i ∈ [--..--]
+[eva:final-states] Values at end of function f:
+  X ∈ {7}
+[eva:final-states] Values at end of function g:
+  H ∈ {0}
+  r ∈ {1}
+[eva:final-states] Values at end of function imprecise_bts_1671:
+  b ∈ {0}
+  c ∈ {{ garbled mix of &{b; ee} (origin: Misaligned {bitfield.i:70}) }}
+  ee ∈ {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}
+[eva:final-states] Values at end of function logic:
+  y.v0_3 ∈ [--..--]
+   .v4 ∈ {0}
+   .v5_31 ∈ [--..--]
+  w.v0_3 ∈ {1}
+   {.v4; .v5_31} ∈ UNINITIALIZED
+[eva:final-states] Values at end of function return_8:
+  __retres ∈ {8}
+[eva:final-states] Values at end of function main_old:
+  h.a ∈ {0}
+   .b ∈ [--..--]
+   .c ∈ {{ garbled mix of &{v} (origin: Arithmetic {bitfield.i:130}) }}
+   {.d; .[bits 28 to 31]} ∈ {0}
+  k8.a ∈ {0}
+    .b ∈ {-8}
+    {.c; .d; .[bits 28 to 31]} ∈ {0}
+  kr8.a ∈ {0}
+     .b ∈ {-8}
+     {.c; .d; .[bits 28 to 31]} ∈ {0}
+  ll.b ∈ {-25536}
+    .[bits 16 to 31] ∈ {0}
+  VV ∈ {0}
+  X ∈ {7}
+  G ∈ {1}
+  H ∈ {0}
+  v.a ∈ {0}
+   .b ∈ {7}
+   .c ∈ {{ garbled mix of &{v} (origin: Arithmetic {bitfield.i:123}) }}
+   .[bits 28 to 31] ∈ UNINITIALIZED
+   .d ∈ {{ &v + {9} }}
+  l_161{.f0; .f1[bits 0 to 31]} ∈ {-1}
+[eva:final-states] Values at end of function main:
+  h.a ∈ {0}
+   .b ∈ [--..--]
+   .c ∈ [--..--] or ESCAPINGADDR
+   {.d; .[bits 28 to 31]} ∈ {0}
+  k8.a ∈ {0}
+    .b ∈ {-8}
+    {.c; .d; .[bits 28 to 31]} ∈ {0}
+  kr8.a ∈ {0}
+     .b ∈ {-8}
+     {.c; .d; .[bits 28 to 31]} ∈ {0}
+  ll.b ∈ {-25536}
+    .[bits 16 to 31] ∈ {0}
+  VV ∈ {0}
+  X ∈ {7}
+  G ∈ {1}
+  H ∈ {0}
+  b ∈ {0}
+  c ∈ {{ garbled mix of &{b; ee} (origin: Misaligned {bitfield.i:70}) }}
+  ee ∈ {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}
+  y.v0_3 ∈ [--..--]
+   .v4 ∈ {0}
+   .v5_31 ∈ [--..--]
+[from] Computing for function char_short
+[from] Done for function char_short
+[from] Computing for function eq_bitfields
+[from] Done for function eq_bitfields
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function imprecise_bts_1671
+[from] Computing for function leaf <-imprecise_bts_1671
+[from] Done for function leaf
+[from] Done for function imprecise_bts_1671
+[from] Computing for function logic
+[from] Done for function logic
+[from] Computing for function return_8
+[from] Done for function return_8
+[from] Computing for function main_old
+[from] Done for function main_old
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function char_short:
+  NO EFFECTS
+[from] Function eq_bitfields:
+  NO EFFECTS
+[from] Function f:
+  X FROM x_0
+[from] Function g:
+  H FROM x.sf; us
+  \result FROM x.f; us
+[from] Function leaf:
+  ee FROM ee (and SELF)
+[from] Function imprecise_bts_1671:
+  b FROM ee{.next.next; {.bitf; .[bits 65 to 95]}}; foo (and SELF)
+  c FROM ee{.next.next; {.bitf; .[bits 65 to 95]}}; foo
+  ee{.next.next; {.bitf; .[bits 65 to 95]}}
+    FROM ee{.next.next; {.bitf; .[bits 65 to 95]}}; foo (and SELF)
+    .next.prev FROM ee{.next.next; {.bitf; .[bits 65 to 95]}}; foo
+[from] Function logic:
+  y.v4 FROM y.v4 (and SELF)
+[from] Function return_8:
+  \result FROM \nothing
+[from] Function main_old:
+  h.a FROM h.a
+   .b FROM h{.a; .b}; foo
+   .c FROM \nothing
+  k8.b FROM \nothing
+  kr8.b FROM \nothing
+  ll.b FROM q4
+  VV FROM h.a
+  X FROM \nothing
+  G FROM x.f; us
+  H FROM x.sf; us
+[from] Function main:
+  h.a FROM h.a
+   .b FROM h{.a; .b}; foo
+   .c FROM \nothing
+  k8.b FROM \nothing
+  kr8.b FROM \nothing
+  ll.b FROM q4
+  VV FROM h.a
+  X FROM \nothing
+  G FROM x.f; us
+  H FROM x.sf; us
+  b FROM ee{.next.next; {.bitf; .[bits 65 to 95]}}; foo (and SELF)
+  c FROM ee{.next.next; {.bitf; .[bits 65 to 95]}}; foo
+  ee{.next.next; {.bitf; .[bits 65 to 95]}}
+    FROM ee{.next.next; {.bitf; .[bits 65 to 95]}}; foo (and SELF)
+    .next.prev FROM ee{.next.next; {.bitf; .[bits 65 to 95]}}; foo
+  y.v4 FROM y.v4 (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function char_short:
+    S{.c; .s}; x_0; y_0
+[inout] Inputs for function char_short:
+    \nothing
+[inout] Out (internal) for function eq_bitfields:
+    i; s{.a; .c}
+[inout] Inputs for function eq_bitfields:
+    foo
+[inout] Out (internal) for function f:
+    X
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function g:
+    H; r
+[inout] Inputs for function g:
+    x; us
+[inout] Out (internal) for function imprecise_bts_1671:
+    b; c; ee
+[inout] Inputs for function imprecise_bts_1671:
+    c; ee; foo
+[inout] Out (internal) for function logic:
+    y.v4; w.v0_3; wc
+[inout] Inputs for function logic:
+    foo; y
+[inout] Out (internal) for function return_8:
+    __retres
+[inout] Inputs for function return_8:
+    \nothing
+[inout] Out (internal) for function main_old:
+    h{.a; .b; .c}; k8.b; kr8.b; ll.b; VV; X; G; H; v{{.a; .b; .c}; .d}; 
+    l_161; tmp
+[inout] Inputs for function main_old:
+    h{.a; .b}; VV; q4; x; us; foo
+[inout] Out (internal) for function main:
+    h{.a; .b; .c}; k8.b; kr8.b; ll.b; VV; X; G; H; b; c; ee; y.v4
+[inout] Inputs for function main:
+    h{.a; .b}; VV; q4; x; us; c; ee; foo; y
+/* Generated by Frama-C */
+struct t1 {
+   unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(2))) a : 2 ;
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(4))) b : 4 ;
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(22))) c : 22 ;
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(32))) d : 32 ;
+};
+struct t2 {
+   unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(2))) a : 2 ;
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(4))) b : 4 ;
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(22))) c : 22 ;
+   int d ;
+};
+struct t3 {
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(16))) b : 16 ;
+};
+struct S {
+   unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(32))) f : 32 ;
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(32))) sf : 32 ;
+};
+union U1 {
+   int f0 ;
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(15))) f1 : 15 ;
+};
+struct foo;
+struct B {
+   struct foo *next ;
+   struct foo **prev ;
+};
+struct A {
+   struct B next ;
+   int __attribute__((__FRAMA_C_BITFIELD_SIZE__(1))) bitf : 1 ;
+};
+struct bitf {
+   unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(3))) v0_3 : 3 ;
+   unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(1))) v4 : 1 ;
+   unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(28))) v5_31 : 28 ;
+};
+struct char_short {
+   unsigned char __attribute__((__FRAMA_C_BITFIELD_SIZE__(1))) c : 1 ;
+   unsigned short __attribute__((__FRAMA_C_BITFIELD_SIZE__(2))) s : 2 ;
+};
+struct t1 h;
+struct t2 k;
+struct t2 k8;
+struct t2 kr8;
+struct t3 ll;
+struct t1 ini =
+  {.a = (unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(2))))14,
+   .b = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(4))))(-55),
+   .c = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(22))))99999,
+   .d = 0};
+unsigned int VV = (unsigned int)55;
+unsigned short q4 = (unsigned short)40000;
+int X;
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_dump_each)();
+
+void f(int x_0)
+{
+  X = x_0;
+  Frama_C_dump_each();
+  return;
+}
+
+int return_8(void)
+{
+  int __retres;
+  __retres = 8;
+  return __retres;
+}
+
+struct S x =
+  {.f = (unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(32))))28349,
+   .sf = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(32))))28349};
+unsigned short us = (unsigned short)0xDC23L;
+int G;
+int H;
+int g(void)
+{
+  int r =
+    ((unsigned int)x.f ^ (unsigned int)((short)(-87))) >= (unsigned int)us;
+  H = ((int)x.sf ^ (int)((short)(-87))) >= (int)us;
+  return r;
+}
+
+struct A *b;
+struct A *c;
+struct A ee;
+/*@ assigns *p1;
+    assigns *p1 \from *p1; */
+void leaf(struct A *p1);
+
+int volatile foo;
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_show_each)();
+
+void imprecise_bts_1671(void)
+{
+  ee.next.prev = (struct foo **)(& b);
+  c = & ee;
+  while (foo) {
+    leaf(c);
+    Frama_C_show_each(ee);
+    /*@ assert Eva: mem_access: \valid(&c->bitf); */
+    c->bitf = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(1))))0;
+    Frama_C_show_each(ee);
+    /*@ assert Eva: mem_access: \valid_read(&c->next.next); */
+    c = (struct A *)c->next.next;
+  }
+  return;
+}
+
+extern struct bitf y;
+
+void logic(void)
+{
+  struct bitf w;
+  if (y.v4) {
+    y.v4 = (unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(1))))0;
+    Frama_C_show_each(y);
+  }
+  else Frama_C_show_each(y);
+  Frama_C_show_each(y.v4);
+  /*@ assert y.v4 ≡ 0; */ ;
+  Frama_C_show_each(*((unsigned int *)(& y)));
+  w.v0_3 = (unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(3))))1;
+  /*@ assert \initialized(&w.v0_3); */ ;
+  /*@ assert ¬\initialized(&w.v4); */ ;
+  if (foo) {
+    /*@ assert Eva: initialization: \initialized(&w.v4); */
+    int wc = (int)w.v4 + 1;
+  }
+  /*@ assert \separated(&w.v0_3, &w.v4); */ ;
+  return;
+}
+
+void main_old(void)
+{
+  struct t1 v;
+  union U1 l_161;
+  int tmp;
+  l_161.f0 = (int)(-1L);
+  Frama_C_show_each(1);
+  if (! l_161.f0 <= (int)l_161.f1) Frama_C_show_each(2);
+  else Frama_C_show_each(3);
+  VV = (unsigned int)h.a;
+  h.a = (unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(2))))VV;
+  /*@ assert Eva: pointer_downcast: (unsigned int)(&v) ≤ 2147483647; */
+  v.c = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(22))))((int)(& v));
+  /*@ assert Eva: pointer_downcast: (unsigned int)(&v + 1) ≤ 2147483647; */
+  v.d = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(32))))((int)(& v + 1));
+  /*@ assert Eva: signed_overflow: -2147483648 ≤ (int)v.d + 1; */
+  /*@ assert Eva: signed_overflow: (int)v.d + 1 ≤ 2147483647; */
+  v.d = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(32))))((int)v.d + 1);
+  v.a = (unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(2))))4;
+  v.b = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(4))))7;
+  f((int)v.b);
+  /*@ assert Eva: signed_overflow: -2147483648 ≤ foo + foo; */
+  /*@ assert Eva: signed_overflow: foo + foo ≤ 2147483647; */
+  h.b = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(4))))(((foo + foo) + (int)h.a) + (int)h.b);
+  /*@ assert Eva: pointer_downcast: (unsigned int)(&v + 1) ≤ 2147483647; */
+  h.c = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(22))))((int)(& v + 1));
+  k8.b = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(4))))8;
+  tmp = return_8();
+  kr8.b = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(4))))tmp;
+  ll.b = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(16))))q4;
+  G = g();
+  return;
+}
+
+extern int ( /* missing proto */ Frama_C_show_each_unreachable)();
+
+void eq_bitfields(void)
+{
+  int i = foo;
+  if (i >= 16) 
+    if (i <= 17) {
+      struct t1 s;
+      s.a = (unsigned int __attribute__((__FRAMA_C_BITFIELD_SIZE__(2))))i;
+      s.c = (int __attribute__((__FRAMA_C_BITFIELD_SIZE__(22))))i;
+      Frama_C_dump_each();
+      if ((int)s.a == (int)s.c) Frama_C_show_each_unreachable();
+    }
+  return;
+}
+
+void char_short(void)
+{
+  struct char_short S =
+    {.c = (unsigned char __attribute__((__FRAMA_C_BITFIELD_SIZE__(1))))1,
+     .s = (unsigned short __attribute__((__FRAMA_C_BITFIELD_SIZE__(2))))2};
+  int x_0 = (int)S.c + 0;
+  int y_0 = (int)S.s + 0;
+  return;
+}
+
+void main(void)
+{
+  main_old();
+  imprecise_bts_1671();
+  logic();
+  eq_bitfields();
+  char_short();
+  return;
+}
+
+

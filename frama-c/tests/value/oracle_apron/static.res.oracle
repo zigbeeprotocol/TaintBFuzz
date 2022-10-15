@@ -1,0 +1,7 @@
+22c22,25
+< [eva] static.i:20: Reusing old results for call to f
+---
+> [eva] computing for function f <- main.
+>   Called from static.i:20.
+> [eva] Recording results for f
+> [eva] Done for function f

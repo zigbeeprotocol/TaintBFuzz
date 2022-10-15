@@ -1,0 +1,10 @@
+# frama-c -wp -wp-timeout 1 [...]
+[kernel] Parsing induction.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] 1 goal scheduled
+[wp] [Script] Goal typed_lemma_ByInd : Unsuccess
+[wp] Proved goals:    0 / 1
+------------------------------------------------------------
+ Axiomatics                WP     Alt-Ergo  Total   Success
+  Axiomatic Inductive       -        -        1       0.0%
+------------------------------------------------------------

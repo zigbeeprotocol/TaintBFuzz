@@ -1,0 +1,206 @@
+[kernel] Parsing initialized_copy.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  w[0..9] ∈ {0}
+  v ∈ [--..--]
+[eva:alarm] initialized_copy.i:29: Warning: 
+  accessing uninitialized left-value. assert \initialized(&b);
+[eva:alarm] initialized_copy.i:37: Warning: 
+  accessing uninitialized left-value. assert \initialized(&b_0);
+[eva] initialized_copy.i:38: 
+  Frama_C_dump_each:
+  # cvalue:
+  w[0..9] ∈ {0}
+  v ∈ [--..--]
+  b_0 ∈ {1}
+  a_0 ∈ {1}
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] initialized_copy.i:47: Warning: 
+  accessing uninitialized left-value. assert \initialized(&c);
+[eva:alarm] initialized_copy.i:64: Warning: 
+  accessing uninitialized left-value. assert \initialized(&c_0);
+[eva] initialized_copy.i:65: 
+  Frama_C_dump_each:
+  # cvalue:
+  w[0..9] ∈ {0}
+  v ∈ [--..--]
+  c_0 ∈ {67305985}
+  p_0 ∈ {{ &c_0 + {3} }}
+  a_2 ∈ {67305985}
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] initialized_copy.i:73: 
+  Frama_C_show_each: .c ∈ {1}
+                     .[bits 8 to 31] ∈ UNINITIALIZED
+                     .i ∈ {5}
+[eva] initialized_copy.i:79: Frama_C_show_each: UNINITIALIZED
+[eva] initialized_copy.i:85: 
+  Frama_C_show_each: .i1 ∈ {1}
+                     .i2 ∈ UNINITIALIZED
+[eva:alarm] initialized_copy.i:90: Warning: assertion got status unknown.
+[eva:alarm] initialized_copy.i:92: Warning: 
+  accessing uninitialized left-value. assert \initialized(&v_0[i]);
+[eva:alarm] initialized_copy.i:98: Warning: assertion got status unknown.
+[eva:alarm] initialized_copy.i:101: Warning: 
+  accessing uninitialized left-value. assert \initialized(&v_1[i_0]);
+[eva] initialized_copy.i:102: 
+  Frama_C_dump_each:
+  # cvalue:
+  w[0..9] ∈ {0}
+  v ∈ [--..--]
+  i_0 ∈ [0..9]
+  t_0[0..9] ∈ {1} or UNINITIALIZED
+  v_1[0] ∈ UNINITIALIZED
+     [1] ∈ {1}
+     [2..9] ∈ UNINITIALIZED
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] initialized_copy.i:108: Warning: assertion got status unknown.
+[eva:alarm] initialized_copy.i:111: Warning: 
+  accessing uninitialized left-value. assert \initialized(&v_2[i_1]);
+[eva] initialized_copy.i:112: 
+  Frama_C_dump_each:
+  # cvalue:
+  w[0..9] ∈ {0; 12}
+  v ∈ [--..--]
+  i_1 ∈ [0..9]
+  v_2[0] ∈ UNINITIALIZED
+     [1] ∈ {12}
+     [2..9] ∈ UNINITIALIZED
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] initialized_copy.i:117: Warning: 
+  accessing uninitialized left-value. assert \initialized(&a_3);
+[eva:alarm] initialized_copy.i:124: Warning: 
+  accessing uninitialized left-value. assert \initialized(&a_4);
+[eva:alarm] initialized_copy.i:129: Warning: 
+  accessing uninitialized left-value. assert \initialized(&a_5);
+[eva:alarm] initialized_copy.i:135: Warning: 
+  accessing uninitialized left-value. assert \initialized(&a_6);
+[eva:alarm] initialized_copy.i:143: Warning: 
+  accessing uninitialized left-value. assert \initialized(&a_7);
+[eva] computing for function f <- main.
+  Called from initialized_copy.i:143.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] initialized_copy.i:144: 
+  Frama_C_dump_each:
+  # cvalue:
+  w[0..9] ∈ {0; 12}
+  v ∈ [--..--]
+  a_7 ∈ {1}
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] initialized_copy.i:151: Warning: 
+  accessing uninitialized left-value. assert \initialized(&a_8);
+[kernel:annot:missing-spec] initialized_copy.i:151: Warning: 
+  Neither code nor specification for function g, generating default assigns from the prototype
+[eva] computing for function g <- main.
+  Called from initialized_copy.i:151.
+[eva] using specification for function g
+[eva] Done for function g
+[eva] initialized_copy.i:152: 
+  Frama_C_dump_each:
+  # cvalue:
+  w[0..9] ∈ {0; 12}
+  v ∈ [--..--]
+  a_8 ∈ {1}
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] Recording results for main
+[eva] done for function main
+[eva] initialized_copy.i:29: 
+  assertion 'Eva,initialization' got final status invalid.
+[eva] initialized_copy.i:47: 
+  assertion 'Eva,initialization' got final status invalid.
+[eva] initialized_copy.i:92: 
+  assertion 'Eva,initialization' got final status invalid.
+[eva] initialized_copy.i:117: 
+  assertion 'Eva,initialization' got final status invalid.
+[eva] initialized_copy.i:129: 
+  assertion 'Eva,initialization' got final status invalid.
+[eva] initialized_copy.i:135: 
+  assertion 'Eva,initialization' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  
+[eva:final-states] Values at end of function main:
+  w[0..9] ∈ {0; 12}
+  __retres ∈ {0; 8}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main
+[from] Computing for function g <-main
+[from] Done for function g
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  NO EFFECTS
+[from] Function g:
+  NO EFFECTS
+[from] Function main:
+  w[0..9] FROM v (and SELF)
+  \result FROM v
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    \nothing
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function main:
+    w[0..9]; a; b_0; a_0; c[bits 0 to 7]; p; a_1; c_0; p_0; a_2; s1{.c; .i};
+    s2; sv1; sv1_0; sv2_0.i1; i; t[0..9]; i_0; t_0[0..9]; v_1[1]; i_1; 
+    v_2[1]; a_4; a_7; a_8; __retres
+[inout] Inputs for function main:
+    v
+[eva] Analyzing a complete application starting at main2
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  w[0..9] ∈ {0}
+  v ∈ [--..--]
+[eva:alarm] initialized_copy.i:160: Warning: 
+  accessing uninitialized left-value. assert \initialized(&x);
+[eva] Recording results for main2
+[eva] done for function main2
+[eva] initialized_copy.i:160: 
+  assertion 'Eva,initialization' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main2:
+  
+[from] Computing for function main2
+[from] Done for function main2
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main2:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main2:
+    \nothing
+[inout] Inputs for function main2:
+    \nothing
+[eva] Analyzing a complete application starting at main2
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  w[0..9] ∈ {0}
+  v ∈ [--..--]
+[eva] Recording results for main2
+[eva] done for function main2
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main2:
+  
+[from] Computing for function main2
+[from] Done for function main2
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main2:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main2:
+    \nothing
+[inout] Inputs for function main2:
+    \nothing

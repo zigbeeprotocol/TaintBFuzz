@@ -1,0 +1,113 @@
+# frama-c -wp [...]
+[kernel] Parsing doomed_pre.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function bhv_requires_assumes with behavior B
+------------------------------------------------------------
+
+Goal Wp_smoke_B_requires in 'bhv_requires_assumes':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_1_2_assumes
+------------------------------------------------------------
+
+Goal Wp_smoke_default_requires in 'reqs_1_2_assumes':
+Assume { Type: is_sint32(a). (* Pre-condition *) Have: a < 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_1_2_assumes with behavior B
+------------------------------------------------------------
+
+Goal Wp_smoke_B_assumes in 'reqs_1_2_assumes':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_2_2_assumes
+------------------------------------------------------------
+
+Goal Wp_smoke_default_requires in 'reqs_2_2_assumes':
+Assume { Type: is_sint32(a). (* Pre-condition *) Have: a < 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_2_2_assumes with behavior B
+------------------------------------------------------------
+
+Goal Wp_smoke_B_assumes in 'reqs_2_2_assumes':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_assumes
+------------------------------------------------------------
+
+Goal Wp_smoke_default_requires in 'reqs_assumes':
+Assume { Type: is_sint32(a). (* Pre-condition *) Have: a < 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_assumes with behavior B
+------------------------------------------------------------
+
+Goal Wp_smoke_B_assumes in 'reqs_assumes':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_combined_assumes
+------------------------------------------------------------
+
+Goal Wp_smoke_default_requires in 'reqs_combined_assumes':
+Assume { Type: is_sint32(a). (* Pre-condition *) Have: 0 <= a. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_combined_assumes with behavior B
+------------------------------------------------------------
+
+Goal Wp_smoke_B_assumes in 'reqs_combined_assumes':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_massumes
+------------------------------------------------------------
+
+Goal Wp_smoke_default_requires in 'reqs_massumes':
+Assume { Type: is_sint32(a). (* Pre-condition *) Have: a < 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_massumes with behavior B1
+------------------------------------------------------------
+
+Goal Wp_smoke_B1_assumes in 'reqs_massumes':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reqs_massumes with behavior B2
+------------------------------------------------------------
+
+Goal Wp_smoke_B2_assumes in 'reqs_massumes':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function requires
+------------------------------------------------------------
+
+Goal Wp_smoke_default_requires in 'requires':
+Prove: true.
+
+------------------------------------------------------------

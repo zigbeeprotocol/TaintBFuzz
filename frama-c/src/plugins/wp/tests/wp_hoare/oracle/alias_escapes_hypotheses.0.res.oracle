@@ -1,0 +1,91 @@
+# frama-c -wp [...]
+[kernel] Parsing alias_escapes_hypotheses.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f1
+------------------------------------------------------------
+
+Goal Assigns nothing in 'f1' (1/2):
+Effect at line 14
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'f1' (2/2):
+Effect at line 15
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f2
+------------------------------------------------------------
+
+Goal Assigns nothing in 'f2':
+Effect at line 20
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function f3
+------------------------------------------------------------
+
+Goal Assigns nothing in 'f3':
+Effect at line 25
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fp1
+------------------------------------------------------------
+
+Goal Assigns (file alias_escapes_hypotheses.i, line 28) in 'fp1' (1/2):
+Effect at line 30
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Assigns (file alias_escapes_hypotheses.i, line 28) in 'fp1' (2/2):
+Effect at line 31
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fp2
+------------------------------------------------------------
+
+Goal Assigns (file alias_escapes_hypotheses.i, line 34) in 'fp2':
+Effect at line 36
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fp3
+------------------------------------------------------------
+
+Goal Assigns (file alias_escapes_hypotheses.i, line 39) in 'fp3':
+Effect at line 41
+Prove: true.
+
+------------------------------------------------------------
+[wp] alias_escapes_hypotheses.i:13: Warning: 
+  Memory model hypotheses for function 'f1':
+  /*@ behavior wp_typed:
+        ensures \separated(\result, &a); */
+  int *f1(void);
+[wp] alias_escapes_hypotheses.i:24: Warning: 
+  Memory model hypotheses for function 'f3':
+  /*@ behavior wp_typed:
+        ensures \separated(\result, &x); */
+  int *f3(int x);
+[wp] alias_escapes_hypotheses.i:29: Warning: 
+  Memory model hypotheses for function 'fp1':
+  /*@ behavior wp_typed:
+        requires \separated(p, &a);
+        ensures \separated(p, &a); */
+  void fp1(int **p);
+[wp] alias_escapes_hypotheses.i:40: Warning: 
+  Memory model hypotheses for function 'fp3':
+  /*@ behavior wp_typed:
+        ensures \separated(p, &x); */
+  void fp3(int **p, int x);

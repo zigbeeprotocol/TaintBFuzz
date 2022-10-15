@@ -1,0 +1,5 @@
+FRAMAC_SHARE := $(shell frama-c-config -print-share-path)
+PLUGIN_NAME = Hello
+PLUGIN_CMO = hello_options hello_print hello_run
+PLUGIN_TESTS_DIRS := hello
+include $(FRAMAC_SHARE)/Makefile.dynamic

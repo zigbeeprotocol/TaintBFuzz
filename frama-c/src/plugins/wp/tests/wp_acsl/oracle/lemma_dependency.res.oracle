@@ -1,0 +1,13 @@
+# frama-c -wp [...]
+[kernel] Parsing lemma_dependency.i (no preprocessing)
+[wp] Running WP plugin...
+------------------------------------------------------------
+  Global
+------------------------------------------------------------
+
+Lemma depends:
+Assume: 'dependency'
+Prove: ((land c_0 (lxor a_0 b_0))!=0) -> (is_uint8 a_0) -> (is_uint8 b_0)
+       -> (is_uint8 c_0) -> ((land b_0 c_0)!=(land a_0 c_0))
+
+------------------------------------------------------------

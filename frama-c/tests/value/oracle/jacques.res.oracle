@@ -1,0 +1,60 @@
+[kernel] Parsing jacques.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..3] ∈ {0}
+  p ∈ {0}
+  q ∈ {0}
+  A ∈ {0}
+  B ∈ {0}
+  C ∈ {0}
+[eva] jacques.i:21: Frama_C_show_each_f: {{ NULL ; &S_pp }}
+[eva:alarm] jacques.i:23: Warning: assertion got status unknown.
+[eva] jacques.i:25: Frama_C_show_each_f: {{ &S_pp }}
+[eva] jacques.i:29: assertion got status valid.
+[eva] computing for function f <- main.
+  Called from jacques.i:36.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from jacques.i:40.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  A ∈ {4; 5}
+  B ∈ {5}
+[eva:final-states] Values at end of function main:
+  p ∈ {{ &A }}
+  q ∈ {{ &A }}
+  A ∈ {5}
+  B ∈ {5}
+  S_pp[0] ∈ {5}
+      [1] ∈ [--..--]
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  A FROM p; q
+  B FROM q (and SELF)
+[from] Function main:
+  p FROM \nothing
+  q FROM \nothing
+  A FROM \nothing
+  B FROM \nothing
+  S_pp[0] FROM pp
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    A; B
+[inout] Inputs for function f:
+    p; q
+[inout] Out (internal) for function main:
+    p; q; A; B; S_pp[0]
+[inout] Inputs for function main:
+    p; q

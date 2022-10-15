@@ -1,0 +1,360 @@
+[kernel] Parsing const_propagate.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+  z ∈ {0}
+  TAB[0..9] ∈ {0}
+  s1 ∈ {0}
+  s2 ∈ {0}
+  ull ∈ {0}
+  f0 ∈ {0}
+  f1 ∈ {0}
+  f2 ∈ {0}
+  f3 ∈ {0}
+  d0 ∈ {0}
+  d1 ∈ {0}
+  d2 ∈ {0}
+  d3 ∈ {0}
+[eva] computing for function test_ull <- main.
+  Called from const_propagate.c:78.
+[eva] Recording results for test_ull
+[eva] Done for function test_ull
+[eva] computing for function test_struct <- main.
+  Called from const_propagate.c:79.
+[eva] Recording results for test_struct
+[eva] Done for function test_struct
+[eva] computing for function test_struct_ptr <- main.
+  Called from const_propagate.c:80.
+[eva] Recording results for test_struct_ptr
+[eva] Done for function test_struct_ptr
+[eva] computing for function test_tab <- main.
+  Called from const_propagate.c:81.
+[eva] Recording results for test_tab
+[eva] Done for function test_tab
+[eva] computing for function test_float_double <- main.
+  Called from const_propagate.c:82.
+[eva] Recording results for test_float_double
+[eva] Done for function test_float_double
+[eva] computing for function init <- main.
+  Called from const_propagate.c:84.
+[eva] computing for function add3 <- init <- main.
+  Called from const_propagate.c:56.
+[eva] Recording results for add3
+[eva] Done for function add3
+[eva] Recording results for init
+[eva] Done for function init
+[eva] computing for function add3 <- main.
+  Called from const_propagate.c:85.
+[eva] Recording results for add3
+[eva] Done for function add3
+[eva] computing for function test_ptr <- main.
+  Called from const_propagate.c:87.
+[eva] Recording results for test_ptr
+[eva] Done for function test_ptr
+[eva] const_propagate.c:88: assertion got status valid.
+[eva:alarm] const_propagate.c:91: Warning: assertion got status unknown.
+[eva] const_propagate.c:92: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function add3:
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function init:
+  x ∈ {5}
+  y ∈ {7}
+  z ∈ {12}
+  zero ∈ {0}
+  sept ∈ {7}
+  z1 ∈ {12}
+[eva:final-states] Values at end of function test_float_double:
+  f1 ∈ {0}
+  f2 ∈ {0}
+  f3 ∈ {1.}
+  d1 ∈ {0}
+  d2 ∈ {0}
+  d3 ∈ {1.}
+[eva:final-states] Values at end of function test_ptr:
+  x ∈ {7}
+  p ∈ {{ &x }}
+  s ∈ {{ &x + {1} }}
+  decal ∈ {1}
+  __retres ∈ {{ &x }}
+[eva:final-states] Values at end of function test_struct:
+  s1{.a; .b} ∈ {1}
+  s2{.a; .b} ∈ {1}
+  s.a ∈ {1}
+   .b ∈ {0}
+[eva:final-states] Values at end of function test_struct_ptr:
+  q ∈ {{ &s1.b }}
+  __retres ∈ {{ &s1.a }}
+[eva:final-states] Values at end of function test_tab:
+  TAB[0..3] ∈ {0}
+     [4][bits 0 to 15]# ∈ {13} repeated %8 
+     [4][bits 16 to 31]# ∈ {13}%32, bits 16 to 31 
+     [5][bits 0 to 7] ∈ {13}
+     [5][bits 8 to 31]# ∈ {13}%32, bits 8 to 31 
+     [6..9] ∈ {0}
+  s2.a ∈ {1}
+    .b ∈ {2}
+  r ∈ {{ &TAB[4] }}
+  q ∈ {{ (char *)&TAB[4] }}
+  decal ∈ {4}
+[eva:final-states] Values at end of function test_ull:
+  ull ∈ {18446744073709551615}
+[eva:final-states] Values at end of function main:
+  x ∈ {7}
+  y ∈ {7}
+  z ∈ [--..--]
+  TAB[0..3] ∈ {0}
+     [4][bits 0 to 15]# ∈ {13} repeated %8 
+     [4][bits 16 to 31]# ∈ {13}%32, bits 16 to 31 
+     [5][bits 0 to 7] ∈ {13}
+     [5][bits 8 to 31]# ∈ {13}%32, bits 8 to 31 
+     [6..9] ∈ {0}
+  s1{.a; .b} ∈ {1}
+  s2.a ∈ {1}
+    .b ∈ {2}
+  ull ∈ {18446744073709551615}
+  f1 ∈ {0}
+  f2 ∈ {0}
+  f3 ∈ {1.}
+  d1 ∈ {0}
+  d2 ∈ {0}
+  d3 ∈ {1.}
+  b ∈ {0}
+  p ∈ {{ &x }}
+  q ∈ {{ &x ; &y }}
+  yy ∈ {7}
+[from] Computing for function add3
+[from] Done for function add3
+[from] Computing for function init
+[from] Done for function init
+[from] Computing for function test_float_double
+[from] Done for function test_float_double
+[from] Computing for function test_ptr
+[from] Done for function test_ptr
+[from] Computing for function test_struct
+[from] Done for function test_struct
+[from] Computing for function test_struct_ptr
+[from] Done for function test_struct_ptr
+[from] Computing for function test_tab
+[from] Done for function test_tab
+[from] Computing for function test_ull
+[from] Done for function test_ull
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function add3:
+  \result FROM v1; v2; v3
+[from] Function init:
+  x FROM v
+  y FROM \nothing
+  z FROM v
+  \result FROM \nothing
+[from] Function test_float_double:
+  f1 FROM f0
+  f2 FROM f0
+  f3 FROM f0
+  d1 FROM d0
+  d2 FROM d0
+  d3 FROM d0
+[from] Function test_ptr:
+  x FROM v
+  \result FROM \nothing
+[from] Function test_struct:
+  s1 FROM \nothing
+  s2 FROM \nothing
+[from] Function test_struct_ptr:
+  \result FROM \nothing
+[from] Function test_tab:
+  TAB[1] FROM TAB[2]; s1.b; s2.b
+     [4..5] FROM v
+  s2.b FROM s2.b
+[from] Function test_ull:
+  ull FROM ull
+[from] Function main:
+  x FROM \nothing
+  y FROM \nothing
+  z FROM a
+  TAB[1] FROM TAB[2]
+     [4..5] FROM \nothing
+  s1 FROM \nothing
+  s2 FROM \nothing
+  ull FROM ull
+  f1 FROM f0
+  f2 FROM f0
+  f3 FROM f0
+  d1 FROM d0
+  d2 FROM d0
+  d3 FROM d0
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function add3:
+    __retres
+[inout] Inputs for function add3:
+    \nothing
+[inout] Out (internal) for function init:
+    x; y; z; zero; sept; z1
+[inout] Inputs for function init:
+    x; y; z
+[inout] Out (internal) for function test_float_double:
+    f1; f2; f3; d1; d2; d3
+[inout] Inputs for function test_float_double:
+    f0; f1; f2; d0; d1; d2
+[inout] Out (internal) for function test_ptr:
+    x; p; s; decal; __retres
+[inout] Inputs for function test_ptr:
+    \nothing
+[inout] Out (internal) for function test_struct:
+    s1; s2; s
+[inout] Inputs for function test_struct:
+    s1.a
+[inout] Out (internal) for function test_struct_ptr:
+    q; __retres
+[inout] Inputs for function test_struct_ptr:
+    \nothing
+[inout] Out (internal) for function test_tab:
+    TAB{[1]; [4..5]}; s2.b; r; q; decal
+[inout] Inputs for function test_tab:
+    TAB[2]; s1.b; s2.b
+[inout] Out (internal) for function test_ull:
+    ull
+[inout] Inputs for function test_ull:
+    ull
+[inout] Out (internal) for function main:
+    x; y; z; TAB{[1]; [4..5]}; s1; s2; ull; f1; f2; f3; d1; d2; d3; b; 
+    p; q; tmp_1; yy
+[inout] Inputs for function main:
+    x; y; z; TAB[2]; s1; s2.b; ull; f0; f1; f2; d0; d1; d2
+[scf] beginning constant propagation
+/* Generated by Frama-C */
+struct st {
+   int a ;
+   int b ;
+};
+typedef struct st ST;
+int x;
+int y;
+int z;
+int TAB[10];
+struct st s1;
+struct st s2;
+void test_struct(void)
+{
+  ST s = {.a = 0, .b = 1};
+  s1 = s;
+  s1.a = 1;
+  s2.a = 1;
+  s.a = 1;
+  s2 = s;
+  s.b = 0;
+  return;
+}
+
+void test_tab(int v)
+{
+  s2.b = 2;
+  TAB[1] = 0;
+  int *r = & TAB[4];
+  TAB[4] = 13;
+  TAB[5] = 13;
+  char *q = (char *)(& TAB[4]);
+  *q = (char)13;
+  *(q + 1) = (char)13;
+  int decal = 4;
+  *(q + 4) = (char)13;
+  return;
+}
+
+int *test_ptr(int v)
+{
+  int *__retres;
+  int *p = & x;
+  char *s = (char *)(& x);
+  *s = (char)7;
+  int decal = 1;
+  *(s + 1) = (char)7;
+  s = (char *)(& x) + 1;
+  *s = (char)7;
+  x = 7;
+  __retres = & x;
+  return __retres;
+}
+
+int *test_struct_ptr(void)
+{
+  int *__retres;
+  int *q = & s1.b;
+  __retres = & s1.a;
+  return __retres;
+}
+
+int add3(int v1, int v2, int v3)
+{
+  int __retres;
+  __retres = (v1 + v2) + 0;
+  return __retres;
+}
+
+int init(int v)
+{
+  int zero = 0;
+  int sept = 7;
+  x = 5;
+  y = 7;
+  z = add3(5,7,0);
+  int z1 = 12;
+  return zero;
+}
+
+unsigned long long ull;
+void test_ull(void)
+{
+  ull = 18446744073709551615ULL;
+  return;
+}
+
+float f0;
+float f1;
+float f2;
+float f3;
+double d0;
+double d1;
+double d2;
+double d3;
+void test_float_double(void)
+{
+  d1 = 0.;
+  d2 = 0.;
+  d3 = 1.;
+  f1 = 0.f;
+  f2 = 0.f;
+  f3 = 1.f;
+  return;
+}
+
+void main(int a)
+{
+  int *tmp_1;
+  test_ull();
+  test_struct();
+  test_struct_ptr();
+  test_tab(13);
+  test_float_double();
+  int b = init(5);
+  z = add3(a,0,0);
+  int *p = test_ptr(7);
+  /*@ assert *p ≡ 7; */ ;
+  if (a) tmp_1 = & x; else tmp_1 = & y;
+  int *q = tmp_1;
+  int yy = 7;
+  /*@ assert a ≡ 0 ⇒ q ≡ &y; */ ;
+  /*@ assert *q ≡ 7; */ ;
+  return;
+}
+
+
+[scf] constant propagation done

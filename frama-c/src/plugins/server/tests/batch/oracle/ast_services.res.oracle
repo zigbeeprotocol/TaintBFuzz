@@ -1,0 +1,11 @@
+[kernel] Parsing ast_services.i (no preprocessing)
+[server] Script "./ast_services.json"
+[server] [GET] kernel.ast.fetchFunctions
+[server] [GET] kernel.ast.fetchFunctions
+[server] [GET] kernel.ast.printFunction
+[server] [GET] kernel.ast.printFunction
+[server] [GET] kernel.ast.printFunction
+[server] User Error: [kernel.ast.printFunction] Undefined function 'h'
+[server] Output "./ast_services.out.json"
+[server] User Error: Deferred error message was emitted during execution. See above messages for more information.
+[kernel] Plug-in server aborted: invalid user input.

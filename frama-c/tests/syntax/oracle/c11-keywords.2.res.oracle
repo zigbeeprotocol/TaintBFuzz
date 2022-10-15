@@ -1,0 +1,6 @@
+[kernel] Parsing c11-keywords.c (with preprocessing)
+[kernel] c11-keywords.c:22: Failure: 
+  _Complex is currently unsupported by Frama-C.
+[kernel] User Error: stopping on file "c11-keywords.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

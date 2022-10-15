@@ -1,0 +1,46 @@
+[kernel] Parsing cmp_ptr_follow_all_branches.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {0}
+  p ∈ {{ (char *)&a }}
+  q ∈ {{ &a }}
+[eva:pointer-comparison] cmp_ptr_follow_all_branches.i:14: 
+  invalid pointer comparison: invalid pointer(s)
+[eva:pointer-comparison] cmp_ptr_follow_all_branches.i:14: 
+  evaluating condition to {0; 1} instead of {1} because of UPCPA
+[eva:alarm] cmp_ptr_follow_all_branches.i:14: Warning: 
+  pointer comparison.
+  assert \pointer_comparable((void *)(p + (size_t)((int)(-5))), (void *)p);
+[eva] cmp_ptr_follow_all_branches.i:14: Frama_C_show_each_1:
+[eva:pointer-comparison] cmp_ptr_follow_all_branches.i:14: 
+  evaluating condition to {0; 1} instead of {0} because of UPCPA
+[eva] cmp_ptr_follow_all_branches.i:14: Frama_C_show_each_2:
+[eva:pointer-comparison] cmp_ptr_follow_all_branches.i:15: 
+  invalid pointer comparison: invalid pointer(s)
+[eva:pointer-comparison] cmp_ptr_follow_all_branches.i:15: 
+  evaluating condition to {0; 1} instead of {1} because of UPCPA
+[eva:alarm] cmp_ptr_follow_all_branches.i:15: Warning: 
+  pointer comparison.
+  assert \pointer_comparable((void *)(q + (size_t)((int)(-5))), (void *)q);
+[eva] cmp_ptr_follow_all_branches.i:15: Frama_C_show_each_3:
+[eva:pointer-comparison] cmp_ptr_follow_all_branches.i:15: 
+  evaluating condition to {0; 1} instead of {0} because of UPCPA
+[eva] cmp_ptr_follow_all_branches.i:15: Frama_C_show_each_4:
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    __retres
+[inout] Inputs for function main:
+    p; q

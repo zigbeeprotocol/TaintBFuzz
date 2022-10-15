@@ -1,0 +1,110 @@
+# frama-c -wp [...]
+[kernel] Parsing initialized_memvar.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 73 goals scheduled
+[wp] [Qed] Goal typed_globals_check_qed_ok : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_2 : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_3 : Valid
+[wp] [Failed] Goal typed_globals_check_qed_ko
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Qed] Goal typed_globals_check_qed_ok_4 : Valid
+[wp] [Failed] Goal typed_globals_check_qed_ko_2
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Qed] Goal typed_globals_check_qed_ok_5 : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_6 : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_7 : Valid
+[wp] [Script] Goal typed_globals_check_provable : Valid
+[wp] [Script] Goal typed_globals_check_provable_2 : Valid
+[wp] [Failed] Goal typed_globals_check_not_provable
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Script] Goal typed_globals_check_provable_3 : Valid
+[wp] [Failed] Goal typed_globals_check_qed_ko_3
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Qed] Goal typed_globals_check_qed_ok_8 : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_9 : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_10 : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_11 : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_12 : Valid
+[wp] [Qed] Goal typed_globals_check_qed_ok_13 : Valid
+[wp] [Script] Goal typed_globals_check_provable_4 : Valid
+[wp] [Script] Goal typed_globals_check_provable_5 : Valid
+[wp] [Script] Goal typed_globals_check_provable_6 : Valid
+[wp] [Script] Goal typed_globals_check_provable_7 : Valid
+[wp] [Failed] Goal typed_globals_check_qed_ko_4
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Failed] Goal typed_globals_check_qed_ko_5
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Failed] Goal typed_globals_check_qed_ko_6
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Failed] Goal typed_globals_check_qed_ko_7
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Failed] Goal typed_globals_check_not_provable_2
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Failed] Goal typed_globals_check_not_provable_3
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Failed] Goal typed_globals_check_not_provable_4
+  Alt-Ergo: Unsuccess
+    Script: Unsuccess
+[wp] [Qed] Goal typed_locals_check_qed_ok : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_2 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_3 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_4 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_5 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_6 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_7 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_8 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_9 : Valid
+[wp] [Script] Goal typed_locals_check_provable : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_10 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_11 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_12 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_13 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_14 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_15 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_16 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_17 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_18 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_19 : Valid
+[wp] [Script] Goal typed_locals_check_provable_2 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_20 : Valid
+[wp] [Qed] Goal typed_locals_check_qed_ok_21 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_2 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_3 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_4 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_5 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_6 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_7 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_8 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_9 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_10 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_11 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_12 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_13 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_14 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_15 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_16 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_17 : Valid
+[wp] [Qed] Goal typed_complex_struct_check_qed_ok_18 : Valid
+[wp] [Script] Goal typed_complex_struct_check_provable : Valid
+[wp] Proved goals:   62 / 73
+  Qed:            52 
+  Script:          1 
+  Alt-Ergo:        9  (unsuccess: 1)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  globals                  13        7       31      64.5%
+  locals                   21        2       23       100%
+  complex_struct           18        -       19       100%
+------------------------------------------------------------

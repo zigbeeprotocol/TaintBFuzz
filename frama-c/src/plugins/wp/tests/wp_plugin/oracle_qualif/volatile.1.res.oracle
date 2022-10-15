@@ -1,0 +1,35 @@
+# frama-c -wp -wp-no-volatile [...]
+[kernel] Parsing volatile.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] volatile.i:16: Warning: unsafe volatile access to (term) l-value
+[wp] volatile.i:15: Warning: unsafe write-access to volatile l-value
+[wp] volatile.i:22: Warning: unsafe volatile access to (term) l-value
+[wp] volatile.i:21: Warning: unsafe read-access to volatile l-value
+[wp] volatile.i:36: Warning: unsafe volatile access to (term) l-value
+[wp] volatile.i:36: Warning: unsafe volatile access to (term) l-value
+[wp] volatile.i:35: Warning: unsafe write-access to volatile l-value
+[wp] volatile.i:35: Warning: unsafe read-access to volatile l-value
+[wp] volatile.i:45: Warning: unsafe read-access to volatile l-value
+[wp] 5 goals scheduled
+[wp] [Qed] Goal typed_job_assigns_assert_KO_WHEN_VOLATILE : Valid
+[wp] [Qed] Goal typed_job_read_assert_KO_WHEN_VOLATILE : Valid
+[wp] [Qed] Goal typed_job_struct_assert_ok_dead_code : Valid
+[wp] [Qed] Goal typed_job_struct_assigns_assert_KO_WHEN_VOLATILE : Valid
+[wp] [Alt-Ergo] Goal typed_default_init_check_KO_WHEN_VOLATILE : Valid
+[wp] Proved goals:    5 / 5
+  Qed:             4 
+  Alt-Ergo:        1
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  job_assigns               1        -        1       100%
+  job_read                  1        -        1       100%
+  job_struct                1        -        1       100%
+  job_struct_assigns        1        -        1       100%
+  default_init              -        1        1       100%
+------------------------------------------------------------
+[wp] volatile.i:33: Warning: 
+  Memory model hypotheses for function 'job_struct_assigns':
+  /*@ behavior wp_typed:
+        requires \separated(p, &sv); */
+  void job_struct_assigns(struct st_v *p);

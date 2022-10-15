@@ -1,0 +1,130 @@
+# frama-c -wp [...]
+[kernel] Parsing invalid_pointer.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] invalid_pointer.c:23: Warning: void object
+------------------------------------------------------------
+  Function array
+------------------------------------------------------------
+
+Goal Check 'ARR' (file invalid_pointer.c, line 32):
+Assume { Type: is_sint32(k). (* Heap *) Type: linked(Malloc_0). }
+Prove: ((0 <= k) /\ (k <= 25)) <->
+    valid_obj(Malloc_0[L_a_33 <- 25], shift_sint32(global(L_a_33), k), 1).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function compound
+------------------------------------------------------------
+
+Goal Check 'M1' (file invalid_pointer.c, line 47):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'P0' (file invalid_pointer.c, line 48):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'P1' (file invalid_pointer.c, line 49):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'P2' (file invalid_pointer.c, line 50):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'F' (file invalid_pointer.c, line 53):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_obj(Malloc_0[L_s_38 <- 2], shiftfield_F1_S_f(global(L_s_38)), 1).
+
+------------------------------------------------------------
+
+Goal Check 'G' (file invalid_pointer.c, line 54):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_obj(Malloc_0[L_s_38 <- 2], shiftfield_F1_S_g(global(L_s_38)), 1).
+
+------------------------------------------------------------
+
+Goal Check 'F2' (file invalid_pointer.c, line 55):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_obj(Malloc_0[L_s_38 <- 2],
+         shift_sint32(shiftfield_F1_S_f(global(L_s_38)), 2), 1).
+
+------------------------------------------------------------
+
+Goal Check 'G2' (file invalid_pointer.c, line 56):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: !valid_obj(Malloc_0[L_s_38 <- 2],
+          shift_sint32(shiftfield_F1_S_g(global(L_s_38)), 2), 1).
+
+------------------------------------------------------------
+
+Goal Check 'AM' (file invalid_pointer.c, line 59):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function memvar
+------------------------------------------------------------
+
+Goal Check 'M1' (file invalid_pointer.c, line 6):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'P0' (file invalid_pointer.c, line 7):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'P1' (file invalid_pointer.c, line 8):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'P2' (file invalid_pointer.c, line 9):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function pointer
+------------------------------------------------------------
+
+Goal Check 'M1' (file invalid_pointer.c, line 19):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: !valid_obj(Malloc_0[L_x_28 <- 1], shift_sint32(global(L_x_28), -1), 1).
+
+------------------------------------------------------------
+
+Goal Check 'P0' (file invalid_pointer.c, line 20):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_obj(Malloc_0[L_x_28 <- 1], global(L_x_28), 1).
+
+------------------------------------------------------------
+
+Goal Check 'P1' (file invalid_pointer.c, line 21):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_obj(Malloc_0[L_x_28 <- 1], shift_sint32(global(L_x_28), 1), 1).
+
+------------------------------------------------------------
+
+Goal Check 'P2' (file invalid_pointer.c, line 22):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: !valid_obj(Malloc_0[L_x_28 <- 1], shift_sint32(global(L_x_28), 2), 1).
+
+------------------------------------------------------------
+
+Goal Check 'qed_NULL' (file invalid_pointer.c, line 23):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'prover_NULL' (file invalid_pointer.c, line 24):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_obj(Malloc_0[L_x_28 <- 1], L_GET, 1).
+
+------------------------------------------------------------

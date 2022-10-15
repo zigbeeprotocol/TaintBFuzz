@@ -1,0 +1,199 @@
+[kernel] Parsing multidim-relations.c (with preprocessing)
+[eva:experimental] Warning: The multidim domain is experimental.
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..349] ∈ {0}
+  g ∈ {0}
+  h ∈ {1}
+[eva] computing for function init_array <- main.
+  Called from multidim-relations.c:35.
+[eva] multidim-relations.c:18: starting to merge loop iterations
+[kernel] multidim-relations.c:19: 
+  more than 1(350) locations to update in array. Approximating.
+[kernel] multidim-relations.c:20: 
+  more than 1(350) locations to update in array. Approximating.
+[kernel] multidim-relations.c:21: 
+  more than 1(175) locations to update in array. Approximating.
+[eva] Recording results for init_array
+[kernel] multidim-relations.c:19: 
+  more than 1(350) elements to enumerate. Approximating.
+[kernel] multidim-relations.c:20: 
+  more than 1(350) elements to enumerate. Approximating.
+[kernel] multidim-relations.c:21: 
+  more than 1(175) elements to enumerate. Approximating.
+[eva] Done for function init_array
+[eva] computing for function set_null <- main.
+  Called from multidim-relations.c:36.
+[eva] Recording results for set_null
+[eva] Done for function set_null
+[eva] computing for function set_null <- main.
+  Called from multidim-relations.c:37.
+[eva] Recording results for set_null
+[eva] Done for function set_null
+[eva] computing for function Frama_C_interval <- main.
+  Called from multidim-relations.c:38.
+[eva] using specification for function Frama_C_interval
+[eva] multidim-relations.c:38: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function use_array <- main.
+  Called from multidim-relations.c:40.
+[eva:alarm] multidim-relations.c:31: Warning: 
+  out of bounds read. assert \valid_read(t[index].ptr);
+[eva] Recording results for use_array
+[kernel] multidim-relations.c:31: 
+  more than 1(350) elements to enumerate. Approximating.
+[eva] Done for function use_array
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function init_array:
+  t[0]{.kind; .[bits 8 to 31]#} ∈ {0; 1} repeated %8 
+   [0].value ∈ [--..--]
+   [0].ptr ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:19}) }}
+   [1].kind ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:18}) }}
+   [1].[bits 8 to 31] ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:19}) }}
+   [1].value ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:18}) }}
+   [1].ptr ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [2].kind ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:18}) }}
+   [2].[bits 8 to 31] ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [2].value ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:18}) }}
+   {[2].ptr; [3..348]} ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [349].kind ∈
+   {{ garbled mix of &{g} (origin: Merge {multidim-relations.c:19}) }}
+   [349]{.value; .[bits 8 to 31]} ∈
+   {{ garbled mix of &{g} (origin: Merge {multidim-relations.c:21}) }}
+   [349].ptr ∈ {{ NULL ; &g }}
+  i ∈ {350}
+[eva:final-states] Values at end of function set_null:
+  t[0]{.kind; .[bits 8 to 31]#} ∈ {0; 1} repeated %8 
+   [0].value ∈ [--..--]
+   [0].ptr ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:19}) }}
+   [1].kind ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:18}) }}
+   [1].[bits 8 to 31] ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:19}) }}
+   [1].value ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:18}) }}
+   [1].ptr ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [2].kind ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:18}) }}
+   [2].[bits 8 to 31] ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [2].value ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:18}) }}
+   {[2].ptr; [3..56]} ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [57].kind ∈ {0}
+   [57]{.value; .[bits 8 to 31]} ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [57].ptr ∈ {0}
+   [58..348] ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [349].kind ∈
+   {{ garbled mix of &{g} (origin: Merge {multidim-relations.c:19}) }}
+   [349]{.value; .[bits 8 to 31]} ∈
+   {{ garbled mix of &{g} (origin: Merge {multidim-relations.c:21}) }}
+   [349].ptr ∈ {{ NULL ; &g }}
+[eva:final-states] Values at end of function use_array:
+  result ∈ {0; 1}
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+  t[0]{.kind; .[bits 8 to 31]#} ∈ {0; 1} repeated %8 
+   [0].value ∈ [--..--]
+   [0].ptr ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:19}) }}
+   [1].kind ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:18}) }}
+   [1].[bits 8 to 31] ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:19}) }}
+   [1].value ∈
+   {{ garbled mix of &{h} (origin: Merge {multidim-relations.c:18}) }}
+   [1].ptr ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [2].kind ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:18}) }}
+   [2].[bits 8 to 31] ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [2].value ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:18}) }}
+   {[2].ptr; [3..56]} ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [57].kind ∈ {0}
+   [57]{.value; .[bits 8 to 31]} ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [57].ptr ∈ {0}
+   [58..140] ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [141].kind ∈ {0}
+   [141]{.value; .[bits 8 to 31]} ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [141].ptr ∈ {0}
+   [142..348] ∈
+   {{ garbled mix of &{g; h} (origin: Merge {multidim-relations.c:19}) }}
+   [349].kind ∈
+   {{ garbled mix of &{g} (origin: Merge {multidim-relations.c:19}) }}
+   [349]{.value; .[bits 8 to 31]} ∈
+   {{ garbled mix of &{g} (origin: Merge {multidim-relations.c:21}) }}
+   [349].ptr ∈ {{ NULL ; &g }}
+  index ∈ [0..349]
+[from] Computing for function init_array
+[kernel] multidim-relations.c:19: 
+  more than 1(350) dependencies to update. Approximating.
+[kernel] multidim-relations.c:20: 
+  more than 1(350) dependencies to update. Approximating.
+[kernel] multidim-relations.c:21: 
+  more than 1(175) dependencies to update. Approximating.
+[from] Done for function init_array
+[from] Computing for function set_null
+[from] Done for function set_null
+[from] Computing for function use_array
+[from] Done for function use_array
+[from] Computing for function main
+[from] Computing for function Frama_C_interval <-main
+[from] Done for function Frama_C_interval
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function init_array:
+  t[0..349] FROM \nothing (and SELF)
+[from] Function set_null:
+  t{[57].kind; [57].ptr; [141].kind; [141].ptr} FROM i (and SELF)
+[from] Function use_array:
+  NO EFFECTS
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  t[0..349] FROM \nothing (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function init_array:
+    t[0..349]; i
+[inout] Inputs for function init_array:
+    \nothing
+[inout] Out (internal) for function set_null:
+    t{[57].kind; [57].ptr; [141].kind; [141].ptr}
+[inout] Inputs for function set_null:
+    \nothing
+[inout] Out (internal) for function use_array:
+    result
+[inout] Inputs for function use_array:
+    t{[0].ptr; [1..349]}; g; h
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source; t[0..349]; index
+[inout] Inputs for function main:
+    Frama_C_entropy_source; t[0..349]; g; h

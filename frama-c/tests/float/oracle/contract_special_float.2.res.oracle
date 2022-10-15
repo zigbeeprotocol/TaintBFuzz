@@ -1,0 +1,37 @@
+[kernel] Parsing contract_special_float.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] computing for function fun <- main.
+  Called from contract_special_float.c:92.
+[eva] using specification for function fun
+[eva] Done for function fun
+[kernel] contract_special_float.c:94: Warning: 
+  No code nor explicit assigns clause for function fun_no_default, generating default assigns from the specification
+[eva] computing for function fun_no_default <- main.
+  Called from contract_special_float.c:94.
+[eva] using specification for function fun_no_default
+[eva] Done for function fun_no_default
+[eva] computing for function fun_no_disjoint <- main.
+  Called from contract_special_float.c:96.
+[eva] using specification for function fun_no_disjoint
+[eva] Done for function fun_no_disjoint
+[eva] computing for function fun_no_complete <- main.
+  Called from contract_special_float.c:98.
+[eva] using specification for function fun_no_complete
+[eva] Done for function fun_no_complete
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  a ∈ [-inf .. inf] ∪ {NaN}
+  w ∈ [-0. .. inf] ∪ {NaN}
+  b ∈ [-inf .. inf] ∪ {NaN}
+  x ∈ [-0. .. inf] ∪ {NaN}
+  c ∈ [-inf .. inf] ∪ {NaN}
+  y ∈ [-0. .. inf] ∪ {NaN}
+  d ∈ [-inf .. inf] ∪ {NaN}
+  z ∈ [-inf .. inf] ∪ {NaN}
+  __retres ∈ {0}

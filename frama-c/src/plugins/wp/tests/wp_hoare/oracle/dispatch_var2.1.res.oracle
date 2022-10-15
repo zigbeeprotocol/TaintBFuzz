@@ -1,0 +1,232 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing dispatch_var2.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function call_global
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 37) in 'call_global':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 36) in 'call_global':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 36) in 'call_global' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 36) in 'call_global' (2/2):
+Call Result at line 42
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 12) in 'reset'' in 'call_global' at call 'reset' (file dispatch_var2.i, line 41)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 27) in 'load'' in 'call_global' at call 'load' (file dispatch_var2.i, line 42)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_local
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 56) in 'call_local':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (2/2):
+Call Effect at line 61
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (2/3):
+Call Effect at line 61
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (3/3):
+Call Result at line 62
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 12) in 'reset'' in 'call_local' at call 'reset' (file dispatch_var2.i, line 61)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 27) in 'load'' in 'call_local' at call 'load' (file dispatch_var2.i, line 62)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_param
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 47) in 'call_param':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (2/2):
+Call Effect at line 51
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (2/3):
+Call Effect at line 51
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (3/3):
+Call Result at line 52
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 12) in 'reset'' in 'call_param' at call 'reset' (file dispatch_var2.i, line 51)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 27) in 'load'' in 'call_param' at call 'load' (file dispatch_var2.i, line 52)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_param_ref
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 68) in 'call_param_ref':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 67) in 'call_param_ref':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 67) in 'call_param_ref' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 67) in 'call_param_ref' (2/2):
+Call Result at line 73
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 12) in 'reset'' in 'call_param_ref' at call 'reset' (file dispatch_var2.i, line 72)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 27) in 'load'' in 'call_param_ref' at call 'load' (file dispatch_var2.i, line 73)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function incr
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 21) in 'incr':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 20) in 'incr':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function load
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 29) in 'load':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'load':
+Effect at line 31
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reset
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 14) in 'reset':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 13) in 'reset':
+Prove: true.
+
+------------------------------------------------------------
+[wp] dispatch_var2.i:16: Warning: 
+  Memory model hypotheses for function 'reset':
+  /*@ behavior wp_typed_ref:
+        requires \valid(rp); */
+  void reset(int *rp);
+[wp] dispatch_var2.i:23: Warning: 
+  Memory model hypotheses for function 'incr':
+  /*@ behavior wp_typed_ref:
+        requires \valid(ip); */
+  void incr(int *ip);
+[wp] dispatch_var2.i:31: Warning: 
+  Memory model hypotheses for function 'load':
+  /*@ behavior wp_typed_ref:
+        requires \valid(lp); */
+  int load(int *lp);
+[wp] dispatch_var2.i:70: Warning: 
+  Memory model hypotheses for function 'call_param_ref':
+  /*@ behavior wp_typed_ref:
+        requires \valid(q); */
+  int call_param_ref(int *q);

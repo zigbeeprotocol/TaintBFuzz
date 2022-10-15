@@ -1,0 +1,394 @@
+\chapter{Introduction}
+
+
+L'objectif de ces travaux est de concevoir et développer un outil de \slicing
+se basant sur le noyau \ppc d'analyse statique de programme C
+en s'inspirant du module équivalent déjà développé
+sur la base de l'outil \caveat qui est décrit dans \cite{slicingCaveat}.
+
+
+
+\section{État de l'art}\label{sec-lart}
+
+Voyons tout d'abord
+ce que dit la littérature sur ce sujet
+afin de se positionner par rapport aux différentes méthodes.\\
+
+On s'appuie ici sur la présentation des travaux sur le calcul de PDG
+effectué dans un autre document.
+
+\subsection{Origine}
+
+La technique consistant à réduire un logiciel -~appelée \slicing en anglais~-
+a été beaucoup
+étudiée depuis son introduction par la thèse de \cite{weiser79}.
+L'article \cite{weiser81} rappelle que sa définition du \slicing est
+la suivante~:
+
+\begin{definition}{slicing selon Weiser}
+Le programme d'origine et le programme transformé doivent être identique
+si on les regarde à travers la fenêtre défini par le critère de \slicing
+défini par un point de programme et une liste de variable.
+C'est à dire que la séquence de valeurs observées pour ces variables
+à ce point doivent être les mêmes.
+
+De plus, le programme transformé doit être obtenu par suppression de certaines
+instructions du programme d'origine.
+\end{definition}
+
+Cette définition a été remise en cause par la suite
+au motif que cette définition n'est pas suffisante pour traduire
+la compréhension intuitive que l'on a du \slicing.
+On trouve l'exemple suivant dans \cite{kumar02better},
+mais cette critique revient a plusieurs reprises.
+
+\begin{exemple}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+P & P1 & P2 \\
+\hline
+a = 1;   &          & a = 1; \\
+b = 3;   &          & b = 3; \\
+c = a*b; &          & \\
+a = 2;   & a = 2;   & \\
+b = 2;   & b = 2;   & \\
+d = a+b; & d = a+b; & d = a+b; \\
+\hline
+\end{tabular}
+\end{center}
+P1 est probablement ce qu'on attend du \slicing de P si l'on s'intéresse
+à la variable d après la dernière instruction, mais P2
+est aussi correct du point de vue de Weiser.
+\end{exemple}
+
+Il semble peu probable de construire un algorithme qui construit P2,
+mais on voit néanmoins que la définition est insuffisante
+pour spécifier complètement ce que doit être le résultat d'un \slicing.\\
+
+\cite{Choi94} formalise la définition de la façon suivante~:
+
+\begin{definition}{Correct-Executable-Slice}
+Let $P_{slice}$ be an executable slice of a program $P_{org}$,
+S be the set of statements in $P_{slice}$ and $Proj_S(P_{org}, \sigma_0)$
+be the projection of $Trace(P_{org}, \sigma_0)$ that contains
+only those statement traces produced by statements in S.
+$P_{slice}$ is a correct executable slice of $P_{org}$ if
+ $Proj_S(P_{org}, \sigma_0)$  is identical to $Trace(P_{org}, \sigma_0)$.
+\end{definition}
+
+Même si cette définition possède les mêmes inconvénients que celle d'origine,
+elle lui permet de faire des preuves de correction des ses algorithmes
+relativement à cette formalisation.
+
+\subsection{Graphes de dépendances}
+
+Comme on l'a vu dans \cite{ppcPdg} les graphes de dépendances sont à la base des
+calculs.
+\cite{Ottenstein84}, puis \\
+\cite{Ferrante87}
+introduisent la notion de PDG ({\it Program Dependence Graph}).
+Un tel graphe est utilisé pour représenter les différentes dépendances
+entre les instructions d'un programme.
+Ils l'exploitent pour calculer un {\it slicing non-executable}
+qui s'intéresse uniquement aux instructions
+qui influencent la valeur des variables,
+mais cette représentation sera également utilisée pour calculer un
+\slicing exécutable.\\
+
+Cette représentation, initialement intraprocédurale, a été étendue
+à l'interprocédurale dans \cite{horwitz88interprocedural} où elle
+porte le nom de SDG ({\it System Dependance Graph}).
+Dans ce papier, Susan Horwitz s'intéresse à un \slicing
+ayant la définition suivante~:
+
+\begin{definition}{slicing selon \cite{horwitz88interprocedural}}
+A slice of a program with respect to program point p and variable x
+consists of a set of statements of the program that might affect
+the value of x at p.
+\end{definition}
+
+Mais elle précise par ailleurs que x doit être défini ou utilisé en p.
+En effet, lorsque le graphe est construit, le \slicing se résume à un
+problème d'accessibilité à un noeud, or un noeud représente un
+point de programme et ne contient que les relations concernant les variables
+qui y apparaissent.\\
+
+Nous avons vu dans \cite{ppcPdg} que l'on peut lever cette limitation en gardant
+une correspondance entre les données à un point de programme et les noeud du
+graphe.
+
+\subsection{Slices vs. Chops}
+
+On a vu que le \slicing s'intéresse à ce qui se passe avant d'arriver
+à un certain point.\\
+
+La notion de {\it chopping} est similaire sauf qu'elle s'intéresse
+aux instructions qui vont être influencées par une certaine donnée
+à un certain point.
+
+\subsection{Critères de \slicing}
+
+Nous n'avons pour l'instant parlé que du \slicing dit {\bf statique}
+qui s'intéresse à toutes les exécutions d'un programme,
+par opposition au \slicingb {\bf dynamique}
+ qui considère la projection du programme
+sur l'exécution d'un jeu d'entrée particulier,
+ou {\bf quasi-statique} qui fixe uniquement une partie des entrées.\\
+
+Une version plus générale qui inclus à la fois l'un et l'autre
+est appelé \slicingb {\bf conditionnel} (\cite{fox-consit}).
+Il s'agit de spécifier le cas d'étude sous forme de
+des propriétés sur le jeu d'entrées (préconditions).\\
+
+Par la suite, la notion de {\bf  \slicing conditionnel arrière}
+a été introduit dans plusieurs buts différents :
+\begin{itemize}
+\item la première technique décrite dans \cite{Comuzzi} et
+ appelée p-slice, s'intéresse aux instructions qui participent
+à l'établissement de la postcondition,
+\item alors que la deuxième (\cite{fox01backward})
+a un objectif un peu différent car vue
+comme une aide à la preuve permettant d'éliminer du programme
+tous les cas dans lesquels la propriété est vérifiée (automatiquement),
+pour ne garder que ceux pour lesquels le résultat n'est pas certain
+afin que l'utilisateur puisse se concentrer sur la vérification
+de cette partie.
+
+Dans \cite{Harman2001}, ces auteurs continuent
+les travaux précédents en combinant
+une propagation avant et une propagation arrière.
+Quelques exemples et la présentation d'un outil mettant en {\oe}uvre
+le travail de cette équipe est présenté dans \cite{daoudi-consus}.
+Ils définissent leur objectif de la façon suivante :
+\end{itemize}
+
+\begin{definition}{pre-post conditioned slicing}
+Statements are removed if they cannot lead to
+satisfaction of the negation of the post condition,
+when executed in an initial state which satisfies
+the pre-condition.
+\end{definition}
+
+\begin{itemize}
+\item une troisième approche est présentée très brièvement
+dans (\cite{Chung-2001}~:
+il s'agit également de spécifier le critère de slicing par une pré-post
+et de combiner une propagation avant et arrière de propriétés
+pour ne garder que ce qui participe
+à l'établissement de la post dans le contexte de la précondition.
+\end{itemize}
+
+
+% {\bf contraint} (\cite{Field95}),
+
+
+Ces nouveaux types de \slicing
+ne se basent plus uniquement sur des relations de dépendance,
+mais nécessitent différentes techniques complémentaires comme
+l'exécution symbolique ou encore le calcul de WP.\\
+
+Dans le cadre de notre étude, il semble intéressant d'explorer
+cette voie étant donné que nous disposons (ou disposerons)
+de tels outils d'analyse dans \ppc.\\
+
+
+
+
+
+
+
+\subsection{Transformations}
+
+Dans nos précédents travaux, nous avons exploré certaines transformations
+de programme comme la spécialisation de fonction
+(et donc la transformation des appels),
+et également la propagation de constantes.\\
+
+Divers papiers, dont \cite{harman01gustt},
+présentent un \slicing qu'ils appellent {\bf amorphe}
+dans lequel il s'agit de
+combiner des techniques de \slicing et de transformation de programme.
+
+ \cite{ward2002} (pour une raison qui m'échappe)
+préfère parler de  \slicingb {\bf sémantique}\\
+
+% {\bf à développer !}
+
+
+\subsection{Outils}
+
+On peut citer deux outils qui mettent en {\oe}uvre cette technique sur les
+programmes C-ANSI~:
+\begin{itemize}
+\item {\it unravel}, présenté dans \cite{lyle97using},
+  est disponible sur le web  (cf. [\cite{unravel}])~;
+\item et le {\it Wisconsin Program-Slicing Tool} (\cite{reps93wisconsin}),
+est commercialisé par {\it GrammaTech} sous le nom {\it CodeSurfer}
+(cf. site web [\cite{CodeSurfeur}]).\\
+\end{itemize}
+
+Ces outils permettent tous les deux~:
+\begin{itemize}
+\item de sélectionner les parties de code utiles au calcul
+d'une variable à un point de contrôle,
+\item de visualiser les instructions sélectionnées sur le
+code source de l'utilisateur,
+\item et de faire des opérations d'union et l'intersection entre plusieurs
+réductions.
+\end{itemize}
+
+\subsection{Pour en savoir plus}
+
+Un état de l'art en 1995 est présenté dans \cite{tip95survey}.\\
+Plus récemment, \cite{survey2005} font un tour très complet des évolutions
+jusqu'en 2005.
+
+Par ailleurs, un site internet~- dont l'adresse est donnée
+dans la bibliographie sous la référence \cite{wwwSlicing}~-
+a tenu à jour une liste des projets
+et une bibliographie très impressionnante sur le \slicing
+jusqu'en 2003, mais ce site ne semble plus maintenu.\\
+
+
+\section{Ce que l'on veux faire}\label{sec-but}\label{sec-defR}
+
+\newcommand{\remitem}[1]{\begin{itemize}\item #1 \end{itemize}}
+%\newcommand{\warnitem}[1]{\begin{itemize}\item[$\blacktriangle$] #1
+                          %\end{itemize}}
+%\newcommand{\question}[1]{\begin{itemize}\item[{\bf ?}] #1 \end{itemize}}
+%\newcommand{\smilitem}[1]{\begin{itemize}\item[$\smiley$] #1 \end{itemize}}
+%\newcommand{\frownitem}[1]{\begin{itemize}\item[$\frownie$] #1 \end{itemize}}
+
+Le document \cite{baudinImpact} spécifie un outil d'aide à l'analyse d'impact
+après avoir analysé les besoins dans ce domaine.
+Le module de \slicing est présenté comme étant
+un composant important de cet outil.\\
+
+Résumons ici les caractéristiques principales de l'outil
+qui ont servies de spécification initiale~:
+
+\begin{itemize}
+\item l'outil sert à construire un programme compilable
+à partir d'un programme source, les deux programmes ayant le même
+comportement vis à vis des critères fournis par l'utilisateur~;
+\item la construction de ce programme résultat est un processus interactif.
+\item {\bf commandes} de l'outil
+\remitem{elles correspondent à des fonctions internes (en \caml)
+et doivent permettre d'accéder aux différentes fonctionnalités.\\
+Elles pourront être utilisées directement,
+combinées dans des {\it scripts} pour effectuer des opérations
+plus évoluées ou encore servir à construire un protocole de communication avec
+une interface graphique~;}
+\item commandes {\bf d'interrogation}
+\remitem{elles servent à questionner le système.
+Elles ne doivent pas modifier l'état interne de l'outil.
+Même si elles effectuent certains calculs pour répondre,
+et qu'elles stockent ces résultats pour éviter un recalcul ultérieur,
+ceci doit être transparent pour la suite des traitements~;}
+\item commandes dites {\bf d'action}
+\remitem{elles doivent permettent de construire
+le résultat du \slicing. Ces commandes doivent pouvoir s'enchaîner et se
+combiner~;}
+\item l'outil maintient une {\bf liste d'attente} des actions à effectuer.
+Ceci est utile car certains traitements peuvent être décomposés
+en plusieurs actions que l'utilisateur peut ensuite choisir d'appliquer ou non.
+Cela permet d'avoir un contrôle plus fin des calculs~;
+\item le programme résultant ne peut être généré
+que lorsque la liste d'attente est vide~;
+\item les traitements doivent être modulaires~;
+\item chaque fonction du programme source peut~:
+  \begin{itemize}
+  \item ne pas apparaître dans le résultat,
+  \item être simplement copiée dans le résultat,
+  \item correspondre à une ou plusieurs fonctions spécialisées du résultat.
+  \end{itemize}
+\item dans la représentation interne du résultat, les instructions
+sont associées à un marquage qui indique si elles doivent être cachées,
+ou sinon, la raison de leur présence, c'est-à-dire par exemple
+si elles participent au contrôle ou à la valeur d'une donnée sélectionnée, etc.
+
+\item identification d'instructions non significatives (ou superflues)
+\remitem{il s'agit d'être capable de distinguer ce que l'on doit ajouter
+lorsque l'on ne fait pas de spécialisation.
+Prenons par exemple le cas d'un appel $L : f(a,b);$
+où seul $a$ est nécessaire au calcul qui nous intéresse,
+mais que l'on ne souhaite pas spécialiser en $f(a);$.
+Il faudra alors ajouter ce qui permet de calculer $b$ en $L$
+aux instructions sélectionnées,
+mais en préservant l'information qu'elles sont {\it superflues}~;
+}
+
+\item spécialisation du code
+\remitem{il s'agit d'être capable d'effectuer des transformations syntaxiques
+pour réduire le code au maximum. Par exemple, si après une instruction
+\verbtt{y = x++;}, on n'a besoin que de \verbtt{x},
+il faut être capable de décomposer cette instruction
+afin de ne garder que \verbtt{x++;}
+
+Ce type de transformation étant déjà faite en amont du module de \slicing,
+le problème ne se pose plus pour ce type d'instruction,
+mais il existe encore pour la spécialisation des appels de fonction.
+En effet, si une fonction $f$ prend, par exemple,
+deux arguments dont un seul sert à calculer ce qui nous intéresse,
+on veut être capable de construire une fonction $f_1$
+qui ne prend qu'un seul argument,
+et transformer l'appel à $f$ en un appel à $f_1$.
+
+Par ailleurs, on peut également envisager de transformer des
+instructions lorsque l'on connaît la valeur constante d'une variable.
+}
+\end{itemize}
+
+
+\section{Plan des documents}
+
+Ce document présente uniquement les principes de ce qui a été développé.
+Pour plus de détail sur l'implémentation ou les commandes disponibles,
+le lecteur est invité à consulter la documentation du code
+car elle sera toujours plus détaillée et à jour que ce rapport.
+Comme la boîte à outil de \slicing est un greffon de \ppc,
+son interface est définie dans le module \verbtt{Db.Slicing}.
+Par ailleurs, l'introduction de la documentation interne du module
+donne une idée de l'architecture, et donne des points d'entrée.\\
+
+Les principes de calcul des graphes de dépendances
+sur lequel s'appuie le \slicing est présenté dans \cite{ppcPdg}.\\
+
+Le chapitre \ref{sec-filtrage-fct} présente
+la façon dont sont marquées les instructions d'une fonction pour
+effectuer une réduction intraprocédurale.\\
+
+Puis, le chapitre \ref{sec-interproc} expose comment sont organisés les calculs
+pour faire une propagation des réductions à l'ensemble de l'application,
+et comment on se propose de spécialiser les fonctions.\\
+
+Enfin, le chapitre \ref{sec-man} présente comment utiliser le module
+développé et propose donc une vision davantage dédiée à un utilisateur
+potentiel.\\
+
+
+Ce rapport étant un document de travail, il va évoluer au fur et à mesure des
+réalisations~:
+\begin{itemize}
+  \item la version 1.0 du 27 juin 2006 présentait
+les développements en cours concernant les graphe de dépendance
+et le marquage d'une fonction. La présentation des travaux à faire
+pour la gestion d'un \slicing interprocédural était moins détaillée car
+plus prospective. Suivait un chapitre contenant un manuel d'utilisation.
+Enfin, la conclusion présentait l'état courant de l'outil,
+et les perspectives d'évolution.
+\item dans la version 2.0 du 26 juin 2007, la partie sur le graphe de
+  dépendance a été extraite car elle fait l'objet d'un document séparé.
+  Le \slicing interprocédural est cette fois présenté en détail.
+  Les parties issues du document de spécification dont les idées
+  n'ont finalement pas été retenues ont été déplacées en annexe
+  \ref{sec-projets} pour mémoire. La partie sur l'utilisation de l'outil
+  a pour l'instant été conservée, même si elle n'est pas très spécifique à
+  l'utilisation du greffon de \slicing.
+\end{itemize}
+
+Fin 2008, ce document peut être considéré comme stable,
+car même si le développement évolue, il ne s'agit plus de modifier les
+fonctionnalité de bases, mais plutôt d'ajuster des points de détail pour
+améliorer la précision par exemple.

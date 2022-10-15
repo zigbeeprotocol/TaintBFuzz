@@ -1,0 +1,29 @@
+Loop analysis.
+
+* Overview
+
+This plugin tries to compute an upper bound on the number of
+iterations in a loop.
+
+* Installation
+
+The installation follows the standard installation of Frama-C
+plugins. By default, it is compiled and installed with Frama-C itself.
+Otherwise, a manual installation can be performed by typing:
+
+: make
+
+And then, with the sufficient privileges (e.g. as root or using =sudo=):
+
+: make install
+
+* Usage
+
+The analysis of the two parts is triggered using the =-loop= option, for
+instance:
+
+: frama-c -loop test.c
+
+The loop analysis path is silent, but its results can be read
+programmatically in the =Loop_Max_Iteration= table for use by other
+plugins.

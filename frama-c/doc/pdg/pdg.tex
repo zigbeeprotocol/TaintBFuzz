@@ -1,0 +1,78 @@
+%===============================================================================
+% Versions
+\section*{Versions}
+
+\begin{small}
+Seules les versions Vx.0 sont des documents achevés~;
+les autres sont à considérer comme des brouillons.
+
+\begin{enumerate}
+  \item[V3.0 -] 2 novembre 2020~:
+    \begin{itemize}
+    \item Document sous licence Creative Commons
+      ``Attribution-ShareAlike 4.0 International''
+      \url{https://creativecommons.org/licenses/by/4.0/}.
+    \end{itemize}
+  \item[V2.0 -] 3 décembre 2008~:
+    \begin{itemize}
+      \item réorganisation,
+      \item mise à jour,
+      \item partie sur l'utilisation.
+    \end{itemize}
+  \item[V1.4 - ] 30 mai 2008~:
+    \begin{itemize}
+      \item ajout d'une partie sur le marquage.
+    \end{itemize}
+  \item[V1.3 - ] 22 novembre 2007~:
+    \begin{itemize}
+      \item mise à jour de la partie sur l'interprocédural.
+    \end{itemize}
+  \item[V1.2 - ] 07 novembre 2007~:
+    \begin{itemize}
+      \item mise à jour de la partie sur les dépendances de contrôle.
+    \end{itemize}
+  \item[V1.1 - ] 20 septembre 2007~:
+    \begin{itemize}
+      \item réorganisation complète,
+      \item développement de la partie sur les dépendances de contrôle,
+      \item discussion au sujet des boucles infinies.
+    \end{itemize}
+  \item[V1.0 - ] 26 juin 2007~:
+    \begin{itemize}
+      \item relecture et petites corrections.
+    \end{itemize}
+  \item[V0.2 - ] 24 mai 2007~:
+    \begin{itemize}
+      \item révision générale,
+    \end{itemize}
+  \item[V0.1 - ] 23 mars 2007~:
+    \begin{itemize}
+      \item création du module de calcul de PDG,
+      \item extraction de la documentation du PDG du rapport sur le {\it
+	slicing}.
+    \end{itemize}
+\end{enumerate}
+\end{small}
+%===============================================================================
+\cleardoublepage
+\tableofcontents
+%===============================================================================
+\cleardoublepage\input{intro.tex}
+\cleardoublepage\input{data.tex}
+\cleardoublepage\input{ctrl.tex}
+\cleardoublepage\input{calls.tex}
+\cleardoublepage\input{utilisation.tex}
+\cleardoublepage\input{mark.tex}
+\cleardoublepage\input{conclusion.tex}
+%===============================================================================
+\appendix
+%--------------------------------------
+\cleardoublepage \input{impact.tex}
+%-------------------------------------------------------------------------------
+\cleardoublepage
+\bibliographystyle{abbrvnat}
+\bibliography{../slicing/bib-slicing}
+%--------------------------------------
+\cleardoublepage
+\printindex
+%===============================================================================

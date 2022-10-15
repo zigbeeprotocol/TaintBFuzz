@@ -1,0 +1,70 @@
+[kernel] Parsing dr_infinity.i (no preprocessing)
+[kernel:parser:decimal-float] dr_infinity.i:8: Warning: 
+  Floating-point constant 3.4028235677973366e+38f is not represented exactly. Will use 0x1.fffffe0000000p127.
+[kernel:parser:decimal-float] dr_infinity.i:11: Warning: 
+  Floating-point constant 3.402823567797366e+38 is not represented exactly. Will use 0x1.ffffff000004ep127.
+[kernel:parser:decimal-float] dr_infinity.i:15: Warning: 
+  Floating-point constant 3.4e38 is not represented exactly. Will use 0x1.ff933c78cdfadp127.
+[kernel:parser:decimal-float] dr_infinity.i:20: Warning: 
+  Floating-point constant 1e308 is not represented exactly. Will use 0x1.1ccf385ebc8a0p1023.
+[kernel:parser:decimal-float] dr_infinity.i:30: Warning: 
+  Floating-point constant 1e308 is not represented exactly. Will use 0x1.1ccf385ebc8a0p1023.
+[kernel:parser:decimal-float] dr_infinity.i:31: Warning: 
+  Floating-point constant 0.01 is not represented exactly. Will use 0x1.47ae147ae147bp-7.
+[kernel:parser:decimal-float] dr_infinity.i:35: Warning: 
+  Floating-point constant 1e38 is not represented exactly. Will use 0x1.2ced32a16a1b1p126.
+[kernel:parser:decimal-float] dr_infinity.i:36: Warning: 
+  Floating-point constant 0.001 is not represented exactly. Will use 0x1.0624dd2f1a9fcp-10.
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] dr_infinity.i:9: Frama_C_show_each: {0x1.fffffe0000000p127}
+[eva:alarm] dr_infinity.i:11: Warning: 
+  non-finite float value.
+  assert \is_finite((float)((double)3.402823567797366e+38));
+[eva:alarm] dr_infinity.i:16: Warning: 
+  non-finite float value. assert \is_finite(\mul_float(x, x));
+[eva:alarm] dr_infinity.i:21: Warning: 
+  non-finite double value. assert \is_finite(\mul_double(d, (double)10));
+[eva:alarm] dr_infinity.i:26: Warning: 
+  non-finite double value. assert \is_finite(\div_double((double)2, d));
+[eva:alarm] dr_infinity.i:31: Warning: 
+  non-finite double value. assert \is_finite(\div_double(d, (double)0.01));
+[eva:alarm] dr_infinity.i:36: Warning: 
+  non-finite float value.
+  assert \is_finite((float)\div_double((double)x, (double)0.001));
+[eva:alarm] dr_infinity.i:41: Warning: 
+  non-finite double value. assert \is_finite(\div_double(d, (double)0.));
+[eva] Recording results for main
+[eva] done for function main
+[eva] dr_infinity.i:11: 
+  assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] dr_infinity.i:16: 
+  assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] dr_infinity.i:21: 
+  assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] dr_infinity.i:26: 
+  assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] dr_infinity.i:31: 
+  assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] dr_infinity.i:36: 
+  assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] dr_infinity.i:41: 
+  assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  x ∈ {0x1.fffffe0000000p127}
+  d ∈ UNINITIALIZED
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    x; d
+[inout] Inputs for function main:
+    v

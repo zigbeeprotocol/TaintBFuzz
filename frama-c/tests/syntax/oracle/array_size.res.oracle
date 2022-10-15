@@ -1,0 +1,4 @@
+[kernel] Parsing array_size.i (no preprocessing)
+[kernel] array_size.i:7: User Error: Array length is negative.
+[kernel] User Error: stopping on file "array_size.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

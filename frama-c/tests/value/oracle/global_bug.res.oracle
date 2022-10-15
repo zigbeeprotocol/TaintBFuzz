@@ -1,0 +1,28 @@
+[kernel] Parsing global_bug.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva:alarm] global_bug.i:6: Warning: 
+  invalid RHS operand for shift. assert 0 ≤ 63 < 32;
+[eva] global_bug.i:7: Warning: evaluation of initializer '99 << 63' failed
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  NOT ACCESSIBLE
+[eva] Eva not started because globals initialization is not computable.
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] ====== END OF DEPENDENCIES ======
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[   Bug   ] Assertion 'Eva,shift' (file global_bug.i, line 7)
+            by Eva.
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     1 Bugs found
+     1 Total
+--------------------------------------------------------------------------------

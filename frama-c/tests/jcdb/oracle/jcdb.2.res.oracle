@@ -1,0 +1,3 @@
+[kernel] Parsing jcdb.c (with preprocessing)
+[kernel] Value of -json-compilation-database in default is with_arguments.json
+[kernel] Value of -json-compilation-database in copy is with_arguments.json

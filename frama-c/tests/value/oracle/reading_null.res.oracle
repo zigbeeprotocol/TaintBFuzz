@@ -1,0 +1,43 @@
+[kernel] Parsing reading_null.i (no preprocessing)
+[eva] Analyzing an incomplete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  AutoTest[0..999] ∈ [--..--]
+  X ∈ [--..--]
+  T[0] ∈ {{ NULL ; &S_0_T[0] }}
+   [1] ∈ {{ NULL ; &S_1_T[0] }}
+  X1 ∈ [--..--]
+  X2 ∈ [--..--]
+  X3 ∈ [--..--]
+  X4 ∈ [--..--]
+  X5 ∈ [--..--]
+  X6 ∈ [--..--]
+  X7 ∈ [--..--]
+  X8 ∈ [--..--]
+  X9 ∈ [--..--]
+  S_0_T[0..1] ∈ [--..--]
+  S_1_T[0..1] ∈ [--..--]
+[eva] reading_null.i:25: Frama_C_show_each_F: [-2147483648..2147483647], {0}
+[eva] reading_null.i:24: starting to merge loop iterations
+[eva] reading_null.i:25: Frama_C_show_each_F: [-2147483648..2147483647], {0; 1}
+[eva] reading_null.i:25: 
+  Frama_C_show_each_F: [-2147483648..2147483647], {0; 1; 2}
+[eva] reading_null.i:25: Frama_C_show_each_F: [-2147483648..2147483647], [0..9]
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  X ∈ [--..--]
+  count ∈ {10}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  X FROM X1; X2; X3; X4; X5; X6; X7; X8; X9 (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    X; count
+[inout] Inputs for function main:
+    X; X1; X2; X3; X4; X5; X6; X7; X8; X9

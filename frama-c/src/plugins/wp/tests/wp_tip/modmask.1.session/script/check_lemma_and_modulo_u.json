@@ -1,0 +1,164 @@
+[ { "header": "Mod-Mask", "tactic": "Wp.modmask",
+    "params": { "Wp.modmask.revert": false },
+    "select": { "select": "inside-goal", "occur": 0,
+                "target": "(land us_0 ((lsl 1 shift_0)-1))",
+                "pattern": "land$us+-1lsl1$shift" },
+    "children": { "Mod Guard": [ { "header": "Split", "tactic": "Wp.split",
+                                   "params": {},
+                                   "select": { "select": "clause-goal",
+                                               "target": "let x_0 = (lsl 1 shift_0) in\n(0<=us_0) /\\ (0<x_0) /\\ (exists i_0:int.\n                         ((lsl 1 i_0)=x_0) /\\ (0<=i_0))",
+                                               "pattern": "&<=<\\E0$us0lsl1$shiftlsl011$shift" },
+                                   "children": { "Goal 1/3": [ { "prover": "qed",
+                                                                 "verdict": "valid" },
+                                                               { "header": "Definition",
+                                                                 "tactic": "Wp.unfold",
+                                                                 "params": {},
+                                                                 "select": 
+                                                                   { "select": "clause-step",
+                                                                    "at": 2,
+                                                                    "kind": "have",
+                                                                    "target": "(is_uint32 us_0)",
+                                                                    "pattern": "is_uint32$us" },
+                                                                 "children": 
+                                                                   { "Unfold 'is_uint32'": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ] } } ],
+                                                 "Goal 2/3": [ { "header": "Range",
+                                                                 "tactic": "Wp.range",
+                                                                 "params": 
+                                                                   { "inf": 0,
+                                                                    "sup": 31 },
+                                                                 "select": 
+                                                                   { "select": "inside-goal",
+                                                                    "occur": 0,
+                                                                    "target": "shift_0",
+                                                                    "pattern": "$shift" },
+                                                                 "children": 
+                                                                   { "Lower 0": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 0": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 1": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 2": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 3": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 4": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 5": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 6": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 7": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 8": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 9": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 10": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 11": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 12": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 13": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 14": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 15": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 16": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 17": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 18": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 19": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 20": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 21": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 22": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 23": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 24": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 25": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 26": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 27": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 28": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 29": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 30": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Value 31": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ],
+                                                                    "Upper 31": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ] } } ],
+                                                 "Goal 3/3": [ { "header": "Instance",
+                                                                 "tactic": "Wp.instance",
+                                                                 "params": 
+                                                                   { "P1": 
+                                                                    { "select": "inside-goal",
+                                                                    "occur": 0,
+                                                                    "target": "shift_0",
+                                                                    "pattern": "$shift" },
+                                                                    "P2": null,
+                                                                    "P3": null,
+                                                                    "P4": null,
+                                                                    "P5": null,
+                                                                    "P6": null,
+                                                                    "P7": null,
+                                                                    "P8": null,
+                                                                    "P9": null,
+                                                                    "P10": null },
+                                                                 "select": 
+                                                                   { "select": "clause-goal",
+                                                                    "target": "exists i_0:int. ((lsl 1 i_0)=(lsl 1 shift_0)) /\\ (0<=i_0)",
+                                                                    "pattern": "\\Elsl011$shift" },
+                                                                 "children": 
+                                                                   { "Witness": 
+                                                                    [ { "prover": "qed",
+                                                                    "verdict": "valid" } ] } } ] } } ],
+                  "Mod": [ { "prover": "qed", "verdict": "valid" } ] } } ]

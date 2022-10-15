@@ -1,0 +1,96 @@
+[kernel] Parsing empty_struct2.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+  pg ∈ {{ &global_empty }}
+[eva] empty_struct2.c:48: assertion got status valid.
+[eva] empty_struct2.c:50: Frama_C_show_each_global_empty: ∅
+[eva] empty_struct2.c:51: Frama_C_show_each_e1: ∅
+[eva] empty_struct2.c:52: Call to builtin memcpy
+[eva] empty_struct2.c:52: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] empty_struct2.c:52: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] empty_struct2.c:52: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:101: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] empty_struct2.c:57: Call to builtin memcpy
+[eva] empty_struct2.c:57: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] empty_struct2.c:57: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] empty_struct2.c:57: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] empty_struct2.c:58: 
+  Frama_C_show_each_c2: .a ∈ {42}
+                        .b ∈ {77}
+[eva] empty_struct2.c:59: Frama_C_show_each_c2_e: ∅
+[eva] computing for function f <- main.
+  Called from empty_struct2.c:60.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] empty_struct2.c:62: 
+  Frama_C_show_each_res: .a ∈ {87}
+                         .b ∈ {39}
+[eva] empty_struct2.c:66: assertion got status valid.
+[eva] computing for function ret_empty <- main.
+  Called from empty_struct2.c:68.
+[eva] using specification for function ret_empty
+[eva] Done for function ret_empty
+[eva] computing for function ret_ptr_empty <- main.
+  Called from empty_struct2.c:69.
+[eva] using specification for function ret_ptr_empty
+[eva] Done for function ret_ptr_empty
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  res.a ∈ {87}
+     .b ∈ {39}
+[eva:final-states] Values at end of function main:
+  c1.a ∈ {42}
+    .b ∈ {77}
+  c2.a ∈ {42}
+    .b ∈ {77}
+  res.a ∈ {87}
+     .b ∈ {39}
+  cb.i ∈ {91}
+  ce.ch ∈ {90}
+  p ∈ {{ (struct empty *)&cb }}
+  ptr_ret ∈ {{ &global_empty }}
+  __retres ∈ {0}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main
+[from] Computing for function memcpy <-main
+[from] Done for function memcpy
+[from] Computing for function ret_empty <-main
+[from] Done for function ret_empty
+[from] Computing for function ret_ptr_empty <-main
+[from] Done for function ret_ptr_empty
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  \result FROM s
+[from] Function memcpy:
+  c2 FROM c1 (and SELF)
+  \result FROM dest
+[from] Function ret_empty:
+  \result FROM \nothing
+[from] Function ret_ptr_empty:
+  \result FROM pg
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    res
+[inout] Inputs for function f:
+    nondet
+[inout] Out (internal) for function main:
+    c1; c2; res; cb; ce; p; ptr_ret; __retres
+[inout] Inputs for function main:
+    nondet; pg

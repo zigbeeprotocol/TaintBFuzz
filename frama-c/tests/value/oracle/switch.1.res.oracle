@@ -1,0 +1,40 @@
+[kernel] Parsing switch.i (no preprocessing)
+[kernel] switch.i:52: 
+  Case label 0xFFFFFFFF exceeds range of long for switch expression. Nothing to worry.
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  result1 ∈ {0}
+  result3 ∈ {0}
+  result4 ∈ {0}
+  result2 ∈ {7}
+  d2 ∈ {0}
+[eva] switch.i:29: Frama_C_show_each_F: {0}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  result1 ∈ {0; 1; 2; 4}
+  result3 ∈ {0; 42}
+  result4 ∈ {0; 1; 2}
+  result2 ∈ {0; 7}
+  d2 ∈ [-0.0000000000000000 .. 1.9999999999999998*2^1023]
+  f ∈ [--..--]
+  __retres ∈ {0; 2; 77}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  result1 FROM d (and SELF)
+  result3 FROM c; f (and SELF)
+  result4 FROM c; l (and SELF)
+  result2 FROM c; e (and SELF)
+  d2 FROM c; d1 (and SELF)
+  \result FROM c
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    result1; result3; result4; result2; d2; f; __retres
+[inout] Inputs for function main:
+    \nothing

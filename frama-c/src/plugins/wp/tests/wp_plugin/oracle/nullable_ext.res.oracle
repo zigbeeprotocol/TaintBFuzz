@@ -1,0 +1,68 @@
+# frama-c -wp -wp-model 'Typed (Caveat)' [...]
+[kernel] Parsing tests/wp_plugin/nullable_ext.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: In caveat model with nullable arguments, -wp-(no)-rte shall be explicitly positioned.
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function nullable_coherence
+------------------------------------------------------------
+
+Goal Check 'must_fail' (file tests/wp_plugin/nullable_ext.i, line 16):
+Assume { (* Then *) Have: null = pointer_p. }
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check (file tests/wp_plugin/nullable_ext.i, line 19):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file tests/wp_plugin/nullable_ext.i, line 11) in 'nullable_coherence':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function nullable_in_context
+------------------------------------------------------------
+
+Goal Assigns (file tests/wp_plugin/nullable_ext.i, line 25) in 'nullable_in_context' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file tests/wp_plugin/nullable_ext.i, line 25) in 'nullable_in_context' (2/2):
+Effect at line 32
+Prove: true.
+
+------------------------------------------------------------
+[wp] tests/wp_plugin/nullable_ext.i:14: Warning: 
+  Memory model hypotheses for function 'nullable_coherence':
+  /*@
+     behavior wp_typed_caveat:
+       requires \valid(g);
+       requires \valid(p) ∨ p ≡ \null;
+       requires \separated(g, &x);
+       requires \separated(p, &x);
+       requires p ≢ \null ⇒ \separated(g, p, &x);
+     */
+  void nullable_coherence(int *p /*@ wp_nullable */);
+[wp] tests/wp_plugin/nullable_ext.i:28: Warning: 
+  Memory model hypotheses for function 'nullable_in_context':
+  /*@
+     behavior wp_typed_caveat:
+       requires \valid(s);
+       requires \valid(t);
+       requires \valid(p) ∨ p ≡ \null;
+       requires \valid(q) ∨ q ≡ \null;
+       requires \valid(r) ∨ r ≡ \null;
+       requires p ≢ \null ⇒ \separated(p, s, t);
+       requires q ≢ \null ⇒ \separated(q, s, t);
+       requires q ≢ \null ⇒ p ≢ \null ⇒ \separated(q, p);
+       requires r ≢ \null ⇒ \separated(r, s, t);
+       requires r ≢ \null ⇒ p ≢ \null ⇒ \separated(r, p);
+       requires r ≢ \null ⇒ q ≢ \null ⇒ \separated(r, q);
+     */
+  void nullable_in_context(int *p /*@ wp_nullable */,
+                           int *q /*@ wp_nullable */,
+                           int *r /*@ wp_nullable */, int *s, int *t);

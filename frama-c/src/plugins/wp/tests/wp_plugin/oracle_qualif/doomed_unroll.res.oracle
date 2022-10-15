@@ -1,0 +1,19 @@
+# frama-c -wp [...]
+[kernel] Parsing doomed_unroll.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] doomed_unroll.i:15: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+[wp] 5 goals scheduled
+[wp] [Passed] Smoke-test typed_foo_wp_smoke_dead_code_s27
+[wp] [Passed] Smoke-test typed_foo_wp_smoke_dead_code_s31
+[wp] [Passed] Smoke-test typed_foo_wp_smoke_dead_code_s35
+[wp] [Qed] Goal typed_foo_loop_invariant_preserved : Valid
+[wp] [Qed] Goal typed_foo_loop_invariant_established : Valid
+[wp] Proved goals:    5 / 5
+  Qed:             2 
+  Alt-Ergo:        3
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  foo                       2        3        5       100%
+------------------------------------------------------------

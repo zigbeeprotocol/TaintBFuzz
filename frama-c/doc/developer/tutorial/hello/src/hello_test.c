@@ -1,0 +1,3 @@
+/* run.config
+   OPT: -hello
+ */

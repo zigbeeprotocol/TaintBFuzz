@@ -1,0 +1,48 @@
+# frama-c -wp [...]
+[kernel] Parsing terminates_formulae.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp:hypothesis] terminates_formulae.i:84: Warning: 
+  'Rel' relation must be well-founded
+[wp:hypothesis] terminates_formulae.i:67: Warning: 
+  'Rel' relation must be well-founded
+[wp] [CFG] Goal general_variant_terminates : Valid (Trivial)
+[wp] [CFG] Goal variant_terminates : Valid (Trivial)
+[wp] terminates_formulae.i:90: Warning: 
+  No 'decreases' clause on recursive function 'no_decreases', cannot prove termination
+[wp] 18 goals scheduled
+[wp] [Alt-Ergo] Goal typed_base_call_terminates : Unsuccess
+[wp] [Qed] Goal typed_call_same_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_call_change_terminates : Unsuccess
+[wp] [Qed] Goal typed_call_param_same_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_call_param_change_terminates : Unsuccess
+[wp] [Qed] Goal typed_variant_loop_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_variant_loop_variant_decrease : Valid
+[wp] [Qed] Goal typed_variant_loop_variant_positive : Valid
+[wp] [Qed] Goal typed_general_variant_loop_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_general_variant_loop_variant_relation : Valid
+[wp] [Alt-Ergo] Goal typed_no_variant_terminates : Unsuccess
+[wp] [Qed] Goal typed_no_variant_loop_assigns : Valid
+[wp] [Qed] Goal typed_decreases_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_decreases_variant : Valid
+[wp] [Qed] Goal typed_general_decreases_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_general_decreases_variant : Valid
+[wp] [Qed] Goal typed_no_decreases_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_no_decreases_terminates_part2 : Unsuccess
+[wp] Proved goals:   15 / 20
+  Qed:             9 
+  Alt-Ergo:        4  (unsuccess: 5)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  base_call                 -        -        1       0.0%
+  call_same                 1        -        1       100%
+  call_change               -        -        1       0.0%
+  call_param_same           1        -        1       100%
+  call_param_change         -        -        1       0.0%
+  variant                   2        1        3       100%
+  general_variant           1        1        2       100%
+  no_variant                1        -        2      50.0%
+  decreases                 1        1        2       100%
+  general_decreases         1        1        2       100%
+  no_decreases              1        -        2      50.0%
+------------------------------------------------------------

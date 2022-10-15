@@ -1,0 +1,4 @@
+- macro va_copy / builtin_va_copy ?
+- annotations dans le corps des fonctions variadiques définies ?
+- gestion des attributs pour le typage des formats
+- gérer les fonctions connues du type fwprintf/fwscanf

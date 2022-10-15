@@ -1,0 +1,11 @@
+@CONSOLE
+@ZERO "   -"
+@HEAD
+@CHAPTER
+------------------------------------------------------------
+ %chapter  &25:  WP &34:Alt-Ergo           &43: Total &52:Success
+@SECTION
+  %name    &25:%wp  &34:%{alt-ergo} &43:%total &52: %success%%
+@TAIL
+------------------------------------------------------------
+@END

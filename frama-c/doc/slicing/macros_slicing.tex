@@ -1,0 +1,187 @@
+%==============================================================================
+\usepackage{tabularx}
+\usepackage{alltt}
+\usepackage{ulem} %sout
+
+\usepackage{amsmath}
+\usepackage{wasysym}
+\usepackage{stmaryrd}
+\usepackage{listings}
+
+\usepackage[french]{varioref}
+
+%------------------------------------------------------------------------------
+\newcommand{\setenvclass}[2]{}
+
+\usepackage{listings}
+% TODO :
+\lstdefinestyle{clststyle}{}
+\lstnewenvironment{clisting}
+  {
+   \setenvclass{lstlisting}{clisting}
+   \lstset{language=C,
+           style=clststyle,
+           inputencoding=utf8,
+           extendedchars=true,
+           literate={ç}{{\c{c}}}1
+                    {â}{{\^{a}}}1
+                    {à}{{\`{a}}}1
+                    {ê}{{\^{e}}}1
+                    {ë}{{\"{e}}}1
+                    {é}{{\'{e}}}1
+                    {è}{{\`{e}}}1
+                    {ï}{{\"{\i}}}1
+                    {î}{{\^{\i}}}1
+                    {ô}{{\^{o}}}1
+                    {û}{{\^{u}}}1
+                    {ü}{{\"{u}}}1}
+                    }
+  {}
+
+\newcommand{\camlListingInput}[1]{
+  \begin{footnotesize}
+  \lstinputlisting[language=caml,
+                  style=clststyle,
+                  inputencoding=utf8,
+                  extendedchars=true,
+                  literate={ç}{{\c{c}}}1
+                           {â}{{\^{a}}}1
+                           {à}{{\`{a}}}1
+                           {ê}{{\^{e}}}1
+                           {ë}{{\"{e}}}1
+                           {é}{{\'{e}}}1
+                           {è}{{\`{e}}}1
+                           {ï}{{\"{\i}}}1
+                           {î}{{\^{\i}}}1
+                           {ô}{{\^{o}}}1
+                           {û}{{\^{u}}}1
+                           {ü}{{\"{u}}}1]{#1}
+  \end{footnotesize}
+}
+
+%-----------------------------------------------
+% Commandes pour mettre des ref dans l'index :
+\newcommand{\idb}[1]{\textbf{#1}}
+\newcommand{\indextxt}[1]{\index{#1}{\bf #1}}
+\newcommand{\indexdef}[1]{\index{#1|idb}{{\bf #1}}}
+\newcommand{\indextxtdef}[2]{\index{#2|idb}{{\bf #1}}}
+
+%-----------------------------------------------
+% quelques "mots" spéciaux
+\newcommand{\slicing}{{\it slicing}\xspace}
+\newcommand{\slicingb}{{\it slicing\ }}
+           % permet de corriger les cas où \slicing est suivi d'une {
+           % car il semble que xspace gère mal ce cas.
+\newcommand{\caml}{{\sc Ocaml}\xspace}
+\newcommand{\caveat}{{\sc Caveat}\xspace}
+\newcommand{\cil}{{\sc CIL}\xspace}
+\newcommand{\ppc}{{\sc Frama-C}\xspace}
+\newcommand{\from}{{\sc From}\xspace}
+
+\newcommand{\mylet}{\text{\it let }}
+\newcommand{\myin}{\text{\it in }}
+
+\DeclareMathOperator{\Call}{\mathcal{C\mathit{all}}}
+
+\makeatletter
+\newcommand*{\motcle}[3]{%
+  \index{#2!#1}%
+  \expandafter \@ifdefinable \csname #3#1\endcsname {%
+    \global \@namedef{#3#1}{\textit{#1}}%
+    }%
+}
+\makeatother
+
+%------------------------------------------------------------------------------
+\newcommand{\verbtt}[1]{{\small{\tt{#1}}}}
+%------------------------------------------------------------------------------
+% Légende des figures :
+\usepackage[hang,small]{caption}
+\renewcommand{\captionfont}{\it}
+\renewcommand{\captionlabelfont}{\it \bf \small}
+%\renewcommand{\captionlabeldelim}{ : }
+%-----------------------------------------------
+% prend le nom du fichier
+% et éventuellement un facteur d'échelle (1 par défaut)
+\newcommand{\uneimage}[1]{
+    \includegraphics[width=1\textwidth]{#1}
+}
+%--------------------------------
+\newcommand{\labcenterepsfig}[3]{
+  \begin{center}
+  \begin{figure}[hbt]
+    \centering{
+    \leavevmode
+    \uneimage{#1}
+    }
+    \caption{\label{#3} #2}
+  \end{figure}
+  \end{center}
+  }
+%------------------------------------------------------------------------------
+\newenvironment{debutenv}[1]
+  {
+    \vspace{5mm}
+    \begin{footnotesize}
+      \setenvclass{minipage}{myminipage}
+      \noindent\begin{minipage}[t]{\textwidth}
+      \fbox{\bf #1} \hrule
+    \vspace{3mm}
+  }
+  {
+    \end{minipage}
+    \end{footnotesize}
+  }
+\newenvironment{finenv}
+  {
+    \begin{footnotesize}
+      \setenvclass{minipage}{myminipage}
+    \noindent\begin{minipage}[t]{\textwidth}
+  }
+  {
+    \hrule
+    \
+    \end{minipage}
+    \end{footnotesize}
+    \vspace{5mm}
+  }
+\newenvironment{monenv}[1]
+  {\begin{debutenv}{#1}}
+  {\end{debutenv}
+   \par
+   \begin{finenv}
+   \end{finenv}}
+
+\newcounter{numexemple}
+\newcommand{\titreexemple}{%
+  \stepcounter{numexemple}{Exemple \arabic{numexemple}}}
+
+\newenvironment{exemple}
+  {\begin{monenv}{\titreexemple}}
+  {\end{monenv}}
+
+\newenvironment{exemple1}
+  {\begin{debutenv}{\titreexemple}}
+    {\end{debutenv}}
+
+\newenvironment{exemple2}
+  {\begin{finenv}}
+    {\end{finenv}}
+
+\newenvironment{astuce}
+  {\begin{monenv}{Astuce}}
+  {\end{monenv}}
+
+\newenvironment{definition}[1]
+  {\begin{monenv}{Definition (#1)}}
+  {\end{monenv}}
+
+\newenvironment{algo}[1]
+  {\begin{monenv}{Algorithme (#1)}}
+  {\end{monenv}}
+
+\newcounter{numrque}
+\newenvironment{remarque}[1]
+  {\refstepcounter{numrque}{\bf Remarque \arabic{numrque}} :\label{#1}}
+  {}
+%==============================================================================

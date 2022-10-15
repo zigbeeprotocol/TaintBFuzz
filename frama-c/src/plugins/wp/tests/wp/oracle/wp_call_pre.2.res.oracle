@@ -1,0 +1,32 @@
+# frama-c -wp -wp-model 'Hoare' [...]
+[kernel] Parsing wp_call_pre.c (with preprocessing)
+[wp] Running WP plugin...
+[kernel] wp_call_pre.c:44: Warning: 
+  No code nor implicit assigns clause for function g, generating default assigns from the prototype
+[kernel] wp_call_pre.c:44: Warning: 
+  No code nor implicit assigns clause for function f, generating default assigns from the prototype
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function double_call
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'qed_ok,Rf' in 'f'' in 'double_call' at initialization of 'x1' (file wp_call_pre.c, line 25)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'qed_ok,Rf' in 'f'' in 'double_call' at initialization of 'x2' (file wp_call_pre.c, line 26)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'qed_ok,Rf' in 'f'' in 'main' at initialization of 'x' (file wp_call_pre.c, line 32)
+:
+Prove: true.
+
+------------------------------------------------------------

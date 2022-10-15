@@ -1,0 +1,224 @@
+\chapter{Overview}
+\label{user-overview}
+
+\section{What is \FramaC?}
+
+\FramaC is a platform dedicated to the analysis of source code written in
+\tool{C}. The \FramaC platform gathers several analysis techniques into
+a single collaborative extensible framework. The collaborative approach of
+\FramaC allows analyzers to build upon the results already computed by
+other analyzers in the framework. Thanks to this approach, \FramaC can provide
+a number of sophisticated tools such as a concurrency safety analysis
+(Mthread~\cite{mthread}),
+an enforcer of secure information flow (SecureFlow~\cite{secureflow1,secureflow2}),
+or a set of tools for various test coverage criteria (LTest~\cite{ltest}), among many others.
+
+\section{\FramaC as a Code Analysis Tool}
+
+\emph{Static analysis} of source code is the science of computing synthetic
+information about the source code without executing it.
+
+To most programmers, static analysis means measuring the source code with
+respect to various metrics (examples are the number of comments per line of
+code and the depth of nested control structures). This kind of syntactic
+analysis can be implemented in \FramaC but it is not the focus of the project.
+
+Others may be familiar with heuristic bug-finding tools. These tools take more
+of an in-depth look at the source code and try to pinpoint dangerous
+constructions and likely bugs (locations in the code where an error might
+happen at run-time). These heuristic tools do not find all such bugs, and
+sometimes they alert the user for constructions which are in fact not bugs.
+
+\FramaC is closer to these heuristic tools than it is to software metrics
+tools, but it has two important differences with them: it aims at being
+correct, that is, never to remain silent for a location in the source code
+where an error can happen at run-time. And it allows its user to manipulate
+\emph{functional specifications}, and to \emph{prove} that the source code
+satisfies these specifications.
+
+\FramaC is not the only correct code analyzer out there, but analyzers of the
+\emph{correct} family are less widely known and used. Software metrics tools do
+not guarantee anything about the behavior of the program, only about the way it
+is written. Heuristic bug-finding tools can be very useful, but because they do
+not find all bugs, they can not be used to prove the absence of bugs in a
+program. \FramaC on the other hand can guarantee that there are no bugs in a
+program ("no bugs" meaning either no possibility of a run-time error, or even
+no deviation from the functional specification the program is supposed to
+adhere to). This of course requires more work from the user than heuristic
+bug-finding tools usually do, but some of the analyses provided by \FramaC
+require comparatively little intervention from the user, and the collaborative
+approach proposed in \FramaC allows the user to get results about complex
+semantic properties.
+
+\FramaC also provides some {\em dynamic analysis}, via plug-ins such as
+\tool{E-ACSL}~\cite{eacsl}, which performs {\em runtime verification}.
+It is often used as a complement to static analysis: when some properties
+cannot be proven statically, \tool{E-ACSL} instruments the code so that,
+during execution, such properties are verified and {\em enforced}:
+violations lead to alerts or immediate termination, preventing silent program
+corruption or malicious infiltration, and helping pinpoint the exact cause
+of a problem, instead of an indirect consequence much later.
+
+For both static and dynamic analyses, \FramaC focuses on the {\em source code}.
+Plug-ins can help translate higher-level properties and specifications, or
+even provide front-ends to other languages; but, in the end, the strength of
+the platform is centered around the code and its properties.
+
+\subsection{\FramaC as a Lightweight Semantic-Extractor Tool}
+
+\FramaC analyzers, by offering the possibility to extract semantic information
+from \C code, can help better understand a program source.
+
+The \C language has been in use for a long time, and numerous programs today
+make use of \C routines. This ubiquity is due to historical reasons, and to the
+fact that \C is well adapted for a significant number of applications (\eg
+embedded code). However, the \C language exposes many notoriously awkward
+constructs.
+Many \FramaC plug-ins are able to reveal what the analyzed C code actually
+does. Equipped with \FramaC, you can for instance:
+\begin{itemize}
+\item observe sets of possible values for the variables of the program at each
+  point of the execution;
+\item slice the original program into simplified ones;
+\item navigate the dataflow of the program, from definition to use or from use
+  to definition.
+\end{itemize}
+
+\subsection{\FramaC for Formal Verification of Critical Software}
+
+\FramaC can verify that an implementation complies with a related set of formal
+specifications.
+
+Specifications are written in a dedicated language, \acsl (\emph{ANSI/ISO \C
+  Specification Language})~\cite{acsl}. The specifications can be partial,
+concentrating on one aspect of the analyzed program at a time.
+
+The most structured sections of your existing design documents can also be
+considered as formal specifications. For instance, the list of global variables
+that a function is supposed to read or write to is a formal
+specification. \FramaC can compute this information automatically from the
+source code of the function, allowing you to verify that the code satisfies
+this part of the design document, faster and with less risks than by code
+review.
+
+%% \section{\FramaC as a Dynamic Analysis Tool}
+
+%% \emph{Dynamic analysis} of source code is the science of computing synthetic
+%% information about the source code by executing it. Such analysis include ---but
+%% are not limited to--- testing and monitoring.
+
+\section{\FramaC as a Tool for \C programs}
+
+The \C source code analyzed by \FramaC is assumed to follow the \tool{C99} ISO
+standard\index{C99 ISO standard@\tool{C99} ISO standard}\footnote{Some parts of
+the \tool{C11} standard, as well as some common GCC extensions,
+are also supported.}. \C comments may
+contain \acsl annotations~\cite{acsl} used as specifications to be interpreted
+by \FramaC. The subset of \acsl currently interpreted in \FramaC is described
+in~\cite{acsl-implem}.
+
+Each analyzer may define the subsets of \C and \acsl that it understands, as
+well as introduce specific limitations and hypotheses. Please refer to each
+plug-in's documentation.
+
+\section{\FramaC as an Extensible Platform}
+
+\FramaC is organized into a modular architecture (comparable to that of the
+\tool{Eclipse} IDE): each analyzer comes in the form of a
+\emph{plug-in} and is connected to the platform itself, or \emph{kernel}, which
+provides common functionalities and collaborative data structures.
+
+Several ready-to-use analyses are included in the \FramaC distribution. This
+manual covers the set of features common to all plug-ins, plus some plug-ins
+which are used by several others, such as the graphical user interface
+(\GUI) and reporting tools (\Report).
+It does not cover use of the plug-ins that come in the \FramaC
+distribution: value analysis (\Value), functional verification (\WP),
+runtime verification (\tool{E-ACSL}), \etc.
+Each of these analyses has its own specific
+documentation~\cite{value,wp,eacsl}.
+
+Additional plug-ins can be provided by third-party developers and installed
+separately from the kernel. \FramaC is thus not limited to the set of analyses
+initially installed. For instance, it may be extended with the \tool{Frama-Clang}
+plug-in~\cite{framaclang}, which provides an experimental front-end for C++ code;
+or \tool{MetAcsl}~\cite{metacsl}, which allows specifying higher-level
+meta-properties; among others.
+
+\section{\FramaC as a Collaborative Platform}
+
+\FramaC's analyzers collaborate with each other.
+Each plug-in may interact with other plug-ins of his choosing.
+The kernel centralizes information and conducts the
+analysis. This makes for robustness in the development of \FramaC while
+allowing a wide functionality spectrum.
+For instance, the \Slicing plug-in uses the results
+of the \Eva (value analysis) plug-in and of the \From (functional dependencies)
+plug-in.
+
+Analyzers may also exchange information
+through \acsl annotations~\cite{acsl}. A plug-in that needs to
+make an assumption about the behavior of the program may express
+this assumption as an \acsl property. Because \acsl is the
+{\em lingua franca} of all plug-ins, another plug-in can later
+be used to establish the property.
+
+With \FramaC, it is possible to take advantage of the
+complementarity of existing analysis approaches.
+It is possible to apply the most sophisticated techniques
+only on those parts of the analyzed program that require them.
+The low-level constructs can for instance effectively be hidden
+from them by high-level specifications, verified by other,
+adapted plug-ins.
+Note that the sound collaboration of plug-ins on different parts of
+a same program that require different modelizations of C is
+a work in progress. At this time, a safe restriction
+for using plug-in collaboration is to limit the analyzed
+program and annotations to those \C and \acsl constructs
+that are understood by all involved plug-ins.
+
+\section{\FramaC as a Development Platform}
+
+\FramaC may be used for developing new analyses.
+The collaborative and extensible approach of \FramaC allows powerful
+plug-ins to be written with relatively little effort.
+
+There are a number of reasons for a user of \FramaC to be also interested in
+writing their own plug-in:
+\begin{itemize}
+\item a custom plug-in can emit very specific queries for the existing
+  plug-ins, and in this way obtain information which is not easily available
+  through the normal user interface;
+\item a custom plug-in has more flexibility for finely tuning the behavior of the
+  existing analyses;
+\item some analyses may offer specific opportunities for extension.
+\end{itemize}
+
+If you are a researcher in the field of program analysis,
+using \FramaC as a testbed for your ideas is a choice to consider.
+You may benefit from the ready-made parser for C programs with \acsl
+annotations. The results of existing analyses may simplify the problems
+that are orthogonal to those you want to consider (in particular, the
+value analysis provides sets of possible targets of every pointer
+in the analyzed C program).
+And lastly, being available as a \FramaC plug-in increases
+your work's visibility among existing industrial users of \FramaC.
+The development of new plug-ins is described in the
+Plug-in Development Guide~\cite{plugin-dev-guide}.
+
+\section{\FramaC as an Educational Platform}
+
+\FramaC is being used as part of courses on formal verification,
+program specification, testing, static analysis, and abstract interpretation,
+with audiences ranging from Master's students to active professionals, in
+institutions world-wide.  \FramaC is part of the curriculum at several
+universities in France, England, Germany, Portugal, Russia and in the US; at
+schools such as Ecole Polytechnique, ENSIIE, ENSMA, or ENSI Bourges; and as
+part of continuing education units at CNAM, or at Fraunhofer FOKUS.
+
+If you are a teacher in the extended field of software safety, using \FramaC as
+a support for your course and lab work is a choice to consider. You may benefit
+from a clean, focused interface, a choice of techniques to illustrate, and a
+in-tool pedagogical presentation of their abstract values at all program
+points. A number of course materials are also available on the web, or upon
+simple inquiry to the \FramaC team.

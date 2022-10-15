@@ -1,0 +1,2 @@
+COMMENT: Remove --full-mtracking once e-acsl#118 is fixed
+MACRO: ROOT_EACSL_GCC_OPTS_EXT --libc-replacements --full-mtracking

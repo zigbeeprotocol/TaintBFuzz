@@ -1,0 +1,114 @@
+%% LyX 2.2.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,dvipsnames]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{color}
+\usepackage{babel}
+\usepackage[a4paper]{geometry}
+\usepackage[unicode=true,pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
+ breaklinks=false,pdfborder={0 0 1},backref=false,colorlinks=false]
+ {hyperref}
+\usepackage{breakurl}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit,calc,shapes,arrows,backgrounds}
+
+\usepackage{ragged2e}
+
+\makeatother
+
+\usepackage{listings}
+\lstset{language={[ANSI]C},
+basicstyle={\footnotesize},
+tabsize=4,
+frame=single,
+mathescape=true,
+moredelim={**[is][\color{red}]{@}{@}},
+keywordstyle={\color{RoyalBlue}},
+basicstyle={\small\ttfamily},
+commentstyle={\color{webgreen}\ttfamily},
+stringstyle={\rmfamily},
+numbers=none,
+showstringspaces=false,
+breaklines=true,
+frameround=ftff}
+\renewcommand{\lstlistingname}{Listing}
+
+\begin{document}
+
+
+\newgeometry{left=2cm,right=2cm}
+\begin{figure}
+\begin{centering}
+\resizebox{\textwidth}{!}{\input{tikz_call.tex}}
+\par\end{centering}
+\vspace{1cm}
+\caption{Interpretation of the call\label{fig:call-interpretation}}
+\end{figure}
+\restoregeometry
+
+\begin{lstlisting}[caption={Call to a function $f$},language=C,float,numbers=left,stepnumber=5]
+int f (args) {
+  [...]
+  return return_expr;
+}
+
+int main () {
+  ...
+  v = f (exprs);
+  ...
+}
+
+\end{lstlisting}
+
+
+\section*{Interpretation of a Function Call within Eva}
+
+\subsubsection*{Step by Step}
+
+Figure~\ref{fig:call-interpretation} outlines each stage of the
+interpretation of a function call. The magenta lines highlight the
+functions provided by an abstract domain and dedicated to function
+calls. The others computations are performed by the standard transfer
+functions for the evaluation of expressions and interpretation of
+statements. The teal edges refer to actions written in \texttt{transfer\_stmt.ml},
+while the purple edges refer to actions written in \texttt{partitioned\_dataflow.ml}.
+The left line gathers the computations carried out at the call site,
+while the right line gathers the computations carried out in the body
+of the called function.
+
+The stages of the interpretation of a function call are as follows:
+\begin{enumerate}
+\item The concrete arguments $\mathit{exprs}$ are evaluated at the call
+site.
+\item $\mathtt{start\_call}$ builds the state at the entry point of function
+$f$. This steps includes the entry in scope of the formal arguments
+$f_{\mathit{formals}}=\mathit{args}$, and their instantiation with
+the value of the concrete arguments (evaluated at step~1).
+\item The local variables of $f$ enter in scope.
+\item Standard dataflow analysis of $f$ up to the state inferred before
+the return statement of $f$.
+\item The special variable $\mathit{RET}$ enters in scope.
+\item The special variable $\mathit{RET}$ is assigned to the return value,
+through a standard assignment.
+\item The formal arguments $\mathit{args}$ of the function are evaluated,
+and the resulting values $v_{\mathit{args}}$ are stored.
+\item The formal and local variables leave the scope.
+\item $\mathtt{finalize\_call}$ merges the state at the call site and the
+state at the end of the called function.
+\item At the call site, the concrete arguments are reduced to the values
+$v_{\mathit{args}}$, provided that $\mathit{args}=\mathit{exprs}$
+at the end of the function~$f$. This condition holds if the values
+of $\mathit{args}$ and $\mathit{exprs}$ have not been modified by
+$f$.
+\item The assignment of the return value of $f$, through a regular assignment
+of the value of $\mathit{RET}$.
+\item The special variable $\mathit{RET}$ leaves the scope.
+\end{enumerate}
+
+
+\end{document}

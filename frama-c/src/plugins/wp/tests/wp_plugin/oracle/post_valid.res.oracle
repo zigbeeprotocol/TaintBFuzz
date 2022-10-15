@@ -1,0 +1,28 @@
+# frama-c -wp [...]
+[kernel] Parsing post_valid.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition 'LOCAL' in 'job':
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: !valid_rw(Malloc_0[P_formal_26 <- 1][L_local_28 <- 0][P_formal_26
+                   <- 0], global(L_local_28), 1).
+
+------------------------------------------------------------
+
+Goal Post-condition 'FORMAL' in 'job':
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rw(Malloc_0[P_formal_26 <- 1][L_local_28 <- 0][P_formal_26 <- 0],
+         global(P_formal_26), 1).
+
+------------------------------------------------------------
+
+Goal Post-condition 'GLOBAL' in 'job':
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rw(Malloc_0[P_formal_26 <- 1][L_local_28 <- 0][P_formal_26 <- 0],
+         global(G_global_20), 1).
+
+------------------------------------------------------------

@@ -1,0 +1,66 @@
+[kernel] Parsing long_const.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] long_const.i:35: Frama_C_show_each_f: {4}, {18446603611099103232}, {0}
+[eva] computing for function div64 <- main.
+  Called from long_const.i:37.
+[eva:alarm] long_const.i:37: Warning: 
+  function div64: precondition 'num' got status unknown.
+[eva:alarm] long_const.i:37: Warning: 
+  function div64: precondition 'denom' got status unknown.
+[eva] computing for function LL_ABS <- div64 <- main.
+  Called from long_const.i:24.
+[eva] Recording results for LL_ABS
+[eva] Done for function LL_ABS
+[eva] long_const.i:25: Reusing old results for call to LL_ABS
+[eva] long_const.i:26: 
+  Frama_C_show_each:
+  [-9223372036854775807..9223372036854775807],
+  [0..9223372036854775807],
+  [-9223372036854775807..9223372036854775807],
+  [0..9223372036854775807]
+[eva] Recording results for div64
+[eva] Done for function div64
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function LL_ABS:
+  
+[eva:final-states] Values at end of function div64:
+  loc_num ∈ [0..9223372036854775807]
+  loc_den ∈ [0..9223372036854775807]
+  signe_negatif ∈ {-9223372036854775808; 0}
+  __retres ∈ {0}
+[eva:final-states] Values at end of function main:
+  i ∈ {18446603611099103232}
+  j ∈ {0}
+[from] Computing for function LL_ABS
+[from] Done for function LL_ABS
+[from] Computing for function div64
+[from] Done for function div64
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function LL_ABS:
+  \result FROM a
+[from] Function div64:
+  \result FROM \nothing
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function LL_ABS:
+    tmp
+[inout] Inputs for function LL_ABS:
+    \nothing
+[inout] Out (internal) for function div64:
+    loc_num; loc_den; signe_negatif; __retres
+[inout] Inputs for function div64:
+    \nothing
+[inout] Out (internal) for function main:
+    i; j
+[inout] Inputs for function main:
+    \nothing

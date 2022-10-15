@@ -1,0 +1,129 @@
+[kernel] Parsing div.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  X ∈ {0}
+  Y ∈ {0}
+  Z1 ∈ {0}
+  Z2 ∈ {0}
+  T ∈ {0}
+  U1 ∈ {0}
+  U2 ∈ {0}
+  V ∈ {0}
+  W1 ∈ {0}
+  W2 ∈ {0}
+  a ∈ {0}
+  b ∈ {0}
+  d1 ∈ {0}
+  d2 ∈ {0}
+  d0 ∈ {0}
+  e ∈ {0}
+  t[0] ∈ {1}
+   [1] ∈ {2}
+   [2] ∈ {3}
+   [3..4] ∈ {0}
+  p ∈ {0}
+[eva:alarm] div.i:14: Warning: signed overflow. assert c + 1 ≤ 2147483647;
+[eva:alarm] div.i:17: Warning: signed overflow. assert c + 2 ≤ 2147483647;
+[eva] div.i:14: starting to merge loop iterations
+[eva:alarm] div.i:17: Warning: signed overflow. assert -2147483648 ≤ X - 1;
+[eva:alarm] div.i:16: Warning: signed overflow. assert X + 1 ≤ 2147483647;
+[eva:alarm] div.i:32: Warning: division by zero. assert Z2 ≢ 0;
+[eva:alarm] div.i:33: Warning: division by zero. assert Z2 ≢ 0;
+[eva:alarm] div.i:33: Warning: 
+  pointer downcast. assert (unsigned int)(&Z2) ≤ 2147483647;
+[eva:alarm] div.i:33: Warning: 
+  signed overflow. assert -2147483648 ≤ (int)(&Z2) / Z2;
+[eva:alarm] div.i:33: Warning: 
+  signed overflow. assert (int)(&Z2) / Z2 ≤ 2147483647;
+[eva] div.i:33: 
+  Assigning imprecise value to b.
+  The imprecision originates from Arithmetic {div.i:33}
+[eva:alarm] div.i:34: Warning: 
+  pointer downcast. assert (unsigned int)(&X + 2) ≤ 2147483647;
+[eva:alarm] div.i:34: Warning: division by zero. assert (int)(&X + 2) ≢ 0;
+[eva:alarm] div.i:34: Warning: 
+  signed overflow. assert -2147483648 ≤ 100 / (int)(&X + 2);
+[eva:alarm] div.i:34: Warning: 
+  signed overflow. assert 100 / (int)(&X + 2) ≤ 2147483647;
+[eva] div.i:34: 
+  Assigning imprecise value to d2.
+  The imprecision originates from Arithmetic {div.i:34}
+[eva:alarm] div.i:35: Warning: 
+  pointer downcast. assert (unsigned int)(&X + 1) ≤ 2147483647;
+[eva:alarm] div.i:35: Warning: 
+  signed overflow. assert -2147483648 ≤ 100 / (int)(&X + 1);
+[eva:alarm] div.i:35: Warning: 
+  signed overflow. assert 100 / (int)(&X + 1) ≤ 2147483647;
+[eva] div.i:35: 
+  Assigning imprecise value to d1.
+  The imprecision originates from Arithmetic {div.i:35}
+[eva:alarm] div.i:36: Warning: 
+  pointer downcast. assert (unsigned int)(&X) ≤ 2147483647;
+[eva:alarm] div.i:36: Warning: 
+  signed overflow. assert -2147483648 ≤ 100 / (int)(&X);
+[eva:alarm] div.i:36: Warning: 
+  signed overflow. assert 100 / (int)(&X) ≤ 2147483647;
+[eva] div.i:36: 
+  Assigning imprecise value to d0.
+  The imprecision originates from Arithmetic {div.i:36}
+[eva:alarm] div.i:37: Warning: 
+  pointer downcast. assert (unsigned int)(&X) ≤ 2147483647;
+[eva:alarm] div.i:37: Warning: 
+  signed overflow. assert -2147483648 ≤ -((int)(&X));
+[eva:alarm] div.i:37: Warning: 
+  signed overflow. assert -((int)(&X)) ≤ 2147483647;
+[eva] div.i:37: 
+  Assigning imprecise value to e.
+  The imprecision originates from Arithmetic {div.i:37}
+[eva] Recording results for main
+[eva] done for function main
+[scope:rm_asserts] removing 2 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  X ∈ [--..--]
+  Y ∈ [-126..333],9%27
+  Z1 ∈ [-42..111],3%9
+  Z2 ∈ [-25..66]
+  T ∈ [34..493],7%27
+  U1 ∈ [11..164],2%9
+  U2 ∈ [6..98]
+  V ∈ [-125..334],10%27
+  W1 ∈ [-41..111]
+  W2 ∈ [-25..66]
+  a ∈ [-40000..40000]
+  b ∈ {{ garbled mix of &{Z2} (origin: Arithmetic {div.i:33}) }}
+  d1 ∈ {{ garbled mix of &{X} (origin: Arithmetic {div.i:35}) }}
+  d2 ∈ {{ garbled mix of &{X} (origin: Arithmetic {div.i:34}) }}
+  d0 ∈ {{ garbled mix of &{X} (origin: Arithmetic {div.i:36}) }}
+  e ∈ {{ garbled mix of &{X} (origin: Arithmetic {div.i:37}) }}
+  p ∈ {{ &t[3] }}
+  c ∈ [--..--]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  X FROM X (and SELF)
+  Y FROM X
+  Z1 FROM X
+  Z2 FROM X
+  T FROM X
+  U1 FROM X
+  U2 FROM X
+  V FROM X
+  W1 FROM X
+  W2 FROM X
+  a FROM X
+  b FROM X
+  d1 FROM \nothing
+  d2 FROM \nothing
+  d0 FROM \nothing
+  e FROM \nothing
+  p FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    X; Y; Z1; Z2; T; U1; U2; V; W1; W2; a; b; d1; d2; d0; e; p; c
+[inout] Inputs for function main:
+    X; Y; Z2; T; V

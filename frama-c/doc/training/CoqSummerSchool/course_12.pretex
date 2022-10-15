@@ -1,0 +1,701 @@
+\documentclass[pdf]{beamer}
+\usepackage{alltt}
+\usepackage{array}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{beamerthemesplit}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{xkeyval}
+\usepackage{hevea}
+\usepackage{mathpartir}
+
+\usetikzlibrary{shadows}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes.callouts}
+\usetikzlibrary{shapes.multipart}
+
+\setbeamercovered{transparent}
+
+\definecolor{lightgreen}{HTML}{95F4A2}
+\definecolor{lightred}{HTML}{F4959D}
+\definecolor{darkgreen}{HTML}{01802A}
+\usetheme{frama-c}
+
+\setbeamerfont{smaller}{size=\footnotesize}
+
+\pgfdeclareimage[width=\textwidth,interpolate=true]{gwhy}{gwhy}
+
+\title[Course 12]{1st Asian Pacific Summer School on Formal Methods\\
+Course 12: Static Analysis of C programs with Frama-C}
+\author[Virgile Prevosto]{Virgile Prevosto}
+\date[08-30-2009]{August 30, 2009}
+\institute[CEA List]{CEA List}
+
+\AtBeginSection[]{
+\begin{frame}
+ \frametitle{}
+ \tableofcontents[currentsection]
+ \end{frame}
+ }
+
+\newcommand{\vfilll}{\vspace*{0pt plus1filll}}
+
+\newcommand{\launch}[2]{%
+\only<beamer>{%
+  \leavevmode%
+  \pdfstartlink user {%
+    /Subtype /Link
+    /A <</S /Launch
+    /F (#1)
+       >>
+       }%
+  #2%
+  \pdfendlink%
+}
+\only<handout>{#2}
+}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{outline}
+\tableofcontents
+\end{frame}
+
+\section{Presentation}
+\begin{frame}{Motivations}
+\begin{block}{Main objective}
+\alert{Statically} determine some semantic properties of a program
+\begin{itemize}
+\item safety: pointer are all valid, no arithmetic overflow, ...
+\item termination
+\item functional properties
+\item dead code
+\item ...
+\end{itemize}
+\end{block}
+\begin{block}{Embedded code}
+\begin{itemize}
+\item Much simpler than desktop applications
+\item Some parts are critical, \textit{i.e.} a bug have severe
+  consequences (financial loss, or even dead people)
+\item Thus a good target for static analysis
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Some examples}
+\begin{itemize}
+\item During first gulf war (1991), a patriot missile failed to
+  intercept an Iraqi missile due to rounding errors
+\item Failure of Ariane 5 maiden flight (arithmetic overflows)
+\item ...
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Some tools}
+\begin{description}
+\item[Polyspace Verifier] Checks for (absence of) run-time error
+    C/C++/Ada) \\ \url{http://www.mathworks.com/products/polyspace/}
+  \item[ASTRÉE] Absence of error {\it without false alarm} in SCADE-generated
+    code \\
+    \url{http://www.di.ens.fr/~cousot/projets/ASTREE/}
+\item[Coverity] Checks for various code defects (C/C++/Java)\\
+\url{http://www.coverity.com}
+  \end{description}
+\end{frame}
+\begin{frame}{Some tools (cont'd)}
+\begin{description}
+  \item[a3] Worst-case execution time and Stack depth
+    \url{http://www.absint.com/}
+  \item[FLUCTUAT] Accuracy of floating-point computations and origin
+    of rounding errors \\
+    \url{http://www-list.cea.fr/labos/fr/LSL/fluctuat/}
+  \item[Frama-C] A toolbox for analysis of C programs
+    \url{http://frama-c.cea.fr/}
+  \end{description}
+\end{frame}
+
+\begin{frame}{A brief history}
+\begin{itemize}
+\item<+-> 90's: CAVEAT, an Hoare logic-based tool for C programs
+\item<+-> 2000's: CAVEAT used by Airbus during certification process of
+  the A380
+\item<+-> 2002: Why and its C front-end Caduceus
+\item<+-> 2006: Joint project to write a successor to CAVEAT and
+  Caduceus
+\item<+-> 2008: First public release of Frama-C
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Architecture}
+\begin{itemize}
+\item<+-> A modular architecture
+\item<+-> Kernel:
+\begin{itemize}
+\item<+-> CIL (U. Berkeley) library for the C front-end
+\item<+-> ACSL front-end
+\item<+-> Global management of analyzer's state
+\end{itemize}
+\item<+-> Various plug-ins for the analysis
+\begin{itemize}
+\item<+-> Value analysis (abstract interpretation)
+\item<+-> Jessie (translation to Why)
+\item<+-> Slicing
+\item<+-> Impact analysis
+\item<+-> ...
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Data-flow Analysis}
+\begin{frame}[fragile]{Concrete execution}
+\begin{block}{Concrete semantics}
+\begin{itemize}
+\item Formalisation of \alert{all} possible behaviors of a program
+\item Function which associate to a program an element of the
+  \alert{concrete domain} of interest
+\item Trace semantics: associate to each program point the values that
+  the variables can take at this point
+\end{itemize}
+\end{block}
+
+\begin{tikzpicture}[>=latex]
+    \path (9,0) node (abcisses) {number of steps}
+           (0,3) node (ordonnees) {value of x};
+    \draw[->] (0,0) -- (abcisses);
+    \draw[->] (0,0) -- (ordonnees);
+    \onslide<3->{\fill[color=red,opacity=0.5] (0,1.5) rectangle (9,2.5);}
+    \onslide<2->{\filldraw[color=blue!20, draw=blue, opacity=0.5] (0,1)
+    .. controls (3,0.3) .. (4,0) .. controls (5,0) and (6,0) .. (7,0.2) .. 
+    controls (8,0.5) .. (9,1) -- (9,2.5) .. controls (8,2.35) .. (7,2.3) .. 
+    controls (5,2) .. (4,1.8) .. controls (3,1.6) and (2,1.6) .. (0,1.5) --cycle; }
+  \onslide<4->{\draw[color=blue] (0,1.2) .. controls (2,1) and (4,1.2)
+    .. (7,1.3) .. controls (8,1.5) .. (9,1.3);}
+    \onslide<5->{\draw[color=blue](0,1.2) ..controls (2,1.3) .. (5,1.4)
+    .. controls (6,1.3) and (7,2.5) .. (8,1.7);}
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}[fragile]{Example}
+\begin{c}[abstract_interp.c]
+int fact(int x) {
+  int z = 1,y = 1;\tikz[remember picture] \node (n1) {};
+  if (x<4) { x = 4; } \tikz[remember picture] \node (n2) {};
+  while (y<=x) { \tikz[remember picture] \node (n3) {};
+    z=z*y; \tikz[remember picture] \node (n4) {};
+    y++; \tikz[remember picture] \node (n5) {};
+  }
+  return z;\tikz[remember picture] \node (n6) {};
+}
+\end{c}
+\begin{tikzpicture}[remember picture, overlay]
+\only<2|handout:0>{
+\node[ellipse callout, fill=lightred, callout absolute pointer = (n6),
+      xshift=-2.2cm, below, left] at (current page.east) 
+     {$z\in\{24,120, 720,...\}$ };
+}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{Fixpoint Computations}
+\begin{itemize}
+\item Control-flow graph (CFG) of the program
+\item Each edge has an associated a transfer function
+$f_{i,j}: L \rightarrow L$
+\item System of equations
+  $l_i = \bigcup_{\{e_j\in l_j\}}\{f_{j,i}(e_j)\}$
+\item Solved by successive iterations (Kleene)
+\end{itemize}
+\end{frame}
+\begin{frame}{Control-flow Graph}
+\begin{minipage}{0.48\textwidth}
+\begin{c}
+int fact(int x) {\tikz \node[circle,draw] (n0) {$l_0$}; 
+  int z = 1,y = 1;\tikz\node[circle,draw] (n1) {$l_1$};
+  if (x<4) { x = 4; \tikz\node[circle,draw] (n2) {$l_2$};}
+  \tikz\node[circle,draw] (n3) {$l_3$};
+  while (y<=x) { \tikz\node[circle,draw] (n4) {$l_4$};
+    z=z*y;
+    y++; \tikz\node[circle,draw] (n5) { $l_5$};
+  }\tikz\node[circle,draw] (n6) {$l_6$};
+  return z;
+}
+\end{c}
+\end{minipage}%
+\begin{minipage}{0.48\textwidth}
+\tikzstyle{l0}=[]
+\tikzstyle{l1}=[]
+\tikzstyle{l2}=[]
+\tikzstyle{l3}=[]
+\tikzstyle{l4}=[]
+\tikzstyle{l5}=[]
+\tikzstyle{l6}=[]
+\begin{tikzpicture}[>=latex]
+\path (3,7) node[circle, draw, style=l0] (l0) {$l_0$}
+      (3,5) node[circle, draw, style=l1] (l1) {$l_1$}
+      (1,4) node[circle, draw, style=l2] (l2) {$l_2$}
+      (3,3) node[circle, draw, style=l3] (l3) {$l_3$}
+      (1,2) node[circle, draw, style=l3] (l4) {$l_4$}
+      (3,1) node[circle, draw, style=l3] (l5) {$l_5$}
+      (4.5,1) node[circle, draw, style=l4] (l6) {$l_6$};
+\draw[->] (l0) -- (l1) node[midway,left] {${\tt y}\leftarrow 1$}
+                       node[midway,right] {${\tt z}\leftarrow 1$};
+\draw[->] (l1) -- (l2) node[midway, left] {$x < 4$};
+\draw[->] (l1) -- (l3) node[midway,right] {$x\geq4$};
+\draw[->] (l2) -- (l3) node[midway,left] {$x\leftarrow 4$};
+\draw[->] (l3) -- (l4) node[near end,above] {$y\leq x$};
+\draw[->] (l3) -| (l6) node[midway,right] {$y>x$};
+\draw[->] (l4) -- (l5) node[midway,left] {${\tt z}\leftarrow {\tt z}*{\tt y}$}
+                       node[pos=0.9,left]{${\tt y}\leftarrow {\tt y+1}$};
+\draw[->] (l5) -- (l3);
+\end{tikzpicture}
+\end{minipage}
+\end{frame}
+\begin{frame}[fragile]{Iterations}
+\begin{minipage}{0.48\textwidth}
+\[
+\begin{array}{r@{}|l|p{1cm}|l}
+& x & y & z \\
+\textcolor<2|handout:0>{red}{\textcolor<3|handout:0>{darkgreen}{S_0}}&
+\only<2->{\textcolor<2|handout:0>{red}{\textcolor<3|handout:0>{darkgreen}
+{\mathbb{Z}}}} & ~ &
+\\
+\textcolor<3|handout:0>{red}{\textcolor<4,5|handout:0>{darkgreen}{S_1}} &
+\only<3->{\textcolor<3|handout:0>{red}{\textcolor<4,5|handout:0>{darkgreen}
+{\mathbb{Z}}}} &
+\only<3->{\textcolor<3|handout:0>{red}{\textcolor<4,5|handout:0>{darkgreen}{1}}} &
+\only<3->{\textcolor<3|handout:0>{red}{\textcolor<4,5|handout:0>{darkgreen}{1}}}
+\\
+\textcolor<4|handout:0>{red}{\textcolor<6|handout:0>{darkgreen}{S_2}} &
+\only<4->{\textcolor<4|handout:0>{red}{\textcolor<6|handout:0>{darkgreen}
+{-\infty..4}}} &
+\only<4->{\textcolor<4|handout:0>{red}{\textcolor<6|handout:0>{darkgreen}
+{1}}} &
+\only<4->{\textcolor<4|handout:0>{red}{\textcolor<6|handout:0>{darkgreen}
+{1}}}
+\\
+\textcolor<5,6,9,11|handout:0>{red}{\textcolor<7,10,12,13|handout:0>{darkgreen}{S_3}} &
+\only<5->{\textcolor<5,6,9,11|handout:0>{red}{\textcolor<7,10,12,13|handout:0>{darkgreen}
+{4..+\infty}}}
+&
+\begin{overprint}
+\only<5-8|handout:0>{\textcolor<5,6|handout:0>{red}{\textcolor<7|handout:0>{darkgreen}
+{1}}}
+\only<9-10|handout:0>{\textcolor<9|handout:0>{red}{\textcolor<10|handout:0>{darkgreen}
+{1,2}}}
+\only<11-13|handout:0>{\textcolor<11|handout:0>{red}{\textcolor<12,13|handout:0>{darkgreen}
+{1..5}}}
+\only<14>{1\ldots}
+\end{overprint} 
+&
+\begin{overprint}
+\only<5-10|handout:0>{\textcolor<5,6|handout:0>{red}{\textcolor<7,10|handout:0>{darkgreen}
+{1}}}
+\only<11-13|handout:0>{\textcolor<11|handout:0>{red}{\textcolor<12,13|handout:0>{darkgreen}
+{1,2,6,24}}}
+\only<14>{1,2,6,24\ldots}
+\end{overprint}\\
+\textcolor<7,10|handout:0>{red}{\textcolor<8|handout:0>{darkgreen}{S_4}}&
+\only<7->{\textcolor<7,12|handout:0>{red}{\textcolor<8|handout:0>{darkgreen}
+{4..+\infty}}}
+&
+\begin{overprint}
+\only<7-9|handout:0>{\textcolor<7|handout:0>{red}{\textcolor<8|handout:0>{darkgreen}
+{1}}}
+\only<10|handout:0>{\textcolor<10|handout:0>{red}{1,2}}
+\only<11|handout:0>{1..4}
+\only<12-13|handout:0>{\textcolor<12|handout:0>{red}{1..5}}
+\only<14>{1\ldots}
+\end{overprint} 
+&
+\begin{overprint}
+\only<7-10|handout:0>{\textcolor<7,10|handout:0>{red}{\textcolor<8|handout:0>{darkgreen}
+{1}}}
+\only<11|handout:0>{1,2,6}
+\only<12-13|handout:0>{\textcolor<12|handout:0>{red}{1,2,6,24}}
+\only<14>{1,2,6,\ldots}
+\end{overprint}\\
+\textcolor<8|handout:0>{red}{\textcolor<9,11|handout:0>{darkgreen}{S_5}} & 
+\only<8->{\textcolor<8|handout:0>{red}{\textcolor<9,11|handout:0>{darkgreen}
+{4..+\infty}}}
+&
+\begin{overprint}
+\only<8-10|handout:0>{\textcolor<8|handout:0>{red}{\textcolor<9|handout:0>{darkgreen}
+{2}}}
+\only<11-13|handout:0>{\textcolor<11>{darkgreen}{2..5}}
+\only<14>{2\ldots}
+\end{overprint} &
+\begin{overprint}
+\only<8-10|handout:0>{\textcolor<8|handout:0>{red}{\textcolor<9|handout:0>{darkgreen}
+{1}}}
+\only<11-13|handout:0>{\textcolor<11>{darkgreen}{1,2,6}}
+\only<14>{1,2,6,\ldots}
+\end{overprint}\\
+\textcolor<13|handout:0>{red}{S_6} &
+\only<13->{\textcolor<13|handout:0>{red}{4..+\infty}} &
+\begin{overprint}
+\only<13|handout:0>{\textcolor{red}{5}}
+\only<14>{4\ldots}
+\end{overprint} &
+\begin{overprint}
+\only<13|handout:0>{\textcolor{red}{24}}
+\only<14>{1,2,6,\ldots}
+\end{overprint}
+\\
+\end{array}
+\]
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\tikzstyle{l0}=[]
+\tikzstyle{l1}=[]
+\tikzstyle{l2}=[]
+\tikzstyle{l3}=[]
+\tikzstyle{l4}=[]
+\tikzstyle{l5}=[]
+\tikzstyle{l6}=[]
+\only<2>{\tikzstyle{l0}=[color=red]}
+\only<3>{\tikzstyle{l0}=[color=darkgreen]\tikzstyle{l1}=[color=red]}
+\only<4>{\tikzstyle{l1}=[color=darkgreen]\tikzstyle{l2}=[color=red]}
+\only<5>{\tikzstyle{l1}=[color=darkgreen]\tikzstyle{l3}=[color=red]}
+\only<6>{\tikzstyle{l2}=[color=darkgreen]\tikzstyle{l3}=[color=red]}
+\only<7,10,12>{\tikzstyle{l3}=[color=darkgreen]\tikzstyle{l4}=[color=red]}
+\only<8>{\tikzstyle{l4}=[color=darkgreen]\tikzstyle{l5}=[color=red]}
+\only<9,11>{\tikzstyle{l5}=[color=darkgreen]\tikzstyle{l3}=[color=red]}
+\only<13>{\tikzstyle{l3}=[color=darkgreen]\tikzstyle{l6}=[color=red]}
+
+\begin{tikzpicture}[>=latex]
+\path (3,7) node[circle, draw, style=l0] (l0) {$l_0$}
+      (3,5) node[circle, draw, style=l1] (l1) {$l_1$}
+      (1,4) node[circle, draw, style=l2] (l2) {$l_2$}
+      (3,3) node[circle, draw, style=l3] (l3) {$l_3$}
+      (1,2) node[circle, draw, style=l4] (l4) {$l_4$}
+      (3,1) node[circle, draw, style=l5] (l5) {$l_5$}
+      (4.5,1) node[circle, draw, style=l6] (l6) {$l_6$};
+\draw[->] (l0) -- (l1) node[midway,left] {${\tt y}\leftarrow 1$}
+                       node[midway,right] {${\tt z}\leftarrow 1$};
+\draw[->] (l1) -- (l2) node[midway, left] {$x \leq 4$};
+\draw[->] (l1) -- (l3) node[midway,right] {$x>4$};
+\draw[->] (l2) -- (l3) node[midway,left] {$x\leftarrow 4$};
+\draw[->] (l3) -- (l4) node[near end,above] {$y\leq x$};
+\draw[->] (l3) -| (l6) node[midway,right] {$y>x$};
+\draw[->] (l4) -- (l5) node[midway,left] {${\tt z}\leftarrow {\tt z}*{\tt y}$}
+                       node[pos=0.9,left]{${\tt y}\leftarrow {\tt y+1}$};
+\draw[->] (l5) -- (l3);
+\end{tikzpicture}
+\end{minipage}
+\end{frame}
+
+%======================================================================
+\begin{frame}{Undecidability}
+
+\begin{block}{Rice's Theorem}
+Any non-trivial semantic property of a program is undecidable.
+\end{block}
+
+\begin{block}<2->{Example}
+Halting problem: it cannot be decided statically if a given program
+will always terminate or not
+\end{block}
+
+\begin{block}<3->{Approximations}
+Even if the general case is unreachable, it is possible to devise
+analyses that give useful information
+\end{block}
+\end{frame}
+
+\section{Abstract Interpretation}
+
+%======================================================================
+\begin{frame}{Approximations}
+  \begin{itemize}
+  \item Ensuring termination of the analysis
+  \item Use abstract values
+  \item Allows approximations
+  \item may lead to false alarm
+  \end{itemize}
+
+  \begin{block}<2>{Abstract interpretation}
+    \begin{itemize}
+    \item Formalized by Patrick and Radhia Cousot [POPL'77]
+    \item Give relations between concrete and abstract domains 
+      (\alert{Galois connection})
+    \item Termination (\alert{widening})
+    \item Mixing information from distinct abstractions 
+      (\alert{reduced product})
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Correction and completeness}
+The approximation can be either
+\begin{description}
+\item<2-|alert@2>[correct:] All concrete behavior are represented by 
+  the abstraction
+\item<3-|alert@3>[complete:] All abstract behaviors are the representation of 
+  a concrete trace
+\item<4->but not both
+\end{description}
+  \begin{tikzpicture}[>=latex]
+    \path (9,0) node (abcisses) {steps}
+           (0,3) node (ordonnees) {values};
+    \draw[->] (0,0) -- (abcisses);
+    \draw[->] (0,0) -- (ordonnees);
+    \onslide<2>{\filldraw[color=green!30, draw=green, opacity=0.7] (0,0)
+    rectangle (9,2.5);}
+    \filldraw[color=blue!20, draw=blue, opacity=0.5] (0,1)
+    .. controls (3,0.3) .. (4,0) .. controls (5,0) and (6,0) .. (7,0.2) .. 
+    controls (8,0.5) .. (9,1) -- (9,2.5) .. controls (8,2.35) .. (7,2.3) .. 
+    controls (5,2) .. (4,1.8) .. controls (3,1.6) and (2,1.6) .. (0,1.5) --cycle;
+    \onslide<3->{\filldraw[color=red!20, draw=red, opacity=0.7] (0,1)
+           rectangle (9,1.5);}
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{Example: intervals}
+\begin{minipage}{0.48\textwidth}
+\[
+\begin{array}{r@{}|l|>{\begin{minipage}{1cm}\(}l<{\)\end{minipage}}|l}
+& x & y & z \\
+\textcolor<2|handout:0>{red}{\textcolor<3|handout:0>{darkgreen}{S_0}}&
+\only<2->{\textcolor<2|handout:0>{red}{\textcolor<3|handout:0>{darkgreen}
+{\mathbb{Z}}}} & ~ &
+\\
+\textcolor<3|handout:0>{red}{\textcolor<4,5|handout:0>{darkgreen}{S_1}} &
+\only<3->{\textcolor<3|handout:0>{red}{\textcolor<4,5|handout:0>{darkgreen}
+{\mathbb{Z}}}} &
+\only<3->{\textcolor<3|handout:0>{red}{\textcolor<4,5|handout:0>{darkgreen}{1}}} &
+\only<3->{\textcolor<3|handout:0>{red}{\textcolor<4,5|handout:0>{darkgreen}{1}}}
+\\
+\textcolor<4|handout:0>{red}{\textcolor<6|handout:0>{darkgreen}{S_2}} &
+\only<4->{\textcolor<4|handout:0>{red}{\textcolor<6|handout:0>{darkgreen}
+{-\infty..4}}} &
+\only<4->{\textcolor<4|handout:0>{red}{\textcolor<6|handout:0>{darkgreen}
+{1}}} &
+\only<4->{\textcolor<4|handout:0>{red}{\textcolor<6|handout:0>{darkgreen}
+{1}}}
+\\
+\textcolor<5,6,9,11|handout:0>{red}{\textcolor<7,10|handout:0>{darkgreen}{S_3}} &
+\only<5->{\textcolor<5,6,9,11|handout:0>{red}{\textcolor<7,10|handout:0>{darkgreen}
+{4..+\infty}}}
+&
+\begin{overprint}
+\only<5-8|handout:0>{\textcolor<5,6|handout:0>{red}{\textcolor<7|handout:0>{darkgreen}
+{1}}}
+\only<9->{\textcolor<9,11|handout:0>{red}{\textcolor<10|handout:0>{darkgreen}
+{1..+\infty}}}
+\end{overprint} 
+&
+\begin{overprint}
+\only<5-10|handout:0>{\textcolor<5,6|handout:0>{red}{\textcolor<7,10|handout:0>{darkgreen}
+{1}}}
+\only<11->{\textcolor<11|handout:0>{red}{1..+\infty}}
+\end{overprint}\\
+\textcolor<7,10|handout:0>{red}{\textcolor<8|handout:0>{darkgreen}{S_4}}&
+\only<7->{\textcolor<7|handout:0>{red}{\textcolor<8|handout:0>{darkgreen}
+{4..+\infty}}}
+&
+\begin{overprint}
+\only<7-9|handout:0>{\textcolor<7|handout:0>{red}{\textcolor<8|handout:0>{darkgreen}
+{1}}}
+\only<10->{\textcolor<10|handout:0>{red}{1..+\infty}}
+\end{overprint} 
+&
+\begin{overprint}
+\only<7-10|handout:0>{\textcolor<7,10|handout:0>{red}{\textcolor<8|handout:0>{darkgreen}
+{1}}}
+\only<12->{1..+\infty}
+\end{overprint}\\
+\textcolor<8|handout:0>{red}{\textcolor<9,11|handout:0>{darkgreen}{S_5}} & 
+\only<8->{\textcolor<8|handout:0>{red}{\textcolor<9,11|handout:0>{darkgreen}
+{4..+\infty}}}
+&
+\begin{overprint}
+\only<8-10|handout:0>{\textcolor<8|handout:0>{red}{\textcolor<9|handout:0>{darkgreen}
+{2}}}
+\only<11->{\textcolor<11|handout:0>{darkgreen}{2..+\infty}}
+\end{overprint} &
+\begin{overprint}
+\only<8-10|handout:0>{\textcolor<8|handout:0>{red}{\textcolor<9|handout:0>{darkgreen}
+{1}}}
+\only<11->{\textcolor<11|handout:0>{darkgreen}{1..+\infty}}
+\end{overprint}\\
+S_6 &
+4..+\infty &
+5..+\infty &
+1..+\infty
+
+\end{array}
+\]
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\tikzstyle{l0}=[]
+\tikzstyle{l1}=[]
+\tikzstyle{l2}=[]
+\tikzstyle{l3}=[]
+\tikzstyle{l4}=[]
+\tikzstyle{l5}=[]
+\tikzstyle{l6}=[]
+\only<2>{\tikzstyle{l0}=[color=red]}
+\only<3>{\tikzstyle{l0}=[color=darkgreen]\tikzstyle{l1}=[color=red]}
+\only<4>{\tikzstyle{l1}=[color=darkgreen]\tikzstyle{l2}=[color=red]}
+\only<5>{\tikzstyle{l1}=[color=darkgreen]\tikzstyle{l3}=[color=red]}
+\only<6>{\tikzstyle{l2}=[color=darkgreen]\tikzstyle{l3}=[color=red]}
+\only<7,10>{\tikzstyle{l3}=[color=darkgreen]\tikzstyle{l4}=[color=red]}
+\only<8>{\tikzstyle{l4}=[color=darkgreen]\tikzstyle{l5}=[color=red]}
+\only<9,11>{\tikzstyle{l5}=[color=darkgreen]\tikzstyle{l3}=[color=red]}
+
+\begin{tikzpicture}[>=latex]
+\path (3,7) node[circle, draw, style=l0] (l0) {$l_0$}
+      (3,5) node[circle, draw, style=l1] (l1) {$l_1$}
+      (1,4) node[circle, draw, style=l2] (l2) {$l_2$}
+      (3,3) node[circle, draw, style=l3] (l3) {$l_3$}
+      (1,2) node[circle, draw, style=l4] (l4) {$l_4$}
+      (3,1) node[circle, draw, style=l5] (l5) {$l_5$}
+      (4.5,1) node[circle, draw, style=l6] (l6) {$l_6$};
+\draw[->] (l0) -- (l1) node[midway,left] {${\tt y}\leftarrow 1$}
+                       node[midway,right] {${\tt z}\leftarrow 1$};
+\draw[->] (l1) -- (l2) node[midway, left] {$x \leq 4$};
+\draw[->] (l1) -- (l3) node[midway,right] {$x>4$};
+\draw[->] (l2) -- (l3) node[midway,left] {$x\leftarrow 4$};
+\draw[->] (l3) -- (l4) node[near end,above] {$y\leq x$};
+\draw[->] (l3) -| (l6) node[midway,right] {$y>x$};
+\draw[->] (l4) -- (l5) node[midway,left] {${\tt z}\leftarrow {\tt z}*{\tt y}$}
+                       node[pos=0.9,left]{${\tt y}\leftarrow {\tt y+1}$};
+\draw[->] (l5) -- (l3);
+\end{tikzpicture}
+\end{minipage}
+\end{frame}
+
+\begin{frame}{Reduced product}
+Frama-c's integers abstraction uses intervals and modulo information.
+\begin{itemize}
+\item<+-> normal product: $x\in [0;8]\wedge x\equiv 1 [2] $
+\item<+-> but $0\not\equiv 1[2]$, so $x\in [1;7]\wedge x\equiv 1 [2]$
+\item<+-> more generally the \alert{reduced product} of two abstract 
+  domains allows to deduce more information than by doing two analyses 
+  separately 
+\end{itemize}
+\end{frame}
+
+\section{Abstract Interpretation in Practice}
+
+\begin{frame}{Abstract domains}
+Frama-C use mainly 3 domains:
+\begin{itemize}
+\item floating-point values: intervals
+\item integral types: intervals and modulo information
+\item pointers: set of possible base addresses 
+  + an offset (which is an integer).
+\item a few other refinements for pointed values
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Representation of the state}
+In order to scale to realistic programs (100 kLOC or more), an
+efficient representation of the state of the program at each point is very 
+important:
+\begin{itemize}
+\item Maximal sharing of the sub-expressions (hash-consing).
+\item Data structures allowing for fast search and insertion: variations over 
+  Patricia trees.
+\item some improvements of the Ocaml compiler itself have helped a lot.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Semantic unrolling}
+It is possible to regain some precision (at the expense of the performances) 
+by keeping at most $n$ states separated before merging or widening.
+
+\begin{block}{Example}
+\begin{c}[sunroll.c]
+int main(int c) {
+int x = 0;
+int y = 0;
+if (c<0) x++;\tikz[remember picture]\node(if1){};
+if (c<0) y++;\tikz[remember picture]\node(if2){};
+if (x == y) { x = y = 42; }\tikz[remember picture]\node(if3){};
+return 0;
+}
+\end{c}
+\end{block}
+\launch{gnome-terminal}{running frama-c}
+\begin{tikzpicture}[remember picture,overlay]
+\only<2>{
+\node[ellipse callout, callout absolute pointer=(if1), fill=lightred, 
+  xshift=-1.3cm, yshift=-0.3cm, below left] at (current page.east) 
+     {\(\begin{array}{lcr}
+       c&\in&\lbrack-\infty;\infty\rbrack\\
+       x&\in\lbrack0;1\rbrack
+       \end{array}
+       \)
+     };}
+\only<3>{
+\node[ellipse callout, callout absolute pointer=(if2), fill=lightred, 
+  xshift=-1.3cm,yshift=0.3cm, below left] at (current page.east) 
+     {\(\begin{array}{lcr}
+       c&\in&\rbrack-\infty;\infty\lbrack\\
+       x&\in&\lbrack0;1\rbrack\\
+       y&\in&\lbrack0;1\rbrack
+       \end{array}\)
+     };}
+\only<4>{
+\node[ellipse callout, callout absolute pointer=(if3), fill=lightred, 
+  xshift=-1.3cm,yshift=0.3cm, below left] at (current page.east) 
+     {\(\begin{array}{lcr}
+       c&\in&\rbrack-\infty;\infty\lbrack\\
+       x&\in&\lbrack 0;42\rbrack\\
+       y&\in&\lbrack 0;42\rbrack
+       \end{array}\)
+     };}
+\only<5>{
+\node[ellipse callout, callout absolute pointer=(if1), fill=lightred, 
+  xshift=-0.7cm , yshift=0.3cm, below left] at (current page.east) 
+     {\(\begin{array}{lcr@{\cup}r}
+       c&\in&\rbrack-\infty;0\lbrack & \lbrack 0;\infty\rbrack\\
+       x&=&0&1
+       \end{array}\)
+     };}
+\only<6>{
+\node[ellipse callout, fill=lightred, callout absolute pointer=(if2), 
+  xshift=-1.3cm ,yshift=0.3cm, below left] at (current page.east) 
+     {\(\begin{array}{lcr@{\cup}r}
+       c&\in&]-\infty;0[ & [0;\infty[\\
+       x&=&0&1\\
+       y&=&0&1
+       \end{array}\)
+     };}
+\only<7>{
+\node[ellipse callout, fill=lightred, callout absolute pointer=(if3), 
+  xshift=-0.7cm , yshift=0.3cm, below left] at (current page.east) 
+     {\(\begin{array}{lcr@{\vee}r}
+       c&\in&\rbrack-\infty;0\lbrack&\lbrack 0;\infty\lbrack\\
+       x&=&42&42\\
+       y&=&42&42
+       \end{array}\)
+     };}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Exploiting value analysis results}
+It is possible to use the results of value analysis to produce more
+specialized results. This includes currently:
+\begin{itemize}
+\item semantic constant folding
+\item inputs and outputs of a function
+\item slicing
+\item impact analysis
+\end{itemize}
+\end{frame}
+
+\end{document}
+
+Local Variables:
+mode: latex
+ispell-local-dictionary: "english"
+End:

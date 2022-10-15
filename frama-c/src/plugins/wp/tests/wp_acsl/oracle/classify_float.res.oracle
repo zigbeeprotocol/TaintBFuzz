@@ -1,0 +1,23 @@
+# frama-c -wp [...]
+[kernel] Parsing classify_float.c (with preprocessing)
+[wp] Running WP plugin...
+------------------------------------------------------------
+  Global
+------------------------------------------------------------
+
+Lemma InfN_not_finite:
+Assume: 'InfP_not_finite' 'NaN_not_finite'
+Prove: (not (is_finite_f64 x_0)) \/ (not (is_negative_infinite_f64 x_0))
+
+------------------------------------------------------------
+
+Lemma InfP_not_finite:
+Assume: 'NaN_not_finite'
+Prove: (not (is_finite_f64 x_0)) \/ (not (is_positive_infinite_f64 x_0))
+
+------------------------------------------------------------
+
+Lemma NaN_not_finite:
+Prove: (not (is_finite_f64 x_0)) \/ (not (is_NaN_f64 x_0))
+
+------------------------------------------------------------

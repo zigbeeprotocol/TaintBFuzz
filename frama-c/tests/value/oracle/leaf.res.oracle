@@ -1,0 +1,237 @@
+[kernel] Parsing leaf.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0] ∈ {1}
+   [1..29] ∈ {0}
+  g ∈ [--..--]
+  pg ∈ {{ &g }}
+  ppg ∈ {{ &pg }}
+  cv1 ∈ {10}
+  cv2 ∈ {20}
+  cv3 ∈ {30}
+  st_star_cint_1.p ∈ {{ &cv1 }}
+  st_star_cint_2.p ∈ {{ &cv2 }}
+  st_star_cint_3.p ∈ {{ &cv3 }}
+  v1 ∈ {10}
+  v2 ∈ {20}
+  v3 ∈ {30}
+  st_star_int_1.p ∈ {{ &v1 }}
+  st_star_int_2.p ∈ {{ &v2 }}
+  st_star_int_3.p ∈ {{ &v3 }}
+  st_tab3_int_1.t[0] ∈ {10}
+               .t[1] ∈ {11}
+               .t[2] ∈ {12}
+  st_tab3_int_2.t[0] ∈ {20}
+               .t[1] ∈ {21}
+               .t[2] ∈ {22}
+  st_tab3_int_3.t[0] ∈ {30}
+               .t[1] ∈ {31}
+               .t[2] ∈ {32}
+[kernel:annot:missing-spec] leaf.i:48: Warning: 
+  Neither code nor specification for function f_int_int, generating default assigns from the prototype
+[eva] computing for function f_int_int <- main.
+  Called from leaf.i:48.
+[eva] using specification for function f_int_int
+[eva] Done for function f_int_int
+[eva] computing for function f_int_star_int <- main.
+  Called from leaf.i:50.
+[eva] using specification for function f_int_star_int
+[eva] Done for function f_int_star_int
+[eva] leaf.i:50: 
+  Assigning imprecise value to p.
+  The imprecision originates from Library function {leaf.i:50}
+[eva] leaf.i:51: Frama_C_show_each_F: [-2147483648..2147483647]
+[eva:alarm] leaf.i:52: Warning: out of bounds write. assert \valid(p);
+[eva] leaf.i:53: Frama_C_show_each_F: {5}
+[eva] computing for function f_int_star_int_star_int <- main.
+  Called from leaf.i:55.
+[eva] using specification for function f_int_star_int_star_int
+[eva] Done for function f_int_star_int_star_int
+[eva] leaf.i:55: 
+  Assigning imprecise value to pp.
+  The imprecision originates from Library function {leaf.i:55}
+[eva] leaf.i:56: Frama_C_show_each_G: {{ &g }}
+[eva] leaf.i:57: Frama_C_show_each_F: {5}
+[eva] leaf.i:59: Frama_C_show_each_G: {{ &g }}
+[eva] leaf.i:60: Frama_C_show_each_F: {5}
+[kernel:annot:missing-spec] leaf.i:62: Warning: 
+  Neither code nor specification for function f_star_int_cint, generating default assigns from the prototype
+[eva] computing for function f_star_int_cint <- main.
+  Called from leaf.i:62.
+[eva] using specification for function f_star_int_cint
+[eva] Done for function f_star_int_cint
+[kernel:annot:missing-spec] leaf.i:64: Warning: 
+  Neither code nor specification for function f_star_int_int, generating default assigns from the prototype
+[eva] computing for function f_star_int_int <- main.
+  Called from leaf.i:64.
+[eva] using specification for function f_star_int_int
+[eva] Done for function f_star_int_int
+[kernel:annot:missing-spec] leaf.i:65: Warning: 
+  Neither code nor specification for function f_tab3_int_int, generating default assigns from the prototype
+[eva] computing for function f_tab3_int_int <- main.
+  Called from leaf.i:65.
+[eva] using specification for function f_tab3_int_int
+[eva] Done for function f_tab3_int_int
+[kernel:annot:missing-spec] leaf.i:66: Warning: 
+  Neither code nor specification for function f_tab_int_int, generating default assigns from the prototype
+[eva] computing for function f_tab_int_int <- main.
+  Called from leaf.i:66.
+[eva] using specification for function f_tab_int_int
+[eva] Done for function f_tab_int_int
+[kernel:annot:missing-spec] leaf.i:68: Warning: 
+  Neither code nor specification for function f_st_star_cint_st_star_cint, generating default assigns from the prototype
+[eva] computing for function f_st_star_cint_st_star_cint <- main.
+  Called from leaf.i:68.
+[eva] using specification for function f_st_star_cint_st_star_cint
+[eva] Done for function f_st_star_cint_st_star_cint
+[eva] leaf.i:68: 
+  Assigning imprecise value to st_star_cint_1.
+  The imprecision originates from Library function {leaf.i:68}
+[kernel:annot:missing-spec] leaf.i:69: Warning: 
+  Neither code nor specification for function f_st_star_int_st_star_int, generating default assigns from the prototype
+[eva] computing for function f_st_star_int_st_star_int <- main.
+  Called from leaf.i:69.
+[eva] using specification for function f_st_star_int_st_star_int
+[eva] Done for function f_st_star_int_st_star_int
+[eva] leaf.i:69: 
+  Assigning imprecise value to st_star_int_1.
+  The imprecision originates from Library function {leaf.i:69}
+[kernel:annot:missing-spec] leaf.i:70: Warning: 
+  Neither code nor specification for function f_st_tab3_int_st_tab3_int, generating default assigns from the prototype
+[eva] computing for function f_st_tab3_int_st_tab3_int <- main.
+  Called from leaf.i:70.
+[eva] using specification for function f_st_tab3_int_st_tab3_int
+[eva] Done for function f_st_tab3_int_st_tab3_int
+[kernel:annot:missing-spec] leaf.i:72: Warning: 
+  Neither code nor specification for function f_star_st_star_cint_int, generating default assigns from the prototype
+[eva] computing for function f_star_st_star_cint_int <- main.
+  Called from leaf.i:72.
+[eva] using specification for function f_star_st_star_cint_int
+[eva] Done for function f_star_st_star_cint_int
+[kernel:annot:missing-spec] leaf.i:73: Warning: 
+  Neither code nor specification for function f_star_st_star_int_int, generating default assigns from the prototype
+[eva] computing for function f_star_st_star_int_int <- main.
+  Called from leaf.i:73.
+[eva] using specification for function f_star_st_star_int_int
+[eva] Done for function f_star_st_star_int_int
+[kernel:annot:missing-spec] leaf.i:74: Warning: 
+  Neither code nor specification for function f_star_st_tab3_int_int, generating default assigns from the prototype
+[eva] computing for function f_star_st_tab3_int_int <- main.
+  Called from leaf.i:74.
+[eva] using specification for function f_star_st_tab3_int_int
+[eva] Done for function f_star_st_tab3_int_int
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  T[0] ∈ [--..--]
+   [1] ∈ {0}
+   [2] ∈ [--..--]
+   [3] ∈ {0}
+   [4] ∈ [--..--]
+   [5] ∈ {0}
+   [6..8] ∈ [--..--]
+   [9] ∈ {0}
+   [10] ∈ [--..--]
+   [11..29] ∈ {0}
+  g ∈ {5}
+  st_star_cint_1 ∈
+                {{ garbled mix of &{cv2}
+                 (origin: Library function {leaf.i:68}) }}
+  st_star_cint_3 ∈
+                {{ garbled mix of &{cv3}
+                 (origin: Library function {leaf.i:72}) }}
+  st_star_int_1 ∈
+               {{ garbled mix of &{v2}
+                (origin: Library function {leaf.i:69}) }}
+  st_star_int_3 ∈
+               {{ garbled mix of &{v3}
+                (origin: Library function {leaf.i:73}) }}
+  st_tab3_int_1 ∈ [--..--]
+  st_tab3_int_3 ∈ [--..--]
+  p ∈ {{ &g }}
+  pp ∈ {{ garbled mix of &{pg} (origin: Library function {leaf.i:55}) }}
+[from] Computing for function main
+[from] Computing for function f_int_int <-main
+[from] Done for function f_int_int
+[from] Computing for function f_int_star_int <-main
+[from] Done for function f_int_star_int
+[from] Computing for function f_int_star_int_star_int <-main
+[from] Done for function f_int_star_int_star_int
+[from] Computing for function f_star_int_cint <-main
+[from] Done for function f_star_int_cint
+[from] Computing for function f_star_int_int <-main
+[from] Done for function f_star_int_int
+[from] Computing for function f_tab3_int_int <-main
+[from] Done for function f_tab3_int_int
+[from] Computing for function f_tab_int_int <-main
+[from] Done for function f_tab_int_int
+[from] Computing for function f_st_star_cint_st_star_cint <-main
+[from] Done for function f_st_star_cint_st_star_cint
+[from] Computing for function f_st_star_int_st_star_int <-main
+[from] Done for function f_st_star_int_st_star_int
+[from] Computing for function f_st_tab3_int_st_tab3_int <-main
+[from] Done for function f_st_tab3_int_st_tab3_int
+[from] Computing for function f_star_st_star_cint_int <-main
+[from] Done for function f_star_st_star_cint_int
+[from] Computing for function f_star_st_star_int_int <-main
+[from] Done for function f_star_st_star_int_int
+[from] Computing for function f_star_st_tab3_int_int <-main
+[from] Done for function f_star_st_tab3_int_int
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f_int_int:
+  \result FROM x
+[from] Function f_int_star_int:
+  \result FROM pg
+[from] Function f_int_star_int_star_int:
+  \result FROM ppg
+[from] Function f_st_star_cint_st_star_cint:
+  \result FROM s
+[from] Function f_st_star_int_st_star_int:
+  \result FROM s
+[from] Function f_st_tab3_int_st_tab3_int:
+  \result FROM s
+[from] Function f_star_int_cint:
+  \result FROM T[3]
+[from] Function f_star_int_int:
+  T[4] FROM T[4] (and SELF)
+  \result FROM T[4]
+[from] Function f_star_st_star_cint_int:
+  st_star_cint_3 FROM st_star_cint_3 (and SELF)
+  \result FROM st_star_cint_3
+[from] Function f_star_st_star_int_int:
+  st_star_int_3 FROM st_star_int_3 (and SELF)
+  \result FROM st_star_int_3
+[from] Function f_star_st_tab3_int_int:
+  st_tab3_int_3 FROM st_tab3_int_3 (and SELF)
+  \result FROM st_tab3_int_3
+[from] Function f_tab3_int_int:
+  T[6..8] FROM T[6..8] (and SELF)
+  \result FROM T[6..8]
+[from] Function f_tab_int_int:
+  T[10] FROM T[10] (and SELF)
+  \result FROM T[10]
+[from] Function main:
+  T[0] FROM \nothing
+   [2] FROM T[3]
+   [4] FROM T[4] (and SELF)
+   [6..8] FROM T[6..8] (and SELF)
+   [10] FROM T[10] (and SELF)
+  g FROM pg
+  st_star_cint_1 FROM st_star_cint_2
+  st_star_cint_3 FROM st_star_cint_3 (and SELF)
+  st_star_int_1 FROM st_star_int_2
+  st_star_int_3 FROM st_star_int_3 (and SELF)
+  st_tab3_int_1 FROM st_tab3_int_2
+  st_tab3_int_3 FROM st_tab3_int_3 (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    T{[0]; [2]; [4]; [6..8]; [10]}; g; st_star_cint_1; st_star_cint_3;
+    st_star_int_1; st_star_int_3; st_tab3_int_1; st_tab3_int_3; p; pp
+[inout] Inputs for function main:
+    T{[3..4]; [6..8]; [10]}; g; pg; ppg; st_star_cint_2; st_star_cint_3;
+    st_star_int_2; st_star_int_3; st_tab3_int_2; st_tab3_int_3

@@ -1,0 +1,5 @@
+[variadic] va_arg-wrongtype.c:3: Declaration of variadic function sum.
+[variadic:typing] va_arg-wrongtype.c:9: Warning: 
+  Wrong type argument in va_start: short is promoted to int when used in the variadic part of the arguments. (You should pass int to va_start)
+[variadic] va_arg-wrongtype.c:18: 
+  Generic translation of call to variadic function.

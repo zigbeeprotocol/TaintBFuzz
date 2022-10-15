@@ -1,0 +1,218 @@
+[kernel] Parsing conversion.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] conversion.i:16: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ {1}
+  y ∈ UNINITIALIZED
+  f ∈ {1.40129846432e-45}
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:19: Warning: assertion 'ASSUME' got status unknown.
+[eva] conversion.i:21: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ [0..1120000000]
+  y ∈ UNINITIALIZED
+  f ∈ [0. .. 96.921875]
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:24: Warning: assertion 'ASSUME' got status unknown.
+[eva] conversion.i:26: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ [-10..10]
+  y ∈ UNINITIALIZED
+  f ∈ [0. .. 1.40129846432e-44] ∪ {NaN}
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:29: Warning: assertion 'ASSUME' got status unknown.
+[eva] conversion.i:31: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ [-10..10]
+  y ∈ [-10..10]
+  f ∈ [0. .. 1.40129846432e-44] ∪ {NaN}
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:34: Warning: assertion 'ASSUME' got status unknown.
+[eva] conversion.i:36: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ [1077936128..1084227584]
+  y ∈ [-10..10]
+  f ∈ [3. .. 5.]
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:38: Warning: 
+  pointer downcast. assert (unsigned int)(&x) ≤ 2147483647;
+[eva] conversion.i:40: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ {{ (int)&x }}
+  y ∈ [-10..10]
+  f ∈ {{ (float)&x }}
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] conversion.i:45: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x[bits 0 to 15] ∈ {1}
+   [bits 16 to 31] ∈ {2}
+  y ∈ [-10..10]
+  f[bits 0 to 15] ∈ {1}
+   [bits 16 to 31] ∈ {2}
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:50: Warning: assertion 'ASSUME' got status unknown.
+[eva] conversion.i:53: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x[bits 0 to 15] ∈ {1}
+   [bits 16 to 31] ∈ {2}
+  y ∈ [-10..10]
+  f ∈ [7.00649232162e-45 .. 2.10194769649e-44] or UNINITIALIZED
+  l ∈ [5..15] or UNINITIALIZED
+  ==END OF DUMP==
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  x[bits 0 to 15] ∈ {1}
+   [bits 16 to 31] ∈ {2}
+  y ∈ [-10..10]
+  f ∈ [7.00649232162e-45 .. 2.10194769649e-44] or UNINITIALIZED
+  l ∈ [5..15] or UNINITIALIZED
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    x; y; f; l
+[inout] Inputs for function main:
+    v
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] conversion.i:16: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ {1}
+  y ∈ UNINITIALIZED
+  f ∈ {1.40129846432e-45}
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] conversion.i:21: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ [0..1120000000]
+  y ∈ UNINITIALIZED
+  f ∈ [0. .. 96.921875]
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:25: Warning: 
+  non-finite float value. assert \is_finite(*((float *)(&x)));
+[eva] conversion.i:26: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ [0. .. 1.40129846432e-44]
+  y ∈ UNINITIALIZED
+  f ∈ [0. .. 1.40129846432e-44]
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] conversion.i:31: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ [-10..10]
+  y ∈ [--..--]
+  f ∈ [0. .. 1.40129846432e-44]
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] conversion.i:36: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ [1077936128..1084227584]
+  y ∈ [--..--]
+  f ∈ [3. .. 5.]
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:38: Warning: 
+  pointer downcast. assert (unsigned int)(&x) ≤ 2147483647;
+[eva:alarm] conversion.i:39: Warning: 
+  non-finite float value. assert \is_finite(*((float *)(&x)));
+[eva] conversion.i:39: 
+  Assigning imprecise value to f.
+  The imprecision originates from Arithmetic {conversion.i:39}
+[eva] conversion.i:40: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x ∈ {{ (int)&x }}
+  y ∈ [--..--]
+  f ∈ {{ garbled mix of &{x} (origin: Arithmetic {conversion.i:39}) }}
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] conversion.i:45: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x[bits 0 to 15] ∈ {1}
+   [bits 16 to 31] ∈ {2}
+  y ∈ [--..--]
+  f ∈ {1.83672393614e-40}
+  l ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] conversion.i:52: Warning: 
+  accessing uninitialized left-value. assert \initialized((float *)(&l));
+[eva] conversion.i:53: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  x[bits 0 to 15] ∈ {1}
+   [bits 16 to 31] ∈ {2}
+  y ∈ [--..--]
+  f ∈ [7.00649232162e-45 .. 2.10194769649e-44]
+  l ∈ [5..15]
+  ==END OF DUMP==
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  x[bits 0 to 15] ∈ {1}
+   [bits 16 to 31] ∈ {2}
+  y ∈ [--..--]
+  f ∈ [7.00649232162e-45 .. 2.10194769649e-44]
+  l ∈ [5..15]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    x; y; f; l
+[inout] Inputs for function main:
+    v

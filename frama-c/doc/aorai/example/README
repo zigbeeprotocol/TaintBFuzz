@@ -1,0 +1,55 @@
+               READ ME file for the Aorai example
+               ==================================
+
+This directory contains 2 examples:
+
+1) Example 1 (with many goto)
+=============================
+
+1.1) Files
+----------
+
+  * example.c - program to check
+  * example.ltl - LTL formula to use
+  * example_annot.c - example of generated file
+
+1.2) Usage
+----------
+
+Each of the two following commands generate the example_annot.c file: 
+
+     frama-c example.c -aorai-automata example.ya
+  or
+     frama-c example.c -aorai-ltl example.ltl
+
+The generation process gives two warning, since an operation is never called in the code.
+
+Files example.ya and example.ltl are the description of the same property in two syntax.
+
+In order to decide if the original program is correct wrt the property, it is sufficient to establish than the generated C is valid. For instance, with the Jessie plugin:
+
+     frama-c example_annot.c  -jessie  -jessie-why-opt="-fast-wp"
+
+2) Example 2 (with a loop)
+==========================
+
+2.1) Files
+----------
+
+  * example_loop.c - program to check
+  * example_loop.ltl - LTL formula to use
+  * example_loop_annot.c - example of generated file
+
+2.2) Usage
+----------
+
+The following command generates the example_loop_annot.c file: 
+
+     frama-c example_loop.c -aorai-ltl example_loop.ltl
+
+
+In order to decide if the original program is correct wrt the property, it is sufficient to establish than the generated C is valid. For instance, with the Jessie plugin:
+
+     frama-c example_loop_annot.c  -jessie  -jessie-why-opt="-fast-wp"
+
+

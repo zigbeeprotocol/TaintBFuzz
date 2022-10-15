@@ -1,0 +1,5 @@
+PLUGIN: wp
+MACRO: WP_SESSION @PTEST_DIR@/@PTEST_NAME@.@PTEST_NUMBER@.session@PTEST_CONFIG@
+MACRO: USING_WP_SESSION -wp-session @WP_SESSION@
+CMD: @frama-c@ -wp -wp-par 1 -wp-share @PTEST_SHARE_DIR@ -wp-msg-key shell -wp-warn-key pedantic-assigns=inactive -wp-report %{dep:@PTEST_SUITE_DIR@/../qualif.report} -wp-cache-env -wp-cache replay @PTEST_FILE@
+OPT:

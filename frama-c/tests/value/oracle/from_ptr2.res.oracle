@@ -1,0 +1,36 @@
+[kernel] Parsing from_ptr2.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function f <- main.
+  Called from from_ptr2.i:7.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function main:
+  s ∈ [--..--]
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  \result FROM ps; s.a
+[from] Function main:
+  \result FROM x
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    __retres
+[inout] Inputs for function f:
+    s.a
+[inout] Out (internal) for function main:
+    s; tmp
+[inout] Inputs for function main:
+    \nothing

@@ -1,0 +1,327 @@
+%; whizzy-master "developpeur.tex"
+
+\chapter{Changes}\label{chap:changes}
+
+This chapter summarizes the major changes in this documentation between each
+\framac release, from newest to oldest.
+
+\section*{25.0 Manganese}
+\begin{itemize}
+\item \textbf{Testing}: Document new directives (\texttt{PLUGIN}, \texttt{SCRIPT} and \texttt{LIBS}) and new predefined macros for \texttt{ptests}.
+\end{itemize}
+
+\section*{22.0 Titanium}
+\begin{itemize}
+\item \textbf{Testing}: Document new directives \texttt{TIMEOUT} and
+\texttt{NOFRAMAC}
+\end{itemize}
+
+\section*{21.0 Scandium}
+\begin{itemize}
+\item \textbf{Configure}: Documentation of \texttt{configure\_pkg},
+\texttt{plugin\_require\_pkg} and \texttt{plugin\_use\_pkg} macros.
+\end{itemize}
+
+\section*{20.0 Calcium}
+\begin{itemize}
+\item \textbf{Testing}: Documentation of the new directive \texttt{MODULE}.
+\end{itemize}
+
+\section*{19.0 Potassium}
+\begin{itemize}
+\item \textbf{ACSL Extension}: Document new \texttt{status} flag for registration functions
+\item \textbf{Testing}: Document usage of \texttt{@@} in a directive
+\item \textbf{Profiling with Landmarks}: New section
+\end{itemize}
+
+\section*{18.0 Argon}
+\begin{itemize}
+\item \textbf{Logging Services}: Document \texttt{error} and \texttt{failure} behaviors.
+\item \textbf{ACSL Extensions}: New extension categories, for global and plain code annotations
+\end{itemize}
+
+\section*{Chlorine-20180501}
+
+\begin{itemize}
+\item \textbf{Logging Services}: Introduction of warning categories
+\end{itemize}
+
+\section*{Sulfur-20171101}
+\begin{itemize}
+\item \textbf{Tutorial}: Update and complete the Hello plug-in section
+along with making it available online.
+\item \textbf{Testing}: Explain the appropriate way to handle compilation
+of \texttt{.ml} scripts during tests
+\item \textbf{Makefiles}: Remove references to obsolete
+\texttt{Makefile.plugin} file
+\end{itemize}
+
+\section*{Phosphorus-20170501}
+
+\begin{itemize}
+\item \textbf{Makefiles}: Update overview of Makefiles.
+\item\textbf{ACSL Extensions}: Update documentation after refactoring of
+ACSL extensions.
+\item\textbf{Machine model}: fully new section.
+\end{itemize}
+
+\section*{Silicon-20161101}
+
+\begin{itemize}
+\item\textbf{ACSL Extensions}: Updated documentation for newly
+introduced loop extensions.
+\end{itemize}
+
+\section*{Aluminium-20160501}
+
+\begin{itemize}
+\item \textbf{Tutorial}: Plugin \texttt{Cfg} renamed to \texttt{ViewCfg};
+  minor fixes.
+\item \textbf{Ptests}: Documentation of the new directive \texttt{EXEC}.
+\item \textbf{Ptests}: Documentation for sharing directives amongst ptests
+  configurations
+\item \textbf{Makefiles}: Documentation for \texttt{install::} target
+ in dynamic plugins
+\item \textbf{Makefiles}: Documentation of exported \texttt{TARGET\_*} variables
+\item \textbf{Makefiles}: Documentation of new option
+\texttt{PLUGIN\_EXTRA\_DIRS}
+\item \textbf{Ptests}: New option \texttt{-gui}
+\end{itemize}
+
+\section*{Magnesium-20151001}
+
+\begin{itemize}
+\item \textbf{License Policy}: remove this section.
+\item \textbf{Ptests}: New configuration directive \texttt{LOG} and new macro
+  \texttt{PTEST\_RESULT}
+\item \textbf{File Tree}: remove this section, now subsumed by the new Chapter
+  on Software Architecture and by the API documentation.
+\item \textbf{File Tree Overview}: remove this useless section.
+\item \textbf{Software Architecture}: rewrite the whole chapter.
+\item No more \texttt{PLUGIN\_HAS\_MLI}.
+\end{itemize}
+
+\section*{Sodium-20150201}
+
+\begin{itemize}
+\item \textbf{Type Library}: document
+  \texttt{Datatype.Serializable\_undefined}.
+\item \textbf{Command Line Options}: document
+  \texttt{Parameter\_sig.Kernel\_function\_set}.
+\item \textbf{Configure.in}: warn about using Frama-C macros within conditionals
+\item \textbf{Logical Annotations}: document ACSL extended clauses mechanism
+  (added section~\ref{sec:extend-acsl-annot}).
+\item \textbf{Tutorial}: fix \texttt{hello\_world.ml}.
+\end{itemize}
+
+\section*{Neon-20140301}
+
+\begin{itemize}
+\item \textbf{Reference Manual}: update list of main kernel modules.
+\item \textbf{Logical Annotations}: document module \texttt{Property}.
+\item \textbf{Command Line Options}: update according to kernel changes that
+  split the module \texttt{Plugin} into several modules.
+\item \textbf{Architecture}, \textbf{Plug-in Registration and Access} and
+  \textbf{Reference Manual}: document registration of a plug-in through a
+  \texttt{.mli} file.
+\item \textbf{Makefiles}: introducing \texttt{Makefile.generic}.
+\item \textbf{Testing}: \texttt{MACRO} configuration directive.
+\end{itemize}
+
+\section*{Fluorine-20130601}
+
+\begin{itemize}
+\item \textbf{Tutorial}: fully rewritten.
+\item \textbf{Architecture} and \textbf{Reference Manual}: remove references
+      to \texttt{Cilutil} module.
+\end{itemize}
+
+\section*{Oxygen-20121001}
+
+\begin{itemize}
+\item \textbf{Makefile} \texttt{WARN\_ERROR\_ALL} variable.
+\item \textbf{Log}: Debug category (\texttt{\~{}dkey} argument).
+\item \textbf{Visitor}: \texttt{DoChildrenPost} action.
+\item \textbf{Testing}: document the need for directories 
+  to store result and oracles.
+\item \textbf{Project Management System}: Fine tuning of AST dependencies.
+\item \textbf{Testing}: added \texttt{PTESTS\_OPTS} and 
+  \texttt{PLUGIN\_PTESTS\_OPTS} Makefile's variables.
+\item \textbf{Type}: document the \texttt{type} library.
+\item \textbf{Logical Annotations}: fully updated.
+\item \textbf{Reference Manual}: update kernel files.
+\item \textbf{Testing}: merge parts in \emph{Advanced Plug-in Development} and
+  in \emph{Reference Manual}.
+\item \textbf{Website}: refer to CEA internal documentation.
+\item \textbf{Command Line Options}: explain how to modify the default behavior
+  of an option. 
+\item \textbf{Command Line Options}: fully updated.
+\item \textbf{Project Management System}: fully updated.
+\item \textbf{Plug-in Registration and Access}: \texttt{Type} replaced by
+  \texttt{Datatype} and document labeled argument \texttt{journalize}.
+\item \textbf{Configure.in}: updated.
+\item \textbf{Plug-in General Services}: updated.
+\item \textbf{Software Architecture}: \texttt{Type} is now a library, not just a
+  single module.
+\end{itemize}
+
+\section*{Nitrogen-20111001}
+
+\begin{itemize}
+\item \textbf{Tutorial of the Future}: new chapter for preparing a future 
+  tutorial.
+\item \textbf{Types as first class values}: links to articles.
+\item \textbf{Tutorial}: kernel-integrated plug-ins are now deprecated.
+\item \textbf{Visitors}: example is now out-of-date.
+\end{itemize}
+
+\section*{Carbon-20110201}
+
+Unchanged.
+
+\section*{Carbon-20101201-beta1}
+
+\begin{itemize}
+\item \textbf{Visitors}: update example to new kernel API.
+\item \textbf{Documentation}: external plugin API documentation.
+\item \textbf{Visitors}: fix bug (replace \texttt{DoChildrenPost} by
+  \texttt{ChangeDoChildrenPost}), change semantics wrt \verb+vstmt_aux+.
+\end{itemize}
+
+\section*{Carbon-20101201-beta1}
+
+\begin{itemize}
+\item \textbf{Very Important Preliminary Warning}: adding this very important
+  chapter.
+\item \textbf{Tutorial}: fix bug in the `Hello World' example.
+\item \textbf{Testing}: updated semantics of \texttt{CMD} and
+  \texttt{STDOPT} directives.
+\item \textbf{Initialization Steps}: updated according to new options
+  \texttt{-then} and \texttt{-then-on} and to the new `Files Setting' stage.
+\item \textbf{Visitors}: example updated
+\end{itemize}
+
+We list changes of previous releases below.
+
+\section*{Boron-20100401}
+
+\begin{itemize}
+\item \textbf{Configure.in}: updated
+\item \textbf{Tutorial}: the section about kernel-integrated plug-in is
+  out-of-date
+\item \textbf{Project}: no more \texttt{rehash} in datatypes
+\item \textbf{Initialisation Steps}: fixed according to the current
+  implementation
+\item \textbf{Plug-in Registration and Access}: updated according to API
+  changes
+\item \textbf{Documentation}: updated and improved
+\item \textbf{Introduction}: is aware of the \framac user manual
+\item \textbf{Logical Annotations}: fully new section
+\item \textbf{Tutorial}: fix an efficiency issue with the Makefile of the
+  \texttt{Hello} plug-in
+\end{itemize}
+
+\section*{Beryllium-20090902}
+
+\begin{itemize}
+\item \textbf{Makefiles}: update according to the new \texttt{Makefile.kernel}
+\end{itemize}
+
+\section*{Beryllium-20090901}
+
+\begin{itemize}
+\item \textbf{Makefiles}: update according to the new makefiles hierarchy
+\item \textbf{Writing messages}: fully documented
+\item \textbf{Initialization Steps}: the different stages are more
+  precisely defined. The implementation has been modified to take into
+  account specificities of dynamically linked plug-ins
+\item \textbf{Project Management System}: mention value \texttt{descr} in
+  Datatype
+\item \textbf{Makefile.plugin}: add documentation for additional parameters
+\end{itemize}
+
+\section*{Beryllium-20090601-beta1}
+
+\begin{itemize}
+\item \textbf{Initialization Steps}: update according to the new implementation
+\item \textbf{Command Line Options}: update according to the new implementation
+\item \textbf{Plug-in General Services}: fully new section introducing the new
+  module \texttt{Plugin}
+\item \textbf{File Tree}: update according to changes in the kernel
+\item \textbf{Makefiles}: update according to the new file
+  \texttt{Makefile.dynamic} and the new file \texttt{Makefile.config.in}
+\item \textbf{Architecture}: update according to the recent implementation
+  changes
+\item \textbf{Tutorial}: update according to API changes and the new way of
+  writing plug-ins
+\item \textbf{configure.in}: update according to changes in the way of adding a
+  simple plug-in
+\item \textbf{Plug-in Registration and Access}: update according to the new API
+  of module \texttt{Type}
+\end{itemize}
+
+\section*{Lithium-20081201}
+
+\begin{itemize}
+\item \textbf{Changes}: fully new appendix
+\item \textbf{Command Line Options}: new sub-section \emph{Storing New Dynamic
+    Option Values}
+\item \textbf{Configure.in}: compliant with new implementations of
+  \texttt{configure\_library} and \texttt{configure\_tool}
+\item \textbf{Exporting Datatypes}: now embedded in new section \emph{Plug-in
+  Registration and Access}
+\item \textbf{GUI}: update, in particular the full example has been removed
+\item \textbf{Introduction}: improved
+\item \textbf{Plug-in Registration and Access}: fully new section
+\item \textbf{Project}: compliant with the new interface
+\item \textbf{Reference Manual}: integration of dynamic plug-ins
+\item \textbf{Software architecture}: integration of dynamic plug-ins
+\item \textbf{Tutorial}: improve part about dynamic plug-ins
+\item \textbf{Tutorial}: use \texttt{Db.Main.extend} to register an entry
+  point of a plug-in.
+\item \textbf{Website}: better highlighting of the directory containing the
+  \html pages
+\end{itemize}
+
+\section*{Lithium-20081002+beta1}
+
+\begin{itemize}
+\item \textbf{GUI}: fully updated
+\item \textbf{Testing}: new sub-section \emph{Alternative testing}
+\item \textbf{Testing}: new directive \texttt{STDOPT}
+\item \textbf{Tutorial}: new section \emph{Dynamic plug-ins}
+\item \textbf{Visitor}: \texttt{ChangeToPost} in sub-section \emph{Action
+  Performed}
+\end{itemize}
+
+\section*{Helium-20080701}
+
+\begin{itemize}
+\item \textbf{GUI}: fully updated
+\item \textbf{Makefile}: additional variables of \texttt{Makefile.plugin}
+\item \textbf{Project}: new important note about registration of internal
+  states in Sub-section \emph{Internal State: Principle}
+\item \textbf{Testing}: more precise documentation in the reference manual
+\end{itemize}
+
+\section*{Hydrogen-20080502}
+
+\begin{itemize}
+\item \textbf{Documentation}: new sub-section \emph{Website}
+\item \textbf{Documentation}: new \ocamldoc tag \emph{@plugin developer guide}
+\item \textbf{Index}: fully new
+\item \textbf{Project}: new sub-section \emph{Internal State: Principle}
+\item \textbf{Reference manual}: largely extended
+\item \textbf{Software architecture}: fully new chapter
+\end{itemize}
+
+\section*{Hydrogen-20080501}
+
+\begin{itemize}
+\item \textbf{First public release}
+\end{itemize}
+
+%%% Local Variables:
+%%% TeX-master: "main"
+%%% ispell-local-dictionary: "english"
+%%% End:

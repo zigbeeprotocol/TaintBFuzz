@@ -1,0 +1,61 @@
+[kernel] Parsing sqrt.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] sqrt.c:11: Call to builtin sqrt
+[eva] sqrt.c:11: function sqrt: precondition 'finite_arg' got status valid.
+[eva] sqrt.c:11: function sqrt: precondition 'arg_positive' got status valid.
+[eva] sqrt.c:12: assertion got status valid.
+[eva] sqrt.c:14: assertion got status valid.
+[eva] sqrt.c:19: 
+  Frama_C_dump_each:
+  # cvalue:
+  __fc_errno ∈ [--..--]
+  k ∈ UNINITIALIZED
+  i ∈ {-0.}
+  j ∈ {-0.}
+  r ∈ UNINITIALIZED
+  p ∈ {{ (unsigned long long *)&j }}
+  c[0..7] ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] sqrt.c:23: 
+  Frama_C_dump_each:
+  # cvalue:
+  __fc_errno ∈ [--..--]
+  k ∈ UNINITIALIZED
+  i ∈ {-0.}
+  j ∈ {-0.}
+  r ∈ {-0x8000000000000000}
+  p ∈ {{ (unsigned long long *)&j }}
+  c[0..7] ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] sqrt.c:25: Frama_C_show_each_long_long: {-0x8000000000000000}
+[eva] sqrt.c:26: Frama_C_show_each_double: {-0.}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  k ∈ {8}
+  i ∈ {-0.}
+  j ∈ {-0.}
+  r ∈ {-0x8000000000000000}
+  p ∈ {{ (unsigned long long *)&j }}
+  c[0] ∈ {128}
+   [1..7] ∈ {0}
+[from] Computing for function main
+[from] Computing for function sqrt <-main
+[from] Done for function sqrt
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function sqrt:
+  \result FROM x
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    k; i; j; r; p; c[0..7]
+[inout] Inputs for function main:
+    \nothing

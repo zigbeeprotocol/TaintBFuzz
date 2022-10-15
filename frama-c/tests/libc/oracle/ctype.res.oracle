@@ -1,0 +1,816 @@
+[kernel] Parsing ctype.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function isascii <- main.
+  Called from ctype.c:9.
+[eva] using specification for function isascii
+[eva] ctype.c:9: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] ctype.c:10: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:11.
+[eva] ctype.c:11: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] ctype.c:12: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:13.
+[eva] ctype.c:13: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:13.
+[eva] Done for function isascii
+[eva] ctype.c:14: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:15.
+[eva] ctype.c:15: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:15.
+[eva] Done for function isascii
+[eva] ctype.c:16: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:17.
+[eva] ctype.c:17: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:17.
+[eva] Done for function isascii
+[eva] ctype.c:18: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:19.
+[eva] ctype.c:19: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:19.
+[eva] Done for function isascii
+[eva] ctype.c:20: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:21.
+[eva] ctype.c:21: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:21.
+[eva] Done for function isascii
+[eva] ctype.c:22: assertion got status valid.
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:23.
+[eva] using specification for function isalnum
+[eva] ctype.c:23: 
+  function isalnum: precondition 'c_uchar_or_eof_or_EOF' got status valid.
+[eva] Done for function isalnum
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:23.
+[eva] Done for function isalnum
+[eva] ctype.c:24: assertion got status valid.
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:25.
+[eva] ctype.c:25: 
+  function isalnum: precondition 'c_uchar_or_eof_or_EOF' got status valid.
+[eva] Done for function isalnum
+[eva] ctype.c:26: assertion got status valid.
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:27.
+[eva] ctype.c:27: 
+  function isalnum: precondition 'c_uchar_or_eof_or_EOF' got status valid.
+[eva] Done for function isalnum
+[eva] ctype.c:28: assertion got status valid.
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:29.
+[eva] ctype.c:29: 
+  function isalnum: precondition 'c_uchar_or_eof_or_EOF' got status valid.
+[eva] Done for function isalnum
+[eva] ctype.c:30: assertion got status valid.
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:31.
+[eva] ctype.c:31: 
+  function isalnum: precondition 'c_uchar_or_eof_or_EOF' got status valid.
+[eva] Done for function isalnum
+[eva] ctype.c:32: assertion got status valid.
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:33.
+[eva] ctype.c:33: 
+  function isalnum: precondition 'c_uchar_or_eof_or_EOF' got status valid.
+[eva] Done for function isalnum
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:33.
+[eva] Done for function isalnum
+[eva] ctype.c:34: assertion got status valid.
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:35.
+[eva] ctype.c:35: 
+  function isalnum: precondition 'c_uchar_or_eof_or_EOF' got status valid.
+[eva] Done for function isalnum
+[eva] computing for function isalnum <- main.
+  Called from ctype.c:35.
+[eva] Done for function isalnum
+[eva] ctype.c:36: assertion got status valid.
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:37.
+[eva] using specification for function isalpha
+[eva] ctype.c:37: 
+  function isalpha: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isalpha
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:37.
+[eva] Done for function isalpha
+[eva] ctype.c:38: assertion got status valid.
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:39.
+[eva] ctype.c:39: 
+  function isalpha: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isalpha
+[eva] ctype.c:40: assertion got status valid.
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:41.
+[eva] ctype.c:41: 
+  function isalpha: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isalpha
+[eva] ctype.c:42: assertion got status valid.
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:43.
+[eva] ctype.c:43: 
+  function isalpha: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isalpha
+[eva] ctype.c:44: assertion got status valid.
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:45.
+[eva] ctype.c:45: 
+  function isalpha: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isalpha
+[eva] ctype.c:46: assertion got status valid.
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:47.
+[eva] ctype.c:47: 
+  function isalpha: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isalpha
+[eva] ctype.c:48: assertion got status valid.
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:49.
+[eva] ctype.c:49: 
+  function isalpha: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isalpha
+[eva] computing for function isalpha <- main.
+  Called from ctype.c:49.
+[eva] Done for function isalpha
+[eva] ctype.c:50: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:51.
+[eva] ctype.c:51: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:51.
+[eva] Done for function isascii
+[eva] ctype.c:52: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:53.
+[eva] ctype.c:53: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] ctype.c:54: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:55.
+[eva] ctype.c:55: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:55.
+[eva] Done for function isascii
+[eva] ctype.c:56: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:57.
+[eva] ctype.c:57: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:57.
+[eva] Done for function isascii
+[eva] ctype.c:58: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:59.
+[eva] ctype.c:59: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:59.
+[eva] Done for function isascii
+[eva] ctype.c:60: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:61.
+[eva] ctype.c:61: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:61.
+[eva] Done for function isascii
+[eva] ctype.c:62: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:63.
+[eva] ctype.c:63: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:63.
+[eva] Done for function isascii
+[eva] ctype.c:64: assertion got status valid.
+[eva] computing for function isascii <- main.
+  Called from ctype.c:65.
+[eva] ctype.c:65: 
+  function isascii: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isascii
+[eva] computing for function isascii <- main.
+  Called from ctype.c:65.
+[eva] Done for function isascii
+[eva] ctype.c:66: assertion got status valid.
+[eva] computing for function isblank <- main.
+  Called from ctype.c:67.
+[eva] using specification for function isblank
+[eva] ctype.c:67: 
+  function isblank: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isblank
+[eva] ctype.c:68: assertion got status valid.
+[eva] computing for function isblank <- main.
+  Called from ctype.c:69.
+[eva] ctype.c:69: 
+  function isblank: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isblank
+[eva] ctype.c:70: assertion got status valid.
+[eva] computing for function isblank <- main.
+  Called from ctype.c:71.
+[eva] ctype.c:71: 
+  function isblank: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isblank
+[eva] ctype.c:72: assertion got status valid.
+[eva] computing for function isblank <- main.
+  Called from ctype.c:73.
+[eva] ctype.c:73: 
+  function isblank: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isblank
+[eva] ctype.c:74: assertion got status valid.
+[eva] computing for function isblank <- main.
+  Called from ctype.c:75.
+[eva] ctype.c:75: 
+  function isblank: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isblank
+[eva] computing for function isblank <- main.
+  Called from ctype.c:75.
+[eva] Done for function isblank
+[eva] ctype.c:76: assertion got status valid.
+[eva] computing for function isblank <- main.
+  Called from ctype.c:77.
+[eva] ctype.c:77: 
+  function isblank: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isblank
+[eva] ctype.c:78: assertion got status valid.
+[eva] computing for function isblank <- main.
+  Called from ctype.c:79.
+[eva] ctype.c:79: 
+  function isblank: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isblank
+[eva] ctype.c:80: assertion got status valid.
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:81.
+[eva] using specification for function iscntrl
+[eva] ctype.c:81: 
+  function iscntrl: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function iscntrl
+[eva] ctype.c:82: assertion got status valid.
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:83.
+[eva] ctype.c:83: 
+  function iscntrl: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function iscntrl
+[eva] ctype.c:84: assertion got status valid.
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:85.
+[eva] ctype.c:85: 
+  function iscntrl: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function iscntrl
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:85.
+[eva] Done for function iscntrl
+[eva] ctype.c:86: assertion got status valid.
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:87.
+[eva] ctype.c:87: 
+  function iscntrl: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function iscntrl
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:87.
+[eva] Done for function iscntrl
+[eva] ctype.c:88: assertion got status valid.
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:89.
+[eva] ctype.c:89: 
+  function iscntrl: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function iscntrl
+[eva] ctype.c:90: assertion got status valid.
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:91.
+[eva] ctype.c:91: 
+  function iscntrl: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function iscntrl
+[eva] ctype.c:92: assertion got status valid.
+[eva] computing for function iscntrl <- main.
+  Called from ctype.c:93.
+[eva] ctype.c:93: 
+  function iscntrl: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function iscntrl
+[eva] ctype.c:94: assertion got status valid.
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:95.
+[eva] using specification for function isdigit
+[eva] ctype.c:95: 
+  function isdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isdigit
+[eva] ctype.c:96: assertion got status valid.
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:97.
+[eva] ctype.c:97: 
+  function isdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isdigit
+[eva] ctype.c:98: assertion got status valid.
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:99.
+[eva] ctype.c:99: 
+  function isdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isdigit
+[eva] ctype.c:100: assertion got status valid.
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:101.
+[eva] ctype.c:101: 
+  function isdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isdigit
+[eva] ctype.c:102: assertion got status valid.
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:103.
+[eva] ctype.c:103: 
+  function isdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isdigit
+[eva] ctype.c:104: assertion got status valid.
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:105.
+[eva] ctype.c:105: 
+  function isdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isdigit
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:105.
+[eva] Done for function isdigit
+[eva] ctype.c:106: assertion got status valid.
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:107.
+[eva] ctype.c:107: 
+  function isdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isdigit
+[eva] ctype.c:108: assertion got status valid.
+[eva] computing for function isdigit <- main.
+  Called from ctype.c:109.
+[eva] ctype.c:109: 
+  function isdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isdigit
+[eva] ctype.c:110: assertion got status valid.
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:111.
+[eva] using specification for function isgraph
+[eva] ctype.c:111: 
+  function isgraph: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isgraph
+[eva] ctype.c:112: assertion got status valid.
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:113.
+[eva] ctype.c:113: 
+  function isgraph: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isgraph
+[eva] ctype.c:114: assertion got status valid.
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:115.
+[eva] ctype.c:115: 
+  function isgraph: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isgraph
+[eva] ctype.c:116: assertion got status valid.
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:117.
+[eva] ctype.c:117: 
+  function isgraph: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isgraph
+[eva] ctype.c:118: assertion got status valid.
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:119.
+[eva] ctype.c:119: 
+  function isgraph: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isgraph
+[eva] ctype.c:120: assertion got status valid.
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:121.
+[eva] ctype.c:121: 
+  function isgraph: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isgraph
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:121.
+[eva] Done for function isgraph
+[eva] ctype.c:122: assertion got status valid.
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:123.
+[eva] ctype.c:123: 
+  function isgraph: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isgraph
+[eva] computing for function isgraph <- main.
+  Called from ctype.c:123.
+[eva] Done for function isgraph
+[eva] ctype.c:124: assertion got status valid.
+[eva] computing for function islower <- main.
+  Called from ctype.c:125.
+[eva] using specification for function islower
+[eva] ctype.c:125: 
+  function islower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function islower
+[eva] computing for function islower <- main.
+  Called from ctype.c:125.
+[eva] Done for function islower
+[eva] ctype.c:126: assertion got status valid.
+[eva] computing for function islower <- main.
+  Called from ctype.c:127.
+[eva] ctype.c:127: 
+  function islower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function islower
+[eva] ctype.c:128: assertion got status valid.
+[eva] computing for function islower <- main.
+  Called from ctype.c:129.
+[eva] ctype.c:129: 
+  function islower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function islower
+[eva] ctype.c:130: assertion got status valid.
+[eva] computing for function islower <- main.
+  Called from ctype.c:131.
+[eva] ctype.c:131: 
+  function islower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function islower
+[eva] ctype.c:132: assertion got status valid.
+[eva] computing for function islower <- main.
+  Called from ctype.c:133.
+[eva] ctype.c:133: 
+  function islower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function islower
+[eva] ctype.c:134: assertion got status valid.
+[eva] computing for function islower <- main.
+  Called from ctype.c:135.
+[eva] ctype.c:135: 
+  function islower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function islower
+[eva] ctype.c:136: assertion got status valid.
+[eva] computing for function islower <- main.
+  Called from ctype.c:137.
+[eva] ctype.c:137: 
+  function islower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function islower
+[eva] ctype.c:138: assertion got status valid.
+[eva] computing for function isprint <- main.
+  Called from ctype.c:139.
+[eva] using specification for function isprint
+[eva] ctype.c:139: 
+  function isprint: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isprint
+[eva] computing for function isprint <- main.
+  Called from ctype.c:139.
+[eva] Done for function isprint
+[eva] ctype.c:140: assertion got status valid.
+[eva] computing for function isprint <- main.
+  Called from ctype.c:141.
+[eva] ctype.c:141: 
+  function isprint: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isprint
+[eva] ctype.c:142: assertion got status valid.
+[eva] computing for function isprint <- main.
+  Called from ctype.c:143.
+[eva] ctype.c:143: 
+  function isprint: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isprint
+[eva] ctype.c:144: assertion got status valid.
+[eva] computing for function isprint <- main.
+  Called from ctype.c:145.
+[eva] ctype.c:145: 
+  function isprint: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isprint
+[eva] ctype.c:146: assertion got status valid.
+[eva] computing for function isprint <- main.
+  Called from ctype.c:147.
+[eva] ctype.c:147: 
+  function isprint: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isprint
+[eva] computing for function isprint <- main.
+  Called from ctype.c:147.
+[eva] Done for function isprint
+[eva] ctype.c:148: assertion got status valid.
+[eva] computing for function isprint <- main.
+  Called from ctype.c:149.
+[eva] ctype.c:149: 
+  function isprint: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isprint
+[eva] computing for function isprint <- main.
+  Called from ctype.c:149.
+[eva] Done for function isprint
+[eva] ctype.c:150: assertion got status valid.
+[eva] computing for function isprint <- main.
+  Called from ctype.c:151.
+[eva] ctype.c:151: 
+  function isprint: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isprint
+[eva] computing for function isprint <- main.
+  Called from ctype.c:151.
+[eva] Done for function isprint
+[eva] ctype.c:152: assertion got status valid.
+[eva] computing for function ispunct <- main.
+  Called from ctype.c:153.
+[eva] using specification for function ispunct
+[eva] ctype.c:153: 
+  function ispunct: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function ispunct
+[eva] computing for function ispunct <- main.
+  Called from ctype.c:153.
+[eva] Done for function ispunct
+[eva] ctype.c:154: assertion got status valid.
+[eva] computing for function ispunct <- main.
+  Called from ctype.c:155.
+[eva] ctype.c:155: 
+  function ispunct: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function ispunct
+[eva] ctype.c:156: assertion got status valid.
+[eva] computing for function ispunct <- main.
+  Called from ctype.c:157.
+[eva] ctype.c:157: 
+  function ispunct: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function ispunct
+[eva] ctype.c:158: assertion got status valid.
+[eva] computing for function ispunct <- main.
+  Called from ctype.c:159.
+[eva] ctype.c:159: 
+  function ispunct: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function ispunct
+[eva] ctype.c:160: assertion got status valid.
+[eva] computing for function ispunct <- main.
+  Called from ctype.c:161.
+[eva] ctype.c:161: 
+  function ispunct: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function ispunct
+[eva] ctype.c:162: assertion got status valid.
+[eva] computing for function ispunct <- main.
+  Called from ctype.c:163.
+[eva] ctype.c:163: 
+  function ispunct: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function ispunct
+[eva] ctype.c:164: assertion got status valid.
+[eva] computing for function ispunct <- main.
+  Called from ctype.c:165.
+[eva] ctype.c:165: 
+  function ispunct: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function ispunct
+[eva] ctype.c:166: assertion got status valid.
+[eva] computing for function isspace <- main.
+  Called from ctype.c:167.
+[eva] using specification for function isspace
+[eva] ctype.c:167: 
+  function isspace: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isspace
+[eva] ctype.c:168: assertion got status valid.
+[eva] computing for function isspace <- main.
+  Called from ctype.c:169.
+[eva] ctype.c:169: 
+  function isspace: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isspace
+[eva] ctype.c:170: assertion got status valid.
+[eva] computing for function isspace <- main.
+  Called from ctype.c:171.
+[eva] ctype.c:171: 
+  function isspace: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isspace
+[eva] ctype.c:172: assertion got status valid.
+[eva] computing for function isspace <- main.
+  Called from ctype.c:173.
+[eva] ctype.c:173: 
+  function isspace: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isspace
+[eva] ctype.c:174: assertion got status valid.
+[eva] computing for function isspace <- main.
+  Called from ctype.c:175.
+[eva] ctype.c:175: 
+  function isspace: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isspace
+[eva] computing for function isspace <- main.
+  Called from ctype.c:175.
+[eva] Done for function isspace
+[eva] ctype.c:176: assertion got status valid.
+[eva] computing for function isspace <- main.
+  Called from ctype.c:177.
+[eva] ctype.c:177: 
+  function isspace: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isspace
+[eva] ctype.c:178: assertion got status valid.
+[eva] computing for function isspace <- main.
+  Called from ctype.c:179.
+[eva] ctype.c:179: 
+  function isspace: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isspace
+[eva] ctype.c:180: assertion got status valid.
+[eva] computing for function isupper <- main.
+  Called from ctype.c:181.
+[eva] using specification for function isupper
+[eva] ctype.c:181: 
+  function isupper: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isupper
+[eva] ctype.c:182: assertion got status valid.
+[eva] computing for function isupper <- main.
+  Called from ctype.c:183.
+[eva] ctype.c:183: 
+  function isupper: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isupper
+[eva] ctype.c:184: assertion got status valid.
+[eva] computing for function isupper <- main.
+  Called from ctype.c:185.
+[eva] ctype.c:185: 
+  function isupper: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isupper
+[eva] ctype.c:186: assertion got status valid.
+[eva] computing for function isupper <- main.
+  Called from ctype.c:187.
+[eva] ctype.c:187: 
+  function isupper: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isupper
+[eva] ctype.c:188: assertion got status valid.
+[eva] computing for function isupper <- main.
+  Called from ctype.c:189.
+[eva] ctype.c:189: 
+  function isupper: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isupper
+[eva] ctype.c:190: assertion got status valid.
+[eva] computing for function isupper <- main.
+  Called from ctype.c:191.
+[eva] ctype.c:191: 
+  function isupper: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isupper
+[eva] ctype.c:192: assertion got status valid.
+[eva] computing for function isupper <- main.
+  Called from ctype.c:193.
+[eva] ctype.c:193: 
+  function isupper: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isupper
+[eva] computing for function isupper <- main.
+  Called from ctype.c:193.
+[eva] Done for function isupper
+[eva] ctype.c:194: assertion got status valid.
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:195.
+[eva] using specification for function isxdigit
+[eva] ctype.c:195: 
+  function isxdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isxdigit
+[eva] ctype.c:196: assertion got status valid.
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:197.
+[eva] ctype.c:197: 
+  function isxdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isxdigit
+[eva] ctype.c:198: assertion got status valid.
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:199.
+[eva] ctype.c:199: 
+  function isxdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isxdigit
+[eva] ctype.c:200: assertion got status valid.
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:201.
+[eva] ctype.c:201: 
+  function isxdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isxdigit
+[eva] ctype.c:202: assertion got status valid.
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:203.
+[eva] ctype.c:203: 
+  function isxdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isxdigit
+[eva] ctype.c:204: assertion got status valid.
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:205.
+[eva] ctype.c:205: 
+  function isxdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isxdigit
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:205.
+[eva] Done for function isxdigit
+[eva] ctype.c:206: assertion got status valid.
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:207.
+[eva] ctype.c:207: 
+  function isxdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isxdigit
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:207.
+[eva] Done for function isxdigit
+[eva] ctype.c:208: assertion got status valid.
+[eva] computing for function isxdigit <- main.
+  Called from ctype.c:209.
+[eva] ctype.c:209: 
+  function isxdigit: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function isxdigit
+[eva] ctype.c:210: assertion got status valid.
+[eva] computing for function tolower <- main.
+  Called from ctype.c:211.
+[eva] using specification for function tolower
+[eva] ctype.c:211: 
+  function tolower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function tolower
+[eva] ctype.c:212: assertion got status valid.
+[eva] computing for function tolower <- main.
+  Called from ctype.c:213.
+[eva] ctype.c:213: 
+  function tolower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function tolower
+[eva] ctype.c:214: assertion got status valid.
+[eva] computing for function tolower <- main.
+  Called from ctype.c:215.
+[eva] ctype.c:215: 
+  function tolower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function tolower
+[eva] ctype.c:216: assertion got status valid.
+[eva] computing for function tolower <- main.
+  Called from ctype.c:217.
+[eva] ctype.c:217: 
+  function tolower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function tolower
+[eva] ctype.c:218: assertion got status valid.
+[eva] computing for function tolower <- main.
+  Called from ctype.c:219.
+[eva] ctype.c:219: 
+  function tolower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function tolower
+[eva] ctype.c:220: assertion got status valid.
+[eva] computing for function tolower <- main.
+  Called from ctype.c:221.
+[eva] ctype.c:221: 
+  function tolower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function tolower
+[eva] ctype.c:222: assertion got status valid.
+[eva] computing for function tolower <- main.
+  Called from ctype.c:223.
+[eva] ctype.c:223: 
+  function tolower: precondition 'c_uchar_or_eof' got status valid.
+[eva] Done for function tolower
+[eva] ctype.c:224: assertion got status valid.
+[eva] computing for function toupper <- main.
+  Called from ctype.c:225.
+[eva] using specification for function toupper
+[eva] ctype.c:225: 
+  function toupper: precondition 'c_uchar_of_eof' got status valid.
+[eva] Done for function toupper
+[eva] ctype.c:226: assertion got status valid.
+[eva] computing for function toupper <- main.
+  Called from ctype.c:227.
+[eva] ctype.c:227: 
+  function toupper: precondition 'c_uchar_of_eof' got status valid.
+[eva] Done for function toupper
+[eva] ctype.c:228: assertion got status valid.
+[eva] computing for function toupper <- main.
+  Called from ctype.c:229.
+[eva] ctype.c:229: 
+  function toupper: precondition 'c_uchar_of_eof' got status valid.
+[eva] Done for function toupper
+[eva] ctype.c:230: assertion got status valid.
+[eva] computing for function toupper <- main.
+  Called from ctype.c:231.
+[eva] ctype.c:231: 
+  function toupper: precondition 'c_uchar_of_eof' got status valid.
+[eva] Done for function toupper
+[eva] ctype.c:232: assertion got status valid.
+[eva] computing for function toupper <- main.
+  Called from ctype.c:233.
+[eva] ctype.c:233: 
+  function toupper: precondition 'c_uchar_of_eof' got status valid.
+[eva] Done for function toupper
+[eva] ctype.c:234: assertion got status valid.
+[eva] computing for function toupper <- main.
+  Called from ctype.c:235.
+[eva] ctype.c:235: 
+  function toupper: precondition 'c_uchar_of_eof' got status valid.
+[eva] Done for function toupper
+[eva] ctype.c:236: assertion got status valid.
+[eva] computing for function toupper <- main.
+  Called from ctype.c:237.
+[eva] ctype.c:237: 
+  function toupper: precondition 'c_uchar_of_eof' got status valid.
+[eva] Done for function toupper
+[eva] ctype.c:238: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  r ∈ {90}
+  __retres ∈ {0}

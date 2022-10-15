@@ -1,0 +1,88 @@
+\documentclass[web]{frama-c-book}
+
+\usepackage{graphicx}
+\usepackage{calc}
+
+\include{macros}
+\include{eacslversion}
+\input{./frama-c-affiliation.tex}
+
+\makeindex
+
+\begin{document}
+
+\coverpage{\eacsl User Manual}
+
+\begin{titlepage}
+\begin{flushleft}
+\includegraphics[height=14mm]{cealistlogo.jpg}
+\end{flushleft}
+\vfill
+\title{\eacsl Plug-in}{Release \eacslpluginversion (\eacslplugincodename)
+ \ifthenelse{\equal{\eacslpluginversion}{\fcversion}}{}{%
+   \\[1em] compatible with \framac \fcversion}}
+\author{Julien Signoles, Basile Desloges and Kostyantyn Vorobyov}
+\begin{center}
+\fcaffiliationen
+\end{center}
+\vfill
+\begin{flushleft}
+  \textcopyright 2013-2021 CEA LIST
+%%
+  %% This work has been supported by the `Hi-Lite' FUI project (FUI AAP 9).
+\end{flushleft}
+\end{titlepage}
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Foreword}
+\markright{}
+\addcontentsline{toc}{chapter}{Foreword}
+
+This is the user manual of the \framac plug-in
+\eacsl\footnote{\url{https://frama-c.com/fc-plugins/e-acsl.html}}. The contents
+of this document correspond to its version \eacslpluginversion compatible with
+\fcversion version of \framac~\cite{userman,fac15}.  The development of
+the \eacsl plug-in is still ongoing.  Features described by this document may
+evolve in the future.
+
+\section*{Acknowledgements}
+
+We gratefully thank the people who contributed to this document:
+Pierre-Lo\"ic Garoche, Jens Gerlach, Florent Kirchner, Nikola\"i Kosmatov,
+Andr\'e Oliveira Maroneze, Fonenantsoa Maurica, and Guillaume Petiot.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{introduction}
+\include{provides}
+\include{limitations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+\include{changes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliographystyle{plain}
+\bibliography{./biblio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% \cleardoublepage
+%% \addcontentsline{toc}{chapter}{\listfigurename}
+%% \listoffigures
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\indexname}
+\printindex
+
+\end{document}

@@ -1,0 +1,371 @@
+[kernel] Parsing non_natural.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from non_natural.i:63.
+[eva] non_natural.i:11: Frama_C_show_each: {0}
+[eva] non_natural.i:11: Frama_C_show_each: {0; 1}
+[eva] non_natural.i:11: Frama_C_show_each: {0; 1; 2}
+[eva] non_natural.i:11: Frama_C_show_each: [0..999999]
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from non_natural.i:64.
+[eva] computing for function duff1 <- main2 <- main.
+  Called from non_natural.i:57.
+[eva] non_natural.i:22: Frama_C_show_each: {{ &p2 }}
+[eva:alarm] non_natural.i:23: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_0);
+  (tmp_0 from from++)
+[eva:alarm] non_natural.i:24: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_2);
+  (tmp_2 from from++)
+[eva:alarm] non_natural.i:25: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_4);
+  (tmp_4 from from++)
+[eva:alarm] non_natural.i:26: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_6);
+  (tmp_6 from from++)
+[eva:alarm] non_natural.i:27: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_8);
+  (tmp_8 from from++)
+[eva:alarm] non_natural.i:28: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_10);
+  (tmp_10 from from++)
+[eva:alarm] non_natural.i:29: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_12);
+  (tmp_12 from from++)
+[eva:alarm] non_natural.i:30: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_14);
+  (tmp_14 from from++)
+[eva] non_natural.i:21: starting to merge loop iterations
+[eva] non_natural.i:22: Frama_C_show_each: {{ &p2 + {0; 32} }}
+[eva] non_natural.i:22: Frama_C_show_each: {{ &p2 + {0; 32; 64} }}
+[eva] non_natural.i:22: Frama_C_show_each: {{ &p2 + {0; 32; 64; 96} }}
+[kernel] non_natural.i:30: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva] non_natural.i:22: Frama_C_show_each: {{ &p2 + [0..400000],0%32 }}
+[eva:alarm] non_natural.i:23: Warning: 
+  out of bounds write. assert \valid(tmp);
+                       (tmp from to++)
+[kernel] non_natural.i:23: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:24: Warning: 
+  out of bounds write. assert \valid(tmp_1);
+                       (tmp_1 from to++)
+[kernel] non_natural.i:24: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:25: Warning: 
+  out of bounds write. assert \valid(tmp_3);
+                       (tmp_3 from to++)
+[eva:alarm] non_natural.i:25: Warning: 
+  out of bounds read. assert \valid_read(tmp_4);
+                      (tmp_4 from from++)
+[kernel] non_natural.i:25: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:26: Warning: 
+  out of bounds write. assert \valid(tmp_5);
+                       (tmp_5 from to++)
+[eva:alarm] non_natural.i:26: Warning: 
+  out of bounds read. assert \valid_read(tmp_6);
+                      (tmp_6 from from++)
+[kernel] non_natural.i:26: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:27: Warning: 
+  out of bounds write. assert \valid(tmp_7);
+                       (tmp_7 from to++)
+[eva:alarm] non_natural.i:27: Warning: 
+  out of bounds read. assert \valid_read(tmp_8);
+                      (tmp_8 from from++)
+[kernel] non_natural.i:27: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:28: Warning: 
+  out of bounds write. assert \valid(tmp_9);
+                       (tmp_9 from to++)
+[eva:alarm] non_natural.i:28: Warning: 
+  out of bounds read. assert \valid_read(tmp_10);
+                      (tmp_10 from from++)
+[kernel] non_natural.i:28: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:29: Warning: 
+  out of bounds write. assert \valid(tmp_11);
+                       (tmp_11 from to++)
+[eva:alarm] non_natural.i:29: Warning: 
+  out of bounds read. assert \valid_read(tmp_12);
+                      (tmp_12 from from++)
+[kernel] non_natural.i:29: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:30: Warning: 
+  out of bounds write. assert \valid(tmp_13);
+                       (tmp_13 from to++)
+[eva:alarm] non_natural.i:30: Warning: 
+  out of bounds read. assert \valid_read(tmp_14);
+                      (tmp_14 from from++)
+[eva] non_natural.i:22: Frama_C_show_each: {{ &p2 + [0..400032],0%32 }}
+[eva:alarm] non_natural.i:23: Warning: 
+  out of bounds read. assert \valid_read(tmp_0);
+                      (tmp_0 from from++)
+[eva:alarm] non_natural.i:24: Warning: 
+  out of bounds read. assert \valid_read(tmp_2);
+                      (tmp_2 from from++)
+[eva] non_natural.i:22: Frama_C_show_each: {{ &p2 + [0..--],0%32 }}
+[eva] Recording results for duff1
+[kernel] non_natural.i:23: 
+  more than 200(12501) elements to enumerate. Approximating.
+[kernel] non_natural.i:23: 
+  more than 200(12500) elements to enumerate. Approximating.
+[kernel] non_natural.i:24: 
+  more than 200(12501) elements to enumerate. Approximating.
+[kernel] non_natural.i:24: 
+  more than 200(12500) elements to enumerate. Approximating.
+[kernel] non_natural.i:25: 
+  more than 200(12500) elements to enumerate. Approximating.
+[kernel] non_natural.i:26: 
+  more than 200(12500) elements to enumerate. Approximating.
+[kernel] non_natural.i:27: 
+  more than 200(12500) elements to enumerate. Approximating.
+[kernel] non_natural.i:28: 
+  more than 200(12500) elements to enumerate. Approximating.
+[kernel] non_natural.i:29: 
+  more than 200(12500) elements to enumerate. Approximating.
+[kernel] non_natural.i:30: 
+  more than 200(12500) elements to enumerate. Approximating.
+[eva] Done for function duff1
+[eva:alarm] non_natural.i:58: Warning: 
+  accessing out of bounds index. assert 0 ≤ o;
+[eva:alarm] non_natural.i:58: Warning: 
+  accessing out of bounds index. assert o < 100002;
+[eva] computing for function duff2 <- main2 <- main.
+  Called from non_natural.i:59.
+[eva] non_natural.i:38: Frama_C_show_each: {{ &p2 }}
+[eva:alarm] non_natural.i:39: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_0);
+  (tmp_0 from from++)
+[eva:alarm] non_natural.i:40: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_2);
+  (tmp_2 from from++)
+[eva:alarm] non_natural.i:41: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_4);
+  (tmp_4 from from++)
+[eva:alarm] non_natural.i:42: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_6);
+  (tmp_6 from from++)
+[eva:alarm] non_natural.i:43: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_8);
+  (tmp_8 from from++)
+[eva:alarm] non_natural.i:44: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_10);
+  (tmp_10 from from++)
+[eva:alarm] non_natural.i:45: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_12);
+  (tmp_12 from from++)
+[eva:alarm] non_natural.i:46: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(tmp_14);
+  (tmp_14 from from++)
+[eva] non_natural.i:38: Frama_C_show_each: {{ &p2 + {0; 32} }}
+[eva] non_natural.i:38: Frama_C_show_each: {{ &p2 + {0; 32; 64} }}
+[eva] non_natural.i:38: Frama_C_show_each: {{ &p2 + {0; 32; 64; 96} }}
+[kernel] non_natural.i:46: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva] non_natural.i:38: Frama_C_show_each: {{ &p2 + [0..400000],0%32 }}
+[eva:alarm] non_natural.i:39: Warning: 
+  out of bounds write. assert \valid(tmp);
+                       (tmp from to++)
+[kernel] non_natural.i:39: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:40: Warning: 
+  out of bounds write. assert \valid(tmp_1);
+                       (tmp_1 from to++)
+[kernel] non_natural.i:40: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:41: Warning: 
+  out of bounds write. assert \valid(tmp_3);
+                       (tmp_3 from to++)
+[eva:alarm] non_natural.i:41: Warning: 
+  out of bounds read. assert \valid_read(tmp_4);
+                      (tmp_4 from from++)
+[kernel] non_natural.i:41: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:42: Warning: 
+  out of bounds write. assert \valid(tmp_5);
+                       (tmp_5 from to++)
+[eva:alarm] non_natural.i:42: Warning: 
+  out of bounds read. assert \valid_read(tmp_6);
+                      (tmp_6 from from++)
+[kernel] non_natural.i:42: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:43: Warning: 
+  out of bounds write. assert \valid(tmp_7);
+                       (tmp_7 from to++)
+[eva:alarm] non_natural.i:43: Warning: 
+  out of bounds read. assert \valid_read(tmp_8);
+                      (tmp_8 from from++)
+[kernel] non_natural.i:43: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:44: Warning: 
+  out of bounds write. assert \valid(tmp_9);
+                       (tmp_9 from to++)
+[eva:alarm] non_natural.i:44: Warning: 
+  out of bounds read. assert \valid_read(tmp_10);
+                      (tmp_10 from from++)
+[kernel] non_natural.i:44: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:45: Warning: 
+  out of bounds write. assert \valid(tmp_11);
+                       (tmp_11 from to++)
+[eva:alarm] non_natural.i:45: Warning: 
+  out of bounds read. assert \valid_read(tmp_12);
+                      (tmp_12 from from++)
+[kernel] non_natural.i:45: 
+  more than 200(12500) locations to update in array. Approximating.
+[eva:alarm] non_natural.i:46: Warning: 
+  out of bounds write. assert \valid(tmp_13);
+                       (tmp_13 from to++)
+[eva:alarm] non_natural.i:46: Warning: 
+  out of bounds read. assert \valid_read(tmp_14);
+                      (tmp_14 from from++)
+[eva] non_natural.i:38: Frama_C_show_each: {{ &p2 + [0..400032],0%32 }}
+[eva:alarm] non_natural.i:39: Warning: 
+  out of bounds read. assert \valid_read(tmp_0);
+                      (tmp_0 from from++)
+[eva:alarm] non_natural.i:40: Warning: 
+  out of bounds read. assert \valid_read(tmp_2);
+                      (tmp_2 from from++)
+[eva] non_natural.i:38: Frama_C_show_each: {{ &p2 + [0..--],0%32 }}
+[eva] Recording results for duff2
+[eva] Done for function duff2
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function duff1:
+  to ∈ {{ &p2 + [32..--],0%32 }}
+  from ∈ {{ &p1 + [32..--],0%32 }}
+  n ∈ {0}
+  p2[0..99999] ∈ {1} or UNINITIALIZED
+[eva:final-states] Values at end of function duff2:
+  to ∈ {{ &p2 + [32..--],0%32 }}
+  from ∈ {{ &p1 + [32..--],0%32 }}
+  n ∈ {0}
+  p2[0..99999] ∈ {1; 2} or UNINITIALIZED
+[eva:final-states] Values at end of function main1:
+  c ∈ {1000000}
+[eva:final-states] Values at end of function main2:
+  p1[0..100001] ∈ {1; 2} or UNINITIALIZED
+  p2[0..99999] ∈ {1; 2} or UNINITIALIZED
+  o ∈ [0..100001]
+[eva:final-states] Values at end of function main:
+  
+[from] Computing for function duff1
+[kernel] non_natural.i:23: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:24: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:25: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:26: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:27: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:28: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:29: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:30: 
+  more than 200(12500) dependencies to update. Approximating.
+[from] Done for function duff1
+[from] Computing for function duff2
+[kernel] non_natural.i:39: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:40: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:41: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:42: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:43: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:44: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:45: 
+  more than 200(12500) dependencies to update. Approximating.
+[kernel] non_natural.i:46: 
+  more than 200(12500) dependencies to update. Approximating.
+[from] Done for function duff2
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function duff1:
+  p2[0] FROM to; from; count; p1[0..100000] (and SELF)
+    [1..99992] FROM to; from; count; p1[0..100001] (and SELF)
+    [99993] FROM to; from; count; p1[1..100001] (and SELF)
+    [99994] FROM to; from; count; p1[2..99999] (and SELF)
+    [99995] FROM to; from; count; p1[3..99999] (and SELF)
+    [99996] FROM to; from; count; p1[4..99999] (and SELF)
+    [99997] FROM to; from; count; p1[5..99999] (and SELF)
+    [99998] FROM to; from; count; p1[6..99999] (and SELF)
+    [99999] FROM to; from; count; p1[7..99999] (and SELF)
+[from] Function duff2:
+  p2[0] FROM to; from; count; p1[0..100000] (and SELF)
+    [1..99992] FROM to; from; count; p1[0..100001] (and SELF)
+    [99993] FROM to; from; count; p1[1..100001] (and SELF)
+    [99994] FROM to; from; count; p1[2..99999] (and SELF)
+    [99995] FROM to; from; count; p1[3..99999] (and SELF)
+    [99996] FROM to; from; count; p1[4..99999] (and SELF)
+    [99997] FROM to; from; count; p1[5..99999] (and SELF)
+    [99998] FROM to; from; count; p1[6..99999] (and SELF)
+    [99999] FROM to; from; count; p1[7..99999] (and SELF)
+[from] Function main1:
+  NO EFFECTS
+[from] Function main2:
+  NO EFFECTS
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function duff1:
+    to; from; n; tmp; tmp_0; tmp_1; tmp_2; tmp_3; tmp_4; tmp_5; tmp_6; 
+    tmp_7; tmp_8; tmp_9; tmp_10; tmp_11; tmp_12; tmp_13; tmp_14; p2[0..99999]
+[inout] Inputs for function duff1:
+    p1[0..100001]
+[inout] Out (internal) for function duff2:
+    to; from; n; tmp; tmp_0; tmp_1; tmp_2; tmp_3; tmp_4; tmp_5; tmp_6; 
+    tmp_7; tmp_8; tmp_9; tmp_10; tmp_11; tmp_12; tmp_13; tmp_14; p2[0..99999]
+[inout] Inputs for function duff2:
+    p1[0..100001]
+[inout] Out (internal) for function main1:
+    c
+[inout] Inputs for function main1:
+    v
+[inout] Out (internal) for function main2:
+    p1[0..100001]; p2[0..99999]; o
+[inout] Inputs for function main2:
+    v
+[inout] Out (internal) for function main:
+    \nothing
+[inout] Inputs for function main:
+    v

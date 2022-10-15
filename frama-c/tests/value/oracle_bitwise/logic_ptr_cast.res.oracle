@@ -1,0 +1,6 @@
+8,10c8
+< [eva] logic_ptr_cast.i:8: 
+<   Assigning imprecise value to p.
+<   The imprecision originates from Arithmetic {logic_ptr_cast.i:8}
+---
+> [eva] logic_ptr_cast.i:8: Assigning imprecise value to p.

@@ -1,0 +1,95 @@
+# frama-c -wp [...]
+[kernel] Parsing equal.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function simple_array
+------------------------------------------------------------
+
+Goal Post-condition (file equal.i, line 22) in 'simple_array':
+Let x = t0_0[0].
+Let x_1 = t0_0[1].
+Assume {
+  Type: IsArray_sint32(t0_0) /\ IsArray_sint32(t1_0) /\ is_sint32(x) /\
+      is_sint32(x_1).
+}
+Prove: EqArray_int(2, t0_0, t1_0[0 <- x][1 <- x_1]).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function simple_struct
+------------------------------------------------------------
+
+Goal Post-condition (file equal.i, line 16) in 'simple_struct':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function with_array_struct
+------------------------------------------------------------
+
+Goal Post-condition (file equal.i, line 28) in 'with_array_struct':
+Let a = st0_0.F2_St_tab.
+Let a_1 = st1_0.F2_St_tab.
+Assume {
+  Type: IsS2_St(st0_0) /\ IsS2_St(st1_0) /\ IsArray_sint32(a) /\
+      IsArray_sint32(a_1).
+  (* Goal *)
+  When: EqArray_int(10, a, a_1).
+}
+Prove: EqS2_St(st0_0, st1_0).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function with_ptr_and_array_struct
+------------------------------------------------------------
+
+Goal Post-condition (file equal.i, line 47) in 'with_ptr_and_array_struct':
+Let a = q1_0.F4_Q_qp.
+Let a_1 = q0_0.F4_Q_qp.
+Let a_2 = q0_0.F4_Q_qs.
+Let a_3 = q1_0.F4_Q_qs.
+Let a_4 = q0_0.F4_Q_qt.
+Let a_5 = q1_0.F4_Q_qt.
+Assume {
+  Type: IsS4_Q(q0_0) /\ IsS4_Q(q1_0) /\ IsArray_sint32(a_4) /\
+      IsArray_sint32(a_5) /\ IsS1_S(a_2) /\ IsS1_S(a_3).
+  (* Heap *)
+  Type: (region(a_1.base) <= 0) /\ (region(a.base) <= 0).
+  (* Goal *)
+  When: (a = a_1) /\ EqS1_S(a_2, a_3) /\ EqArray_int(2, a_4, a_5).
+}
+Prove: EqS4_Q(q0_0, q1_0).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function with_ptr_array
+------------------------------------------------------------
+
+Goal Post-condition (file equal.i, line 40) in 'with_ptr_array':
+Assume {
+  (* Heap *)
+  Type: (forall i : Z. region(tp0_0[i].base) <= 0) /\
+      (forall i : Z. region(tp1_0[i].base) <= 0).
+  (* Goal *)
+  When: forall i : Z. ((0 <= i) -> ((i <= 4) -> (tp1_0[i] = tp0_0[i]))).
+}
+Prove: EqArray_ptr(5, tp0_0, tp1_0).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function with_ptr_struct
+------------------------------------------------------------
+
+Goal Post-condition (file equal.i, line 34) in 'with_ptr_struct':
+Let a = sp1_0.F3_Sp_p.
+Let a_1 = sp0_0.F3_Sp_p.
+Assume {
+  (* Heap *)
+  Type: (region(a_1.base) <= 0) /\ (region(a.base) <= 0).
+  (* Goal *)
+  When: a = a_1.
+}
+Prove: EqS3_Sp(sp0_0, sp1_0).
+
+------------------------------------------------------------

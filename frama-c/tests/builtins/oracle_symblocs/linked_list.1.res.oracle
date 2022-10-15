@@ -1,0 +1,17 @@
+542a543,544
+> [kernel] linked_list.c:43: 
+>   more than 100(127) elements to enumerate. Approximating.
+544a547,548
+> [kernel] linked_list.c:44: 
+>   more than 100(127) elements to enumerate. Approximating.
+718a723,724
+> [kernel] linked_list.c:43: 
+>   more than 100(128) elements to enumerate. Approximating.
+720a727,728
+> [kernel] linked_list.c:44: 
+>   more than 100(128) elements to enumerate. Approximating.
+817,820d824
+< [kernel] linked_list.c:43: 
+<   more than 100(128) elements to enumerate. Approximating.
+< [kernel] linked_list.c:44: 
+<   more than 100(128) elements to enumerate. Approximating.

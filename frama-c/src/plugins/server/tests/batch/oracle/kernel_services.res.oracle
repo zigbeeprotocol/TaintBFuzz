@@ -1,0 +1,5 @@
+[kernel] Parsing kernel_services.i (no preprocessing)
+[server] Script "./kernel_services.json"
+[server] [GET] kernel.services.getLogs
+[server] [SET] kernel.services.setLogs
+[server] Output "./kernel_services.out.json"

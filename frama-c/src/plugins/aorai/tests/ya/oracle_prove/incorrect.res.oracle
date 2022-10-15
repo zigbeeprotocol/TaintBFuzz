@@ -1,0 +1,6 @@
+[kernel] Parsing incorrect.i (no preprocessing)
+[aorai] Warning: Call to main does not follow automaton's specification. This path is assumed to be dead
+[kernel] Parsing TMPDIR/aorai_incorrect_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards
+[kernel:annot:missing-spec] TMPDIR/aorai_incorrect_0.i:70: Warning: 
+  Neither code nor specification for function f, generating default assigns from the prototype

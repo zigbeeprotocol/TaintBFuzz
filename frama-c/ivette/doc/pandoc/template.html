@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="default no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>$subtitle$ | $title$ – $version$</title>
+  $if(description)$
+  <meta name="description" content="$description$">
+  $endif$
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/gallery.css">
+</head>
+<body>
+  <header>
+    <div class="tsd-page-toolbar">
+      <div class="container">
+        <div class="table-wrap">
+          <div class="table-cell" id="tsd-search"
+               data-index="../assets/js/search.json" data-base=".">
+            <div class="field">
+              <label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+              <input id="tsd-search-field" type="text" />
+            </div>
+            <ul class="results">
+              <li class="state loading">Preparing search index...</li>
+              <li class="state failure">The search index is not available</li>
+            </ul>
+            <a href="../index.html" class="title">$title$ - $version$</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tsd-page-title">
+      <div class="container">
+        <ul class="tsd-breadcrumb">
+          <li><a href="../globals.html">Globals</a></li>
+        </ul>
+        <h1 id="MAIN">$subtitle$</h1>
+      </div>
+    </div>
+  </header>
+  <div class="container container-main">
+    <div class="row">
+      <div class="col-8 col-content">
+        <div class="tsd-panel tsd-typography">
+          $body$
+        </div>
+      </div>
+      <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+        <nav class="tsd-navigation primary">
+          <ul>
+            <li class="globals"><a href="../index.html"><em>$title$</em></a></li>
+            $for(guides)$
+            <li><a href="$guides.page$.html">$guides.title$</a></li>
+            $endfor$
+          </ul>
+        </nav>
+        <nav class="tsd-navigation secondary menu-sticky">
+          <a href="#MAIN"><b>$subtitle$</b></a>
+          <ul class="before-current">
+            $table-of-contents$
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

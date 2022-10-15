@@ -1,0 +1,5 @@
+[kernel] Parsing ghost_else_bad.c (with preprocessing)
+[kernel] ghost_else_bad.c:20: User Error: Cannot resolve variable z
+[kernel] User Error: stopping on file "ghost_else_bad.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

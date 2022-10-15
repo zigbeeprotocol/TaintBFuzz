@@ -1,0 +1,67 @@
+# frama-c -wp [...]
+[kernel] Parsing unit_labels.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function duplet
+------------------------------------------------------------
+
+Goal Post-condition (file unit_labels.i, line 5) in 'duplet':
+Let x = Mint_0[pi_0].
+Let a_1 = shift_sint32(a, x).
+Let x_1 = Mint_0[pj_0].
+Let m = Mint_0[a_1 <- Mint_0[shift_sint32(a, x_1)]].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(pi_0.base) <= 0) /\
+      (region(pj_0.base) <= 0).
+  (* Pre-condition *)
+  Have: (pj_0 != pi_0) /\ (a_1 != pi_0) /\ (a_1 != pj_0).
+  (* Assertion 'PI' *)
+  Have: m[pi_0] = x.
+  (* Assertion 'PJ' *)
+  Have: m[pj_0] = x_1.
+}
+Prove: P_is_duplet(m, a, x, x_1).
+
+------------------------------------------------------------
+
+Goal Assertion 'PI' (file unit_labels.i, line 9):
+Let x = Mint_0[pi_0].
+Let a_1 = shift_sint32(a, x).
+Let x_1 = Mint_0[pj_0].
+Let m = Mint_0[a_1 <- Mint_0[shift_sint32(a, x_1)]].
+Let x_2 = m[pi_0].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_2) /\
+      is_sint32(m[pj_0]).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(pi_0.base) <= 0) /\
+      (region(pj_0.base) <= 0).
+  (* Pre-condition *)
+  Have: (pj_0 != pi_0) /\ (a_1 != pi_0) /\ (a_1 != pj_0).
+}
+Prove: x_2 = x.
+
+------------------------------------------------------------
+
+Goal Assertion 'PJ' (file unit_labels.i, line 10):
+Let x = Mint_0[pi_0].
+Let a_1 = shift_sint32(a, x).
+Let x_1 = Mint_0[pj_0].
+Let m = Mint_0[a_1 <- Mint_0[shift_sint32(a, x_1)]].
+Let x_2 = m[pj_0].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_2).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(pi_0.base) <= 0) /\
+      (region(pj_0.base) <= 0).
+  (* Pre-condition *)
+  Have: (pj_0 != pi_0) /\ (a_1 != pi_0) /\ (a_1 != pj_0).
+  (* Assertion 'PI' *)
+  Have: m[pi_0] = x.
+}
+Prove: x_2 = x_1.
+
+------------------------------------------------------------

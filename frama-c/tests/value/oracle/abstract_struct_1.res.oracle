@@ -1,0 +1,46 @@
+[kernel] Parsing abstract_struct_1.c (with preprocessing)
+[kernel] Parsing abstract_struct_2.c (with preprocessing)
+[eva] Analyzing an incomplete application starting at main
+[eva] Computing initial state
+[eva:initial-state] 
+  creating variable S_data_0_S_repositories with imprecise size (type struct abstracttype [2])
+[eva:unknown-size] abstract_struct_1.c:10: Warning: 
+  during initialization of variable 'repositories', size of
+  type 'struct abstracttype' cannot be computed
+  (abstract type 'struct abstracttype')
+[eva:initial-state] 
+  creating variable S_data_1_S_repositories with imprecise size (type struct abstracttype [2])
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  repositories ∈ {{ NULL ; &S_repositories[0] }}
+  S_repositories[0].data ∈
+                {{ NULL ; (struct abstracttype *)&S_data_0_S_repositories }}
+                [1].data ∈
+                {{ NULL ; (struct abstracttype *)&S_data_1_S_repositories }}
+  S_data_0_S_repositories[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+  S_data_1_S_repositories[bits 0 to ..] ∈ [--..--] or UNINITIALIZED
+[eva] abstract_struct_1.c:13: Call to builtin calloc
+[eva] abstract_struct_1.c:13: allocating variable __calloc_main_l13
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_heap_status ∈ [--..--]
+  repositories ∈ {{ NULL ; &__calloc_main_l13 }}
+[from] Computing for function main
+[from] Computing for function calloc <-main
+[from] Done for function calloc
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function calloc:
+  __fc_heap_status FROM __fc_heap_status; nmemb; size (and SELF)
+  \result FROM __fc_heap_status; nmemb; size
+[from] Function main:
+  __fc_heap_status FROM __fc_heap_status (and SELF)
+  repositories FROM __fc_heap_status
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    __fc_heap_status; repositories
+[inout] Inputs for function main:
+    __fc_heap_status

@@ -1,0 +1,97 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing refguards.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition (file refguards.i, line 9) in 'f':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function g
+------------------------------------------------------------
+
+Goal Post-condition (file refguards.i, line 17) in 'g':
+Let a_1 = shift_sint32(b, k).
+Let x = Mint_0[a_1].
+Let x_1 = Mint_0[shift_sint32(a, k) <- x][a_1].
+Assume {
+  Type: is_sint32(k) /\ is_sint32(x) /\ is_sint32(x_1).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(b.base) <= 0).
+}
+Prove: x_1 = x.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function h
+------------------------------------------------------------
+
+Goal Post-condition (file refguards.i, line 24) in 'h':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function s
+------------------------------------------------------------
+
+Goal Post-condition (file refguards.i, line 32) in 's':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file refguards.i, line 33) in 's':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file refguards.i, line 34) in 's':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file refguards.i, line 35) in 's':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file refguards.i, line 36) in 's':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 's':
+Assume { (* Heap *) Type: (region(c.base) <= 0) /\ (region(d.base) <= 0). }
+Prove: d != c.
+
+------------------------------------------------------------
+[wp] refguards.i:10: Warning: 
+  Memory model hypotheses for function 'f':
+  /*@
+     behavior wp_typed_ref:
+       requires \valid(c);
+       requires \valid(d);
+       requires \separated(c, d, {a + (..), b + (..)});
+     */
+  void f(int *a, int *b, int *c, int *d, int k);
+[wp] refguards.i:25: Warning: 
+  Memory model hypotheses for function 'h':
+  /*@
+     behavior wp_typed_ref:
+       requires \valid(c);
+       requires \valid(d);
+       requires \separated(c, d);
+     */
+  void h(int *c, int *d, int k);
+[wp] refguards.i:39: Warning: 
+  Memory model hypotheses for function 's':
+  /*@
+     behavior wp_typed_ref:
+       requires \valid(c);
+       requires \valid(d);
+       requires \separated(c, d);
+     */
+  void s(int **c, int **d, int k);

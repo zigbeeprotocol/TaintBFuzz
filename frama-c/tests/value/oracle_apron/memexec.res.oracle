@@ -1,0 +1,53 @@
+27,32c27,50
+< [eva] memexec.c:13: Reusing old results for call to f11
+< [eva] memexec.c:14: Reusing old results for call to f11
+< [eva] memexec.c:16: Reusing old results for call to f11
+< [eva] memexec.c:18: Reusing old results for call to f11
+< [eva] memexec.c:20: Reusing old results for call to f11
+< [eva] memexec.c:21: Reusing old results for call to f11
+---
+> [eva] computing for function f11 <- f1 <- main.
+>   Called from memexec.c:13.
+> [eva] Recording results for f11
+> [eva] Done for function f11
+> [eva] computing for function f11 <- f1 <- main.
+>   Called from memexec.c:14.
+> [eva] Recording results for f11
+> [eva] Done for function f11
+> [eva] computing for function f11 <- f1 <- main.
+>   Called from memexec.c:16.
+> [eva] Recording results for f11
+> [eva] Done for function f11
+> [eva] computing for function f11 <- f1 <- main.
+>   Called from memexec.c:18.
+> [eva] Recording results for f11
+> [eva] Done for function f11
+> [eva] computing for function f11 <- f1 <- main.
+>   Called from memexec.c:20.
+> [eva] Recording results for f11
+> [eva] Done for function f11
+> [eva] computing for function f11 <- f1 <- main.
+>   Called from memexec.c:21.
+> [eva] Recording results for f11
+> [eva] Done for function f11
+105c123,126
+< [eva] memexec.c:113: Reusing old results for call to f5_aux
+---
+> [eva] computing for function f5_aux <- f5 <- main.
+>   Called from memexec.c:113.
+> [eva] Recording results for f5_aux
+> [eva] Done for function f5_aux
+128c149,152
+< [eva] memexec.c:137: Reusing old results for call to f7_1
+---
+> [eva] computing for function f7_1 <- f7 <- main.
+>   Called from memexec.c:137.
+> [eva] Recording results for f7_1
+> [eva] Done for function f7_1
+143c167,170
+< [eva] memexec.c:150: Reusing old results for call to f8_1
+---
+> [eva] computing for function f8_1 <- f8 <- main.
+>   Called from memexec.c:150.
+> [eva] Recording results for f8_1
+> [eva] Done for function f8_1

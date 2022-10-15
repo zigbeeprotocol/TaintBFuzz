@@ -1,0 +1,248 @@
+##########################################################################
+#                                                                        #
+#  This file is part of Frama-C.                                         #
+#                                                                        #
+#  Copyright (C) 2007-2022                                               #
+#    CEA (Commissariat à l'énergie atomique et aux énergies              #
+#         alternatives)                                                  #
+#                                                                        #
+#  you can redistribute it and/or modify it under the terms of the GNU   #
+#  Lesser General Public License as published by the Free Software       #
+#  Foundation, version 2.1.                                              #
+#                                                                        #
+#  It is distributed in the hope that it will be useful,                 #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#  GNU Lesser General Public License for more details.                   #
+#                                                                        #
+#  See the GNU Lesser General Public License version 2.1                 #
+#  for more details (enclosed in the file licenses/LGPLv2.1).            #
+#                                                                        #
+##########################################################################
+
+##########################################################################
+#                                                                        #
+# Define variables from configure.                                       #
+# These variables may be redefined later.                                #
+#                                                                        #
+##########################################################################
+
+######################
+# Installation paths #
+######################
+
+CYGPATH         ?=@CYGPATH@
+
+DESTDIR         ?=
+prefix          ?=@prefix@
+exec_prefix     ?=@exec_prefix@
+datarootdir     ?=@datarootdir@
+datadir         ?=@datadir@
+BINDIR          ?=$(DESTDIR)@bindir@
+LIBDIR          ?=$(DESTDIR)@libdir@
+DATADIR         ?=$(DESTDIR)@datarootdir@
+MANDIR          ?=$(DESTDIR)@mandir@
+BASHCOMPDIR     ?=$(DESTDIR)@datarootdir@/bash-completion/completions
+
+FRAMAC_LIBDIR ?=$(LIBDIR)/frama-c
+FRAMAC_PLUGINDIR ?=$(FRAMAC_LIBDIR)/plugins
+FRAMAC_DATADIR ?=$(DATADIR)/frama-c
+EMACS_DATADIR ?=$(DATADIR)/emacs/site-lisp
+FRAMAC_DEFAULT_CPP ?=@FRAMAC_DEFAULT_CPP@
+FRAMAC_DEFAULT_CPP_ARGS ?= @FRAMAC_DEFAULT_CPP_ARGS@
+FRAMAC_GNU_CPP ?=@FRAMAC_GNU_CPP@
+DEFAULT_CPP_KEEP_COMMENTS?=@DEFAULT_CPP_KEEP_COMMENTS@
+DEFAULT_CPP_SUPPORTED_ARCH_OPTS?=@DEFAULT_CPP_SUPPORTED_ARCH_OPTS@
+CC =@CC@
+
+###############
+# Ocaml stuff #
+###############
+
+# compilers and others executables
+OCAMLC  	?=@OCAMLC@
+OCAMLOPT	?=@OCAMLOPT@
+OCAMLDEP	?=@OCAMLDEP@ -slash
+OCAMLLEX	?=@OCAMLLEX@
+OCAMLYACC	?=@OCAMLYACC@
+OCAMLMKTOP	?=@OCAMLMKTOP@
+OCAMLMKLIB	?=@OCAMLFIND@ ocamlmklib
+OCAMLFIND	?=@OCAMLFIND@
+OCAMLDOC	?=@OCAMLDOC@
+OCAMLCP		?=@OCAMLCP@
+
+# others ocaml stuffs
+
+# either -annot or -dtypes
+OCAML_ANNOT_OPTION ?=@OCAML_ANNOT_OPTION@
+# ocaml stdlib path
+OCAMLLIB	?=@OCAMLLIB@
+# either opt or byte
+OCAMLBEST	?=@OCAMLBEST@
+
+OCAMLVERSION 	?=@OCAMLVERSION@
+
+OCAMLMAJORNB    ?=@OCAMLMAJORNB@
+OCAMLMINORNB    ?=@OCAMLMINORNB@
+OCAMLPATCHNB    ?=@OCAMLPATCHNB@
+
+HAS_OCAML409    ?=@HAS_OCAML409@
+HAS_OCAML410    ?=@HAS_OCAML410@
+
+PLATFORM	?=@PLATFORM@
+OCAMLWIN32	?=@OCAMLWIN32@
+DLLEXT          ?=@DLLEXT@
+
+DEVELOPMENT	?=@DEVELOPMENT@
+
+#############
+# Libraries #
+#############
+
+# ocamlgraph
+HAS_OCAMLGRAPH_2 ?= @HAS_OCAMLGRAPH_2@
+HAS_DGRAPH ?= @HAS_DGRAPH@
+
+# lablgtk
+HAS_LABLGTK	?=@HAS_LABLGTK@
+HAS_LABLGTK_CUSTOM_MODEL ?=@HAS_LABLGTK@
+LABLGTK_PATH ?=@LABLGTK_PATH@
+LABLGTK ?= lablgtk@LABLGTK_VERSION@
+# lablgtksourceview
+HAS_GTKSOURCEVIEW ?=@HAS_GTKSOURCEVIEW@
+#gnomecanvas
+HAS_GNOMECANVAS ?=@HAS_GNOMECANVAS@
+
+LABLGTK_VERSION ?=@LABLGTK_VERSION@
+ifeq ("$(LABLGTK_VERSION)","3")
+  GTKSOURCEVIEW:=lablgtk3-sourceview3
+  THREAD:=-thread
+else
+  GTKSOURCEVIEW:=\
+    $(patsubst lablgtk%,$(LABLGTK).%,$(basename $(notdir @GTKSOURCEVIEW@)))
+  THREAD:=
+endif
+
+# apron
+HAS_APRON	?=@HAS_APRON@
+
+# mpfr
+HAS_MPFR ?=@HAS_MPFR@
+
+# landmarks
+HAS_LANDMARKS	?=@HAS_LANDMARKS@
+
+# python 3.6
+HAS_PYTHON36 ?=@HAS_PYTHON36@
+
+##########################
+# Miscellaneous commands #
+##########################
+
+OTAGS		?=@OTAGS@
+DOT		?=@DOT@
+HAS_DOT		?=@HAS_DOT@
+
+HEADACHE 	?= headache -c $(FRAMAC_SRC)/headers/headache_config.txt
+
+UNIX2DOS        ?= @UNIX2DOS@
+HAS_UNIX2DOS    ?= @HAS_UNIX2DOS@
+
+###########################
+# Miscellaneous variables #
+###########################
+
+VERBOSEMAKE	?=@VERBOSEMAKE@
+LOCAL_MACHDEP	?=@LOCAL_MACHDEP@
+EXE		?=@EXE@
+
+# Required by Cil
+UNDERSCORE_NAME ?=@UNDERSCORE_NAME@
+HAVE_BUILTIN_VA_LIST ?=@HAVE_BUILTIN_VA_LIST@
+
+# test directories for ptests configuration
+# Non-plugin test directories containing some ML files to compile
+TEST_DIRS_AS_PLUGIN:=\
+  dynamic journal saveload spec misc syntax cil \
+  pretty_printing builtins libc value
+
+ifeq ($(HAS_PYTHON36),yes)
+TEST_DIRS_AS_PLUGIN+= compliance fc_script jcdb
+endif
+
+PLUGIN_TESTS_LIST+=$(TEST_DIRS_AS_PLUGIN)
+
+##########################
+# Variables for plug-ins #
+##########################
+
+EXTERNAL_PLUGINS ?=@EXTERNAL_PLUGINS@
+
+# Integrated plugins
+ENABLE_CALLGRAPH                  ?=@ENABLE_CALLGRAPH@
+ENABLE_CONSTANT_PROPAGATION       ?=@ENABLE_SEMANTIC_CONSTANT_FOLDING@
+ENABLE_FROM_ANALYSIS              ?=@ENABLE_FROM_ANALYSIS@
+ENABLE_GUI	                  ?=@ENABLE_GUI@
+ENABLE_IMPACT	                  ?=@ENABLE_IMPACT@
+ENABLE_INOUT	                  ?=@ENABLE_INOUT@
+ENABLE_METRICS	                  ?=@ENABLE_METRICS@
+ENABLE_OCCURRENCE                 ?=@ENABLE_OCCURRENCE@
+ENABLE_PDG	                  ?=@ENABLE_PDG@
+ENABLE_POSTDOMINATORS             ?=@ENABLE_POSTDOMINATORS@
+ENABLE_REDUC                      ?=@ENABLE_REDUC@
+ENABLE_RTEGEN                     ?=@ENABLE_RTEGEN@
+ENABLE_SCOPE	                  ?=@ENABLE_SCOPE@
+ENABLE_SLICING	                  ?=@ENABLE_SLICING@
+ENABLE_SPARECODE                  ?=@ENABLE_SPARECODE@
+ENABLE_USERS	                  ?=@ENABLE_USERS@
+ENABLE_EVA                      ?=@ENABLE_EVA@
+
+#bytes is part of the stdlib, but is used as a transitional package.
+LIBRARY_NAMES := \
+  findlib ocamlgraph unix str dynlink bytes zarith yojson bigarray \
+  ppx_import ppx_deriving.eq
+
+ifeq ($(HAS_LANDMARKS),yes)
+LIBRARY_NAMES += landmarks landmarks-ppx
+endif
+
+ifneq ($(ENABLE_GUI),no)
+  LIBRARY_NAMES_GUI = $(LABLGTK) $(GTKSOURCEVIEW)
+  ifeq ($(HAS_OCAMLGRAPH_2),yes)
+    ifeq ($(HAS_DGRAPH),yes)
+      LIBRARY_NAMES_GUI+=ocamlgraph_gtk
+    endif
+  else
+    ifeq ($(HAS_GNOMECANVAS),yes)
+      LIBRARY_NAMES_GUI+=lablgtk2.gnomecanvas
+      GRAPH_GUICMO= dgraph.cmo
+      GRAPH_GUICMX= dgraph.cmx
+      GRAPH_GUIO= dgraph.o
+    endif
+  endif
+else
+LIBRARY_NAMES_GUI =
+endif
+
+#######################
+# Working directories #
+#######################
+
+ifeq ($(OCAMLWIN32),yes)
+ifneq ($(CYGPATH),no)
+# Note: using quotes in the line below leads to weird garbled characters
+# in some versions of Cygwin.
+winpath=$(shell $(CYGPATH) -m $(1))
+else
+winpath=$(1)
+endif #CYGPATH
+else
+winpath=$(1)
+endif #OCAMLWIN32
+
+FRAMAC_ROOT_SRCDIR 	?= $(call winpath,@abs_top_srcdir@)
+
+##########################################################################
+# Local Variables:
+# mode: makefile
+# End:

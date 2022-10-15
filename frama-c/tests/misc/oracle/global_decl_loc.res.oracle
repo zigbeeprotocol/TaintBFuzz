@@ -1,0 +1,3 @@
+[kernel] Parsing global_decl_loc.i (no preprocessing)
+[kernel] Parsing global_decl_loc2.i (no preprocessing)
+[kernel] global variable g declared at global_decl_loc.i:7

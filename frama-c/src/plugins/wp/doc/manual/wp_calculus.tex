@@ -1,0 +1,314 @@
+\chapter{Weakest Preconditions Calculus}
+\label{wp-calculus}
+
+\begin{center}
+\color{orange}\it For the beta-1 release of Carbon, the final version of this
+chapter is not yet available. Complete documentation will be available
+for final release of Carbon.
+\end{center}
+
+This chapter explains how the WP plug-in computes proof obligations
+from ACSL properties.
+It is not mandatory to read it in order to use the plug-in,
+but it can help to understand the generated formulas, either to be convinced
+that they actually means what we want, or more important, 
+when the automatic theorem provers fail to
+prove them, so that the proof have to be manually completed.
+
+\section{Control Flow Graph}
+
+The elementary WP computation works on one function at a time.
+First of all, a control flow graph of the function is computed.
+We won't go into the details of how this is done. 
+To understand the following, it is sufficient to know that
+the nodes of the graph represent the statements, and the edges
+are the program points between those statements.
+
+\section{Annotation selection}
+
+The elementary computation is done for one behavior at a time.
+It can be a function behavior, or a behavior of a statement specification.
+The default (unnamed) behavior of the function and all the default behavior of
+the statements are considered as different behaviors.
+
+The first step is to select from the annotations of the function
+the properties that will be used during the computation.
+Properties can be selected as {\bf goal}, {\bf hypothesis}, or {\bf both}.
+Some of them can also be marked as {\bf cut} properties.
+Only the properties from the selected behavior are considered,
+but if it is a named one, 
+some of the properties from the default behavior are also used as hypotheses.
+
+Let's now see how each ACSL property is transformed~- most of the time to a
+predicate~- and how it is mapped to a program
+point. The result of this step is an annotation table A. 
+
+If the user ask to compute on a specific property 
+(through the GUI or with the {\tt -wp-prop} option)
+it doesn't change anything to the hypotheses selection
+in the following description,
+but when a property should be selected as goal (or both), 
+and that it is not the asked one,
+it is not selected (or only selected as hypothesis) 
+
+\subsection{Function Specifications}
+
+The predicates of the  {\bf requires} and  {\bf assumes} properties
+are attached as hypotheses to the function entry point,
+except in the case of the main function where 
+the {\bf requires} are selected as {\it both}.
+
+The predicates of the  {\bf ensures} (respectively {\bf exits}) properties
+are attached as goal
+to the function output (resp. exit) point.
+
+The {\bf assigns} property
+is attached as a goal to the function output point.
+It is translated into a predicate by the memory model.
+
+The properties about {\bf complete} and {\bf disjoint behaviors}
+are only added to the default behavior annotations.
+The predicates are built according to the ACSL manual, using the
+{\bf assumes} part of the behaviors, and are considered as goal
+at the function entry point.
+
+\subsection{Statement specification}
+
+If the statement behavior is the target of the current selection,
+the post-condition and assigns properties are selected as goals,
+the {\bf assumes} is selected as hypothesis, and the {\bf requires}
+as both goal and hypothesis. The {\bf ensures} and {\bf exits}
+properties are selected as goals. The {\bf ensures} predicates
+are attached to the statement output point,
+and the {\bf exits} predicates, to the edges that go from the statement
+to the exit node of the control flow graph.
+
+If the statement behavior is not the selected one,
+its properties are used as hypotheses.
+
+When used as a hypothesis, the statement assigns property is different
+than other annotations because it is not used as a predicate.
+It is stored at the statement output point along with a label to identify the
+statement entry point. It will be used to skip the statement
+(see \S\ref{def-wp-assign-hyp}).
+
+The properties about {\bf complete} and {\bf disjoint behaviors} are processed
+like for the function specification, except that they are  attached to the statement entry point.
+
+\subsection{Loop properties}
+
+The {\bf loop invariant} is an invariant attached to the edge that goes 
+out of the loop node. 
+All the {\bf invariant} predicates are selected as both hypothesis and goal
+{\bf cut} properties.
+
+The {\bf loop variant} gives two goals :
+\begin{itemize}
+  \item the predicate which says that the variant is positive
+    has to be considered as a goal on the ingoing edges to the loop node,
+    and then can be considered as hypothesis on the outgoing edges;
+  \item the predicate which says that the expression decrease :
+    (\verb!v < \at (L, v)! where L is first program point of the loop)
+    as to be proved at the loop back-edge.
+\end{itemize}
+
+The {\bf loop assigns} goal is translated into a predicate, like the function or
+statement assigns. It is attached as a goal to the back-edge of the loop.
+The {\bf loop assigns} hypothesis is attached to the loop head.
+
+\subsection{Other properties}
+
+The {\bf assert} predicate are selected as both goals and hypotheses.
+Having several predicates at the same program point is similar 
+than having their conjunction.
+But it has to be noticed that the assertions coming from the source code
+are internally {\sc not} at the same program point. 
+This means that the order of the assertions is important because
+the assertions that come first can be used to prove the ones that come later.\\
+
+The properties of the {\bf called function specification}
+are used as hypothesis,
+except the precondition which is selected as both.
+
+%-------------------------------------------------------------------------------
+\section{Computation}
+
+The engine takes the previously built
+annotation table A that maps the program points to the selected annotations,
+and compute a result R for each program point, i.e. the edges of the control 
+flow graph.
+The result R(X) at the program point X is a list of proof obligations
+that ensures that the goals seen so far (the one that are at X or after)
+are valid.
+So after having determined the result at each program point,
+the validation of proof obligations obtained at the entry program point 
+of the function (\(R(X_0)\))
+ensures that all the goals of the annotation table are satisfied if
+the hypotheses are.
+
+The result at the program point X, is computed from:
+\begin{itemize}
+  \item the annotations A(X) which is composed of:
+    \begin{itemize}
+      \item goals \(G_1, ..., G_n\),
+      \item hypotheses \(H_1, ... H_m\),
+      \item and both \(B_1, ... B_p\),
+    \end{itemize}
+  \item a goal P which most of the time is the propagation of the results 
+    obtained on X successors across the node that follows X
+    (but we will see that P can be different on some cases),
+  \item some proof obligation PO(X) that can come from previous calculus
+    (see \S\ref{def-wp-assign-hyp})
+\end{itemize}
+and then, \(R(X)\) is given by \(F(X, P)\), which use \(A(X)\) and \(PO(X)\),
+to compute the following proof obligation list:
+\[ 
+F(X, P) =
+\left\{\begin{array}{ll}
+ H_1 \wedge ... \wedge H_m \Rightarrow  B_i & \textrm{for each } B_i\\
+(H_1 \wedge ... \wedge H_m \wedge B_1 \wedge ... \wedge B_p) \Rightarrow G_i 
+                                         & \textrm{for each } G_i\\
+(H_1 \wedge ... \wedge H_m \wedge B_1 \wedge ... \wedge B_p) \Rightarrow P_i 
+                                    & \textrm{for each } P_i \textrm{ in } P\\
+(H_1 \wedge ... \wedge H_m \wedge B_1 \wedge ... \wedge B_p) \Rightarrow PO_i
+                               & \textrm{for each } PO_i \textrm{ in } PO(X)\\
+\end{array}
+\right.
+\]
+Notice that the properties B, selected as {\it both}, are not mixed
+with other goals and hypotheses so that they can be
+combined in a way 
+such that they are not used as hypotheses to prove themselves!\\
+
+
+Let's now see how \(P\) and \(PO(X)\) are built.
+There are two special cases: the cut properties (\S\ref{def-wp-cut})
+and the assigns hypothesis (\S\ref{def-wp-assign-hyp}). 
+All the other cases are handled the same way (\S\ref{def-wp-def}).
+
+\subsection{Cut properties}\label{def-wp-cut}
+
+When a program point with a cut property $C$ is reached, 
+it means that the result at that point doesn't depend on the result of its
+successors. This can be useful to split a proof (not available yet), 
+but it is even more useful for loops,
+because without it, the calculation would not terminate.
+
+If the cut property is selected as a goal, it is propagated, so we have 
+\(P = C\). Otherwise, there is nothing to propagate, so \(P = true\).
+
+As a hypothesis, $C$ is used to prove \(WP(X)\). 
+So there is a proof obligation:
+\[ P' \; = \; C \Rightarrow WP(X) \]
+$P'$ cannot be integrated in \(R(X)\) because in might depend on
+\(R(X)\) if X is in a loop.
+So $P'$ has either to be added as a proof obligation
+by closing the free variables and adding it to \(PO(X_0)\),
+or proved separately as a goal at X program point to consider
+in a second pass of computation.
+The later possibility can be interesting in order to be able to use
+information from the statements before X, in addition to the hypothesis \(C\),
+to prove \(WP(X)\). 
+
+
+\subsection{Assigns hypothesis}\label{def-wp-assign-hyp}
+
+An assigns hypothesis specify an over-approximation of the modified data
+between two program points \(X_1\) and \(X_2\). The property is stored as
+an annotation of \(X_2\), along with the label of \(X_1\).
+It is used nearly like a cut property in order to skip the statements
+between \(X_1\) and \(X_2\).
+\[
+R(X_2) = F (X, true) 
+\quad\textrm{ and }\quad 
+PO(X_1) = \forall {assigns}, WP(X_2)
+\]
+That is where the PO proof obligation comes from.
+
+\subsection{Other cases}\label{def-wp-def}
+
+For all other cases, $R(X)$ is computed using $WP(X)$ (see \S\ref{sec-wp}):
+\[
+R(X) = F (X, WP(X))
+\]
+and need no proof obligation aside.
+
+%-------------------------------------------------------------------------------
+\section{Weakest Precondition}\label{sec-wp}
+
+As explained in \S\ref{wp-intro-calculus},
+the WP defines how to compute the property that must be valid before
+a statement S to ensure that a property P holds after S.
+Because the computation are done on a CFG, it means that the WP has to define
+how to compute the property that must be valid on the edges before a node
+to ensure that the properties of the edges after the node hold.
+So the WP must be defined for each kind of node that can be found in the CFG.
+
+\subsection{Assignment and return}\label{def-wp-asgn}
+
+The WP of an assignment is defined by the memory model as explained in chapter
+\ref{wp-models}.
+If the memory model is not able to translate the right part,
+it is still possible to assign an unknown value to the location
+given by the left part. If the model is not able to translate
+the left part to a location, the WP result is {\tt false}\\
+
+The return statement is exactly like an assignment 
+where the left part is the logical variable {\tt result}.
+
+\subsection{Function Call}\label{def-wp-call}
+
+The WP of a function call does nothing more than translating the called function
+specification and substitute the formal parameters to the call arguments
+in it.
+The properties are used as normal hypotheses, the assigns property
+is used as usual to quantify the modified locations.
+Notice that the assigns hypothesis is mandatory in this computation, 
+so if it in not provided
+in the specification, it has to be considered to be {\it everything}.
+
+\subsection{Goto}\label{def-wp-goto}
+
+The {\tt goto} statements (and all the {\tt break}, {\tt continue}, etc)
+do nothing except adding edges to the control flow graph,
+so the WP of such a statement node is the identity.
+
+\subsection{Test and switch}\label{def-wp-if}
+
+A test node carries the expression to be tested, and has two outgoing edges.
+To compute the WP in order to ensure that \(P_1\) holds 
+when the test is true, and \(P_2\) holds otherwise,
+the condition \(c\) has first to be translated by the memory model,
+and the WP is then:
+\[
+c \Rightarrow P1 \; \wedge \; \neg c \Rightarrow P2
+\]
+
+Switch nodes are handle in a similar way.
+
+\subsection{Loop}\label{def-wp-loop}
+
+The control flow graph loop node represent a natural loop of the program.
+It has one outgoing edge that is called the 'head',
+and some ingoing edges that belongs either to the entry edges that come
+from outside of the loop, or back-edges that are dominated by the head edge.
+There can be other loops than natural ones in the control flow graph. 
+In that case, there is no loop node, but the cycles are still there.
+To be able to compute on such a graph, the cycles must be broken.
+It can be done with an invariant property which is used
+as a cut annotation (see \ref{def-wp-cut}).\\
+
+If the annotation table doesn't provide a cut property somewhere in the loop,
+and in case of there is a control flow graph loop node,
+a default {\bf loop invariant} with the predicate {\it true} is used.
+In that case, the WP for the back-edges is then {\it true}.
+For the entry edges, it would normally be also {\it true} according to the
+application of the cutting rule, but that wouldn't give much information!
+Instead of that, a mandatory loop assigns property is used as a hypothesis.
+As for the function call, if the annotation table doesn't provide it,
+it is considered to be {\it everything}.
+This hypothesis is used to quantify the annotation at the loop head,
+and then it can be propagated backward from entry edges.\\
+
+For the loops that are not natural ones, invariant properties breaking the
+cycles are mandatory.

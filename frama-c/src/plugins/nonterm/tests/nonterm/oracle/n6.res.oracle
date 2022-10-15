@@ -1,0 +1,20 @@
+[kernel] Parsing n6.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] n6.c:9: Call to builtin Frama_C_memcpy for function memcpy
+[eva] n6.c:9: function memcpy: precondition 'valid_dest' got status valid.
+[eva] n6.c:9: function memcpy: precondition 'valid_src' got status valid.
+[eva] n6.c:9: function memcpy: precondition 'separation' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:101: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  a ∈ {2}
+  b ∈ {2}
+  __retres ∈ {0}
+[nonterm] Analysis done.

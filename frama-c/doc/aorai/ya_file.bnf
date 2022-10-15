@@ -1,0 +1,16 @@
+\begin{syntax}
+file ::= directive* state+;
+\\
+directive ::= '%init' ':' id+ ';'; name of initial state(s)
+  | '%accept' ':' id+ ';'; name of accepting state(s)
+  | '%deterministic' ';' ; deterministic automaton
+\\
+state ::= id ':' transition;
+          ('|' transition)* ';'; state name and transitions from state
+\\
+transition ::= guard '->' id; guard and end state of the transition
+            |  '->' id; transition that is always taken
+            | 'other' '->' id; default transition. must appear last
+\\
+guard ::= '{' condition '}'
+\end{syntax}

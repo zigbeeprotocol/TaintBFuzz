@@ -1,0 +1,31 @@
+[kernel] Parsing poll.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function poll <- main.
+  Called from poll.c:11.
+[eva] using specification for function poll
+[eva] poll.c:11: 
+  function poll: precondition 'valid_file_descriptors' got status valid.
+[eva] Done for function poll
+[eva] computing for function perror <- main.
+  Called from poll.c:12.
+[eva] using specification for function perror
+[eva] poll.c:12: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_stdout ∈ {{ NULL + [--..--] ; &S___fc_stdout[0] }}
+  ufds.fd ∈ {0}
+      .events ∈ {3}
+      .revents ∈ [--..--]
+  r ∈ {-1; 0; 1}
+  can_read ∈ {0; 1}
+  can_read_out_of_band ∈ {0; 2}
+  invalid_fd ∈ {0; 32}
+  __retres ∈ [0..127]

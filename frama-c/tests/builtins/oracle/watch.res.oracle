@@ -1,0 +1,28 @@
+[kernel] Parsing watch.c (with preprocessing)
+[kernel:typing:implicit-function-declaration] watch.c:10: Warning: 
+  Calling undeclared function Frama_C_watch_value. Old style K&R code?
+[kernel:typing:implicit-function-declaration] watch.c:16: Warning: 
+  Calling undeclared function u. Old style K&R code?
+[kernel:annot:missing-spec] watch.c:8: Warning: 
+  Neither code nor specification for function Frama_C_watch_value, generating default assigns from the prototype
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+  z ∈ {0}
+[eva] watch.c:10: Call to builtin Frama_C_watch_value
+[eva] watch.c:13: Watchpoint: & c [--..--]
+[eva] watch.c:14: Watchpoint: & c [--..--]
+[kernel:annot:missing-spec] watch.c:16: Warning: 
+  Neither code nor specification for function u, generating default assigns from the prototype
+[eva] computing for function u <- main.
+  Called from watch.c:16.
+[eva] using specification for function u
+[eva] Done for function u
+[eva] watch.c:17: Watchpoint: & c [--..--]
+[eva] watch.c:18: Watchpoint: & c [--..--]
+[eva] watch.c:19: Watchpoint: & c [--..--]
+[eva] User Error: Watchpoint builtin: countdown to zero
+[kernel] Plug-in eva aborted: invalid user input.

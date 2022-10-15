@@ -1,0 +1,25 @@
+[kernel] Parsing raz.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  h ∈ [--..--]
+[eva] raz.i:8: starting to merge loop iterations
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  n ∈ {0; 10}
+  r ∈ {0; 1}
+  i ∈ [0..2147483647]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM h
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    n; tmp; r; i
+[inout] Inputs for function main:
+    h

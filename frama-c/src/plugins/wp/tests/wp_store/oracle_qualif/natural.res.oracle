@@ -1,0 +1,14 @@
+# frama-c -wp [...]
+[kernel] Parsing natural.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 3 goals scheduled
+[wp] [Qed] Goal typed_f_ensures_qed_ok : Valid
+[wp] [Qed] Goal typed_f_assigns_part1 : Valid
+[wp] [Qed] Goal typed_f_assigns_part2 : Valid
+[wp] Proved goals:    3 / 3
+  Qed:             3
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f                         3        -        3       100%
+------------------------------------------------------------

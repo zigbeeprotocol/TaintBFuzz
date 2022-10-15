@@ -1,0 +1,13 @@
+[kernel] Parsing unknown_sizeof.i (no preprocessing)
+[eva] Warning: The inout plugin is missing: some features are disabled, and the analysis may have degraded precision and performance.
+[eva] Analyzing a complete application starting at main1
+[eva] Computing initial state
+[eva:unknown-size] unknown_sizeof.i:8: Warning: 
+  during initialization of variable 's', size of type 'struct s' cannot be
+  computed (abstract type 'struct s')
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  s.[bits 0 to ..] ∈ {0} or UNINITIALIZED
+[eva] unknown_sizeof.i:19: User Error: 
+  function g returns a value of unknown size. Aborting
+[kernel] Plug-in eva aborted: invalid user input.

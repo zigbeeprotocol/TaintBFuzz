@@ -1,0 +1,357 @@
+[kernel] Parsing stdatomic_c.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function test_atomic_int <- main.
+  Called from stdatomic_c.c:46.
+[eva] computing for function __fc_atomic_init_marker <- test_atomic_int <- main.
+  Called from stdatomic_c.c:6.
+[eva] Recording results for __fc_atomic_init_marker
+[eva] Done for function __fc_atomic_init_marker
+[eva] computing for function atomic_thread_fence <- test_atomic_int <- main.
+  Called from stdatomic_c.c:8.
+[eva] Recording results for atomic_thread_fence
+[eva] Done for function atomic_thread_fence
+[eva] computing for function atomic_signal_fence <- test_atomic_int <- main.
+  Called from stdatomic_c.c:9.
+[eva] Recording results for atomic_signal_fence
+[eva] Done for function atomic_signal_fence
+[eva] computing for function __fc_atomic_is_lock_free <- test_atomic_int <- main.
+  Called from stdatomic_c.c:10.
+[eva] computing for function Frama_C_nondet <- __fc_atomic_is_lock_free <- 
+                          test_atomic_int <- main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:35.
+[eva] using specification for function Frama_C_nondet
+[eva] Done for function Frama_C_nondet
+[eva] Recording results for __fc_atomic_is_lock_free
+[eva] Done for function __fc_atomic_is_lock_free
+[eva] computing for function __fc_atomic_store_marker <- test_atomic_int <- main.
+  Called from stdatomic_c.c:11.
+[eva] Recording results for __fc_atomic_store_marker
+[eva] Done for function __fc_atomic_store_marker
+[eva] computing for function __fc_atomic_store_explicit_marker <- 
+                          test_atomic_int <- main.
+  Called from stdatomic_c.c:12.
+[eva] Recording results for __fc_atomic_store_explicit_marker
+[eva] Done for function __fc_atomic_store_explicit_marker
+[eva] computing for function __fc_atomic_load <- test_atomic_int <- main.
+  Called from stdatomic_c.c:13.
+[eva] Recording results for __fc_atomic_load
+[eva] Done for function __fc_atomic_load
+[eva] computing for function __fc_atomic_load_explicit <- test_atomic_int <- main.
+  Called from stdatomic_c.c:14.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:57: 
+  Reusing old results for call to __fc_atomic_load
+[eva] Recording results for __fc_atomic_load_explicit
+[eva] Done for function __fc_atomic_load_explicit
+[eva] computing for function __fc_atomic_exchange <- test_atomic_int <- main.
+  Called from stdatomic_c.c:15.
+[eva] Recording results for __fc_atomic_exchange
+[eva] Done for function __fc_atomic_exchange
+[eva] computing for function __fc_atomic_exchange_explicit <- test_atomic_int <- 
+                          main.
+  Called from stdatomic_c.c:16.
+[eva] computing for function __fc_atomic_exchange <- 
+                          __fc_atomic_exchange_explicit <- test_atomic_int <- 
+                          main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:87.
+[eva] Recording results for __fc_atomic_exchange
+[eva] Done for function __fc_atomic_exchange
+[eva] Recording results for __fc_atomic_exchange_explicit
+[eva] Done for function __fc_atomic_exchange_explicit
+[eva] computing for function __fc_atomic_compare_exchange_strong <- 
+                          test_atomic_int <- main.
+  Called from stdatomic_c.c:17.
+[eva] computing for function memcmp <- __fc_atomic_compare_exchange_strong <- 
+                          test_atomic_int <- main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:93.
+[eva] using specification for function memcmp
+[eva] FRAMAC_SHARE/libc/stdatomic.c:93: 
+  function memcmp: precondition 'valid_s1' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:93: 
+  function memcmp: precondition 'valid_s2' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:93: 
+  function memcmp: precondition 'initialization,s1' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:93: 
+  function memcmp: precondition 'initialization,s2' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:93: 
+  function memcmp: precondition 'danglingness,s1' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:93: 
+  function memcmp: precondition 'danglingness,s2' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:63: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] Done for function memcmp
+[eva] FRAMAC_SHARE/libc/stdatomic.c:94: Call to builtin memcpy
+[eva] FRAMAC_SHARE/libc/stdatomic.c:94: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:94: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:94: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:101: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] FRAMAC_SHARE/libc/stdatomic.c:95: Call to builtin memcpy
+[eva] FRAMAC_SHARE/libc/stdatomic.c:95: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:95: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] FRAMAC_SHARE/libc/stdatomic.c:95: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] Recording results for __fc_atomic_compare_exchange_strong
+[eva] Done for function __fc_atomic_compare_exchange_strong
+[eva] computing for function __fc_atomic_compare_exchange_strong_explicit <- 
+                          test_atomic_int <- main.
+  Called from stdatomic_c.c:18.
+[eva] computing for function __fc_atomic_compare_exchange_strong <- 
+                          __fc_atomic_compare_exchange_strong_explicit <- 
+                          test_atomic_int <- main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:104.
+[eva] computing for function memcmp <- __fc_atomic_compare_exchange_strong <- 
+                          __fc_atomic_compare_exchange_strong_explicit <- 
+                          test_atomic_int <- main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:93.
+[eva] Done for function memcmp
+[eva] FRAMAC_SHARE/libc/stdatomic.c:94: Call to builtin memcpy
+[eva] FRAMAC_SHARE/libc/stdatomic.c:95: Call to builtin memcpy
+[eva] Recording results for __fc_atomic_compare_exchange_strong
+[eva] Done for function __fc_atomic_compare_exchange_strong
+[eva] Recording results for __fc_atomic_compare_exchange_strong_explicit
+[eva] Done for function __fc_atomic_compare_exchange_strong_explicit
+[eva] computing for function __fc_atomic_compare_exchange_weak <- 
+                          test_atomic_int <- main.
+  Called from stdatomic_c.c:21.
+[eva] computing for function __fc_atomic_compare_exchange_strong <- 
+                          __fc_atomic_compare_exchange_weak <- 
+                          test_atomic_int <- main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:110.
+[eva] computing for function memcmp <- __fc_atomic_compare_exchange_strong <- 
+                          __fc_atomic_compare_exchange_weak <- 
+                          test_atomic_int <- main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:93.
+[eva] Done for function memcmp
+[eva] FRAMAC_SHARE/libc/stdatomic.c:94: Call to builtin memcpy
+[eva] FRAMAC_SHARE/libc/stdatomic.c:95: Call to builtin memcpy
+[eva] Recording results for __fc_atomic_compare_exchange_strong
+[eva] Done for function __fc_atomic_compare_exchange_strong
+[eva] Recording results for __fc_atomic_compare_exchange_weak
+[eva] Done for function __fc_atomic_compare_exchange_weak
+[eva] computing for function __fc_atomic_compare_exchange_weak_explicit <- 
+                          test_atomic_int <- main.
+  Called from stdatomic_c.c:22.
+[eva] computing for function __fc_atomic_compare_exchange_strong <- 
+                          __fc_atomic_compare_exchange_weak_explicit <- 
+                          test_atomic_int <- main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:118.
+[eva] computing for function memcmp <- __fc_atomic_compare_exchange_strong <- 
+                          __fc_atomic_compare_exchange_weak_explicit <- 
+                          test_atomic_int <- main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:93.
+[eva] Done for function memcmp
+[eva] FRAMAC_SHARE/libc/stdatomic.c:94: Call to builtin memcpy
+[eva] FRAMAC_SHARE/libc/stdatomic.c:95: Call to builtin memcpy
+[eva] Recording results for __fc_atomic_compare_exchange_strong
+[eva] Done for function __fc_atomic_compare_exchange_strong
+[eva] Recording results for __fc_atomic_compare_exchange_weak_explicit
+[eva] Done for function __fc_atomic_compare_exchange_weak_explicit
+[eva] computing for function __fc_atomic_fetch_add <- test_atomic_int <- main.
+  Called from stdatomic_c.c:25.
+[eva] Recording results for __fc_atomic_fetch_add
+[eva] Done for function __fc_atomic_fetch_add
+[eva] computing for function __fc_atomic_fetch_add_explicit <- test_atomic_int <- 
+                          main.
+  Called from stdatomic_c.c:26.
+[eva] computing for function __fc_atomic_fetch_add <- 
+                          __fc_atomic_fetch_add_explicit <- test_atomic_int <- 
+                          main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:147.
+[eva] Recording results for __fc_atomic_fetch_add
+[eva] Done for function __fc_atomic_fetch_add
+[eva] Recording results for __fc_atomic_fetch_add_explicit
+[eva] Done for function __fc_atomic_fetch_add_explicit
+[eva] computing for function __fc_atomic_fetch_sub <- test_atomic_int <- main.
+  Called from stdatomic_c.c:27.
+[eva] Recording results for __fc_atomic_fetch_sub
+[eva] Done for function __fc_atomic_fetch_sub
+[eva] computing for function __fc_atomic_fetch_sub_explicit <- test_atomic_int <- 
+                          main.
+  Called from stdatomic_c.c:28.
+[eva] computing for function __fc_atomic_fetch_sub <- 
+                          __fc_atomic_fetch_sub_explicit <- test_atomic_int <- 
+                          main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:171.
+[eva] Recording results for __fc_atomic_fetch_sub
+[eva] Done for function __fc_atomic_fetch_sub
+[eva] Recording results for __fc_atomic_fetch_sub_explicit
+[eva] Done for function __fc_atomic_fetch_sub_explicit
+[eva] computing for function __fc_atomic_fetch_or <- test_atomic_int <- main.
+  Called from stdatomic_c.c:29.
+[eva] Recording results for __fc_atomic_fetch_or
+[eva] Done for function __fc_atomic_fetch_or
+[eva] computing for function __fc_atomic_fetch_or_explicit <- test_atomic_int <- 
+                          main.
+  Called from stdatomic_c.c:30.
+[eva] computing for function __fc_atomic_fetch_or <- 
+                          __fc_atomic_fetch_or_explicit <- test_atomic_int <- 
+                          main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:195.
+[eva] Recording results for __fc_atomic_fetch_or
+[eva] Done for function __fc_atomic_fetch_or
+[eva] Recording results for __fc_atomic_fetch_or_explicit
+[eva] Done for function __fc_atomic_fetch_or_explicit
+[eva] computing for function __fc_atomic_fetch_xor <- test_atomic_int <- main.
+  Called from stdatomic_c.c:31.
+[eva] Recording results for __fc_atomic_fetch_xor
+[eva] Done for function __fc_atomic_fetch_xor
+[eva] computing for function __fc_atomic_fetch_xor_explicit <- test_atomic_int <- 
+                          main.
+  Called from stdatomic_c.c:32.
+[eva] computing for function __fc_atomic_fetch_xor <- 
+                          __fc_atomic_fetch_xor_explicit <- test_atomic_int <- 
+                          main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:225.
+[eva] Recording results for __fc_atomic_fetch_xor
+[eva] Done for function __fc_atomic_fetch_xor
+[eva] Recording results for __fc_atomic_fetch_xor_explicit
+[eva] Done for function __fc_atomic_fetch_xor_explicit
+[eva] computing for function __fc_atomic_fetch_and <- test_atomic_int <- main.
+  Called from stdatomic_c.c:33.
+[eva] Recording results for __fc_atomic_fetch_and
+[eva] Done for function __fc_atomic_fetch_and
+[eva] computing for function __fc_atomic_fetch_and_explicit <- test_atomic_int <- 
+                          main.
+  Called from stdatomic_c.c:34.
+[eva] computing for function __fc_atomic_fetch_and <- 
+                          __fc_atomic_fetch_and_explicit <- test_atomic_int <- 
+                          main.
+  Called from FRAMAC_SHARE/libc/stdatomic.c:255.
+[eva] Recording results for __fc_atomic_fetch_and
+[eva] Done for function __fc_atomic_fetch_and
+[eva] Recording results for __fc_atomic_fetch_and_explicit
+[eva] Done for function __fc_atomic_fetch_and_explicit
+[eva] computing for function atomic_flag_test_and_set <- test_atomic_int <- main.
+  Called from stdatomic_c.c:36.
+[eva] Recording results for atomic_flag_test_and_set
+[eva] Done for function atomic_flag_test_and_set
+[eva] computing for function atomic_flag_test_and_set_explicit <- 
+                          test_atomic_int <- main.
+  Called from stdatomic_c.c:37.
+[eva] Recording results for atomic_flag_test_and_set_explicit
+[eva] Done for function atomic_flag_test_and_set_explicit
+[eva] computing for function atomic_flag_clear <- test_atomic_int <- main.
+  Called from stdatomic_c.c:38.
+[eva] Recording results for atomic_flag_clear
+[eva] Done for function atomic_flag_clear
+[eva] computing for function atomic_flag_clear_explicit <- test_atomic_int <- main.
+  Called from stdatomic_c.c:39.
+[eva] Recording results for atomic_flag_clear_explicit
+[eva] Done for function atomic_flag_clear_explicit
+[eva] Recording results for test_atomic_int
+[eva] Done for function test_atomic_int
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function __fc_atomic_exchange:
+  r ∈ [0..4294967295]
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_exchange_explicit:
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_add:
+  r ∈ [0..4294967295]
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_add_explicit:
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_and:
+  r ∈ [0..4294967295]
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_and_explicit:
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_or:
+  r ∈ [0..4294967295]
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_or_explicit:
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_sub:
+  r ∈ [0..4294967295]
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_sub_explicit:
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_xor:
+  r ∈ [0..4294967295]
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_fetch_xor_explicit:
+  a ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_init_marker:
+  
+[eva:final-states] Values at end of function __fc_atomic_is_lock_free:
+  Frama_C_entropy_source ∈ [--..--]
+  __retres ∈ {0; 1}
+[eva:final-states] Values at end of function __fc_atomic_load:
+  __retres ∈ [0..4294967295]
+[eva:final-states] Values at end of function __fc_atomic_load_explicit:
+  
+[eva:final-states] Values at end of function __fc_atomic_store_explicit_marker:
+  
+[eva:final-states] Values at end of function __fc_atomic_store_marker:
+  
+[eva:final-states] Values at end of function atomic_flag_clear:
+  flag ∈ [--..--]
+[eva:final-states] Values at end of function atomic_flag_clear_explicit:
+  flag ∈ [--..--]
+[eva:final-states] Values at end of function atomic_flag_test_and_set:
+  r ∈ {0; 1}
+  flag ∈ [--..--]
+[eva:final-states] Values at end of function atomic_flag_test_and_set_explicit:
+  r ∈ {0; 1}
+  flag ∈ [--..--]
+[eva:final-states] Values at end of function atomic_signal_fence:
+  
+[eva:final-states] Values at end of function atomic_thread_fence:
+  
+[eva:final-states] 
+  Values at end of function __fc_atomic_compare_exchange_strong:
+  r ∈ [--..--]
+  a ∈ [--..--]
+  aa ∈ [--..--]
+  __retres ∈ {0; 1}
+[eva:final-states] 
+  Values at end of function __fc_atomic_compare_exchange_strong_explicit:
+  a ∈ [--..--]
+  aa ∈ [--..--]
+[eva:final-states] Values at end of function __fc_atomic_compare_exchange_weak:
+  a ∈ [--..--]
+  aa ∈ [--..--]
+[eva:final-states] 
+  Values at end of function __fc_atomic_compare_exchange_weak_explicit:
+  a ∈ [--..--]
+  aa ∈ [--..--]
+[eva:final-states] Values at end of function test_atomic_int:
+  Frama_C_entropy_source ∈ [--..--]
+  a ∈ [--..--]
+  aa ∈ [--..--]
+  c ∈ {42}
+  b1 ∈ {0; 1}
+  d ∈ [--..--]
+  e ∈ [--..--]
+  f ∈ [--..--]
+  g ∈ [--..--]
+  b2 ∈ {0; 1}
+  b3 ∈ {0; 1}
+  b4 ∈ {0; 1}
+  b5 ∈ {0; 1}
+  add1 ∈ [--..--]
+  add2 ∈ [--..--]
+  sub1 ∈ [--..--]
+  sub2 ∈ [--..--]
+  or1 ∈ [--..--]
+  or2 ∈ [--..--]
+  xor1 ∈ [--..--]
+  xor2 ∈ [--..--]
+  and1 ∈ [--..--]
+  and2 ∈ [--..--]
+  flag ∈ [--..--]
+  b6 ∈ {0; 1}
+  b7 ∈ {0; 1}
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]

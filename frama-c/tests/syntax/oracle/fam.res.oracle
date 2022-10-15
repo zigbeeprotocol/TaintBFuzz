@@ -1,0 +1,15 @@
+[kernel] Parsing fam.i (no preprocessing)
+[kernel] fam.i:16: User Error: 
+  static initialization of flexible array members is an unsupported GNU extension
+[kernel] fam.i:29: User Error: 
+  field `b' is declared with incomplete type char []
+[kernel] fam.i:28: User Error: 
+  static initialization of flexible array members is an unsupported GNU extension
+[kernel] fam.i:49: User Error: 
+  static initialization of flexible array members is an unsupported GNU extension
+[kernel] fam.i:63: User Error: 
+  static initialization of flexible array members is an unsupported GNU extension
+[kernel] fam.i:77: User Error: 
+  static initialization of flexible array members is an unsupported GNU extension
+[kernel] User Error: stopping on file "fam.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

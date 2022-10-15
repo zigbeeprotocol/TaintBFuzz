@@ -1,0 +1,430 @@
+[kernel] Parsing select_simple.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  Unknown ∈ {0}
+  G ∈ {0}
+  S ∈ {0}
+  S1 ∈ {0}
+  S2 ∈ {0}
+[eva:alarm] simple_intra_slice.i:99: Warning: 
+  signed overflow. assert -2147483648 ≤ uninit - 1;
+[eva] simple_intra_slice.i:98: starting to merge loop iterations
+[eva:alarm] simple_intra_slice.i:99: Warning: 
+  signed overflow. assert -2147483648 ≤ Unknown - 1;
+[eva:alarm] simple_intra_slice.i:99: Warning: 
+  signed overflow. assert Unknown + 1 ≤ 2147483647;
+[eva:alarm] simple_intra_slice.i:101: Warning: 
+  signed overflow. assert -2147483648 ≤ uninit2 - 1;
+[eva] simple_intra_slice.i:100: starting to merge loop iterations
+[eva:alarm] simple_intra_slice.i:101: Warning: 
+  signed overflow. assert S.a + 1 ≤ 2147483647;
+[eva:alarm] simple_intra_slice.i:101: Warning: 
+  signed overflow. assert -2147483648 ≤ S.a - 1;
+[eva] computing for function f2 <- main.
+  Called from simple_intra_slice.i:103.
+[eva] computing for function f1 <- f2 <- main.
+  Called from simple_intra_slice.i:23.
+[eva] Recording results for f1
+[eva] Done for function f1
+[eva] Recording results for f2
+[eva] Done for function f2
+[eva] computing for function f3 <- main.
+  Called from simple_intra_slice.i:104.
+[eva] Recording results for f3
+[eva] Done for function f3
+[eva] computing for function f4 <- main.
+  Called from simple_intra_slice.i:105.
+[eva] Recording results for f4
+[eva] Done for function f4
+[eva] computing for function f5 <- main.
+  Called from simple_intra_slice.i:106.
+[eva] Recording results for f5
+[eva] Done for function f5
+[eva] computing for function f6 <- main.
+  Called from simple_intra_slice.i:107.
+[eva:alarm] simple_intra_slice.i:71: Warning: 
+  signed overflow. assert -2147483648 ≤ 10 * n;
+[eva:alarm] simple_intra_slice.i:71: Warning: 
+  signed overflow. assert 10 * n ≤ 2147483647;
+[eva] Recording results for f6
+[eva] Done for function f6
+[eva:alarm] simple_intra_slice.i:107: Warning: 
+  signed overflow. assert res + tmp_3 ≤ 2147483647;
+                   (tmp_3 from f6(Unknown))
+[eva] computing for function f7 <- main.
+  Called from simple_intra_slice.i:108.
+[eva:alarm] simple_intra_slice.i:79: Warning: 
+  signed overflow. assert S.a + 3 ≤ 2147483647;
+[eva:alarm] simple_intra_slice.i:82: Warning: 
+  signed overflow. assert s0.a + 1 ≤ 2147483647;
+[eva] Recording results for f7
+[eva] Done for function f7
+[eva] computing for function f8 <- main.
+  Called from simple_intra_slice.i:110.
+[eva] Recording results for f8
+[eva] Done for function f8
+[eva] computing for function f8 <- main.
+  Called from simple_intra_slice.i:112.
+[eva] Recording results for f8
+[eva] Done for function f8
+[eva] Recording results for main
+[eva] done for function main
+[from] Computing for function f1
+[from] Done for function f1
+[from] Computing for function f2
+[from] Done for function f2
+[from] Computing for function f3
+[from] Done for function f3
+[from] Computing for function f4
+[from] Done for function f4
+[from] Computing for function f5
+[from] Done for function f5
+[from] Computing for function f6
+[from] Done for function f6
+[from] Computing for function f7
+[from] Done for function f7
+[from] Computing for function f8
+[from] Done for function f8
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f1:
+  G FROM x
+  \result FROM y
+[from] Function f2:
+  G FROM \nothing
+  \result FROM \nothing
+[from] Function f3:
+  G FROM Unknown; c (and SELF)
+  \result FROM Unknown; c
+[from] Function f4:
+  G FROM Unknown; c (and SELF)
+  \result FROM Unknown; c
+[from] Function f5:
+  G FROM Unknown; G; c (and SELF)
+  \result FROM Unknown; c
+[from] Function f6:
+  \result FROM Unknown; n
+[from] Function f7:
+  S.a FROM S.a; s0
+   {.b; .c} FROM S.a; s0 (and SELF)
+[from] Function f8:
+  S1.a FROM S1.a; S2.a; ps (and SELF)
+    .b FROM S1.b; S2.b; ps (and SELF)
+  S2.a FROM S1.a; S2.a; ps (and SELF)
+    .b FROM S1.b; S2.b; ps (and SELF)
+[from] Function main:
+  Unknown FROM Unknown (and SELF)
+  G FROM Unknown
+  S.a FROM S
+   {.b; .c} FROM S (and SELF)
+  S1.a FROM Unknown; S1.a; S2.a (and SELF)
+    .b FROM Unknown; S1.b; S2.b (and SELF)
+  S2.a FROM Unknown; S1.a; S2.a (and SELF)
+    .b FROM Unknown; S1.b; S2.b (and SELF)
+  \result FROM Unknown
+[from] ====== END OF DEPENDENCIES ======
+[slicing] initializing slicing ...
+[pdg] computing for function f1
+[pdg] done for function f1
+Slicing project worklist [default] =
+[f1_slice_1 = (n:11(restrict to G) ,<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+int G;
+void f1_slice_1(int x)
+{
+  int a = 1;
+  G = x + a;
+  return;
+}
+
+
+[slicing] reinitializing slicing ...
+Slicing project worklist [default] =
+[f1_slice_1 = (n:13(restrict to __retres) ,<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+int f1_slice_1(int y)
+{
+  int __retres;
+  int b = 2;
+  __retres = y + b;
+  return __retres;
+}
+
+
+[slicing] reinitializing slicing ...
+[pdg] computing for function f2
+[pdg] done for function f2
+Slicing project worklist [default] =
+[f2_slice_1 = (n:28(restrict to tmp) ,<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+int f1_slice_1(int y)
+{
+  int __retres;
+  int b = 2;
+  __retres = y + b;
+  return __retres;
+}
+
+int f2_slice_1(void)
+{
+  int tmp;
+  int c = 3;
+  tmp = f1_slice_1(c);
+  return tmp;
+}
+
+
+[slicing] reinitializing slicing ...
+[pdg] computing for function f6
+[pdg] done for function f6
+Slicing project worklist [default] =
+[f6_slice_1 = (n:32(restrict to n) ,<[--d], [---]>)(n:42(restrict to 
+n) ,<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+int Unknown;
+void f6_slice_1(int n)
+{
+  while (n < 10) {
+    if (Unknown > 3) break;
+    if (n % 2) continue;
+    n ++;
+  }
+  return;
+}
+
+
+[slicing] reinitializing slicing ...
+[pdg] computing for function f7
+[pdg] done for function f7
+[slicing] reinitializing slicing ...
+Impossible to select 'retres' for a void function (f7)
+Slicing project worklist [default] =
+[f7_slice_1 = (n:63(restrict to S.a) ,<[--d], [---]>)(n:65(restrict to 
+S.a) ,<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+struct __anonstruct_Tstr_1 {
+   int a ;
+   int b ;
+   int c ;
+};
+typedef struct __anonstruct_Tstr_1 Tstr;
+Tstr S;
+void f7_slice_1(Tstr s0)
+{
+  int x = S.a;
+  if (x > 0) S.a += 3;
+  else {
+    (s0.a) ++;
+    S = s0;
+  }
+  return;
+}
+
+
+[slicing] reinitializing slicing ...
+Slicing project worklist [default] =
+[f7_slice_1 = (UndefIn S.b:<[--d], [---]>)(n:65(restrict to S.b) ,<[--d],
+                                                                  [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+struct __anonstruct_Tstr_1 {
+   int a ;
+   int b ;
+   int c ;
+};
+typedef struct __anonstruct_Tstr_1 Tstr;
+Tstr S;
+void f7_slice_1(Tstr s0)
+{
+  int x = S.a;
+  if (! (x > 0)) {
+    (s0.a) ++;
+    S = s0;
+  }
+  return;
+}
+
+
+[slicing] reinitializing slicing ...
+Slicing project worklist [default] =
+[f7_slice_1 = (UndefIn S{.b; .c}:<[--d], [---]>)(n:63(restrict to S.a) ,
+<[--d],
+[---]>)(n:65(restrict to S.a) ,<[--d], [---]>)(n:65(restrict to S{.b; .c}) ,
+<[--d],
+[---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+struct __anonstruct_Tstr_1 {
+   int a ;
+   int b ;
+   int c ;
+};
+typedef struct __anonstruct_Tstr_1 Tstr;
+Tstr S;
+void f7_slice_1(Tstr s0)
+{
+  int x = S.a;
+  if (x > 0) S.a += 3;
+  else {
+    (s0.a) ++;
+    S = s0;
+  }
+  return;
+}
+
+
+[slicing] reinitializing slicing ...
+[slicing] reinitializing slicing ...
+[pdg] computing for function f8
+[pdg] done for function f8
+Impossible to select this data : XXX in f7
+Slicing project worklist [default] =
+[f8_slice_1 = (n:71(restrict to S1.a) ,<[--d], [---]>)(n:71(restrict to 
+S2.a) ,<[--d], [---]>)(n:77(restrict to S2.a) ,<[--d], [---]>)(n:76(restrict to 
+S1.a) ,<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+struct __anonstruct_Tstr_1 {
+   int a ;
+   int b ;
+   int c ;
+};
+typedef struct __anonstruct_Tstr_1 Tstr;
+void f8_slice_1(Tstr *ps)
+{
+  (ps->a) ++;
+  return;
+}
+
+
+[slicing] reinitializing slicing ...
+Slicing project worklist [default] =
+[f8_slice_1 = (n:72(restrict to S1.b) ,<[--d], [---]>)(n:72(restrict to 
+S2.b) ,<[--d], [---]>)(n:75(restrict to S2.b) ,<[--d], [---]>)(n:74(restrict to 
+S1.b) ,<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+struct __anonstruct_Tstr_1 {
+   int a ;
+   int b ;
+   int c ;
+};
+typedef struct __anonstruct_Tstr_1 Tstr;
+void f8_slice_1(Tstr *ps)
+{
+  (ps->b) ++;
+  return;
+}
+
+
+[slicing] reinitializing slicing ...
+Slicing project worklist [default] =
+[f8_slice_1 = (UndefIn S1.c;
+S2.c:<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+void f8_slice_1(void)
+{
+  return;
+}
+
+
+[slicing] reinitializing slicing ...
+Slicing project worklist [default] =
+[f8_slice_1 = (UndefIn S1.c;
+S2.c:<[--d], [---]>)(n:71(restrict to S1.a) ,<[--d], [---]>)(n:72(restrict to 
+S1.b) ,<[--d], [---]>)(n:71(restrict to S2.a) ,<[--d], [---]>)(n:72(restrict to 
+S2.b) ,<[--d], [---]>)(n:75(restrict to S2.b) ,<[--d], [---]>)(n:77(restrict to 
+S2.a) ,<[--d], [---]>)(n:74(restrict to S1.b) ,<[--d], [---]>)(n:76(restrict to 
+S1.a) ,<[--d], [---]>)]
+
+[slicing] exporting project to 'Sliced code'...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[sparecode] remove unused global declarations from project 'Sliced code tmp'
+[sparecode] removed unused global declarations in new project 'Sliced code'
+/* Generated by Frama-C */
+struct __anonstruct_Tstr_1 {
+   int a ;
+   int b ;
+   int c ;
+};
+typedef struct __anonstruct_Tstr_1 Tstr;
+void f8_slice_1(Tstr *ps)
+{
+  (ps->a) ++;
+  (ps->b) ++;
+  return;
+}
+
+

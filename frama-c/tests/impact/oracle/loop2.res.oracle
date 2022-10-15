@@ -1,0 +1,218 @@
+[kernel] Parsing loop2.i (no preprocessing)
+[eva] Analyzing an incomplete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  t[0..9] ∈ [--..--]
+  u[0..9] ∈ [--..--]
+  w[0..9] ∈ [--..--]
+[eva] computing for function init <- main.
+  Called from loop2.i:24.
+[eva] loop2.i:11: starting to merge loop iterations
+[eva] Recording results for init
+[from] Computing for function init
+[from] Done for function init
+[eva] Done for function init
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] loop2.i:25: starting to merge loop iterations
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to init at loop2.i:24 (by main):
+  u[0..9] FROM v (and SELF)
+[from] call to f at loop2.i:27 (by main):
+  t[0..9] FROM u[0..9]; i (and SELF)
+  w[0..9] FROM i (and SELF)
+[from] entry point:
+  t[0..9] FROM v; t[0..9]; u[0..9] (and SELF)
+  u[0..9] FROM v (and SELF)
+  w[0..9] FROM v; t[0..9]; u[0..9] (and SELF)
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[impact] beginning analysis
+[pdg] computing for function main
+[pdg] done for function main
+[pdg] computing for function init
+[pdg] done for function init
+[pdg] computing for function f
+[pdg] done for function f
+[impact] impacted statements of stmt(s) 17 are:
+    loop2.i:17 (sid 11): int v_0 = t[i];loop2.i:18 (sid 12): w[i] = i;
+    loop2.i:19 (sid 13): t[i] = u[i];loop2.i:26 (sid 26): if(t[i]) <..>
+    loop2.i:27 (sid 27): f(i);
+[impact] analysis done
+[kernel] Parsing loop2.i (no preprocessing)
+[eva] Analyzing an incomplete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  t[0..9] ∈ [--..--]
+  u[0..9] ∈ [--..--]
+  w[0..9] ∈ [--..--]
+[eva] computing for function init <- main.
+  Called from loop2.i:24.
+[eva] Recording results for init
+[from] Computing for function init
+[from] Done for function init
+[eva] Done for function init
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from loop2.i:27.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to init at loop2.i:24 (by main):
+  u[0..9] FROM v
+[from] call to f at loop2.i:27 (by main):
+  t[9] FROM u[9]; i
+  w[9] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[8] FROM u[8]; i
+  w[8] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[7] FROM u[7]; i
+  w[7] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[6] FROM u[6]; i
+  w[6] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[5] FROM u[5]; i
+  w[5] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[4] FROM u[4]; i
+  w[4] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[3] FROM u[3]; i
+  w[3] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[2] FROM u[2]; i
+  w[2] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[1] FROM u[1]; i
+  w[1] FROM i
+[from] call to f at loop2.i:27 (by main):
+  t[0] FROM u[0]; i
+  w[0] FROM i
+[from] entry point:
+  t[0] FROM v; t[0] (and SELF)
+   [1] FROM v; t[1] (and SELF)
+   [2] FROM v; t[2] (and SELF)
+   [3] FROM v; t[3] (and SELF)
+   [4] FROM v; t[4] (and SELF)
+   [5] FROM v; t[5] (and SELF)
+   [6] FROM v; t[6] (and SELF)
+   [7] FROM v; t[7] (and SELF)
+   [8] FROM v; t[8] (and SELF)
+   [9] FROM v; t[9] (and SELF)
+  u[0..9] FROM v
+  w[0] FROM t[0] (and SELF)
+   [1] FROM t[1] (and SELF)
+   [2] FROM t[2] (and SELF)
+   [3] FROM t[3] (and SELF)
+   [4] FROM t[4] (and SELF)
+   [5] FROM t[5] (and SELF)
+   [6] FROM t[6] (and SELF)
+   [7] FROM t[7] (and SELF)
+   [8] FROM t[8] (and SELF)
+   [9] FROM t[9] (and SELF)
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[impact] beginning analysis
+[pdg] computing for function main
+[pdg] done for function main
+[pdg] computing for function init
+[pdg] done for function init
+[pdg] computing for function f
+[pdg] done for function f
+[impact] impacted statements of stmt(s) 83 are:
+    loop2.i:19 (sid 79): t[i] = u[i];loop2.i:27 (sid 201): f(i);
+    loop2.i:27 (sid 208): f(i);loop2.i:27 (sid 215): f(i);
+    loop2.i:27 (sid 222): f(i);loop2.i:27 (sid 229): f(i);
+    loop2.i:27 (sid 236): f(i);loop2.i:27 (sid 243): f(i);
+    loop2.i:27 (sid 250): f(i);loop2.i:27 (sid 257): f(i);
+    loop2.i:27 (sid 264): f(i);
+[impact] analysis done

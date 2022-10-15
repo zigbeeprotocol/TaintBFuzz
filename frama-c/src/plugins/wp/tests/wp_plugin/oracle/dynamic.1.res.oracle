@@ -1,0 +1,161 @@
+# frama-c -wp -wp-no-let [...]
+[kernel] Parsing dynamic.i (no preprocessing)
+[wp] Running WP plugin...
+[wp:calls] Computing dynamic calls.
+[wp] dynamic.i:32: Calls f1 f2
+[wp] dynamic.i:46: Calls g
+[wp] dynamic.i:67: Calls h1 h2
+[wp] dynamic.i:80: Calls (for bhv1) h1 h2 h0
+[wp] dynamic.i:80: Calls (for bhv0) h1 h2 h0
+[wp] dynamic.i:89: Calls h1
+[wp] dynamic.i:102: Calls unreachable_g
+[wp:calls] Dynamic call(s): 6.
+[wp] Warning: Missing RTE guards
+
+Goal Call point g in 'guarded_call' at instruction (file dynamic.i, line 46):
+Let a = shiftfield_F1_S_f(p).
+Let a_1 = Mptr_1[a].
+Let a_2 = global(G_g_48).
+Assume {
+  Type: is_sint32(X).
+  (* Heap *)
+  Type: (region(p_1.base) <= 0) /\ framed(Mptr_1) /\ is_sint32(X).
+  Have: p = p_1.
+  (* Pre-condition *)
+  Have: (a_1 = a_2) \/ (a_1 = null).
+  (* Pre-condition *)
+  Have: (a_1 = a_2) \/ (a_1 = null).
+  (* Then *)
+  Have: a_1 != null.
+  Have: Mptr_1 = Mptr_0.
+}
+Prove: Mptr_0[a] = a_2.
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 40) in 'guarded_call' (1/2):
+Let a = Mptr_0[shiftfield_F1_S_f(p_1)].
+Let a_1 = global(G_g_48).
+Assume {
+  Type: is_sint32(X_1) /\ is_sint32(X).
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ framed(Mptr_0) /\ is_sint32(X_1).
+  (* Goal *)
+  When: Mptr_1[shiftfield_F1_S_f(p)] = a_1.
+  Have: (X_2 = X_1) /\ (p_1 = p).
+  (* Pre-condition *)
+  Have: (a = a_1) \/ (a = null).
+  (* Pre-condition *)
+  Have: (a = a_1) \/ (a = null).
+  (* Frame In *)
+  Have: (ta_p_0=true).
+  (* Else *)
+  Have: a = null.
+  Have: (Mptr_0 = Mptr_1) /\ (X_2 = X) /\ ((ta_p_0=true) <-> (ta_p_1=true)).
+  (* Frame Out *)
+  Have: (ta_p_1=true).
+}
+Prove: X = 1.
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 40) in 'guarded_call' (2/2):
+Tags: Call g.
+Let a = shiftfield_F1_S_f(p_1).
+Let a_1 = global(G_g_48).
+Let a_2 = Mptr_0[a].
+Assume {
+  Type: is_sint32(X_1) /\ is_sint32(X).
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ framed(Mptr_0) /\ is_sint32(X_1).
+  (* Goal *)
+  When: Mptr_1[shiftfield_F1_S_f(p)] = a_1.
+  Have: p_1 = p.
+  (* Pre-condition *)
+  Have: (a_2 = a_1) \/ (a_2 = null).
+  (* Pre-condition *)
+  Have: (a_2 = a_1) \/ (a_2 = null).
+  (* Frame In *)
+  Have: (ta_p_0=true).
+  (* Then *)
+  Have: a_2 != null.
+  Have: (Mptr_0 = Mptr_2) /\ ((ta_p_0=true) <-> (ta_p_1=true)).
+  Have: Mptr_2 = Mptr_1.
+  (* Instance of 'g' *)
+  (* Call point g *)
+  Have: Mptr_2[a] = a_1.
+  Have: (ta_p_1=true) <-> (ta_p_2=true).
+  (* Call 'g' *)
+  Have: X = 1.
+  (* Frame Out *)
+  Have: (ta_p_2=true).
+}
+Prove: X = 1.
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 41) in 'guarded_call' (1/2):
+Let a = Mptr_0[shiftfield_F1_S_f(p_1)].
+Let a_1 = global(G_g_48).
+Assume {
+  Type: is_sint32(X_1) /\ is_sint32(X).
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ framed(Mptr_0) /\ is_sint32(X_1).
+  (* Goal *)
+  When: Mptr_1[shiftfield_F1_S_f(p)] = null.
+  Have: (X_2 = X_1) /\ (p_1 = p).
+  (* Pre-condition *)
+  Have: (a = a_1) \/ (a = null).
+  (* Pre-condition *)
+  Have: (a = a_1) \/ (a = null).
+  (* Frame In *)
+  Have: (ta_p_0=true).
+  (* Else *)
+  Have: a = null.
+  Have: (Mptr_0 = Mptr_1) /\ (X_2 = X) /\ ((ta_p_0=true) <-> (ta_p_1=true)).
+  (* Frame Out *)
+  Have: (ta_p_1=true).
+}
+Prove: X = X_1.
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 41) in 'guarded_call' (2/2):
+Tags: Call g.
+Let a = shiftfield_F1_S_f(p_1).
+Let a_1 = global(G_g_48).
+Let a_2 = Mptr_0[a].
+Assume {
+  Type: is_sint32(X_1) /\ is_sint32(X).
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ framed(Mptr_0) /\ is_sint32(X_1).
+  (* Goal *)
+  When: Mptr_1[shiftfield_F1_S_f(p)] = null.
+  Have: p_1 = p.
+  (* Pre-condition *)
+  Have: (a_2 = a_1) \/ (a_2 = null).
+  (* Pre-condition *)
+  Have: (a_2 = a_1) \/ (a_2 = null).
+  (* Frame In *)
+  Have: (ta_p_0=true).
+  (* Then *)
+  Have: a_2 != null.
+  Have: (Mptr_0 = Mptr_2) /\ ((ta_p_0=true) <-> (ta_p_1=true)).
+  Have: Mptr_2 = Mptr_1.
+  (* Instance of 'g' *)
+  (* Call point g *)
+  Have: Mptr_2[a] = a_1.
+  Have: (ta_p_1=true) <-> (ta_p_2=true).
+  (* Call 'g' *)
+  Have: X = 1.
+  (* Frame Out *)
+  Have: (ta_p_2=true).
+}
+Prove: X = X_1.
+
+------------------------------------------------------------
+[wp] dynamic.i:43: Warning: 
+  Memory model hypotheses for function 'guarded_call':
+  /*@ behavior wp_typed:
+        requires \separated(p, &X); */
+  void guarded_call(struct S *p);

@@ -1,0 +1,4 @@
+[ { "header": "Split", "tactic": "Wp.split", "params": {},
+    "select": { "select": "clause-step", "at": 1, "kind": "have",
+                "target": "P_P \\/ P_Q \\/ P_R", "pattern": "|P_PP_QP_R" },
+    "children": { "Case 1/3": [], "Case 2/3": [], "Case 3/3": [] } } ]

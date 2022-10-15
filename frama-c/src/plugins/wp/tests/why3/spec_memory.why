@@ -1,0 +1,88 @@
+module Spec_memory
+
+  use int.Int
+  use map.Map
+
+  use frama_c_wp.memory.Memory
+
+  type malloc = map int int
+
+  predicate spec_valid_rd (m: malloc) (p: addr) (n: int) =
+    if n <= 0 then true else
+    if p.base = 0 then false else
+    0 <= p.offset /\ p.offset + n <= m[p.base]
+
+  predicate spec_valid_rw (m: malloc) (p: addr) (n: int) =
+    if n <= 0 then true else
+    if p.base <= 0 then false else
+    0 <= p.offset /\ p.offset + n <= m[p.base]
+
+  predicate invalid_assigns (m: malloc) (p: addr) (n: int) =
+    forall k. 0 <= k < n -> not (valid_rd m (shift p k) 1)
+
+  goal check_valid_rd:
+    forall m p n. spec_valid_rd m p n <-> valid_rd m p n
+
+  goal check_valid:
+    forall m p n. spec_valid_rd m p n <-> valid_rd m p n
+
+  goal invalid_spec:
+    forall m p n.
+      invalid m p n -> invalid_assigns m p n
+
+  goal invalid_null_spec:
+    forall m n p.
+      p.base = 0 -> invalid m p n -> invalid_assigns m p n
+
+  goal invalid_null:
+    forall m n p.
+      p.base = 0 -> invalid m p n
+
+  goal invalid_empty:
+    forall m p n.
+       n <= 0 -> not (invalid m p n) -> invalid_assigns m p n
+
+  goal valid_rd_null:
+    forall m n p. p.base = 0 -> (n <= 0 <-> valid_rd m p n)
+
+  goal valid_rw_null:
+    forall m n p. p.base = 0 -> (n <= 0 <-> valid_rw m p n)
+
+  goal valid_obj_null:
+    forall m n. valid_obj m null n
+
+  (* included simplifier *)
+  goal INC_P:
+    forall p q a b.
+      p = q -> (included p a q b <-> ( 0 < a -> a <= b ))
+
+  goal INC_A:
+    forall p q a b.
+      a = b -> 0 < a ->
+        (included p a q b <->
+          (p.base = q.base /\ q.offset <= p.offset /\
+           p.offset + a <= q.offset + b))
+
+  goal INC_1:
+    forall p q a b.
+      a <= 0 -> (included p a q b <-> true)
+
+  goal INC_2:
+    forall p q a b.
+      b < 0 -> (included p a q b <-> a <= 0)
+
+  goal INC_3:
+    forall p q a b.
+      not
+        (p.base = q.base /\ q.offset <= p.offset /\
+         p.offset + a <= q.offset + b) ->
+        (included p a q b <-> a <= 0)
+
+  goal INC_4:
+    forall p q a b.
+      not a <= 0 -> not b < 0 ->
+        (included p a q b <->
+          (p.base = q.base /\ q.offset <= p.offset /\
+           p.offset + a <= q.offset + b))
+
+end

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "GET-1",
+    "data": {
+      "updated": [
+        {
+          "key": "kf#24",
+          "name": "g",
+          "signature": "int g(int y);",
+          "defined": true,
+          "sloc": {
+            "dir": ".",
+            "base": "ast_services.i",
+            "file": "ast_services.i",
+            "line": 8
+          }
+        },
+        {
+          "key": "kf#20",
+          "name": "f",
+          "signature": "int f(int x);",
+          "defined": true,
+          "sloc": {
+            "dir": ".",
+            "base": "ast_services.i",
+            "file": "ast_services.i",
+            "line": 7
+          }
+        }
+      ],
+      "removed": [],
+      "reload": true,
+      "pending": 0
+    }
+  },
+  {
+    "id": "GET-2",
+    "data": { "updated": [], "removed": [], "reload": false, "pending": 0 }
+  },
+  {
+    "id": "PRINT-F",
+    "data": [
+      "",
+      [ "#v20", "int f(", [ "#v22", "int x" ], ")" ],
+      "\n{\n  ",
+      [ "#v23", "int tmp" ],
+      ";\n  ",
+      [
+        "#s1",
+        [
+          "#k1",
+          "{ /* sequence */\n    ",
+          [ "#s2", [ "#k2", [ "#l1", "tmp" ], " = ", [ "#l2", "x" ], ";" ] ],
+          "\n    ",
+          [ "#s3", [ "#k3", [ "#l3", "x" ], " ++;" ] ],
+          "\n    ",
+          [ "#s4", [ "#k4", ";" ] ],
+          "\n  }"
+        ]
+      ],
+      "\n  ",
+      [ "#s5", [ "#k5", "return ", [ "#l4", "tmp" ], ";" ] ],
+      "\n}\n",
+      "\n"
+    ]
+  },
+  {
+    "id": "PRINT-G",
+    "data": [
+      "",
+      [ "#v24", "int g(", [ "#v26", "int y" ], ")" ],
+      "\n{\n  ",
+      [ "#v27", "int tmp" ],
+      ";\n  ",
+      [
+        "#s7",
+        [
+          "#k7",
+          "{ /* sequence */\n    ",
+          [ "#s8", [ "#k8", [ "#l5", "tmp" ], " = ", [ "#l6", "y" ], ";" ] ],
+          "\n    ",
+          [ "#s9", [ "#k9", [ "#l7", "y" ], " ++;" ] ],
+          "\n    ",
+          [ "#s10", [ "#k10", ";" ] ],
+          "\n  }"
+        ]
+      ],
+      "\n  ",
+      [ "#s11", [ "#k11", "return ", [ "#l8", "tmp" ], ";" ] ],
+      "\n}\n",
+      "\n"
+    ]
+  },
+  {
+    "id": "PRINT-H",
+    "error": "Undefined function 'h'",
+    "at": {
+      "id": "PRINT-H",
+      "request": "kernel.ast.printFunction",
+      "data": "h"
+    }
+  }
+]

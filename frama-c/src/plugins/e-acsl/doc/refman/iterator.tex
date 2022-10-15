@@ -1,0 +1,17 @@
+\begin{syntax}
+  [ { iterator } ] ::= [ { "\forall" binders ";"  iterator-guard "==>" pred } ];
+       | [ { "\exists" binders ";" iterator-guard "&&" pred } ] ;
+  \
+  [ { iterator-guard } ] ::= [ { id"("term"," term")" } ]
+  \
+  [ { declaration } ] ::= [ { "//@" "iterator" id "("wildcard-param"," 
+    wildcard-param")" ":" } ] ;
+  [ { "nexts" terms ";" "guards" predicates ";" } ]
+  \
+  [ { wildcard-param } ] ::= { parameter } ;
+  | [ { "_" } ]
+  \
+  { terms } ::= { term (, term)* }
+  \
+  { predicates } ::= { predicate (, predicate)* }
+\end{syntax}

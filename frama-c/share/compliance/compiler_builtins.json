@@ -1,0 +1,57 @@
+{
+    "description":"Compiler builtins supported by Frama-C (for GCC builtins, see gcc_builtins.json)",
+    "notes": {
+        "compiler":"When present, indicates this builtin is only available in Frama-C machdeps with this compiler. Allowed values: msvc, !msvc (the latter meaning: 'available in machdeps with compilers other than MSVC').",
+        "rettype":"Return type of the builtin. Whitespace is important: types are matched as exact strings, with a single space between components.",
+        "args":"List of the types of the builtin arguments. Whitespace is important: types are matched as exact strings, with a single space between components.",
+        "variadic":"When present, this builtin behaves as a variadic function.",
+        "_comment": "Adding new types to fields 'rettype' or 'args' requires updating the list of recognized types in 'src/kernel_services/ast_queries/cil_builtins.ml'."
+    },
+    "data":{
+        "__builtin__annotation": {
+            "compiler":"msvc",
+            "rettype":"void",
+            "args": [],
+            "variadic":true
+        },
+        "__builtin_next_arg": {
+            "compiler":"!msvc",
+            "rettype":"__builtin_va_list",
+            "args": []
+        },
+        "__builtin_offsetof": {
+            "rettype":"size_t",
+            "args": ["size_t"]
+        },
+        "__builtin_stdarg_start": {
+            "compiler":"!msvc",
+            "rettype":"void",
+            "args": ["__builtin_va_list"]
+        },
+        "__builtin_va_arg": {
+            "compiler":"!msvc",
+            "rettype":"void",
+            "args": ["__builtin_va_list","size_t","void *"]
+        },
+        "__builtin_va_copy": {
+            "compiler":"!msvc",
+            "rettype":"void",
+            "args": ["__builtin_va_list","__builtin_va_list"]
+        },
+        "__builtin_va_end": {
+            "compiler":"!msvc",
+            "rettype":"void",
+            "args": ["__builtin_va_list"]
+        },
+        "__builtin_va_start": {
+            "compiler":"!msvc",
+            "rettype":"void",
+            "args": ["__builtin_va_list"]
+        },
+        "__builtin_varargs_start": {
+            "compiler":"!msvc",
+            "rettype":"void",
+            "args": ["__builtin_va_list"]
+        }
+    }
+}

@@ -1,0 +1,159 @@
+\chapter{Marquage générique}\label{sec-mark}
+
+\section{Objectif}
+
+On souhaite pouvoir associer une information à certains éléments d'un PDG,
+propager cette information dans les dépendances de ces éléments,
+et calculer ce qu'il faut propager dans les autres PDG de l'application
+pour avoir un traitement interprocédural cohérent. \\
+
+Par exemple, l'information peut être un simple booléen qui indique si l'élément
+correspondant est visible ou non. Pour qu'un élément soit visible, il faut que
+toutes ses dépendances le soit aussi.
+On voit dans cet exemple qu'on s'intéresse dans un premier temps à une
+propagation arrière.\\
+
+Comme un PDG est associé à une fonction, la propagation s'arrête aux entrées
+de la fonction. Par ailleurs, les appels de fonction sont traités localement,
+sans descendre dans la fonction appelée.
+Pour gérer la propagation interprocédurale, les fonctions élémentaires de
+marquage doivent fournir l'information à propager aussi bien dans les fonctions
+appelées que dans les appelants.
+
+\section{Marquage générique}
+
+Le marquage pouvant être utilisé pour différents besoins,
+les marques peuvent être définies par l'utilisateur.
+Il lui suffit de définir comment en faire l'union.
+
+On utilise deux types d'union~:
+\begin{itemize}
+  \item l'une permet de faire une simple union de deux marques,
+  \item l'autre permet d'ajouter une marque à un élément de programme~:
+    elle calcule donc une nouvelle marque à partir de l'ancienne,
+    et de la marque à ajouter et fournit aussi la marque à propager dans les
+    dépendances.
+\end{itemize}
+
+\section{Propagation arrière}
+
+\subsection{Marquage intraprocédural}
+
+La propagation arrière s'effectue très simplement en suivant les dépendances,
+en ajoutant la marque propagée à la marque existante,
+et en s'arrêtant quand la marque à propager rendue par la fonction de marquage
+est $m_{\bot}$.\\
+
+En cours de propagation, lorsque l'on traite un élément correspondant à la
+sortie d'un appel de fonction, ou à une entrée de la fonction courante,
+la marque à propager ainsi que l'identifiant de l'élément sont stockés.
+A l'issu du marquage, on a donc~:
+\begin{itemize}
+  \item un ensemble de couple (entrée de la fonction, marque à propager),
+  \item une liste des appels de fonction, avec pour chacun un ensemble de
+    couples (sortie de l'appel, marque à propager).
+\end{itemize}
+
+C'est cette information qui permettra de faire la propagation interprocédurale.
+
+\subsection{Propagation interprocédurale}
+
+\subsubsection{Méthode automatique}
+
+Le module de marquage permet de faire automatiquement
+la propagation interprocédurale si on le souhaite.
+Il est utilisé de cette façon dans la détection de code mort par exemple.\\
+
+L'utilisateur peut, s'il le souhaite,
+donner des fonctions de transformation des marques~:
+\begin{itemize}
+  \item une qui est utilisée pour transformer les marques des entrées d'une
+    fonction avant la propagation dans les appelants,
+  \item une autre qui est utilisée pour transformer les marques des sorties
+    d'un appel de fonction avant propagation dans la fonction appelée.
+\end{itemize}
+Dans les cas les plus simples, ces fonctions ne font rien, et rendent
+simplement la marque qui leur est passée.
+
+\subsubsection{Méthode manuelle}
+
+Dans certains cas, il est souhaitable de gérer cette propagation à la main.
+C'est par exemple le cas dans le \slicing{} où une fonction source est associée
+à plusieurs marquages différents.\\
+
+Des fonctions aident néanmoins à retrouver les éléments à marquer dans les
+autres fonctions à partir du résultat fourni par le marquage intraprocédural.
+Ces fonctions traduisent les informations~:
+\begin{itemize}
+  \item (entrée de la fonction, marque à propager) en un ensemble d'éléments à
+    marquer dans une~- ou toutes les~- fonction(s) appelante(s),
+  \item (appel, \{(sortie de l'appel, marque à propager)\})
+    en un ensemble d'éléments à marquer dans la fonction appelée.
+\end{itemize}
+Les éléments rendu sont les nouveaux points de départ de marquages
+intraprocéduraux.
+L'utilisateur peut, comme lors de la propagation automatique,
+donner des fonctions de transformation des marques aux traductions.
+
+\subsubsection{Données non définies}
+
+Lorsque les points de départ marquage initial sont des éléments du PDG,
+toutes les propagations s'effectueront a priori sur des éléments existant.
+Mais ce n'est pas forcement le cas lorsqu'il s'agit de marquer les données
+qui n'interviennent pas dans les calculs. Par exemple~:
+
+\begin{exemple}
+  \begin{verbatim}
+int X1, X2;
+
+void f (int x) { /*@ assert X1 >= 0; */ return x + 1; }
+
+void f2 (void)  { X2 = f (2); }
+
+void main (void) { X1 = 0; X2 = 0; f2 (); }
+  \end{verbatim}
+
+  Ici, si on s'intéresse à l'assertion de \verbtt{f}, il faut sélectionner
+  \verbtt{X1} à l'entrée de \verbtt{f}, propager cette information à travers
+  \verbtt{f2} pour enfin marquer l'affectation à \verbtt{X1} dans le \verbtt{main}
+  alors que cette donnée n'apparaît pas dans les PDG de \verbtt{f} et \verbtt{f2}.
+\end{exemple}
+
+On voit donc que dans les informations fournies et calculées
+pour gérer l'interprocédural, il peut y avoir des éléments ne correspondant
+pas à des noeuds de PDG.
+
+\subsubsection{Terminaison}
+
+La terminaison du processus dépend de la définition des marques.
+C'est donc à l'utilisateur de s'assurer que celle-ci permet la stabilisation du
+marquage.
+
+\section{Propagation avant}
+
+La propagation avant n'est pas effectuée automatiquement à l'heure actuelle.
+
+La propagation intraprocédurale ne pose pas de problèmes particuliers,
+car elle est très semblable au calcul en arrière~: il suffit simplement de
+parcourir les liens de dépendance dans l'autre sens.\\
+
+La partie interprocédurale semble un peu plus délicate,
+car il n'y a aucun point de repère dans le PDG
+pour identifier les endroits à partir desquels il faut propager
+(hormis le noeud correspondant au \verbtt{return}
+pour la propagation vers les appelants et les arguments explicites pour
+la propagation dans les appels de fonction).
+
+Des fonctions supplémentaires sont donc fournies pour~:
+\begin{itemize}
+  \item trouver les noeuds d'entrées d'une fonction qui doivent être
+    sélectionnés à partir des noeuds sélectionnés dans l'appelant,
+  \item trouver les noeuds de sortie d'un appel de fonction
+    qui doivent être
+    sélectionnés à partir des noeuds sélectionnés dans la fonction appelée.
+\end{itemize}
+
+En cas d'utilisation intensive de ces fonctionnalités,
+il serait sans doute intéressant de mémoriser les liens entre les
+différents PDG (cela est également vrai pour la propagation interprocédurale
+arrière...).\\

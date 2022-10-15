@@ -1,0 +1,26 @@
+[kernel] Parsing test.i (no preprocessing)
+[eva] Analyzing a complete application starting at f
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] test.i:21: Warning: 
+  accessing uninitialized left-value. assert \initialized(&t[100]);
+[eva] Recording results for f
+[eva] done for function f
+[eva] test.i:21: assertion 'Eva,initialization' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  t[0] ∈ {99}
+   [1..88887] ∈ UNINITIALIZED
+[from] Computing for function f
+[from] Done for function f
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    t[0..1]
+[inout] Inputs for function f:
+    \nothing

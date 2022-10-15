@@ -1,0 +1,33 @@
+# frama-c -wp [...]
+[kernel] Parsing block_length.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 20 goals scheduled
+[wp] [Qed] Goal typed_f_ensures_Pt : Valid
+[wp] [Qed] Goal typed_f_ensures_Psiz1 : Valid
+[wp] [Qed] Goal typed_f_ensures_Pmat1 : Valid
+[wp] [Qed] Goal typed_f_ensures_Psiz2 : Valid
+[wp] [Qed] Goal typed_f_ensures_Pmat2 : Valid
+[wp] [Qed] Goal typed_f_ensures_Ps : Valid
+[wp] [Qed] Goal typed_f_ensures_Pts : Valid
+[wp] [Qed] Goal typed_f_ensures_Pt1 : Valid
+[wp] [Qed] Goal typed_f_ensures_Pmat12 : Valid
+[wp] [Qed] Goal typed_f_ensures_Pts1 : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures_Pt : Valid
+[wp] [Qed] Goal typed_g_ensures_Psiz1 : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures_Pmat1 : Valid
+[wp] [Qed] Goal typed_g_ensures_Psiz2 : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures_Pmat2 : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures_Ps : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures_Pts : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures_Pt1 : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures_Pmat12 : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures_Pts1 : Valid
+[wp] Proved goals:   20 / 20
+  Qed:            12 
+  Alt-Ergo:        8
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f                        10        -       10       100%
+  g                         2        8       10       100%
+------------------------------------------------------------

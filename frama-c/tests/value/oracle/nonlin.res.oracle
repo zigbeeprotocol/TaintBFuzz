@@ -1,0 +1,286 @@
+[kernel] Parsing nonlin.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  vs ∈ [--..--]
+  table[0..3] ∈ {66}
+       [4] ∈ {1}
+       [5] ∈ {8}
+       [6] ∈ {7}
+       [7] ∈ {2}
+       [8..11] ∈ {0}
+       [12..15] ∈ {66}
+       [16] ∈ {9}
+       [17] ∈ {3}
+       [18] ∈ {4}
+       [19] ∈ {5}
+       [20..23] ∈ {0}
+       [24..27] ∈ {66}
+       [28] ∈ {2}
+       [29] ∈ {3}
+       [30] ∈ {7}
+       [31] ∈ {5}
+       [32..35] ∈ {0}
+[eva] computing for function subdivide_integer <- main.
+  Called from nonlin.c:125.
+[eva:nonlin] nonlin.c:37: non-linear '((int)z + 675) * ((int)z + 675)', lv 'z'
+[eva:nonlin] nonlin.c:37: subdividing on z
+[eva:nonlin] nonlin.c:38: 
+  non-linear '((int)z + 17817) * ((int)z + 17817)', lv 'z'
+[eva:nonlin] nonlin.c:38: subdividing on z
+[eva:alarm] nonlin.c:38: Warning: 
+  signed overflow.
+  assert (int)((int)z + 17817) * (int)((int)z + 17817) ≤ 2147483647;
+[eva:nonlin] nonlin.c:45: 
+  non-linear '(i2 + (long long)3) * (i2 + (long long)3)', lv 'i2'
+[eva:nonlin] nonlin.c:45: non-linear 'i1 * i1', lv 'i1'
+[eva:nonlin] nonlin.c:45: subdividing on i2
+[eva:nonlin] nonlin.c:45: subdividing on i1
+[eva:alarm] nonlin.c:49: Warning: assertion got status unknown.
+[eva:nonlin] nonlin.c:50: non-linear '(int)idx * (int)idx', lv 'idx'
+[eva:nonlin] nonlin.c:50: subdividing on idx
+[eva] Recording results for subdivide_integer
+[eva] Done for function subdivide_integer
+[eva] computing for function subdivide_pointer <- main.
+  Called from nonlin.c:126.
+[eva] computing for function Frama_C_interval <- subdivide_pointer <- main.
+  Called from nonlin.c:12.
+[eva] using specification for function Frama_C_interval
+[eva] nonlin.c:12: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- subdivide_pointer <- main.
+  Called from nonlin.c:14.
+[eva] nonlin.c:14: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] nonlin.c:18: Warning: 
+  out of bounds read. assert \valid_read((&y + i) - i);
+[eva:nonlin] nonlin.c:21: non-linear '(p + i) - i', lv 'i'
+[eva:nonlin] nonlin.c:21: subdividing on i
+[eva:alarm] nonlin.c:21: Warning: 
+  out of bounds read. assert \valid_read((p + i) - i);
+[eva] computing for function Frama_C_interval <- subdivide_pointer <- main.
+  Called from nonlin.c:26.
+[eva] nonlin.c:26: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:nonlin] nonlin.c:27: subdividing on i
+[eva:alarm] nonlin.c:29: Warning: 
+  pointer downcast. assert (unsigned int)(&x) ≤ 2147483647;
+[eva:alarm] nonlin.c:30: Warning: 
+  out of bounds read. assert \valid_read((p + i) - i);
+[eva] Recording results for subdivide_pointer
+[eva] Done for function subdivide_pointer
+[eva] computing for function subdivide_several_variables <- main.
+  Called from nonlin.c:127.
+[eva] computing for function Frama_C_interval <- subdivide_several_variables <- 
+                          main.
+  Called from nonlin.c:57.
+[eva] nonlin.c:57: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- subdivide_several_variables <- 
+                          main.
+  Called from nonlin.c:58.
+[eva] nonlin.c:58: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- subdivide_several_variables <- 
+                          main.
+  Called from nonlin.c:59.
+[eva] nonlin.c:59: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- subdivide_several_variables <- 
+                          main.
+  Called from nonlin.c:60.
+[eva] nonlin.c:60: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:nonlin] nonlin.c:62: non-linear 'x * x', lv 'x'
+[eva:nonlin] nonlin.c:62: non-linear 'y * y', lv 'y'
+[eva:nonlin] nonlin.c:62: subdividing on x
+[eva:nonlin] nonlin.c:62: subdividing on y
+[eva:nonlin] nonlin.c:66: non-linear 'x * x', lv 'x'
+[eva:nonlin] nonlin.c:66: non-linear '((x * x) * y) * y', lv 'y'
+[eva:nonlin] nonlin.c:66: subdividing on x
+[eva:nonlin] nonlin.c:66: subdividing on y
+[eva:nonlin] nonlin.c:68: non-linear 'x * y - y * x', lv 'y, x'
+[eva:nonlin] nonlin.c:68: subdividing on x, y
+[eva:nonlin] nonlin.c:71: non-linear '(x * x - (2 * x) * y) + y * y', lv 'y, x'
+[eva:nonlin] nonlin.c:71: subdividing on x, y
+[eva:nonlin] nonlin.c:72: non-linear '(x * x + y * y) - (2 * x) * y', lv 'y, x'
+[eva:nonlin] nonlin.c:72: subdividing on x, y
+[eva:nonlin] nonlin.c:74: non-linear '(z * x + x * y) + y * z', lv 'z, y, x'
+[eva:nonlin] nonlin.c:74: non-linear 'w * w', lv 'w'
+[eva:nonlin] nonlin.c:74: subdividing on x, y, z
+[eva:nonlin] nonlin.c:74: subdividing on w
+[eva] Recording results for subdivide_several_variables
+[eva] Done for function subdivide_several_variables
+[eva] computing for function subdivide_table <- main.
+  Called from nonlin.c:128.
+[eva] nonlin.c:93: loop invariant got status valid.
+[eva] nonlin.c:94: starting to merge loop iterations
+[eva:nonlin] nonlin.c:95: non-linear '(4 + ((x >> 2) * 3 << 2)) + x % 4', lv 'x'
+[eva:nonlin] nonlin.c:95: subdividing on x
+[eva] Recording results for subdivide_table
+[eva] Done for function subdivide_table
+[eva] computing for function subdivide_reduced_value <- main.
+  Called from nonlin.c:129.
+[eva:nonlin] nonlin.c:107: non-linear 't1[i] - t2[i]', lv 'i'
+[eva:nonlin] nonlin.c:107: subdividing on i
+[eva:alarm] nonlin.c:107: Warning: 
+  accessing out of bounds index. assert 0 ≤ i;
+[eva:alarm] nonlin.c:107: Warning: accessing out of bounds index. assert i < 2;
+[eva] Recording results for subdivide_reduced_value
+[eva] Done for function subdivide_reduced_value
+[eva] computing for function local_subdivide <- main.
+  Called from nonlin.c:130.
+[eva] computing for function Frama_C_interval <- local_subdivide <- main.
+  Called from nonlin.c:113.
+[eva] nonlin.c:113: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- local_subdivide <- main.
+  Called from nonlin.c:114.
+[eva] nonlin.c:114: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:nonlin] nonlin.c:118: non-linear '(x * x - (2 * x) * y) + y * y', lv 'y, x'
+[eva:nonlin] nonlin.c:118: subdividing on x, y
+[eva:nonlin] nonlin.c:119: subdividing on x, y
+[eva:nonlin] nonlin.c:121: subdividing on x, y
+[eva] Recording results for local_subdivide
+[eva] Done for function local_subdivide
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function local_subdivide:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ [-10..10]
+  y ∈ [-10..10]
+  imprecise ∈ [-400..400]
+  more_precise ∈ [-48..400]
+  even_more_precise ∈ [-16..400]
+  precise ∈ [0..400]
+[eva:final-states] Values at end of function subdivide_integer:
+  z ∈ [-32768..28523]
+  k ∈ [-2..1118367364]
+  l ∈ [0..2147395600]
+  x ∈ {8}
+  p ∈ {{ &x + {32} }}
+  i1 ∈ [-32768..32767]
+  i2 ∈ [-32768..32767]
+  r ∈ [-2..2147614724]
+  t[0..100] ∈ {1} or UNINITIALIZED
+   [101] ∈ UNINITIALIZED
+  idx ∈ [0..10]
+[eva:final-states] Values at end of function subdivide_pointer:
+  Frama_C_entropy_source ∈ [--..--]
+  y ∈ [--..--]
+  x ∈ [-10..10]
+  p ∈ {{ &t[0] }}
+  i ∈ {{ NULL + [0..10] ; (int)&x }}
+  q ∈ {{ &x + [-400..400],0%4 }}
+  t[0] ∈ {0}
+   [1] ∈ {1}
+   [2] ∈ {2}
+   [3] ∈ {4}
+   [4] ∈ {5}
+   [5] ∈ {6}
+   [6] ∈ {7}
+   [7] ∈ {8}
+   [8] ∈ {9}
+   [9] ∈ {0}
+[eva:final-states] Values at end of function subdivide_reduced_value:
+  t1[0] ∈ {0}
+    [1] ∈ {1}
+  t2[0] ∈ {0}
+    [1] ∈ {1}
+  i ∈ {0; 1}
+  r ∈ {-1; 0; 1}
+[eva:final-states] Values at end of function subdivide_several_variables:
+  Frama_C_entropy_source ∈ [--..--]
+  w ∈ [-10..10]
+  x ∈ [-10..10]
+  y ∈ [-10..10]
+  z ∈ [-10..10]
+  norm ∈ [0..200]
+  mult ∈ [0..10000]
+  zero ∈ [-26..26]
+  square ∈ [-48..400]
+  square2 ∈ [-48..400]
+  res ∈ [-144..400]
+[eva:final-states] Values at end of function subdivide_table:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+[from] Computing for function local_subdivide
+[from] Computing for function Frama_C_interval <-local_subdivide
+[from] Done for function Frama_C_interval
+[from] Done for function local_subdivide
+[from] Computing for function subdivide_integer
+[from] Done for function subdivide_integer
+[from] Computing for function subdivide_pointer
+[from] Done for function subdivide_pointer
+[from] Computing for function subdivide_reduced_value
+[from] Done for function subdivide_reduced_value
+[from] Computing for function subdivide_several_variables
+[from] Done for function subdivide_several_variables
+[from] Computing for function subdivide_table
+[from] Non-terminating function subdivide_table (no dependencies)
+[from] Done for function subdivide_table
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function local_subdivide:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function subdivide_integer:
+  NO EFFECTS
+[from] Function subdivide_pointer:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function subdivide_reduced_value:
+  NO EFFECTS
+[from] Function subdivide_several_variables:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function subdivide_table:
+  NON TERMINATING - NO EFFECTS
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function local_subdivide:
+    Frama_C_entropy_source; x; y; imprecise; more_precise; even_more_precise;
+    precise
+[inout] Inputs for function local_subdivide:
+    Frama_C_entropy_source
+[inout] Out (internal) for function subdivide_integer:
+    z; k; l; x; p; i1; i2; r; t[0..100]; idx
+[inout] Inputs for function subdivide_integer:
+    v; vs
+[inout] Out (internal) for function subdivide_pointer:
+    Frama_C_entropy_source; y; x; p; i; q; t[0..9]
+[inout] Inputs for function subdivide_pointer:
+    Frama_C_entropy_source; v
+[inout] Out (internal) for function subdivide_reduced_value:
+    t1[0..1]; t2[0..1]; i; r
+[inout] Inputs for function subdivide_reduced_value:
+    v
+[inout] Out (internal) for function subdivide_several_variables:
+    Frama_C_entropy_source; w; x; y; z; norm; mult; zero; square; square2; res
+[inout] Inputs for function subdivide_several_variables:
+    Frama_C_entropy_source
+[inout] Out (internal) for function subdivide_table:
+    x
+[inout] Inputs for function subdivide_table:
+    table[4..29]
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source
+[inout] Inputs for function main:
+    Frama_C_entropy_source; v; vs; table[4..29]

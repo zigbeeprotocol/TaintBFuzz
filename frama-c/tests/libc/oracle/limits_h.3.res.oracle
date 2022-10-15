@@ -1,0 +1,39 @@
+[kernel] Parsing limits_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] limits_h.c:16: assertion got status valid.
+[eva] limits_h.c:18: assertion got status valid.
+[eva] limits_h.c:19: assertion got status valid.
+[eva] limits_h.c:20: assertion got status valid.
+[eva] limits_h.c:21: assertion got status valid.
+[eva] limits_h.c:22: assertion got status valid.
+[eva] limits_h.c:23: assertion got status valid.
+[eva] limits_h.c:24: assertion got status valid.
+[eva] limits_h.c:25: assertion got status valid.
+[eva] limits_h.c:26: assertion got status valid.
+[eva] limits_h.c:27: assertion got status valid.
+[eva] limits_h.c:28: assertion got status valid.
+[eva] limits_h.c:29: assertion got status valid.
+[eva] limits_h.c:30: assertion got status valid.
+[eva] limits_h.c:31: assertion got status valid.
+[eva] limits_h.c:32: assertion got status valid.
+[eva] limits_h.c:33: assertion got status valid.
+[eva] limits_h.c:34: assertion got status valid.
+[eva] limits_h.c:35: assertion got status valid.
+[eva] limits_h.c:36: assertion got status valid.
+[eva] limits_h.c:37: assertion got status valid.
+[eva] limits_h.c:38: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[scope:rm_asserts] removing 6 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  size_max ∈ {65535}
+  ssize_max ∈ {2147483647}
+  intptr_max ∈ {2147483647}
+  intptr_min ∈ {-2147483648}
+  uintptr_max ∈ {4294967295}
+  uintmax_max ∈ {18446744073709551615}

@@ -1,0 +1,4 @@
+[kernel] Parsing lvalvoid.i (no preprocessing)
+[kernel] lvalvoid.i:8: Failure: lvalue of type void: *(src + i)
+[kernel] User Error: stopping on file "lvalvoid.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

@@ -1,0 +1,43 @@
+[kernel] Parsing from_ptr.i (no preprocessing)
+[eva] Analyzing a complete application starting at main1
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  i ∈ {0}
+  j ∈ {0}
+  x ∈ {0}
+  k ∈ {0}
+  l ∈ {0}
+  m ∈ {0}
+  n ∈ {0}
+  d ∈ {0}
+  a ∈ {0}
+  b ∈ {0}
+  p[0..9][0..9][0..9] ∈ {0}
+  q ∈ {0}
+[eva:alarm] from_ptr.i:24: Warning: 
+  pointer downcast. assert (unsigned int)(&p[1]) ≤ 2147483647;
+[eva:alarm] from_ptr.i:25: Warning: 
+  pointer downcast. assert (unsigned int)((int (*)[10][10])p) ≤ 2147483647;
+[eva] Recording results for main1
+[eva] done for function main1
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  i ∈ {{ (long)&p }}
+  d ∈ {0}
+  p[0..9][0..9][0..9] ∈ {0}
+  q ∈ {{ &a ; &b }}
+[from] Computing for function main1
+[from] Done for function main1
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  i FROM \nothing
+  d FROM a; b; c
+  p[0][0][0] FROM a; c (and SELF)
+  q FROM c
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    i; d; p[0][0][0]; q
+[inout] Inputs for function main1:
+    i; a; b; q

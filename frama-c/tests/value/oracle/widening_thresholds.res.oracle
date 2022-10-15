@@ -1,0 +1,66 @@
+[kernel] Parsing widening_thresholds.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+  g ∈ {0}
+[eva] computing for function modulo <- main.
+  Called from widening_thresholds.i:26.
+[eva] computing for function incr_modulo <- modulo <- main.
+  Called from widening_thresholds.i:21.
+[eva] Recording results for incr_modulo
+[eva] Done for function incr_modulo
+[eva] widening_thresholds.i:18: starting to merge loop iterations
+[eva] computing for function incr_modulo <- modulo <- main.
+  Called from widening_thresholds.i:21.
+[eva] Recording results for incr_modulo
+[eva] Done for function incr_modulo
+[eva] computing for function incr_modulo <- modulo <- main.
+  Called from widening_thresholds.i:21.
+[eva] Recording results for incr_modulo
+[eva] Done for function incr_modulo
+[eva] computing for function incr_modulo <- modulo <- main.
+  Called from widening_thresholds.i:21.
+[eva] Recording results for incr_modulo
+[eva] Done for function incr_modulo
+[eva] Recording results for modulo
+[eva] Done for function modulo
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function incr_modulo:
+  g ∈ [0..999]
+[eva:final-states] Values at end of function modulo:
+  s ∈ [0..9]
+  i ∈ [0..99]
+  g ∈ [0..999]
+[eva:final-states] Values at end of function main:
+  g ∈ [0..999]
+[from] Computing for function incr_modulo
+[from] Done for function incr_modulo
+[from] Computing for function modulo
+[from] Done for function modulo
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function incr_modulo:
+  g FROM g
+[from] Function modulo:
+  g FROM nondet; g (and SELF)
+[from] Function main:
+  g FROM nondet; g (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function incr_modulo:
+    g
+[inout] Inputs for function incr_modulo:
+    g
+[inout] Out (internal) for function modulo:
+    s; i; g
+[inout] Inputs for function modulo:
+    nondet; g
+[inout] Out (internal) for function main:
+    g
+[inout] Inputs for function main:
+    nondet; g

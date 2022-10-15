@@ -1,0 +1,54 @@
+# frama-c -wp [...]
+[kernel] Parsing issue_259.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Assigns nothing in 'f':
+Effect at line 2
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function g
+------------------------------------------------------------
+
+Goal Assigns nothing in 'g':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'g' (1/5):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'g' (2/5):
+Call Result at line 8
+Tags: Case 0.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'g' (3/5):
+Effect at line 8
+Tags: Case 0.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'g' (4/5):
+Effect at line 10
+Tags: Case 0.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'g' (5/5):
+Effect at line 10
+Tags: Default.
+Prove: true.
+
+------------------------------------------------------------

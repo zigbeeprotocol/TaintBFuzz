@@ -1,0 +1,89 @@
+[kernel] Parsing volatilestruct.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  p ∈ {0}
+  s2 ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+[eva:alarm] volatilestruct.c:31: Warning: 
+  pointer downcast. assert (unsigned int)p->f4.f2 ≤ 2147483647;
+[eva:alarm] volatilestruct.c:33: Warning: 
+  signed overflow. assert -2147483648 ≤ &x - p->f4.f1;
+[eva:alarm] volatilestruct.c:33: Warning: 
+  signed overflow. assert &x - p->f4.f1 ≤ 2147483647;
+[eva:alarm] volatilestruct.c:33: Warning: 
+  signed overflow. assert (int)(&x - p->f4.f1) + 1 ≤ 2147483647;
+[eva:alarm] volatilestruct.c:34: Warning: 
+  signed overflow. assert -2147483648 ≤ &y - p->f4.f2;
+[eva:alarm] volatilestruct.c:34: Warning: 
+  signed overflow. assert &y - p->f4.f2 ≤ 2147483647;
+[eva:alarm] volatilestruct.c:34: Warning: 
+  signed overflow. assert (int)(&y - p->f4.f2) + 3 ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  p ∈ {{ &s2 }}
+  s2.f4.f1 ∈ {{ &x + [--..--] }}
+    .f4.f2 ∈ {{ &y + [--..--] }}
+    {.f4.f3; .f5} ∈ {0}
+  q1 ∈ {{ &x + [--..--] }}
+  q2 ∈ {{ &y + [--..--] }}
+  i ∈ [--..--]
+  j ∈ {{ &y + [--..--] }}
+  r ∈ [-2147483647..2147483647]
+  s ∈ [-2147483645..2147483647]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  p FROM \nothing
+  s2.f4{.f1; .f2} FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    p; s2.f4{.f1; .f2}; q1; q2; i; j; r; s
+[inout] Inputs for function main:
+    p; s2{.f4{.f1; .f2}; .f5}
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  p ∈ {0}
+  s2 ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+[eva:alarm] volatilestruct.c:31: Warning: 
+  pointer downcast. assert (unsigned int)p->f4.f2 ≤ 2147483647;
+[eva:signed-overflow] volatilestruct.c:33: Warning: 
+  2's complement assumed for overflow
+[eva:signed-overflow] volatilestruct.c:34: Warning: 
+  2's complement assumed for overflow
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  p ∈ {{ &s2 }}
+  s2.f4.f1 ∈ {{ &x + [--..--] }}
+    .f4.f2 ∈ {{ &y + [--..--] }}
+    {.f4.f3; .f5} ∈ {0}
+  q1 ∈ {{ &x + [--..--] }}
+  q2 ∈ {{ &y + [--..--] }}
+  i ∈ [--..--]
+  j ∈ {{ &y + [--..--] }}
+  r ∈ [--..--]
+  s ∈ [--..--]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  p FROM \nothing
+  s2.f4{.f1; .f2} FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    p; s2.f4{.f1; .f2}; q1; q2; i; j; r; s
+[inout] Inputs for function main:
+    p; s2{.f4{.f1; .f2}; .f5}

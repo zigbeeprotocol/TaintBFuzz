@@ -1,0 +1,216 @@
+/* -------------------------------------------------------------------------- */
+/* --- Properties                                                         --- */
+/* -------------------------------------------------------------------------- */
+
+.code-column {
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    text-overflow: ellipsis;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Lightweight Text Markers                                           --- */
+/* -------------------------------------------------------------------------- */
+
+.kernel-text {
+    white-space: pre;
+}
+
+.kernel-text-marker:hover {
+    background: var(--code-hover);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- AST View                                                           --- */
+/* -------------------------------------------------------------------------- */
+
+.highlighted-marker {
+    background-color: var(--highlighted-marker);
+}
+
+.hovered-marker {
+    background-color: var(--code-hover);
+}
+
+.dead-code {
+    background-color: var(--dead-code);
+    border-bottom: solid 0.1em var(--dead-code);
+}
+
+.non-terminating {
+    border-bottom: solid 0.2em var(--non-terminating);
+}
+
+.bullet {
+    width: 1.5em;
+    background: var(--code-bullet);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Globals                                                            --- */
+/* -------------------------------------------------------------------------- */
+
+.globals-main label {
+    text-decoration: underline;
+}
+
+.globals-stdlib label {
+    font-style: italic;
+}
+
+.globals-attr {
+    font-size: smaller;
+    font-weight: lighter;
+    color: var(--info-text);
+}
+
+.globals-function-section {
+  padding-right: 3px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Informations                                                       --- */
+/* -------------------------------------------------------------------------- */
+
+.astinfo-section {
+    position: relative;
+    overflow: auto;
+    padding-top: 1px;
+    padding-bottom: 2px;
+}
+
+.astinfo-section.selected {
+    background: var(--code-select);
+}
+
+.astinfo-section.hovered {
+    background: var(--code-hover);
+}
+
+.astinfo-section.selected.hovered {
+    background: var(--code-select-hover);
+}
+
+.astinfo-folderbutton {
+    flex: 0 0 auto;
+}
+
+.astinfo-markerbar {
+    display: flex;
+    overflow: hidden;
+    padding-left: 4px;
+}
+
+.astinfo-markerkind {
+    background: var(--selected-element);
+    position: relative;
+    top: -1px;
+    border-radius: 2px;
+    font-size: 7pt;
+    padding: 2px;
+    color: var(--text);
+    user-select: none;
+    margin-right: 3pt;
+}
+
+.astinfo-markercode {
+    flex: 1 1 auto;
+    text-overflow: ellipsis;
+    cursor: default;
+}
+
+.astinfo-markerbutton {
+    flex: 0 1 auto;
+    margin: 0px;
+    position: relative;
+}
+
+.astinfo-infos {
+    display: flex ;
+    margin-top: 1px ;
+    margin-bottom: 1px ;
+}
+
+.astinfo-kind {
+    flex: 0 1 50px;
+    text-align: center;
+    margin-top: 1px;
+    margin-left: 8px;
+    color: var(--info-text);
+    font-size: smaller;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Messages                                                           --- */
+/* -------------------------------------------------------------------------- */
+
+.message-search {
+    padding: 4px 4px 4px 14px;
+}
+
+.message-search .dome-xForm-section {
+    margin-top: 6px ;
+    left: auto; /* Cancel dome left placement */
+}
+
+.message-search .dome-xForm-label {
+    display: none; /* Hide label, only use placeholder */
+}
+
+.message-search .dome-xForm-field {
+    margin: 0px 4px;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.message-search .message-emitter-category {
+    margin-bottom: 10px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Messages                                                           --- */
+/* -------------------------------------------------------------------------- */
+
+.message-cell {
+    user-select: text;
+    cursor: default;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 98%;
+}
+
+.message-page {
+    user-select: text;
+    white-space: pre-line;
+    background-color: var(--background-report);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Pivot table                                                        --- */
+/* -------------------------------------------------------------------------- */
+
+.pivot-centered {
+    user-select: text;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 80%;
+}
+
+.pivot-centered .part {
+    user-select: text;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.pivot-centered .dome-xButton-led {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+/* -------------------------------------------------------------------------- */

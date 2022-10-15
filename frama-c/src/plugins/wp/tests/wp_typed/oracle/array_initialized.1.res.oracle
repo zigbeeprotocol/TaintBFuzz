@@ -1,0 +1,289 @@
+# frama-c -wp [...]
+[kernel] Parsing array_initialized.c (with preprocessing)
+[kernel] array_initialized.c:13: Warning: Too many initializers for array g
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main1
+------------------------------------------------------------
+
+Goal Assertion (file array_initialized.c, line 71):
+Let a = global(K_g_20).
+Assume {
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 499).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 499) ->
+      (Mint_0[shift_sint32(a, i_1)] = 0))).
+}
+Prove: Mint_0[shift_sint32(a, i)] = 0.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main2
+------------------------------------------------------------
+
+Goal Assertion (file array_initialized.c, line 185):
+Let a = global(K_h2_27).
+Let a_1 = global(K_h1_26).
+Assume {
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 499).
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 0)] = 0.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 1)] = 1.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 2)] = 2.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 3)] = 3.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 4)] = 4.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 5)] = 5.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 6)] = 6.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 7)] = 7.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 8)] = 8.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 9)] = 9.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 10)] = 10.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 11)] = 11.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 12)] = 12.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 13)] = 13.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 14)] = 14.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 15)] = 15.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 16)] = 16.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 17)] = 17.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 18)] = 18.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 19)] = 19.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 20)] = 20.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 21)] = 21.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 22)] = 22.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 23)] = 23.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 24)] = 24.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 25)] = 25.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 26)] = 26.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 27)] = 27.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 28)] = 28.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 29)] = 29.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 30)] = 30.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 31)] = 31.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 32)] = 32.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 33)] = 33.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 34)] = 34.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 35)] = 35.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 36)] = 36.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 37)] = 37.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 38)] = 38.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 39)] = 39.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 40)] = 40.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 41)] = 41.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 42)] = 42.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 43)] = 43.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 44)] = 44.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 45)] = 45.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 46)] = 46.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 47)] = 47.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 48)] = 48.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a_1, 49)] = 49.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((50 <= i_1) -> ((i_1 <= 499) ->
+      (Mint_0[shift_sint32(a_1, i_1)] = 0))).
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 0)] = 0.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 1)] = 1.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 2)] = 2.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 3)] = 3.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 4)] = 4.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 5)] = 5.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 6)] = 6.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 7)] = 7.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 8)] = 8.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 9)] = 9.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 10)] = 10.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 11)] = 11.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 12)] = 12.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 13)] = 13.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 14)] = 14.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 15)] = 15.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 16)] = 16.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 17)] = 17.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 18)] = 18.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 19)] = 19.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 20)] = 20.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 21)] = 21.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 22)] = 22.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 23)] = 23.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 24)] = 24.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 25)] = 25.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 26)] = 26.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 27)] = 27.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 28)] = 28.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 29)] = 29.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 30)] = 30.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 31)] = 31.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 32)] = 32.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 33)] = 33.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 34)] = 34.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 35)] = 35.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 36)] = 36.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 37)] = 37.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 38)] = 38.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 39)] = 39.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 40)] = 40.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 41)] = 41.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 42)] = 42.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 43)] = 43.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 44)] = 44.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 45)] = 45.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 46)] = 46.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 47)] = 47.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 48)] = 48.
+  (* Initializer *)
+  Init: Mint_0[shift_sint32(a, 49)] = 49.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((50 <= i_1) -> ((i_1 <= 499) ->
+      (Mint_0[shift_sint32(a, i_1)] = 0))).
+}
+Prove: Mint_0[shift_sint32(a, i)] = Mint_0[shift_sint32(a_1, i)].
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main3
+------------------------------------------------------------
+
+Goal Assertion (file array_initialized.c, line 194):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main_pointer
+------------------------------------------------------------
+
+Goal Assertion (file array_initialized.c, line 283):
+Let a = global(K_p_34).
+Assume {
+  (* Heap *)
+  Type: framed(Mptr_0) /\ linked(Malloc_0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 499).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 499) ->
+      (Mptr_0[shift_PTR(a, i_1)] = global(G_p0_33)))).
+}
+Prove: valid_rw(Malloc_0, Mptr_0[shift_PTR(a, i)], 1).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function simpl
+------------------------------------------------------------
+
+Goal Post-condition (file array_initialized.c, line 288) in 'simpl':
+Let x = Mint_0[shift_sint32(t, 0)].
+Assume {
+  Type: is_sint32(simpl_0) /\ is_sint32(x).
+  (* Heap *)
+  Type: region(t.base) <= 0.
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 49).
+  (* Pre-condition *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 49) ->
+      (Mint_0[shift_sint32(t, i_1)] = x))).
+  If 0 <= x
+  Then { Have: simpl_0 = 1. }
+  Else { Have: simpl_0 = 0. }
+}
+Prove: (0 <= Mint_0[shift_sint32(t, i)]) <-> (simpl_0 = 1).
+
+------------------------------------------------------------

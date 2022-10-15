@@ -1,0 +1,6 @@
+[kernel] Parsing struct_with_invalid_field.c (with preprocessing)
+[kernel] struct_with_invalid_field.c:13: User Error: 
+  field `f' declared as a function
+[kernel] User Error: stopping on file "struct_with_invalid_field.c" that has errors. Add
+  '-kernel-msg-key pp' for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

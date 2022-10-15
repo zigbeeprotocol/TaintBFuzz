@@ -1,0 +1,207 @@
+[kernel] Parsing reduce_formals.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  g ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from reduce_formals.i:69.
+[eva:alarm] reduce_formals.i:2: Warning: assertion got status unknown.
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from reduce_formals.i:70.
+[eva] using specification for function main2
+[eva:alarm] reduce_formals.i:70: Warning: 
+  function main2: precondition got status unknown.
+[eva] Done for function main2
+[eva] reduce_formals.i:72: 
+  Frama_C_dump_each:
+  # cvalue:
+  g ∈ [--..--]
+  v ∈ [--..--]
+  w ∈ [6..2147483647]
+  x ∈ [5..2147483647]
+  y ∈ [--..--]
+  z ∈ [8..2147483647]
+  ==END OF DUMP==
+[eva] computing for function main3 <- main.
+  Called from reduce_formals.i:75.
+[eva] reduce_formals.i:18: assertion got status valid.
+[eva] computing for function f_main3 <- main3 <- main.
+  Called from reduce_formals.i:19.
+[eva] Recording results for f_main3
+[eva] Done for function f_main3
+[eva] reduce_formals.i:20: Frama_C_show_each: {6}
+[eva] Recording results for main3
+[eva] Done for function main3
+[eva] computing for function main4 <- main.
+  Called from reduce_formals.i:76.
+[eva] computing for function f_main4_1 <- main4 <- main.
+  Called from reduce_formals.i:33.
+[eva:alarm] reduce_formals.i:24: Warning: assertion got status unknown.
+[eva] Recording results for f_main4_1
+[eva] Done for function f_main4_1
+[eva] reduce_formals.i:34: Frama_C_show_each_v: {10; 11; 12; 13; 14; 15}
+[eva] computing for function f_main4_2 <- main4 <- main.
+  Called from reduce_formals.i:36.
+[eva:alarm] reduce_formals.i:28: Warning: assertion got status unknown.
+[eva] Recording results for f_main4_2
+[eva] Done for function f_main4_2
+[eva] reduce_formals.i:37: Frama_C_show_each_v: {16; 17; 18; 19; 20}
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main5 <- main.
+  Called from reduce_formals.i:77.
+[eva] computing for function f_main_1 <- main5 <- main.
+  Called from reduce_formals.i:52.
+[eva] computing for function f_main_2 <- f_main_1 <- main5 <- main.
+  Called from reduce_formals.i:47.
+[eva] Recording results for f_main_2
+[eva] Done for function f_main_2
+[eva] Recording results for f_main_1
+[eva] Done for function f_main_1
+[eva] Recording results for main5
+[eva] Done for function main5
+[eva] computing for function main6 <- main.
+  Called from reduce_formals.i:78.
+[eva:alarm] reduce_formals.i:63: Warning: assertion got status unknown.
+[eva] computing for function f_main6 <- main6 <- main.
+  Called from reduce_formals.i:64.
+[eva:alarm] reduce_formals.i:58: Warning: assertion got status unknown.
+[eva] Recording results for f_main6
+[eva] Done for function f_main6
+[eva] reduce_formals.i:65: Frama_C_show_each_6: {3}
+[eva] Recording results for main6
+[eva] Done for function main6
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f_main3:
+  x ∈ {6}
+[eva:final-states] Values at end of function f_main4_1:
+  
+[eva:final-states] Values at end of function f_main4_2:
+  
+[eva:final-states] Values at end of function f_main6:
+  g ∈ {3}
+[eva:final-states] Values at end of function f_main_2:
+  __retres ∈ {0}
+[eva:final-states] Values at end of function f_main_1:
+  v ∈ {0}
+[eva:final-states] Values at end of function main1:
+  j ∈ [-306783375..306783381]
+[eva:final-states] Values at end of function main3:
+  x ∈ {6}
+  p ∈ {{ &x }}
+[eva:final-states] Values at end of function main4:
+  
+[eva:final-states] Values at end of function main5:
+  l ∈ {2}
+[eva:final-states] Values at end of function main6:
+  g ∈ {3}
+[eva:final-states] Values at end of function main:
+  g ∈ {3}
+[from] Computing for function f_main3
+[from] Done for function f_main3
+[from] Computing for function f_main4_1
+[from] Done for function f_main4_1
+[from] Computing for function f_main4_2
+[from] Done for function f_main4_2
+[from] Computing for function f_main6
+[from] Done for function f_main6
+[from] Computing for function f_main_2
+[from] Done for function f_main_2
+[from] Computing for function f_main_1
+[from] Done for function f_main_1
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main3
+[from] Done for function main3
+[from] Computing for function main4
+[from] Done for function main4
+[from] Computing for function main5
+[from] Done for function main5
+[from] Computing for function main6
+[from] Done for function main6
+[from] Computing for function main
+[from] Computing for function main2 <-main
+[from] Done for function main2
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f_main3:
+  x FROM p; a; x
+[from] Function f_main4_1:
+  NO EFFECTS
+[from] Function f_main4_2:
+  NO EFFECTS
+[from] Function f_main6:
+  g FROM \nothing
+[from] Function f_main_2:
+  \result FROM \nothing
+[from] Function f_main_1:
+  NO EFFECTS
+[from] Function main1:
+  NO EFFECTS
+[from] Function main2:
+  NO EFFECTS
+[from] Function main3:
+  NO EFFECTS
+[from] Function main4:
+  NO EFFECTS
+[from] Function main5:
+  NO EFFECTS
+[from] Function main6:
+  g FROM \nothing
+[from] Function main:
+  g FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f_main3:
+    x
+[inout] Inputs for function f_main3:
+    x
+[inout] Out (internal) for function f_main4_1:
+    \nothing
+[inout] Inputs for function f_main4_1:
+    \nothing
+[inout] Out (internal) for function f_main4_2:
+    \nothing
+[inout] Inputs for function f_main4_2:
+    \nothing
+[inout] Out (internal) for function f_main6:
+    g
+[inout] Inputs for function f_main6:
+    \nothing
+[inout] Out (internal) for function f_main_2:
+    __retres
+[inout] Inputs for function f_main_2:
+    \nothing
+[inout] Out (internal) for function f_main_1:
+    v
+[inout] Inputs for function f_main_1:
+    \nothing
+[inout] Out (internal) for function main1:
+    j
+[inout] Inputs for function main1:
+    \nothing
+[inout] Out (internal) for function main3:
+    x; p
+[inout] Inputs for function main3:
+    \nothing
+[inout] Out (internal) for function main4:
+    \nothing
+[inout] Inputs for function main4:
+    \nothing
+[inout] Out (internal) for function main5:
+    l
+[inout] Inputs for function main5:
+    \nothing
+[inout] Out (internal) for function main6:
+    g
+[inout] Inputs for function main6:
+    g
+[inout] Out (internal) for function main:
+    g
+[inout] Inputs for function main:
+    g

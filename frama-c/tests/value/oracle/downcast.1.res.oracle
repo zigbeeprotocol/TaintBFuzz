@@ -1,0 +1,257 @@
+[kernel] Parsing downcast.i (no preprocessing)
+[eva] Analyzing an incomplete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  sx ∈ [--..--]
+  sy ∈ [--..--]
+  sz ∈ [--..--]
+  uc ∈ [--..--]
+  x ∈ [--..--]
+  ux ∈ [--..--]
+  uy ∈ [--..--]
+  uz ∈ [--..--]
+  s ∈ [--..--]
+  v ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from downcast.i:156.
+[eva:alarm] downcast.i:23: Warning: 
+  signed downcast. assert -128 ≤ (int)((int)sx + (int)sy);
+[eva:alarm] downcast.i:23: Warning: 
+  signed downcast. assert (int)((int)sx + (int)sy) ≤ 127;
+[eva:alarm] downcast.i:26: Warning: 
+  signed downcast. assert (unsigned int)(uy + uz) ≤ 2147483647;
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2_bitfield <- main.
+  Called from downcast.i:157.
+[eva:alarm] downcast.i:36: Warning: signed downcast. assert i ≤ 15;
+[eva] Recording results for main2_bitfield
+[eva] Done for function main2_bitfield
+[eva] computing for function main3_reduction <- main.
+  Called from downcast.i:158.
+[eva:alarm] downcast.i:42: Warning: signed downcast. assert -128 ≤ x_0;
+[eva:alarm] downcast.i:42: Warning: signed downcast. assert x_0 ≤ 127;
+[eva] Recording results for main3_reduction
+[eva] Done for function main3_reduction
+[eva] computing for function main4_pointer <- main.
+  Called from downcast.i:159.
+[eva:alarm] downcast.i:54: Warning: 
+  signed overflow. assert -9223372036854775808 ≤ p + 100;
+[eva:alarm] downcast.i:54: Warning: 
+  signed overflow. assert p + 100 ≤ 9223372036854775807;
+[eva:alarm] downcast.i:56: Warning: signed downcast. assert -2147483648 ≤ p;
+[eva:alarm] downcast.i:56: Warning: signed downcast. assert p ≤ 2147483647;
+[eva] Recording results for main4_pointer
+[eva] Done for function main4_pointer
+[eva] computing for function main5_wrap_signed <- main.
+  Called from downcast.i:160.
+[eva:alarm] downcast.i:62: Warning: assertion 'ASSUME' got status unknown.
+[eva] downcast.i:63: assertion got status valid.
+[eva:alarm] downcast.i:66: Warning: signed downcast. assert y ≤ 2147483647;
+[eva] downcast.i:67: 
+  Frama_C_show_each:
+  [100000..2147483647], [100145..2147483647], [100145..2147483647]
+[eva] downcast.i:68: assertion got status valid.
+[eva] Recording results for main5_wrap_signed
+[eva] Done for function main5_wrap_signed
+[eva] computing for function main6_val_warn_converted_signed <- main.
+  Called from downcast.i:161.
+[eva:alarm] downcast.i:75: Warning: signed downcast. assert 65300u ≤ 32767;
+[eva:alarm] downcast.i:86: Warning: signed downcast. assert e_0 ≤ 32767;
+[eva:alarm] downcast.i:91: Warning: signed downcast. assert e_1 ≤ 32767;
+[eva:alarm] downcast.i:95: Warning: 
+  pointer downcast. assert (unsigned int)p ≤ 2147483647;
+[eva:alarm] downcast.i:96: Warning: 
+  pointer downcast. assert (unsigned int)p ≤ 32767;
+[eva:alarm] downcast.i:97: Warning: 
+  pointer downcast. assert (unsigned int)p ≤ 65535;
+[eva] Recording results for main6_val_warn_converted_signed
+[eva] Done for function main6_val_warn_converted_signed
+[eva] computing for function main7_signed_upcast <- main.
+  Called from downcast.i:162.
+[eva] Recording results for main7_signed_upcast
+[eva] Done for function main7_signed_upcast
+[eva] computing for function main8_bitfields <- main.
+  Called from downcast.i:163.
+[eva:alarm] downcast.i:118: Warning: signed downcast. assert S.i1 ≤ 31;
+[eva:alarm] downcast.i:119: Warning: signed downcast. assert S.i1 ≤ 127;
+[eva:alarm] downcast.i:123: Warning: signed downcast. assert S.i1 ≤ 31;
+[eva:alarm] downcast.i:124: Warning: signed downcast. assert S.i1 ≤ 127;
+[eva:alarm] downcast.i:128: Warning: signed downcast. assert S.i1 ≤ 31;
+[eva] Recording results for main8_bitfields
+[eva] Done for function main8_bitfields
+[eva] computing for function main9_bitfield <- main.
+  Called from downcast.i:164.
+[eva:alarm] downcast.i:137: Warning: signed downcast. assert bf.a ≤ 1023;
+[eva:alarm] downcast.i:141: Warning: signed downcast. assert bf.a ≤ 127;
+[eva] Recording results for main9_bitfield
+[eva] Done for function main9_bitfield
+[eva] computing for function main10_loop <- main.
+  Called from downcast.i:165.
+[eva:alarm] downcast.i:151: Warning: signed downcast. assert bf.b ≤ 127;
+[eva] downcast.i:149: starting to merge loop iterations
+[eva] Recording results for main10_loop
+[eva] Done for function main10_loop
+[eva] Recording results for main
+[eva] done for function main
+[eva] downcast.i:36: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:75: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:86: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:91: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:118: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:119: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:123: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:124: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:128: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:137: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] downcast.i:141: assertion 'Eva,signed_downcast' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  sz ∈ [--..--]
+  uc ∈ [--..--]
+  x ∈ [0..2147483647]
+  ux ∈ [--..--]
+  s ∈ [--..--]
+[eva:final-states] Values at end of function main10_loop:
+  c ∈ [0..127] or UNINITIALIZED
+  bf.b ∈ [--..--] or UNINITIALIZED
+    .[bits 10 to 31] ∈ UNINITIALIZED
+  k ∈ {10}
+[eva:final-states] Values at end of function main2_bitfield:
+  i ∈ {117}
+  j ∈ {254}
+  ss.i ∈ UNINITIALIZED
+    .j ∈ {30} or UNINITIALIZED
+    .[bits 10 to 31] ∈ UNINITIALIZED
+[eva:final-states] Values at end of function main3_reduction:
+  x_0 ∈ [-128..127]
+  c ∈ [--..--]
+  y ∈ [--..--]
+  d ∈ [--..--]
+[eva:final-states] Values at end of function main4_pointer:
+  p ∈ {{ &x_0 + {100} }}
+  q ∈ {{ &x_0 + {100} }}
+  r ∈ {{ &x_0 + {100} }}
+[eva:final-states] Values at end of function main5_wrap_signed:
+  x_0 ∈ [100000..2147483647]
+  y ∈ [100145..2147483647]
+  z ∈ [100145..2147483647]
+[eva:final-states] Values at end of function main6_val_warn_converted_signed:
+  
+[eva:final-states] Values at end of function main7_signed_upcast:
+  c ∈ {240}
+  i ∈ {240}
+[eva:final-states] Values at end of function main8_bitfields:
+  S.i1 ∈ {65}
+   {.i2; .[bits 24 to 31]} ∈ UNINITIALIZED
+  c ∈ {65} or UNINITIALIZED
+[eva:final-states] Values at end of function main9_bitfield:
+  bf.a ∈ {1648}
+    .[bits 11 to 31] ∈ UNINITIALIZED
+  c ∈ UNINITIALIZED
+[eva:final-states] Values at end of function main:
+  sz ∈ [--..--]
+  uc ∈ [--..--]
+  x ∈ [0..2147483647]
+  ux ∈ [--..--]
+  s ∈ [--..--]
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main10_loop
+[from] Done for function main10_loop
+[from] Computing for function main2_bitfield
+[from] Done for function main2_bitfield
+[from] Computing for function main3_reduction
+[from] Done for function main3_reduction
+[from] Computing for function main4_pointer
+[from] Done for function main4_pointer
+[from] Computing for function main5_wrap_signed
+[from] Done for function main5_wrap_signed
+[from] Computing for function main6_val_warn_converted_signed
+[from] Done for function main6_val_warn_converted_signed
+[from] Computing for function main7_signed_upcast
+[from] Done for function main7_signed_upcast
+[from] Computing for function main8_bitfields
+[from] Done for function main8_bitfields
+[from] Computing for function main9_bitfield
+[from] Done for function main9_bitfield
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  sz FROM sx; sy
+  uc FROM x
+  x FROM uy; uz
+  ux FROM uy; uz
+  s FROM uy; uz
+[from] Function main10_loop:
+  NO EFFECTS
+[from] Function main2_bitfield:
+  NO EFFECTS
+[from] Function main3_reduction:
+  NO EFFECTS
+[from] Function main4_pointer:
+  NO EFFECTS
+[from] Function main5_wrap_signed:
+  NO EFFECTS
+[from] Function main6_val_warn_converted_signed:
+  NO EFFECTS
+[from] Function main7_signed_upcast:
+  NO EFFECTS
+[from] Function main8_bitfields:
+  NO EFFECTS
+[from] Function main9_bitfield:
+  NO EFFECTS
+[from] Function main:
+  sz FROM sx; sy
+  uc FROM x
+  x FROM uy; uz
+  ux FROM uy; uz
+  s FROM uy; uz
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    sz; uc; x; ux; s
+[inout] Inputs for function main1:
+    sx; sy; x; uy; uz
+[inout] Out (internal) for function main10_loop:
+    c; bf.b; k
+[inout] Inputs for function main10_loop:
+    v
+[inout] Out (internal) for function main2_bitfield:
+    i; j; ss{.i; .j}
+[inout] Inputs for function main2_bitfield:
+    v
+[inout] Out (internal) for function main3_reduction:
+    x_0; c; y; d
+[inout] Inputs for function main3_reduction:
+    v
+[inout] Out (internal) for function main4_pointer:
+    p; q; r
+[inout] Inputs for function main4_pointer:
+    \nothing
+[inout] Out (internal) for function main5_wrap_signed:
+    x_0; y; z
+[inout] Inputs for function main5_wrap_signed:
+    v
+[inout] Out (internal) for function main6_val_warn_converted_signed:
+    s_0; u; e; b; e_0; b_0; e_1; b_1; p; x_0; y; z
+[inout] Inputs for function main6_val_warn_converted_signed:
+    v
+[inout] Out (internal) for function main7_signed_upcast:
+    c; i
+[inout] Inputs for function main7_signed_upcast:
+    \nothing
+[inout] Out (internal) for function main8_bitfields:
+    S{.i1; .i2}; c
+[inout] Inputs for function main8_bitfields:
+    v
+[inout] Out (internal) for function main9_bitfield:
+    bf.a; signed_a; c
+[inout] Inputs for function main9_bitfield:
+    v
+[inout] Out (internal) for function main:
+    sz; uc; x; ux; s
+[inout] Inputs for function main:
+    sx; sy; x; uy; uz; v

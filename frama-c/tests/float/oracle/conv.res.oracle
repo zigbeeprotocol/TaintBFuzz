@@ -1,0 +1,97 @@
+[kernel] Parsing conv.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  f ∈ {0}
+  d ∈ {0}
+  v ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from conv.i:105.
+[eva] conv.i:15: Frama_C_show_each: {0}
+[eva] conv.i:18: Frama_C_show_each: {1.40129846432e-45}
+[eva] conv.i:22: Frama_C_show_each: [1.40129846432e-43 .. 2.40330263757e+12]
+[eva:alarm] conv.i:24: Warning: assertion got status unknown.
+[eva] conv.i:28: Frama_C_show_each: {3.40282346639e+38}
+[eva] conv.i:29: assertion got status valid.
+[eva:alarm] conv.i:32: Warning: 
+  non-finite float value. assert \is_finite(*((float *)(&i)));
+[eva] conv.i:37: Frama_C_show_each: {-3.40282346639e+38}
+[eva] conv.i:38: assertion got status valid.
+[eva:alarm] conv.i:41: Warning: 
+  non-finite float value. assert \is_finite(*((float *)(&i)));
+[eva] conv.i:45: Frama_C_show_each: [-0. .. 1.40129846432e-45]
+[eva:alarm] conv.i:48: Warning: assertion got status unknown.
+[eva:alarm] conv.i:49: Warning: 
+  non-finite float value. assert \is_finite(*((float *)(&i)));
+[eva:alarm] conv.i:52: Warning: 
+  non-finite float value. assert \is_finite(*((float *)(&i)));
+[eva] conv.i:52: Frama_C_show_each: {0}
+[eva:alarm] conv.i:55: Warning: 
+  non-finite float value. assert \is_finite(*((float *)(&ui)));
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from conv.i:106.
+[eva] conv.i:63: Frama_C_show_each: {0}
+[eva] conv.i:66: Frama_C_show_each: {4.94065645841e-324}
+[eva] conv.i:69: Frama_C_show_each: [4.94065645841e-322 .. 9.22442153475e+159]
+[eva] conv.i:73: Frama_C_show_each: {1.79769313486e+308}
+[eva] conv.i:74: assertion got status valid.
+[eva] conv.i:77: Frama_C_show_each: ⊥
+[eva] conv.i:80: Frama_C_show_each: ⊥
+[eva] conv.i:84: Frama_C_show_each: {-1.79769313486e+308}
+[eva] conv.i:85: assertion got status valid.
+[eva] conv.i:88: Frama_C_show_each: ⊥
+[eva] conv.i:91: Frama_C_show_each: [0. .. 4.94065645841e-324]
+[eva:alarm] conv.i:94: Warning: assertion got status unknown.
+[eva] conv.i:95: Frama_C_show_each: ⊥
+[eva] conv.i:98: Frama_C_show_each: {0}
+[eva] conv.i:101: Frama_C_show_each: ⊥
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] conv.i:32: assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] conv.i:41: assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] conv.i:49: assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] conv.i:55: assertion 'Eva,is_nan_or_infinite' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  f ∈ {0}
+  i ∈ {0}
+[eva:final-states] Values at end of function main2:
+  d ∈ {-1.79769313486e+308}
+  i ∈ {-1; 0}
+  ui ∈ {0xFFFFFFFFFFFFFFFF}
+[eva:final-states] Values at end of function main:
+  f ∈ {0}
+  d ∈ {-1.79769313486e+308}
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  f FROM v
+[from] Function main2:
+  d FROM \nothing
+[from] Function main:
+  f FROM v
+  d FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    f; i; ui
+[inout] Inputs for function main1:
+    f; v
+[inout] Out (internal) for function main2:
+    d; i; ui
+[inout] Inputs for function main2:
+    d; v
+[inout] Out (internal) for function main:
+    f; d
+[inout] Inputs for function main:
+    f; d; v

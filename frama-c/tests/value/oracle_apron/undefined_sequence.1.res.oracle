@@ -1,0 +1,7 @@
+33c33,36
+< [eva] undefined_sequence.i:54: Reusing old results for call to g
+---
+> [eva] computing for function g <- main.
+>   Called from undefined_sequence.i:54.
+> [eva] Recording results for g
+> [eva] Done for function g

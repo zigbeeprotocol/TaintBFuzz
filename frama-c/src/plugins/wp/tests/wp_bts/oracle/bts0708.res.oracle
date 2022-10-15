@@ -1,0 +1,29 @@
+# frama-c -wp [...]
+[kernel] Parsing bts0708.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition 'A' in 'f':
+Let x_1 = 1 + x.
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Pre-condition *)
+  Have: P_P(x).
+}
+Prove: P_P(x_1).
+
+------------------------------------------------------------
+
+Goal Post-condition 'B' in 'f':
+Let x_1 = 2 + x.
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Pre-condition *)
+  Have: P_P(x).
+}
+Prove: P_P(x_1).
+
+------------------------------------------------------------

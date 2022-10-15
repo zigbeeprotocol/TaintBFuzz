@@ -1,0 +1,11 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing too_large_array.i (no preprocessing)
+[kernel] too_large_array.i:12: Warning: 
+  Cannot represent length of array as an attribute
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] too_large_array.i:13: Warning: Array size too large (0xFFFFFFFFFFFFFFFF)
+[wp] too_large_array.i:14: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+[wp] too_large_array.i:11: User Error: Array size too large (0xFFFFFFFFFFFFFFFF)
+[kernel] Plug-in wp aborted: invalid user input.

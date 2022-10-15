@@ -1,0 +1,3 @@
+[kernel] Parsing test_factorial.c (with preprocessing)
+[kernel] Parsing TMPDIR/aorai_test_factorial_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

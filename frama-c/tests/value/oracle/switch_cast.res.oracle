@@ -1,0 +1,38 @@
+[kernel] Parsing switch_cast.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ [--..--]
+[eva] computing for function g <- main.
+  Called from switch_cast.i:71.
+[eva] switch_cast.i:67: Frama_C_show_each: [1..241],1%2
+[eva] Recording results for g
+[eva] Done for function g
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function g:
+  x ∈ [0..15]
+  y ∈ [1..241],1%2
+[eva:final-states] Values at end of function main:
+  x ∈ [0..15]
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function g:
+  x FROM x
+[from] Function main:
+  x FROM x
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function g:
+    x; y
+[inout] Inputs for function g:
+    x
+[inout] Out (internal) for function main:
+    x
+[inout] Inputs for function main:
+    x

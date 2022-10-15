@@ -1,0 +1,68 @@
+digraph G {
+  cp2 [label=<x2>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+       style="filled,bold", ];
+  cp3 [label=<x>, shape=box, fillcolor="#AACCFF", color="#88AAFF",
+       style="filled", ];
+  cp5 [label=<y>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+       style="filled", ];
+  cp8 [label=<g>, shape=box, fillcolor="#AACCFF", color="#88AAFF",
+       style="filled", ];
+  cp11 [label=<z>, shape=box, style="bold", ];
+  cp12 [label=<y>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+        style="filled", ];
+  cp14 [label=<w>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+        style="filled", ];
+  cp16 [label=<x2>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+        style="filled", ];
+  cp18 [label=<tmp_0>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+        style="filled", ];
+  cp21 [label=<y>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+        style="filled", ];
+  cp23 [label=<pf>, shape=box, fillcolor="#AACCFF", color="#88AAFF",
+        style="filled", ];
+  cp25 [label=<x2>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+        style="filled", ];
+  cp28 [label=<f>, shape=box, ];
+  cp31 [label=<y>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+        style="filled", ];
+  cp34 [label=<is_nan_or_infinite: \is_finite((float)\mul_double((double)y, (double)2.0))>,
+        fillcolor="#FF0000", color="#FF0000", shape=doubleoctagon,
+        style="filled,bold,bold", ];
+  cp36 [label=<is_nan_or_infinite: \is_finite(\add_float(y, w))>,
+        fillcolor="#FF0000", color="#FF0000", shape=doubleoctagon,
+        style="filled,bold,bold", ];
+  
+  subgraph cluster_cs_1 { label=<f>; cp34;cp5;cp2;
+     };
+  subgraph cluster_cs_2 { label=<main>; cp36;cp23;cp18;cp14;cp12;cp11;cp3;
+    subgraph cluster_cs_3 { label=<f>; cp21;cp16;
+       };
+    subgraph cluster_cs_4 { label=<f>; cp31;cp25;
+       };
+     };
+  subgraph cluster_file_1 { label=<various.i>; cp28;cp8;
+     };
+  
+  cp2 -> cp5;
+  cp3 -> cp2;
+  cp3 -> cp3;
+  cp3 -> cp16;
+  cp3 -> cp25;
+  cp5 -> cp2;
+  cp5 -> cp34;
+  cp8 -> cp3;
+  cp12 -> cp11;
+  cp12 -> cp36;
+  cp14 -> cp11;
+  cp14 -> cp36;
+  cp16 -> cp12;
+  cp16 -> cp21;
+  cp18 -> cp14;
+  cp21 -> cp16;
+  cp23 -> cp18 [color="#00FF00", ];
+  cp25 -> cp18;
+  cp25 -> cp31;
+  cp28 -> cp23;
+  cp31 -> cp25;
+  
+  }

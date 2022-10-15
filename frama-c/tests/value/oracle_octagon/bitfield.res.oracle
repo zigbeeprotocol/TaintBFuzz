@@ -1,0 +1,4 @@
+136a137,139
+> [eva] bitfield.i:71: 
+>   Frama_C_show_each:
+>   {{ garbled mix of &{b} (origin: Misaligned {bitfield.i:70}) }}

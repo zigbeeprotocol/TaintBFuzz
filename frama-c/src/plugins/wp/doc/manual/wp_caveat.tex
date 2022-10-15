@@ -1,0 +1,45 @@
+\section{The Caveat Memory Model}
+\label{CAVEAT}
+
+This memory model simulates the behavior of the \textsf{Caveat}
+analyser, with additional enhancements.  It is implemented as an
+extension of the \texttt{Typed} memory model, with a specific
+treatment of \textit{formal} variables of pointer type.
+
+To activate
+this model, simply use '\verb$-wp-model Typed+Caveat$' or
+'\verb$-wp-model Caveat$' for short.
+
+A specific detection of variables to be treated as \textit{reference
+  parameters} is used.  This detection is more clever than the standard one
+since it only takes into account local usage of each function (not
+global ones).
+
+%However, it can not be applied with axiomatics that
+%read into the memory. Only pure logic functions and pure predicates can be
+%defined in axiomatics with this model.
+
+Additionally, the \texttt{Caveat} memory model of \textsf{Frama-C}
+performs a local allocation of formal parameters with pointer
+types that cannot be treated as \textit{reference parameters}.
+Note that it means that the pointer is considered valid. If one needs
+to accept \texttt{NULL} for this pointer, a \texttt{wp\_nullable} ghost
+annotation or the clause \texttt{wp\_nullage\_args} can be used to bring
+this information to WP:
+
+\listingname{nullable.c}
+\cinput{nullable.c}
+
+This makes explicit the separation hypothesis of memory regions
+pointed by formals in the \textsf{Caveat} tool. The major benefit of
+the \textsf{WP} version is that aliases are taken into account by the
+\texttt{Typed} memory model, hence, there are no more suspicious
+\textit{aliasing} warnings.
+
+\paragraph{Warning:} using the \texttt{Caveat} memory model,
+the user \emph{must} check by manual code review that no aliases are
+introduced \emph{via} pointers passed to formal parameters at call sites.
+
+However, \textsf{WP} warns about the implicit separation hypotheses required by
+the memory model \textit{via} the \texttt{-wp-warn-memory-model} option, set
+by default.

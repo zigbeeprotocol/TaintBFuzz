@@ -1,0 +1,114 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\selectlanguage{english}
+\usepackage{amsmath}
+
+\newcommand{\hs}{\hspace{4mm}}
+\newcommand{\pred}[2]{\ensuremath{\operatorname{pred}(#1,#2)}}
+\newcommand{\mk}[2]{\ensuremath{\operatorname{mk}(#1,#2)}}
+
+\title{Services Graph Algorithm}
+\author{Julien Signoles}
+\date{October 12, 2009}
+
+\setlength{\textheight}{250mm}
+\setlength{\topmargin}{-15mm}
+\setlength{\textwidth}{140mm}
+\setlength{\oddsidemargin}{10mm}
+\setlength{\evensidemargin}{10mm}
+
+\begin{document}
+
+\maketitle
+
+Let $G = (V, E)$ be a callgraph, $I \subseteq V$ be the sets of initial
+nodes and pred($v$,$g$) be the set of predecessors of node $v$ in $G$.
+\bigskip
+
+\textbf{for each} $v \in V$, status($v$) $\leftarrow$ unknown
+
+\textbf{for each} $v \in V$ following a topological ordering
+
+  \hs \textbf{if} $v \in I$ \textbf{then} 
+
+  \hs \hs \mk{v}{fresh}
+
+  \hs \textbf{else if} $\forall v' \in \pred{v}{g}$ status($v'$) = $unknown$
+  \textbf{then}
+  
+  \hs \hs \mk{v}{fresh}
+
+  \hs \textbf{else if} $\exists s \in V,\forall v' \in \pred{v}{g},$
+  status($v'$) = $service~s$ \textbf{then}
+  
+  \hs \hs \mk{v}{service~s}
+
+  \hs \textbf{else if} $\exists s \in V,\forall v' \in \pred{v}{g},$
+  status($v'$) = ($service~s$ ou $maybe~s$ ou unknown)  \textbf{then}
+  
+  \hs \hs \mk{v}{maybe~s}
+
+  \hs \textbf{else if}
+  
+  \hs \hs \mk{v}{fresh}
+
+%%   \hs \hs \textbf{for each} predecessor $p$ of $v$
+
+%%   \hs \hs \hs \textbf{if} $\exists s,\, (p,s) \in$ vertices \textbf{then}
+%%   merge\_service v $s$
+
+%%   \hs \hs \hs \textbf{else}
+%%   \textbf{if} status($v$) = unknown \textbf{then} 
+%%   status($v$) $\leftarrow$ fresh\_if\_unchanged
+
+%%   \hs \hs \textbf{done}
+
+%%   \hs \hs \textbf{if} cannot\_merge was raised \textbf{then}
+%%   mk fresh\_if\_unchanged $v$
+
+%%   \hs \hs \textbf{else} mk status($v$) $v$
+
+  \hs \textbf{end if}
+
+\textbf{done}
+
+\textbf{for each} $v \in V$ following a topological ordering
+
+  \hs \textbf{if} $\exists s \in V,$ status($v$) = $maybe~s$ \textbf{then}
+
+  \hs \hs \textbf{if} $\forall v' \in \pred{v}{g},$ 
+  status($v'$) = ($service~s$ ou $maybe~s$) \textbf{then}
+
+  \hs \hs \hs \mk{v}{service~s}
+
+  \hs \hs \textbf{else} 
+
+  \hs \hs \hs \mk{v}{fresh}
+
+  \hs \hs \textbf{end if}
+
+  \hs \textbf{end if}
+
+\textbf{done}
+
+\bigskip
+
+Procedure \textbf{mk}($v$,$status$):
+\smallskip
+
+\textbf{match $status$ with}
+
+| $fresh$ $\rightarrow$ 
+
+\hs root($v$) $\leftarrow$ true
+
+\hs status($v$) $\leftarrow$ $service~v$
+
+| $service~s$ | $maybe~s$ $\rightarrow$ 
+
+\hs root($v$) $\leftarrow$ false
+
+\hs status($v$) $\leftarrow$ $status$
+\end{document}

@@ -1,0 +1,42 @@
+# frama-c -wp [...]
+[kernel] Parsing wp_eqb.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+[wp:print-generated] 
+  theory WP
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool *)
+    
+    (* use int.Int *)
+    
+    (* use int.ComputerDivision *)
+    
+    (* use real.RealInfix *)
+    
+    (* use frama_c_wp.qed.Qed *)
+    
+    (* use map.Map *)
+    
+    (* use frama_c_wp.cint.Cint *)
+    
+    goal wp_goal :
+      forall i:int, i1:int, i2:int, i3:int.
+       (if i3 = i2 then 1 else 0) = (if i1 = i then 1 else 0) ->
+       is_sint32 i3 ->
+       is_sint32 i2 -> is_sint32 i1 -> is_sint32 i -> i3 = i2 <-> i1 = i
+  end
+[wp] 1 goal generated
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition (file wp_eqb.i, line 8) in 'f':
+Assume {
+  Type: is_sint32(a) /\ is_sint32(b) /\ is_sint32(c) /\ is_sint32(d).
+  Have: (if (d = c) then 1 else 0) = (if (b = a) then 1 else 0).
+}
+Prove: (d = c) <-> (b = a).
+
+------------------------------------------------------------

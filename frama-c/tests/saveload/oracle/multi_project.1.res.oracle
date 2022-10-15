@@ -1,0 +1,27 @@
+[kernel] Parsing multi_project.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function f <- main.
+  Called from multi_project.i:14.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] multi_project.i:15: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  __retres ∈ {4}
+[eva:final-states] Values at end of function main:
+  x ∈ {2}
+  y ∈ {4}
+  __retres ∈ {8}
+[kernel] Checking "foo"
+[kernel] Checking "foobar"
+[kernel] Checking "default"
+[kernel] Checking "foo"
+[kernel] Checking "foobar"
+[kernel] Checking "default"
+[kernel] Checking "bar"

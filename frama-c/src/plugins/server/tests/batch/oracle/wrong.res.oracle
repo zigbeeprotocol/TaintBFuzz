@@ -1,0 +1,9 @@
+[kernel] Parsing wrong.i (no preprocessing)
+[server] Script "./wrong.json"
+[server] User Error: [batch] "unknown request": request "kernel.unknown" not found
+[server] [GET] kernel.ast.printFunction
+[server] User Error: [kernel.ast.printFunction] Expected string, got object:
+  { "f1": 1, "f2": { "x": 1, "y": 2 }, "f3": null }
+[server] Output "./wrong.out.json"
+[server] User Error: Deferred error message was emitted during execution. See above messages for more information.
+[kernel] Plug-in server aborted: invalid user input.

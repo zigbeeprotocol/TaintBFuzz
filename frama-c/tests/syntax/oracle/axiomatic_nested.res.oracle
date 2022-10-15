@@ -1,0 +1,6 @@
+[kernel] Parsing axiomatic_nested.i (no preprocessing)
+[kernel:annot-error] axiomatic_nested.i:8: Warning: 
+  Nested axiomatic. Ignoring body of bla2. Ignoring global annotation
+[kernel] User Error: warning annot-error treated as fatal error.
+[kernel] User Error: stopping on file "axiomatic_nested.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

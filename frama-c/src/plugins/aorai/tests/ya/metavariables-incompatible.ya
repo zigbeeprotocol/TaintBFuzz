@@ -1,0 +1,9 @@
+%init:		a;
+%accept:	b;
+%deterministic;
+
+$x : int;
+
+a : { [CALL(main)]* } -> b;
+
+b : -> b;

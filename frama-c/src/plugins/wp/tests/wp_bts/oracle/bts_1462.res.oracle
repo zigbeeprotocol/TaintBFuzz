@@ -1,0 +1,102 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_1462.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function local
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file bts_1462.i, line 26):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file bts_1462.i, line 26):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file bts_1462.i, line 26) (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file bts_1462.i, line 26) (2/2):
+Effect at line 30
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function wrong
+------------------------------------------------------------
+
+Goal Assertion 'for_value' (file bts_1462.i, line 5):
+Assume { Type: is_sint32(c). }
+Prove: (c = 1) \/ (c <= 0) \/ (2 <= c).
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'A_KO' (file bts_1462.i, line 9):
+Assume {
+  Type: is_sint32(c) /\ is_sint32(i) /\ is_sint32(x) /\ is_sint32(y) /\
+      is_sint32(y_1) /\ is_sint32(1 + i).
+  (* Goal *)
+  When: i != (-1).
+  (* Assertion 'for_value' *)
+  Have: (c = 1) \/ (c <= 0) \/ (2 <= c).
+  Have: c != 2.
+  (* Invariant 'A_KO' *)
+  Have: ((i != 0) -> (y_1 = 0)).
+  (* Invariant 'C' *)
+  Have: ((c = 0) -> ((i = 0) -> (x = 0))).
+  (* Then *)
+  Have: i <= 9.
+  If c = 1
+  Then { Have: y = 1. }
+  Else { Have: y_1 = y. }
+}
+Prove: y = 0.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'A_KO' (file bts_1462.i, line 9):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'B' (file bts_1462.i, line 10):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'B' (file bts_1462.i, line 10):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'C' (file bts_1462.i, line 11):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'C' (file bts_1462.i, line 11):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'consequence_of_false_invariant' (file bts_1462.i, line 19):
+Assume {
+  Type: is_sint32(i) /\ is_sint32(y).
+  (* Invariant 'A_KO' *)
+  Have: ((i != 0) -> (y = 0)).
+  (* Else *)
+  Have: 10 <= i.
+}
+Prove: y = 0.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file bts_1462.i, line 12):
+Prove: true.
+
+------------------------------------------------------------

@@ -1,0 +1,7 @@
+[kernel] Parsing test_boucle.c (with preprocessing)
+[kernel:typing:implicit-function-declaration] test_boucle.c:16: Warning: 
+  Calling undeclared function call_to_an_undefined_function. Old style K&R code?
+[kernel] Parsing TMPDIR/aorai_test_boucle_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards
+[kernel:annot:missing-spec] TMPDIR/aorai_test_boucle_0.i:88: Warning: 
+  Neither code nor specification for function call_to_an_undefined_function, generating default assigns from the prototype

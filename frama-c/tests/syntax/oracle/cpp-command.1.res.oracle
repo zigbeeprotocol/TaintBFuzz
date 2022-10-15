@@ -1,0 +1,2 @@
+[kernel] Parsing cpp-command.c (with preprocessing)
+%1 = cpp-command.c %2 = TMPDIR/FILE.i %args = -IFRAMAC_SHARE/libc -D__FRAMAC__ -D__FC_MACHDEP_X86_32 -dD -nostdinc

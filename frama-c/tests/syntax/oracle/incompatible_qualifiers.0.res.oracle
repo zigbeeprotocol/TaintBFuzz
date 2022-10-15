@@ -1,0 +1,30 @@
+[kernel] Parsing incompatible_qualifiers.c (with preprocessing)
+[kernel] incompatible_qualifiers.c:13: User Error: 
+  Declaration of f does not match previous declaration from incompatible_qualifiers.c:11 (different qualifiers).
+[kernel] incompatible_qualifiers.c:21: User Error: 
+  Declaration of h does not match previous declaration from incompatible_qualifiers.c:19 (different qualifiers).
+[kernel] incompatible_qualifiers.c:29: User Error: 
+  Declaration of j does not match previous declaration from incompatible_qualifiers.c:27 (different qualifiers).
+[kernel] incompatible_qualifiers.c:40: User Error: 
+  Declaration of l does not match previous declaration from incompatible_qualifiers.c:38 (different qualifiers).
+[kernel] incompatible_qualifiers.c:48: User Error: 
+  Declaration of n does not match previous declaration from incompatible_qualifiers.c:46 (different qualifiers).
+[kernel] incompatible_qualifiers.c:53: User Error: 
+  invalid usage of 'restrict' qualifier
+[kernel] incompatible_qualifiers.c:67: User Error: 
+  function pointer type does not allow 'restrict' qualifier
+[kernel] incompatible_qualifiers.c:74: User Error: 
+  invalid usage of 'restrict' qualifier
+[kernel] incompatible_qualifiers.c:75: User Error: 
+  invalid usage of 'restrict' qualifier
+[kernel] incompatible_qualifiers.c:76: User Error: 
+  invalid usage of 'restrict' qualifier
+[kernel] incompatible_qualifiers.c:77: User Error: 
+  invalid usage of 'restrict' qualifier
+[kernel] incompatible_qualifiers.c:78: User Error: 
+  invalid usage of 'restrict' qualifier
+[kernel] incompatible_qualifiers.c:79: User Error: 
+  function pointer type does not allow 'restrict' qualifier
+[kernel] User Error: stopping on file "incompatible_qualifiers.c" that has errors. Add
+  '-kernel-msg-key pp' for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

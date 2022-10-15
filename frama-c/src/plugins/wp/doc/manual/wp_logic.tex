@@ -1,0 +1,227 @@
+\section{Language of Proof Obligations}
+\label{wp-lang}
+
+The work of \textsf{WP} consists in translating \textsf{C} and
+\textsf{ACSL} constructs into first order logical formul{\ae}. We
+denote by $\cal{L}$ the logic language for constructing proof
+obligations.  Shortly, this logical language is made of terms
+($t:\mathrm{term}$) and propositions ($P:\mathrm{prop}$) that consist of:
+\begin{itemize}
+\item Natural, signed, unbounded integer constants and their operations;
+\item Natural real numbers and their operations;
+\item Arrays (as total maps) and records (tuples with named fields);
+\item Abstract (polymorphic) data types;
+\item Anonymous function symbols with (optional) algebraic properties;
+\item Logical connectors;
+\item Universally and existentially quantified variables.
+\end{itemize}
+
+Actually, the task of the memory model consists in mapping any
+heap \textsf{C}-values at a given program point to some variable or term
+in the logical $\cal{L}$ language.
+
+\section{The Hoare Memory Model}
+\label{wp-model-logical}
+
+This is the simplest model, inspired by the historical definition of
+\emph{Weakest Precondition Calculus} for programs with no pointers. In
+such programs, each global and local variable is assigned a
+distinct variable in $\cal{L}$.
+
+Consider for instance the statement \lstinline{x++;} where
+\lstinline{x} has been declared as an \lstinline{int}. In the
+\lstinline{Hoare} memory model, this \textsf{C}-variable will be
+assigned to two $\cal{L}$-variables, say $x_1$ before the statement, and
+$x_2$ after the statement, with the obvious relation $x_2 = x_1+1$ (if
+no overflow occurred).
+
+Of course, this model is not capable of handling memory reads or writes
+through pointer values, because there is no way of representing
+aliasing.
+
+You select this memory model in the \textsf{WP} plug-in with the option
+\texttt{-wp-model Hoare}; the analyzer will complain whenever you
+attempt to access memory through pointers with this model.
+
+\section{Memory Models with Pointers}
+\label{wp-model-pointers}
+
+Realistic memory models must deal with reads and writes to memory
+through pointers. However, there are many ways for modeling the raw
+bit stream the heap consists of. All memory models $\cal{M}$ actually
+implement a common signature:
+\begin{description}
+\item[Pointer Type:] $\tau$, generally a pair of a base address and an offset.
+\item[Heap Variables:] for each program point, there is a set of
+  logical variables to model the heap. For instance, you may have a
+  variable for the values at a given address, and another one for the
+  allocation table. The heap variables $m_1\ldots m_k$ are
+  denoted by $\overline{m}$.
+\item[Read Operation:] given the heap variables $\overline{m}$, a
+  pointer value $p:\tau$, and some \textsf{C}-type $T$, the
+  model will define an operation:
+  \[\mathrm{read}_T(\overline{m},p) : \mathrm{term}\]
+  that defines the representation in $\cal{L}$ of the value of
+  \textsf{C}-type $T$ which is stored at address $p$ in the heap.
+\item[Write Operation:] given the heap variables $\overline{m}$ before
+  a statement, and their associated heap variables $\overline{m}'$
+  after the statement, a pointer value $p:\tau$ and a value $v$ of
+  \textsf{C}-type $T$, the model will define a relation:
+  \[\mathrm{write}_T(\overline{m},p,v,\overline{m}') : \mathrm{prop}\] that relates the
+  heap before and after writing value $v$ at address $p$ in the heap.
+\end{description}
+
+Typically, consider the statement \lstinline{(*p)++} where
+\lstinline{p} is a \textsf{C}-variable of type \lstinline{(int*)}.
+The memory model $\cal{M}$ will assign a unique pointer value
+$P:\tau$ to the address of \lstinline{p} in memory. 
+
+Then, it retrieves the actual value of the pointer
+$\lstinline{p}$, say $A_p$, by reading a value of type
+\lstinline{int*} into the memory variables $\overline{m}$ at address
+$P$:
+\[ A_p = \mathrm{read}_{\mathtt{int*}}(\overline{m},P) \]
+
+Next, the model retrieves the previous \lstinline{int}-value at
+actual address $A_p$, say $V_p$:
+\[ V_p = \mathrm{read}_{\mathtt{int}}(\overline{m},A_p) \]
+
+Finally, the model relates the final memory state $\overline{m}'$
+with the incremented value $V_p+1$ at address $P$:
+\[ \mathrm{write}_{\mathtt{int}}(\overline{m},A_p,V_p+1,\overline{m}') \]
+
+\section{Hoare Variables mixed with Pointers}
+\label{wp-model-logicvar}
+
+As illustrated above, a very simple statement is generally translated
+by memory models into complex formul{\ae}. However, it is possible in
+some situations to mix the Hoare memory model with the other ones.
+
+For instance, assume the address of variable \lstinline{x} is never
+taken in the program. Hence, it is not possible to create a pointer
+aliased with \lstinline{&x}. It is thus legal to manage the value of
+\lstinline{x} with the Hoare memory model, and other values with
+another memory-model $\cal{M}$ that deals with pointers.
+
+Common occurrences of such a situation are pointer variables. For
+instance, assume \lstinline{p} is a variable of type \lstinline{int*};
+it is often the case that the value of \lstinline{p} is used (as in
+\lstinline{*p}), but not the address of the variable \lstinline{p}
+itself, namely \lstinline{&p}. Then, it is very efficient to manage
+the value of \lstinline{p} with the Hoare memory model, and the value
+of \lstinline{*p} with a memory model with pointers.
+
+Such an optimization is possible whenever the address of a variable is
+never taken in the program. It is activated by default in the
+\textsf{WP} plug-in, since it is very effective in practice. You can
+nevertheless deactivate it with selector ``\texttt{-wp-model raw}''.
+
+\section{Hoare Variables for Reference Parameters}
+\label{wp-model-byreference}
+
+A common programming pattern in \textsf{C} programs is to use pointers
+for function arguments passed by reference. For instance, consider the
+\lstinline{swap} function below:
+
+\begin{ccode}
+void swap(int *a,int *b)
+{
+  int tmp = *a ;
+  *a = *b ;
+  *b = tmp ;
+}
+\end{ccode}
+
+Since neither the address of \lstinline{a} nor the one of \lstinline{b}
+are taken, their values can be managed by the Hoare Model as described
+in the previous section. But we can do even better. Remark that none of
+the pointer values contained in variables \lstinline{a} and
+\lstinline{b} is stored in memory. The only occurrences of these
+pointer values are in expressions \lstinline{*a} and
+\lstinline{*b}. Thus, there can be no alias with these pointer values
+elsewhere in memory, provided they are not aliased initially.
+
+Hence, not only can \lstinline{a} and \lstinline{b} be managed by the
+Hoare model, but we can also treat \lstinline{(*a)} and \lstinline{(*b)}
+expressions as two independent variables of type \lstinline{int} with
+the Hoare memory model.
+
+For the callers of the \lstinline{swap} function, we can also take benefit
+from such by-reference passing arguments. Typically, consider the
+following caller program:
+
+\begin{ccode}
+void f(void)
+{
+  int x=1,y=2 ;
+  swap(&x,&y);
+}
+\end{ccode}
+
+Strictly speaking, this program takes the addresses of \lstinline{x}
+and \lstinline{y}. Thus, it would be natural to handle those variables
+by a model with pointers. However, \lstinline{swap} will actually
+always use \lstinline{*&x} and \lstinline{*&y}, which are respectively
+\lstinline{x} and \lstinline{y}.
+
+In such a situation it is then correct to handle those variables
+with the Hoare model, and this is a very effective optimization in
+practice. Notice however, that in the example above, the optimization
+is only correct because \lstinline{x} and \lstinline{y} have disjoint
+addresses.
+
+These optimizations can be activated in the \textsf{WP} plug-in with
+selector ``\texttt{-wp-model ref}'', and the necessary separation
+conditions are generated on-the-fly. This memory model first detects
+pointer or array variables that are always passed by reference. The
+detected variables are then assigned to the Hoare memory model.
+
+This optimization is not activated by default, since the non-aliasing
+assumptions at call sites are sometimes irrelevant.
+
+\section{Mixed models hypotheses}
+\label{wp-model-hypotheses}
+
+For the previously presented \textsf{Ref} model, but also for the
+\textsf{Typed}, and \textsf{Caveat} models presented later, WP lists
+the separation and validity hypotheses associated to the choice that
+it make of dispatching each pointer and variable either to the
+\lstinline{Hoare} or to the model $\cal{M}$ used for the heap.
+
+Consequently, in addition to user-defined function \lstinline{requires},
+WP also assumes, and thus states as \lstinline{requires} for the function
+caller, that:
+
+\begin{itemize}
+\item \lstinline{Hoare} variables are separated from each other,
+\item \lstinline{Hoare} variables are separated from the locations in $\cal{M}$,
+\item references are valid memory locations,
+\item locations assigned via a pointer are separated from \lstinline{Hoare}
+  variables whose address is not taken by the function (including via
+  its contract).
+\end{itemize}
+
+Furthermore, the function must ensure that:
+
+\begin{itemize}
+\item locations assigned via a pointer (including the returned value when
+  it is a pointer) are separated from \lstinline{Hoare} variables whose address
+  is not taken by the function (including via its contract),
+\item pointers assigned by the function (including the returned value when
+  it is a pointer) are separated from function parameters and \lstinline{Hoare}
+  variables whose address is not taken by the function (including via
+  its contract).
+\end{itemize}
+
+In order to precisely generate these hypotheses, WP needs precise
+\lstinline{assigns} specification. In particular each function under
+verification and all its callees needs an \lstinline{assigns} specification.
+Furthermore, if the function assigns or returns a pointer, WP needs
+a correct \lstinline{\from} specification for those pointers. If the
+specification is incomplete, a warning \lstinline{wp:pedantic-assigns} is
+triggered. Note that WP does not verify that the \lstinline{\from} is correct.
+
+The hypotheses are displayed when the option
+\lstinline{-wp-warn-memory-model} is enable (it is enabled by default).
+They can be verified by WP using the experimental option
+\lstinline{-wp-check-memory-model}.

@@ -1,0 +1,39 @@
+# frama-c -wp -wp-model 'Hoare' [...]
+[kernel] Parsing init_value_mem.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] init_value_mem.i:24: Warning: Can not load value in Empty model
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Post-condition 'P' in 'main':
+Assume {
+  Type: IsS1_St(v) /\ IsS1_St(w).
+  (* Initializer *)
+  Init: (v.F1_St_a) = 1.
+  (* Initializer *)
+  Init: (v.F1_St_b) = 2.
+  (* Initializer *)
+  Init: (w.F1_St_a) = 1.
+  (* Initializer *)
+  Init: (w.F1_St_b) = 2.
+}
+Prove: EqS1_St(v, w).
+
+------------------------------------------------------------
+
+Goal Post-condition 'Q' in 'main':
+init_value_mem.i:24: warning from Empty Model:
+ - Warning: Hide sub-term definition
+   Reason: Can not load value in Empty model
+Assume {
+  Type: IsS1_St(w_1).
+  (* Initializer *)
+  Init: (w_1.F1_St_a) = 1.
+  (* Initializer *)
+  Init: (w_1.F1_St_b) = 2.
+}
+Prove: EqS1_St(w, w_1).
+
+------------------------------------------------------------

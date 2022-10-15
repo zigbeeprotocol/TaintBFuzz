@@ -1,0 +1,4 @@
+[kernel] Parsing multiple_include_2.c (with preprocessing)
+[kernel] Parsing multiple_include_1.c (with preprocessing)
+[kernel] User Error: multiple inclusion of logic function p referring to a static variable
+[kernel] Frama-C aborted: invalid user input.

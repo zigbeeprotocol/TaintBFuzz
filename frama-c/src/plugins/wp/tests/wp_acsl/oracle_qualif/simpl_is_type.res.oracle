@@ -1,0 +1,32 @@
+# frama-c -wp [...]
+[kernel] Parsing simpl_is_type.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 18 goals scheduled
+[wp] [Alt-Ergo] Goal typed_f_ensures : Valid
+[wp] [Qed] Goal typed_f_loop_invariant_preserved : Valid
+[wp] [Qed] Goal typed_f_loop_invariant_established : Valid
+[wp] [Alt-Ergo] Goal typed_f_loop_invariant_2_preserved : Valid
+[wp] [Qed] Goal typed_f_loop_invariant_2_established : Valid
+[wp] [Alt-Ergo] Goal typed_f_loop_invariant_3_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_f_loop_invariant_3_established : Valid
+[wp] [Qed] Goal typed_f_loop_assigns_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_f_loop_assigns_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_g_ensures : Valid
+[wp] [Qed] Goal typed_g_loop_invariant_preserved : Valid
+[wp] [Qed] Goal typed_g_loop_invariant_established : Valid
+[wp] [Alt-Ergo] Goal typed_g_loop_invariant_2_preserved : Valid
+[wp] [Qed] Goal typed_g_loop_invariant_2_established : Valid
+[wp] [Qed] Goal typed_g_loop_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_check_acsl_check_ok_C1_absurd_is_cint : Valid
+[wp] [Alt-Ergo] Goal typed_check_acsl_check_ok_C2_absurd_is_cint : Valid
+[wp] [Qed] Goal typed_check_acsl_check_ok_C5_absurd_cmp : Valid
+[wp] Proved goals:   18 / 18
+  Qed:             9 
+  Alt-Ergo:        9
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f                         4        5        9       100%
+  g                         4        2        6       100%
+  check_acsl                1        2        3       100%
+------------------------------------------------------------

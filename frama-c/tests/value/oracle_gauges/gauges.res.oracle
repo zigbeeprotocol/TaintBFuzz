@@ -1,0 +1,328 @@
+25d24
+< [eva:alarm] gauges.c:23: Warning: signed overflow. assert -2147483648 ≤ j - 4;
+37d35
+< [eva:alarm] gauges.c:26: Warning: signed overflow. assert l + 1 ≤ 2147483647;
+55d52
+< [eva:alarm] gauges.c:45: Warning: signed overflow. assert -2147483648 ≤ j - 4;
+58a56
+> [eva:alarm] gauges.c:45: Warning: signed overflow. assert -2147483648 ≤ j - 4;
+67d64
+< [eva:alarm] gauges.c:48: Warning: signed overflow. assert l + 1 ≤ 2147483647;
+79d75
+< [eva:alarm] gauges.c:58: Warning: accessing out of bounds index. assert j < 38;
+92,96d87
+< [eva:alarm] gauges.c:71: Warning: 
+<   out of bounds write. assert \valid(tmp);
+<                        (tmp from p++)
+< [eva] gauges.c:72: Frama_C_show_each:
+< [eva] gauges.c:72: Frama_C_show_each:
+108d98
+< [eva:alarm] gauges.c:81: Warning: signed overflow. assert k + 1 ≤ 2147483647;
+110d99
+< [eva:alarm] gauges.c:84: Warning: signed overflow. assert k + 1 ≤ 2147483647;
+118c107
+< [eva] gauges.c:86: Frama_C_show_each: [0..2147483647]
+---
+> [eva] gauges.c:86: Frama_C_show_each: {390}
+132d120
+< [eva:alarm] gauges.c:99: Warning: signed overflow. assert c + 1 ≤ 2147483647;
+167,169c155,156
+< [eva] gauges.c:129: Frama_C_show_each: {{ &y + [4..36],0%4 }}
+< [eva] gauges.c:129: Frama_C_show_each: {{ &y + [4..40],0%4 }}
+< [eva:alarm] gauges.c:130: Warning: out of bounds write. assert \valid(p);
+---
+> [eva] gauges.c:129: Frama_C_show_each: {{ &y + {4; 8; 12; 16; 20; 24} }}
+> [eva] gauges.c:129: Frama_C_show_each: {{ &y + {4; 8; 12; 16; 20; 24} }}
+175d161
+< [eva:alarm] gauges.c:140: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+193,195d178
+< [eva:alarm] gauges.c:158: Warning: 
+<   out of bounds write. assert \valid(tmp);
+<                        (tmp from p--)
+213,217c196,198
+< [eva] gauges.c:172: Frama_C_show_each: [2147483646..4294967294]
+< [eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+< [eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+< [eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+< [eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+---
+> [eva] gauges.c:172: Frama_C_show_each: [2147483647..4294967294]
+> [eva] gauges.c:172: Frama_C_show_each: [2147483647..4294967294]
+> [eva] gauges.c:172: Frama_C_show_each: [2147483647..4294967294]
+221c202,203
+< [eva] gauges.c:172: Frama_C_show_each: [1..4294967294]
+---
+> [eva] gauges.c:172: Frama_C_show_each: [2147483647..4294967294]
+> [eva] gauges.c:172: Frama_C_show_each: [2147483647..4294967294]
+244,245d225
+< [eva:alarm] gauges.c:192: Warning: out of bounds write. assert \valid(p);
+< [eva:alarm] gauges.c:193: Warning: out of bounds write. assert \valid(q);
+253,258d232
+< [eva:alarm] gauges.c:202: Warning: 
+<   out of bounds read. assert \valid_read(tmp);
+<                       (tmp from A++)
+< [eva:alarm] gauges.c:202: Warning: 
+<   out of bounds read. assert \valid_read(tmp_0);
+<                       (tmp_0 from B++)
+285,286d258
+< [eva:alarm] gauges.c:220: Warning: 
+<   signed overflow. assert -2147483648 ≤ n - 1;
+300,302c272
+< [eva:alarm] gauges.c:240: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+< [eva] gauges.c:242: 
+<   Frama_C_show_each: {45; 46; 47; 48; 49; 50; 51}, [0..2147483647]
+---
+> [eva] gauges.c:242: Frama_C_show_each: {47; 48}, {6}
+308,310c278
+< [eva:alarm] gauges.c:251: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+< [eva] gauges.c:254: 
+<   Frama_C_show_each: {48; 49; 50; 51; 52; 53; 54}, [0..2147483647]
+---
+> [eva] gauges.c:254: Frama_C_show_each: {48; 49; 50; 51; 52; 53; 54}, {6; 7}
+316,318c284
+< [eva:alarm] gauges.c:263: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+< [eva] gauges.c:265: 
+<   Frama_C_show_each: {-59; -58; -57; -56; -55; -54; -53}, [0..2147483647]
+---
+> [eva] gauges.c:265: Frama_C_show_each: {-58; -57}, {9}
+324d289
+< [eva:alarm] gauges.c:274: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+326c291
+<   Frama_C_show_each: {-64; -63; -62; -61; -60; -59; -58}, [0..2147483647]
+---
+>   Frama_C_show_each: {-64; -63; -62; -61; -60; -59; -58}, {9; 10}
+334d298
+< [eva:alarm] gauges.c:293: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+336c300
+<   Frama_C_show_each: {-593; -592; -591; -590; -589; -588}, [0..2147483647]
+---
+>   Frama_C_show_each: {-593; -592; -591; -590; -589; -588}, [99..119]
+398a363,366
+>   # gauges:
+>   V: [{[ p -> {{ &x }}
+>          i -> {1} ]}]
+>   s398: λ(0)
+458a427,430
+>   # gauges:
+>   V: [{[ i -> {1} ]}]
+>   s398: λ([0 .. 1])
+>         {[ i -> {1} ]}
+517a490,493
+>   # gauges:
+>   V: [{[ i -> {1} ]}]
+>   s398: λ([0 .. 2])
+>         {[ i -> {1} ]}
+576a553,556
+>   # gauges:
+>   V: [{[ i -> {1} ]}]
+>   s398: λ([0 .. 10])
+>         {[ i -> {1} ]}
+641a622,626
+>   # gauges:
+>   V: [{[ p -> {{ &a }}
+>          i -> {2} ]}]
+>   s412: λ(0)
+>   s411: λ(0)
+702a688,692
+>   # gauges:
+>   V: [{[ i -> {2} ]}]
+>   s412: λ(0)
+>   s411: λ([0 .. 1])
+>         {[ i -> {0} ]}
+704a695,822
+> [eva] gauges.c:325: 
+>   Frama_C_dump_each:
+>   # cvalue:
+>   __fc_heap_status ∈ [--..--]
+>   __fc_random_counter ∈ [--..--]
+>   __fc_rand_max ∈ {32767}
+>   __fc_random48_init ∈ {0}
+>   __fc_random48_counter[0..2] ∈ [--..--]
+>   __fc_p_random48_counter ∈ {{ &__fc_random48_counter[0] }}
+>   __fc_env[0] ∈ {{ NULL ; &S_0___fc_env[0] }}
+>           [1] ∈ {{ NULL ; &S_1___fc_env[0] }}
+>           [2..4095] ∈ {{ NULL ; &S_0___fc_env[0] ; &S_1___fc_env[0] }}
+>   __fc_mblen_state ∈ [--..--]
+>   __fc_mbtowc_state ∈ [--..--]
+>   __fc_wctomb_state ∈ [--..--]
+>   v ∈ [--..--]
+>   t[0..4] ∈ {0}
+>    [5] ∈ [0..48],0%3
+>    [6] ∈ {0}
+>    [7] ∈ [0..48],0%3
+>    [8] ∈ {0}
+>    [9] ∈ [0..48],0%3
+>    [10] ∈ {0}
+>    [11] ∈ [0..48],0%3
+>    [12] ∈ {0}
+>    [13] ∈ [0..48],0%3
+>    [14] ∈ {0}
+>    [15] ∈ [0..48],0%3
+>    [16] ∈ {0}
+>    [17] ∈ [0..48],0%3
+>    [18] ∈ {0}
+>    [19] ∈ [0..48],0%3
+>    [20] ∈ {0}
+>    [21] ∈ [0..48],0%3
+>    [22] ∈ {0}
+>    [23] ∈ [0..48],0%3
+>    [24] ∈ {0}
+>    [25] ∈ [0..48],0%3
+>    [26] ∈ {0}
+>    [27] ∈ [0..48],0%3
+>    [28] ∈ {0}
+>    [29] ∈ [0..48],0%3
+>    [30] ∈ {0}
+>    [31] ∈ [0..48],0%3
+>    [32] ∈ {0}
+>    [33] ∈ [0..48],0%3
+>    [34] ∈ {0}
+>    [35] ∈ [0..48],0%3
+>    [36] ∈ {0}
+>    [37] ∈ [0..48],0%3
+>   u[0..99] ∈ [0..100]
+>   T[0..99] ∈ [--..--]
+>   a ∈ {1}
+>   b ∈ {0}
+>   p ∈ {{ &a ; &b }}
+>   i ∈ {2}
+>   S_0___fc_env[0..1] ∈ [--..--]
+>   S_1___fc_env[0..1] ∈ [--..--]
+>   # gauges:
+>   V: [{[ i -> {2} ]}]
+>   s412: λ(0)
+>   s411: λ([0 .. 2])
+>         {[ i -> {0} ]}
+>   ==END OF DUMP==
+> [eva] gauges.c:325: 
+>   Frama_C_dump_each:
+>   # cvalue:
+>   __fc_heap_status ∈ [--..--]
+>   __fc_random_counter ∈ [--..--]
+>   __fc_rand_max ∈ {32767}
+>   __fc_random48_init ∈ {0}
+>   __fc_random48_counter[0..2] ∈ [--..--]
+>   __fc_p_random48_counter ∈ {{ &__fc_random48_counter[0] }}
+>   __fc_env[0] ∈ {{ NULL ; &S_0___fc_env[0] }}
+>           [1] ∈ {{ NULL ; &S_1___fc_env[0] }}
+>           [2..4095] ∈ {{ NULL ; &S_0___fc_env[0] ; &S_1___fc_env[0] }}
+>   __fc_mblen_state ∈ [--..--]
+>   __fc_mbtowc_state ∈ [--..--]
+>   __fc_wctomb_state ∈ [--..--]
+>   v ∈ [--..--]
+>   t[0..4] ∈ {0}
+>    [5] ∈ [0..48],0%3
+>    [6] ∈ {0}
+>    [7] ∈ [0..48],0%3
+>    [8] ∈ {0}
+>    [9] ∈ [0..48],0%3
+>    [10] ∈ {0}
+>    [11] ∈ [0..48],0%3
+>    [12] ∈ {0}
+>    [13] ∈ [0..48],0%3
+>    [14] ∈ {0}
+>    [15] ∈ [0..48],0%3
+>    [16] ∈ {0}
+>    [17] ∈ [0..48],0%3
+>    [18] ∈ {0}
+>    [19] ∈ [0..48],0%3
+>    [20] ∈ {0}
+>    [21] ∈ [0..48],0%3
+>    [22] ∈ {0}
+>    [23] ∈ [0..48],0%3
+>    [24] ∈ {0}
+>    [25] ∈ [0..48],0%3
+>    [26] ∈ {0}
+>    [27] ∈ [0..48],0%3
+>    [28] ∈ {0}
+>    [29] ∈ [0..48],0%3
+>    [30] ∈ {0}
+>    [31] ∈ [0..48],0%3
+>    [32] ∈ {0}
+>    [33] ∈ [0..48],0%3
+>    [34] ∈ {0}
+>    [35] ∈ [0..48],0%3
+>    [36] ∈ {0}
+>    [37] ∈ [0..48],0%3
+>   u[0..99] ∈ [0..100]
+>   T[0..99] ∈ [--..--]
+>   a ∈ {1}
+>   b ∈ {0}
+>   p ∈ {{ &a ; &b }}
+>   i ∈ {2}
+>   S_0___fc_env[0..1] ∈ [--..--]
+>   S_1___fc_env[0..1] ∈ [--..--]
+>   # gauges:
+>   V: [{[ i -> {2} ]}]
+>   s412: λ(0)
+>   s411: λ([0 .. +oo])
+>         {[ i -> {0} ]}
+>   ==END OF DUMP==
+712a831,832
+> [eva] gauges.c:343: Call to builtin malloc
+> [eva] gauges.c:343: Call to builtin malloc
+765,766c885,886
+<   A ∈ {{ &A + [0..--],0%4 }}
+<   B ∈ {{ &B + [0..--],0%4 }}
+---
+>   A ∈ {{ &A + [0..36],0%4 }}
+>   B ∈ {{ &B + [0..36],0%4 }}
+778c898
+<   n ∈ [-2147483648..99]
+---
+>   n ∈ [-2147483547..99]
+784c904
+<   i ∈ {45; 46; 47; 48; 49; 50; 51}
+---
+>   i ∈ {45; 46; 47; 48}
+790c910
+<   i ∈ {-59; -58; -57; -56; -55; -54; -53}
+---
+>   i ∈ {-58; -57; -56; -55; -54; -53}
+810c930
+<   p ∈ {{ &u + [0..--],0%4 }}
+---
+>   p ∈ {{ &u + [0..400],0%4 }}
+812c932
+<   k ∈ [0..2147483647]
+---
+>   k ∈ [0..390]
+817c937
+<   i ∈ [0..2147483647]
+---
+>   i ∈ [0..21]
+828,829c948,950
+<    [1..9] ∈ {4; 5; 6; 7; 8; 9} or UNINITIALIZED
+<   p ∈ {{ &y + [4..40],0%4 }}
+---
+>    [1..6] ∈ {4; 5; 6; 7; 8; 9} or UNINITIALIZED
+>    [7..9] ∈ UNINITIALIZED
+>   p ∈ {{ &y[7] }}
+840c961
+<   p ∈ {{ &T + [--..396],0%4 }}
+---
+>   p ∈ {{ &T + [-4..396],0%4 }}
+845,849c966
+<   n ∈ {0}
+<   arr[0] ∈ {0}
+<      [1] ∈ {-1}
+<      [2..65535] ∈ [--..--] or UNINITIALIZED
+<   p ∈ {{ &arr + [12..--],0%4 }}
+---
+>   NON TERMINATING FUNCTION
+952a1070
+> [from] Non-terminating function main8_aux (no dependencies)
+975,976c1093,1094
+<   p FROM p; A; B; n; p; A[0..9]; B[0..9] (and SELF)
+<   \result FROM p; A; B; n; p; A[0..9]; B[0..9]
+---
+>   p FROM p; A; B; n; p; A[0..8]; B[0..8] (and SELF)
+>   \result FROM p; A; B; n; p; A[0..8]; B[0..8]
+1020c1138
+<   NO EFFECTS
+---
+>   NON TERMINATING - NO EFFECTS
+1054c1172
+<     p; A[0..9]; B[0..9]
+---
+>     p; A[0..8]; B[0..8]

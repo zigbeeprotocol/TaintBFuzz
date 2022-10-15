@@ -1,0 +1,13 @@
+{
+  "guides": [
+    { "page": "dome.md", "title": "Dome Framework" },
+    { "page":"quickstart.md", "title": "Quick Start" },
+    { "page":"hotreload.md", "title": "Live Editing" },
+    { "page":"application.md", "title": "Application Design" },
+    { "page":"development.md", "title": "Application Development" },
+    { "page":"hooks.md", "title": "Custom React Hooks" },
+    { "page":"icons.md", "title": "Icons Gallery" },
+    { "page":"styling.md", "title": "styling" },
+    { "page":"glossary.md", "title": "Glossary" }
+  ]
+}

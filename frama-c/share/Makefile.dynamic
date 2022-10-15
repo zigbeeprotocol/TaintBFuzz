@@ -1,0 +1,291 @@
+##########################################################################
+#                                                                        #
+#  This file is part of Frama-C.                                         #
+#                                                                        #
+#  Copyright (C) 2007-2022                                               #
+#    CEA (Commissariat à l'énergie atomique et aux énergies              #
+#         alternatives)                                                  #
+#                                                                        #
+#  you can redistribute it and/or modify it under the terms of the GNU   #
+#  Lesser General Public License as published by the Free Software       #
+#  Foundation, version 2.1.                                              #
+#                                                                        #
+#  It is distributed in the hope that it will be useful,                 #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#  GNU Lesser General Public License for more details.                   #
+#                                                                        #
+#  See the GNU Lesser General Public License version 2.1                 #
+#  for more details (enclosed in the file licenses/LGPLv2.1).            #
+#                                                                        #
+##########################################################################
+
+$(eval $(call assert_defined,PLUGIN_NAME))
+
+PLUGIN_ENABLE	?=yes
+PLUGIN_DIR	?=.
+
+FRAMAC_SRC 	?=$(PLUGIN_DIR)/../../..
+
+FRAMAC_INTERNAL	?=no
+
+ifndef MAKECONFIG_DIR
+MAKECONFIG_DIR	:=$(FRAMAC_SHARE)
+endif
+
+#Add required packages to merlin
+MERLIN_PACKAGES+=$(PLUGIN_REQUIRES)
+
+#Do not generate documentation for this.
+PLUGIN_UNDOC:=$(PLUGIN_UNDOC)
+
+ifeq ($(FRAMAC_INTERNAL),yes)
+## The plugin is not compiled from an installed frama-c, ie
+## internal plugin (in src/plugins or added during
+## ./configure with --enable-external)
+PLUGIN_RESET	:=yes
+
+else
+
+# The plugin is compiled from an installed frama-c
+PLUGIN_RESET	:=no
+include $(MAKECONFIG_DIR)/Makefile.common
+include $(MAKECONFIG_DIR)/Makefile.dynamic_config
+
+tests:: external_tests
+
+ifeq ($(PLUGIN_ENABLE),no)
+tests::
+doc::
+else
+
+.PHONY: plugin-doc/$(PLUGIN_NAME)
+ifneq ($(FRAMAC_INTERNAL),yes)
+plugin-doc/$(PLUGIN_NAME):
+	if test ! -e $(DOC_DIR)/kernel-doc.ocamldoc; then \
+           echo "Frama-C kernel was not installed with code documentation \
+support. Cannot compile API documentation. To install it, run 'make doc \
+install-doc-code' in Frama-C's main directory"; \
+           exit 1; \
+        fi
+	$(MKDIR) $($(@:plugin-doc/%=%_DOC_DIR))
+else
+ifeq ($(FRAMAC_INTERNAL),yes)
+plugin-doc/$(PLUGIN_NAME):
+	:
+else
+plugin-doc/$(PLUGIN_NAME):
+	$(MKDIR) $($(@:plugin-doc/%=%_DOC_DIR))
+endif
+endif
+
+doc:: plugin-doc/$(PLUGIN_NAME) $(PLUGIN_NAME)_DOC
+
+clean-doc:: $(PLUGIN_DIR)/$(PLUGIN_NAME)_CLEAN_DOC
+
+ifneq ($(FRAMAC_INTERNAL),yes)
+install-doc-code:: $(PLUGIN_NAME)_INSTALL_DOC
+endif
+
+$(PLUGIN_NAME)_INSTALL_DOC: plugin-doc/$(PLUGIN_NAME)
+	$(PRINT_CP) $(patsubst %_INSTALL_DOC,%,$@) Documentation
+	$(MKDIR) $(DOC_DIR)/$(@:%_INSTALL_DOC=%)
+	$(CP) $(patsubst %,"%",\
+	         $(wildcard $($(@:%_INSTALL_DOC=%_DOC_DIR))/*.css \
+	                    $($(@:%_INSTALL_DOC=%_DOC_DIR))/*.html \
+                            $($(@:%_INSTALL_DOC=%_DOC_DIR))/*.png)) \
+              $(DOC_DIR)/$(@:%_INSTALL_DOC=%)
+
+endif #PLUGIN_ENABLE
+endif #FRAMAC_INTERNAL
+
+#Must be defined before section TESTS, because function call in make
+#replace not only $(1) but all the other $(..)
+PLUGIN_LIB_DIR	?= $(PLUGIN_DIR)
+PLUGIN_GUI_LIB_DIR ?= $(PLUGIN_DIR)/gui
+PLUGIN_INSTALL_DIR ?=$(DESTDIR)$(FRAMAC_PLUGINDIR)
+
+ifneq ($(PLUGIN_ENABLE),no)
+######################## TESTS #################
+.PHONY: $(PLUGIN_NAME)_TESTS plugins_ptests_config
+
+$(eval $(call assert_defined,PLUGIN_LIB_DIR))
+$(eval $(call assert_defined,FRAMAC_SHARE))
+$(eval $(call assert_defined,FRAMAC_LIB))
+
+# Do not generate tests-related rules when PLUGIN_NO_TEST is set to 'no' but
+# there is no 'tests' directory. Typically useful for plugins released without
+# their tests.
+HAS_TESTS_DIR:=$(shell if test \! -d $(PLUGIN_DIR)/tests; then echo KO; fi)
+
+ifneq (,$(HAS_TESTS_DIR)$(PLUGIN_INTERNAL_TEST)$(PLUGIN_NO_TEST))
+$(PLUGIN_NAME)_TESTS:
+
+else
+PTESTS_DEP:=$(PLUGIN_DIR)/Makefile $(FRAMAC_SHARE)/Makefile.dynamic
+
+plugins_ptests_config: $(PLUGIN_DIR)/tests/ptests_config
+
+define TESTS_template
+$(PLUGIN_DIR)/tests/ptests_config: $(PTESTS_DEP)
+	$(PRINT_MAKING) $$@
+	$(MKDIR) tests
+	$(RM) $$@
+	$(ECHO) "DEFAULT_SUITES=" $(PLUGIN_TESTS_DIRS) > $$@
+	$(ECHO) "TOPLEVEL_PATH=$(FRAMAC_OPT)" >> $$@;
+	$(ECHO) "FRAMAC_SHARE=$(FRAMAC_SHARE)" >> $$@
+	$(ECHO) "FRAMAC_LIB=$(FRAMAC_LIB)" >> $$@
+	if test "$(FRAMAC_INTERNAL)" = "no"; then \
+	  $(ECHO) "FRAMAC_PLUGIN=$(realpath $(PLUGIN_LIB_DIR)):$(PLUGIN_INSTALL_DIR)" >> $$@; \
+	  $(ECHO) "FRAMAC_PLUGIN_GUI=$(realpath $(PLUGIN_GUI_LIB_DIR)):$(PLUGIN_INSTALL_DIR)/gui" >> $$@; \
+          $(ECHO) "OCAMLFIND_IGNORE_DUPS_IN=$(PLUGIN_INSTALL_DIR)" >> $$@; \
+        else \
+	  $(ECHO) "FRAMAC_PLUGIN=$(realpath $(PLUGIN_LIB_DIR))" >> $$@; \
+	  $(ECHO) "FRAMAC_PLUGIN_GUI=$(realpath $(PLUGIN_GUI_LIB_DIR))" >> $$@; \
+        fi
+	$(ECHO) "OCAMLRUNPARAM=" >> $$@
+	$(CHMOD_RO) $$@
+
+# OCAMLFIND_IGNORE_DUPS_IN in external mode allows to ignore a previous
+# installation of the currently tested plugin.
+
+# $(PLUGIN_NAME)_DEFAULT_TESTS allows plugins to define rules that at
+# the same time depend on $(PLUGIN_NAME)_DEFAULT_TESTS and
+# $(PLUGIN_NAME)_TESTS depend on them
+
+.PHONY: $(PLUGIN_NAME)_DEFAULT_TESTS
+
+$(PLUGIN_NAME)_DEFAULT_TESTS: $$(TARGETS) $$(TARGETS_TOP) $$(TARGETS_GUI) $(PLUGIN_DIR)/tests/ptests_config
+	$(PRINT) TESTING PLUG-IN $(PLUGIN_NAME)
+	cd $(PLUGIN_DIR) && \
+        time -p $(PTESTS) $$(PTESTS_OPTS) $(PLUGIN_PTESTS_OPTS)
+
+$(PLUGIN_NAME)_TESTS: $(PLUGIN_NAME)_DEFAULT_TESTS
+
+endef
+$(eval $(call TESTS_template))
+
+external_tests: $(PLUGIN_NAME)_TESTS
+
+endif
+endif # PLUGIN_ENABLE
+################################################
+
+PLUGIN_FLAGS:=$(FLAGS) $(DEBUG) $(FRAMAC_INCLUDES)
+PLUGIN_BFLAGS:=$(PLUGIN_FLAGS) $(PLUGIN_BFLAGS)
+PLUGIN_OFLAGS:=$(PLUGIN_FLAGS) $(PLUGIN_OFLAGS)
+ifeq ($(FRAMAC_INTERNAL),yes)
+PLUGIN_DEPFLAGS:=$(PLUGIN_DEPFLAGS)
+else
+PLUGIN_DEPFLAGS:=$(FRAMAC_INCLUDES) $(PLUGIN_DEPFLAGS)
+PLUGIN_DOC_DIR:=$(PLUGIN_DIR)/doc/code
+endif
+# For plugins that depends on the API of other ones, we need to add the
+# directory where the plugins' .cmi are compiled
+PLUGIN_DOCFLAGS:=\
+  $(FRAMAC_INCLUDES) -I $(FRAMAC_COMPILED_PLUGINDIR) $(PLUGIN_DOCFLAGS)
+
+$(eval $(call include_generic_plugin_Makefile,$(PLUGIN_NAME)))
+
+TARGETS := $(TARGET_META) $(TARGET_CMI)
+TARGETS_TOP := $(TARGET_TOP_CMO) $(TARGET_TOP_CMX) \
+	       $(TARGET_TOP_CMA) $(TARGET_TOP_CMXS) $(TARGET_TOP_O)
+TARGETS_GUI_BYTE := $(TARGET_GUI_CMI) $(TARGET_GUI_CMO)
+TARGETS_GUI := $(TARGETS_GUI_BYTE) $(TARGET_GUI_CMX) $(TARGET_GUI_CMXS) $(TARGET_GUI_O)
+TARGETS_BYTE:= $(TARGET_META) $(TARGET_CMI) $(TARGET_TOP_CMO) $(TARGET_TOP_CMA)
+TARGETS_OPT:=  $(TARGET_META) $(TARGET_CMI) $(TARGET_TOP_CMX) $(TARGET_TOP_CMXS) $(TARGET_TOP_O)
+
+byte:: $(TARGETS_BYTE)
+opt:: $(TARGETS_OPT)
+gui-byte:: $(TARGETS_GUI_BYTE)
+gui-opt:: $(TARGETS_GUI)
+
+# do not define additional targets if you come from the Frama-C Makefile
+ifneq ($(FRAMAC_INTERNAL),yes)
+
+###################
+# Clean & Install #
+###################
+
+.PHONY: tests all install uninstall clean depend
+
+dist-clean distclean: $(PLUGIN_DIR)/$(PLUGIN_NAME)_DIST_CLEAN
+
+all:: $(PLUGIN_DIR)/.depend byte $(OCAMLBEST) gui plugins_ptests_config
+
+gui: gui-$(OCAMLBEST)
+
+ifneq ($(PLUGIN_ENABLE),no)
+
+install::
+	$(PRINT_CP) $(PLUGIN_INSTALL_DIR)
+	$(MKDIR) $(PLUGIN_INSTALL_DIR)/top
+	$(CP) $(TARGETS) $(PLUGIN_INSTALL_DIR)
+	$(CP) $(TARGETS_TOP) $(PLUGIN_INSTALL_DIR)/top
+	$(PRINT_CP) $(BINDIR)
+	if [ -f frama-c-$(PLUGIN_NAME).byte$(EXE) ]; then \
+	  $(CP) frama-c-$(PLUGIN_NAME).byte$(EXE) $(BINDIR); \
+	fi
+	if [ -f frama-c-$(PLUGIN_NAME).$(OCAMLBEST)$(EXE) ]; then \
+	  $(CP) frama-c-$(PLUGIN_NAME).$(OCAMLBEST)$(EXE) \
+		$(BINDIR)/frama-c-$(PLUGIN_NAME)$(EXE); \
+	fi
+ifeq ($(HAS_GUI),yes)
+	$(PRINT_CP) $(PLUGIN_INSTALL_DIR)/gui
+	$(MKDIR) $(PLUGIN_INSTALL_DIR)/gui
+	$(CP) $(TARGETS_GUI) $(PLUGIN_INSTALL_DIR)/gui
+endif
+
+uninstall::
+	$(PRINT_RM) installed $(PLUGIN_NAME)
+	$(RM) $(PLUGIN_INSTALL_DIR)/META.$(PLUGIN_PKG)
+	$(RM) $(PLUGIN_INSTALL_DIR)/$(PLUGIN_NAME).*
+	$(RM) $(BINDIR)/frama-c-$(PLUGIN_NAME).*
+ifeq ($(HAS_GUI),yes)
+	$(RM) $(PLUGIN_INSTALL_DIR)/gui/$(PLUGIN_NAME).*
+endif
+endif # PLUGIN_ENABLE <> no
+
+##########
+# Merlin #
+##########
+
+.PHONY: create_merlin
+create_merlin:
+#create Merlin file for external plug-in
+	$(PRINT_MAKING) .merlin
+	echo "FLG -c $(FLAGS) $(FRAMAC_USER_MERLIN_FLAGS)" > .merlin
+	echo "B $(FRAMAC_LIBDIR)" >> .merlin
+	echo "B $(FRAMAC_LIBDIR)/plugins" >> .merlin
+	echo "B $(FRAMAC_LIBDIR)/plugins/gui" >> .merlin
+	for PKG in $(LIBRARY_NAMES); do echo PKG $$PKG >> .merlin; done
+	for PKG in $(LIBRARY_NAMES_GUI); do echo PKG $$PKG >> .merlin; done
+	for PKG in $(MERLIN_PACKAGES); do echo PKG $$PKG >> .merlin; done
+	for DIR in $(patsubst %/,%,$(sort $(dir $(PLUGIN_ML_SRC) $(PLUGIN_TESTS_LIB)))); do echo S $$DIR>> .merlin; echo B $$DIR >> .merlin; done
+
+# To allow completion of .merlin file
+.PHONY: merlin
+merlin:: create_merlin
+
+.merlin: merlin
+
+############
+# Cleaning #
+############
+
+clean:: $(PLUGIN_DIR)/$(PLUGIN_NAME)_CLEAN;
+
+################
+# Generic part #
+################
+
+include $(MAKECONFIG_DIR)/Makefile.generic
+
+endif # FRAMAC_INTERNAL <> yes
+
+PLUGIN_PTESTS_OPTS:=
+
+###############################################################################
+# Local Variables:
+# mode: makefile
+# End:

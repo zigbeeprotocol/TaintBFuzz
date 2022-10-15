@@ -1,0 +1,35 @@
+[kernel] Parsing fam_sizeof.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  fam ∈ {0}
+  nested ∈ {0}
+  fam2 ∈ {0}
+  gcc_fam ∈ {0}
+[eva] fam_sizeof.i:51: assertion got status valid.
+[eva] fam_sizeof.i:54: assertion got status valid.
+[eva] fam_sizeof.i:57: assertion got status valid.
+[eva] fam_sizeof.i:59: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  z1 ∈ {4}
+  z2 ∈ {20}
+  z2p ∈ {20}
+  z3 ∈ {12}
+  z4 ∈ {16}
+  z5 ∈ {0}
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    z1; z2; z2p; z3; z4; z5; __retres
+[inout] Inputs for function main:
+    \nothing

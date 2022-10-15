@@ -1,0 +1,2573 @@
+# frama-c -wp -wp-no-let [...]
+[kernel] Parsing init_value.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function fa1
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok' in 'fa1':
+Let x = ta1_0[4].
+Let x_1 = ta1_0[0].
+Let x_2 = ta1_0[1].
+Let x_3 = ta1_0[3].
+Assume {
+  Type: is_sint32(x_1) /\ is_sint32(x_2) /\ is_sint32(x_3) /\ is_sint32(x).
+  (* Heap *)
+  Type: IsArray_sint32(ta1_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: ta1_0[2] = 1.
+  (* Initializer *)
+  Init: x = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((3 <= i) -> ((i <= 3) -> (ta1_0[i] = 0))).
+}
+Prove: (x_2 = x_1) /\ (x_3 = x_2).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fa1':
+Let x = ta1_0[4].
+Assume {
+  Type: is_sint32(ta1_0[0]) /\ is_sint32(ta1_0[1]) /\ is_sint32(ta1_0[3]) /\
+      is_sint32(x).
+  (* Heap *)
+  Type: IsArray_sint32(ta1_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: ta1_0[2] = 1.
+  (* Initializer *)
+  Init: x = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((3 <= i) -> ((i <= 3) -> (ta1_0[i] = 0))).
+}
+Prove: x = 0.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fa1':
+Let x = ta1_0[4].
+Let x_1 = ta1_0[3].
+Assume {
+  Type: is_sint32(ta1_0[0]) /\ is_sint32(ta1_0[1]) /\ is_sint32(x_1) /\
+      is_sint32(x).
+  (* Heap *)
+  Type: IsArray_sint32(ta1_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: ta1_0[2] = 1.
+  (* Initializer *)
+  Init: x = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((3 <= i) -> ((i <= 3) -> (ta1_0[i] = 0))).
+}
+Prove: x_1 = 1.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fa2
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok' in 'fa2':
+Let x = ta2_0[0].
+Let x_1 = ta2_0[1].
+Let x_2 = ta2_0[4].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_2).
+  (* Heap *)
+  Type: IsArray_sint32(ta2_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 3) -> (ta2_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta2_0[i] = 0))).
+}
+Prove: (x_1 = x) /\ (x_2 = x_1).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fa2':
+Let x = ta2_0[4].
+Assume {
+  Type: is_sint32(ta2_0[0]) /\ is_sint32(ta2_0[1]) /\ is_sint32(x).
+  (* Heap *)
+  Type: IsArray_sint32(ta2_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 3) -> (ta2_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta2_0[i] = 0))).
+}
+Prove: x = 1.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fa2':
+Let x = ta2_0[1].
+Assume {
+  Type: is_sint32(ta2_0[0]) /\ is_sint32(x) /\ is_sint32(ta2_0[4]).
+  (* Heap *)
+  Type: IsArray_sint32(ta2_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 3) -> (ta2_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta2_0[i] = 0))).
+}
+Prove: x = 1.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fa3
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok' in 'fa3':
+Let x = ta1_0[4].
+Let x_1 = ta1_0[2].
+Let x_2 = ta3_0[0].
+Let x_3 = ta3_0[2].
+Assume {
+  Type: is_sint32(x_1) /\ is_sint32(x) /\ is_sint32(ta2_0[4]) /\
+      is_sint32(x_2) /\ is_sint32(x_3).
+  (* Heap *)
+  Type: IsArray_sint32(ta1_0) /\ IsArray_sint32(ta2_0) /\
+      IsArray_sint32(ta3_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: x_1 = 1.
+  (* Initializer *)
+  Init: x = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((3 <= i) -> ((i <= 3) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 3) -> (ta2_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((i <= 0) -> ((0 <= i) -> (ta3_0[i] = 0))).
+  (* Initializer *)
+  Init: ta3_0[1] = 1.
+  (* Initializer *)
+  Init: ta3_0[3] = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (ta3_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta3_0[i] = 0))).
+}
+Prove: (x = x_1) /\ (x_3 = x_2).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fa3':
+Let x = ta1_0[4].
+Let x_1 = ta1_0[2].
+Let x_2 = ta3_0[0].
+Assume {
+  Type: is_sint32(x_1) /\ is_sint32(x) /\ is_sint32(ta2_0[4]) /\
+      is_sint32(x_2) /\ is_sint32(ta3_0[2]).
+  (* Heap *)
+  Type: IsArray_sint32(ta1_0) /\ IsArray_sint32(ta2_0) /\
+      IsArray_sint32(ta3_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: x_1 = 1.
+  (* Initializer *)
+  Init: x = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((3 <= i) -> ((i <= 3) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 3) -> (ta2_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((i <= 0) -> ((0 <= i) -> (ta3_0[i] = 0))).
+  (* Initializer *)
+  Init: ta3_0[1] = 1.
+  (* Initializer *)
+  Init: ta3_0[3] = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (ta3_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta3_0[i] = 0))).
+}
+Prove: x_2 = 1.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fa3':
+Let x = ta1_0[4].
+Let x_1 = ta1_0[2].
+Let x_2 = ta3_0[2].
+Assume {
+  Type: is_sint32(x_1) /\ is_sint32(x) /\ is_sint32(ta2_0[4]) /\
+      is_sint32(ta3_0[0]) /\ is_sint32(x_2).
+  (* Heap *)
+  Type: IsArray_sint32(ta1_0) /\ IsArray_sint32(ta2_0) /\
+      IsArray_sint32(ta3_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: x_1 = 1.
+  (* Initializer *)
+  Init: x = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((3 <= i) -> ((i <= 3) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 3) -> (ta2_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((i <= 0) -> ((0 <= i) -> (ta3_0[i] = 0))).
+  (* Initializer *)
+  Init: ta3_0[1] = 1.
+  (* Initializer *)
+  Init: ta3_0[3] = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (ta3_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta3_0[i] = 0))).
+}
+Prove: x_2 = 1.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fa3':
+Let x = ta1_0[4].
+Let x_1 = ta1_0[2].
+Let x_2 = ta2_0[4].
+Assume {
+  Type: is_sint32(x_1) /\ is_sint32(x) /\ is_sint32(x_2) /\
+      is_sint32(ta3_0[0]) /\ is_sint32(ta3_0[2]).
+  (* Heap *)
+  Type: IsArray_sint32(ta1_0) /\ IsArray_sint32(ta2_0) /\
+      IsArray_sint32(ta3_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: x_1 = 1.
+  (* Initializer *)
+  Init: x = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((3 <= i) -> ((i <= 3) -> (ta1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 3) -> (ta2_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta2_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((i <= 0) -> ((0 <= i) -> (ta3_0[i] = 0))).
+  (* Initializer *)
+  Init: ta3_0[1] = 1.
+  (* Initializer *)
+  Init: ta3_0[3] = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (ta3_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (ta3_0[i] = 0))).
+}
+Prove: x_2 = 1.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fs1
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok' in 'fs1':
+Let a = ts1_0[2].
+Let x = a.F5_c.
+Let x_1 = a.F5_b.
+Let x_2 = a.F5_a.
+Let a_1 = ts1_0[0].
+Let a_2 = ts1_0[1].
+Let a_3 = ts1_0[3].
+Assume {
+  Type: IsS5(a_1) /\ IsS5(a_2) /\ IsS5(a_3) /\ is_sint32(a_1.F5_a) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(x).
+  (* Heap *)
+  Type: IsArray_S5(ts1_0).
+  (* Initializer *)
+  Init: forall i : Z. let a_4 = ts1_0[i] in ((0 <= i) -> ((i <= 1) ->
+      (((a_4.F5_a) = 0) /\ ((a_4.F5_b) = 0) /\ ((a_4.F5_c) = 0)))).
+  (* Initializer *)
+  Init: x_2 = 1.
+  (* Initializer *)
+  Init: x_1 = 1.
+  (* Initializer *)
+  Init: x = 0.
+  (* Initializer *)
+  Init: forall i : Z. let a_4 = ts1_0[i] in ((3 <= i) -> ((i <= 3) ->
+      (((a_4.F5_a) = 0) /\ ((a_4.F5_b) = 0) /\ ((a_4.F5_c) = 0)))).
+}
+Prove: (x_1 = x_2) /\ EqS5(a_1, a_2) /\ EqS5(a_2, a_3).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fs1':
+Let a = ts1_0[2].
+Let x = a.F5_c.
+Let x_1 = a.F5_b.
+Let x_2 = a.F5_a.
+Let a_1 = ts1_0[0].
+Assume {
+  Type: IsS5(a_1) /\ IsS5(ts1_0[1]) /\ IsS5(ts1_0[3]) /\
+      is_sint32(a_1.F5_a) /\ is_sint32(x_2) /\ is_sint32(x_1) /\
+      is_sint32(x).
+  (* Heap *)
+  Type: IsArray_S5(ts1_0).
+  (* Initializer *)
+  Init: forall i : Z. let a_2 = ts1_0[i] in ((0 <= i) -> ((i <= 1) ->
+      (((a_2.F5_a) = 0) /\ ((a_2.F5_b) = 0) /\ ((a_2.F5_c) = 0)))).
+  (* Initializer *)
+  Init: x_2 = 1.
+  (* Initializer *)
+  Init: x_1 = 1.
+  (* Initializer *)
+  Init: x = 0.
+  (* Initializer *)
+  Init: forall i : Z. let a_2 = ts1_0[i] in ((3 <= i) -> ((i <= 3) ->
+      (((a_2.F5_a) = 0) /\ ((a_2.F5_b) = 0) /\ ((a_2.F5_c) = 0)))).
+}
+Prove: x = 1.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko' in 'fs1':
+Let a = ts1_0[2].
+Let x = a.F5_c.
+Let x_1 = a.F5_b.
+Let x_2 = a.F5_a.
+Let a_1 = ts1_0[0].
+Let x_3 = a_1.F5_a.
+Assume {
+  Type: IsS5(a_1) /\ IsS5(ts1_0[1]) /\ IsS5(ts1_0[3]) /\ is_sint32(x_3) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(x).
+  (* Heap *)
+  Type: IsArray_S5(ts1_0).
+  (* Initializer *)
+  Init: forall i : Z. let a_2 = ts1_0[i] in ((0 <= i) -> ((i <= 1) ->
+      (((a_2.F5_a) = 0) /\ ((a_2.F5_b) = 0) /\ ((a_2.F5_c) = 0)))).
+  (* Initializer *)
+  Init: x_2 = 1.
+  (* Initializer *)
+  Init: x_1 = 1.
+  (* Initializer *)
+  Init: x = 0.
+  (* Initializer *)
+  Init: forall i : Z. let a_2 = ts1_0[i] in ((3 <= i) -> ((i <= 3) ->
+      (((a_2.F5_a) = 0) /\ ((a_2.F5_b) = 0) /\ ((a_2.F5_c) = 0)))).
+}
+Prove: x_3 = 1.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Struct_Simple_a' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x_5 = 2.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Struct_Simple_b' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x_4 = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Simple_Array_0' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x_3 = 1.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Simple_Array_1' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Let x_6 = t[1].
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(x_6) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x_6 = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,With_Array_Struct_5' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Let a_8 = a_6[5].
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_8).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: a_8 = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,With_Array_Struct_3' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: a_7 = 4.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Sc_eq' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: EqS3_Sc(sc1_0, sc0_0).
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Sc_t' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Let a_8 = a_3[2].
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_8) /\ is_sint32(a_2) /\
+      is_sint32(a[1]) /\ is_sint32(a[2]) /\ is_sint32(a_7) /\
+      is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: a_8 = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Sc_t' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: a_2 = 4.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Sc_c_2' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x_2 = 4.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Sc_c_3' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x_1 = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Tab_no_init' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Let x_6 = tab_0[5].
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(x_6) /\ is_sint16(x) /\
+      is_sint32(x_3) /\ is_sint32(t[1]) /\ is_sint32(t1_0[4]) /\
+      is_sint32(x_5) /\ is_sint32(x_4) /\ is_sint32(x_2) /\ is_sint32(x_1) /\
+      is_sint32(a_3[2]) /\ is_sint32(a_2) /\ is_sint32(a[1]) /\
+      is_sint32(a[2]) /\ is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x_6 = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,Tab_todo' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 31) /\ is_sint32(i).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 < i_1) -> ((i_1 <= 1) -> (t[i_1] = 0))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 3) -> (t1_0[i_1] = 1))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((5 <= i_1) -> ((i_1 <= 6) -> (t1_0[i_1] = 2))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((4 <= i_1) -> ((i_1 <= 4) -> (t1_0[i_1] = 0))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((7 <= i_1) -> ((i_1 <= 9) -> (t1_0[i_1] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((4 <= i_1) -> ((i_1 <= 9) -> (a_6[i_1] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((2 <= i_1) -> ((i_1 <= 2) -> (a_3[i_1] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 1) -> (a[i_1] = 2))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((2 <= i_1) -> ((i_1 <= 2) -> (a[i_1] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 31) -> (tab_0[i_1] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: tab_0[i] <= 255.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Let a_8 = a[1].
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a_8) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: a_8 = 2.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Let a_8 = a[2].
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a_8) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: a_8 = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 3).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 < i_1) -> ((i_1 <= 1) -> (t[i_1] = 0))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 3) -> (t1_0[i_1] = 1))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((5 <= i_1) -> ((i_1 <= 6) -> (t1_0[i_1] = 2))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((4 <= i_1) -> ((i_1 <= 4) -> (t1_0[i_1] = 0))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((7 <= i_1) -> ((i_1 <= 9) -> (t1_0[i_1] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((4 <= i_1) -> ((i_1 <= 9) -> (a_6[i_1] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((2 <= i_1) -> ((i_1 <= 2) -> (a_3[i_1] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 1) -> (a[i_1] = 2))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((2 <= i_1) -> ((i_1 <= 2) -> (a[i_1] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 31) -> (tab_0[i_1] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: t1_0[i] = 1.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,todo' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Let x_6 = t1_0[4].
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\ is_sint32(x_6) /\
+      is_sint32(x_5) /\ is_sint32(x_4) /\ is_sint32(x_2) /\ is_sint32(x_1) /\
+      is_sint32(a_3[2]) /\ is_sint32(a_2) /\ is_sint32(a[1]) /\
+      is_sint32(a[2]) /\ is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x_6 = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Goal *)
+  When: (6 <= i) /\ (i <= 6).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 < i_1) -> ((i_1 <= 1) -> (t[i_1] = 0))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 3) -> (t1_0[i_1] = 1))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((5 <= i_1) -> ((i_1 <= 6) -> (t1_0[i_1] = 2))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((4 <= i_1) -> ((i_1 <= 4) -> (t1_0[i_1] = 0))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((7 <= i_1) -> ((i_1 <= 9) -> (t1_0[i_1] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((4 <= i_1) -> ((i_1 <= 9) -> (a_6[i_1] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((2 <= i_1) -> ((i_1 <= 2) -> (a_3[i_1] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 1) -> (a[i_1] = 2))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((2 <= i_1) -> ((i_1 <= 2) -> (a[i_1] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 31) -> (tab_0[i_1] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: t1_0[i] = 2.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Goal *)
+  When: (7 <= i) /\ (i <= 9).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 < i_1) -> ((i_1 <= 1) -> (t[i_1] = 0))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 3) -> (t1_0[i_1] = 1))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((5 <= i_1) -> ((i_1 <= 6) -> (t1_0[i_1] = 2))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((4 <= i_1) -> ((i_1 <= 4) -> (t1_0[i_1] = 0))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((7 <= i_1) -> ((i_1 <= 9) -> (t1_0[i_1] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((4 <= i_1) -> ((i_1 <= 9) -> (a_6[i_1] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((2 <= i_1) -> ((i_1 <= 2) -> (a_3[i_1] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 1) -> (a[i_1] = 2))).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((2 <= i_1) -> ((i_1 <= 2) -> (a[i_1] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 31) -> (tab_0[i_1] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: t1_0[i] = 0.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'qed_ok,direct_init_union' in 'main':
+Let x = u.F4_U_a.
+Let a = sq0_0.F3_Sc_b.
+Let x_1 = sc3_0.F3_Sc_c.
+Let a_1 = sc3_0.F3_Sc_b.
+Let a_2 = a_1[2].
+Let x_2 = sc2_0.F3_Sc_c.
+Let a_3 = sc2_0.F3_Sc_b.
+Let a_4 = sc1_0.F3_Sc_b.
+Let a_5 = sc0_0.F3_Sc_b.
+Let a_6 = st_0.F2_St_tab.
+Let a_7 = a_6[3].
+Let x_3 = t[0].
+Let x_4 = s.F1_S_b.
+Let x_5 = s.F1_S_a.
+Assume {
+  Type: IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\ is_uint8(tab_0[5]) /\
+      is_sint16(x) /\ is_sint32(x_3) /\ is_sint32(t[1]) /\
+      is_sint32(t1_0[4]) /\ is_sint32(x_5) /\ is_sint32(x_4) /\
+      is_sint32(x_2) /\ is_sint32(x_1) /\ is_sint32(a_3[2]) /\
+      is_sint32(a_2) /\ is_sint32(a[1]) /\ is_sint32(a[2]) /\
+      is_sint32(a_7) /\ is_sint32(a_6[5]).
+  (* Heap *)
+  Type: IsArray_sint32(t) /\ IsArray_sint32(t1_0) /\ IsArray_uint8(tab_0) /\
+      IsS1_S(s) /\ IsS2_St(st_0) /\ IsS3_Sc(sc0_0) /\ IsS3_Sc(sc1_0) /\
+      IsS3_Sc(sc2_0) /\ IsS3_Sc(sc3_0) /\ IsS3_Sc(sq0_0) /\ IsU4_U(u).
+  (* Initializer *)
+  Init: x_5 = 2.
+  (* Initializer *)
+  Init: x_4 = 0.
+  (* Initializer *)
+  Init: x_3 = 1.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 1) -> (t[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 3) -> (t1_0[i] = 1))).
+  (* Initializer *)
+  Init: forall i : Z. ((5 <= i) -> ((i <= 6) -> (t1_0[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 4) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: forall i : Z. ((7 <= i) -> ((i <= 9) -> (t1_0[i] = 0))).
+  (* Initializer *)
+  Init: a_6[0] = 1.
+  (* Initializer *)
+  Init: a_6[1] = 2.
+  (* Initializer *)
+  Init: a_6[2] = 3.
+  (* Initializer *)
+  Init: a_7 = 4.
+  (* Initializer *)
+  Init: forall i : Z. ((4 <= i) -> ((i <= 9) -> (a_6[i] = 0))).
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_5[0] = 2.
+  (* Initializer *)
+  Init: a_5[1] = 3.
+  (* Initializer *)
+  Init: a_5[2] = 4.
+  (* Initializer *)
+  Init: (sc0_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_4[0] = 2.
+  (* Initializer *)
+  Init: a_4[1] = 3.
+  (* Initializer *)
+  Init: a_4[2] = 4.
+  (* Initializer *)
+  Init: (sc1_0.F3_Sc_c) = 5.
+  (* Initializer *)
+  Init: (sc2_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_3[0] = 2.
+  (* Initializer *)
+  Init: a_3[1] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a_3[i] = 0))).
+  (* Initializer *)
+  Init: x_2 = 4.
+  (* Initializer *)
+  Init: (sc3_0.F3_Sc_a) = 1.
+  (* Initializer *)
+  Init: a_1[0] = 2.
+  (* Initializer *)
+  Init: a_1[1] = 3.
+  (* Initializer *)
+  Init: a_2 = 4.
+  (* Initializer *)
+  Init: x_1 = 0.
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_a) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 1) -> (a[i] = 2))).
+  (* Initializer *)
+  Init: forall i : Z. ((2 <= i) -> ((i <= 2) -> (a[i] = 0))).
+  (* Initializer *)
+  Init: (sq0_0.F3_Sc_c) = 2.
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 31) -> (tab_0[i] = 0))).
+  (* Initializer *)
+  Init: x = (-1).
+}
+Prove: x = (-1).
+
+------------------------------------------------------------

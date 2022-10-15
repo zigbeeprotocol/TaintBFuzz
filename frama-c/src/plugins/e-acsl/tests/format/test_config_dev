@@ -1,0 +1,3 @@
+COMMENT: Remove --full-mtracking once e-acsl#118 is fixed
+MACRO: ROOT_EACSL_GCC_OPTS_EXT --validate-format-strings --full-mtracking -F -variadic-no-translation
+MACRO: ROOT_EACSL_EXEC_FILTER sed -e s+/.*/share/e-acsl+FRAMAC_SHARE/e-acsl+

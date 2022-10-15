@@ -1,0 +1,227 @@
+/**************************************************************************/
+/*                                                                        */
+/*  This file is part of Frama-C.                                         */
+/*                                                                        */
+/*  Copyright (C) 2007-2021                                               */
+/*    CEA (Commissariat à l'énergie atomique et aux énergies              */
+/*         alternatives)                                                  */
+/*                                                                        */
+/*  you can redistribute it and/or modify it under the terms of the GNU   */
+/*  Lesser General Public License as published by the Free Software       */
+/*  Foundation, version 2.1.                                              */
+/*                                                                        */
+/*  It is distributed in the hope that it will be useful,                 */
+/*  but WITHOUT ANY WARRANTY; without even the implied warranty of        */
+/*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         */
+/*  GNU Lesser General Public License for more details.                   */
+/*                                                                        */
+/*  See the GNU Lesser General Public License version 2.1                 */
+/*  for more details (enclosed in the file licenses/LGPLv2.1).            */
+/*                                                                        */
+/**************************************************************************/
+
+* { margin: 0; padding: 0 }
+
+html
+{
+    background-color: #fff;
+}
+
+* { margin: 0; padding: 0 }
+
+body {
+    position: absolute;
+    color: #222;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Verdana", sans;
+    font-size: 10pt;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Headers                                                            --- */
+/* -------------------------------------------------------------------------- */
+
+#BODY {
+    display: flex ;
+    flex-flow: row nowrap ;
+    width: 100% ;
+    height: 100% ;
+    overflow: hidden ;
+}
+
+#NAVIGATION {
+    display: block ;
+    overflow: auto ;
+    flex: 0 1 auto ;
+    order: 1 ;
+    box-sizing: border-box ;
+    min-width: 3cm ;
+    max-width: 8cm ;
+    height: 100% ;
+    padding: 0cm 0.5cm 0cm 0.5cm ;
+    background: #eee ;
+}
+
+#CONTENT {
+    display: block ;
+    overflow: auto ;
+    flex: 1 1 auto ;
+    order: 2 ;
+    justify-content: left ;
+    align-content: center ;
+    box-sizing: border-box ;
+    width: 22cm ;
+    height: 100% ;
+    padding: 0cm 1cm 1cm 1cm ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Navigation                                                         --- */
+/* -------------------------------------------------------------------------- */
+
+#NAVIGATION a {
+    color: black ;
+}
+
+#NAVIGATION a.root {
+    display: block;
+    font-family: "Optima", "Verdana", "Arial", sans;
+    font-size: 16pt;
+    margin-top: 1cm;
+    margin-bottom: 6mm;
+}
+
+#NAVIGATION a.chapter {
+    display: block ;
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#NAVIGATION a:hover {
+    background-color: darkorange ;
+}
+
+#NAVIGATION ul {
+    width: 8cm ;
+    margin: 0px ;
+    padding: 0px ;
+}
+
+#NAVIGATION li {
+    list-style-type: none;
+    margin: 0px;
+    padding-left: 8px;
+}
+
+#TOC > a {
+    font-weight: bold;
+}
+
+.TOC > ul > li > a {
+    font-weight: bold;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Headers                                                            --- */
+/* -------------------------------------------------------------------------- */
+
+h1 {
+    width: 22cm;
+    font-family: "Optima", "Verdana", "Arial", sans;
+    text-align: left;
+    margin-top: 1cm;
+    margin-bottom: 6mm;
+    padding-left: 3mm;
+    border-left: 20px solid red;
+}
+
+h2 {
+    width: 18cm;
+    font-family: "Optima", "Verdana", "Arial", sans;
+    margin-top: 16mm;
+    margin-bottom: 2mm;
+    border-bottom: solid thin darkred ;
+}
+
+h3 {
+    width: 18cm;
+    font-family: "Optima", "Verdana", "Arial", sans;
+    margin-top: 5mm;
+    margin-bottom: 3mm;
+    border-bottom: thin solid #404040;
+}
+
+h4,h5,h6 {
+    margin-left:   4mm;
+    margin-top:    4mm;
+    margin-bottom: 1mm;
+    font-family: "Optima", "Verdana", "Arial", sans;
+    font-size: 10pt;
+    font-style: italic;
+    font-weight: bold;
+}
+
+p { margin: 18px 0px 18px 0px; width: 18cm; }
+
+ul,ol,blockquote {
+    margin-left: 24px ;
+    width: 15cm;
+}
+
+li {
+    padding-left: 6px ;
+    padding-right : 6px ;
+}
+
+li p { margin: 0px }
+
+pre {
+    width : 15cm ;
+    background-color: #eef ;
+}
+
+pre,code { color: #106000 }
+
+hr {
+    border: none ;
+    border-top: 1px solid #404040 ;
+    margin-top: 4mm ;
+    margin-bottom: 4mm ;
+}
+
+table {
+    border-collapse: collapse ;
+    margin-top: 4mm ;
+    margin-bottom: 4mm ;
+    margin-left: 6mm ;
+}
+
+th,td {
+    font-weight: normal ;
+    padding: 2px 16px 2px 12px ;
+}
+
+thead {
+    border-bottom: thin solid gray ;
+}
+
+tr.odd {
+    background-color: rgba(178, 222, 236, 0.3) ;
+}
+
+:target { background-color: darkorange; }
+
+a:visited { color: darkred; text-decoration: none }
+a:link    { color: darkred; text-decoration: none }
+a:hover   { background-color: lightgray; color: firebrick }
+a:active  { background-color: lightgray; color: darkgreen }
+
+a:visited em { color: darkgreen; text-decoration: none }
+a:link    em { color: darkgreen; text-decoration: none }
+a:hover   em { background-color: lightgray; color: firebrick }
+a:active  em { background-color: lightgray; color: darkgreen }
+
+/* -------------------------------------------------------------------------- */

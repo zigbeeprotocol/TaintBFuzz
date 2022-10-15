@@ -1,0 +1,129 @@
+[kernel] Parsing local.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  X ∈ {0}
+  Y ∈ {0}
+  Z ∈ {0}
+  T ∈ {0}
+  U ∈ {0}
+  V ∈ {0}
+[eva] computing for function f <- main.
+  Called from local.i:33.
+[eva] Recording results for f
+[eva] Done for function f
+[eva:locals-escaping] local.i:33: Warning: 
+  locals {a} escaping the scope of f through X
+[eva:locals-escaping] local.i:33: Warning: 
+  locals {b} escaping the scope of f through \result<f>
+[eva] computing for function g <- main.
+  Called from local.i:34.
+[eva] local.i:13: Reusing old results for call to f
+[eva:locals-escaping] local.i:13: Warning: 
+  locals {a} escaping the scope of f through X
+[eva:locals-escaping] local.i:13: Warning: 
+  locals {b} escaping the scope of f through \result<f>
+[eva:alarm] local.i:14: Warning: 
+  accessing left-value that contains escaping addresses.
+  assert ¬\dangling(&T);
+[eva] Recording results for g
+[eva] Done for function g
+[eva:locals-escaping] local.i:34: Warning: 
+  locals {d} escaping the scope of g through U
+[eva:locals-escaping] local.i:34: Warning: 
+  locals {d} escaping the scope of g through \result<g>
+[eva] local.i:35: 
+  Frama_C_dump_each:
+  # cvalue:
+  X ∈ ESCAPINGADDR
+  Y ∈ ESCAPINGADDR
+  Z ∈ ESCAPINGADDR
+  T ∈ ESCAPINGADDR
+  U ∈ ESCAPINGADDR
+  V ∈ {0}
+  e ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] computing for function h <- main.
+  Called from local.i:36.
+[eva] Recording results for h
+[eva] Done for function h
+[eva] computing for function i <- main.
+  Called from local.i:37.
+[eva] Recording results for i
+[eva] Done for function i
+[eva] Recording results for main
+[eva] done for function main
+[eva] local.i:14: assertion 'Eva,dangling_pointer' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  X ∈ {{ &a }}
+  __retres ∈ {{ &b }}
+[eva:final-states] Values at end of function g:
+  X ∈ ESCAPINGADDR
+  T ∈ ESCAPINGADDR
+  U ∈ {{ &d }}
+  d ∈ [--..--]
+[eva:final-states] Values at end of function h:
+  __retres ∈ {{ &e + {4} }}
+[eva:final-states] Values at end of function i:
+  x ∈ {{ &local }}
+[eva:final-states] Values at end of function main:
+  X ∈ ESCAPINGADDR
+  Y ∈ ESCAPINGADDR
+  Z ∈ ESCAPINGADDR
+  T ∈ ESCAPINGADDR
+  U ∈ ESCAPINGADDR
+  V ∈ {{ &e + {4} }}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function h
+[from] Done for function h
+[from] Computing for function i
+[from] Done for function i
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  X FROM \nothing
+  \result FROM \nothing
+[from] Function g:
+  X FROM \nothing
+  T FROM \nothing
+  U FROM \nothing
+  \result FROM \nothing
+[from] Function h:
+  \result FROM x
+[from] Function i:
+  NO EFFECTS
+[from] Function main:
+  X FROM \nothing
+  Y FROM \nothing
+  Z FROM \nothing
+  T FROM \nothing
+  U FROM \nothing
+  V FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    X; __retres
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function g:
+    X; T; U; d
+[inout] Inputs for function g:
+    T; U
+[inout] Out (internal) for function h:
+    __retres
+[inout] Inputs for function h:
+    \nothing
+[inout] Out (internal) for function i:
+    x
+[inout] Inputs for function i:
+    \nothing
+[inout] Out (internal) for function main:
+    X; Y; Z; T; U; V
+[inout] Inputs for function main:
+    T; U

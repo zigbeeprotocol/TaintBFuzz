@@ -1,0 +1,459 @@
+[kernel] Parsing struct_array.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva:alarm] struct_array.i:15: Warning: 
+  pointer downcast. assert (unsigned int)(&z1) ≤ 2147483647;
+[eva:alarm] struct_array.i:15: Warning: 
+  pointer downcast. assert (unsigned int)(&z2) ≤ 2147483647;
+[eva:alarm] struct_array.i:15: Warning: 
+  pointer downcast. assert (unsigned int)(&z4) ≤ 2147483647;
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  outp ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+  z1 ∈ {0}
+  z2 ∈ {0}
+  z3 ∈ {0}
+  z4 ∈ {0}
+  T[0].a ∈ {1}
+   [0].b ∈ {2}
+   [0].pp ∈ {0}
+   [0].p ∈ {{ &x }}
+   [1].a ∈ {{ (int)&z1 }}
+   [1].b ∈ {{ (int)&z2 }}
+   [1].pp ∈ {{ &z3 }}
+   [1].p ∈ {{ &y }}
+   [2].a ∈ {{ (int)&z4 }}
+   [2].b ∈ {2}
+   [2].pp ∈ {0}
+   [2].p ∈ {{ &x }}
+   [3].a ∈ {1}
+   [3].b ∈ {2}
+   [3].pp ∈ {0}
+   [3].p ∈ {{ &x }}
+   [4..21] ∈ {0}
+  s.a ∈ {1}
+   .t[0] ∈ {2}
+   .t[1] ∈ {3}
+   .t[2] ∈ {4}
+   .t[3] ∈ {5}
+   .t[4] ∈ {6}
+   .t[5] ∈ {7}
+   .t[6] ∈ {8}
+   .b ∈ {9}
+  s1 ∈ {0}
+  s2 ∈ {0}
+  s3 ∈ {0}
+[eva] computing for function main1 <- main.
+  Called from struct_array.i:56.
+[eva:alarm] struct_array.i:35: Warning: 
+  accessing out of bounds index. assert 0 ≤ v;
+[eva:alarm] struct_array.i:35: Warning: 
+  accessing out of bounds index. assert v < 22;
+[eva:alarm] struct_array.i:36: Warning: 
+  out of bounds write. assert \valid(outp);
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from struct_array.i:57.
+[eva] struct_array.i:41: 
+  Frama_C_show_each:
+  .a ∈ {1}
+  .t[0] ∈ {2}
+  .t[1] ∈ {3}
+  .t[2] ∈ {4}
+  .t[3] ∈ {5}
+  .t[4] ∈ {6}
+  .t[5] ∈ {7}
+  .t[6] ∈ {8}
+  .b ∈ {9}
+[eva] computing for function f1 <- main2 <- main.
+  Called from struct_array.i:42.
+[eva] using specification for function f1
+[eva] Done for function f1
+[eva] struct_array.i:43: 
+  Frama_C_show_each:
+  .a ∈ {1}
+  .t[0] ∈ {2}
+  .t[1] ∈ {3}
+  .t[2] ∈ {4}
+  .t[3] ∈ {5}
+  .t[4] ∈ {6}
+  .t[5..6] ∈ [--..--]
+  .b ∈ {9}
+[eva] computing for function f2 <- main2 <- main.
+  Called from struct_array.i:44.
+[eva] using specification for function f2
+[eva] Done for function f2
+[eva] struct_array.i:45: 
+  Frama_C_show_each:
+  .a ∈ {1}
+  .t[0..2] ∈ [--..--]
+  .t[3] ∈ {5}
+  .t[4] ∈ {6}
+  .t[5] ∈ {7}
+  .t[6] ∈ {8}
+  .b ∈ {9}
+[eva] computing for function f3 <- main2 <- main.
+  Called from struct_array.i:46.
+[eva] using specification for function f3
+[eva] Done for function f3
+[eva] struct_array.i:47: 
+  Frama_C_show_each: .a ∈ {1}
+                     .t[0..6] ∈ [--..--]
+                     .b ∈ {9}
+[eva] struct_array.i:50: assertion got status valid.
+[eva] struct_array.i:51: Frama_C_show_each_reach:
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  outp ∈ {{ &x ; &y }}
+  x ∈ {0; 5}
+  y ∈ {0; 5}
+  z1 ∈ {1}
+[eva:final-states] Values at end of function main2:
+  s1.a ∈ {1}
+    .t[0] ∈ {2}
+    .t[1] ∈ {3}
+    .t[2] ∈ {4}
+    .t[3] ∈ {5}
+    .t[4] ∈ {6}
+    .t[5..6] ∈ [--..--]
+    .b ∈ {9}
+  s2.a ∈ {1}
+    .t[0..2] ∈ [--..--]
+    .t[3] ∈ {5}
+    .t[4] ∈ {6}
+    .t[5] ∈ {7}
+    .t[6] ∈ {8}
+    .b ∈ {9}
+  s3.a ∈ {1}
+    .t[0..6] ∈ [--..--]
+    .b ∈ {9}
+[eva:final-states] Values at end of function main:
+  outp ∈ {{ &x ; &y }}
+  x ∈ {0; 5}
+  y ∈ {0; 5}
+  z1 ∈ {1}
+  s1.a ∈ {1}
+    .t[0] ∈ {2}
+    .t[1] ∈ {3}
+    .t[2] ∈ {4}
+    .t[3] ∈ {5}
+    .t[4] ∈ {6}
+    .t[5..6] ∈ [--..--]
+    .b ∈ {9}
+  s2.a ∈ {1}
+    .t[0..2] ∈ [--..--]
+    .t[3] ∈ {5}
+    .t[4] ∈ {6}
+    .t[5] ∈ {7}
+    .t[6] ∈ {8}
+    .b ∈ {9}
+  s3.a ∈ {1}
+    .t[0..6] ∈ [--..--]
+    .b ∈ {9}
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Computing for function f1 <-main2
+[from] Done for function f1
+[from] Computing for function f2 <-main2
+[from] Done for function f2
+[from] Computing for function f3 <-main2
+[from] Done for function f3
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f1:
+  s1.t[5..6] FROM \nothing
+[from] Function f2:
+  s2.t[0..2] FROM \nothing
+[from] Function f3:
+  s3.t[0..6] FROM \nothing
+[from] Function main1:
+  outp FROM v;
+            T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+              [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+              [17].p; [18].p; [19].p; [20].p; [21].p}
+  x FROM v;
+         T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+           [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+           [17].p; [18].p; [19].p; [20].p; [21].p} (and SELF)
+  y FROM v;
+         T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+           [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+           [17].p; [18].p; [19].p; [20].p; [21].p} (and SELF)
+  z1 FROM z1
+[from] Function main2:
+  s1{{.a; .t[0..4]}; .b} FROM s
+    .t[5..6] FROM \nothing
+  s2{.a; {.t[3..6]; .b}} FROM s
+    .t[0..2] FROM \nothing
+  s3{.a; .b} FROM s
+    .t[0..6] FROM \nothing
+[from] Function main:
+  outp FROM v;
+            T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+              [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+              [17].p; [18].p; [19].p; [20].p; [21].p}
+  x FROM v;
+         T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+           [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+           [17].p; [18].p; [19].p; [20].p; [21].p} (and SELF)
+  y FROM v;
+         T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+           [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+           [17].p; [18].p; [19].p; [20].p; [21].p} (and SELF)
+  z1 FROM z1
+  s1{{.a; .t[0..4]}; .b} FROM s
+    .t[5..6] FROM \nothing
+  s2{.a; {.t[3..6]; .b}} FROM s
+    .t[0..2] FROM \nothing
+  s3{.a; .b} FROM s
+    .t[0..6] FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    outp; x; y; z1
+[inout] Inputs for function main1:
+    v; outp; z1;
+    T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p; [9].p;
+      [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p; [17].p; [18].p;
+      [19].p; [20].p; [21].p}
+[inout] Out (internal) for function main2:
+    s1; s2; s3
+[inout] Inputs for function main2:
+    v; s; s1; s2; s3
+[inout] Out (internal) for function main:
+    outp; x; y; z1; s1; s2; s3
+[inout] Inputs for function main:
+    v; outp; z1;
+    T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p; [9].p;
+      [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p; [17].p; [18].p;
+      [19].p; [20].p; [21].p}; s; s1; s2; s3
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva:alarm] struct_array.i:15: Warning: 
+  pointer downcast. assert (unsigned int)(&z1) ≤ 2147483647;
+[eva:alarm] struct_array.i:15: Warning: 
+  pointer downcast. assert (unsigned int)(&z2) ≤ 2147483647;
+[eva:alarm] struct_array.i:15: Warning: 
+  pointer downcast. assert (unsigned int)(&z4) ≤ 2147483647;
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  outp ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+  z1 ∈ {0}
+  z2 ∈ {0}
+  z3 ∈ {0}
+  z4 ∈ {0}
+  T[0].a ∈ {1}
+   [0].b ∈ {2}
+   [0].pp ∈ {0}
+   [0].p ∈ {{ &x }}
+   [1].a ∈ {{ (int)&z1 }}
+   [1].b ∈ {{ (int)&z2 }}
+   [1].pp ∈ {{ &z3 }}
+   [1].p ∈ {{ &y }}
+   [2].a ∈ {{ (int)&z4 }}
+   [2].b ∈ {2}
+   [2].pp ∈ {0}
+   [2].p ∈ {{ &x }}
+   [3].a ∈ {1}
+   [3].b ∈ {2}
+   [3].pp ∈ {0}
+   [3].p ∈ {{ &x }}
+   [4..21] ∈ {0}
+  s.a ∈ {1}
+   .t[0] ∈ {2}
+   .t[1] ∈ {3}
+   .t[2] ∈ {4}
+   .t[3] ∈ {5}
+   .t[4] ∈ {6}
+   .t[5] ∈ {7}
+   .t[6] ∈ {8}
+   .b ∈ {9}
+  s1 ∈ {0}
+  s2 ∈ {0}
+  s3 ∈ {0}
+[eva] computing for function main1 <- main.
+  Called from struct_array.i:56.
+[eva:alarm] struct_array.i:35: Warning: 
+  out of bounds read. assert \valid_read(&T[v].p);
+[eva:alarm] struct_array.i:36: Warning: 
+  out of bounds write. assert \valid(outp);
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from struct_array.i:57.
+[eva] struct_array.i:41: 
+  Frama_C_show_each:
+  .a ∈ {1}
+  .t[0] ∈ {2}
+  .t[1] ∈ {3}
+  .t[2] ∈ {4}
+  .t[3] ∈ {5}
+  .t[4] ∈ {6}
+  .t[5] ∈ {7}
+  .t[6] ∈ {8}
+  .b ∈ {9}
+[eva] computing for function f1 <- main2 <- main.
+  Called from struct_array.i:42.
+[eva] Done for function f1
+[eva] struct_array.i:43: 
+  Frama_C_show_each:
+  .a ∈ {1}
+  .t[0] ∈ {2}
+  .t[1] ∈ {3}
+  .t[2] ∈ {4}
+  .t[3] ∈ {5}
+  .t[4] ∈ {6}
+  {.t[5..6]; .b} ∈ [--..--]
+[eva] computing for function f2 <- main2 <- main.
+  Called from struct_array.i:44.
+[eva] Done for function f2
+[eva] struct_array.i:45: 
+  Frama_C_show_each:
+  {.a; .t[0..2]} ∈ [--..--]
+  .t[3] ∈ {5}
+  .t[4] ∈ {6}
+  .t[5] ∈ {7}
+  .t[6] ∈ {8}
+  .b ∈ {9}
+[eva] computing for function f3 <- main2 <- main.
+  Called from struct_array.i:46.
+[eva] Done for function f3
+[eva] struct_array.i:47: Frama_C_show_each: [--..--]
+[eva:alarm] struct_array.i:50: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  outp ∈ {{ &x ; &y }}
+  x ∈ {0; 5}
+  y ∈ {0; 5}
+  z1 ∈ {1}
+[eva:final-states] Values at end of function main2:
+  s1.a ∈ {1}
+    .t[0] ∈ {2}
+    .t[1] ∈ {3}
+    .t[2] ∈ {4}
+    .t[3] ∈ {5}
+    .t[4] ∈ {6}
+    {.t[5..6]; .b} ∈ [--..--]
+  s2{.a; .t[0..2]} ∈ [--..--]
+    .t[3] ∈ {5}
+    .t[4] ∈ {6}
+    .t[5] ∈ {7}
+    .t[6] ∈ {8}
+    .b ∈ {9}
+  s3 ∈ [--..--]
+[eva:final-states] Values at end of function main:
+  outp ∈ {{ &x ; &y }}
+  x ∈ {0; 5}
+  y ∈ {0; 5}
+  z1 ∈ {1}
+  s1.a ∈ {1}
+    .t[0] ∈ {2}
+    .t[1] ∈ {3}
+    .t[2] ∈ {4}
+    .t[3] ∈ {5}
+    .t[4] ∈ {6}
+    {.t[5..6]; .b} ∈ [--..--]
+  s2{.a; .t[0..2]} ∈ [--..--]
+    .t[3] ∈ {5}
+    .t[4] ∈ {6}
+    .t[5] ∈ {7}
+    .t[6] ∈ {8}
+    .b ∈ {9}
+  s3 ∈ [--..--]
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Computing for function f1 <-main2
+[from] Done for function f1
+[from] Computing for function f2 <-main2
+[from] Done for function f2
+[from] Computing for function f3 <-main2
+[from] Done for function f3
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f1:
+  s1{.t[5..6]; .b} FROM \nothing
+[from] Function f2:
+  s2{.a; .t[0..2]} FROM \nothing
+[from] Function f3:
+  s3 FROM \nothing
+[from] Function main1:
+  outp FROM v;
+            T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+              [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+              [17].p; [18].p; [19].p; [20].p; [21].p}
+  x FROM v;
+         T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+           [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+           [17].p; [18].p; [19].p; [20].p; [21].p} (and SELF)
+  y FROM v;
+         T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+           [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+           [17].p; [18].p; [19].p; [20].p; [21].p} (and SELF)
+  z1 FROM z1
+[from] Function main2:
+  s1{.a; .t[0..4]} FROM s
+    {.t[5..6]; .b} FROM \nothing
+  s2{.a; .t[0..2]} FROM \nothing
+    {.t[3..6]; .b} FROM s
+  s3 FROM \nothing
+[from] Function main:
+  outp FROM v;
+            T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+              [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+              [17].p; [18].p; [19].p; [20].p; [21].p}
+  x FROM v;
+         T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+           [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+           [17].p; [18].p; [19].p; [20].p; [21].p} (and SELF)
+  y FROM v;
+         T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p;
+           [9].p; [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p;
+           [17].p; [18].p; [19].p; [20].p; [21].p} (and SELF)
+  z1 FROM z1
+  s1{.a; .t[0..4]} FROM s
+    {.t[5..6]; .b} FROM \nothing
+  s2{.a; .t[0..2]} FROM \nothing
+    {.t[3..6]; .b} FROM s
+  s3 FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    outp; x; y; z1
+[inout] Inputs for function main1:
+    v; outp; z1;
+    T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p; [9].p;
+      [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p; [17].p; [18].p;
+      [19].p; [20].p; [21].p}
+[inout] Out (internal) for function main2:
+    s1; s2; s3
+[inout] Inputs for function main2:
+    v; s; s1; s2; s3
+[inout] Out (internal) for function main:
+    outp; x; y; z1; s1; s2; s3
+[inout] Inputs for function main:
+    v; outp; z1;
+    T{[0].p; [1].p; [2].p; [3].p; [4].p; [5].p; [6].p; [7].p; [8].p; [9].p;
+      [10].p; [11].p; [12].p; [13].p; [14].p; [15].p; [16].p; [17].p; [18].p;
+      [19].p; [20].p; [21].p}; s; s1; s2; s3

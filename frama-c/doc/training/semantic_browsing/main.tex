@@ -1,0 +1,1012 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{alltt}
+\usepackage{amsmath,amssymb,theorem}
+
+\title{Browsing your code dependencies}
+
+\usetheme{frama-c}
+
+\definecolor{vert}{rgb}{0.10588, 0.60392, 0.023529}	% #4e9a06
+\newcommand{\orange}[1]{{\textcolor{frama-c-1}{#1}}}
+\newcommand{\orangepale}[1]{{\textcolor{frama-c-2}{#1}}}
+\newcommand{\vvert}[1]{{\textcolor{vert}{#1}}}
+\newcommand{\bleu}[1]{{\textcolor{blue}{#1}}}
+\newcommand{\gris}[1]{{\textcolor{gray}{#1}}}
+
+\newcommand{\goup}{\vspace{-5pt}}
+
+\newcommand{\launch}[2]{%
+\only<beamer>{%
+  \leavevmode%
+  \pdfstartlink user {%
+    /Subtype /Link
+    /A <</S /Launch
+    /F (#1)
+       >>
+       }%
+  #2%
+  \pdfendlink%
+}
+\only<handout>{#2}
+}
+
+\newcommand{\code}[1]{\bleu{\texttt{#1}}}
+\newcommand{\comment}[1]{\gris{(#1)}}
+
+\newcommand{\continuing}{\framesubtitle{(continuing)}}
+\newcommand{\intro}[1]{\begin{center}\vvert{#1}\end{center}}
+\newenvironment{sect}[1]{\orange{#1}\begin{itemize}}{\end{itemize}}
+\newenvironment{features}{\begin{sect}{Features}}{\end{sect}}
+\newenvironment{warnings}{\begin{sect}{Warnings}}{\end{sect}}
+\newenvironment{whatitisgoodfor}{\begin{sect}{What is it good for}}{\end{sect}}
+\newenvironment{howtouse}{\begin{sect}{How to use}}{\end{sect}}
+\newenvironment{exs}{\begin{sect}{Examples}}{\end{sect}}
+\newenvironment{precise}{\begin{sect}{More precisely}}{\end{sect}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% title
+
+\begin{frame}
+  \begin{center}
+    \orange{\LARGE Frama-C Training Session\\[0.5em]
+      \Large Browsing your code dependencies\\[1.2em] 
+    \vvert{\large Julien Signoles}\\[0.5em]
+    \vvert{\Large CEA LIST}\\[0.5em]
+    \vvert{\large Software Reliability Labs}}
+  \end{center}
+
+  \vspace{1.2em}
+  ~\hfill
+  \includegraphics[width=0.15\textwidth]{cealist.pdf}
+  \hfill~
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% general introduction
+
+\begin{frame}{What are we going to do}
+
+  \intro{How to better understand a C code within \orangepale{Frama-C} \\
+    by extracting semantic information from this code}
+
+\begin{sect}{For what purpose}
+\item helping to start verification of an unknown code
+\item helping to understand results of heavier analyses
+\item helping heavier analyses to give better results
+\item helping audit activities 
+\item helping reverse-engineering activities 
+\end{sect}\smallskip
+
+\begin{sect}{In what way}
+\item using a \orangepale{battery of Frama-C plug-ins}, either syntactic or
+  semantic
+\end{sect}\medskip
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Syntactic analyzers}
+
+\goup
+\intro{Only deduce information from a direct use of the AST}
+\goup
+
+\begin{warnings}
+\item those here-presented use the normalised program, not the original one
+\item does not use advanced semantical information (for instance, the value of
+  a variable at some statement)
+\item in particular, \orangepale{does not handle pointers}
+\item some may provide incorrect results in some cases
+\end{warnings}\smallskip
+
+\begin{sect}{Syntactic analyzers within Frama-C}
+\item analysing code using program syntax only is \orangepale{not the
+  main goal of Frama-C}
+\item only few syntactic analyzers in Frama-C
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Syntactic analyzers}
+\framesubtitle{what they (do not) provide}
+
+\begin{sect}{What their are good for}
+\item getting information quickly
+\end{sect}\medskip
+
+\begin{sect}{What their are \orangepale{\emph{not}} good for}
+\item providing a big amount of useful information
+\item providing confidence if they may provide incorrect results
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Semantic analyzers}
+
+  \intro{In this session, all semantic analyzers are based on abtract interpretation and the value
+    analysis plug-in}
+
+\begin{features}
+\item \orangepale{theoretically sound}: always provide correct results, as long
+  as there are no soudness implementation bugs
+\item \orangepale{handle pointers correctly}
+\end{features}\medskip
+
+\begin{sect}{Semantic analyzers within Frama-C}
+\item most Frama-C plug-in are semantic analyzers
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Semantic analyzers}
+\framesubtitle{warnings}
+
+\begin{warnings}
+\item \orangepale{run the value analysis first}
+\item may take a long time
+\item over-approximate the results
+\item all the ways to improve the efficiency/precision of the
+  value analysis apply
+\item all the limitations of the value analysis also apply
+\item all the alarms emitted by the value analysis should be carefully
+  examined
+\end{warnings}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% part I: lightweight analyzers
+
+\begin{frame}{Outline}
+\begin{enumerate}
+\item \vvert{Lightweight analyzers}
+  \begin{itemize}
+  \item Metrics           \hfill \emph{syntactic}
+  \item Callgraphs        \hfill \emph{both}
+  \item Constant foldings \hfill \emph{both}
+  \item Occurrence        \hfill \emph{semantic}
+  \end{itemize}\medskip
+%
+\item \gris{Dependencies and effects}
+  \begin{itemize}
+  \item \gris{Functional dependencies and effects  \hfill \emph{semantic}}
+  \item \gris{Imperative effects       \hfill \emph{semantic}}
+  \item \gris{Operational effect       \hfill \emph{semantic}}
+  \item \gris{Data scoping             \hfill \emph{semantic}}
+  \end{itemize}\medskip
+%
+\item \gris{Reducing code to analyse}
+  \begin{itemize}
+  \item \gris{Slicing   \hfill \emph{semantic}}
+  \item \gris{Sparecode \hfill \emph{semantic}}
+  \item \gris{Impact    \hfill \emph{semantic}}
+  \end{itemize}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Lightweight analyzers}
+
+  They are either:
+  \begin{itemize}
+  \item \vvert{syntactic analyzers}; or
+  \item \vvert{semantic analyzers remaining quite precise} even if the value
+    analysis does not give so precise results
+  \end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% metrics
+
+\begin{frame}{Metrics}
+
+\framesubtitle{syntactic code metrics}
+
+\goup
+\intro{Give some syntactic metrics about the analyzed code.}
+\goup
+
+\begin{features}
+\item defined and undefined functions
+\item number of calls to each function
+\item potential entry points (the never-called functions)
+\item number of loc
+\item number of conditionals, assignments, loops, calls, gotos, pointer access
+\end{features}\smallskip
+
+\begin{warnings}
+\item measures are done on the normalised code, not on the original one
+\item does not take function pointers into account
+\end{warnings}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Metrics}
+\continuing
+
+\begin{whatitisgoodfor}
+\item helping to measure how difficult the analyses will be
+\item helping to identify whether some file is missing
+\item helping to identify which functions have to be stubbed or specified
+\item helping to identify entry points of the analyzed code
+\end{whatitisgoodfor}\medskip
+
+\begin{howtouse}
+\item \code{-metrics} dumps metrics on stdout
+\item \code{-metrics-dump <f>} dumps metrics on file \code{f}
+\item also (partially) available from the GUI
+\end{howtouse}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% callgraph
+
+\begin{frame}{Syntactic callgraph}
+
+\goup
+\intro{Indicate the callers of each function}
+\goup
+
+\begin{features}
+\item representation as \orangepale{graphs into dot files}
+\item notion of \orangepale{service}, a group of related functions which seems
+  to provide common functionalities
+\end{features}\smallskip
+
+\begin{sect}{Warning}
+\item does not take function pointers into account
+\end{sect}\smallskip
+
+\begin{whatitisgoodfor}
+\item helping to identify entry points of the analyzed code
+\item helping to discover services provided by an application
+\item grasping the code architecture
+\end{whatitisgoodfor}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Syntactic callgraph}
+\continuing
+
+\begin{howtouse}
+\item \code{-cg <f>} dumps callgraph in dot file \code{f}
+\item \code{-cg-init-func <f>} adds function \code{f} as a root service
+\item from the GUI: menu \orangepale{View}, then \orangepale{Show Call Graph}
+  \comment{still experimental}
+\end{howtouse}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Semantic callgraph}
+
+
+  \intro{Same as the syntactic callgraph... \\
+    But using the program semantics}
+
+\begin{features}
+\item correctly deal with function pointers
+\end{features}\medskip
+
+\begin{warnings}
+\item run the value analysis first: may take a long time
+\end{warnings}\medskip
+
+\begin{whatitisgoodfor}
+\item computing the callgraph for codes with function pointers
+\end{whatitisgoodfor}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Semantic callgraph}
+\continuing
+
+\begin{howtouse}
+\item \code{-scg-dump} dumps the callgraph to stdout into dot format
+\item \code{-cg-init-func <f>} uses function \code{f} as a root service
+\item not available from the GUI
+\end{howtouse}\medskip
+
+\begin{warnings}
+\item currently not the same interface as the syntactic callgraph
+  \comment{will be fixed soon}
+\item currently not exactly the same notion of service as the syntactic
+  callgraph \comment{will be fixed soon}
+\end{warnings}
+
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% users
+
+\begin{frame}{Users}
+\framesubtitle{function callees}
+
+\goup
+\intro{Same as the semantic callgraph... \\
+  But not represented as a graph}
+\goup
+
+\begin{sect}{Feature}
+\item display the callees of each functions
+\end{sect}\smallskip
+
+\begin{sect}{Warning}
+\item no service computed
+\end{sect}\smallskip
+
+\begin{whatitisgoodfor}
+\item extracting information with some external automatic tools (like grep)
+\end{whatitisgoodfor}\smallskip
+
+\begin{howtouse}
+\item \code{-users} dumps the function callees on stdout
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% constant folding
+
+\begin{frame}{Syntactic constant folding}
+
+\goup
+\intro{Fold all constant expressions in the code before analysis}
+\goup
+
+\begin{sect}{Feature}
+\item replace constant expressions by their results
+\end{sect}\smallskip
+
+\begin{sect}{Warning}
+\item local propagation only: do not propagate the assignment of a constant to
+  a left-value in the propram
+\end{sect}\smallskip
+
+\begin{whatitisgoodfor}
+\item quickly simplifying programs with lots of constant expressions
+\item using analysis puzzled by big constant expressions
+\end{whatitisgoodfor}\smallskip
+
+\begin{howtouse}
+\item \code{-constfold} performs this analysis before all others
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Semantic constant folding}
+
+\intro{Propagate constant expressions in the whole program}
+
+\begin{precise}
+  \item generate a new program where expressions of the input program which are
+    established as constant by the value analysis are
+    \begin{itemize}
+    \item replaced by their value
+    \item propagated through the whole program
+    \end{itemize}
+\end{precise}\smallskip
+
+\begin{features}
+\item the output program is a compilable C code
+\item it has the same behaviour as the original one
+\item handle constant integers and pointers, even function pointers
+\end{features}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Semantic constant folding}
+\continuing
+
+\begin{sect}{Warning}
+\item does not handle floating-point values yet
+\end{sect}\smallskip
+
+\begin{whatitisgoodfor}
+\item simplifying programs with lots of constant values
+\item using analysis puzzled by constant expressions
+%\item watching benefits of constant propagation for some analysis
+\end{whatitisgoodfor}\smallskip
+
+\begin{howtouse}
+\item \code{-semantic-const-folding} propagates constants and pretty print
+  the new source code
+\item \code{-semantic-const-fold <f1>, ..., <fn>} propagates constants only
+  into functions \code{f1}, ..., \code{fn}
+\item \code{-cast-from-constant} replaces expressions by constants even when
+  doing so requires a pointer cast
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% occurrence
+
+\begin{frame}{Occurrence}
+\framesubtitle{where variables are used}
+
+\goup
+\intro{Show the uses of a variable in a program}
+\goup
+
+\begin{precise}
+\item highlight the left-values that may access a part of the location
+  denoted by the selected variable
+\end{precise}\smallskip
+
+\begin{features}
+\item take aliasing into account
+\item also show uses of a C variable in logic annotations
+\item mainly a graphical plug-in
+\end{features}\smallskip
+
+\begin{warnings}
+\item quite difficult to use in batch mode
+\item does not handle logic variable yet
+\end{warnings}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Occurrence}
+\continuing
+
+\begin{whatitisgoodfor}
+\item understanding a quite mysterious piece of code
+\item discovering some unknown aliases of the program
+\end{whatitisgoodfor}\medskip
+
+\begin{howtouse}
+\item \code{-occurrence} dumps the occurrences of each variable on
+  stdout
+\item from the GUI: left panel and contextual menu
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% part II
+
+\begin{frame}{Outline}
+\begin{enumerate}
+\item \gris{Lightweight analyzers}
+  \begin{itemize}
+  \item \gris{Metrics           \hfill \emph{syntactic}}
+  \item \gris{Callgraphs        \hfill \emph{both}}
+  \item \gris{Constant foldings \hfill \emph{both}}
+  \item \gris{Occurrence        \hfill \emph{semantic}}
+  \end{itemize}\medskip
+%
+\item \vvert{Dependencies and effects}
+  \begin{itemize}
+  \item Functional dependencies and effects  \hfill \emph{semantic}
+  \item Imperative effects       \hfill \emph{semantic}
+  \item Operational effects      \hfill \emph{semantic}
+  \item Data scoping             \hfill \emph{semantic}
+  \end{itemize}\medskip
+%
+\item \gris{Reducing code to analyse}
+  \begin{itemize}
+  \item \gris{Slicing   \hfill \emph{semantic}}
+  \item \gris{Sparecode \hfill \emph{semantic}}
+  \item \gris{Impact    \hfill \emph{semantic}}
+  \end{itemize}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Dependencies and effects}
+
+\begin{features}
+\item several notions of input/output for functions
+\item several kinds of dependencies
+\end{features}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% functional dependencies
+
+\begin{frame}{Functional dependencies}
+
+\goup
+\intro{Dependencies between inputs and outputs of functions}
+\goup
+
+\begin{sect}{Definitions}
+\item \orangepale{functional output} of a function \code{f}: left-value that
+  may be modified in \code{f} when \code{f} terminates
+\item \orangepale{functional input} of a function \code{f}: left-value which
+  may impact the output value of a functional output of \code{f}
+\end{sect}\smallskip
+
+\begin{features}
+\item functional outputs and inputs 
+\item dependencies between outputs and inputs
+\item indicate whether the analyzer knows that an output is always modified
+  (when the function terminates)
+\item ignore local variables \comment{from the next release}
+\end{features}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Functional dependencies}
+\continuing
+
+\begin{howtouse}
+\item mainly a batch plug-in
+\item \code{-deps} displays the functional dependencies for each
+  function
+\item \code{-calldeps} displays the functional dependencies by callsite: if a
+  function is called several times, results are not merged
+\end{howtouse}\medskip
+
+\begin{whatitisgoodfor}
+\item providing dataflow specifications of functions
+\item helping to understand relations between inputs and outputs of each
+  function
+\item improving precision of other analyser through \code{-calldeps}
+\end{whatitisgoodfor}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% operational dependencies
+
+\begin{frame}{Inout}
+\framesubtitle{imperative and operational effects}
+
+\intro{What is read, what is written, \\
+  what is read before being written}
+
+\begin{sect}{Definitions}
+\item \orangepale{imperative input} of a function \code{f}: left-value that may
+  be read in \code{f}
+\item \orangepale{imperative output} of a function \code{f}: left-value that
+  may be written in \code{f}
+\item \orangepale{operational input} of a function \code{f}: left-value that
+  is read without having been previously written to, when \code{f}
+  terminates
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Inout}
+\continuing
+
+\begin{features}
+\item imperative inputs and outputs
+\item operational inputs
+%\item ignore local variable
+\end{features}
+
+\begin{warnings}
+\item mainly a batch plug-in
+\item operational inputs are still experimental: the specification may
+  change
+\item operational outputs exist but are not yet documented
+\end{warnings}\medskip
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Inout}
+\framesubtitle{command line options}
+
+\begin{howtouse}
+\item \code{-input} displays the imperative inputs of each
+  function; locals and function parameters are not displayed
+\item \code{-input\_with\_formals} same as \code{-input}, but displaying
+  function parameters
+\item \code{-out} displays the imperative outputs of each function
+\item \code{-inout} displays the operational inputs of each function
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% sparecode
+
+\begin{frame}{Scope}
+\framesubtitle{data scoping}
+
+\intro{Dependencies of a given left-value $l$ at a given program point $L$}
+
+\begin{features}
+\item \orangepale{show defs}: statements that may define the value of $l$ at
+  $L$
+\item \orangepale{zones}: statements that may contribute to define the value of
+  $l$ at $L$
+\item \orangepale{data scope}: statements where $l$ is guaranteed to have the
+  same value as at $L$
+\end{features}\medskip
+
+\begin{sect}{Warning}
+\item still experimental
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Scope}
+\continuing
+
+\begin{whatitisgoodfor}
+\item locally better understand what the program does
+  \begin{itemize}
+  \item relations between left-values
+  \item where the current value of a left-value comes from
+  \item scope of definition of a left-value
+  \end{itemize}
+\end{whatitisgoodfor}\medskip
+
+\begin{howtouse}
+\item only available from the GUI: sub-menu \orangepale{Dependencies} of the
+  contextual menu with three entries (\orangepale{Show defs},
+  \orangepale{Zones}, \orangepale{DataScope})
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% part III
+
+\begin{frame}{Outline}
+\begin{enumerate}
+\item \gris{Lightweight analyzers}
+  \begin{itemize}
+  \item \gris{Metrics           \hfill \emph{syntactic}}
+  \item \gris{Callgraphs        \hfill \emph{both}}
+  \item \gris{Constant foldings \hfill \emph{both}}
+  \item \gris{Occurrence        \hfill \emph{semantic}}
+  \end{itemize}\medskip
+%
+\item \gris{Dependencies and effects}
+  \begin{itemize}
+  \item \gris{Functional dependencies and effects \hfill \emph{semantic}}
+  \item \gris{Imperative effects       \hfill \emph{semantic}}
+  \item \gris{Operational effects      \hfill \emph{semantic}}
+  \item \gris{Data scoping             \hfill \emph{semantic}}
+  \end{itemize}\medskip
+%
+\item \vvert{Reducing code to analyse}
+  \begin{itemize}
+  \item Slicing   \hfill \emph{semantic}
+  \item Sparecode \hfill \emph{semantic}
+  \item Impact    \hfill \emph{semantic}
+  \end{itemize}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Reducing code to analysed}
+
+\begin{features}
+\item generate a new program in a new project
+\item the new program is compilable
+\item the new program is usually shorter
+\item the new program is usually easier to analyze
+\end{features}\medskip
+
+\begin{sect}{Warning}
+\item usually is not always...
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slicing
+
+\begin{frame}{Slicing}
+  \framesubtitle{program specialization}
+
+  \intro{Specialize the program according to some user-provided criteria}
+
+\begin{features}
+\item generate a new program in a new project
+\item the new program is compilable
+\item the new program and the analysed one have the same behaviour according to
+  the slicing criterion
+\end{features}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Slicing}
+\framesubtitle{available criteria}
+
+\goup
+\intro{What are the available criteria?}
+
+\begin{sect}{Criteria for code observation}
+% \item preserving behaviour of function \orangepale{calls}
+% \item preserving behaviour of function \orangepale{returns}
+\item preserving effects of \orangepale{statements}
+\item preserving the \orangepale{read/write accesses} of/to left-values
+\end{sect}\medskip
+
+\begin{sect}{Criteria for proving properties}
+\item preserving behaviour of \orangepale{assertions}
+\item preserving behaviour of \orangepale{loop invariants}
+\item preserving behaviour of \orangepale{loop variants}
+\item preserving behaviour of \orangepale{threats} (emitted by the value
+  analysis)
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Slicing}
+\framesubtitle{selecting criteria}
+
+\begin{sect}{Pragmas}
+\item \code{/*@ slice pragma ctrl; */} preserves the reachability of this
+  control-flow point
+\item \code{/*@ slice pragma expr e; */} preserves the value of the ACSL
+  expression \code{e} at this control-flow point
+\item \code{/*@ slice pragma stmt; */} preserves the effects of the next
+  statement
+\end{sect}\medskip
+
+\begin{howtouse}
+\item from command line options
+\item from the GUI: left panel and contextual menu
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Slicing}
+\framesubtitle{command line options}
+
+\goup
+\intro{Each option preserves the semantics of the input program according to a
+  specific criterion}
+
+\begin{sect}{Options of the form \code{-slice-$criterion$ <f1>, ..., <fn>}}
+\item \code{-slice-calls}: \orangepale{calls} to these functions
+\item \code{-slice-return}: the \orangepale{return} of the these functions
+\item \code{-slice-pragma}: \orangepale{slicing pragmas} in theses functions
+\item \code{-slice-assert}: \orangepale{assertions} of these functions
+\item \code{-slice-loop-inv}: \orangepale{loop invariants} in these functions
+\item \code{-slice-loop-var}: \orangepale{loop variants} in these functions
+\item \code{-slice-threat}: \orangepale{threats} in these functions
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Slicing}
+\framesubtitle{command line options (continuing)}
+
+\begin{sect}{Options of the form \code{-slice-$criterion$ <v1>, ..., <vn>}}
+\item \code{-slice-value} values of these left-values at the end of the entry
+  point
+\item \code{-slice-rd} \orangepale{read access} to these left-values
+\item \code{-slice-wr} \orangepale{write access} to these left-values
+\end{sect}\medskip
+
+\begin{sect}{Warning}
+\item addresses of the left-values are evaluated at the beginning of the entry
+  point
+\end{sect}
+
+% \begin{sect}{Example}
+% \item \code{frama-c -slice-return main -slice-wr foo, bar}
+%   generates a new compilable program preserving
+%   \begin{itemize}
+%   \item the behaviour of the \texttt{return} of function \texttt{main}
+%   \item the behaviour of each assignment to \texttt{foo} and \texttt{bar}
+%   \end{itemize}
+% \end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Slicing}
+\framesubtitle{customisation}
+
+\begin{sect}{Custom options}
+\item \code{-slicing-level <n>} specifies how to slice the callees
+  \begin{itemize}
+  \item \code{0}: never slice the called functions
+  \item \code{1}: slice the callees but preserves all their functional outputs
+  \item \code{2}: slice the callees but create at most 1 slice by function
+  \item \code{3}: most precise slices; create as many slices as necessary
+  \end{itemize}
+  Default level is \code{2}
+\item \code{-no-slice-undef-functions} does not slice the prototype of
+  undefined functions (default)
+\item \code{-slice-undef-functions} slices the prototype of undefined functions
+\item \code{-slice-print} pretty prints the sliced code
+\end{sect}
+
+\begin{sect}{Warning}
+\item the higher the slicing level is, the slower the slicing is
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Slicing}
+
+\begin{whatitisgoodfor}
+\item helping to extract the signifiant parts of a program according to your
+  own criteria
+\item helping to understand where a behavior comes from
+\item helping analyses to give better results
+\item helping audit activities 
+\end{whatitisgoodfor}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% sparecode
+
+\begin{frame}{Sparecode}
+\framesubtitle{code cleaner}
+
+\intro{Remove useless code of the program}
+
+\begin{features}
+\item generate a new program in a new project
+\item the new program is compilable
+\item the values assigned to the output variables of the main function are
+  preserved in the new program
+\item slicing pragmas may be used to keep some statements
+  \begin{itemize}
+  \item \code{/*@ slice pragma ctrl; */}
+  \item \code{/*@ slice pragma expr e; */}
+  \item \code{/*@ slice pragma stmt; */}
+  \end{itemize}
+\end{features}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Sparecode}
+\continuing
+
+\begin{warnings}
+\item still experimental
+\item partial support of ACSL: only the annotations inside function bodies
+  (\emph{e.g.} assertions) are processed at the moment; all the others are
+  ignored and do not appear in the new program
+\end{warnings}\medskip
+
+\begin{whatitisgoodfor}
+\item help to discover what is useless in a program
+\item may improve the results of others analyzers which are puzzled by some
+  useless code
+\end{whatitisgoodfor}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Sparecode}
+\framesubtitle{command line options}
+
+\begin{howtouse}
+\item \code{-sparecode-analysis} removes statements and functions that are not
+  useful to compute the result of the program
+\item \code{-sparecode-rm-unused-globals} removes unused types and global variables
+\item \code{-sparecode-no-annot} may remove some useless code even if it
+  changes the validity of some ACSL properties
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% impact
+
+\begin{frame}{Impact}
+
+\goup
+\intro{What could be discovered \\
+if the side effect of a statement would be revealed}
+\goup
+
+\begin{precise}
+\item a statement \code{s} is impacted by a statement \code{s'} iff modifying
+  the effect of \code{s'} by another \emph{possible} one may modify the effect
+  of \code{s}
+\item an effect is \emph{possible} iff there is an execution of the program
+  that generates this effect. For instance, the possible effects of
+  \code{z=x+y;} in \code{x=c?0:1; y=c?0:1; z=x+y} are \code{z} becomes equal to
+  \code{0} or \code{2}.
+\end{precise}\smallskip
+
+\begin{sect}{Warning}
+\item still experimental
+\end{sect}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Impact}
+\continuing
+
+\begin{whatitisgoodfor}
+\item helping to understand what a statement is useful for
+\item helping to apprehend code changes
+\item helping audit activities, in particular security audits
+\end{whatitisgoodfor}\medskip
+
+\begin{howtouse}
+\item \code{-impact-pragma <f1>, ..., <fn>} computes the impact from the pragmas
+  in functions \code{f1}, ..., \code{fn}. Only the following pragma is yet
+  usable.
+  
+  \code{/*@ impact pragma stmt; */}
+\item \code{-impact-print} dumps the result of the analysis on stdout
+%\item \code{-impact-slicing} slices
+\item from the GUI: left panel and contextual menu
+\end{howtouse}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Conclusion
+
+\begin{frame}{Conclusion}
+
+  \intro{Battery of Frama-C plug-ins presented}
+
+\begin{sect}{For what purpose}
+\item helping to start verification of an unknown code
+\item helping to understand results of heavier analyses
+\item helping heavier analyses to give better results
+\item helping audit activities 
+\item helping reverse-engineering activities 
+\end{sect}
+
+\intro{Browse your code dependencies more easily!}
+
+\end{frame}
+
+\end{document}

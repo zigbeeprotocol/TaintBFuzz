@@ -1,0 +1,19 @@
+# frama-c -wp [...]
+[kernel] Parsing old-assigns.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function old
+------------------------------------------------------------
+
+Goal Assigns (file old-assigns.c, line 8) in 'old':
+Call Effect at line 11
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file old-assigns.c, line 8) in 'old':
+Call Effect at line 11
+Prove: true.
+
+------------------------------------------------------------

@@ -1,0 +1,5 @@
+[kernel] Parsing incomplete_array.i (no preprocessing)
+[kernel] incomplete_array.i:11: User Error: 
+  declaration of array of incomplete type 'struct S`
+[kernel] User Error: stopping on file "incomplete_array.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

@@ -1,0 +1,4 @@
+PLUGIN: wp,rtegen
+CMD: @frama-c@
+LOG: @PTEST_NAME@.@PTEST_NUMBER@.dot
+OPT: -wp-prover none -wp-region -wp-msg-key dot,chunk,roots,garbled -wp-warn-key pedantic-assigns=inactive -wp-region-output-dot @PTEST_RESULT@/@PTEST_NAME@.@PTEST_NUMBER@.dot -wp-fct job

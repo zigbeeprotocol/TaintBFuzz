@@ -1,0 +1,10 @@
+53a54,55
+> [kernel] struct2.i:78: Warning: 
+>   all target addresses were invalid. This path is assumed to be dead.
+136,137d137
+<   tab4[0] ∈ {0; 2}
+<       [1] ∈ {0}
+206c206
+<     s4.e[0].a; s8.b; s7; tab1[0..1]; tab2[0..1]; tab3[0..1]; tab4[0]; tab5[0];
+---
+>     s4.e[0].a; s8.b; s7; tab1[0..1]; tab2[0..1]; tab3[0..1]; tab5[0];

@@ -1,0 +1,95 @@
+\chapter{Setting Up Plug-ins}
+\label{user-plugins}
+
+The \FramaC platform has been designed to support third-party plug-ins. In the
+present chapter, we present how to configure, compile, install, run and update
+such extensions. This chapter does not deal with the development of new plug-ins (see the \textsf{Plug-in Development
+  Guide}~\cite{plugin-dev-guide}). Nor does it deal with usage
+of plug-ins, which is the purpose of individual plug-in documentation (see e.g.~\cite{value,wp,slicing}).
+
+\section{The Plug-in Taxonomy}\label{sec:plugin-taxonomy}
+
+There are two kinds of plug-ins: \emph{internal} and \emph{external} plug-ins.
+\index{Plug-in!Internal|bfit}\index{Plug-in!External|bfit}
+Internal plug-ins are those distributed within the \FramaC kernel while
+external plug-ins are those distributed independently of the \FramaC
+kernel. They only differ in the way they are installed (see
+Sections~\ref{sec:install-internal} and~\ref{sec:install-external}).
+
+\section{Installing Internal Plug-ins}\label{sec:install-internal}
+\index{Plug-in!Internal}
+
+Internal plug-ins are automatically installed with the \FramaC kernel.
+
+If you use a source distribution of \FramaC, it is possible to disable (resp.
+force) the installation of a plug-in of name \texttt{<plug-in name>} by passing
+the {\tt configure} script the option \texttt{-{}-disable-<plug-in name>}
+(resp. \texttt{-{}-enable-<plug-in name>}). Disabling a plug-in means it is
+neither compiled nor installed. Forcing the compilation and installation of a
+plug-in against {\tt configure}'s autodetection-based default may cause the
+entire \FramaC configuration to fail. You can also use the option
+\optiondef{-{}-}{with-no-plugin} in order to disable all plug-ins.
+
+\section{Installing External Plug-ins}\label{sec:install-external}
+\index{Plug-in!External}
+
+To install an external plug-in, \FramaC itself must be properly installed
+first. In particular, \texttt{frama-c \optionuse{-}{print-share-path}}
+must return the share directory of \FramaC (see Section~\ref{sec:var-share}),
+while \texttt{frama-c \optionuse{-}{print-lib-path}}
+must return the directory where the \FramaC compiled library is installed (see
+Section~\ref{sec:var-lib}).
+
+The standard way for installing an external plug-in from source is to run the
+sequence of commands \texttt{make \&\& make install}, possibly preceded by
+\texttt{./configure}. Please refer to each
+plug-in's documentation for installation instructions.
+
+External plug-ins may also be configured and compiled at the same time as
+the \FramaC kernel by using the option
+\texttt{-{}-enable-external=<path-to-plugin>}
+\optionidxdef{-{}-}{enable-external}. This option may be passed several times.
+
+\section{Loading Plug-ins}\label{sec:use-plugins}
+
+At launch, \FramaC loads all plug-ins in the
+directories indicated by \texttt{frama-c \optionuse{-}{print-plugin-path}} (see
+Section~\ref{sec:var-plugin}). \FramaC can locate plug-ins in additional
+directories by using the option \texttt{\optiondef{-}{add-path} <paths>}.
+To prevent this behavior, you can use option
+\optiondef{-}{no-autoload-plugins}.
+
+Another way to load a plug-in is to set the
+\texttt{\optiondef{-}{load-module} <files>} or
+\texttt{\optiondef{-}{load-script} <files>} options, using in both cases a
+comma-separated list of specifications, which may be one of the following:
+
+\begin{itemize}
+\item an OCaml source file (in which case it will be compiled);
+\item an OCaml object file (\texttt{.cmo} or \texttt{.cma} if running
+  \FramaC in bytecode, or \texttt{.cmxs} if running \FramaC in native code);
+\item a Findlib package.
+\end{itemize}
+
+File extensions for source and object files may be omitted, e.g.
+\texttt{-load-script file} will search for \texttt{file.ml} and
+\texttt{file.cm*} (where \texttt{cm*} depends if \FramaC is running in
+bytecode or native code).
+
+
+\begin{important}
+In general, plug-ins must be compiled with the
+very same \caml compiler than \FramaC was, and against a consistent \FramaC
+installation. Loading will fail and a warning will be emitted at launch if this
+is not the case.
+
+These options require the \caml compiler that was
+used to compile \FramaC to be available and the \FramaC compiled library to be
+found (see Section~\ref{sec:var-lib}).
+\end{important}
+
+% Local Variables:
+% ispell-local-dictionary: "english"
+% TeX-master: "userman.tex"
+% compile-command: "make"
+% End:

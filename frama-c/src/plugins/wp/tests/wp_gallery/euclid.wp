@@ -1,0 +1,3 @@
+library Euclid:
+why3.import += "number.Gcd";
+logic integer gcd(integer, integer) = "Gcd.gcd" ;

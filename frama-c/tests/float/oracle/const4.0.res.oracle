@@ -1,0 +1,17 @@
+[kernel] Parsing const4.i (no preprocessing)
+[kernel:parser:decimal-float] const4.i:6: Warning: 
+  Floating-point constant 3.4e38f is not represented exactly. Will use 0x1.ff933c0000000p127.
+[kernel:parser:decimal-float] const4.i:7: Warning: 
+  Floating-point constant 3.405e38f is not represented exactly. Will use inf.
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva:alarm] const4.i:7: Warning: 
+  non-finite float value. assert \is_finite((float)3.405e38f);
+[eva] const4.i:7: Warning: evaluation of initializer '(double)3.405e38f' failed
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  NOT ACCESSIBLE
+[eva] Eva not started because globals initialization is not computable.
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] ====== END OF DEPENDENCIES ======

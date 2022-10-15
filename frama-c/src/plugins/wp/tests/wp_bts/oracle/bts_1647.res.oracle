@@ -1,0 +1,32 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_1647.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition 'e1' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'e2' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'e3' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'e4' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'e5' in 'f':
+Prove: true.
+
+------------------------------------------------------------

@@ -1,0 +1,199 @@
+##########################################################################
+#                                                                        #
+#  This file is part of Frama-C.                                         #
+#                                                                        #
+#  Copyright (C) 2007-2022                                               #
+#    CEA (Commissariat à l'énergie atomique et aux énergies              #
+#         alternatives)                                                  #
+#                                                                        #
+#  you can redistribute it and/or modify it under the terms of the GNU   #
+#  Lesser General Public License as published by the Free Software       #
+#  Foundation, version 2.1.                                              #
+#                                                                        #
+#  It is distributed in the hope that it will be useful,                 #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#  GNU Lesser General Public License for more details.                   #
+#                                                                        #
+#  See the GNU Lesser General Public License version 2.1                 #
+#  for more details (enclosed in the file licenses/LGPLv2.1).            #
+#                                                                        #
+##########################################################################
+
+ptests/ptests_config.ml: Makefile.generating share/Makefile.config
+	$(PRINT_MAKING) $@
+	$(RM) $@
+	$(TOUCH) $@
+	$(CHMOD_RO) $@
+
+tests/ptests_config: Makefile.generating share/Makefile.config
+	$(PRINT_MAKING) $@
+	$(RM) $@
+	$(TOUCH) $@
+	$(ECHO) "DEFAULT_SUITES=$(PLUGIN_TESTS_LIST)" >> $@
+	$(ECHO) "TOPLEVEL_PATH=$(FRAMAC_ROOT_SRCDIR)/bin/toplevel.$(OCAMLBEST)$(EXE)" >> $@
+	$(ECHO) "OCAMLRUNPARAM=" >> $@
+	$(ECHO) "FRAMAC_SESSION=$(FRAMAC_ROOT_SRCDIR)" >> $@
+	$(ECHO) "FRAMAC_SHARE=$(FRAMAC_ROOT_SRCDIR)/share" >> $@
+	$(ECHO) "FRAMAC_PLUGIN=$(FRAMAC_ROOT_SRCDIR)/lib/plugins" >> $@
+	$(ECHO) "FRAMAC_PLUGIN_GUI=$(FRAMAC_ROOT_SRCDIR)/lib/plugins/gui" >> $@
+	$(ECHO) "FRAMAC_LIB=$(FRAMAC_ROOT_SRCDIR)/lib/fc" >> $@
+	$(CHMOD_RO) $@
+
+ALL_LIBRARY_NAMES=$(shell ocamlfind query -r -p-format $(LIBRARY_NAMES) $(LIBRARY_NAMES_GUI))
+MAJOR_VERSION=$(shell $(SED) -E 's/^([0-9]+)\..*/\1/' VERSION)
+MINOR_VERSION=$(shell $(SED) -E 's/^[0-9]+\.([0-9]+).*/\1/' VERSION)
+
+$(CONFIG_FILE): $(CONFIG_FILE).in VERSION VERSION_CODENAME share/Makefile.config Makefile.generating configure.in
+	$(SED) \
+	  -e "s|@VERSION@|$(VERSION)|" \
+          -e "s|@VERSION_CODENAME@|$(VERSION_CODENAME)|" \
+          -e "s|@CURR_DATE@|$$(LC_ALL=C date)|" \
+          -e "s|@LABLGTK@|$(LABLGTK)|" \
+	  -e "s|@OCAMLC@|$(OCAMLC)|" \
+          -e "s|@OCAMLOPT@|$(OCAMLOPT)|" \
+	  -e "s|@WARNINGS@|$(WARNINGS)|" \
+          -e "s|@FRAMAC_DATADIR@|$(FRAMAC_DATADIR)|" \
+	  -e "s|@FRAMAC_LIBDIR@|$(FRAMAC_LIBDIR)|" \
+	  -e "s|@FRAMAC_ROOT_SRCDIR@|$(FRAMAC_ROOT_SRCDIR)|" \
+	  -e "s|@FRAMAC_PLUGINDIR@|$(FRAMAC_PLUGINDIR)|" \
+	  -e "s|@FRAMAC_DEFAULT_CPP@|$(FRAMAC_DEFAULT_CPP)|" \
+          -e "s|@FRAMAC_DEFAULT_CPP_ARGS@|$(FRAMAC_DEFAULT_CPP_ARGS)|" \
+	  -e "s|@FRAMAC_GNU_CPP@|$(FRAMAC_GNU_CPP)|" \
+          -e "s|@DEFAULT_CPP_KEEP_COMMENTS@|$(DEFAULT_CPP_KEEP_COMMENTS)|" \
+          -e "s|@DEFAULT_CPP_SUPPORTED_ARCH_OPTS@|$(DEFAULT_CPP_SUPPORTED_ARCH_OPTS)|" \
+          -e "s|@COMPILATION_UNITS@|$(COMPILATION_UNITS)|" \
+          -e "s|@LIBRARY_NAMES@|$(foreach p,$(ALL_LIBRARY_NAMES),\"$p\";)|" \
+	  -e "s|@OPTDOT@|$(OPTDOT)|" \
+          -e "s|@EXE@|$(EXE)|" \
+          -e "s|@MAJOR_VERSION@|$(MAJOR_VERSION)|" \
+          -e "s|@MINOR_VERSION@|$(MINOR_VERSION)|" \
+          $< > $@.tmp
+	@touch -r $@.tmp $<
+	$(CP_IF_DIFF) $@.tmp $@
+	$(RM) $@.tmp
+	$(CHMOD_RO) $@
+
+ifeq ("$(LOCAL_MACHDEP)","yes")
+
+MACHDEP_PATH=share
+
+# Create the machine dependency module
+# If the cl command cannot be run then the MSVC part will be identical to GCC
+.PHONY : machdep $(MACHDEP_PATH)/local_machdep.ml
+machdep: $(MACHDEP_PATH)/local_machdep.ml
+bin/machdep.exe: machdep
+
+config.h: 
+	$(PRINT_MAKING) $@
+	$(ECHO) "missing config.h file generated at configure stage using --enable-localmachdep option."
+	exit 1;
+
+$(MACHDEP_PATH)/local_machdep.ml: \
+  $(MACHDEP_PATH)/machdep.c config.h Makefile.generating
+	$(PRINT_MAKING) $@
+	$(RM) $@
+	$(ECHO) "(* This module was generated automatically by code in Makefile and machdep.c *)" >$@
+# Now generate the type definition
+	$(ECHO) "open Cil_types" >> $@
+	if $(CC) -D_GNUCC $< -o bin/machdep.exe ;then \
+	    $(ECHO) "machdep.exe created successfully."; \
+	else \
+	    $(RM) $@; exit 1; \
+	fi
+	$(ECHO) "let gcc = {" >>$@
+	./bin/machdep.exe >>$@
+	$(ECHO) "	 underscore_name = $(UNDERSCORE_NAME) ;" >> $@
+	$(ECHO) "}"          >>$@
+	if cl /D_MSVC $< /Febin/machdep.exe /Fobin/machdep.obj ;then \
+	   $(ECHO) "let hasMSVC = true" >>$@; \
+	else \
+	   $(ECHO) "let hasMSVC = false" >>$@; \
+	fi
+	$(ECHO) "let msvc = {" >>$@
+	./bin/machdep.exe >>$@
+	$(ECHO) "	 underscore_name = true ;" >> $@
+	$(ECHO) "}"          >>$@
+	$(ECHO) \
+	  "let gccHas__builtin_va_list = $(HAVE_BUILTIN_VA_LIST)" >>$@
+	$(ECHO) \
+	  "$@ generated. You may have this file merged into Frama-C by developers."
+	$(CHMOD_RO) $@
+
+endif
+
+# transitioning.ml
+
+GENERATED+= src/libraries/utils/json.ml src/libraries/stdlib/transitioning.ml
+
+src/libraries/stdlib/transitioning.ml: \
+  src/libraries/stdlib/transitioning.ml.in \
+  Makefile.generating share/Makefile.config
+	$(PRINT_MAKING) $@
+	rm -f $@
+	cat $< > $@
+	$(CHMOD_RO) $@
+
+ifeq ($(HAS_DGRAPH),yes)
+  DGRAPHFILES:=debug_manager
+  GENERATED+=src/plugins/gui/debug_manager.ml
+  ifeq ($(HAS_OCAMLGRAPH_2), yes)
+	DGRAPH_MODULE=Graph_gtk
+	DGRAPH_ERROR=Graph_gtk.DGraphMake.DotError
+  else
+	DGRAPH_MODULE=Dgraph
+	DGRAPH_ERROR=Dgraph.DGraphModel.DotError
+  endif
+  src/plugins/gui/debug_manager.ml \
+  src/plugins/gui/dgraph_helper.ml \
+  src/plugins/callgraph/cg_viewer.ml: %.ml: %.yes.ml Makefile.generating share/Makefile.config
+	$(RM) $@
+	$(SED) -e 's/DGRAPH_MODULE/$(DGRAPH_MODULE)/g' \
+               -e 's/DGRAPH_ERROR/$(DGRAPH_ERROR)/g' $< > $@
+	$(CHMOD_RO) $@
+else
+  DGRAPHFILES:=
+  src/plugins/gui/dgraph_helper.ml: src/plugins/gui/dgraph_helper.no.ml Makefile.generating share/Makefile.config
+	$(CP) $< $@
+	$(CHMOD_RO) $@
+endif
+
+# Merlin #
+
+.PHONY:merlin
+
+# hack to account for the fact that merlin and ocamlfind treat
+# differently dependencies between ppx rewriting.
+PPX_DEPENDENCIES=ppx_deriving.eq ppx_import
+
+#create Merlin file
+.merlin merlin: share/Makefile.config Makefile.generating
+	$(PRINT_MAKING) $@
+	echo "FLG -c $(FLAGS) $(FRAMAC_USER_MERLIN_FLAGS)" > .merlin
+	for PKG in $(filter-out $(PPX_DEPENDENCIES),$(LIBRARY_NAMES)); \
+          do echo PKG $$PKG >> .merlin; done
+	for PKG in $(filter-out $(PPX_DEPENDENCIES),$(LIBRARY_NAMES_GUI)); \
+	 do echo PKG $$PKG >> .merlin; done
+	for PKG in \
+         $(filter $(LIBRARY_NAMES) $(LIBRARY_NAMES_GUI),$(PPX_DEPENDENCIES)); \
+         do echo PKG $$PKG >> .merlin; done
+	for PKG in $(MERLIN_PACKAGES); do echo PKG $$PKG >> .merlin; done
+	echo "B lib/plugins" >> .merlin
+	echo "B lib/plugins/gui" >> .merlin
+	find src \( -name '.*' -o -name tests -o -name doc -o -name '*.cache' \) -prune \
+	      -o \( -type d -exec printf "B %s\n" {} \; -exec printf "S %s\n" {} \; \) >> .merlin
+
+ifeq ("$(DEVELOPMENT)","yes")
+all:: .merlin
+endif
+
+lib/fc/META.frama-c: share/META.frama-c share/Makefile.config Makefile.generating
+	$(MKDIR) lib/fc/
+	$(SED) "s/@REQUIRES/$(LIBRARY_NAMES)/" $< > $@
+
+GENERATED += lib/fc/META.frama-c
+
+
+# Local Variables:
+# mode: makefile
+# End:

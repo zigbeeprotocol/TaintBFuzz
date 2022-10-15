@@ -1,0 +1,11 @@
+[e-acsl] beginning translation.
+[e-acsl] bts2305.c:17: Warning: 
+  E-ACSL construct `bitfield pointer' is not yet supported.
+  Ignoring annotation.
+[e-acsl] bts2305.c:18: Warning: 
+  E-ACSL construct `bitfield pointer' is not yet supported.
+  Ignoring annotation.
+[e-acsl] bts2305.c:20: Warning: 
+  E-ACSL construct `bitfield pointer' is not yet supported.
+  Ignoring annotation.
+[e-acsl] translation done in project "e-acsl".

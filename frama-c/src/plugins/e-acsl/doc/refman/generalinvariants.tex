@@ -1,0 +1,4 @@
+\begin{syntax}
+  assertion ::= [ "/*@" clause-kind? "invariant" pred ";" "*/" ] ;
+  | [ { "/*@" "for" id ("," id)* ":" clause-kind? "invariant" pred ";" "*/" } ] ;
+\end{syntax}

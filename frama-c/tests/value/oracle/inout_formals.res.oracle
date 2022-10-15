@@ -1,0 +1,27 @@
+[kernel] Parsing inout_formals.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+[eva:alarm] inout_formals.i:7: Warning: out of bounds write. assert \valid(i);
+[eva] inout_formals.i:8: Frama_C_show_each: {{ &S_i }}
+[eva] Recording results for main
+[eva] done for function main
+[inout] InOut (internal) for function main:
+  Operational inputs:
+    x; y; i
+  Operational inputs on termination:
+    x; y; i
+  Sure outputs:
+    S_i[0]
+[inout] InOut (with formals) for function main:
+  Operational inputs:
+    x; y; i
+  Operational inputs on termination:
+    x; y; i
+  Sure outputs:
+    S_i[0]
+[inout] Inputs (with formals) for function main:
+    x; y; i; S_i[0]

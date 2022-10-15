@@ -1,0 +1,154 @@
+# frama-c -wp -wp-model 'Typed (Caveat)' [...]
+[kernel] Parsing caveat_range.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function reset
+------------------------------------------------------------
+
+Goal Post-condition (file caveat_range.i, line 12) in 'reset':
+Let a = global(G_p_22).
+Let a_1 = havoc(Mint_undef_0, Mint_0, shift_S1_S(a, 0), 20).
+Assume {
+  Type: is_sint32(i_1).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 9).
+  (* Invariant *)
+  Have: (0 <= i_1) /\ (i_1 <= 10).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i_1) ->
+      (a_1[shiftfield_F1_S_f(shift_S1_S(a, i_2))] = 1))).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i_1) ->
+      (a_1[shiftfield_F1_S_g(shift_S1_S(a, i_2))] = 2))).
+  (* Else *)
+  Have: 10 <= i_1.
+}
+Prove: a_1[shiftfield_F1_S_f(shift_S1_S(a, i))] = 1.
+
+------------------------------------------------------------
+
+Goal Post-condition (file caveat_range.i, line 13) in 'reset':
+Let a = global(G_p_22).
+Let a_1 = havoc(Mint_undef_0, Mint_0, shift_S1_S(a, 0), 20).
+Assume {
+  Type: is_sint32(i_1).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 9).
+  (* Invariant *)
+  Have: (0 <= i_1) /\ (i_1 <= 10).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i_1) ->
+      (a_1[shiftfield_F1_S_f(shift_S1_S(a, i_2))] = 1))).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i_1) ->
+      (a_1[shiftfield_F1_S_g(shift_S1_S(a, i_2))] = 2))).
+  (* Else *)
+  Have: 10 <= i_1.
+}
+Prove: a_1[shiftfield_F1_S_g(shift_S1_S(a, i))] = 2.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file caveat_range.i, line 19):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file caveat_range.i, line 19):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file caveat_range.i, line 20):
+Let a = global(G_p_22).
+Let a_1 = havoc(Mint_undef_0, Mint_0, shift_S1_S(a, 0), 20).
+Assume {
+  Type: is_sint32(i) /\ is_sint32(1 + i).
+  (* Goal *)
+  When: (0 <= i_1) /\ (i_1 <= i).
+  (* Invariant *)
+  Have: (0 <= i) /\ (i <= 10).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i) ->
+      (a_1[shiftfield_F1_S_f(shift_S1_S(a, i_2))] = 1))).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i) ->
+      (a_1[shiftfield_F1_S_g(shift_S1_S(a, i_2))] = 2))).
+  (* Then *)
+  Have: i <= 9.
+  (* Invariant *)
+  Have: (-1) <= i.
+}
+Prove: a_1[shiftfield_F1_S_f(shift_S1_S(a, i)) <- 1]
+         [shiftfield_F1_S_f(shift_S1_S(a, i_1))] = 1.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file caveat_range.i, line 20):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file caveat_range.i, line 21):
+Let a = global(G_p_22).
+Let a_1 = havoc(Mint_undef_0, Mint_0, shift_S1_S(a, 0), 20).
+Let a_2 = shift_S1_S(a, i).
+Let a_3 = a_1[shiftfield_F1_S_f(a_2) <- 1].
+Assume {
+  Type: is_sint32(i) /\ is_sint32(1 + i).
+  (* Goal *)
+  When: (0 <= i_1) /\ (i_1 <= i).
+  (* Invariant *)
+  Have: (0 <= i) /\ (i <= 10).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i) ->
+      (a_1[shiftfield_F1_S_f(shift_S1_S(a, i_2))] = 1))).
+  (* Invariant *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> ((i_2 < i) ->
+      (a_1[shiftfield_F1_S_g(shift_S1_S(a, i_2))] = 2))).
+  (* Then *)
+  Have: i <= 9.
+  (* Invariant *)
+  Have: (-1) <= i.
+  (* Invariant *)
+  Have: forall i_2 : Z. ((i_2 <= i) -> ((0 <= i_2) ->
+      (a_3[shiftfield_F1_S_f(shift_S1_S(a, i_2))] = 1))).
+}
+Prove: a_3[shiftfield_F1_S_g(a_2) <- 2]
+         [shiftfield_F1_S_g(shift_S1_S(a, i_1))] = 2.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file caveat_range.i, line 21):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file caveat_range.i, line 22) (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file caveat_range.i, line 22) (2/3):
+Effect at line 25
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file caveat_range.i, line 22) (3/3):
+Effect at line 26
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file caveat_range.i, line 14) in 'reset':
+Effect at line 24
+Prove: true.
+
+------------------------------------------------------------
+[wp] caveat_range.i:16: Warning: 
+  Memory model hypotheses for function 'reset':
+  /*@ behavior wp_typed_caveat:
+        requires \valid(p + (..)); */
+  void reset(struct S *p);

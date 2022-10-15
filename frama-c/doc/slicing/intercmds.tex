@@ -1,0 +1,256 @@
+
+\chapter{Détail des actions} \label{app-actions}
+
+Ce chapitre présente une fiche signalétique pour chaque action du calcul
+interprocédurale présentées au chapitre \ref{sec-interproc}.
+Elle correspondent aux commandes telles qu'elles ont été spécifiées,
+et il peut y avoir quelques différences par rapport à ce qui a été implémenté,
+mais il s'agit de différences mineures (principalement les noms).
+Pour plus de détails, le lecteur est invité à consulter la document du code
+qui sera toujours la plus à jour.\\
+
+\newcommand{\proto}[2]{
+  \section{#1}\labact{#1}{2}
+  \centerline{\textit{#1}(#2)}
+  \bb
+  }
+\newcommand{\precond}{{\bf Précondition}}
+\newcommand{\param}{{\bf Paramètres}}
+\newcommand{\creable}{{\bf Création par l'utilisateur}}
+\newcommand{\modifiable}{{\bf Modifiable par l'utilisateur}}
+\newcommand{\generable}{{\bf Génération automatique}}
+\newcommand{\application}{{\bf Application}}
+\newcommand{\genere}{{\bf Génération}}
+\newcommand{\modifie}{{\bf Modifications}}
+
+Les indications suivantes sont données pour chaque action~:
+\begin{itemize}
+  \item \param~: indique le sens des paramètres de l'action,
+  \item \precond~: indique les conditions éventuelles de création et/ou
+    d'application,
+  \item \creable~: indique si l'utilisateur peut la créer,
+  \item \modifiable~: indique si l'utilisateur peut la modifier lorsqu'elle est
+    dans la liste d'attente,
+  \item \generable~: indique si cette action peut être générée par l'outil,
+    et précise dans quels cas,
+  \item \application~: détaille ce qu'il se passe quand cette action est
+    appliquée,
+  \item \genere~: donne la liste des actions pouvant être générées,
+  \item \modifie~: indique si une spécialisation peut être crée ou modifiée.
+\end{itemize}
+
+\proto{NewSlice}{$f_0$}
+
+\begin{itemize}
+  \item \param~: $f_0$ est la fonction source pour laquelle on souhaite créer
+    une nouvelle spécialisation.
+  \item \precond~: néant.
+  \item \creable~: oui.
+  \item \modifiable~: oui (suppression).
+  \item \generable~: oui, par \actChooseCall.
+  \item \application~: 
+    crée une nouvelle spécialisation $f_i$, initialement sans aucun marquage
+    (tout invisible).
+  \item \genere~: néant.
+  \item \modifie~: création d'une nouvelle $f_i$.
+\end{itemize}
+
+\proto{AddUserMark}{$f_i, (e,m)$}
+
+\begin{itemize}
+  \item \param~: $f_i$ est la fonction dont on veut modifier le marquage,
+    $e$ un élément à marquer, $m$ la marque à lui ajouter.
+    Différentes version de cette action peut être proposée pour faciliter la
+    désignation de $e$ et le choix de la marque $m$.
+  \item \precond~: $f_i$ doit exister et $e$ désigner un élément valide de $f$.
+  \item \creable~: oui.
+  \item \modifiable~: oui (suppression).
+  \item \generable~: non.
+  \item \application~: ajoute $m$ à la marque $m1$ de $e$ dans $f_i$
+    et propage dans les dépendances.
+  \item \genere~: $\actExamineCalls$.
+  \item \modifie~: modification de $f_i$.
+\end{itemize}
+
+\proto{ExamineCalls}{$f_i$}
+
+\begin{itemize}
+  \item \param~: $f_i$ est la fonction dont le marquage a été modifié
+    et pour laquelle il faut vérifier les appels.
+  \item \precond~: $f_i$ doit exister.
+  \item \creable~: non.
+  \item \modifiable~: non.
+  \item \generable~: oui.
+  \item \application~: 
+    vérifie la cohérence du marquage de chaque appel de fonction $c$
+    de \call(f) et également des éventuelles appels à $f_i$.
+  \item \genere~: 
+    $\actChooseCall$ et/ou $\actMissingOutputs$ si le marquage de
+    certains appels de fonction a été modifié, et $\actMissingInputs$ si
+    $f_i$ est appelée et que les entrées de certains appels sont insuffisamment
+    marquées.
+  \item \modifie~: rien.
+\end{itemize}
+
+
+\proto{ChooseCall}{$c, f_i$}
+
+\begin{itemize}
+  \item \param~: appel $c$ dans la fonction spécialisée $f_i$.
+  \item \precond~: néant.
+  \item \creable~: non.
+  \item \modifiable~: oui, elle peut être remplacée par un $\actChangeCall(c,
+    f_i, g_j)$ (voir les conditions de création de cette action).
+  \item \generable~: oui, quand le marquage de $f_i$ est modifié et que 
+    l'appel $c$ devient visible, cette action est générée pour lui
+    attribuer une fonction à appeler.
+  \item \application~: détermine la fonction à appeler en tenant compte du mode
+    de fonctionnement.
+  \item \genere~: \actChangeCall{} et éventuellement \actNewSlice{} et
+    \actAddOutputMarks{}.
+  \item \modifie~: rien.
+\end{itemize}
+
+\proto{ChangeCall}{$c, f_i, g_j$}
+
+\begin{itemize}
+  \item \param~: on considère l'appel $c$ de $f_i$, $g_j$ est la fonction à
+    appeler.
+  \item \precond~: $\Call(f_0)(c)=g_0$ et la signature de sortie de $g_j$
+    doit être compatible avec $\sigc(c, f_i)$.
+  \item \creable~: oui.
+  \item \modifiable~: oui, mais seulement s'il l'a initialement créée.
+  \item \generable~: oui, par un \actChooseCall.
+  \item \application~: $\Call(f_i)(c)=g_j$ et les marques des entrées de $g_j$
+    sont propagées dans $f_i$ ($\actModifCallInputs(c, f_i)$).
+  \item \genere~: l'action \actModifCallInputs{} est directement
+    appliquée, mais elle peut générer d'autres actions (voir
+    \refact{ModifCallInputs}{2}).
+  \item \modifie~: $f_i$.
+\end{itemize}
+
+
+\proto{MissingInputs}{$c, f_i$}
+
+\begin{itemize}
+  \item \param~: 
+    appel $c$ dans la fonction spécialisée $f_i$,
+  \item \precond~: la fonction appelée nécessite plus d'entrées que n'en calcule
+    $f_i$.
+  \item \creable~: 
+    non,
+  \item \modifiable~: 
+    oui, elle peut être remplacée par un $\actChangeCall(c, f_i, g_j)$ (voir les
+    conditions de création de cette action).
+  \item \generable~: 
+    oui, lorsque la fonction $\Call(f_i)(c) = g_j$ a été modifiée, et qu'elle
+    nécessite le marquage d'entrées qui ne le sont pas $\sigc(c,f_i)$.
+  \item \application~: équivalente à \actModifCallInputs{} ou \actChooseCall{}
+    en fonction du mode de fonctionnement.
+  \item \genere~: dépend de l'application (voir ci-dessus).
+  \item \modifie~: dépend de l'application (voir ci-dessus).
+\end{itemize}
+
+
+\proto{ModifCallInputs}{$c, f_i$}
+
+\begin{itemize}
+  \item \param~: appel $c$ dans la fonction spécialisée $f_i$.
+  \item \precond~: $\Call(f_i)(c) = g_j$
+  \item \creable~: non.
+  \item \modifiable~: non.
+  \item \generable~: oui, par l'application de \actMissingInputs{} dans certains
+    modes.
+  \item \application~: propage les marques des entrées de $g_j$ au niveau de
+    l'appel $c$ de $f_i$ et et dans le dépendances.
+  \item \genere~: 
+    $\actChooseCall$ et/ou $\actMissingOutputs$ si le marquage de
+    certains appels de fonction a été modifié, et $\actMissingInputs$ si
+    $f_i$ est appelée et que les entrées de certains appels sont insuffisamment
+    marquées.
+  \item \modifie~: $f_i$.
+\end{itemize}
+
+\proto{MissingOutputs}{$c, f_i$}
+
+\begin{itemize}
+  \item \param~: appel $c$ dans la fonction spécialisée $f_i$
+  \item \precond~: $\Call(f_i)(c) = g_j$
+  \item \creable~: non.
+  \item \modifiable~: oui, elle peut être remplacée par un 
+    $\actChangeCall(c, f_i, g_k)$ 
+    (voir les conditions de création de cette action).
+  \item \generable~: oui, lorsque le marquage de  $c$ dans $f_i$ est modifié,
+    que l'appel est attribué à $g_j$, et que les sorties de $g_j$
+    sont insuffisantes.
+  \item \application~: dépend du mode~:
+    \begin{itemize}
+      \item \actAddOutputMarks{}
+      \item ou \actChooseCall{}
+    \end{itemize}
+  \item \genere~: dépend de l'application (voir ci-dessus).
+  \item \modifie~: dépend de l'application (voir ci-dessus).
+\end{itemize}
+
+\proto{AddOutputMarks}{$f_i, \outsigf$}
+
+\begin{itemize}
+  \item \param~: $f_i$ est la fonction dont on veut modifier le marquage,
+     $\outsigf$ indique les marques qui doivent être ajouté aux sorties.
+  \item \precond~: $f_i$ doit exister et $\outsigf$ correspondre à une signature
+    des sorties de $f$.
+  \item \creable~: non.
+  \item \modifiable~: non.
+  \item \generable~: oui, par l'application de \actMissingOutputs.
+  \item \application~: 
+    les marques de $\outsigf$ sont ajoutées aux marques $m2$ des
+    sorties de $f_i$ et propagées.
+  \item \genere~: 
+    \actChooseCall{} et/ou \actMissingOutputs{} si le marquage de
+    certains appels de fonction a été modifié, et \actMissingInputs{} si
+    $f_i$ est appelée et que les entrées de certains appels sont insuffisamment
+    marquées.
+  \item \modifie~: modification de $f_i$.
+\end{itemize}
+
+\proto{CopySlice}{$f_i$}
+
+\begin{itemize}
+  \item \param~: $f_i$ est la fonction spécialisée à copier.
+  \item \precond~: $f_i$ doit exister.
+  \item \creable~: oui.
+  \item \modifiable~: oui (suppression),
+  \item \generable~: non.
+  \item \application~: 
+    crée une nouvelle spécialisation $f_j$ de $f$ dont le marquage et les appels
+    sont identiques à ceux de $f_i$.  Attention, à l'issue de cette action,
+    $f_j$ n'est pas appelée.
+  \item \genere~: non.
+  \item \modifie~: création d'une nouvelle $f_j$.
+\end{itemize}
+
+\proto{Combine}{$f_i, f_j$}
+
+\begin{itemize}
+  \item \param~: $f_i$ et $f_j$ sont les fonctions spécialisées à combiner.
+  \item \precond~: $f_i$ et $f_j$ doivent exister.
+  \item \creable~: oui.
+  \item \modifiable~: oui (suppression),
+  \item \generable~: non.
+  \item \application~: calcule une nouvelle spécialisation $f_k$
+  \item \genere~: $\actChooseCall$
+  \item \modifie~: création et calcul de $f_k$.
+\end{itemize}
+
+\proto{DeleteSlice}{$f_i$}
+
+\begin{itemize}
+  \item \param~: $f_i$ est la fonction spécialisée à supprimer.
+  \item \precond~: $f_i$ ne doit pas être appelée.
+  \item \creable~: oui.
+  \item \modifiable~: oui (suppression).
+  \item \generable~: non.
+  \item \application~: $f_i$ est supprimée.
+  \item \genere~: néant.
+  \item \modifie~: $f_i$ est supprimée.
+\end{itemize}

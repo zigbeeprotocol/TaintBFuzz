@@ -1,0 +1,8 @@
+%init: init;
+%accept: final;
+%observables: f,h;
+
+init: { f() } -> first_step;
+first_step: { h() } -> final;
+final: -> error;
+error: -> error;

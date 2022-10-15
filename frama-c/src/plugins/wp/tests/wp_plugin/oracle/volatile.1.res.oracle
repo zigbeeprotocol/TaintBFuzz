@@ -1,0 +1,95 @@
+# frama-c -wp -wp-no-volatile [...]
+[kernel] Parsing volatile.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] volatile.i:16: Warning: unsafe volatile access to (term) l-value
+[wp] volatile.i:15: Warning: unsafe write-access to volatile l-value
+[wp] volatile.i:22: Warning: unsafe volatile access to (term) l-value
+[wp] volatile.i:21: Warning: unsafe read-access to volatile l-value
+[wp] volatile.i:36: Warning: unsafe volatile access to (term) l-value
+[wp] volatile.i:36: Warning: unsafe volatile access to (term) l-value
+[wp] volatile.i:35: Warning: unsafe write-access to volatile l-value
+[wp] volatile.i:35: Warning: unsafe read-access to volatile l-value
+[wp] volatile.i:45: Warning: unsafe read-access to volatile l-value
+------------------------------------------------------------
+  Function default_init
+------------------------------------------------------------
+
+Goal Check 'KO_WHEN_VOLATILE' (file volatile.i, line 46):
+volatile.i:45: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe read-access to volatile l-value
+Let x = GlobalConst_0[ClientId_0].
+Assume {
+  Type: is_sint8(ClientId_0) /\ is_sint32(x).
+  (* Heap *)
+  Type: IsArray_sint32(GlobalConst_0).
+  (* Initializer *)
+  Init: forall i : Z. ((0 <= i) -> ((i <= 15) -> (GlobalConst_0[i] = 0))).
+  (* Pre-condition *)
+  Have: (0 <= ClientId_0) /\ (ClientId_0 <= 15).
+}
+Prove: x = 0.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job_assigns
+------------------------------------------------------------
+
+Goal Assertion 'KO_WHEN_VOLATILE' (file volatile.i, line 16):
+volatile.i:15: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe write-access to volatile l-value
+volatile.i:16: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe volatile access to (term) l-value
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job_read
+------------------------------------------------------------
+
+Goal Assertion 'KO_WHEN_VOLATILE' (file volatile.i, line 22):
+volatile.i:21: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe read-access to volatile l-value
+volatile.i:22: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe volatile access to (term) l-value
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job_struct
+------------------------------------------------------------
+
+Goal Assertion 'ok,dead_code' (file volatile.i, line 30):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job_struct_assigns
+------------------------------------------------------------
+
+Goal Assertion 'KO_WHEN_VOLATILE' (file volatile.i, line 36):
+volatile.i:35: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe read-access to volatile l-value
+volatile.i:35: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe write-access to volatile l-value
+volatile.i:36: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe volatile access to (term) l-value
+volatile.i:36: warning from wp:
+ - Warning: ignore volatile attribute
+   Reason: unsafe volatile access to (term) l-value
+Prove: true.
+
+------------------------------------------------------------
+[wp] volatile.i:33: Warning: 
+  Memory model hypotheses for function 'job_struct_assigns':
+  /*@ behavior wp_typed:
+        requires \separated(p, &sv); */
+  void job_struct_assigns(struct st_v *p);

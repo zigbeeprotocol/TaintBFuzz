@@ -1,0 +1,5 @@
+[kernel] Parsing flexible_array_member_invalid1.i (no preprocessing)
+[kernel] flexible_array_member_invalid1.i:8: User Error: 
+  flexible array member 'data' (type char []) not allowed in otherwise empty struct
+[kernel] User Error: stopping on file "flexible_array_member_invalid1.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

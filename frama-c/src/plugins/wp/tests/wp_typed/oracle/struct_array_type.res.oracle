@@ -1,0 +1,110 @@
+# frama-c -wp [...]
+[kernel] Parsing struct_array_type.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+---------------------------------------------
+--- Context 'typed_f' Cluster 'Matrix' 
+---------------------------------------------
+theory Matrix
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.cint.Cint *)
+  
+  predicate IsArray_sint32 (t:int -> int) = forall i:int. is_sint32 (get t i)
+end
+---------------------------------------------
+--- Context 'typed_f' Cluster 'S1_s' 
+---------------------------------------------
+theory S1_s
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  type S1_s =
+    | S1_s1 (F1_s_a:int -> int) (F1_s_b:int -> int)
+  
+  (* use Matrix *)
+  
+  predicate IsS1_s (s:S1_s) =
+    IsArray_sint32 (F1_s_a s) /\ IsArray_sint32 (F1_s_b s)
+  
+  predicate IsArray_S1_s (t:int -> S1_s) = forall i:int. IsS1_s (get t i)
+end
+[wp:print-generated] 
+  theory WP
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool *)
+    
+    (* use int.Int *)
+    
+    (* use int.ComputerDivision *)
+    
+    (* use real.RealInfix *)
+    
+    (* use frama_c_wp.qed.Qed *)
+    
+    (* use map.Map *)
+    
+    (* use S1_s *)
+    
+    goal wp_goal :
+      forall i:int, t:int -> S1_s.
+       let a = get t i in
+       let a1 = get (F1_s_b a) 0 in
+       let a2 = get (F1_s_a a) 0 in
+       let a3 = 2 * a2 in
+       0 <= i ->
+       a1 < a2 ->
+       i <= 9 ->
+       IsArray_S1_s t ->
+       is_uint32 i ->
+       is_sint32 a2 ->
+       is_sint32 a1 -> is_sint32 ((1 + ((- 1) * a1)) + a3) -> (2 * a1) <= a3
+  end
+[wp] 1 goal generated
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition (file struct_array_type.i, line 16) in 'f':
+Let a = t[SynchroId_0].
+Let a_1 = (a.F1_s_b)[0].
+Let a_2 = (a.F1_s_a)[0].
+Let a_3 = 2 * a_2.
+Assume {
+  Type: is_uint32(SynchroId_0) /\ is_sint32(a_2) /\ is_sint32(a_1) /\
+      is_sint32(1 + a_3 - a_1).
+  (* Heap *)
+  Type: IsArray_S1_s(t).
+  (* Residual *)
+  When: a_1 < a_2.
+  (* Pre-condition *)
+  Have: (0 <= SynchroId_0) /\ (SynchroId_0 <= 9).
+}
+Prove: (2 * a_1) <= a_3.
+
+------------------------------------------------------------

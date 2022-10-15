@@ -1,0 +1,127 @@
+[kernel] Parsing behavior_assert.c (with preprocessing)
+[eva] Analyzing an incomplete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  e ∈ [--..--]
+  G ∈ [--..--]
+  c ∈ [--..--]
+[eva] computing for function f <- main.
+  Called from behavior_assert.c:90.
+[eva:alarm] behavior_assert.c:14: Warning: assertion got status invalid.
+[eva] behavior_assert.c:16: assertion got status valid.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function g <- main.
+  Called from behavior_assert.c:91.
+[eva] behavior_assert.c:30: assertion got status valid.
+[eva] behavior_assert.c:28: starting to merge loop iterations
+[eva] behavior_assert.c:24: 
+  function g, behavior be: postcondition got status valid. (Behavior may be inactive, no reduction performed.)
+[eva] Recording results for g
+[eva] Done for function g
+[eva] computing for function h2 <- main.
+  Called from behavior_assert.c:92.
+[eva:alarm] behavior_assert.c:64: Warning: 
+  signed overflow. assert c + 1 ≤ 2147483647;
+[eva:alarm] behavior_assert.c:65: Warning: 
+  signed overflow. assert c + 2 ≤ 2147483647;
+[eva] computing for function h1 <- h2 <- main.
+  Called from behavior_assert.c:73.
+[eva] computing for function abs <- h1 <- h2 <- main.
+  Called from behavior_assert.c:52.
+[eva] Recording results for abs
+[eva] Done for function abs
+[eva:alarm] behavior_assert.c:55: Warning: assertion got status unknown.
+[eva] behavior_assert.c:45: 
+  function h1, behavior not_null: postcondition got status valid.
+[eva] Recording results for h1
+[eva] Done for function h1
+[eva] behavior_assert.c:74: assertion got status valid.
+[eva] Recording results for h2
+[eva] Done for function h2
+[eva] computing for function k <- main.
+  Called from behavior_assert.c:93.
+[eva] behavior_assert.c:85: assertion got status valid.
+[eva:alarm] behavior_assert.c:86: Warning: assertion got status invalid.
+[eva] Recording results for k
+[eva] Done for function k
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function abs:
+  __retres ∈ [0..11]
+[eva:final-states] Values at end of function f:
+  x ∈ {3}
+[eva:final-states] Values at end of function g:
+  G ∈ {3}
+  i ∈ {3}
+[eva:final-states] Values at end of function h1:
+  r ∈ [1..11]
+  r2 ∈ [0..11]
+[eva:final-states] Values at end of function h2:
+  a ∈ {-4; -2; -1; 3}
+  b ∈ [1..11]
+[eva:final-states] Values at end of function k:
+  
+[eva:final-states] Values at end of function main:
+  G ∈ {3}
+[from] Computing for function abs
+[from] Done for function abs
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function h1
+[from] Done for function h1
+[from] Computing for function h2
+[from] Done for function h2
+[from] Computing for function k
+[from] Done for function k
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function abs:
+  \result FROM x
+[from] Function f:
+  NO EFFECTS
+[from] Function g:
+  G FROM \nothing
+[from] Function h1:
+  \result FROM a
+[from] Function h2:
+  NO EFFECTS
+[from] Function k:
+  NO EFFECTS
+[from] Function main:
+  G FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function abs:
+    __retres
+[inout] Inputs for function abs:
+    \nothing
+[inout] Out (internal) for function f:
+    x
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function g:
+    G; i
+[inout] Inputs for function g:
+    \nothing
+[inout] Out (internal) for function h1:
+    r; r2
+[inout] Inputs for function h1:
+    \nothing
+[inout] Out (internal) for function h2:
+    a; b
+[inout] Inputs for function h2:
+    c
+[inout] Out (internal) for function k:
+    \nothing
+[inout] Inputs for function k:
+    \nothing
+[inout] Out (internal) for function main:
+    G
+[inout] Inputs for function main:
+    c

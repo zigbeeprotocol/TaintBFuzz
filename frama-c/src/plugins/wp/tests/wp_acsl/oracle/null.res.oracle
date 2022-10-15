@@ -1,0 +1,69 @@
+# frama-c -wp [...]
+[kernel] Parsing null.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Global
+------------------------------------------------------------
+
+Lemma prover_not_valid_null:
+Assume: 'qed_not_valid_read_null' 'qed_not_valid_null'
+Prove: not (valid_rw Malloc_0 L_GET 1)
+
+------------------------------------------------------------
+
+Lemma prover_not_valid_read_null:
+Assume: 'prover_not_valid_null' 'qed_not_valid_read_null'
+  'qed_not_valid_null'
+Prove: not (valid_rd Malloc_0 L_GET 1)
+
+------------------------------------------------------------
+
+Lemma qed_not_valid_null:
+Prove: true
+
+------------------------------------------------------------
+
+Lemma qed_not_valid_read_null:
+Assume: 'qed_not_valid_null'
+Prove: true
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function null_is_zero
+------------------------------------------------------------
+
+Goal Post-condition (file null.i, line 2) in 'null_is_zero':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function prover
+------------------------------------------------------------
+
+Goal Assigns nothing in 'prover':
+Call Effect at line 32
+Assume { (* Heap *) Type: (region(L_GET.base) <= 0) /\ linked(Malloc_0). }
+Prove: invalid(Malloc_0, L_GET, 1).
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'prover':
+Call Effect at line 32
+Assume { (* Heap *) Type: (region(L_GET.base) <= 0) /\ linked(Malloc_0). }
+Prove: invalid(Malloc_0, L_GET, 1).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function qed
+------------------------------------------------------------
+
+Goal Assigns nothing in 'qed':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'qed':
+Prove: true.
+
+------------------------------------------------------------

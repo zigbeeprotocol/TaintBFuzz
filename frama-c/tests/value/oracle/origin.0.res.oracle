@@ -1,0 +1,398 @@
+[kernel] Parsing origin.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {0}
+  b ∈ {0}
+  aa2 ∈ {0}
+  p ∈ {0}
+  pa1 ∈ {0}
+  pa2 ∈ {0}
+  qa2 ∈ {0}
+  pa3 ∈ {0}
+  q ∈ {0}
+  t[0..11] ∈ {0}
+  tt[0..9] ∈ {0}
+  ta1[0..9] ∈ {0}
+  ta2[0..9] ∈ {0}
+  ta3[0..9] ∈ {0}
+  tta2[0..9] ∈ {0}
+  gpp ∈ {{ NULL ; &S_gpp[0] }}
+  l1 ∈ {0}
+  l2 ∈ {0}
+  l3 ∈ {0}
+  pl ∈ {0}
+  Tm1[0] ∈ {{ &a }}
+     [1] ∈ {{ &b }}
+  Tm2[0] ∈ {{ &a }}
+     [1] ∈ {{ &b }}
+  Tm3[0] ∈ {{ &a }}
+     [1] ∈ {{ &b }}
+  Tm4[0] ∈ {{ &a }}
+     [1] ∈ {{ &b }}
+  pm1 ∈ {0}
+  pm2 ∈ {0}
+  qm2 ∈ {0}
+  pun ∈ {0}
+  pun2 ∈ {0}
+  qun2 ∈ {0}
+  random ∈ [--..--]
+  esc1 ∈ {0}
+  esc2 ∈ {0}
+  esc3 ∈ {0}
+  esc4 ∈ {0}
+  esc5 ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+  v.c ∈ {1}
+   .[bits 8 to 15] ∈ {0}
+   .i ∈ {2}
+   .p ∈ {{ &x }}
+   .t[0] ∈ {{ &y }}
+   .t[1] ∈ {0}
+  S_gpp[0..1] ∈ [--..--]
+[eva] computing for function origin_arithmetic_1 <- main.
+  Called from origin.i:94.
+[eva:alarm] origin.i:14: Warning: 
+  pointer downcast. assert (unsigned int)((int *)ta1) ≤ 2147483647;
+[eva:alarm] origin.i:14: Warning: 
+  signed overflow. assert -2147483648 ≤ -((int)((int *)ta1));
+[eva:alarm] origin.i:14: Warning: 
+  signed overflow. assert -((int)((int *)ta1)) ≤ 2147483647;
+[eva] origin.i:14: 
+  Assigning imprecise value to pa1.
+  The imprecision originates from Arithmetic {origin.i:14}
+[eva:alarm] origin.i:15: Warning: out of bounds write. assert \valid(pa1);
+[eva] Recording results for origin_arithmetic_1
+[eva] Done for function origin_arithmetic_1
+[eva] computing for function origin_arithmetic_2 <- main.
+  Called from origin.i:95.
+[eva:alarm] origin.i:19: Warning: 
+  pointer downcast. assert (unsigned int)((int *)ta2) ≤ 2147483647;
+[eva:alarm] origin.i:19: Warning: 
+  signed overflow. assert -2147483648 ≤ -((int)((int *)ta2));
+[eva:alarm] origin.i:19: Warning: 
+  signed overflow. assert -((int)((int *)ta2)) ≤ 2147483647;
+[eva] origin.i:19: 
+  Assigning imprecise value to pa2.
+  The imprecision originates from Arithmetic {origin.i:19}
+[eva] origin.i:20: 
+  Assigning imprecise value to qa2.
+  The imprecision originates from Arithmetic {origin.i:19}
+[eva:alarm] origin.i:20: Warning: 
+  pointer downcast. assert (unsigned int)((int *)tta2) ≤ 2147483647;
+[eva:alarm] origin.i:20: Warning: 
+  signed overflow. assert -2147483648 ≤ -((int)((int *)tta2));
+[eva:alarm] origin.i:20: Warning: 
+  signed overflow. assert -((int)((int *)tta2)) ≤ 2147483647;
+[eva] origin.i:20: 
+  Assigning imprecise value to qa2.
+  The imprecision originates from Arithmetic {origin.i:20}
+[eva:alarm] origin.i:21: Warning: out of bounds write. assert \valid(qa2);
+[eva:alarm] origin.i:21: Warning: 
+  pointer downcast. assert (unsigned int)(&aa2) ≤ 2147483647;
+[eva] Recording results for origin_arithmetic_2
+[eva] Done for function origin_arithmetic_2
+[eva] computing for function origin_arithmetic_3 <- main.
+  Called from origin.i:96.
+[eva:alarm] origin.i:25: Warning: 
+  pointer downcast. assert (unsigned int)((int *)ta3) ≤ 2147483647;
+[eva:alarm] origin.i:25: Warning: 
+  signed overflow. assert -2147483648 ≤ -((int)((int *)ta3));
+[eva:alarm] origin.i:25: Warning: 
+  signed overflow. assert -((int)((int *)ta3)) ≤ 2147483647;
+[eva] origin.i:25: 
+  Assigning imprecise value to pa3.
+  The imprecision originates from Arithmetic {origin.i:25}
+[eva:alarm] origin.i:26: Warning: out of bounds write. assert \valid(pa3);
+[eva] Recording results for origin_arithmetic_3
+[eva] Done for function origin_arithmetic_3
+[eva] computing for function origin_leaf_1 <- main.
+  Called from origin.i:97.
+[kernel:annot:missing-spec] origin.i:38: Warning: 
+  Neither code nor specification for function g, generating default assigns from the prototype
+[eva] computing for function g <- origin_leaf_1 <- main.
+  Called from origin.i:38.
+[eva] using specification for function g
+[eva] Done for function g
+[eva] Recording results for origin_leaf_1
+[eva] Done for function origin_leaf_1
+[eva] computing for function g <- main.
+  Called from origin.i:99.
+[eva] Done for function g
+[eva:alarm] origin.i:99: Warning: 
+  signed overflow. assert -2147483648 ≤ l2 + tmp;
+                   (tmp from g())
+[eva:alarm] origin.i:99: Warning: 
+  signed overflow. assert l2 + tmp ≤ 2147483647;
+                   (tmp from g())
+[eva] computing for function gp <- main.
+  Called from origin.i:100.
+[eva] using specification for function gp
+[eva] Done for function gp
+[eva] origin.i:100: 
+  Assigning imprecise value to pl.
+  The imprecision originates from Library function {origin.i:100}
+[eva:alarm] origin.i:101: Warning: out of bounds read. assert \valid_read(pl);
+[eva] computing for function origin_misalign_1 <- main.
+  Called from origin.i:102.
+[eva] origin.i:48: 
+  Assigning imprecise value to pm1.
+  The imprecision originates from Misaligned {origin.i:48}
+[eva:alarm] origin.i:49: Warning: out of bounds write. assert \valid(pm1);
+[eva] Recording results for origin_misalign_1
+[eva] Done for function origin_misalign_1
+[eva] computing for function origin_misalign_2 <- main.
+  Called from origin.i:103.
+[eva] origin.i:54: 
+  Assigning imprecise value to qm2.
+  The imprecision originates from Misaligned {origin.i:54}
+[eva] origin.i:55: 
+  Frama_C_show_each:
+  {{ garbled mix of &{a; b} (origin: Misaligned {origin.i:54}) }}
+[eva:alarm] origin.i:56: Warning: out of bounds write. assert \valid(qm2);
+[eva:alarm] origin.i:56: Warning: 
+  pointer downcast. assert (unsigned int)(&a) ≤ 2147483647;
+[eva] Recording results for origin_misalign_2
+[eva] Done for function origin_misalign_2
+[eva] computing for function origin_uninitialized_1 <- main.
+  Called from origin.i:106.
+[eva:alarm] origin.i:65: Warning: 
+  accessing uninitialized left-value. assert \initialized(&pi);
+[eva] Recording results for origin_uninitialized_1
+[eva] Done for function origin_uninitialized_1
+[eva] computing for function origin_uninitialized_2 <- main.
+  Called from origin.i:107.
+[eva:alarm] origin.i:72: Warning: 
+  accessing uninitialized left-value. assert \initialized(&pi);
+[eva:alarm] origin.i:75: Warning: 
+  accessing uninitialized left-value. assert \initialized(&i);
+[eva] Recording results for origin_uninitialized_2
+[eva] Done for function origin_uninitialized_2
+[eva] computing for function local_escape_1 <- main.
+  Called from origin.i:108.
+[eva:alarm] origin.i:83: Warning: 
+  pointer downcast. assert (unsigned int)(&arg) ≤ 2147483647;
+[eva:alarm] origin.i:84: Warning: 
+  pointer downcast. assert (unsigned int)(&local1) ≤ 2147483647;
+[eva:alarm] origin.i:85: Warning: 
+  pointer downcast. assert (unsigned int)(&arg) ≤ 2147483647;
+[eva:alarm] origin.i:85: Warning: 
+  signed overflow. assert -2147483648 ≤ -((int)(&arg));
+[eva:alarm] origin.i:85: Warning: 
+  signed overflow. assert -((int)(&arg)) ≤ 2147483647;
+[eva] origin.i:85: 
+  Assigning imprecise value to esc3.
+  The imprecision originates from Arithmetic {origin.i:85}
+[eva:alarm] origin.i:87: Warning: 
+  pointer downcast. assert (unsigned int)(&local1) ≤ 2147483647;
+[eva:alarm] origin.i:88: Warning: 
+  pointer downcast. assert (unsigned int)(&esc1) ≤ 2147483647;
+[eva] Recording results for local_escape_1
+[eva] Done for function local_escape_1
+[eva:locals-escaping] origin.i:108: Warning: 
+  locals {arg} escaping the scope of local_escape_1 through esc1
+[eva:locals-escaping] origin.i:108: Warning: 
+  locals {local1} escaping the scope of local_escape_1 through esc2
+[eva:locals-escaping] origin.i:108: Warning: 
+  locals {arg} escaping the scope of local_escape_1 through esc3
+[eva:locals-escaping] origin.i:108: Warning: 
+  locals {local1} escaping the scope of local_escape_1 through esc4
+[eva] Recording results for main
+[eva] done for function main
+[eva] origin.i:75: assertion 'Eva,initialization' got final status invalid.
+[scope:rm_asserts] removing 2 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function local_escape_1:
+  esc1 ∈ {{ (int)&arg }}
+  esc2 ∈ {{ (int)&local1 }}
+  esc3 ∈ {{ garbled mix of &{arg} (origin: Arithmetic {origin.i:85}) }}
+  esc4 ∈ {{ NULL + {12} ; (int)&local1 }}
+  esc5 ∈ {{ (int)&esc1 }}
+  local2 ∈ {{ (int)&local1 }}
+[eva:final-states] Values at end of function origin_arithmetic_1:
+  pa1 ∈ {{ &ta1 + [0..36] }}
+  ta1[0..9] ∈ {0}
+[eva:final-states] Values at end of function origin_arithmetic_2:
+  pa2 ∈ {{ garbled mix of &{ta2} (origin: Arithmetic {origin.i:19}) }}
+  qa2 ∈ {{ &ta2 + [0..36] ; &tta2 + [0..36] }}
+  ta2[0..9] ∈
+     {{ garbled mix of &{aa2} (origin: Misaligned {origin.i:21}) }}
+  tta2[0..9] ∈
+      {{ garbled mix of &{aa2} (origin: Misaligned {origin.i:21}) }}
+[eva:final-states] Values at end of function origin_arithmetic_3:
+  pa3 ∈ {{ &ta3 + [0..36] }}
+  ta3[0..9] ∈ [--..--]
+[eva:final-states] Values at end of function origin_leaf_1:
+  l1 ∈ [--..--]
+[eva:final-states] Values at end of function origin_misalign_1:
+  a ∈ {0; 1}
+  b ∈ {0; 1}
+  pm1 ∈ {{ &a ; &b }}
+[eva:final-states] Values at end of function origin_misalign_2:
+  a ∈ {{ NULL + {0; 1} ; (int)&a }}
+  b ∈ {{ NULL + {0; 1} ; (int)&a }}
+  pm2[bits 0 to 15]# ∈ {{ (? *)&a }}%32, bits 16 to 31 
+     [bits 16 to 31]# ∈ {{ (? *)&b }}%32, bits 0 to 15 
+  qm2 ∈ {{ &a ; &b }}
+[eva:final-states] Values at end of function origin_uninitialized_1:
+  pun ∈ {{ &a }}
+  pi ∈ {{ &a }}
+[eva:final-states] Values at end of function origin_uninitialized_2:
+  pun2 ∈ {{ &a }}
+  qun2 ∈ {0}
+  pi ∈ {{ &a }}
+[eva:final-states] Values at end of function main:
+  a ∈ {{ NULL + {0; 1} ; (int)&a }}
+  b ∈ {{ NULL + {0; 1} ; (int)&a }}
+  p[bits 0 to 15]# ∈ {{ (? *)&a }}%32, bits 16 to 31 
+   [bits 16 to 31]# ∈ {{ (? *)&b }}%32, bits 0 to 15 
+  pa1 ∈ {{ &ta1 + [0..36] }}
+  pa2 ∈ {{ garbled mix of &{ta2} (origin: Arithmetic {origin.i:19}) }}
+  qa2 ∈ {{ &ta2 + [0..36] ; &tta2 + [0..36] }}
+  pa3 ∈ {{ &ta3 + [0..36] }}
+  q[bits 0 to 7] ∈ {{ garbled mix of &{a} (origin: Merge {origin.i:106}) }}
+   [bits 8 to 15] ∈
+   {{ garbled mix of &{a; b} (origin: Merge {origin.i:106}) }}
+   [bits 16 to 31] ∈
+   {{ garbled mix of &{b} (origin: Merge {origin.i:106}) }}
+  ta1[0..9] ∈ {0}
+  ta2[0..9] ∈
+     {{ garbled mix of &{aa2} (origin: Misaligned {origin.i:21}) }}
+  ta3[0..9] ∈ [--..--]
+  tta2[0..9] ∈
+      {{ garbled mix of &{aa2} (origin: Misaligned {origin.i:21}) }}
+  l1 ∈ [--..--]
+  l2 ∈ [--..--]
+  l3 ∈ [--..--]
+  pl ∈ {{ &S_gpp + {0; 1; 2; 3; 4} }}
+  pm1 ∈ {{ &a ; &b }}
+  pm2[bits 0 to 15]# ∈ {{ (? *)&a }}%32, bits 16 to 31 
+     [bits 16 to 31]# ∈ {{ (? *)&b }}%32, bits 0 to 15 
+  qm2 ∈ {{ &a ; &b }}
+  pun ∈ {{ &a }}
+  pun2 ∈ {{ &a }}
+  qun2 ∈ {0}
+  esc1 ∈ ESCAPINGADDR
+  esc2 ∈ ESCAPINGADDR
+  esc3 ∈ [--..--] or ESCAPINGADDR
+  esc4 ∈ {12} or ESCAPINGADDR
+  esc5 ∈ {{ (int)&esc1 }}
+[from] Computing for function local_escape_1
+[from] Done for function local_escape_1
+[from] Computing for function origin_arithmetic_1
+[from] Done for function origin_arithmetic_1
+[from] Computing for function origin_arithmetic_2
+[from] Done for function origin_arithmetic_2
+[from] Computing for function origin_arithmetic_3
+[from] Done for function origin_arithmetic_3
+[from] Computing for function origin_leaf_1
+[from] Computing for function g <-origin_leaf_1
+[from] Done for function g
+[from] Done for function origin_leaf_1
+[from] Computing for function origin_misalign_1
+[from] Done for function origin_misalign_1
+[from] Computing for function origin_misalign_2
+[from] Done for function origin_misalign_2
+[from] Computing for function origin_uninitialized_1
+[from] Done for function origin_uninitialized_1
+[from] Computing for function origin_uninitialized_2
+[from] Done for function origin_uninitialized_2
+[from] Computing for function main
+[from] Computing for function gp <-main
+[from] Done for function gp
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function g:
+  \result FROM \nothing
+[from] Function gp:
+  \result FROM gpp
+[from] Function local_escape_1:
+  esc1 FROM \nothing
+  esc2 FROM \nothing
+  esc3 FROM \nothing
+  esc4 FROM random
+  esc5 FROM \nothing
+[from] Function origin_arithmetic_1:
+  pa1 FROM \nothing
+  ta1[0..9] FROM \nothing (and SELF)
+[from] Function origin_arithmetic_2:
+  pa2 FROM \nothing
+  qa2 FROM c1
+  ta2[0..9] FROM c1 (and SELF)
+  tta2[0..9] FROM c1 (and SELF)
+[from] Function origin_arithmetic_3:
+  pa3 FROM \nothing
+  ta3[0..9] FROM \nothing (and SELF)
+[from] Function origin_leaf_1:
+  l1 FROM \nothing
+[from] Function origin_misalign_1:
+  a FROM Tm1{[0][bits 16 to 31]; [1][bits 0 to 15]} (and SELF)
+  b FROM Tm1{[0][bits 16 to 31]; [1][bits 0 to 15]} (and SELF)
+  pm1 FROM Tm1{[0][bits 16 to 31]; [1][bits 0 to 15]}
+[from] Function origin_misalign_2:
+  a FROM Tm2{[0][bits 16 to 31]; [1][bits 0 to 15]} (and SELF)
+  b FROM Tm2{[0][bits 16 to 31]; [1][bits 0 to 15]} (and SELF)
+  pm2 FROM Tm2{[0][bits 16 to 31]; [1][bits 0 to 15]}
+  qm2 FROM Tm2{[0][bits 16 to 31]; [1][bits 0 to 15]}
+[from] Function origin_uninitialized_1:
+  pun FROM c1
+[from] Function origin_uninitialized_2:
+  pun2 FROM c1
+  qun2 FROM c1; c2 (and SELF)
+[from] Function main:
+  a FROM Tm1{[0][bits 16 to 31]; [1][bits 0 to 15]};
+         Tm2{[0][bits 16 to 31]; [1][bits 0 to 15]} (and SELF)
+  b FROM Tm1{[0][bits 16 to 31]; [1][bits 0 to 15]};
+         Tm2{[0][bits 16 to 31]; [1][bits 0 to 15]} (and SELF)
+  p FROM Tm3{[0][bits 16 to 31]; [1][bits 0 to 15]}
+  pa1 FROM \nothing
+  pa2 FROM \nothing
+  qa2 FROM c1
+  pa3 FROM \nothing
+  q FROM Tm3{[0][bits 16 to 31]; [1][bits 0 to 15]};
+         Tm4{[0][bits 24 to 31]; [1][bits 0 to 23]}; c1
+  ta1[0..9] FROM \nothing (and SELF)
+  ta2[0..9] FROM c1 (and SELF)
+  ta3[0..9] FROM \nothing (and SELF)
+  tta2[0..9] FROM c1 (and SELF)
+  l1 FROM \nothing
+  l2 FROM \nothing
+  l3 FROM gpp; S_gpp[0..1]
+  pl FROM gpp
+  pm1 FROM Tm1{[0][bits 16 to 31]; [1][bits 0 to 15]}
+  pm2 FROM Tm2{[0][bits 16 to 31]; [1][bits 0 to 15]}
+  qm2 FROM Tm2{[0][bits 16 to 31]; [1][bits 0 to 15]}
+  pun FROM c1
+  pun2 FROM c1
+  qun2 FROM c1; c2 (and SELF)
+  esc1 FROM \nothing
+  esc2 FROM \nothing
+  esc3 FROM \nothing
+  esc4 FROM random
+  esc5 FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function local_escape_1:
+    esc1; esc2; esc3; esc4; esc5; local2
+[inout] Out (internal) for function origin_arithmetic_1:
+    pa1; ta1[0..9]
+[inout] Out (internal) for function origin_arithmetic_2:
+    pa2; qa2; ta2[0..9]; tta2[0..9]
+[inout] Out (internal) for function origin_arithmetic_3:
+    pa3; ta3[0..9]
+[inout] Out (internal) for function origin_leaf_1:
+    l1
+[inout] Out (internal) for function origin_misalign_1:
+    a; b; pm1
+[inout] Out (internal) for function origin_misalign_2:
+    a; b; pm2; qm2
+[inout] Out (internal) for function origin_uninitialized_1:
+    pun; pi
+[inout] Out (internal) for function origin_uninitialized_2:
+    pun2; qun2; pi
+[inout] Out (internal) for function main:
+    a; b; p; pa1; pa2; qa2; pa3; q; ta1[0..9]; ta2[0..9]; ta3[0..9];
+    tta2[0..9]; l1; l2; l3; pl; pm1; pm2; qm2; pun; pun2; qun2; esc1; esc2;
+    esc3; esc4; esc5; tmp

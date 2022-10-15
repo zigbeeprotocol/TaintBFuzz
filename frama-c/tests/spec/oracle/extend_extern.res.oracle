@@ -1,0 +1,4 @@
+[kernel] Checking handler of exception occurring in extension typing
+[kernel] Parsing extend_extern.i (no preprocessing)
+[kernel] Failure: Typechecking ACSL extension why3 raised exception Not_found
+[kernel] Extension typing failed as expected

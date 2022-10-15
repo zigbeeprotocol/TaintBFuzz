@@ -1,0 +1,7 @@
+96c96,99
+< [eva] bitwise.i:158: Frama_C_show_each_dead: {0}
+---
+> [eva] bitwise.i:156: 
+>   The evaluation of the expression x & 2
+>   led to bottom without alarms:
+>   at this point the product of states has no possible concretization.

@@ -1,0 +1,147 @@
+# frama-c -wp [...]
+[kernel] Parsing clear.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 2 goals scheduled
+[wp:script:allgoals] 
+  Goal Post-condition (file clear.i, line 22) in 'clear':
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(a_1) /\ is_sint32(a_2) /\ is_sint32(b) /\
+        is_sint32(b_1) /\ is_sint32(b_2).
+    (* Pre-condition *)
+    Have: P_P.
+    (* Pre-condition *)
+    Have: P_Q.
+    (* Pre-condition *)
+    Have: P_R.
+    If a_2 < b_2
+    Then { Have: (a_2 = a_1) /\ (b_2 = b). Have: (1 + a_1) = a. }
+    Else { Have: (a_2 = a) /\ (b_2 = b_1). Have: (1 + b) = b_1. }
+  }
+  Prove: P_S(a + b).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Check (file clear.i, line 33):
+  Assume { (* Admit *) Have: P_P /\ P_Q /\ P_R. }
+  Prove: P_S(42).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_clear_ensures-0 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(a_1) /\ is_sint32(a_2) /\ is_sint32(b) /\
+        is_sint32(b_1) /\ is_sint32(b_2).
+    (* Pre-condition *)
+    Have: P_P.
+    (* Pre-condition *)
+    Have: P_Q.
+    (* Pre-condition *)
+    Have: P_R.
+    If a_2 < b_2
+    Then { Have: (a_2 = a_1) /\ (b_2 = b). }
+    Else { Have: (a_2 = a) /\ (b_2 = b_1). Have: (1 + b) = b_1. }
+  }
+  Prove: P_S(a + b).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_in_step_check subgoal:
+  
+  Goal Wp.Tactical.typed_clear_in_step_check-0 (generated):
+  Assume { (* Filtered: 'P_P(...)' *) Have: P_Q /\ P_R. }
+  Prove: P_S(42).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_clear_ensures-1 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(a_1) /\ is_sint32(a_2) /\ is_sint32(b) /\
+        is_sint32(b_1) /\ is_sint32(b_2).
+    (* Pre-condition *)
+    Have: P_P.
+    (* Pre-condition *)
+    Have: P_Q.
+    If a_2 < b_2
+    Then { Have: (a_2 = a_1) /\ (b_2 = b). }
+    Else { Have: (a_2 = a) /\ (b_2 = b_1). Have: (1 + b) = b_1. }
+  }
+  Prove: P_S(a + b).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_in_step_check subgoal:
+  
+  Goal Wp.Tactical.typed_clear_in_step_check-1 (generated):
+  Assume { (* Filtered: 'P_Q(...)' *) Have: P_R. }
+  Prove: P_S(42).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_clear_ensures-2 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(a_1) /\ is_sint32(a_2) /\ is_sint32(b) /\
+        is_sint32(b_1).
+    (* Pre-condition *)
+    Have: P_P.
+    (* Pre-condition *)
+    Have: P_Q.
+    If a_2 < b_1
+    Then { Have: (a_2 = a_1) /\ (b_1 = b). }
+  }
+  Prove: P_S(a + b).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_in_step_check subgoal:
+  
+  Goal Wp.Tactical.typed_clear_in_step_check-2 (generated):
+  Prove: P_S(42).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_clear_in_step_check : Unsuccess
+[wp:script:allgoals] 
+  typed_clear_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_clear_ensures-3 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_P.
+    (* Pre-condition *)
+    Have: P_Q.
+  }
+  Prove: P_S(a + b).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_clear_ensures-4 (generated):
+  Assume { Type: is_sint32(a) /\ is_sint32(b). (* Pre-condition *) Have: P_P. }
+  Prove: P_S(a + b).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_clear_ensures-5 (generated):
+  Assume { (* Pre-condition *) Have: P_P. }
+  Prove: P_S(a + b).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_clear_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_clear_ensures-6 (generated):
+  Prove: P_S(a + b).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_clear_ensures : Unsuccess
+[wp] Proved goals:    0 / 2

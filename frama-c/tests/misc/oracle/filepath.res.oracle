@@ -1,0 +1,14 @@
+[kernel] normalize(/): /
+[kernel] normalize(/..): /
+[kernel] normalize(/../../.): /
+[kernel] normalize(///): //
+[kernel] normalize(//tmp//): //tmp/
+[kernel] normalize(/../tmp/../..): /
+[kernel] normalize(/tmp/inexistent_directory/..): /tmp
+[kernel] normalize():
+[kernel] relativize(.): .
+[kernel] relativize(./tests/..): .
+[kernel] relativize(/a/bc/d,base_name:/a/b/): /a/bc/d
+[kernel] pretty with symbolic path: SYMB/file.c
+[kernel] User Error: Frama-C state file 'nonexistent_file.sav' does not exist
+[kernel] Frama-C aborted: invalid user input.

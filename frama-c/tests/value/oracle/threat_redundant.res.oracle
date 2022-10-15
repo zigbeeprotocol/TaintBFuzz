@@ -1,0 +1,51 @@
+[kernel] Parsing threat_redundant.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  s1[0] ∈ {97}
+    [1] ∈ {98}
+    [2] ∈ {97}
+    [3] ∈ {98}
+    [4] ∈ {97}
+    [5] ∈ {98}
+    [6] ∈ {97}
+    [7] ∈ {98}
+    [8] ∈ {97}
+    [9] ∈ {98}
+  x ∈ {0}
+[eva] computing for function strchr <- main.
+  Called from threat_redundant.c:19.
+[eva] threat_redundant.c:8: starting to merge loop iterations
+[eva:alarm] threat_redundant.c:8: Warning: 
+  out of bounds read. assert \valid_read(s);
+[eva] Recording results for strchr
+[eva] Done for function strchr
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function strchr:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[from] Computing for function strchr
+[from] Non-terminating function strchr (no dependencies)
+[from] Done for function strchr
+[from] Computing for function main
+[from] Non-terminating function main (no dependencies)
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function strchr:
+  NON TERMINATING - NO EFFECTS
+[from] Function main:
+  NON TERMINATING - NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function strchr:
+    s
+[inout] Inputs for function strchr:
+    s1[0..9]
+[inout] Out (internal) for function main:
+    x
+[inout] Inputs for function main:
+    s1[0..9]

@@ -1,0 +1,378 @@
+# frama-c -wp -wp-model 'Typed (Caveat)' [...]
+[kernel] Parsing sequence.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function loops
+------------------------------------------------------------
+
+Goal Post-condition 'ok,first' in 'loops':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,last' in 'loops':
+Let a = ([ y ] *^ i).
+Let a_1 = [ x ] ^ a ^ [ z ].
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(x) /\ is_sint32(y) /\
+      is_sint32(z).
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition *)
+  Have: L_call_obs(call_seq_0) = nil.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_1) = [ x ].
+  (* Invariant 'ok,id_min' *)
+  Have: 0 <= i.
+  (* Invariant 'ok,id_max' *)
+  Have: if (0 <= n) then (i <= n) else (i <= 0).
+  (* Invariant 'ok,inv' *)
+  Have: L_call_obs(call_seq_2) = [ x ] ^ a.
+  (* Else *)
+  Have: n <= i.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_3) = a_1.
+}
+Prove: nth(a_1, 1 + i) = z.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'ok,id_max' (file sequence.i, line 97):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'ok,id_max' (file sequence.i, line 97):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'ok,id_min' (file sequence.i, line 96):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'ok,id_min' (file sequence.i, line 96):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'ok,inv' (file sequence.i, line 98):
+Let a = ([ y ] *^ i).
+Let x_1 = 1 + i.
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(x) /\ is_sint32(y) /\
+      is_sint32(x_1).
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition *)
+  Have: L_call_obs(call_seq_0) = nil.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_1) = [ x ].
+  (* Invariant 'ok,id_min' *)
+  Have: 0 <= i.
+  (* Invariant 'ok,id_max' *)
+  Have: i <= n.
+  (* Invariant 'ok,inv' *)
+  Have: L_call_obs(call_seq_2) = [ x ] ^ a.
+  (* Then *)
+  Have: i < n.
+  (* Call 'g' *)
+  Have: L_call_obs(call_seq_3) = [ x ] ^ a ^ [ y ].
+  (* Invariant 'ok,id_min' *)
+  Have: (-1) <= i.
+  (* Invariant 'ok,id_max' *)
+  Have: 0 <= n.
+}
+Prove: ([ y ] *^ x_1) = a ^ [ y ].
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'ok,inv' (file sequence.i, line 98):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file sequence.i, line 95):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 79) in 'loops' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 79) in 'loops' (2/3):
+Effect at line 100
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 79) in 'loops' (3/3):
+Effect at line 100
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 79) in 'loops' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 79) in 'loops' (2/3):
+Effect at line 100
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 79) in 'loops' (3/3):
+Effect at line 100
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function loops with behavior g_called
+------------------------------------------------------------
+
+Goal Post-condition for 'g_called' 'ok,u1' in 'loops':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'g_called' 'ok,u2' in 'loops':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function loops with behavior g_not_called
+------------------------------------------------------------
+
+Goal Post-condition for 'g_not_called' 'ok,v1' in 'loops':
+Let a = ([ y ] *^ i).
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(x) /\ is_sint32(y) /\
+      is_sint32(z).
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition *)
+  Have: L_call_obs(call_seq_0) = nil.
+  (* Pre-condition for 'g_not_called' *)
+  Have: n <= 0.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_1) = [ x ].
+  (* Invariant 'ok,id_min' *)
+  Have: 0 <= i.
+  (* Invariant 'ok,id_max' *)
+  Have: if (0 <= n) then (i <= n) else (i <= 0).
+  (* Invariant 'ok,inv' *)
+  Have: L_call_obs(call_seq_2) = [ x ] ^ a.
+  (* Else *)
+  Have: n <= i.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_3) = [ x ] ^ a ^ [ z ].
+}
+Prove: i = 0.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'g_not_called' 'ok,v2' in 'loops':
+Let a = ([ y ] *^ i).
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(x) /\ is_sint32(y) /\
+      is_sint32(z).
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition *)
+  Have: L_call_obs(call_seq_0) = nil.
+  (* Pre-condition for 'g_not_called' *)
+  Have: n <= 0.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_1) = [ x ].
+  (* Invariant 'ok,id_min' *)
+  Have: 0 <= i.
+  (* Invariant 'ok,id_max' *)
+  Have: if (0 <= n) then (i <= n) else (i <= 0).
+  (* Invariant 'ok,inv' *)
+  Have: L_call_obs(call_seq_2) = [ x ] ^ a.
+  (* Else *)
+  Have: n <= i.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_3) = [ x ] ^ a ^ [ z ].
+}
+Prove: i <= 0.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_calls
+------------------------------------------------------------
+
+Goal Post-condition 'ok,m1' in 'no_calls':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,m2' in 'no_calls':
+Assume {
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition 'init' *)
+  Have: L_call_obs(call_seq_0) = nil.
+}
+Prove: length(L_call_nil) = 0.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,bug_why3,n1' in 'no_calls':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,n2' in 'no_calls':
+Assume {
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition 'init' *)
+  Have: L_call_obs(call_seq_0) = nil.
+}
+Prove: L_call_nil = nil.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,n3' in 'no_calls':
+Assume {
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition 'init' *)
+  Have: L_call_obs(call_seq_0) = nil.
+}
+Prove: L_call_nil = nil.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,bug_why3,n5' in 'no_calls':
+Assume {
+  Type: is_sint32(a).
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Goal *)
+  When: 0 <= a.
+  (* Pre-condition 'init' *)
+  Have: L_call_obs(call_seq_0) = nil.
+}
+Prove: (L_call_nil = nil) \/ (a <= 0).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,bug_why3,n6' in 'no_calls':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,bug_why3,n5_ok' in 'no_calls':
+Assume {
+  Type: is_sint32(a).
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition 'init' *)
+  Have: L_call_obs(call_seq_0) = nil.
+}
+Prove: (L_call_nil = nil) \/ (a <= 0).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,bug_why3,n6_ok' in 'no_calls':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 35) in 'no_calls':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function sequence
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 54) in 'sequence':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file sequence.i, line 54) in 'sequence':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function sequence with behavior g_called
+------------------------------------------------------------
+
+Goal Post-condition for 'g_called' 'ok,o1' in 'sequence':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'g_called' 'ok,p1' in 'sequence':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'g_called' 'ok,p2' in 'sequence':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'g_called' 'ok,p3' in 'sequence':
+Assume {
+  Type: is_sint32(c) /\ is_sint32(x) /\ is_sint32(y) /\ is_sint32(z).
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition *)
+  Have: L_call_obs(call_seq_0) = nil.
+  (* Pre-condition for 'g_called' *)
+  Have: c != 0.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_1) = [ x ].
+  (* Call 'g' *)
+  Have: L_call_obs(call_seq_2) = [ x, y ].
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_3) = [ x, y, z ].
+}
+Prove: L_call_nil = nil.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function sequence with behavior g_not_called
+------------------------------------------------------------
+
+Goal Post-condition for 'g_not_called' 'ok,o2' in 'sequence':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'g_not_called' 'ok,q1' in 'sequence':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'g_not_called' 'ok,q2' in 'sequence':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'g_not_called' 'ok,q3' in 'sequence':
+Assume {
+  Type: is_sint32(x) /\ is_sint32(z).
+  (* Heap *)
+  Type: is_sint32(call_seq_0).
+  (* Pre-condition *)
+  Have: L_call_obs(call_seq_0) = nil.
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_1) = [ x ].
+  (* Call 'f' *)
+  Have: L_call_obs(call_seq_2) = [ x, z ].
+}
+Prove: L_call_nil = nil.
+
+------------------------------------------------------------

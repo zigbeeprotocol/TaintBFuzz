@@ -1,0 +1,11 @@
+[e-acsl] beginning translation.
+[e-acsl] translation done in project "e-acsl".
+[eva:unknown-size] bts2406.c:5: Warning: 
+  during initialization of variable 'tab', size of type 'char const []'
+  cannot be computed (Size of array without number of elements.)
+[eva:alarm] bts2406.c:10: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bts2406.c:11: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.

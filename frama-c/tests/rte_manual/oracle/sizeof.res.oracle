@@ -1,0 +1,51 @@
+[kernel] Parsing sizeof.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function fsize3 <- main.
+  Called from sizeof.c:14.
+[eva] sizeof.c:9: assertion 'alloca_bounds' got status valid.
+[eva] sizeof.c:9: Call to builtin __fc_vla_alloc
+[eva] sizeof.c:9: allocating variable __malloc_fsize3_l9
+[eva] sizeof.c:9: Call to builtin __fc_vla_free
+[eva] Recording results for fsize3
+[eva] Done for function fsize3
+[eva] sizeof.c:14: freeing automatic bases: {__malloc_fsize3_l9}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function fsize3:
+  b ∈ ESCAPINGADDR
+  __lengthof_b ∈ {8}
+  __retres ∈ {8}
+[eva:final-states] Values at end of function main:
+  __retres ∈ {8}
+[from] Computing for function fsize3
+[from] Computing for function __fc_vla_alloc <-fsize3
+[from] Done for function __fc_vla_alloc
+[from] Computing for function __fc_vla_free <-fsize3
+[from] Done for function __fc_vla_free
+[from] Done for function fsize3
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function __fc_vla_alloc:
+  \result FROM \nothing
+[from] Function __fc_vla_free:
+  NO EFFECTS
+[from] Function fsize3:
+  \result FROM n
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function fsize3:
+    b; __lengthof_b; __retres
+[inout] Inputs for function fsize3:
+    \nothing
+[inout] Out (internal) for function main:
+    tmp; __retres
+[inout] Inputs for function main:
+    \nothing

@@ -1,0 +1,28 @@
+[kernel] Parsing addr2.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  t[0..12] ∈ {0}
+[eva] addr2.i:19: Frama_C_show_each_F: {0}
+[eva] addr2.i:13: starting to merge loop iterations
+[eva] addr2.i:19: Frama_C_show_each_F: {0; 1}
+[eva] addr2.i:19: Frama_C_show_each_F: {0; 1; 2}
+[eva] addr2.i:19: Frama_C_show_each_F: [0..12]
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  i ∈ {13}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    i
+[inout] Inputs for function main:
+    \nothing

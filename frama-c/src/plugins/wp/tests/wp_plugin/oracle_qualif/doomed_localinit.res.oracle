@@ -1,0 +1,18 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing doomed_localinit.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function access
+[wp] 4 goals scheduled
+[wp] [Passed] Smoke-test typed_access_wp_smoke_dead_code_s3
+[wp] [Failed] Smoke-test typed_access_wp_smoke_dead_code_s5
+       Qed: Valid
+[wp] doomed_localinit.i:11: Warning: Failed smoke-test
+[wp] [Alt-Ergo] Goal typed_access_assert_rte_mem_access : Unsuccess
+[wp] [Alt-Ergo] Goal typed_access_assert_rte_mem_access_2 : Unsuccess
+[wp] Proved goals:    1 / 4
+  Qed:             0  (failed: 1)
+  Alt-Ergo:        1  (unsuccess: 2)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  access                    -        1        4      25.0%
+------------------------------------------------------------

@@ -1,0 +1,70 @@
+[kernel] Parsing inter_alias2.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function f1 <- main.
+  Called from inter_alias2.c:23.
+[eva] computing for function incr_ptr <- f1 <- main.
+  Called from inter_alias2.c:14.
+[eva:alarm] inter_alias2.c:9: Warning: 
+  signed overflow. assert *p + 1 ≤ 2147483647;
+[eva] Recording results for incr_ptr
+[from] Computing for function incr_ptr
+[from] Done for function incr_ptr
+[eva] Done for function incr_ptr
+[eva] Recording results for f1
+[from] Computing for function f1
+[from] Done for function f1
+[eva] Done for function f1
+[eva] computing for function f2 <- main.
+  Called from inter_alias2.c:24.
+[eva] computing for function incr_ptr <- f2 <- main.
+  Called from inter_alias2.c:19.
+[eva] Recording results for incr_ptr
+[from] Computing for function incr_ptr
+[from] Done for function incr_ptr
+[eva] Done for function incr_ptr
+[eva] Recording results for f2
+[from] Computing for function f2
+[from] Done for function f2
+[eva] Done for function f2
+[eva:alarm] inter_alias2.c:26: Warning: 
+  signed overflow. assert -2147483648 ≤ v1 + v2;
+[eva:alarm] inter_alias2.c:26: Warning: 
+  signed overflow. assert v1 + v2 ≤ 2147483647;
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to incr_ptr at inter_alias2.c:14 (by f1):
+  x1 FROM p; x1
+[from] call to incr_ptr at inter_alias2.c:19 (by f2):
+  x2 FROM p; x2
+[from] call to f1 at inter_alias2.c:23 (by main):
+  \result FROM a
+[from] call to f2 at inter_alias2.c:24 (by main):
+  \result FROM b
+[from] entry point:
+  \result FROM i1; i2
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[pdg] computing for function incr_ptr
+[pdg] done for function incr_ptr
+[pdg] PDG for incr_ptr
+ {n1}: InCtrl
+ {n2}: VarDecl : p
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: (*p) ++;
+   -[-c-]-> 1
+   -[a-d]-> 2
+   -[a-d]-> 3
+   -[--d]-> 6
+   -[--d]-> 7
+ {n5}: return;
+   -[-c-]-> 1
+ {n6}: In(x1)
+ {n7}: In(x2)

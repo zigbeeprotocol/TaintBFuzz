@@ -1,0 +1,7 @@
+[kernel] Parsing test_recursion5.c (with preprocessing)
+[kernel] test_recursion5.c:12: Warning: 
+  parsing obsolete ACSL construct '\valid_range(addr,min,max)'. '\valid(addr+(min..max))' should be used instead.
+[kernel] test_recursion5.c:28: Warning: 
+  parsing obsolete ACSL construct '\valid_range(addr,min,max)'. '\valid(addr+(min..max))' should be used instead.
+[kernel] Parsing TMPDIR/aorai_test_recursion5_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

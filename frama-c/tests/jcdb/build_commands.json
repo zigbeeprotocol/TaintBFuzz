@@ -1,0 +1,21 @@
+[
+    {
+        "command": "/usr/bin/gcc -c jbdb.c jbdb2.c -DRETCODE=0",
+        "arguments": [
+            "/usr/bin/gcc",
+            "-c",
+            "jbdb.c",
+            "jbdb2.c",
+            "-DRETCODE=0"
+        ],
+        "sources": [
+            "jbdb.c",
+            "jbdb2.c"
+        ],
+        "targets": [
+            "jbdb.o",
+            "jbdb2.o"
+        ],
+        "directory": "."
+    }
+]

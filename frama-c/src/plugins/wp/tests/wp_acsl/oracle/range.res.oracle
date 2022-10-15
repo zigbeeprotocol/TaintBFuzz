@@ -1,0 +1,29 @@
+# frama-c -wp [...]
+[kernel] Parsing range.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function test
+------------------------------------------------------------
+
+Goal Post-condition 'P1,ok' in 'test':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'P2,ok' in 'test':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'HP,ok' in 'val_assigns_p'' in 'test' at call 'val_assigns_p' (file range.i, line 32)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'HQ,ok' in 'val_assigns_q'' in 'test' at call 'val_assigns_q' (file range.i, line 33)
+:
+Prove: true.
+
+------------------------------------------------------------

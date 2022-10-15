@@ -1,0 +1,45 @@
+# frama-c -wp [...]
+[kernel] Parsing initialized_memtyped.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 29 goals scheduled
+[wp] [Alt-Ergo] Goal typed_test_check_unknown : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_3 : Unsuccess
+[wp] [Qed] Goal typed_test_check_qed_ok : Valid
+[wp] [Qed] Goal typed_test_check_qed_ok_2 : Valid
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_4 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_5 : Unsuccess
+[wp] [Qed] Goal typed_test_check_qed_ok_3 : Valid
+[wp] [Qed] Goal typed_test_check_qed_ok_4 : Valid
+[wp] [Alt-Ergo] Goal typed_test_check_provable : Valid
+[wp] [Qed] Goal typed_test_check_qed_ok_5 : Valid
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_6 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_7 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_8 : Unsuccess
+[wp] [Qed] Goal typed_test_check_qed_ok_6 : Valid
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_9 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_10 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_11 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_provable_2 : Valid
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_12 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_provable_3 : Valid
+[wp] [Alt-Ergo] Goal typed_test_check_unknown_13 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_check_provable_4 : Valid
+[wp] [Alt-Ergo] Goal typed_glob_var_ensures_provable : Valid
+[wp] [Alt-Ergo] Goal typed_glob_var_ensures_unknown : Unsuccess
+[wp] [Alt-Ergo] Goal typed_glob_arr_ensures_provable : Valid
+[wp] [Alt-Ergo] Goal typed_glob_arr_ensures_unknown : Unsuccess
+[wp] [Alt-Ergo] Goal typed_formal_assert_provable : Valid
+[wp] [Alt-Ergo] Goal typed_ptr_on_local_assert_provable : Valid
+[wp] Proved goals:   14 / 29
+  Qed:             6 
+  Alt-Ergo:        8  (unsuccess: 15)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  test                      6        4       23      43.5%
+  glob_var                  -        1        2      50.0%
+  glob_arr                  -        1        2      50.0%
+  formal                    -        1        1       100%
+  ptr_on_local              -        1        1       100%
+------------------------------------------------------------

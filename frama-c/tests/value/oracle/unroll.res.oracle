@@ -1,0 +1,39 @@
+[kernel] Parsing unroll.i (no preprocessing)
+[kernel] unroll.i:49: Warning: 
+  ignoring unrolling directive (not an understood constant expression)
+[kernel] unroll.i:54: Warning: ignoring invalid unrolling directive
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t_biosmap[0..9] ∈ {0}
+  g_biosmap ∈ {{ &t_biosmap[0] }}
+  biosmap ∈ {0}
+[eva] unroll.i:31: starting to merge loop iterations
+[eva:alarm] unroll.i:34: Warning: signed overflow. assert -2147483648 ≤ j - 1;
+[eva:alarm] unroll.i:32: Warning: signed overflow. assert G + i ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  c ∈ {0}
+  G ∈ [17739..2147483647]
+  i ∈ {257}
+  MAX ∈ {12}
+  JMAX ∈ {5}
+  j ∈ [-2147483648..-123]
+  k ∈ {13}
+  S ∈ {479001600}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    c; G; i; MAX; JMAX; j; k; S; tmp; tmp_unroll_3752; tmp_unroll_3760;
+    tmp_unroll_3768; tmp_unroll_3776; tmp_unroll_3784; tmp_unroll_3792;
+    tmp_unroll_3800; tmp_unroll_3808; tmp_unroll_3816; tmp_unroll_3824
+[inout] Inputs for function main:
+    \nothing

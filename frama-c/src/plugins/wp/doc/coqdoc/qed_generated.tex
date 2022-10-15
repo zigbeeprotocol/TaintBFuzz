@@ -1,0 +1,11 @@
+\section{Generated Symbols}
+
+The \textsf{WP} generates a new type \verb+S_R+ for each structure \verb+R+, and
+new identifiers \verb+F_f+ for each field \verb+f+ of the compound.
+
+For each record or array type \verb+T+, a predicate \verb+Is<T>+ is
+introduced to constrain the types of each sub-component of compound
+\verb+T+, typically the bound of integer fields.
+
+The \textsf{WP} generates also an equality symbols for arrays of fixed
+size of each dimensions and types.

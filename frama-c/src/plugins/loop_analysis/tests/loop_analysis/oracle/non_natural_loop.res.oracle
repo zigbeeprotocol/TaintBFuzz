@@ -1,0 +1,5 @@
+[kernel] Parsing non_natural_loop.i (no preprocessing)
+[kernel] non_natural_loop.i:4: Warning: Non-natural loop detected.
+[loop] Warning: Could not analyze function duff;
+  it contains a non-natural loop
+[loop] Maximum number of iterations by loop:

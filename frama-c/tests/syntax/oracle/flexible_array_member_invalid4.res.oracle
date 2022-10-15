@@ -1,0 +1,5 @@
+[kernel] Parsing flexible_array_member_invalid4.i (no preprocessing)
+[kernel] flexible_array_member_invalid4.i:9: User Error: 
+  field `data' is declared with incomplete type char []
+[kernel] User Error: stopping on file "flexible_array_member_invalid4.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

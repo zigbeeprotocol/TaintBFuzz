@@ -1,0 +1,22 @@
+\begin{syntax}
+condition ::= 'CALL''('id')' | 'RETURN''('id')' ;
+      | 'COR''('id')' ;
+      | 'true' | 'false' | '!' condition ;
+      | condition '&&' condition ;
+      | condition '||' condition ;
+      | '(' condition ')' | relation
+\\
+relation ::= expr relop expr;
+\\
+relop ::= '<' | '<=' | '==' | '!=' | '>=' | '>' 
+\\
+expr ::= lval | cst | expr '+' expr | expr '-' expr ;
+      | expr '*' expr | expr '/' expr | expr '%' expr ;
+      | '(' expr ')'
+\\
+cst ::= integer;
+\\
+lval ::= id'('')''.'id | id'('')''.''\result' | id ;
+      | lval'.'id | lval'->'id ;
+      | lval'['expr']' | '*'lval
+\end{syntax}

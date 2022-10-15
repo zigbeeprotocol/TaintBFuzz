@@ -1,0 +1,49 @@
+\begin{syntax}
+  { logic-def } ::= { "type" logic-type = } ;
+                { logic-type-def ";" }
+  \
+  { logic-type-def } ::= { record-type } ;
+  | { sum-type } ;
+  | { product-type } ;
+  | { function-type } ;
+  | { type-expr } ; type abbreviation
+  \
+  { record-type } ::= { "{" type-expr id } ;
+                  {( ";" type-expr id)* ";"? "}"}
+  \
+  { function-type } ::= { "("( type-expr };
+                     { ("," type-expr )*)?")" } ;
+                    { "->" type-expr }
+  \
+  { sum-type } ::= { "|"? constructor };
+               { ( "|" constructor)* }
+  \
+  { constructor } ::= { id } ; constant constructor
+  | { id } ;
+    { "(" type-expr };
+    { ("," type-expr)* ")" }; non-constant constructor
+  \
+  { product-type } ::= {"(" type-expr};
+                {("," type-expr)+ ")"} ; product type
+  \
+  term ::= {term "." id} ; record field access
+  | {"\match" term};
+    {"{" match-cases "}" } ; pattern-matching
+  | {"(" term ("," term)+ ")"} ; tuples
+  | {"{" ("." id "=" term ";")+ "}"} ; records
+  | {"\let" "(" id (, id)+ ")" "="};
+    {term ";" term}
+  \
+  { match-cases } ::= { match-case+ }
+  \
+  { match-case } ::= {"case" pat ":" term}
+  \
+  { pat } ::= { id } ; constant constructor
+    | { id "(" pat ( "," pat)* ")" } ; non-constant constructor
+    | { pat "|" pat } ; or pattern
+    | { "_" } ; any pattern
+    | { literal }
+    | { "{" ("."id "=" pat)* "}" } ; record pattern
+    | { "(" pat ( "," pat )* ")" } ; tuple pattern
+    | { pat "as" id } ; pattern binding
+\end{syntax}

@@ -1,0 +1,113 @@
+\section{Logic variables}\label{sec-funvar}
+
+As previously presented, there is two kinds of memory models.  One
+based on variables, as in the Hoare model see section~\ref{sec-hoare}
+and the other based on the representation of the heap, as the Store
+model (see section~\ref{sec-store}) and the Runtime model (see
+section~\ref{sec-runtime}).
+
+The second kind of memory model is more expressive since it can handle
+ dereferencing of pointers, and addresses of variables. 
+The cost is quite heavy: the generated formula are largest.
+
+The ideal is to benefit this expressiveness only for the variables
+involved in dereferencing of pointers and address management, in
+other words the variables such as their addresses are computed. For
+the other variables, variables such as their addresses are never
+computed (notice that they behave as functional or logical variables)
+they can be handled by a model {\it à la} Hoare. This kind of
+optimization, with a generous definition of optimization, is quite
+current in memory model specifications and implementations.
+
+In the WP, the model {\it à la} Hoare is the Logicvar model and
+to make it cooperate with a based on heap memory model, one has to set
+the {\tt -wp-logicvar}.
+
+A variable translated in Logicvar has in $\cal{L}$ a logic type then
+it is translated as \textsf{ACSL} data (see section~\ref{sec-acsl}).
+
+
+Let us consider this example: 
+\begin{ccode}
+typedef struct S { int a; int * p; }; 
+
+struct S s;
+struct S r;
+
+
+/*@ 
+    ensures \result == {s \with .a = (int)4 };
+*/
+struct S ret_struct(void)
+{
+  struct S * ps; 
+  r.a = s.a ; 
+  s.a = 4;
+  ps = &r;
+  return r;
+}
+\end{ccode}
+
+This example has a semantics only in a based on heap memory model,
+because the address of \whyinline{r} is taken. Computing the 
+proof obligation associated to the post-condition with the memory model 
+Store in the WP plug-in gives:
+
+\begin{whycode}
+
+goal store_full_ret_struct_post_1:
+  forall m:data farray.
+  forall ta:int farray.
+     global(ta)
+  -> (ta[X_ps] = 0)
+  -> is_fresh(m, ta, X_ps)
+  -> is_fresh(
+       m[addr(X_r,0)
+         <-encode(int_format,decode(int_format,m[addr(X_s,0)]))][addr(X_s,
+                                                                    0)
+         <-encode(int_format,4)][addr(X_ps,0)
+         <-encode(addr_format,addr(X_r,0))], ta_2[X_ps<-1][X_ps<-0], X_ps)
+  -> Eqrec_S(
+       decode(Cfmt_S,
+         access_range(
+           m[addr(X_r,0)
+             <-encode(int_format,decode(int_format,m[addr(X_s,0)]))][
+             addr(X_s,0)
+             <-encode(int_format,4)][addr(X_ps,0)
+             <-encode(addr_format,addr(X_r,0))],zrange(X_r,0,2))),
+       decode(Cfmt_S,
+         access_range(
+           m[addr(X_r,0)
+             <-encode(int_format,decode(int_format,m[addr(X_s,0)]))][
+             addr(X_s,0)
+             <-encode(int_format,4)][addr(X_ps,0)
+             <-encode(addr_format,addr(X_r,0))],zrange(X_s,0,2)))[F_a
+         <-encode(int_format,as_int(sint32_format,4))])
+\end{whycode}
+
+For each variable, a location is created into the heap.  The local
+variables trigger two local allocations for their locations.  The three
+assignments take place in the same $\cal{L}$ array, the store.
+Unless expressing the address taken of \whyinline{r} and the address
+assignment \whyinline{ps= &r;}, this is uninteresting to use the Store
+model. Moreover, this assignment is heavy noise for the automatic
+provers. Then, using Logicvar, the WP plug-in generates the formula:
+
+\begin{whycode}
+goal store_ret_struct_post_1:
+  forall m:data farray.
+  forall s:data farray.
+  Eqrec_S(
+    decode(Cfmt_S,
+      access_range(
+        m[addr(X_r,0)<-encode(int_format,decode(int_format,s[F_a]))],
+        zrange(X_r,0,2))),
+    s[F_a<-encode(int_format,4)][F_a
+      <-encode(int_format,as_int(sint32_format,4))])
+\end{whycode}
+
+Since the assignment \whyinline{ps= &r;} is {\it mute} for the post-condition, 
+the WP plug-in ignores it. Hence, only \whyinline{r} is represented into the 
+memory, the other variables are handled as logic variables.
+
+

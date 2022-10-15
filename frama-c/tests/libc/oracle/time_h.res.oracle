@@ -1,0 +1,276 @@
+[kernel] Parsing time_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function nanosleep <- main.
+  Called from time_h.c:13.
+[eva] using specification for function nanosleep
+[eva] time_h.c:13: 
+  function nanosleep: precondition 'valid_request' got status valid.
+[eva] time_h.c:13: 
+  function nanosleep: precondition 'initialization,initialized_request' got status valid.
+[eva] time_h.c:13: 
+  function nanosleep: precondition 'valid_nanosecs' got status valid.
+[eva] time_h.c:13: 
+  function nanosleep: precondition 'valid_remaining_or_null' got status valid.
+[eva] Done for function nanosleep
+[eva] computing for function nanosleep <- main.
+  Called from time_h.c:17.
+[eva] time_h.c:17: 
+  function nanosleep: precondition 'valid_request' got status valid.
+[eva] time_h.c:17: 
+  function nanosleep: precondition 'initialization,initialized_request' got status valid.
+[eva] time_h.c:17: 
+  function nanosleep: precondition 'valid_nanosecs' got status valid.
+[eva] time_h.c:17: 
+  function nanosleep: precondition 'valid_remaining_or_null' got status valid.
+[eva] Done for function nanosleep
+[eva] computing for function nanosleep <- main.
+  Called from time_h.c:22.
+[eva] time_h.c:22: 
+  function nanosleep: precondition 'valid_request' got status valid.
+[eva] time_h.c:22: 
+  function nanosleep: precondition 'initialization,initialized_request' got status valid.
+[eva] time_h.c:22: 
+  function nanosleep: precondition 'valid_nanosecs' got status valid.
+[eva] time_h.c:22: 
+  function nanosleep: precondition 'valid_remaining_or_null' got status valid.
+[eva:invalid-assigns] time_h.c:22: 
+  Completely invalid destination for assigns clause *rmtp. Ignoring.
+[eva] Done for function nanosleep
+[eva] computing for function nanosleep <- main.
+  Called from time_h.c:22.
+[eva:invalid-assigns] time_h.c:22: 
+  Completely invalid destination for assigns clause *rmtp. Ignoring.
+[eva] Done for function nanosleep
+[eva] computing for function clock_nanosleep <- main.
+  Called from time_h.c:28.
+[eva] using specification for function clock_nanosleep
+[eva] time_h.c:28: 
+  function clock_nanosleep: precondition 'valid_request' got status valid.
+[eva] time_h.c:28: 
+  function clock_nanosleep: precondition 'initialization,initialized_request' got status valid.
+[eva] time_h.c:28: 
+  function clock_nanosleep: precondition 'valid_nanosecs' got status valid.
+[eva] time_h.c:28: 
+  function clock_nanosleep: precondition 'valid_remaining_or_null' got status valid.
+[eva] Done for function clock_nanosleep
+[eva] computing for function clock_nanosleep <- main.
+  Called from time_h.c:28.
+[eva] Done for function clock_nanosleep
+[eva] time_h.c:29: assertion got status valid.
+[eva] computing for function clock_nanosleep <- main.
+  Called from time_h.c:30.
+[eva] time_h.c:30: 
+  function clock_nanosleep: precondition 'valid_request' got status valid.
+[eva] time_h.c:30: 
+  function clock_nanosleep: precondition 'initialization,initialized_request' got status valid.
+[eva] time_h.c:30: 
+  function clock_nanosleep: precondition 'valid_nanosecs' got status valid.
+[eva] time_h.c:30: 
+  function clock_nanosleep: precondition 'valid_remaining_or_null' got status valid.
+[eva] Done for function clock_nanosleep
+[eva] computing for function clock_nanosleep <- main.
+  Called from time_h.c:32.
+[eva] time_h.c:32: 
+  function clock_nanosleep: precondition 'valid_request' got status valid.
+[eva] time_h.c:32: 
+  function clock_nanosleep: precondition 'initialization,initialized_request' got status valid.
+[eva] time_h.c:32: 
+  function clock_nanosleep: precondition 'valid_nanosecs' got status valid.
+[eva] time_h.c:32: 
+  function clock_nanosleep: precondition 'valid_remaining_or_null' got status valid.
+[eva] Done for function clock_nanosleep
+[eva] computing for function clock_nanosleep <- main.
+  Called from time_h.c:36.
+[eva] time_h.c:36: 
+  function clock_nanosleep: precondition 'valid_request' got status valid.
+[eva] time_h.c:36: 
+  function clock_nanosleep: precondition 'initialization,initialized_request' got status valid.
+[eva] time_h.c:36: 
+  function clock_nanosleep: precondition 'valid_nanosecs' got status valid.
+[eva] time_h.c:36: 
+  function clock_nanosleep: precondition 'valid_remaining_or_null' got status valid.
+[eva] Done for function clock_nanosleep
+[eva] computing for function clock_nanosleep <- main.
+  Called from time_h.c:36.
+[eva:alarm] time_h.c:36: Warning: 
+  function clock_nanosleep: precondition 'initialization,initialized_request' got status invalid.
+[eva] time_h.c:36: 
+  function clock_nanosleep: no state left, precondition 'valid_nanosecs' got status valid.
+[eva] time_h.c:36: 
+  function clock_nanosleep: no state left, precondition 'valid_remaining_or_null' got status valid.
+[eva] Done for function clock_nanosleep
+[eva] computing for function clock_nanosleep <- main.
+  Called from time_h.c:36.
+[eva] Done for function clock_nanosleep
+[eva] computing for function ctime <- main.
+  Called from time_h.c:43.
+[eva] using specification for function ctime
+[eva] time_h.c:43: function ctime: precondition 'valid_timer' got status valid.
+[eva] time_h.c:43: 
+  function ctime: precondition 'initialization,init_timer' got status valid.
+[eva] Done for function ctime
+[eva] computing for function ctime <- main.
+  Called from time_h.c:43.
+[eva] Done for function ctime
+[eva:alarm] time_h.c:44: Warning: assertion got status unknown.
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:48.
+[eva] using specification for function Frama_C_interval
+[eva] time_h.c:48: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:48.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:49.
+[eva] time_h.c:49: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:49.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:50.
+[eva] time_h.c:50: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:50.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:51.
+[eva] time_h.c:51: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:51.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:52.
+[eva] time_h.c:52: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:52.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:53.
+[eva] time_h.c:53: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:53.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:54.
+[eva] time_h.c:54: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:54.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:55.
+[eva] time_h.c:55: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:55.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:56.
+[eva] time_h.c:56: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from time_h.c:56.
+[eva] Done for function Frama_C_interval
+[eva] computing for function mktime <- main.
+  Called from time_h.c:58.
+[eva] using specification for function mktime
+[eva] time_h.c:58: 
+  function mktime: precondition 'valid_timeptr' got status valid.
+[eva] Done for function mktime
+[eva] computing for function mktime <- main.
+  Called from time_h.c:58.
+[eva] Done for function mktime
+[eva] computing for function gmtime <- main.
+  Called from time_h.c:60.
+[eva] using specification for function gmtime
+[eva] time_h.c:60: function gmtime: precondition 'valid_timer' got status valid.
+[eva] Done for function gmtime
+[eva] computing for function gmtime <- main.
+  Called from time_h.c:60.
+[eva] Done for function gmtime
+[eva] computing for function gmtime_r <- main.
+  Called from time_h.c:62.
+[eva] using specification for function gmtime_r
+[eva] time_h.c:62: 
+  function gmtime_r: precondition 'valid_timer' got status valid.
+[eva] time_h.c:62: 
+  function gmtime_r: precondition 'valid_result' got status valid.
+[eva] Done for function gmtime_r
+[eva] computing for function gmtime_r <- main.
+  Called from time_h.c:62.
+[eva] Done for function gmtime_r
+[eva] computing for function gmtime_r <- main.
+  Called from time_h.c:62.
+[eva] Done for function gmtime_r
+[eva] computing for function gmtime_r <- main.
+  Called from time_h.c:62.
+[eva] Done for function gmtime_r
+[eva] computing for function asctime <- main.
+  Called from time_h.c:64.
+[eva] using specification for function asctime
+[eva] time_h.c:64: 
+  function asctime: precondition 'valid_timeptr' got status valid.
+[eva] time_h.c:64: 
+  function asctime: precondition 'initialization,init_timeptr' got status valid.
+[eva] Done for function asctime
+[eva:alarm] time_h.c:65: Warning: assertion got status unknown.
+[eva] computing for function localtime <- main.
+  Called from time_h.c:67.
+[eva] using specification for function localtime
+[eva] time_h.c:67: 
+  function localtime: precondition 'valid_timer' got status valid.
+[eva] Done for function localtime
+[eva] computing for function localtime_r <- main.
+  Called from time_h.c:69.
+[eva] using specification for function localtime_r
+[eva] time_h.c:69: 
+  function localtime_r: precondition 'valid_timer' got status valid.
+[eva] time_h.c:69: 
+  function localtime_r: precondition 'valid_result' got status valid.
+[eva] Done for function localtime_r
+[eva] computing for function localtime_r <- main.
+  Called from time_h.c:69.
+[eva] Done for function localtime_r
+[eva] time_h.c:70: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_errno ∈ [--..--]
+  __fc_ctime[0..25] ∈ [--..--]
+  __fc_time_tm ∈ [--..--]
+  Frama_C_entropy_source ∈ [--..--]
+  req.tv_sec ∈ [--..--]
+     .tv_nsec ∈ [0..999999999]
+  rem ∈ [--..--] or UNINITIALIZED
+  r ∈ {-1; 0; 4; 22}
+  creq.tv_sec ∈ [--..--] or UNINITIALIZED
+      .tv_nsec ∈ [0..999999999] or UNINITIALIZED
+  tt ∈ {42}
+  time_str ∈ {{ &__fc_ctime[0] }}
+  mytime ∈ [--..--]
+  t ∈ [--..--]
+  res_time ∈ {{ NULL ; &mytime2 }} or UNINITIALIZED
+  mytime2 ∈ [--..--] or UNINITIALIZED
+  localp ∈ {{ NULL ; &localr }}
+  localr ∈ [--..--] or UNINITIALIZED
+  __retres ∈ {0; 1; 2}

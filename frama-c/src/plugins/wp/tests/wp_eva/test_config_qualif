@@ -1,0 +1,3 @@
+PLUGIN: @PTEST_PLUGIN@,eva,scope,inout,reduc
+CMD: @frama-c@ -no-autoload-plugins -eva -eva-no-print -eva-verbose 0 @PTEST_FILE@ -then -reduc -reduc-gen-annot all -then -no-reduc -then -wp -wp-par 1 -wp-share @PTEST_SHARE_DIR@ -wp-msg-key shell -wp-warn-key pedantic-assigns=inactive -wp-report %{dep:@PTEST_SUITE_DIR@/../qualif.report} -wp-cache-env -wp-cache replay @PTEST_FILE@
+OPT:

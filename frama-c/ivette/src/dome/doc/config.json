@@ -1,0 +1,18 @@
+{
+  "source": {
+    "include": [ "doc/README.md", "src" ]
+  },
+  "opts": {
+    "recurse": true,
+    "tutorials": "doc/tutorials",
+    "template": "doc/template"
+  },
+  "plugins": [ "plugins/markdown" ],
+  "templates": {
+    "default": {
+      "useLongnameInNav": true,
+      "outputSourceFiles": false,
+      "includeDate": false
+    }
+  }
+}

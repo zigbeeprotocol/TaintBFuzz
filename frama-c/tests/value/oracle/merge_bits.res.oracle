@@ -1,0 +1,84 @@
+[kernel] Parsing merge_bits.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0] ∈ {1}
+   [1..3] ∈ {0}
+   [4] ∈ {1}
+   [5] ∈ {2}
+   [6] ∈ {3}
+   [7] ∈ {4}
+   [8] ∈ {5}
+   [9] ∈ {0}
+   [10..12] ∈ {1}
+  nondet ∈ [--..--]
+[eva] computing for function join_offsetmap <- main.
+  Called from merge_bits.i:35.
+[eva] Recording results for join_offsetmap
+[eva] Done for function join_offsetmap
+[eva] computing for function merge_bits <- main.
+  Called from merge_bits.i:36.
+[eva] merge_bits.i:24: Frama_C_show_each_F: {1}
+[eva] merge_bits.i:25: Frama_C_show_each_F: {16777216}
+[eva] merge_bits.i:26: Frama_C_show_each_F: {67305985}
+[eva] merge_bits.i:27: Frama_C_show_each_F: {16843008}
+[eva] merge_bits.i:29: Frama_C_show_each_F: {1048577}
+[eva] Recording results for merge_bits
+[eva] Done for function merge_bits
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function join_offsetmap:
+  u{.i[bits 0 to 15]; .s[0]} ∈ {65534}
+   {.i[bits 16 to 31]; .s[1]} ∈ {65535}
+  r ∈ {-2}
+[eva:final-states] Values at end of function merge_bits:
+  T[0] ∈ {1}
+   [1] ∈ {0}
+   [bits 16 to 47] ∈ {-1879048176}
+   [6] ∈ {3}
+   [7] ∈ {4}
+   [8] ∈ {5}
+   [9] ∈ {0}
+   [10..12] ∈ {1}
+  __retres ∈ {0}
+[eva:final-states] Values at end of function main:
+  T[0] ∈ {1}
+   [1] ∈ {0}
+   [bits 16 to 47] ∈ {-1879048176}
+   [6] ∈ {3}
+   [7] ∈ {4}
+   [8] ∈ {5}
+   [9] ∈ {0}
+   [10..12] ∈ {1}
+  __retres ∈ {0}
+[from] Computing for function join_offsetmap
+[from] Done for function join_offsetmap
+[from] Computing for function merge_bits
+[from] Done for function merge_bits
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function join_offsetmap:
+  NO EFFECTS
+[from] Function merge_bits:
+  T[2..5] FROM \nothing
+  \result FROM \nothing
+[from] Function main:
+  T[2..5] FROM \nothing
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function join_offsetmap:
+    u; r
+[inout] Inputs for function join_offsetmap:
+    nondet
+[inout] Out (internal) for function merge_bits:
+    T[2..5]; __retres
+[inout] Inputs for function merge_bits:
+    T{[0..7]; [9..12]}
+[inout] Out (internal) for function main:
+    T[2..5]; __retres
+[inout] Inputs for function main:
+    T{[0..7]; [9..12]}; nondet

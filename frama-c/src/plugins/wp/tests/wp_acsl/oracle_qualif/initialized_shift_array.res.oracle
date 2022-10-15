@@ -1,0 +1,35 @@
+# frama-c -wp [...]
+[kernel] Parsing initialized_shift_array.i (no preprocessing)
+[wp] Running WP plugin...
+[kernel] initialized_shift_array.i:52: Warning: 
+  No code nor implicit assigns clause for function test, generating default assigns from the prototype
+[wp] Warning: Missing RTE guards
+[wp] 11 goals scheduled
+[wp] [Qed] Goal typed_succ_full_first_cell_call_test_requires : Valid
+[wp] [Alt-Ergo] Goal typed_succ_full_full_call_test_requires : Valid
+[wp] [Alt-Ergo] Goal typed_succ_full_from_1_call_test_requires : Valid
+[wp] [Alt-Ergo] Goal typed_succ_from_1_from_1_call_test_requires : Valid
+[wp] [Alt-Ergo] Goal typed_succ_full_from_2_call_test_requires : Valid
+[wp] [Alt-Ergo] Goal typed_fail_cell_before_call_test_requires : Unsuccess
+[wp] [Alt-Ergo] Goal typed_fail_too_long_call_test_requires : Unsuccess
+[wp] [Alt-Ergo] Goal typed_fail_too_long_from_1_call_test_requires : Unsuccess
+[wp] [Alt-Ergo] Goal typed_fail_too_long_from_2_call_test_requires : Unsuccess
+[wp] [Alt-Ergo] Goal typed_fail_cell_after_end_call_test_requires : Unsuccess
+[wp] [Alt-Ergo] Goal typed_fail_partial_not_full_call_test_requires : Unsuccess
+[wp] Proved goals:    5 / 11
+  Qed:             1 
+  Alt-Ergo:        4  (unsuccess: 6)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  succ_full_first_cell      1        -        1       100%
+  succ_full_full            -        1        1       100%
+  succ_full_from_1          -        1        1       100%
+  succ_from_1_from_1        -        1        1       100%
+  succ_full_from_2          -        1        1       100%
+  fail_cell_before          -        -        1       0.0%
+  fail_too_long             -        -        1       0.0%
+  fail_too_long_from_1      -        -        1       0.0%
+  fail_too_long_from_2      -        -        1       0.0%
+  fail_cell_after_end       -        -        1       0.0%
+  fail_partial_not_full     -        -        1       0.0%
+------------------------------------------------------------

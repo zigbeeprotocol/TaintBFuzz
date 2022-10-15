@@ -1,0 +1,23 @@
+[kernel] Parsing garbled_init.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  PTR ∈ {0}
+  G ∈ {{ &PTR + {-4278190080} }}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  PTR ∈ {1}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  PTR FROM G
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    PTR
+[inout] Inputs for function main:
+    G

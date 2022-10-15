@@ -1,0 +1,4 @@
+[ { "header": "Split", "tactic": "Wp.split", "params": {},
+    "select": { "select": "clause-goal", "target": "L_LQ=L_LP",
+                "pattern": "=L_LQL_LP" },
+    "children": { "Necessity": [], "Sufficiency": [] } } ]

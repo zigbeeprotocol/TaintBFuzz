@@ -1,0 +1,425 @@
+# frama-c -wp [...]
+[kernel] Parsing initialized_memvar.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function complex_struct
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 128):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 129):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 130):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 131):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 132):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 133):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 134):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 135):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 136):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 137):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 138):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 139):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 140):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 141):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 142):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 143):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 144):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 145):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 146):
+Prove: exists i_1,i : Z. (0 < i_1) /\ (i_1 <= 3) /\ (7 <= i) /\ (i <= 9).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function globals
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 23):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 26):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 28):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ko' (file initialized_memvar.i, line 29):
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 31):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ko' (file initialized_memvar.i, line 32):
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 35):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 36):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 37):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 39):
+Let a = Init_c_0.Init_F2_C_s.
+Let a_1 = Init_c_0.Init_F2_C_a.
+Assume {
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 9).
+  (* Pre-condition *)
+  Have: ((Init_c_0.Init_F2_C_x)=true) /\ ((a.Init_F1_S_x)=true) /\
+      ((a.Init_F1_S_y)=true) /\
+      (forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 9) -> (a_1[i_1]=true)))).
+}
+Prove: (a_1[i]=true).
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 40):
+Let a = Init_c_0.Init_F2_C_s.
+Let a_1 = Init_c_0.Init_F2_C_a.
+Assume {
+  (* Pre-condition *)
+  Have: ((Init_c_0.Init_F2_C_x)=true) /\ ((a.Init_F1_S_x)=true) /\
+      ((a.Init_F1_S_y)=true) /\
+      (forall i : Z. ((0 <= i) -> ((i <= 9) -> (a_1[i]=true)))).
+}
+Prove: (a_1[4]=true).
+
+------------------------------------------------------------
+
+Goal Check 'not_provable' (file initialized_memvar.i, line 41):
+Let a = Init_c_0.Init_F2_C_s.
+Let a_1 = Init_c_0.Init_F2_C_a.
+Assume {
+  (* Pre-condition *)
+  Have: ((Init_c_0.Init_F2_C_x)=true) /\ ((a.Init_F1_S_x)=true) /\
+      ((a.Init_F1_S_y)=true) /\
+      (forall i : Z. ((0 <= i) -> ((i <= 9) -> (a_1[i]=true)))).
+}
+Prove: (a_1[10]=true).
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 42):
+Let a = Init_c_0.Init_F2_C_s.
+Let a_1 = Init_c_0.Init_F2_C_a.
+Assume {
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 9).
+  (* Pre-condition *)
+  Have: ((Init_c_0.Init_F2_C_x)=true) /\ ((a.Init_F1_S_x)=true) /\
+      ((a.Init_F1_S_y)=true) /\
+      (forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 9) -> (a_1[i_1]=true)))).
+}
+Prove: (a_1[i]=true).
+
+------------------------------------------------------------
+
+Goal Check 'qed_ko' (file initialized_memvar.i, line 43):
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 47):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 48):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 49):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 50):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 51):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 52):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 53):
+Assume { (* Goal *) When: (2 <= i) /\ (i <= 4). }
+Prove: (0 <= i) /\ (i <= 9).
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 54):
+Assume { (* Goal *) When: (2 <= i) /\ (i <= 6). }
+Prove: (0 <= i) /\ (i <= 9).
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 55):
+Assume { (* Goal *) When: (3 <= i) /\ (i <= 7). }
+Prove: (0 <= i) /\ (i <= 9).
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 56):
+Assume { (* Goal *) When: (2 <= i) /\ (5 <= i_1) /\ (i_1 <= 8) /\ (i <= 9). }
+Prove: (0 <= i) /\ (0 <= i_1) /\ (i_1 <= 9).
+
+------------------------------------------------------------
+
+Goal Check 'qed_ko' (file initialized_memvar.i, line 59):
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ko' (file initialized_memvar.i, line 60):
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ko' (file initialized_memvar.i, line 61):
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ko' (file initialized_memvar.i, line 62):
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Check 'not_provable' (file initialized_memvar.i, line 63):
+Assume { (* Goal *) When: (0 <= i) /\ (i <= 10). }
+Prove: i <= 9.
+
+------------------------------------------------------------
+
+Goal Check 'not_provable' (file initialized_memvar.i, line 64):
+Assume { (* Goal *) When: (0 <= i) /\ (i <= 10). }
+Prove: i <= 9.
+
+------------------------------------------------------------
+
+Goal Check 'not_provable' (file initialized_memvar.i, line 65):
+Assume { (* Goal *) When: (0 <= i_1) /\ (0 <= i) /\ (i_1 <= 9) /\ (i <= 10).
+}
+Prove: i <= 9.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function locals
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 74):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 75):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 76):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 79):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 82):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 83):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 84):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 87):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 88):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 89):
+Assume { (* Goal *) When: (0 <= i) /\ (i <= 1). }
+Prove: (([false..])[0 <- true][1 <- true][i]=true).
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 92):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 93):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 94):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 95):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 98):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 99):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 100):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 101):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 104):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 105):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'provable' (file initialized_memvar.i, line 108):
+Assume { (* Goal *) When: (0 <= i) /\ (i <= 8). }
+Prove: (([false..])[8 <- true][7 <- true][6 <- true][5 <- true][4 <- true][3
+          <- true][2 <- true][1 <- true][0 <- true][i]=true).
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 109):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check 'qed_ok' (file initialized_memvar.i, line 112):
+Prove: true.
+
+------------------------------------------------------------

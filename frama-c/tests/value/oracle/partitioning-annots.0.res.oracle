@@ -1,0 +1,189 @@
+[kernel] Parsing partitioning-annots.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+  k ∈ {0}
+[eva] computing for function test_slevel <- main.
+  Called from partitioning-annots.c:205.
+[eva] partitioning-annots.c:170: starting to merge loop iterations
+[eva] partitioning-annots.c:175: starting to merge loop iterations
+[eva] Recording results for test_slevel
+[eva] Done for function test_slevel
+[eva] computing for function test_unroll <- main.
+  Called from partitioning-annots.c:206.
+[eva:loop-unroll:partial] partitioning-annots.c:26: loop not completely unrolled
+[eva] partitioning-annots.c:26: starting to merge loop iterations
+[eva:loop-unroll:partial] partitioning-annots.c:34: loop not completely unrolled
+[eva] partitioning-annots.c:34: starting to merge loop iterations
+[eva] partitioning-annots.c:36: starting to merge loop iterations
+[eva:loop-unroll:partial] partitioning-annots.c:49: loop not completely unrolled
+[eva] partitioning-annots.c:49: starting to merge loop iterations
+[eva:loop-unroll:partial] partitioning-annots.c:54: loop not completely unrolled
+[eva] partitioning-annots.c:54: starting to merge loop iterations
+[eva] Recording results for test_unroll
+[eva] Done for function test_unroll
+[eva] computing for function test_split <- main.
+  Called from partitioning-annots.c:207.
+[eva] computing for function Frama_C_interval <- test_split <- main.
+  Called from partitioning-annots.c:73.
+[eva] using specification for function Frama_C_interval
+[eva] partitioning-annots.c:73: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- test_split <- main.
+  Called from partitioning-annots.c:74.
+[eva] partitioning-annots.c:74: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] partitioning-annots.c:80: 
+  Frama_C_show_each_before_first_split: {0; 1}, {0; 1; 2}, {0}
+[eva] partitioning-annots.c:83: 
+  Frama_C_show_each_before_second_split: {1}, {0; 1; 2}, {1}
+[eva] partitioning-annots.c:83: 
+  Frama_C_show_each_before_second_split: {0}, {0; 1; 2}, {0}
+[eva] partitioning-annots.c:85: 
+  Frama_C_show_each_before_first_merge: {1}, {2}, {1}
+[eva] partitioning-annots.c:85: 
+  Frama_C_show_each_before_first_merge: {1}, {1}, {1}
+[eva] partitioning-annots.c:85: 
+  Frama_C_show_each_before_first_merge: {1}, {0}, {1}
+[eva] partitioning-annots.c:85: 
+  Frama_C_show_each_before_first_merge: {0}, {2}, {0}
+[eva] partitioning-annots.c:85: 
+  Frama_C_show_each_before_first_merge: {0}, {1}, {0}
+[eva] partitioning-annots.c:85: 
+  Frama_C_show_each_before_first_merge: {0}, {0}, {0}
+[eva] partitioning-annots.c:87: 
+  Frama_C_show_each_before_second_merge: {0; 1}, {2}, {0; 1}
+[eva] partitioning-annots.c:87: 
+  Frama_C_show_each_before_second_merge: {0; 1}, {1}, {0; 1}
+[eva] partitioning-annots.c:87: 
+  Frama_C_show_each_before_second_merge: {0; 1}, {0}, {0; 1}
+[eva] partitioning-annots.c:89: Frama_C_show_each_end: {0; 1}, {0; 1; 2}, {0; 1}
+[eva] Recording results for test_split
+[eva] Done for function test_split
+[eva] computing for function test_dynamic_split <- main.
+  Called from partitioning-annots.c:208.
+[eva] partitioning-annots.c:95: Warning: 
+  this partitioning parameter cannot be evaluated safely on all states
+[eva] computing for function Frama_C_interval <- test_dynamic_split <- main.
+  Called from partitioning-annots.c:97.
+[eva] partitioning-annots.c:97: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] partitioning-annots.c:100: Frama_C_show_each_split_with_uninit: {2}, {2}
+[eva] partitioning-annots.c:100: Frama_C_show_each_split_with_uninit: {1}, {1}
+[eva] partitioning-annots.c:100: Frama_C_show_each_split_with_uninit: {0}, {0}
+[eva] partitioning-annots.c:100: Frama_C_show_each_split_with_uninit: ⊥, ⊥
+[eva] partitioning-annots.c:102: Frama_C_show_each_no_split: {0}, {0; 1; 2}
+[eva] computing for function Frama_C_interval <- test_dynamic_split <- main.
+  Called from partitioning-annots.c:103.
+[eva] partitioning-annots.c:103: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] partitioning-annots.c:107: Frama_C_show_each_split: {0}, {2}
+[eva] partitioning-annots.c:107: Frama_C_show_each_split: {0}, {1}
+[eva] partitioning-annots.c:107: Frama_C_show_each_split: {0}, {0}
+[eva] partitioning-annots.c:109: Frama_C_show_each_no_split: {0}, {0; 1; 2}
+[eva] Recording results for test_dynamic_split
+[eva] Done for function test_dynamic_split
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function test_dynamic_split:
+  Frama_C_entropy_source ∈ [--..--]
+  a ∈ {0}
+  b ∈ {0; 1; 2}
+[eva:final-states] Values at end of function test_slevel:
+  a[0..9] ∈ {42}
+  b[0..9] ∈ {42} or UNINITIALIZED
+  c[0..3] ∈ {33; 42}
+   [4..9] ∈ {33; 42} or UNINITIALIZED
+  d[0..9] ∈ {33; 42}
+  e[0..3] ∈ {33; 42}
+[eva:final-states] Values at end of function test_split:
+  Frama_C_entropy_source ∈ [--..--]
+  k ∈ {0; 1}
+  i ∈ {0; 1}
+  j ∈ {0; 1; 2}
+[eva:final-states] Values at end of function test_unroll:
+  a[0..9] ∈ {42}
+  b[0..9] ∈ {42}
+  c[0] ∈ {0}
+   [1] ∈ {1}
+   [2] ∈ {0}
+   [3] ∈ {1}
+   [4] ∈ {0}
+   [5] ∈ {1}
+   [6] ∈ {0}
+   [7] ∈ {1}
+   [8] ∈ {0}
+   [9] ∈ {1}
+   [10..19] ∈ {0; 1} or UNINITIALIZED
+  d[0..9] ∈ {0}
+   [10..19] ∈ {0} or UNINITIALIZED
+  e[0] ∈ {1}
+   [1] ∈ {9}
+   [2] ∈ {36}
+   [3] ∈ {84}
+   [4..5] ∈ {126}
+   [6] ∈ {84}
+   [7] ∈ {36}
+   [8] ∈ {9}
+   [9] ∈ {1}
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+  k ∈ {0; 1}
+[from] Computing for function test_dynamic_split
+[from] Computing for function Frama_C_interval <-test_dynamic_split
+[from] Done for function Frama_C_interval
+[from] Done for function test_dynamic_split
+[from] Computing for function test_slevel
+[from] Done for function test_slevel
+[from] Computing for function test_split
+[from] Done for function test_split
+[from] Computing for function test_unroll
+[from] Done for function test_unroll
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function test_dynamic_split:
+  Frama_C_entropy_source FROM Frama_C_entropy_source; nondet (and SELF)
+[from] Function test_slevel:
+  NO EFFECTS
+[from] Function test_split:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  k FROM Frama_C_entropy_source
+[from] Function test_unroll:
+  NO EFFECTS
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source; nondet (and SELF)
+  k FROM Frama_C_entropy_source
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function test_dynamic_split:
+    Frama_C_entropy_source; a; b
+[inout] Inputs for function test_dynamic_split:
+    Frama_C_entropy_source; nondet
+[inout] Out (internal) for function test_slevel:
+    a[0..9]; b[0..9]; c[0..9]; d[0..9]; e[0..3]; i; i_0; i_1; i_2; i_3
+[inout] Inputs for function test_slevel:
+    nondet
+[inout] Out (internal) for function test_split:
+    Frama_C_entropy_source; k; i; j
+[inout] Inputs for function test_split:
+    Frama_C_entropy_source; k
+[inout] Out (internal) for function test_unroll:
+    a[0..9]; b[0..9]; c[0..19]; d[0..19]; e[0..9]; i; j; i_0; j_0; i_1; 
+    i_2; i_3; j_1
+[inout] Inputs for function test_unroll:
+    \nothing
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source; k
+[inout] Inputs for function main:
+    Frama_C_entropy_source; nondet; k

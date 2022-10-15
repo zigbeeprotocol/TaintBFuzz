@@ -1,0 +1,80 @@
+[kernel] Parsing sys_sendfile_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function __va_open_void <- main.
+  Called from sys_sendfile_h.c:7.
+[eva] using specification for function __va_open_void
+[eva] sys_sendfile_h.c:7: 
+  function __va_open_void: precondition 'valid_filename' got status valid.
+[eva] sys_sendfile_h.c:7: 
+  function __va_open_void: precondition 'flag_not_CREAT' got status valid.
+[eva] Done for function __va_open_void
+[eva] computing for function __va_open_mode_t <- main.
+  Called from sys_sendfile_h.c:9.
+[eva] using specification for function __va_open_mode_t
+[eva] sys_sendfile_h.c:9: 
+  function __va_open_mode_t: precondition 'valid_filename' got status valid.
+[eva] Done for function __va_open_mode_t
+[eva] computing for function sendfile <- main.
+  Called from sys_sendfile_h.c:13.
+[eva] using specification for function sendfile
+[eva] sys_sendfile_h.c:13: 
+  function sendfile: precondition 'valid_in_fd' got status valid.
+[eva] sys_sendfile_h.c:13: 
+  function sendfile: precondition 'valid_out_fd' got status valid.
+[eva] sys_sendfile_h.c:13: 
+  function sendfile: precondition 'valid_offset_or_null' got status valid.
+[eva] sys_sendfile_h.c:13: 
+  function sendfile: precondition 'initialization,offset' got status valid.
+[eva] Done for function sendfile
+[eva] sys_sendfile_h.c:14: assertion got status valid.
+[eva] computing for function close <- main.
+  Called from sys_sendfile_h.c:15.
+[eva] using specification for function close
+[eva] sys_sendfile_h.c:15: 
+  function close: precondition 'valid_fd' got status valid.
+[eva] Done for function close
+[eva] computing for function __va_open_mode_t <- main.
+  Called from sys_sendfile_h.c:17.
+[eva] sys_sendfile_h.c:17: 
+  function __va_open_mode_t: precondition 'valid_filename' got status valid.
+[eva] Done for function __va_open_mode_t
+[eva] computing for function sendfile <- main.
+  Called from sys_sendfile_h.c:19.
+[eva] sys_sendfile_h.c:19: 
+  function sendfile: precondition 'valid_in_fd' got status valid.
+[eva] sys_sendfile_h.c:19: 
+  function sendfile: precondition 'valid_out_fd' got status valid.
+[eva] sys_sendfile_h.c:19: 
+  function sendfile: precondition 'valid_offset_or_null' got status valid.
+[eva] sys_sendfile_h.c:19: 
+  function sendfile: precondition 'initialization,offset' got status valid.
+[eva:invalid-assigns] sys_sendfile_h.c:19: 
+  Completely invalid destination for assigns clause *offset. Ignoring.
+[eva] Done for function sendfile
+[eva] computing for function close <- main.
+  Called from sys_sendfile_h.c:20.
+[eva] sys_sendfile_h.c:20: 
+  function close: precondition 'valid_fd' got status valid.
+[eva] Done for function close
+[eva] computing for function close <- main.
+  Called from sys_sendfile_h.c:21.
+[eva] sys_sendfile_h.c:21: 
+  function close: precondition 'valid_fd' got status valid.
+[eva] Done for function close
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_errno ∈ [--..--]
+  __fc_fds[0..1023] ∈ [--..--]
+  out_fd ∈ [-1..1023] or UNINITIALIZED
+  in_fd ∈ [-1..1023]
+  offset ∈ [--..--]
+  r1 ∈ [-1..42] or UNINITIALIZED
+  r3 ∈ [-1..42] or UNINITIALIZED
+  r ∈ {-1; 0}
+  __retres ∈ {0; 1}

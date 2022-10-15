@@ -1,0 +1,42 @@
+[kernel] Parsing test.i (no preprocessing)
+[eva] Analyzing a complete application starting at inst_F6
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] test.i:11: Warning: out of bounds read. assert \valid_read(v + j);
+[eva:alarm] test.i:11: Warning: 
+  out of bounds read. assert \valid_read(v + (int)(j + ecart));
+[eva:alarm] test.i:13: Warning: 
+  out of bounds read. assert \valid_read(v + (int)(j + ecart));
+[eva:alarm] test.i:14: Warning: 
+  out of bounds write. assert \valid(v + (int)(j + ecart));
+[eva] test.i:11: starting to merge loop iterations
+[eva] test.i:10: starting to merge loop iterations
+[eva:alarm] test.i:11: Warning: 
+  signed overflow. assert j + ecart ≤ 2147483647;
+[eva] test.i:9: starting to merge loop iterations
+[eva] Recording results for inst_F6
+[eva] done for function inst_F6
+[scope:rm_asserts] removing 1 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function inst_F6:
+  t[0] ∈ UNINITIALIZED
+   [1] ∈ {4}
+   [2] ∈ UNINITIALIZED
+  i ∈ [1..2147483647] or UNINITIALIZED
+  j ∈ [-1073741822..1]
+  ecart ∈ [-1073741824..0]
+  tmp ∈ [--..--] or UNINITIALIZED
+  S_v[0..1] ∈ [--..--]
+[from] Computing for function inst_F6
+[from] Done for function inst_F6
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function inst_F6:
+  S_v[0..1] FROM v; n; S_v[0..1] (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function inst_F6:
+    t[1]; i; j; ecart; tmp; i_0; S_v[0..1]
+[inout] Inputs for function inst_F6:
+    S_v[0..1]

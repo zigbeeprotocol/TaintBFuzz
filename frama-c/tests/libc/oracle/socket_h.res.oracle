@@ -1,0 +1,124 @@
+[kernel] Parsing socket_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] computing for function socket <- main.
+  Called from socket_h.c:7.
+[eva] using specification for function socket
+[eva] Done for function socket
+[eva] computing for function exit <- main.
+  Called from socket_h.c:8.
+[eva] using specification for function exit
+[eva] Done for function exit
+[eva] computing for function inet_addr <- main.
+  Called from socket_h.c:11.
+[eva] using specification for function inet_addr
+[eva] socket_h.c:11: 
+  function inet_addr: precondition 'valid_arg' got status valid.
+[eva] Done for function inet_addr
+[eva] computing for function htons <- main.
+  Called from socket_h.c:12.
+[eva] using specification for function htons
+[eva] Done for function htons
+[eva] computing for function connect <- main.
+  Called from socket_h.c:13.
+[eva] using specification for function connect
+[eva] socket_h.c:13: 
+  function connect: precondition 'valid_sockfd' got status valid.
+[eva] socket_h.c:13: 
+  function connect: precondition 'valid_read_addr' got status valid.
+[eva] Done for function connect
+[eva] computing for function exit <- main.
+  Called from socket_h.c:14.
+[eva] Done for function exit
+[eva] computing for function getsockopt <- main.
+  Called from socket_h.c:18.
+[eva] using specification for function getsockopt
+[eva] socket_h.c:18: 
+  function getsockopt: precondition 'valid_sockfd' got status valid.
+[eva] socket_h.c:18: 
+  function getsockopt: precondition 'valid_optlen' got status valid.
+[eva] socket_h.c:18: 
+  function getsockopt, behavior so_error: precondition 'valid_optlen' got status valid.
+[eva] socket_h.c:18: 
+  function getsockopt, behavior so_error: precondition 'optlen_value' got status valid.
+[eva] socket_h.c:18: 
+  function getsockopt, behavior so_error: precondition 'valid_optval' got status valid.
+[eva] Done for function getsockopt
+[eva] computing for function getsockname <- main.
+  Called from socket_h.c:21.
+[eva] using specification for function getsockname
+[eva] socket_h.c:21: 
+  function getsockname: precondition 'valid_sockfd' got status valid.
+[eva] socket_h.c:21: 
+  function getsockname: precondition 'valid_address_len' got status valid.
+[eva] socket_h.c:21: 
+  function getsockname: precondition 'initialization,address_len' got status valid.
+[eva] socket_h.c:21: 
+  function getsockname: precondition 'valid_address' got status valid.
+[eva] Done for function getsockname
+[eva] computing for function sendto <- main.
+  Called from socket_h.c:24.
+[eva] using specification for function sendto
+[eva] socket_h.c:24: 
+  function sendto: precondition 'available_sockfd' got status valid.
+[eva] socket_h.c:24: 
+  function sendto: precondition 'buf_len_ok' got status valid.
+[eva] Done for function sendto
+[eva] computing for function sendto <- main.
+  Called from socket_h.c:27.
+[eva] socket_h.c:27: 
+  function sendto: precondition 'available_sockfd' got status valid.
+[eva] socket_h.c:27: 
+  function sendto: precondition 'buf_len_ok' got status valid.
+[eva] Done for function sendto
+[eva] computing for function recvfrom <- main.
+  Called from socket_h.c:31.
+[eva] using specification for function recvfrom
+[eva] socket_h.c:31: 
+  function recvfrom: precondition 'valid_sockfd' got status valid.
+[eva] socket_h.c:31: 
+  function recvfrom: precondition 'valid_buffer_length' got status valid.
+[eva] socket_h.c:31: 
+  function recvfrom: precondition 'valid_addrbuf_or_null,initialization' got status valid.
+[eva] Done for function recvfrom
+[eva] socket_h.c:35: assertion got status valid.
+[eva] computing for function recvfrom <- main.
+  Called from socket_h.c:37.
+[eva] socket_h.c:37: 
+  function recvfrom: precondition 'valid_sockfd' got status valid.
+[eva] socket_h.c:37: 
+  function recvfrom: precondition 'valid_buffer_length' got status valid.
+[eva] socket_h.c:37: 
+  function recvfrom: precondition 'valid_addrbuf_or_null,initialization' got status valid.
+[eva:invalid-assigns] socket_h.c:37: 
+  Completely invalid destination for assigns clause *addrbuf_len. Ignoring.
+[eva:invalid-assigns] socket_h.c:37: 
+  Completely invalid destination
+  for assigns clause *((char *)addrbuf + (0 .. \old(*addrbuf_len) - 1)).
+  Ignoring.
+[eva] Done for function recvfrom
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_errno ∈ [--..--]
+  __fc_sockfds[0..1023] ∈ [--..--]
+  __fc_socket_counter ∈ [--..--]
+  sockfd ∈ [0..1023]
+  addr.sin_family ∈ {2}
+      {.sin_port; .sin_addr} ∈ [--..--]
+  rc ∈ {-1; 0}
+  optval ∈ [--..--] or UNINITIALIZED
+  optlen ∈ {4}
+  addr2 ∈ [--..--] or UNINITIALIZED
+  socklen ∈ [0..8]
+  buf[0..39] ∈ [--..--]
+  sent ∈ {-1; 0; 1; 2; 3}
+  sent2 ∈ {-1; 0; 1; 2; 3}
+  recvfrom_addr ∈ [--..--]
+  recvfrom_addr_len ∈ [--..--]
+  received ∈ [-1..40]
+  received2 ∈ [-1..40]

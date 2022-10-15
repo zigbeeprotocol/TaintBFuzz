@@ -1,0 +1,185 @@
+[kernel] Parsing stdio_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] computing for function fopen <- main.
+  Called from stdio_h.c:6.
+[eva] using specification for function fopen
+[eva] stdio_h.c:6: 
+  function fopen: precondition 'valid_filename' got status valid.
+[eva] stdio_h.c:6: function fopen: precondition 'valid_mode' got status valid.
+[eva] Done for function fopen
+[eva] computing for function fseek <- main.
+  Called from stdio_h.c:8.
+[eva] using specification for function fseek
+[eva] stdio_h.c:8: function fseek: precondition 'valid_stream' got status valid.
+[eva] stdio_h.c:8: function fseek: precondition 'whence_enum' got status valid.
+[eva] Done for function fseek
+[eva] computing for function fseek <- main.
+  Called from stdio_h.c:10.
+[eva:alarm] stdio_h.c:10: Warning: 
+  function fseek: precondition 'valid_stream' got status invalid.
+[eva] stdio_h.c:10: 
+  function fseek: no state left, precondition 'whence_enum' got status valid.
+[eva] Done for function fseek
+[eva] computing for function Frama_C_interval <- main.
+  Called from stdio_h.c:16.
+[eva] using specification for function Frama_C_interval
+[eva] stdio_h.c:16: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function fseek <- main.
+  Called from stdio_h.c:19.
+[eva] stdio_h.c:19: 
+  function fseek: precondition 'valid_stream' got status valid.
+[eva:alarm] stdio_h.c:19: Warning: 
+  function fseek: precondition 'whence_enum' got status invalid.
+[eva] Done for function fseek
+[eva] computing for function tmpfile <- main.
+  Called from stdio_h.c:23.
+[eva] using specification for function tmpfile
+[eva] Done for function tmpfile
+[eva] computing for function fseek <- main.
+  Called from stdio_h.c:25.
+[eva] stdio_h.c:25: 
+  function fseek: precondition 'valid_stream' got status valid.
+[eva] stdio_h.c:25: function fseek: precondition 'whence_enum' got status valid.
+[eva] Done for function fseek
+[eva] computing for function fseeko <- main.
+  Called from stdio_h.c:26.
+[eva] using specification for function fseeko
+[eva] stdio_h.c:26: 
+  function fseeko: precondition 'valid_stream' got status valid.
+[eva] stdio_h.c:26: 
+  function fseeko: precondition 'whence_enum' got status valid.
+[eva] Done for function fseeko
+[eva] computing for function ftell <- main.
+  Called from stdio_h.c:27.
+[eva] using specification for function ftell
+[eva] stdio_h.c:27: 
+  function ftell: precondition 'valid_stream' got status valid.
+[eva] Done for function ftell
+[eva] computing for function ftello <- main.
+  Called from stdio_h.c:28.
+[eva] using specification for function ftello
+[eva] stdio_h.c:28: 
+  function ftello: precondition 'valid_stream' got status valid.
+[eva] Done for function ftello
+[eva] computing for function fclose <- main.
+  Called from stdio_h.c:29.
+[eva] using specification for function fclose
+[eva] stdio_h.c:29: 
+  function fclose: precondition 'valid_stream' got status valid.
+[eva] Done for function fclose
+[eva] computing for function freopen <- main.
+  Called from stdio_h.c:31.
+[eva] using specification for function freopen
+[eva] stdio_h.c:31: 
+  function freopen: precondition 'valid_filename' got status valid.
+[eva] stdio_h.c:31: 
+  function freopen: precondition 'valid_mode' got status valid.
+[eva:alarm] stdio_h.c:31: Warning: 
+  function freopen: precondition 'valid_stream' got status unknown.
+[eva] Done for function freopen
+[eva] computing for function printf_va_1 <- main.
+  Called from stdio_h.c:33.
+[eva] using specification for function printf_va_1
+[eva] stdio_h.c:33: function printf_va_1: precondition got status valid.
+[eva] Done for function printf_va_1
+[eva] computing for function fclose <- main.
+  Called from stdio_h.c:34.
+[eva] stdio_h.c:34: 
+  function fclose: precondition 'valid_stream' got status valid.
+[eva] Done for function fclose
+[eva] computing for function fgets <- main.
+  Called from stdio_h.c:37.
+[eva] using specification for function fgets
+[eva] stdio_h.c:37: 
+  function fgets: precondition 'valid_stream' got status valid.
+[eva] stdio_h.c:37: function fgets: precondition 'room_s' got status valid.
+[eva] Done for function fgets
+[eva:alarm] stdio_h.c:39: Warning: check got status unknown.
+[eva] computing for function fgets <- main.
+  Called from stdio_h.c:41.
+[eva] stdio_h.c:41: 
+  function fgets: precondition 'valid_stream' got status valid.
+[eva:alarm] stdio_h.c:41: Warning: 
+  function fgets: precondition 'room_s' got status invalid.
+[eva] Done for function fgets
+[eva] computing for function fgetpos <- main.
+  Called from stdio_h.c:46.
+[eva] using specification for function fgetpos
+[eva] stdio_h.c:46: 
+  function fgetpos: precondition 'valid_stream' got status valid.
+[eva] stdio_h.c:46: function fgetpos: precondition 'valid_pos' got status valid.
+[eva] Done for function fgetpos
+[eva] computing for function fsetpos <- main.
+  Called from stdio_h.c:47.
+[eva] using specification for function fsetpos
+[eva] stdio_h.c:47: 
+  function fsetpos: precondition 'valid_stream' got status valid.
+[eva] stdio_h.c:47: function fsetpos: precondition 'valid_pos' got status valid.
+[eva] stdio_h.c:47: 
+  function fsetpos: precondition 'initialization,pos' got status valid.
+[eva] Done for function fsetpos
+[eva] computing for function fclose <- main.
+  Called from stdio_h.c:48.
+[eva] stdio_h.c:48: 
+  function fclose: precondition 'valid_stream' got status valid.
+[eva] Done for function fclose
+[eva] computing for function asprintf <- main.
+  Called from stdio_h.c:52.
+[eva] using specification for function asprintf
+[eva:libc:unsupported-spec] stdio_h.c:52: Warning: 
+  The specification of function 'asprintf' is currently not supported by Eva.
+  Consider adding 'FRAMAC_SHARE/libc/stdio.c' to the analyzed source files.
+[eva] stdio_h.c:52: Warning: ignoring unsupported allocates clause
+[eva] stdio_h.c:52: 
+  function asprintf: precondition 'valid_strp' got status valid.
+[eva] stdio_h.c:52: 
+  function asprintf: precondition 'valid_fmt' got status valid.
+[eva] Done for function asprintf
+[eva:alarm] stdio_h.c:54: Warning: 
+  accessing uninitialized left-value. assert \initialized(&s);
+[eva] computing for function printf_va_2 <- main.
+  Called from stdio_h.c:54.
+[eva] using specification for function printf_va_2
+[eva:alarm] stdio_h.c:54: Warning: 
+  function printf_va_2: precondition valid_read_string(param0) got status invalid.
+[eva] stdio_h.c:54: 
+  function printf_va_2: no state left, precondition valid_read_string(format) got status valid.
+[eva] Done for function printf_va_2
+[eva] computing for function fmemopen <- main.
+  Called from stdio_h.c:58.
+[eva] using specification for function fmemopen
+[eva:libc:unsupported-spec] stdio_h.c:58: Warning: 
+  The specification of function 'fmemopen' is currently not supported by Eva.
+  Consider adding 'FRAMAC_SHARE/libc/stdio.c' to the analyzed source files.
+[eva] stdio_h.c:58: Warning: ignoring unsupported allocates clause
+[eva] stdio_h.c:58: 
+  function fmemopen: precondition 'valid_or_null_buff' got status valid.
+[eva] stdio_h.c:58: 
+  function fmemopen: precondition 'valid_mode' got status valid.
+[eva] Done for function fmemopen
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_errno ∈ [--..--]
+  __fc_fopen[0..15] ∈ [--..--]
+  __fc_heap_status ∈ [--..--]
+  Frama_C_entropy_source ∈ [--..--]
+  f ∈ {{ NULL ; &__fc_fopen + [0..120],0%8 }}
+  r ∈ [--..--]
+  tmp_2 ∈ {{ NULL ; &__fc_fopen + [0..120],0%8 }}
+  told ∈ [-1..2147483647]
+  toldo ∈ [-1..2147483647]
+  redirected ∈ {{ NULL ; &__fc_fopen + [0..120],0%8 }}
+  fgets_buf0[0] ∈ [--..--] or UNINITIALIZED
+  fgets_res ∈ {{ NULL ; &fgets_buf0[0] }}
+  pos ∈ [--..--] or UNINITIALIZED
+  res_fclose ∈ {-1; 0}
+  __retres ∈ {0; 1; 2; 3}
+  S___fc_stdout[0..1] ∈ [--..--]

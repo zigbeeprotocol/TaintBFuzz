@@ -1,0 +1,65 @@
+/* -------------------------------------------------------------------------- */
+/* --- Galleries & Palettes CSS                                           --- */
+/* -------------------------------------------------------------------------- */
+
+.database {
+    width: 100% ;
+    height: auto ;
+    display: flex ;
+    flex-direction: row ;
+    flex-wrap: wrap ;
+}
+
+.refname {
+    -webkit-user-select: text; /* Safari 3.1+ */
+    -moz-user-select: text; /* Firefox 2+ */
+    -ms-user-select: text; /* IE 10+ */
+    user-select: text; /* Standard syntax */
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    font-size: 14px ;
+    color: #4D8053;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Additional CSS for Icon Gallery                                    --- */
+/* -------------------------------------------------------------------------- */
+
+.icon-block {
+    margin: 3pt ;
+    padding: 2pt ;
+    width: 160px ;
+    display: flex ;
+    flex-direction: row ;
+    flex-wrap: nowrap ;
+    align-items: center ;
+}
+
+.icon-block:hover {
+    background: lightblue ;
+}
+
+.icon-name {
+    order: 2 ;
+    padding: 2pt ;
+    margin-left: 2pt ;
+    vertical-align: baseline ;
+    cursor: text ;
+    display: inline ;
+}
+
+.icon-name:target {
+    background: orange ;
+}
+
+.icon-name:hover, .icon-name:focus {
+    outline-style: none ;
+    text-decoration: none ;
+}
+
+.icon-svg {
+    order: 1 ;
+    width: 20px ;
+    height: 20px ;
+}
+
+/* -------------------------------------------------------------------------- */

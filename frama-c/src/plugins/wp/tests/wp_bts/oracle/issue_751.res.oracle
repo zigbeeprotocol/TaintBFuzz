@@ -1,0 +1,351 @@
+# frama-c -wp [...]
+[kernel] Parsing issue_751.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function acquire
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'RANGE' (file issue_751.i, line 7):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'RANGE' (file issue_751.i, line 7):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file issue_751.i, line 8) (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file issue_751.i, line 8) (2/2):
+Effect at line 11
+Let x = land(3840, R).
+Let x_1 = lsr(x, 8).
+Let x_2 = j - 1.
+Assume {
+  Type: is_sint32(R) /\ is_sint32(j) /\ is_sint32(x_2) /\ is_sint32(x_1).
+  (* Heap *)
+  Type: (region(Data_0.base) <= 0) /\ linked(Malloc_0).
+  (* Goal *)
+  When: !invalid(Malloc_0, shift_sint32(Data_0, x_2), 1).
+  (* Pre-condition *)
+  Have: (0 < x) /\ (x <= 2303).
+  (* Invariant 'RANGE' *)
+  Have: (0 < j) /\ (j <= (1 + x_1)).
+  (* Then *)
+  Have: j <= (x / 256).
+}
+Prove: j <= 8.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function issue_751
+------------------------------------------------------------
+
+Goal Check (file issue_751.i, line 32):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check (file issue_751.i, line 33):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check (file issue_751.i, line 34):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Check (file issue_751.i, line 35):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'pos_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 37)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'neg_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 37)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'pos_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 37)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'neg_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 37)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_pos_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 37)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_neg_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 37)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_pos_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 37)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_neg_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 37)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'pos_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 38)
+:
+Assume { Type: is_sint32(V). (* Goal *) When: 0 <= V. }
+Prove: ((-3) <= V) <-> ((-4) <= V).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'neg_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 38)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'pos_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 38)
+:
+Assume { Type: is_sint32(V). (* Goal *) When: 0 < V. }
+Prove: (V <= (-3)) <-> (V <= (-4)).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'neg_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 38)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_pos_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 38)
+:
+Assume { Type: is_sint32(V). (* Goal *) When: 0 < V. }
+Prove: ((-2) <= V) <-> ((-3) <= V).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_neg_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 38)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_pos_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 38)
+:
+Assume { Type: is_sint32(V). (* Goal *) When: 0 <= V. }
+Prove: (V <= (-4)) <-> (V <= (-5)).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_neg_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 38)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'pos_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 40)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'neg_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 40)
+:
+Assume {
+  Type: is_sint32(V).
+  (* Goal *)
+  When: V <= 0.
+  (* Call 'checks' *)
+  Have: (((0 <= V) -> (((-3) <= V) <-> ((-4) <= V)))) /\
+      (((0 <= V) -> ((V <= (-4)) <-> (V <= (-5))))).
+}
+Prove: (V <= 113) <-> (V <= 95).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'pos_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 40)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'neg_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 40)
+:
+Assume {
+  Type: is_sint32(V).
+  (* Goal *)
+  When: V <= 0.
+  (* Call 'checks' *)
+  Have: (((0 <= V) -> (((-3) <= V) <-> ((-4) <= V)))) /\
+      (((0 <= V) -> ((V <= (-4)) <-> (V <= (-5))))).
+}
+Prove: (95 <= V) <-> (77 <= V).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_pos_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 40)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_neg_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 40)
+:
+Assume {
+  Type: is_sint32(V).
+  (* Goal *)
+  When: V <= 0.
+  (* Call 'checks' *)
+  Have: (((0 <= V) -> (((-3) <= V) <-> ((-4) <= V)))) /\
+      (((0 <= V) -> ((V <= (-4)) <-> (V <= (-5))))).
+}
+Prove: (V <= 94) <-> (V <= 76).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_pos_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 40)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_neg_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 40)
+:
+Assume {
+  Type: is_sint32(V).
+  (* Goal *)
+  When: V <= 0.
+  (* Call 'checks' *)
+  Have: (((0 <= V) -> (((-3) <= V) <-> ((-4) <= V)))) /\
+      (((0 <= V) -> ((V <= (-4)) <-> (V <= (-5))))).
+}
+Prove: (114 <= V) <-> (96 <= V).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'pos_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 41)
+:
+Assume {
+  Type: is_sint32(V).
+  (* Goal *)
+  When: 0 <= V.
+  (* Call 'checks' *)
+  Have: (((-3) <= V) <-> ((-4) <= V)) /\ ((V <= (-4)) <-> (V <= (-5))) /\
+      (((0 < V) -> (((-2) <= V) <-> ((-3) <= V)))) /\
+      (((0 < V) -> ((V <= (-3)) <-> (V <= (-4))))).
+  (* Call 'checks' *)
+  Have: (((V <= 0) -> ((95 <= V) <-> (77 <= V)))) /\
+      (((V <= 0) -> ((114 <= V) <-> (96 <= V)))) /\
+      (((V <= 0) -> ((V <= 94) <-> (V <= 76)))) /\
+      (((V <= 0) -> ((V <= 113) <-> (V <= 95)))).
+}
+Prove: (V <= (-139)) <-> (V <= (-161)).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'neg_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 41)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'pos_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 41)
+:
+Assume {
+  Type: is_sint32(V).
+  (* Goal *)
+  When: 0 <= V.
+  (* Call 'checks' *)
+  Have: (((-3) <= V) <-> ((-4) <= V)) /\ ((V <= (-4)) <-> (V <= (-5))) /\
+      (((0 < V) -> (((-2) <= V) <-> ((-3) <= V)))) /\
+      (((0 < V) -> ((V <= (-3)) <-> (V <= (-4))))).
+  (* Call 'checks' *)
+  Have: (((V <= 0) -> ((95 <= V) <-> (77 <= V)))) /\
+      (((V <= 0) -> ((114 <= V) <-> (96 <= V)))) /\
+      (((V <= 0) -> ((V <= 94) <-> (V <= 76)))) /\
+      (((V <= 0) -> ((V <= 113) <-> (V <= 95)))).
+}
+Prove: ((-161) <= V) <-> ((-183) <= V).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'neg_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 41)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_pos_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 41)
+:
+Assume {
+  Type: is_sint32(V).
+  (* Goal *)
+  When: 0 <= V.
+  (* Call 'checks' *)
+  Have: (((-3) <= V) <-> ((-4) <= V)) /\ ((V <= (-4)) <-> (V <= (-5))) /\
+      (((0 < V) -> (((-2) <= V) <-> ((-3) <= V)))) /\
+      (((0 < V) -> ((V <= (-3)) <-> (V <= (-4))))).
+  (* Call 'checks' *)
+  Have: (((V <= 0) -> ((95 <= V) <-> (77 <= V)))) /\
+      (((V <= 0) -> ((114 <= V) <-> (96 <= V)))) /\
+      (((V <= 0) -> ((V <= 94) <-> (V <= 76)))) /\
+      (((V <= 0) -> ((V <= 113) <-> (V <= 95)))).
+}
+Prove: (V <= (-162)) <-> (V <= (-184)).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_neg_max' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 41)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_pos_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 41)
+:
+Assume {
+  Type: is_sint32(V).
+  (* Goal *)
+  When: 0 <= V.
+  (* Call 'checks' *)
+  Have: (((-3) <= V) <-> ((-4) <= V)) /\ ((V <= (-4)) <-> (V <= (-5))) /\
+      (((0 < V) -> (((-2) <= V) <-> ((-3) <= V)))) /\
+      (((0 < V) -> ((V <= (-3)) <-> (V <= (-4))))).
+  (* Call 'checks' *)
+  Have: (((V <= 0) -> ((95 <= V) <-> (77 <= V)))) /\
+      (((V <= 0) -> ((114 <= V) <-> (96 <= V)))) /\
+      (((V <= 0) -> ((V <= 94) <-> (V <= 76)))) /\
+      (((V <= 0) -> ((V <= 113) <-> (V <= 95)))).
+}
+Prove: ((-138) <= V) <-> ((-160) <= V).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition 'strict_neg_min' in 'checks'' in 'issue_751' at call 'checks' (file issue_751.i, line 41)
+:
+Prove: true.
+
+------------------------------------------------------------

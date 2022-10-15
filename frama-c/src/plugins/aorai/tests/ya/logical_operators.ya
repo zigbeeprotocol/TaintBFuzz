@@ -1,0 +1,3 @@
+%init : I;
+
+I: { f().x == 1 } -> I | other -> I;

@@ -1,0 +1,62 @@
+\chapter{WP Models}
+\label{wp-models}
+
+Basically, a memory model is a set of datatypes, operations and
+properties that are used to abstract the values living inside the heap
+during the program execution.
+
+Each memory model defines its own representation of pointers, memory
+and data actually stored in the memory. The memory models also define
+some types, functions and properties required to translate \textsf{C}
+programs and \textsf{ACSL} annotations into first order logic
+formul{\ae}.
+
+The interest of developing several memory models is to manage the
+trade-off between the precision of the heap's values representation
+and the difficulty of discharging the generated proof obligations by
+external decision procedures. If you choose a very accurate and
+detailed memory model, you shall be able to generate proof obligations
+for any program and annotations, but most of them would not be
+discharged by state-of-the art external provers. On the other hand,
+for most \textsf{C} programs, simplified models are applicable and
+will generate less complex proof obligations that are easier to
+discharge.
+
+A practical methodology is to use the simpler models whenever it is
+possible, and to up the ante with more involved models on the remaining, more
+complex parts of the code.
+
+This chapter is dedicated to the description of the memory models
+implemented by the \textsf{WP} plug-in.  In this manual, we only
+provide a high-level description of the memory models you might select
+with option \texttt{-wp-model} (section~\ref{wp-model-logical}
+and~\ref{wp-model-pointers}). Then we focus on two general powerful
+optimizations. The first one, activated by default
+(section~\ref{wp-model-logicvar}), mixes the selected memory model
+with the purely logical Hoare model for those parts of your program
+that never manipulate pointers. The second one
+(section~\ref{wp-model-byreference}) is dedicated to those pointers
+that are formal parameters of function passed by reference.
+
+\input{wp_logic}
+\input{wp_typed}
+\input{wp_caveat}
+
+%% For the benefit of the clarity, we note $\cal{L}$ the logic language
+%% used by the rules of the \textsf{WP} calculus.  Proof obligations are
+%% expressed into that language, and \textsf{ACSL} annotations are
+%% translated into terms of $\cal{L}$.
+
+%% The next section describes the translation of the \textsf{ACSL} part
+%% which is independent of the memory model. The translation of
+%% the other part of \textsf{ACSL} is described into specific sections
+%% for each kind of memory model.
+ 
+%% \input{wp_acsl}
+%% \input{wp_hoare}
+%% \input{wp_store}
+%% \input{wp_runtime}
+%% \input{wp_logicvar}
+
+% vim: spell spelllang=en
+

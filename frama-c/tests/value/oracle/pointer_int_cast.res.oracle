@@ -1,0 +1,31 @@
+[kernel] Parsing pointer_int_cast.i (no preprocessing)
+[kernel:typing:int-conversion] pointer_int_cast.i:9: Warning: 
+  Conversion from a pointer to an integer without an explicit cast
+[eva] Analyzing a complete application starting at g
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  q ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+[eva:alarm] pointer_int_cast.i:9: Warning: 
+  pointer downcast. assert (unsigned int)(&y) ≤ 2147483647;
+[eva] Recording results for g
+[eva] done for function g
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function g:
+  q ∈ {{ &y }}
+  y ∈ {0}
+  i ∈ {{ (int)&y }}
+[from] Computing for function g
+[from] Done for function g
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function g:
+  q FROM y
+  y FROM x; y
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function g:
+    q; y; i
+[inout] Inputs for function g:
+    q; x; y

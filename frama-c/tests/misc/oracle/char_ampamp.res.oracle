@@ -1,0 +1,40 @@
+[kernel] Parsing char_ampamp.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  c ∈ {1}
+  y ∈ {0}
+[eva] computing for function g <- main.
+  Called from char_ampamp.c:17.
+[eva] char_ampamp.c:11: Frama_C_show_each_x: {1}
+[eva] Recording results for g
+[eva] Done for function g
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function g:
+  
+[eva:final-states] Values at end of function main:
+  y ∈ {1}
+  __retres ∈ {0}
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function g:
+  NO EFFECTS
+[from] Function main:
+  y FROM c
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function g:
+    \nothing
+[inout] Inputs for function g:
+    \nothing
+[inout] Out (internal) for function main:
+    y; __retres
+[inout] Inputs for function main:
+    c

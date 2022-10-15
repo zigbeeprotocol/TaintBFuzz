@@ -1,0 +1,14 @@
+24,27c24
+<   c_0[bits 0 to 7] ∈ {1} or UNINITIALIZED
+<      [bits 8 to 15] ∈ {2}
+<      [bits 16 to 23] ∈ {3}
+<      [bits 24 to 31] ∈ {4}
+---
+>   c_0 ∈ {67305985} or UNINITIALIZED
+29,32c26
+<   a_2[bits 0 to 7] ∈ {1} or UNINITIALIZED
+<      [bits 8 to 15] ∈ {2}
+<      [bits 16 to 23] ∈ {3}
+<      [bits 24 to 31] ∈ {4}
+---
+>   a_2 ∈ {67305985} or UNINITIALIZED

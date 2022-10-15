@@ -1,0 +1,282 @@
+\chapter{Builtins}
+\label{wp-builtins}
+
+This chapter provides additional informations on the supported \textsf{ACSL} built-in symbols and, more generally,
+on the simplification rules implemented in the \textsf{Qed} simplifier, as introduced in Chapter~\ref{wp-simplifier}.
+
+\section{General Simplifications}
+
+Arithmetics operators $(+,\times,\dots)$ are normalized with respect to their associativity and commutativity rules.
+Neutral and absorbent operands are also taken into account, and operations on numerical constants are propagated as well.
+Moreover, linear forms are strongly normalized.
+Hence, it is not possible to write term $(1+x)-1+x$ since it will be automatically reduced into $2x$.
+
+Comparison operators are also simplified. First, linear normalization is performed on both sides of the comparison,
+with negative factors or constants moved on the opposite side. Finally, on integer comparison,
+an off-by-one normalization is applied to transform, \emph{eg.} $1<x$ into $0\leq x$ (on integers only).
+
+Comparison between injective functions are simplified in the expected way.
+For instance, $f(x,y)=f(x',z')$ will be rewritten into $x=x' \wedge y=y'$ when $f$ is injective, and similarly with dis-equalities.
+
+Idempotent operators $f$ are normalized with $f(x,x)=x$. Associative and commutative operators are normalized as usual
+(terms are sorted structurally).
+
+\section{ACSL Built-ins}
+
+\newcommand{\page}[1]{\footnotesize{p.\pageref{#1}}}
+\newcommand{\builtin}[1]{\mathtt{\backslash#1}}
+\newcommand{\wref}[2]{\href{http://why3.lri.fr/stdlib/#1}{\texttt{#1.#2}}}
+
+The \textsf{ACSL} built-ins supported by \textsf{Frama-C/WP} are listed in Figure~\ref{wp-builtins-list}.
+In the table, the reference implementation of the function is given in terms of the \textsf{Why-3}
+standard library\footnote{Available online \texttt{http://why3.lri.fr/stdlib}},
+from which all the properties are automatically imported and communicated to the provers.
+
+\begin{figure}[htbp]
+\begin{center}
+    \begin{tabular}{l@{\quad}lr}
+    \textsf{ACSL} & \textsf{Why-3} Reference & Qed \\
+    \hline
+    $\mathtt{(real)}\,x$ & \wref{real}{FromInt} &\page{builtin-real} \\
+    $\builtin{ceil},\builtin{floor}$ & \wref{real}{Truncate} &\page{builtin-truncate} \\
+    $\builtin{abs}$ & \wref{int}{Abs}, \wref{real}{Abs} &\page{builtin-abs} \\
+    $\builtin{min},\builtin{max}$ & \wref{int}{MinMax}, \wref{real}{MinMax} &\page{builtin-min-max} \\
+    $\builtin{sqrt}$ & \wref{real}{Square} &\page{builtin-sqrt} \\
+    $\builtin{exp}, \builtin{log}, \builtin{log10}$ & \wref{real}{ExpLog} &\page{builtin-exp-log} \\
+    $\builtin{pow}$ & \wref{real}{PowerReal} &\page{builtin-pow} \\
+    $\builtin{sin},\builtin{cos},\builtin{tan}$ & \wref{real}{Trigonometry} & \page{builtin-trigo} \\
+    $\builtin{asin},\builtin{acos},\builtin{atan}$ & \wref{real}{Trigonometry} & \page{builtin-arctrigo} \\
+    $\builtin{sinh},\builtin{cosh},\builtin{tanh}$ & \wref{real}{Hyperbolic} & \page{builtin-hyperbolic} \\
+    $\builtin{atan2},\builtin{hypot}$ & \wref{real}{Polar} & \page{builtin-polar} \\
+    \hline
+    \end{tabular}
+\end{center}
+\label{wp-builtins-list}
+\caption{Supported \textsf{ACSL} builtins}
+\end{figure}
+
+Below in the section, additional informations are given for each supported builtin, with a brief
+description of the implemented \textsf{Qed} simplifiers.
+
+\pagebreak
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-real}
+\paragraph{$\mathtt{(real)}\,x$} for the conversion from integers to reals. Constants, including
+\texttt{float} and \texttt{double} literals, are exactly converted to rationals. This operation is
+also declared to be injective.
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-truncate}
+\paragraph{$\builtin{ceil}(x)$, $\builtin{floor}(x)$} for the conversion from reals to integers.
+Constants (rationals) are truncated towards the expected direction. Other simplifications are:
+\[
+\begin{array}{rcl@{\quad}l}
+\builtin{ceil}(\mathtt{(real)}\,n) &=& n &(\forall n\in \mathbb{Z})\\
+\builtin{floor}(\mathtt{(real)}\,n) &=& n &(\forall n\in \mathbb{Z})\\
+\end{array}
+\]
+
+Other conversion simplifications will be performed when using conversions to \textsf{C}-integer types.
+Actually, the truncation operation defined in \verb+real.Truncate+ from \textsf{Why-3} is used for
+these other conversions and combine well together.
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-abs}
+\paragraph{$\builtin{abs}(x)$} for both integers and reals. The implemented simplifiers
+are:
+\[
+\begin{array}{rcl@{\quad}l}
+\builtin{abs}(x) &\geq & 0\\
+\builtin{abs}(k.x) &=& |k|.\builtin{abs}(x) \\
+\builtin{abs}(x) &=& x & \mathtt{when}\; 0\leq x \\
+\builtin{abs}(x) &=& -x & \mathtt{when}\; x < 0 \\
+\builtin{abs}(x) &=& 0 & \mathtt{iff}\; x = 0
+\end{array}
+\]
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-min-max}
+\paragraph{$\builtin{min}(x,y)$, $\builtin{max}(x,y)$}
+are implemented on both real and integers as idempotent, associative and commutative operators.
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-sqrt}
+\paragraph{$\builtin{sqrt}(x)$} is declared to be injective, monotonically increasing and is associated
+with the following simplifiers:
+\[
+\begin{array}{rcl@{\quad}l}
+\builtin{sqrt}(0) &=& 0 \\
+\builtin{sqrt}(1) &=& 1 \\
+\builtin{sqrt}(x) &\geq& 0 \\
+\builtin{sqrt}(x) &=& 0 & \mathtt{iff}\; x = 0 \\
+\builtin{sqrt}(x\times x) &=& \builtin{abs}(x) \\
+\end{array}
+\]
+
+Moreover, the following lemmas are added to complement the reference ones:
+\[
+\begin{array}{rcl@{\quad}l}
+\builtin{sqrt}(x) &<& x & \text{when}\; 1<x \\
+\builtin{sqrt}(x) &>& x & \text{when}\; 0\leq x < 1 \\
+\end{array}
+\]
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-exp-log}
+\paragraph{$\builtin{exp}(x)$, $\builtin{log}(x)$ and $\builtin{log10}(x)$} are declared
+to be injective, monotonically increasing and are associated with the following simplifiers:
+\[
+\begin{array}{rcl@{\quad}l}
+\builtin{log}(1) &=& 0\\
+\builtin{exp}(0) &=& 1\\
+\builtin{exp}(x) &>& 0\\
+\builtin{exp}(\builtin{log}(x)) &=& x & \text{when}\; 0<x \\
+\builtin{log}(\builtin{exp}(x)) &=& x \\
+\end{array}
+\]
+
+However, we found necessary to complement the reference definitions with the following
+lemma, especially when $\builtin{tanh}$ is involved:
+\[
+    \builtin{exp}(x) \geq 0
+\]
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-pow}
+\paragraph{$\builtin{pow}(x,n)$} is associated with the following simplifiers:
+\[
+\begin{array}{rcl@{\quad}l}
+\builtin{pow}(x,0) &=& 1\\
+\builtin{pow}(x,1) &=& x\\
+\end{array}
+\]
+
+Other algebraic simplifications are limited to cases where $x>0$, and there is no obvious
+choice of normalization when combining $\builtin{pow}$ with $\builtin{exp}$ and $\builtin{log}$.
+\[
+\begin{array}{rcl@{\quad}l}
+\builtin{log}(\builtin{pow}(x,n)) &=& n.\builtin{log}(x) & \text{when}\; 0<x  \\
+\end{array}
+\]
+
+However, algebraic rules for such combinations are well established in the reference lemmas
+imported from \textsf{Why-3}.
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-trigo}
+\paragraph{$\builtin{sin}(x)$, $\builtin{cos}(x)$ and $\builtin{tan}(x)$} trigonometric
+operations. Useful lemmas are already defined in the reference implementation from
+\textsf{Why-3} library.
+
+\label{builtin-arctrigo}
+\paragraph{$\builtin{asin}(x)$, $\builtin{acos}(x)$ and $\builtin{atan}(x)$} trigonometric
+operations. Except definition of $\builtin{atan}$ which is available from reference,
+definition for arc-$\builtin{sin}$ and arc-$\builtin{cos}$ have been added. Moreover,
+all the arc-trigonometric operations are declared to be injective. In addition, the
+following simplifiers are also registered:
+
+\[
+\begin{array}{rcl@{\quad}l}
+\builtin{sin}(\builtin{asin}(x)) &=& x & \text{when}\; -1 \leq x \leq 1 \\
+\builtin{cos}(\builtin{acos}(x)) &=& x & \text{when}\; -1 \leq x \leq 1 \\
+\builtin{tan}(\builtin{atan}(x)) &=& x\\
+\end{array}
+\]
+
+Notice that definitions for $\builtin{asin}$ and $\builtin{acos}$ are not (yet) available
+from the original \textsf{Why-3} reference
+and are actually provided by custom extensions installed in the \textsf{WP} shared directory.
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-hyperbolic}
+\paragraph{$\builtin{sinh}(x)$, $\builtin{cosh}(x)$ and $\builtin{tanh}(x)$} trigonometric
+operations. Useful lemmas are already defined in the reference implementation from
+\textsf{Why-3} library.
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-polar}
+\paragraph{$\builtin{atan2}(x,y)$ and $\builtin{hypot}(x,y)$} for dealing with
+polar coordinates. Definitions imported from the reference implementation of
+\textsf{Why-3} library.
+
+%---------------------------------------------------------------------------------------------
+
+\vskip 1em
+\hrule
+\label{builtin-fpcmp}
+\paragraph{$\builtin{le\_float}(x,y)$, $\builtin{ge\_float}(x,y)$,
+$\builtin{lt\_float}(x,y)$, $\builtin{gt\_float}(x,y)$, $\builtin{eq\_float}(x,y)$,
+$\builtin{ne\_float}(x,y)$, $\builtin{le\_double}(x,y)$,
+$\builtin{ge\_double}(x,y)$, $\builtin{lt\_double}(x,y)$,
+$\builtin{gt\_double}(x,y)$, $\builtin{eq\_double}(x,y)$, and
+$\builtin{ne\_double}(x,y)$} for dealing with floating point
+comparisons. They are similar to comparisons over the real numbers if both
+$x$ and $y$ are finite, but obey IEEE semantics for infinities and NaNs
+
+%---------------------------------------------------------------------------------------------
+
+\section{Custom Extensions}
+
+As explained in Section~\ref{drivers}, it is possible to extend all the properties mentioned
+above. Section~\ref{wp-custom-tactics} also provides hints on how to define tactics that can be
+used in the interactive prover of \textsf{Frama-C/WP}.
+
+However, \textsf{Why-3} offers the easiest way of adding new theorems for interactive proving.
+Since all the builtin symbols of \textsf{ACSL} are actually linked to the standard library
+of \textsf{Why-3}, any user theory also referring to the standard symbols can be added to the proof
+environment by using option \verb+-wp-why-lib 'file...'+.
+
+Otherwise, a driver can be written. For instance, the additional lemma regarding $\builtin{exp}$
+p.\pageref{builtin-hyperbolic} for \textsf{Why3} is simply defined in the following way:
+
+\begin{logs}
+    // MyExp.mlw file
+    axiom exp_pos : forall x:real. (0.0 <  exp(x))
+\end{logs}
+
+Of course, this piece of \textsf{Why3} input file must be integrated after the symbol
+\verb+exp+ has been defined. The corresponding driver is then:
+
+\begin{logs}
+    // MyExp.driver file
+    library exponential:
+    why3.file += "MyExp.mlw" ;
+\end{logs}
+
+Such a driver, once loaded with option \verb+-wp-driver+, instructs \textsf{Frama-C/WP} to
+append your extension file to the other necessary resources for library \verb+"exponential"+, to
+which the logic ACSL builtin \verb+\exp+ belongs to.
+
+The file \verb+share/wp/wp.driver+ located into the shared directory of \textsf{Frama-C},
+and the associated files in sub-directory \verb+share/wp/why3+ shall provide
+all the necessary hints for extending the capabilities of \textsf{Frama-C/WP} in a similar way.

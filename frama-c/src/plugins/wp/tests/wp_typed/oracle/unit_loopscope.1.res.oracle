@@ -1,0 +1,24 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing unit_loopscope.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] unit_loopscope.i:14: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file unit_loopscope.i, line 13):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file unit_loopscope.i, line 13):
+Prove: false.
+
+------------------------------------------------------------
+[wp] unit_loopscope.i:9: Warning: 
+  Memory model hypotheses for function 'f':
+  /*@ behavior wp_typed_ref:
+        requires \valid(written); */
+  void f(unsigned int *written);

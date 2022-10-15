@@ -1,0 +1,20 @@
+[ { "header": "Clear", "tactic": "Wp.clear", "params": {},
+    "select": { "select": "inside-step", "at": 2, "kind": "have", "occur": 0,
+                "target": "P_P", "pattern": "P_P" },
+    "children": { "Filtered": [ { "header": "Clear", "tactic": "Wp.clear",
+                                  "params": {},
+                                  "select": { "select": "inside-step",
+                                              "at": 2, "kind": "have",
+                                              "occur": 0, "target": "P_Q",
+                                              "pattern": "P_Q" },
+                                  "children": { "Filtered": [ { "header": "Clear",
+                                                                "tactic": "Wp.clear",
+                                                                "params": {},
+                                                                "select": 
+                                                                  { "select": "clause-step",
+                                                                    "at": 2,
+                                                                    "kind": "have",
+                                                                    "target": "P_R",
+                                                                    "pattern": "P_R" },
+                                                                "children": 
+                                                                  { "Cleared hypothesis": [] } } ] } } ] } } ]

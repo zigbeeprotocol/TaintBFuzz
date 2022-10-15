@@ -1,0 +1,32 @@
+[kernel] Parsing FP5.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] FP5.i:1: Warning: 
+  function main: precondition \valid(b) got status unknown.
+[eva:alarm] FP5.i:2: Warning: 
+  function main: precondition \valid(c) got status unknown.
+[eva] FP5.i:3: function main: precondition \valid(&a) got status valid.
+[eva] FP5.i:23: starting to merge loop iterations
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  i ∈ [0..2147483647]
+  S_c[0] ∈ {-1; 0; 1}
+     [1] ∈ [--..--]
+  S_b[0..1] ∈ [--..--]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  S_c[0] FROM a; c
+  S_b[0] FROM a; b (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    i; S_c[0]; S_b[0]
+[inout] Inputs for function main:
+    \nothing

@@ -1,0 +1,49 @@
+[kernel] Parsing automalloc.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[kernel:annot:missing-spec] automalloc.i:14: Warning: 
+  Neither code nor specification for function malloc, generating default assigns from the prototype
+[eva] computing for function malloc <- main.
+  Called from automalloc.i:14.
+[eva] using specification for function malloc
+[eva] Done for function malloc
+[kernel:annot:missing-spec] automalloc.i:15: Warning: 
+  Neither code nor specification for function realloc, generating default assigns from the prototype
+[eva] computing for function realloc <- main.
+  Called from automalloc.i:15.
+[eva] using specification for function realloc
+[eva] Done for function realloc
+[eva:alarm] automalloc.i:17: Warning: 
+  out of bounds write. assert \valid(buf + 1);
+[kernel] automalloc.i:17: Warning: 
+  all target addresses were invalid. This path is assumed to be dead.
+[eva] Recording results for main
+[eva] done for function main
+[eva] automalloc.i:17: assertion 'Eva,mem_access' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  test ∈ {0}
+  buf ∈ [--..--]
+[from] Computing for function main
+[from] Computing for function malloc <-main
+[from] Done for function malloc
+[from] Computing for function realloc <-main
+[from] Done for function realloc
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function malloc:
+  \result FROM s
+[from] Function realloc:
+  test FROM s; test (and SELF)
+  \result FROM s; test
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    test; buf
+[inout] Inputs for function main:
+    \nothing

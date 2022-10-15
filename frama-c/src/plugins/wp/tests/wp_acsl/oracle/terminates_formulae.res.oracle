@@ -1,0 +1,158 @@
+# frama-c -wp [...]
+[kernel] Parsing terminates_formulae.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp:hypothesis] terminates_formulae.i:84: Warning: 
+  'Rel' relation must be well-founded
+[wp:hypothesis] terminates_formulae.i:67: Warning: 
+  'Rel' relation must be well-founded
+[wp] [CFG] Goal general_variant_terminates : Valid (Trivial)
+[wp] [CFG] Goal variant_terminates : Valid (Trivial)
+[wp] terminates_formulae.i:90: Warning: 
+  No 'decreases' clause on recursive function 'no_decreases', cannot prove termination
+------------------------------------------------------------
+  Function base_call
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 22) in 'base_call':
+Call Effect at line 24
+Assume { (* Heap *) Type: is_sint32(a). (* Goal *) When: P_Q. }
+Prove: P_P(a).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_change
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 32) in 'call_change':
+Call Effect at line 35
+Assume { (* Heap *) Type: is_sint32(a). (* Goal *) When: P_P(a). }
+Prove: P_P(0).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_param_change
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 48) in 'call_param_change':
+Call Effect at line 51
+Let x = Mint_0[p].
+Assume {
+  Type: is_sint32(x).
+  (* Heap *)
+  Type: region(p.base) <= 0.
+  (* Goal *)
+  When: x != 0.
+}
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_param_same
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 43) in 'call_param_same':
+Call Effect at line 45
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_same
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 27) in 'call_same':
+Call Effect at line 29
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function decreases
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 77) in 'decreases':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 80
+Assume { Type: is_uint32(n). (* Goal *) When: P_Q. (* Then *) Have: n != 0. }
+Prove: (0 <= n) /\ (to_uint32(n - 1) < n).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function general_decreases
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 83) in 'general_decreases':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 86
+Assume { Type: is_uint32(n). (* Goal *) When: P_Q. (* Then *) Have: n != 0. }
+Prove: P_Rel(n, to_uint32(n - 1)).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function general_variant
+------------------------------------------------------------
+
+Goal Loop assigns (file terminates_formulae.i, line 66):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Follows relation Loop variant at loop (file terminates_formulae.i, line 68):
+Assume { Type: is_uint32(x). (* Goal *) When: P_Q. (* Then *) Have: 0 < x. }
+Prove: P_Rel(x, to_uint32(x - 1)).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_decreases
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 89) in 'no_decreases' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 89) in 'no_decreases' (2/2):
+Call Result at line 92
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_variant
+------------------------------------------------------------
+
+Goal Termination-condition (file terminates_formulae.i, line 71) in 'no_variant':
+Effect at line 74
+Prove: !P_Q.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file terminates_formulae.i, line 73):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function variant
+------------------------------------------------------------
+
+Goal Loop assigns (file terminates_formulae.i, line 56):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Decreasing of Loop variant at loop (file terminates_formulae.i, line 59):
+Assume { Type: is_uint32(i). (* Goal *) When: P_Q. (* Then *) Have: 0 < i. }
+Prove: to_uint32(i - 1) < i.
+
+------------------------------------------------------------
+
+Goal Positivity of Loop variant at loop (file terminates_formulae.i, line 59):
+Prove: true.
+
+------------------------------------------------------------

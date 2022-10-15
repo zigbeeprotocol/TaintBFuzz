@@ -1,0 +1,143 @@
+/* -------------------------------------------------------------------------- */
+/* --- Styling Dome Tables                                                --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xTable {
+    flex: 1 1 auto ;
+    width: 100% ;
+    height: 100% ;
+}
+
+.dome-xTable * {
+    outline: none ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Styling Table Headers                                              --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xTable .ReactVirtualized__Table__headerRow {
+    display: flex ;
+    align-items: stretch ;
+    background: var(--background-intense) ;
+    color: var(--text-discrete) ;
+    fill: var(--info-text) ;
+}
+
+.dome-xTable .ReactVirtualized__Table__headerColumn {
+    overflow: hidden ;
+    padding-left: 4px ;
+    padding-right: 4px ;
+    margin: 0px ; /* Necessary for column alignement */
+    border-color: var(--border-discrete) ;
+    border-bottom-width: 1px ;
+    border-bottom-style: solid ;
+}
+
+.dome-xTable .ReactVirtualized__Table__headerColumn:not(:last-child) {
+    border-right-width: 1px ;
+    border-right-style: solid ;
+}
+
+.dome-xTable-header {
+    /* flex: is inlined by react-virtualized */
+    /* height: must be kept in sync with table.js */
+    display: flex ;
+    height: 22px ;
+    flex-flow: row no-wrap ;
+    align-items: center ;
+}
+
+.dome-xTable-header-icon {
+    flex: 0 0 auto ;
+    margin-left: 3px ;
+    margin-right: 3px ;
+}
+
+.dome-xTable-header-label {
+    flex: 1 1 auto ;
+    overflow: hidden ;
+    margin-left: 3px ;
+    margin-right: 3px ;
+}
+
+.dome-xTable-header-sorter {
+    flex: 0 0 auto ;
+    margin-right: 2px ;
+}
+
+.dome-xTable-renderer {
+    overflow: hidden;
+}
+
+.dome-xTable-resizer {
+    position: absolute ;
+    cursor: col-resize ;
+    width: 3px ;
+    top: 0px ;
+    bottom: 0px ;
+    z-index: 1 ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Styling Table Rows                                                 --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xTable .ReactVirtualized__Table__row {
+    display: flex ;
+    align-items: stretch ;
+}
+
+.dome-xTable .ReactVirtualized__Table__rowColumn {
+    /* flex: is inlined by react-virtualized */
+    /* height: must be kept in sync with table.js */
+    display: block ;
+    position: relative ;
+    margin: 0 ; /* Necessary for column alignement */
+    padding-top: 3px ;
+    padding-left: 4px ;
+    padding-right: 4px ;
+    vertical-align: baseline ;
+}
+
+.dome-xTable-selected {
+    background: var(--selected-element) ;
+}
+
+.dome-xTable-odd {
+    background: var(--background-alterning-odd) ;
+}
+
+.dome-xTable-even {
+    background: var(--background-alterning-even) ;
+}
+
+.ReactVirtualized__Table__row.dome-color-selected {
+    border-bottom-style: solid ;
+    border-bottom-width: 1px ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Styling Table Cells                                                --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xTable-cell {
+    display: block ;
+    position: relative ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Dragging Columns                                                   --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xTable .ReactVirtualized__Table__headerColumn,
+.dome-xTable .ReactVirtualized__Table__rowColumn
+{
+    transition: flex-basis linear 50ms ;
+}
+
+.dome-xTable-resizer {
+    transition: left linear 50ms ;
+}
+
+/* -------------------------------------------------------------------------- */

@@ -1,0 +1,238 @@
+{
+  "$schema":
+    "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "frama-c",
+          "fullName": "frama-c-0+omitted-for-deterministic-output",
+          "version": "0+omitted-for-deterministic-output",
+          "downloadUri": "https://frama-c.com/download.html",
+          "informationUri": "https://frama-c.com"
+        }
+      },
+      "invocations": [
+        {
+          "commandLine":
+            "frama-c -journal-disable -check -no-autoload-plugins -add-symbolic-path :. -load-module=eva,from,scope,markdown_report cwe125.c -save ./cwe125_parse.sav",
+          "arguments": [
+            "-journal-disable", "-check", "-no-autoload-plugins",
+            "-add-symbolic-path", ":.",
+            "-load-module=eva,from,scope,markdown_report", "cwe125.c",
+            "-save", "./cwe125_parse.sav"
+          ],
+          "exitCode": 0,
+          "executionSuccessful": true
+        },
+        {
+          "commandLine":
+            "frama-c -journal-disable -check -no-autoload-plugins -add-symbolic-path :. -load-module=eva,from,scope,markdown_report -load ./cwe125_parse.sav -eva -save ./cwe125_eva.sav",
+          "arguments": [
+            "-journal-disable", "-check", "-no-autoload-plugins",
+            "-add-symbolic-path", ":.",
+            "-load-module=eva,from,scope,markdown_report", "-load",
+            "./cwe125_parse.sav", "-eva", "-save", "./cwe125_eva.sav"
+          ],
+          "exitCode": 0,
+          "executionSuccessful": true
+        },
+        {
+          "commandLine":
+            "frama-c -journal-disable -check -no-autoload-plugins -add-symbolic-path :. -load-module=eva,from,scope,markdown_report -load ./cwe125_eva.sav -then -mdr-out ./cwe125.sarif -mdr-gen sarif -mdr-no-print-libc -mdr-sarif-deterministic",
+          "arguments": [
+            "-journal-disable", "-check", "-no-autoload-plugins",
+            "-add-symbolic-path", ":.",
+            "-load-module=eva,from,scope,markdown_report", "-load",
+            "./cwe125_eva.sav", "-then", "-mdr-out", "./cwe125.sarif",
+            "-mdr-gen", "sarif", "-mdr-no-print-libc",
+            "-mdr-sarif-deterministic"
+          ],
+          "exitCode": 0,
+          "executionSuccessful": true
+        }
+      ],
+      "originalUriBaseIds": {
+        ".": { "uri": "file:///omitted-for-deterministic-output/" },
+        "PWD": { "uri": "file:///omitted-for-deterministic-output/" }
+      },
+      "artifacts": [
+        {
+          "location": { "uri": "cwe125.c", "uriBaseId": "PWD" },
+          "roles": [ "analysisTarget" ],
+          "mimeType": "text/x-csrc"
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "mem_access",
+          "kind": "open",
+          "level": "none",
+          "message": {
+            "text": "mem_access.",
+            "markdown":
+              "mem_access:\n\n```acsl\nassert mem_access: \\valid_read(array + index);\n```\n\n\n\nThis alarm represents a potential Invalid pointer dereferencing."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "cwe125.c", "uriBaseId": "PWD" },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 8,
+                  "endLine": 21,
+                  "endColumn": 20,
+                  "byteLength": 12
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "mem_access",
+          "level": "error",
+          "message": {
+            "text": "mem_access.",
+            "markdown":
+              "mem_access:\n\n```acsl\nassert mem_access: \\valid_read(array + index);\n```\n\n\n\nThis alarm represents a potential Invalid pointer dereferencing."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "cwe125.c", "uriBaseId": "PWD" },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 27,
+                  "endColumn": 38,
+                  "byteLength": 38
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "user-spec",
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "reachability of stmt line 27 in getValueFromArray."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "cwe125.c", "uriBaseId": "PWD" },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 27,
+                  "endColumn": 38,
+                  "byteLength": 38
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "user-spec",
+          "kind": "pass",
+          "level": "none",
+          "message": { "text": "specialization of order at stmt 10." },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "cwe125.c", "uriBaseId": "PWD" },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 13,
+                  "endLine": 36,
+                  "endColumn": 37,
+                  "byteLength": 24
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "user-spec",
+          "kind": "pass",
+          "level": "none",
+          "message": { "text": "behavior default! in function printf." },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "cwe125.c", "uriBaseId": "PWD" },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 27,
+                  "endColumn": 6,
+                  "byteLength": 6
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "user-spec",
+          "kind": "pass",
+          "level": "none",
+          "message": { "text": "assigns clause in function printf." },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "cwe125.c", "uriBaseId": "PWD" },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 27,
+                  "endColumn": 6,
+                  "byteLength": 6
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "user-spec",
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "from clause of term \\result in function printf."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "cwe125.c", "uriBaseId": "PWD" },
+                "region": {
+                  "startLine": 27,
+                  "endLine": 27,
+                  "endColumn": 6,
+                  "byteLength": 6
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "defaultSourceLanguage": "C",
+      "taxonomies": [
+        {
+          "name": "frama-c",
+          "rules": [
+            {
+              "id": "user-spec",
+              "shortDescription": {
+                "text": "User-written ACSL specification."
+              }
+            },
+            {
+              "id": "mem_access",
+              "shortDescription": {
+                "text": "Invalid pointer dereferencing."
+              }
+            }
+          ],
+          "contents": [ "nonLocalizedData" ]
+        }
+      ]
+    }
+  ]
+}

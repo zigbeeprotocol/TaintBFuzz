@@ -1,0 +1,168 @@
+# frama-c -wp [...]
+[kernel] Parsing inductive.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] 2 goals scheduled
+---------------------------------------------
+--- Context 'typed' Cluster 'Compound' 
+---------------------------------------------
+theory Compound
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.memory.Memory *)
+  
+  function shift_sint32 (p:addr) (k:int) : addr = shift p k
+  
+  function shiftfield_F1__list_next (p:addr) : addr = shift p 1
+end
+[wp:print-generated] 
+  theory WP
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool *)
+    
+    (* use int.Int *)
+    
+    (* use int.ComputerDivision *)
+    
+    (* use real.RealInfix *)
+    
+    (* use frama_c_wp.qed.Qed *)
+    
+    (* use map.Map *)
+    
+    (* use frama_c_wp.memory.Memory *)
+    
+    (* use Compound *)
+    
+    inductive P_reachable (int -> int) (addr -> addr) addr addr =
+      | Q_root_reachable :
+          forall malloc:int -> int, mptr:addr -> addr, root:addr.
+           P_reachable malloc mptr root root
+      | Q_next_reachable :
+          forall malloc:int -> int, mptr:addr -> addr, root:addr, node:addr.
+           valid_rw malloc root 2 ->
+           P_reachable malloc mptr (get mptr (shiftfield_F1__list_next root))
+           node -> P_reachable malloc mptr root node
+    
+    goal wp_goal :
+      forall t:int -> int, t1:addr -> addr, a:addr, a1:addr.
+       P_reachable t t1 a a1 ->
+       a1 = a \/
+       valid_rw t a 2 /\
+       P_reachable t t1 (get t1 (shiftfield_F1__list_next a)) a1
+  end
+[wp:print-generated] 
+  theory WP1
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool *)
+    
+    (* use int.Int *)
+    
+    (* use int.ComputerDivision *)
+    
+    (* use real.RealInfix *)
+    
+    (* use frama_c_wp.qed.Qed *)
+    
+    (* use map.Map *)
+    
+    (* use frama_c_wp.memory.Memory *)
+    
+    (* use Compound *)
+    
+    inductive P_reachable1 (int -> int) (addr -> addr) addr addr =
+      | Q_root_reachable1 :
+          forall malloc:int -> int, mptr:addr -> addr, root:addr.
+           P_reachable1 malloc mptr root root
+      | Q_next_reachable1 :
+          forall malloc:int -> int, mptr:addr -> addr, root:addr, node:addr.
+           valid_rw malloc root 2 ->
+           P_reachable1 malloc mptr (get mptr (shiftfield_F1__list_next root))
+           node -> P_reachable1 malloc mptr root node
+    
+    lemma Q_test :
+      forall malloc:int -> int, mptr:addr -> addr, root:addr, node:addr.
+       P_reachable1 malloc mptr root node ->
+       root = node \/
+       valid_rw malloc root 2 /\
+       P_reachable1 malloc mptr (get mptr (shiftfield_F1__list_next root)) node
+    
+    predicate P_same_array (mint:addr -> int) (mint1:addr -> int) (a:addr) (b:
+      addr) (begin1:int) (end1:int) =
+      forall i:int.
+       begin1 <= i ->
+       i < end1 -> get mint1 (shift_sint32 a i) = get mint (shift_sint32 b i)
+    
+    predicate P_swap (mint:addr -> int) (mint1:addr -> int) (a:addr) (b:addr)
+      (begin1:int) (i:int) (j:int) (end1:int) =
+      ((((get mint1 (shift_sint32 a i) = get mint (shift_sint32 b j) /\
+          get mint1 (shift_sint32 a j) = get mint (shift_sint32 b i)) /\
+         begin1 <= i) /\
+        i < j) /\
+       j < end1) /\
+      (forall i1:int.
+        not i1 = i ->
+        not j = i1 ->
+        begin1 <= i1 ->
+        i1 < end1 ->
+        get mint1 (shift_sint32 a i1) = get mint (shift_sint32 b i1))
+    
+    inductive P_same_elements (addr -> int) (addr -> int) addr addr int int =
+      | Q_refl :
+          forall mint:addr -> int, mint1:addr -> int, a:addr, b:addr, begin1:
+           int, end1:int.
+           P_same_array mint mint1 a b begin1 end1 ->
+           P_same_elements mint mint1 a b begin1 end1
+      | Q_swap :
+          forall mint:addr -> int, mint1:addr -> int, a:addr, b:addr, begin1:
+           int, i:int, j:int, end1:int.
+           P_swap mint mint1 a b begin1 i j end1 ->
+           P_same_elements mint mint1 a b begin1 end1
+      | Q_trans :
+          forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, a:
+           addr, b:addr, c:addr, begin1:int, end1:int.
+           P_same_elements mint mint1 b c begin1 end1 ->
+           P_same_elements mint1 mint2 a b begin1 end1 ->
+           P_same_elements mint mint2 a c begin1 end1
+    
+    goal wp_goal :
+      forall t:addr -> int, t1:addr -> int, a:addr, a1:addr, i:int, i1:int, i2:
+       int.
+       P_same_elements t t1 (shift_sint32 a i2) (shift_sint32 a1 i2) i i1 ->
+       P_same_elements t t1 a a1 (i + i2) (i1 + i2)
+  end
+[wp] 2 goals generated
+------------------------------------------------------------
+  Global
+------------------------------------------------------------
+
+Lemma offset:
+Assume: 'test'
+Prove: (P_same_elements Mint_0 Mint_1 (shift_sint32 a_0 offset_0)
+         (shift_sint32 b_0 offset_0) begin_0 end_0)
+       -> (P_same_elements Mint_0 Mint_1 a_0 b_0 (begin_0+offset_0)
+            (end_0+offset_0))
+
+------------------------------------------------------------
+
+Lemma test:
+Prove: (P_reachable Malloc_0 Mptr_0 root_0 node_0)
+       -> ((root_0=node_0)
+           \/ ((valid_rw Malloc_0 root_0 2)
+               /\ (P_reachable Malloc_0 Mptr_0
+                    Mptr_0[(shiftfield_F1__list_next root_0)] node_0)))
+
+------------------------------------------------------------

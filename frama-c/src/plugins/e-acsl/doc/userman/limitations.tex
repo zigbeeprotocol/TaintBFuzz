@@ -1,0 +1,215 @@
+\chapter{Known Limitations}
+
+The development of the \eacsl plug-in is still ongoing. First, the \eacsl
+reference manual~\cite{eacsl} is not yet fully supported. Which annotations can
+already be translated into \C code and which cannot is defined in a separate
+document~\cite{eacsl-implem}. Second, even though we do our best to avoid them,
+bugs may exist. If you find a new one, please report it on the bug tracking
+system\footnote{\url{https://git.frama-c.com/pub/frama-c/-/issues}} (see Chapter
+10 of the \framac User Manual~\cite{userman}). Third, there are some additional
+known limitations, which could be annoying for the user in some cases, but are
+tedious to lift. Please contact us if you are interested in lifting these
+limitations\footnote{Read
+  \url{https://git.frama-c.com/pub/frama-c/blob/master/CONTRIBUTING.md} for
+  additional details.}.
+
+\section{Supported Systems}
+
+\begin{important}
+The only well-supported system is a Linux distribution on a 64-bit architecture.
+\end{important}
+
+\subsection{Operating Systems}
+
+Non-Linux systems are almost not yet experimented. It might work but there are
+most probably issues, in particular if using a non-standard
+libc\index{Libc}. For instance, there are known bugs under Mac OS
+X\index{Mac OS X}\footnote{See for instance at
+  \url{https://bts.frama-c.com/view.php?id=2369}}.
+
+\subsection{Architectures and Runtime Library}
+
+The segment-based memory model (used by default for monitoring memory properties
+such as \lstinline|\valid|) assumes little-endian architecture and has very
+limited support for 32-bit architectures. When using a 32-bit machine or
+big-endians, we recomend using the bittree-based memory model instead.
+
+\begin{important}
+The runtime library is also \emph{not} thread-safe.
+\end{important}
+
+\section{Uninitialized Values}
+\index{Uninitialized value}
+
+As explained in Section~\ref{sec:runtime-error}, the \eacsl plug-in should never
+translate an annotation into \C code which can lead to a runtime error. This is
+enforced, except for uninitialized values which are values read before having
+been written.
+
+\listingname{uninitialized.i}
+\cinput{examples/uninitialized.i}
+
+If you generate the instrumented code, compile it, and finally execute it, you
+may get no runtime error depending on your \C compiler, but the behavior is
+actually undefined because the assertion reads the uninitialized variable
+\lstinline|x|. You should be caught by the \eacsl plug-in, but that is not
+the case yet.
+
+\begin{shell}
+\$ e-acsl-gcc.sh uninitialized.i -c -Omonitored_uninitialized
+monitored_uninitialized.i: In function 'main':
+monitored_uninitialized.i:44:16: warning: 'x' is used uninitialized in this function
+[-Wuninitialized]
+\$ ./monitored_uninitialized.e-acsl
+\end{shell}
+
+This is more a design choice than a limitation: should the \eacsl plug-in
+generate additional instrumentation to prevent such values from being evaluated,
+the generated code would be much more verbose and slower.
+
+If you really want to track such uninitializations in your annotation, you have
+to manually add calls to the \eacsl predicate
+\lstinline|\initialized|~\cite{eacsl}.
+
+\section{Incomplete Programs}
+
+Section~\ref{sec:incomplete} explains how the \eacsl plug-in is able to handle
+incomplete programs, which are either programs without main, or programs
+containing undefined functions (\emph{i.e.} functions without body).
+
+However, if such programs contain memory-related annotations, the generated code
+may be incorrect. That is made explicit by a warning displayed when the \eacsl
+plug-in is running (see examples of Sections~\ref{sec:no-main} and
+\ref{sec:no-code}).
+
+\subsection{Programs without Main}
+\index{Program!Without main}
+\label{sec:limits:no-main}
+
+The instrumentation in the generated program is partial for every program
+without main containing memory-related annotations, except if the option
+\optionuse{-}{e-acsl-full-mtracking} or the \eacsl plug-in (of \shortopt{M}
+option of \eacslgcc) is provided. In that case, violations of such annotations
+are undetected.
+
+Consider the following example.
+
+\listingname{valid\_no\_main.c}
+\cinput{examples/valid_no_main.c}
+
+You can generate the instrumented program as follows.
+\begin{shell}
+\$ e-acsl-gcc.sh -M -omonitored_valid_no_main.i valid_no_main.c
+[kernel] Parsing valid_no_main.c (with preprocessing)
+[e-acsl] beginning translation.
+[kernel] Parsing FRAMAC_SHARE/e-acsl/e_acsl.h (with preprocessing)
+[kernel] Warning: no entry point specified:
+  you must call functions `__e_acsl_globals_init', `__e_acsl_globals_clean',
+  `__e_acsl_memory_init' and `__e_acsl_memory_clean' by yourself.
+[e-acsl] translation done in project "e-acsl".
+\end{shell}
+
+The last warning states an important point: if this program is linked against
+another file containing \texttt{main} function, then this main function must
+be modified to insert a calls to the functions
+\texttt{\_\_e\_acsl\_globals\_init}
+\index{e\_acsl\_globals\_init@\texttt{\_\_e\_acsl\_globals\_init}} and
+\texttt{\_\_e\_acsl\_memory\_init}
+\index{e\_acsl\_memory\_init@\texttt{\_\_e\_acsl\_memory\_init}} at the very
+beginning. These functions play a very important role: the latter initializes
+metadata storage used for tracking of memory blocks while the former initializes
+tracking of global variables and constants. Unless these calls are inserted the
+run of a modified program is likely to fail.
+
+While it is possible to add such intrumentation manually we recommend using
+\eacslgcc. Consider the following incomplete program containing \T{main}:
+
+\listingname{modified\_main.c}
+\cinput{examples/modified_main.c}
+
+Then just compile and run it as explained in Section~\ref{sec:memory}.
+
+\begin{shell}
+\$ e-acsl-gcc.sh -M -omonitored_modified_main.i modified_main.c
+\$ e-acsl-gcc.sh -C -Ovalid_no_main monitored_modified_main.i monitored_valid_no_main.i
+\$ ./valid_no_main.e-acsl
+Assertion failed at line 11 in function f.
+The failing predicate is:
+freed: \valid(x).
+Aborted
+\end{shell}
+
+Also, if the unprovided main initializes some variables, running the
+instrumented code (linked against this main) could print some warnings from the
+\eacsl memory library\footnote{see
+  \url{https://bts.frama-c.com/view.php?id=1696} for an example}.
+
+\subsection{Undefined Functions}
+\label{sec:limits:no-code}
+\index{Function!Undefined}
+
+The instrumentation in the generated program is partial for a program $p$ if $p$
+contains a memory-related annotation $a$ and an undefined function
+$f$ such that:
+\begin{itemize}
+\item either $f$ has an (even indirect) effect on a left-value occurring in $a$;
+\item or $a$ is one of the post-conditions of $f$.
+\end{itemize}
+A violation of such an annotation $a$ is undetected. There is no workaround yet.
+
+\subsection{Incomplete Types}
+\index{Type!Incomplete}
+
+The instrumentation in the generated program is partial for a program $p$ if $p$
+contains a memory-related annotation $a$ and a variable $v$ with an incomplete
+type definition such that $a$ depends on $v$ (even indirectly).
+
+A violation of such an annotation $a$ is undetected. There is no workaround yet.
+
+\section{Recursive Functions}
+\index{Function!Recursive}
+
+Programs containing recursive functions have the same limitations as the ones
+containing undefined functions (Section~\ref{sec:limits:no-code}) and
+memory-related annotations.
+
+%% JS: this issue should have been fixed:
+%% Also, even though there is no such annotations, the generated code may call a
+%% function before it is declared. When this behavior appears remains
+%% unspecifed. The generated code is however easy to fix by hand.
+
+\section{Variadic Functions}
+\index{Function!Variadic}
+
+Programs containing undefined variadic functions with contracts
+are not yet supported. Using the \variadic plug-in of \framac could be a
+solution in some cases, but its generated code cannot always be compiled.
+
+\section{Function Pointers}
+\index{Function!Pointer}
+
+Programs containing function pointers have the same limitations on
+memory-related annotations as the ones containing undefined or recursive
+functions.
+
+\section{Requirements to Input Programs}
+\index{Function!Input}
+
+\subsection{\eacsl Namespace}
+While \eacsl uses source-to-source transformations and not binary
+instrumentations it is important that the source code provided as input does
+not contain any variables or functions prefixed \T{\_\_e\_acsl\_}.  \eacsl
+reserves this namespace for its transformations, and therefore an input program
+containing such symbols beforehand may fail to be instrumented or compiled.
+
+\subsection{Memory Management Functions}
+Programs providing custom definitions of \T{syscall}, \T{mmap} or
+\T{sbrk} should be rejected. Also, an input programs should not modify
+memory-management functions namely \T{malloc}, \T{calloc}, \T{realloc},
+\T{free}, \T{cfree}, \T{posix\_memalign} and \T{aligned\_alloc}.  \eacsl relies
+on these functions in order to track heap memory. Further, correct heap memory
+monitoring requires to limit allocation and deallocation of heap memory to
+POSIX-compliant memory management functions
+listed above. Monitoring of programs that allocate memory using non-standard or
+obsolete functions (e.g., \T{valloc}, \T{memalign}, \T{pvalloc}) may not work
+correctly.

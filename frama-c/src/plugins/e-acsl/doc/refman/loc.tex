@@ -1,0 +1,24 @@
+\begin{syntax}
+  [ range ] ::= [ term ".." term ] ;
+  \
+  [ tset ] ::= { "\empty" } ; empty set
+       | { tset "->" id } ;
+       | { tset "." id } ;
+       | { "*" tset } ;
+       | { "&" tset } ;
+       | { tset "[" tset "]" } ;
+       | { tset "[" range "]" } ;
+       | "(" range ")" ; a range as a set of integers
+       | { "\union" "(" tset ("," tset)* ")" } ; union of location sets
+       | { "\inter" "(" tset ("," tset)* ")" } ; intersection of location sets
+       | tset "+" tset ;
+       | "(" tset ")" ;
+       | [ { "{" tset "|" binders";" constraints "}" } ] ; set comprehension
+       | { "{" (term ("," term)*)? "}" } ; explicit set
+       | term ; implicit singleton
+       \
+  pred ::= { "\subset" "(" tset "," tset ")" } ; set inclusion
+       | { term "\in" tset } ; set membership
+       \
+  { constraints } ::= { guards ("&&" pred)? }
+\end{syntax}

@@ -1,0 +1,191 @@
+# frama-c -wp [...]
+[kernel] Parsing user_string.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function strlen
+------------------------------------------------------------
+
+Goal Post-condition (file user_string.i, line 23) in 'strlen':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'BASE' (file user_string.i, line 28):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'BASE' (file user_string.i, line 28):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'RANGE' (file user_string.i, line 29):
+Let x = Mchar_0[ss_0].
+Let a = shift_sint8(s, L_Length(Mchar_0, s)).
+Let x_1 = s.base.
+Let a_1 = shift_sint8(ss_0, 1).
+Assume {
+  Type: is_sint8(x).
+  (* Heap *)
+  Type: (region(x_1) <= 0) /\ linked(Malloc_0) /\ sconst(Mchar_0).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i_1).
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, s) /\ addr_le(s, a).
+  (* Invariant 'BASE' *)
+  Have: ss_0.base = x_1.
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, ss_0) /\ addr_le(ss_0, a).
+  (* Invariant 'ZERO' *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> (((i_2 + s.offset) < ss_0.offset) ->
+      (Mchar_0[shift_sint8(s, i_2)] != 0))).
+  (* Then *)
+  Have: x != 0.
+}
+Prove: addr_le(s, a_1) /\ addr_le(a_1, a).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'RANGE' (file user_string.i, line 29):
+Assume {
+  (* Heap *)
+  Type: (region(s.base) <= 0) /\ linked(Malloc_0) /\ sconst(Mchar_0).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i_1).
+}
+Prove: addr_le(s, s) /\ addr_le(s, shift_sint8(s, L_Length(Mchar_0, s))).
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'ZERO' (file user_string.i, line 30):
+Let a = shift_sint8(ss_0, 1).
+Let a_1 = shift_sint8(s, L_Length(Mchar_0, s)).
+Let x = Mchar_0[ss_0].
+Let x_1 = s.offset.
+Let x_2 = ss_0.offset.
+Let x_3 = s.base.
+Assume {
+  Type: is_sint8(x).
+  (* Heap *)
+  Type: (region(x_3) <= 0) /\ linked(Malloc_0) /\ sconst(Mchar_0).
+  (* Goal *)
+  When: (0 <= i) /\ ((i + x_1) <= x_2).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i_1).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i_2).
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, s) /\ addr_le(s, a_1).
+  (* Invariant 'BASE' *)
+  Have: ss_0.base = x_3.
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, ss_0) /\ addr_le(ss_0, a_1).
+  (* Invariant 'ZERO' *)
+  Have: forall i_3 : Z. ((0 <= i_3) -> (((i_3 + x_1) < x_2) ->
+      (Mchar_0[shift_sint8(s, i_3)] != 0))).
+  (* Then *)
+  Have: x != 0.
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, a) /\ addr_le(a, a_1).
+}
+Prove: Mchar_0[shift_sint8(s, i)] != 0.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'ZERO' (file user_string.i, line 30):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'END' (file user_string.i, line 37):
+Let x = s.offset.
+Let x_1 = ss_0.offset.
+Let a = shift_sint8(s, L_Length(Mchar_0, s)).
+Let x_2 = s.base.
+Assume {
+  (* Heap *)
+  Type: (region(x_2) <= 0) /\ linked(Malloc_0) /\ sconst(Mchar_0).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i_1).
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, s) /\ addr_le(s, a).
+  (* Invariant 'BASE' *)
+  Have: ss_0.base = x_2.
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, ss_0) /\ addr_le(ss_0, a).
+  (* Invariant 'ZERO' *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> (((i_2 + x) < x_1) ->
+      (Mchar_0[shift_sint8(s, i_2)] != 0))).
+  (* Else *)
+  Have: Mchar_0[ss_0] = 0.
+}
+Prove: P_Length_of_str_is(Malloc_0, Mchar_0, s, x_1 - x).
+
+------------------------------------------------------------
+
+Goal Loop assigns (file user_string.i, line 31):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'strlen' (1/2):
+Effect at line 34
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'strlen' (2/2):
+Effect at line 38
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Decreasing of Loop variant at loop (file user_string.i, line 34):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Positivity of Loop variant at loop (file user_string.i, line 34):
+Let x = s.offset.
+Let x_1 = ss_0.offset.
+Let a = shift_sint8(ss_0, 1).
+Let x_2 = L_Length(Mchar_0, s).
+Let a_1 = shift_sint8(s, x_2).
+Let x_3 = Mchar_0[ss_0].
+Let x_4 = s.base.
+Assume {
+  Type: is_sint8(x_3).
+  (* Heap *)
+  Type: (region(x_4) <= 0) /\ linked(Malloc_0) /\ sconst(Mchar_0).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i).
+  (* Pre-condition *)
+  Have: P_Length_of_str_is(Malloc_0, Mchar_0, s, i_1).
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, s) /\ addr_le(s, a_1).
+  (* Invariant 'BASE' *)
+  Have: ss_0.base = x_4.
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, ss_0) /\ addr_le(ss_0, a_1).
+  (* Invariant 'ZERO' *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> (((i_2 + x) < x_1) ->
+      (Mchar_0[shift_sint8(s, i_2)] != 0))).
+  (* Then *)
+  Have: x_3 != 0.
+  (* Invariant 'RANGE' *)
+  Have: addr_le(s, a) /\ addr_le(a, a_1).
+  (* Invariant 'ZERO' *)
+  Have: forall i_2 : Z. ((0 <= i_2) -> (((i_2 + x) <= x_1) ->
+      (Mchar_0[shift_sint8(s, i_2)] != 0))).
+}
+Prove: x_1 <= (x + x_2).
+
+------------------------------------------------------------

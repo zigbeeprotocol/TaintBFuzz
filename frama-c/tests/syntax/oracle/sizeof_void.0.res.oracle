@@ -1,0 +1,12 @@
+[kernel] Parsing sizeof_void.c (with preprocessing)
+[kernel] sizeof_void.c:9: User Error: 
+  sizeof on void type only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+[kernel] sizeof_void.c:16: User Error: 
+  sizeof() on void type only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+[kernel] sizeof_void.c:21: User Error: 
+  alignof on void type only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+[kernel] sizeof_void.c:28: User Error: 
+  alignof() on void type only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+[kernel] User Error: stopping on file "sizeof_void.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

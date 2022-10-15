@@ -1,0 +1,22 @@
+# frama-c -wp [...]
+[kernel] Parsing label_escape.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Assertion 'qed_ko,oracle_ko' (file label_escape.i, line 12):
+Assume { Type: is_sint32(x) /\ is_sint32(y). If x != 0 Else { Have: y = 1. }
+}
+Prove: y = 0.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function g
+------------------------------------------------------------
+
+Goal Assertion 'qed_ok,ok' (file label_escape.i, line 25):
+Prove: true.
+
+------------------------------------------------------------

@@ -1,0 +1,40 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing unit_matrix.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function make
+------------------------------------------------------------
+
+Goal Post-condition 'OK1' in 'make':
+Let m = t[a <- t[a][b <- 1]].
+Let x = m[c <- m[c][d <- 2]][a][b].
+Assume {
+  Type: is_sint32(a) /\ is_sint32(b) /\ is_sint32(c) /\ is_sint32(d) /\
+      is_sint32(x).
+  (* Heap *)
+  Type: IsArray_d2_sint32(t).
+  (* Goal *)
+  When: c != a.
+}
+Prove: x = 1.
+
+------------------------------------------------------------
+
+Goal Post-condition 'OK2' in 'make':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 'make':
+Let m = t[a <- t[a][b <- 1]].
+Let x = m[c <- m[c][d <- 2]][a][b].
+Assume {
+  Type: is_sint32(a) /\ is_sint32(b) /\ is_sint32(c) /\ is_sint32(d) /\
+      is_sint32(x).
+  (* Heap *)
+  Type: IsArray_d2_sint32(t).
+}
+Prove: x = 1.
+
+------------------------------------------------------------

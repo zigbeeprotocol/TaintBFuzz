@@ -1,0 +1,20 @@
+# frama-c -wp -wp-model 'Typed' [...]
+[kernel] Parsing unit_float.i (no preprocessing)
+[kernel:parser:decimal-float] unit_float.i:21: Warning: 
+  Floating-point constant 0.2 is not represented exactly. Will use 0x1.999999999999ap-3.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 6 goals scheduled
+[wp] [Qed] Goal typed_main_ensures_CST_F : Valid
+[wp] [Qed] Goal typed_main_ensures_CST_D : Valid
+[wp] [Qed] Goal typed_main_ensures_CNV_F : Valid
+[wp] [Qed] Goal typed_main_ensures_CNV_D : Valid
+[wp] [Qed] Goal typed_main_ensures_VAR_F : Valid
+[wp] [Qed] Goal typed_main_ensures_VAR_D : Valid
+[wp] Proved goals:    6 / 6
+  Qed:             6
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  main                      6        -        6       100%
+------------------------------------------------------------

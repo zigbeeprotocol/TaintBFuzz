@@ -1,0 +1,32 @@
+
+\section{The Typed Memory Model}
+
+This memory model is actually a reformulation of the \texttt{Store}
+memory model used in previous versions of the \textsf{WP} plug-in. In
+theory, its power of expression is equivalent. However, in practice,
+the reformulation we performed makes better usage of built-in theories
+of \textsf{Alt-Ergo} theorem prover and \textsf{Coq} features.
+The main modifications concern the heap encoding and the
+representation of addresses.
+
+\paragraph{Addresses.} We now use native records of $\cal{L}$ and provers 
+to encode addresses as pairs of base and offset (integers). This
+greatly simplifies reasoning about pointer separation and commutation of
+memory accesses and updates.
+
+\paragraph{Store Memory.} In the \texttt{Store} memory model, the heap is 
+represented by one single memory variable holding an array of
+\emph{data} indexed by \emph{addresses}. Then, integers, floats and
+pointers must be boxed into \emph{data} and unboxed from \emph{data}
+to implement read and write operations. These boxing-unboxing
+operations typically prevent \textsf{Alt-Ergo} from making maximal usage
+of its native array theory.
+
+\paragraph{Typed Memory.} In the \textsf{Typed} memory model, the heap is 
+now represented by \emph{three} memory variables, holding respectively
+arrays of integers, floats and addresses indexed by addresses. This
+way, all boxing and unboxing operations are avoided. Moreover, the
+native array theory of \textsf{Alt-Ergo} works very well with its
+record native theory used for addresses: memory variables
+access-update commutation can now rely on record theory to decide that
+two addresses are different (separated).

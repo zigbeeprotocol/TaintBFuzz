@@ -1,0 +1,67 @@
+[kernel] Parsing va_list2.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:initial-state] 
+  creating variable S_0_S___va_params with imprecise size (type void)
+[eva:initial-state] 
+  creating variable S_1_S___va_params with imprecise size (type void)
+[eva:alarm] va_list2.c:12: Warning: out of bounds read. assert \valid_read(fmt);
+[eva:alarm] va_list2.c:15: Warning: 
+  out of bounds read. assert \valid_read(args);
+[eva:alarm] va_list2.c:15: Warning: 
+  out of bounds read. assert \valid_read((int *)*args);
+[eva] va_list2.c:15: 
+  Assigning imprecise value to tmp.
+  The imprecision originates from Well
+[eva] va_list2.c:15: 
+  Assigning imprecise value to i.
+  The imprecision originates from Well
+[eva] va_list2.c:16: 
+  Frama_C_show_each_i: {{ garbled mix of &{S_0_S___va_params} (origin: Well) }}
+[eva:alarm] va_list2.c:20: Warning: 
+  out of bounds read. assert \valid_read(args);
+[eva:alarm] va_list2.c:20: Warning: 
+  out of bounds read. assert \valid_read((float *)*args);
+[eva:alarm] va_list2.c:20: Warning: 
+  non-finite float value. assert \is_finite(*((float *)*args));
+[eva] va_list2.c:20: 
+  Assigning imprecise value to tmp_0.
+  The imprecision originates from Well
+[eva:alarm] va_list2.c:20: Warning: 
+  non-finite float value. assert \is_finite(tmp_0);
+                          (tmp_0 from vararg)
+[eva] va_list2.c:20: 
+  Assigning imprecise value to f.
+  The imprecision originates from Well
+[eva] va_list2.c:21: 
+  Frama_C_show_each_f: {{ garbled mix of &{S_0_S___va_params} (origin: Well) }}
+[eva] va_list2.c:12: starting to merge loop iterations
+[eva:alarm] va_list2.c:13: Warning: out of bounds read. assert \valid_read(fmt);
+[eva] va_list2.c:16: 
+  Frama_C_show_each_i:
+  {{ garbled mix of &{S_0_S___va_params; S_1_S___va_params} (origin: Well) }}
+[eva] va_list2.c:21: 
+  Frama_C_show_each_f:
+  {{ garbled mix of &{S_0_S___va_params; S_1_S___va_params} (origin: Well) }}
+[eva] Recording results for main
+[eva] done for function main
+[scope:rm_asserts] removing 1 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  fmt ∈ {{ &S_fmt{[0], [1]} }}
+  args ∈ {{ NULL ; &S___va_params{[0], [1], [2]} }}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    fmt; args; i; tmp; f; tmp_0
+[inout] Inputs for function main:
+    S___va_params[0..1]; S_0_S___va_params[bits 0 to ..];
+    S_1_S___va_params[bits 0 to ..]; S_fmt[0..1]

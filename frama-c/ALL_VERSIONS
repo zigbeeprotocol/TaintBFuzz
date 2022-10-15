@@ -1,0 +1,58 @@
+Version number			Date of release		Notes
+==============			===============		=====
+24.0 (Chromium)                 2021, November 30
+23.1 (Vanadium)                 2021, July 20
+23.0 (Vanadium)                 2021, July 7
+22.0 (Titanium)                 2020, November 17
+21.1 (Scandium)                 2020, June 25           Bugs fixed
+21.0 (Scandium)                 2020, June 11
+20.0 (Calcium)                  2019, December 4
+19.1 (Potassium)                2019, September 18      OCaml 4.08 compatibility
+19.0 (Potassium)                2019, June 21
+18.0 (Argon)                    2018, November 29
+Chlorine-20180502               2018, July 06           Bug fixed
+Chlorine-20180501               2018, June 01
+Sulfur-20171101                 2017, November 28
+Phosphorus-20170501             2017, May 29
+
+Silicon-20161101                2016, December 2
+
+Aluminium-20160502              2016, May 31
+Aluminium-20160501              2016, May 30            Removed
+Aluminium-rc1                   2016, May 13            Not publicly released
+
+Magnesium-20151002              2016, January 15
+Magnesium-20151001              2015, October 27        Not publicly released
+
+Sodium-20150201                 2015, March 9
+
+Neon-20140301                   2014, May 7
+
+Fluorine-20130601		2013, June 11		Bug fixed
+Fluorine-20130501		2013, May 23		Bug fixed
+Fluorine-20130401		2013, April 17
+
+Oxygen-20120901			2012, September 19
+
+Nitrogen-20111001		2011, October 10
+
+Carbon-20110201                 2011, February 7
+Carbon-20101202-beta2           2010, December 17       Source only
+Carbon-20101201-beta1           2010, December 14       Source only
+
+Boron-20100401			2010, April 12
+
+Beryllium-20090902              2009, September 23
+Beryllium-20090901              2009, September 01
+Beryllium-20090601-beta1        2009, June 23		Source only
+
+Lithium-20081201                2008, Decembre 16
+Lithium-20081002+beta1		2008, October 28
+Lithium-20081001+alpha0		2008, October 03	Source only
+
+Helium-20080701			2008, July 11
+
+Hydrogen-20080502		2008, May 26		No cvs tag
+Hydrogen-20080501		2008, May 05		Source only, No cvs tag
+Hydrogen-20080302		2008, March 27		Binary only
+Hydrogen-20080301 (Hydrogen)	2008, March 03 		Source only

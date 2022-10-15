@@ -1,0 +1,16 @@
+#
+# Fix email or name in commits. Used during pretty printing by git shortlog, blame, ...
+# It can be used also for git log, git show, git whatchanged with
+# git config --global log.mailmap true
+#
+
+Virgile Prevosto <virgile.prevosto@cea.fr> <virgile.prevosto@m4x.org>
+Virgile Prevosto <virgile.prevosto@cea.fr>
+<pascal.cuoq@cea.fr> <Pascal.CUOQ@cea.fr>
+Muriel Roger <muriel.roger@cea.fr>
+<julien.signoles@cea.fr> <signoles@ns61143.ovh.net>
+<julien.signoles@cea.fr> <jsignole@is005030.intra.cea.fr>
+<loic.correnson@cea.fr> <lcorrenson@gmail.com>
+<loic.correnson@cea.fr> <loïc.correnson@cea.fr>
+Géraud Canet <geraud.canet@cea.fr>
+<mounir.assaf@cea.fr> <mounir.assaf@cea.Fr>

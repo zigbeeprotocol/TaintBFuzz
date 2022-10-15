@@ -1,0 +1,3 @@
+30,31d29
+< [eva:alarm] partitioning-annots.c:134: Warning: 
+<   accessing uninitialized left-value. assert \initialized(&A[i]);

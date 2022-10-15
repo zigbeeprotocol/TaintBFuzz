@@ -1,0 +1,51 @@
+* Faire un slide 0 avec le nom de celui qui présente et
+   l'URL pour Frama-C. Faire le discours sur ACSL qui est la
+glue faisant marcher plusieurs plug-ins complémentaires.
+
+* slide 1max.c
+
+montrer que l'on peut déjà vérifier la syntaxe des annotation
+en introduisant une erreur de syntaxe et en compilant depuis Emacs.
+Localiser l'erreur avec Emacs.
+
+Alors que l'idée des prés et posts est de prouver que la post tient
+en n'utilisant que le code de la fonction en supposant que la pré
+était satisfaite en entrée, la deuxième page montre l'utilisation
+de l'analyse de valeurs pour vérifier ces propriétés avec une
+exécution symbolique.
+
+* slide 2maxp.c
+
+C'est pour montrer que ACSL supporte les pointeurs.
+
+* slide 3valid.c
+
+Avertissements sur le fait que le langage logique est 
+un langage pur.
+Le && est commutatif. Parler de (*p) n'a pas de sens en
+général mais des propriétés telles que *p==*p sont
+vraies même si p n'est pas valide. Mieux vaut
+toujours écrire "\valid(p) && *p == ..."
+
+* slide 4comp_part.c
+
+Attirer l'attention sur ce que c'est une spécification
+complète. Insister sur le fait que c'est très difficile
+d'en écrire en pratique (formelles ou non formelles) mais
+que les spécifications partielles sont utiles aussi
+(et qu'on peut se servir d'ACSL pour en faire).
+
+* slide 5assigns_term.c
+
+A propos de spécifications complètes, c'est le bon moment
+pour parler des assigns et de la terminaison.
+
+* slide 6pred.c
+
+Les spécifications peuvent devenir plus élaborée en
+commençant par définir des prédicats utilisateurs.
+Ici, défini comme une fonction
+
+* slide 7pred.c
+
+Définition dans le style prolog du même prédicat.

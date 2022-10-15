@@ -1,0 +1,106 @@
+
+\def\d{0.6}  % vertical distance between nodes.
+\def\g{2.25} % horizontal gap between the two functions.
+
+\begin{tikzpicture}[]
+
+\tikzstyle{state}=[circle, align=center,draw,very thin, inner sep = 0.5mm]
+\tikzstyle{edge}=[->,>=latex, thin]
+\tikzstyle{point}=[font=\footnotesize\itshape]
+\tikzstyle{legend}=[align=left, anchor=west,font=\small]
+\tikzstyle{dataflow}=[color=purple]
+\tikzstyle{stmt}=[color=teal]
+\tikzstyle{dom}=[color=magenta]
+\tikzstyle{computefun}=[color=orange]
+
+\coordinate (Init) at (-1,0);
+
+\node[point] (Caller) at ($ (Init) + (0, 2.5 * \d) $ ) {caller};
+\node[point] (Called) at ($ (Init) + (\g, 2.5 * \d) $ ) {called};
+
+\node[state] (S00) at (Init) {.};
+\node[state] (S0) at ($ (S00) - (0, 2 * \d) $) {.};
+\node[state] (S1) at ($ (S0) + (\g, - 2 * \d) $) {.};
+\node[state] (S11) at ($ (S1) - (0, 2 * \d) $) {.};
+\node[state] (S20) at ($ (S11) - (0, 4 * \d) $) {.};
+\node[state] (S2) at ($ (S20) - (0, 2 * \d) $) {.};
+\node[state] (S30) at ($ (S2) - (0, 2 * \d) $) {.};
+\node[state] (S3) at ($ (S30) - (0, 2 * \d) $) {.};
+\node[state] (S4) at ($ (S3) - (0, 2 * \d) $) {.};
+\node[state] (S50) at ($ (S4) - (\g, 2 * \d) $) {.};
+\node[state] (S5) at ($ (S50) - (0, 2 * \d) $) {.};
+\node[state] (S6) at ($ (S5) - (0, 2 * \d) $) {.};
+\node[state] (S7) at ($ (S6) - (0, 2 * \d) $) {.};
+
+\draw[edge, stmt] (S00) -- (S0);
+\draw[edge, stmt] (S0) -- (S1);
+\draw[edge, dataflow] (S1) -- (S11);
+\draw[edge, dataflow] (S11) -- (S20);
+\draw[edge, dataflow] (S20) -- (S2);
+\draw[edge, dataflow] (S2) -- (S30);
+\draw[edge, stmt] (S30) -- (S3);
+\draw[edge, stmt] (S3) -- (S4);
+\draw[edge, stmt] (S4) -- (S50);
+\draw[edge, stmt] (S50) -- (S5);
+\draw[edge, stmt] (S5) -- (S6);
+\draw[edge, stmt] (S6) -- (S7);
+\draw[edge, stmt] (S0) -- (S50);
+
+
+\draw[edge] ($ (S00) + (0, \d) $) -- (S00);
+\draw[edge] (S7) -- ($ (S7) - (0, \d) $);
+
+\node[anchor=east, point] (P00) at ($ (S00) - (0.2, 0) $)
+     {State before the call site};
+\node[anchor=east, point] (P0) at ($ (S0) - (0.2, 0) $) {$ S_0 $};
+\node[anchor=west, point] (P1) at ($ (S1) + (0.2, 0) $) {$ S_1 $};
+\node[anchor=west, point] (P2) at ($ (S20) + (0.2, 0) $)
+     {State before the return statement of f};
+\node[anchor=west, point] (P4) at ($ (S4) + (0.2, 0) $) {$ S_n $};
+\node[anchor=east, point] (P5) at ($ (S50) - (0.2, 0) $) {``$S_0 \sqcap S_n$''};
+\node[anchor=east, point] (P7) at ($ (S7) - (0.2, 0) $)
+     {State after the call site};
+
+\node[legend] (L00) at ($ (S00) + (2.5, -\d)$)     {1.  evaluation of the arguments $\mathit{exprs}$};
+\node[legend, dom] (L0) at ($ (S0) + (2.5, -\d)$)   {2.  $\mathtt{start\_call}(S_0) = \mathrm{Compute}(S_1)$};
+\node[legend] (L1) at ($ (S1) + (1,- \d)$)         {3.  $\mathtt{enter\_scope}(f_{locals})$};
+\node[legend] (L11) at ($ (S11) + (1, -2 * \d)$)   {4.  analysis of f};
+\node[legend] (L20) at ($ (S20) + (1, -\d)$)       {5.  $\mathtt{enter\_scope}(RET)$};
+\node[legend] (L2) at ($ (S2) + (1, -\d)$)         {6.  $\mathit{RET} = \mathit{return\_expr} ;$};
+\node[legend] (L30) at ($ (S30) + (1, -\d)$)       {7.  evaluation of the formal arguments $\mathit{args}$};
+\node[legend] (L3) at ($ (S3) + (1, -\d)$)         {8.  $\mathtt{leave\_scope}(f_{\mathit{formals}} \cup f_{\mathit{locals}})$};
+\node[legend, dom] (L4) at ($ (S4) + (1, -\d)$)     {9.  $\mathtt{finalize\_call}(S_0,S_n)$};
+\node[legend] (L50) at ($ (S50) + (2.5, -\d)$)     {10. reduction of the concrete arguments,\\ assuming $\mathit{exprs} = \mathit{args}$ at the end of $f$};
+\node[legend] (L5) at ($ (S5) + (2.5, -\d)$)       {11. $v = \mathit{RET} ;$};
+\node[legend] (L6) at ($ (S6) + (2.5, -\d)$)       {12. $\mathtt{leave\_scope}(RET)$};
+
+\draw[<->, >=latex, very thin] (L30.east) to[bend left] (L50.east);
+
+
+\draw[edge] (S0) to[bend right = 80]
+node[legend, dom, midway, anchor=east]
+{$\mathtt{start\_call}(S_0) = \mathrm{Result}(S_n)$ \\
+$\mathtt{approximate\_call}(S_0) = S_n$}
+(S4);
+
+\draw[edge, computefun] (S1) to[bend right = 26]
+node[legend, midway, sloped, anchor=north]{
+$  \begin{array}{c}
+\color{black}   \mathtt{mem\_exec} \\
+\color{magenta} \mathtt{compute\_using\_spec}
+\end{array}  $} (S30);
+
+% Legend
+
+\coordinate (N1) at ($ (Init) - (8, 0) $);
+\coordinate (N2) at ($ (N1) - (0, 1 * \d) $);
+\coordinate (N3) at ($ (N2) - (0, 0.5 * \d) $);
+\coordinate (N4) at ($ (N3) - (0, 1 * \d) $);
+\coordinate (N5) at ($ (N4) - (0, 0.5 * \d) $);
+\coordinate (N6) at ($ (N5) - (0, 1 * \d) $);
+
+\draw[edge, stmt] (N1) -- node[legend,point]{in transfer\_stmt} (N2);
+\draw[edge, dataflow] (N3) -- node[legend,point]{in partitioned\_dataflow} (N4);
+\draw[edge, computefun] (N5) -- node[legend,point]{in compute\_function} (N6);
+
+\end{tikzpicture}

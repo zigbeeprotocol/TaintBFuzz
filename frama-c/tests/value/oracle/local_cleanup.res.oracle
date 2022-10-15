@@ -1,0 +1,80 @@
+[kernel] Parsing local_cleanup.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function f <- main.
+  Called from local_cleanup.c:20.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function g <- main.
+  Called from local_cleanup.c:21.
+[eva] computing for function f <- g <- main.
+  Called from local_cleanup.c:15.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for g
+[eva] Done for function g
+[eva] computing for function h <- main.
+  Called from local_cleanup.c:22.
+[eva] Recording results for h
+[eva] Done for function h
+[eva] local_cleanup.c:23: 
+  Frama_C_dump_each:
+  # cvalue:
+  lmain[0] ∈ UNINITIALIZED
+       [1] ∈ {12}
+  ==END OF DUMP==
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  t[0] ∈ UNINITIALIZED
+   [1] ∈ {12}
+  lmain[0] ∈ UNINITIALIZED
+       [1] ∈ {12}
+[eva:final-states] Values at end of function g:
+  t[0] ∈ UNINITIALIZED
+   [1] ∈ {12}
+[eva:final-states] Values at end of function h:
+  x ∈ {1}
+[eva:final-states] Values at end of function main:
+  lmain[0] ∈ UNINITIALIZED
+       [1] ∈ {12}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function h
+[from] Done for function h
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  t[1] FROM p (and SELF)
+  lmain[1] FROM p (and SELF)
+[from] Function g:
+  lmain[1] FROM \nothing (and SELF)
+[from] Function h:
+  \result FROM \nothing
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    t[1]; lmain[1]
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function g:
+    t[1]
+[inout] Inputs for function g:
+    \nothing
+[inout] Out (internal) for function h:
+    x; y
+[inout] Inputs for function h:
+    \nothing
+[inout] Out (internal) for function main:
+    lmain[1]
+[inout] Inputs for function main:
+    \nothing

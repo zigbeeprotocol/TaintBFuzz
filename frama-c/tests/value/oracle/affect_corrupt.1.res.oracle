@@ -1,0 +1,24 @@
+[kernel] Parsing affect_corrupt.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  NULL[rbits 0 to 31] ∈ [--..--]
+  p ∈ {0}
+  r ∈ {77}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  r ∈ [--..--]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  r FROM NULL[0..3]; p
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    r
+[inout] Inputs for function main:
+    NULL[0..3]; p

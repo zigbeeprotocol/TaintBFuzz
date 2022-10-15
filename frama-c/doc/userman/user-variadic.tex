@@ -1,0 +1,197 @@
+%% --------------------------------------------------------------------------
+%% --- Variadic Plugin
+%% --------------------------------------------------------------------------
+
+\chapter{Variadic Plug-in}
+\label{user-variadic}
+
+This chapter briefly presents the \textttdef{Variadic} plug-in, which
+performs the translation of calls to variadic functions into calls to
+semantically equivalent, but non-variadic functions.
+
+\section*{Variadic functions}
+
+Variadic functions accept a variable number of arguments, indicated in
+their prototype by an ellipsis (\ldots) after a set of fixed arguments.
+
+Some functions in the C standard library are variadic, in particular
+formatted input/output functions, such as \texttt{printf}/\texttt{scanf}.
+Due to the dynamic nature of their arguments, such functions present additional
+challenges to code analysis. The \textttuse{Variadic} helps dealing with some
+of these challenges, reducing or eliminating the need for plug-ins to have
+to deal with these special cases.
+
+\section{Translating variadic function calls}
+
+ACSL does not allow the direct specification of variadic functions: variadic
+arguments have no name and no statically known type. The \textttuse{Variadic}
+plug-in performs a semantically-preserving translation of calls to such
+functions, replacing them with non-variadic calls.
+
+For instance, consider the following user-defined variadic function \verb+sum+,
+whose first argument \verb+n+ is the number of elements to be added, and the
+remaining \verb+n+ arguments are the values themselves:
+
+\begin{ccode}
+#include <stdarg.h> // for va_* macros
+int sum(unsigned n, ...) {
+  int ret = 0;
+  va_list list;
+  va_start(list, n);
+  for(int i = 0; i < n; i++){
+    ret += va_arg(list, int);
+  }
+  va_end(list);
+  return ret;
+}
+\end{ccode}
+
+\begin{ccode}
+int main(){
+  return sum(5, 6, 9, 14, 12, 1);
+}
+\end{ccode}
+
+Since \textttuse{Variadic} is enabled by default, running \FramaC on this code
+will activate the variadic translation. The main differences in the translated
+code are:
+
+\begin{itemize}
+\item the prototype of \verb+sum+ becomes
+  \verb+int sum(unsigned n, void * const *__va_params)+;
+\item the call to \verb+sum+ is converted into:
+  \begin{ccode}
+  int sum_ret; // temporary storing the return value
+  {
+    int __va_arg0 = 6;
+    int __va_arg1 = 9;
+    int __va_arg2 = 14;
+    int __va_arg3 = 12;
+    int __va_arg4 = 1;
+    void *__va_args[5] = {& __va_arg0, & __va_arg1,
+                            & __va_arg2, & __va_arg3, & __va_arg4};
+    sum_ret = sum(5,(void * const *)(__va_args));
+  }
+  \end{ccode}
+\end{itemize}
+
+This translation is similar to the relation between functions such as
+\verb+printf+ and \verb+vprintf+, where the former accepts a variable number of
+arguments, while the latter accepts a single \verb+va_list+ argument.
+
+\section{Automatic generation of specifications for libc functions}
+
+The most common use case of variadic functions are the ubiquitous
+\verb+printf+/\verb+scanf+, but a few other functions in the standard
+C library are variadic, such as \verb+open+ and \verb+fcntl+.
+The former are entirely dependent on the {\em format} string, which can have
+any shape, while the latter are limited to a fixed set of possible argument
+numbers and types. In both cases, it is possible to specialize the function
+call and generate an ACSL specification that (1) performs some checks for
+undefined behaviors (\eg that the argument given to a \verb+%d+ format is a
+\verb+signed int+), and (2) ensures postconditions about the return value
+and modified arguments (namely for \verb+scanf+). The \textttuse{Variadic}
+plug-in generates such specifications whenever possible.
+
+Note that not all calls have their specification automatically generated;
+in particular, calls to formatted input/output functions using non-static
+format strings are not handled, such as the following one:
+
+\begin{ccode}
+  printf(n != 1 ? "%d errors" : "%d error", n_errors);
+\end{ccode}
+
+In this case, the variadic translation is performed, but the function call
+is not specialized, and no specification is automatically generated.
+
+\section{Usage}
+
+\subsection{Main options}
+
+By default, \textttuse{Variadic} is enabled and runs after parsing.
+A few options are available to modify this behavior:
+
+\begin{description}
+
+\item \texttt{\optiondef{-}{variadic-no-translation}} : disables the translation
+  performed by the plug-in; to be used in case it interferes with some other
+  plug-in or analysis.
+\item \texttt{\optiondef{-}{variadic-no-strict}} : disables warnings about
+  non-portable implicit casts in the calls of standard variadic functions,
+  \ie casts between distinct integral types which have the same size and
+  signedness.
+
+\end{description}
+
+\subsection{Similar diagnostics by other tools}
+
+Some of the issues detected by \textttuse{Variadic}, namely some kinds of
+incompatible arguments in formatted input/output functions, are also detected
+by compilers such as GCC and Clang, albeit such diagnostics are rarely enabled.
+
+In particular, GCC's option \verb+-Wformat-signedness+ (available from GCC 5)
+reports some issues with signed format specifiers and unsigned arguments, and
+vice-versa, in cases such as the following:
+
+\begin{ccode}
+  printf("%u", -1);
+\end{ccode}
+
+Clang's option \verb+-Wformat-pedantic+ (available at least since Clang 4.0,
+possibly earlier) also enables some extra diagnostics:
+
+\begin{ccode}
+  printf("%p", "string");
+\end{ccode}
+
+\begin{shell}
+  warning: format specifies type 'void *' but the argument has type 'char *'.
+\end{shell}
+
+Note that no single tool is currently able to emit all diagnostics emitted
+by the other two.
+
+\subsection{Common causes of warnings in formatted input/output functions}
+
+Many C code bases which make use of formatted input/output functions do not
+specify all of them in a way that is strictly conformant to the C standard.
+This may result in a rather large number of warnings emitted by
+\textttuse{Variadic}, not all of them immediately obvious.
+
+It is however important to remember that C99, §7.19.6.1 states that:
+
+\begin{quote}
+  If a conversion specification is invalid, the behavior is undefined.
+  If any argument is not the correct type for the corresponding conversion
+  specification, the behavior is undefined.
+\end{quote}
+
+CERT C lists this as Rule FIO47-C.
+
+Some common types of discrepancies are listed below, with an explanation
+of their causes.
+
+\paragraph{Usage of \texttt{\%u} or \texttt{\%x} for values of type
+  \texttt{unsigned char} and \texttt{unsigned short}.}
+
+The warning emitted by \textttuse{Variadic} in this case will mention a
+{\em signed} type being cast to {\em unsigned}.
+Albeit counterintuitive, this is a consequence of the fact that default
+argument promotions take place for variadic arguments, and thus
+\verb+unsigned char+ and \verb+unsigned short+ arguments are promoted to
+(signed) \verb+int+, which is incompatible with \verb+%u+ and \verb+%x+.
+
+To avoid the warning, use the appropriate length modifiers:
+\verb+hh+ for \verb+char+ and \verb+h+ for \verb+short+.
+
+\paragraph{Usage of \texttt{\%o}, \texttt{\%x} and \texttt{\%X} to print
+  signed values.}
+
+The standard specifies that all of these modifiers expect unsigned arguments.
+A cast to the corresponding unsigned type must therefore be present.
+
+\subsection{Pretty-printing translated code}
+
+The output produced by \textttuse{Variadic}, in particular when using
+\verb+va_*+ macros (such as \verb+va_list+), is not guaranteed to be
+parsable, unless option \verb+-print-libc+ is enabled.

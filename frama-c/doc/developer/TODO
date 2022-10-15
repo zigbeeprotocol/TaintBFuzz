@@ -1,0 +1,43 @@
+=========
+TODO-list
+=========
+
+Advance
+=======
+
+* Configure.in
+  o Principle: manque les --static ou --dynamic
+  o --external-plugin (Virgile, bts#203)
+
+* Command Line Options
+  o possibility of customisation through optional functor parameters
+
+* Types as first class values
+
+* Journalisation
+  [advanced plugin development]
+    o lien avec les exemples de chargement dynamique
+  [refman]
+    o spécification du module "Type" dans répertoire "lib": 
+      ajouté un lien vers Section "Journalisation" quand cette 
+      dernière sera écrite.
+
+* Documentation des sources:
+    o test d'intégrité du code wrt plugin dev guide
+
+* GUI:
+    o améliorer la doc: mieux expliquer comment utiliser les hooks pour coder 
+      les parties similaires à chaque greffon (panneau latéral, etc).
+    o GUI des greffons dynamiques
+
+Refman
+======
+
+* Figure des makefiles: 
+    o ajouter le fait que Makefile.dynamic est généré à partir de 
+      Makefile.dynamic.internal/external
+
+* Makefile.dynamic: ce qui lui est spécifique
+
+List of recommendations (?)
+=======================

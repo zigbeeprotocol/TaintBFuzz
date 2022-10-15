@@ -1,0 +1,42 @@
+[kernel] Parsing cmp.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] cmp.i:10: Warning: accessing out of bounds index. assert 0 ≤ d;
+[eva:alarm] cmp.i:10: Warning: accessing out of bounds index. assert d < 10;
+[eva] computing for function cmp <- main.
+  Called from cmp.i:11.
+[eva:alarm] cmp.i:4: Warning: 
+  accessing uninitialized left-value. assert \initialized(s1);
+[eva:alarm] cmp.i:4: Warning: out of bounds read. assert \valid_read(s1);
+[eva] Recording results for cmp
+[eva] Done for function cmp
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function cmp:
+  __retres ∈ {1}
+[eva:final-states] Values at end of function main:
+  T[0..9] ∈ [--..--] or UNINITIALIZED
+  r ∈ {1}
+[from] Computing for function cmp
+[from] Done for function cmp
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function cmp:
+  \result FROM \nothing
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function cmp:
+    __retres
+[inout] Inputs for function cmp:
+    T[0..9]; "V1.2"[bits 0 to 7]
+[inout] Out (internal) for function main:
+    T[0..9]; r
+[inout] Inputs for function main:
+    "V1.2"[bits 0 to 7]

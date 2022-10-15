@@ -1,0 +1,107 @@
+[kernel] Parsing widen_hints2.c (with preprocessing)
+[eva:widen-hints] computing global widen hints
+[eva:widen-hints] widen_hints2.c:46: 
+  adding global hint from annotation: m, { 2 } (for all statements)
+[eva:widen-hints] widen_hints2.c:60: 
+  adding global hint from annotation: y_0, { 2 } (for all statements)
+[eva:widen-hints] widen_hints2.c:20: 
+  adding hint from annotation: for all variables, { 88 } (for all statements)
+[eva:widen-hints] widen_hints2.c:47: 
+  adding hint from annotation: y_0, { 5 } (for all statements)
+[eva:widen-hints] widen_hints2.c:49: 
+  adding hint from annotation: a, { 2 } (for all statements)
+[eva:widen-hints] widen_hints2.c:51: 
+  adding hint from annotation: a, { 88 } (for all statements)
+[eva:widen-hints] widen_hints2.c:57: 
+  adding hint from annotation: c, { 88 } (for all statements)
+[eva:widen-hints] widen_hints2.c:58: 
+  adding hint from annotation: y_0, { 1 } (for all statements)
+[eva:widen-hints] widen_hints2.c:70: 
+  adding hint from annotation: c_0, { 88 } (for all statements)
+[eva:widen-hints] widen_hints2.c:78: 
+  adding hint from annotation: glob, { 88 } (for all statements)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..99] ∈ {0}
+  x ∈ {9}
+  glob ∈ {0}
+  y ∈ {0}
+[eva:widen-hints] widen_hints2.c:48: computing dynamic hints for statement 43
+[eva:widen-hints] widen_hints2.c:48: computing dynamic hints for statement 45
+[eva:widen-hints] widen_hints2.c:50: computing dynamic hints for statement 48
+[eva:widen-hints] widen_hints2.c:52: computing dynamic hints for statement 54
+[eva] widen_hints2.c:50: starting to merge loop iterations
+[eva] widen_hints2.c:52: starting to merge loop iterations
+[eva:widen-hints] widen_hints2.c:63: computing dynamic hints for statement 66
+[eva] widen_hints2.c:63: starting to merge loop iterations
+[eva] widen_hints2.c:64: starting to merge loop iterations
+[eva:widen-hints] widen_hints2.c:72: computing dynamic hints for statement 82
+[eva] widen_hints2.c:72: starting to merge loop iterations
+[eva] widen_hints2.c:73: starting to merge loop iterations
+[eva:widen-hints] widen_hints2.c:79: computing dynamic hints for statement 97
+[eva] widen_hints2.c:79: starting to merge loop iterations
+[eva] widen_hints2.c:80: starting to merge loop iterations
+[eva] computing for function f <- main.
+  Called from widen_hints2.c:85.
+[eva:widen-hints] widen_hints2.c:22: computing dynamic hints for statement 4
+[eva] widen_hints2.c:22: starting to merge loop iterations
+[eva] widen_hints2.c:23: starting to merge loop iterations
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function g <- main.
+  Called from widen_hints2.c:86.
+[eva] widen_hints2.c:34: starting to merge loop iterations
+[eva] widen_hints2.c:35: starting to merge loop iterations
+[eva] Recording results for g
+[eva] Done for function g
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  tf[0..85] ∈ {1} or UNINITIALIZED
+    [86..99] ∈ UNINITIALIZED
+  m ∈ {10}
+  n ∈ {43}
+[eva:final-states] Values at end of function g:
+  tg[0..85] ∈ {1} or UNINITIALIZED
+    [86..99] ∈ UNINITIALIZED
+  m ∈ {10}
+  n ∈ {43}
+[eva:final-states] Values at end of function main:
+  t[0..85] ∈ {0; 1}
+   [86..99] ∈ {0}
+  glob ∈ {87; 88}
+  m ∈ {10}
+  n ∈ {43}
+  __retres ∈ {0}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g
+[from] Done for function g
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  NO EFFECTS
+[from] Function g:
+  NO EFFECTS
+[from] Function main:
+  t[0..85] FROM \nothing (and SELF)
+  glob FROM \nothing
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    tf[0..85]; m; n; a; b
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function g:
+    tg[0..85]; m; n; ll; kk
+[inout] Inputs for function g:
+    \nothing
+[inout] Out (internal) for function main:
+    t[0..85]; glob; m; n; a; b; c; d; c_0; d_0; j; __retres
+[inout] Inputs for function main:
+    glob

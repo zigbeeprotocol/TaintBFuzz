@@ -1,0 +1,247 @@
+[kernel] Parsing spawn_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  environ ∈ {0}
+[eva] computing for function getopt <- main.
+  Called from spawn_h.c:36.
+[eva] using specification for function getopt
+[eva] Done for function getopt
+[eva] spawn_h.c:36: 
+  Assigning imprecise value to opt.
+  The imprecision originates from Library function {spawn_h.c:36}
+[kernel:annot:missing-spec] spawn_h.c:43: Warning: 
+  Neither code nor specification for function posix_spawn_file_actions_init, generating default assigns from the prototype
+[eva] computing for function posix_spawn_file_actions_init <- main.
+  Called from spawn_h.c:43.
+[eva] using specification for function posix_spawn_file_actions_init
+[eva] Done for function posix_spawn_file_actions_init
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:45.
+[eva] using specification for function perror
+[eva] spawn_h.c:45: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:45.
+[eva] using specification for function exit
+[eva] Done for function exit
+[kernel:annot:missing-spec] spawn_h.c:47: Warning: 
+  Neither code nor specification for function posix_spawn_file_actions_addclose, generating default assigns from the prototype
+[eva] computing for function posix_spawn_file_actions_addclose <- main.
+  Called from spawn_h.c:47.
+[eva] using specification for function posix_spawn_file_actions_addclose
+[eva] Done for function posix_spawn_file_actions_addclose
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:50.
+[eva] spawn_h.c:50: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:50.
+[eva] Done for function exit
+[kernel:annot:missing-spec] spawn_h.c:60: Warning: 
+  Neither code nor specification for function posix_spawnattr_init, generating default assigns from the prototype
+[eva] computing for function posix_spawnattr_init <- main.
+  Called from spawn_h.c:60.
+[eva] using specification for function posix_spawnattr_init
+[eva] Done for function posix_spawnattr_init
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:62.
+[eva] spawn_h.c:62: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:62.
+[eva] Done for function exit
+[kernel:annot:missing-spec] spawn_h.c:63: Warning: 
+  Neither code nor specification for function posix_spawnattr_setflags, generating default assigns from the prototype
+[eva] computing for function posix_spawnattr_setflags <- main.
+  Called from spawn_h.c:63.
+[eva] using specification for function posix_spawnattr_setflags
+[eva] Done for function posix_spawnattr_setflags
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:65.
+[eva] spawn_h.c:65: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:65.
+[eva] Done for function exit
+[eva] computing for function sigfillset <- main.
+  Called from spawn_h.c:67.
+[eva] using specification for function sigfillset
+[eva] spawn_h.c:67: 
+  function sigfillset: precondition 'valid_set' got status valid.
+[eva] Done for function sigfillset
+[kernel:annot:missing-spec] spawn_h.c:68: Warning: 
+  Neither code nor specification for function posix_spawnattr_setsigmask, generating default assigns from the prototype
+[eva] computing for function posix_spawnattr_setsigmask <- main.
+  Called from spawn_h.c:68.
+[eva] using specification for function posix_spawnattr_setsigmask
+[eva] Done for function posix_spawnattr_setsigmask
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:70.
+[eva] spawn_h.c:70: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:70.
+[eva] Done for function exit
+[eva] spawn_h.c:36: starting to merge loop iterations
+[eva] computing for function getopt <- main.
+  Called from spawn_h.c:36.
+[eva] Done for function getopt
+[eva] computing for function posix_spawn_file_actions_init <- main.
+  Called from spawn_h.c:43.
+[eva] Done for function posix_spawn_file_actions_init
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:45.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:45.
+[eva] Done for function exit
+[eva] computing for function posix_spawn_file_actions_addclose <- main.
+  Called from spawn_h.c:47.
+[eva] Done for function posix_spawn_file_actions_addclose
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:50.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:50.
+[eva] Done for function exit
+[eva] computing for function posix_spawnattr_init <- main.
+  Called from spawn_h.c:60.
+[eva] Done for function posix_spawnattr_init
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:62.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:62.
+[eva] Done for function exit
+[eva] computing for function posix_spawnattr_setflags <- main.
+  Called from spawn_h.c:63.
+[eva] Done for function posix_spawnattr_setflags
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:65.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:65.
+[eva] Done for function exit
+[eva] computing for function sigfillset <- main.
+  Called from spawn_h.c:67.
+[eva] Done for function sigfillset
+[eva] computing for function posix_spawnattr_setsigmask <- main.
+  Called from spawn_h.c:68.
+[eva] Done for function posix_spawnattr_setsigmask
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:70.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:70.
+[eva] Done for function exit
+[eva:alarm] spawn_h.c:82: Warning: 
+  out of bounds read. assert \valid_read(argv + optind);
+[kernel:annot:missing-spec] spawn_h.c:82: Warning: 
+  Neither code nor specification for function posix_spawnp, generating default assigns from the prototype
+[eva] computing for function posix_spawnp <- main.
+  Called from spawn_h.c:82.
+[eva] using specification for function posix_spawnp
+[eva] Done for function posix_spawnp
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:85.
+[eva] spawn_h.c:85: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:85.
+[eva] Done for function exit
+[kernel:annot:missing-spec] spawn_h.c:90: Warning: 
+  Neither code nor specification for function posix_spawnattr_destroy, generating default assigns from the prototype
+[eva] computing for function posix_spawnattr_destroy <- main.
+  Called from spawn_h.c:90.
+[eva] using specification for function posix_spawnattr_destroy
+[eva] Done for function posix_spawnattr_destroy
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:92.
+[eva] spawn_h.c:92: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:92.
+[eva] Done for function exit
+[kernel:annot:missing-spec] spawn_h.c:96: Warning: 
+  Neither code nor specification for function posix_spawn_file_actions_destroy, generating default assigns from the prototype
+[eva] computing for function posix_spawn_file_actions_destroy <- main.
+  Called from spawn_h.c:96.
+[eva] using specification for function posix_spawn_file_actions_destroy
+[eva] Done for function posix_spawn_file_actions_destroy
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:98.
+[eva] spawn_h.c:98: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:98.
+[eva] Done for function exit
+[eva:alarm] spawn_h.c:101: Warning: 
+  accessing uninitialized left-value. assert \initialized(&child_pid);
+[eva] computing for function printf_va_1 <- main.
+  Called from spawn_h.c:101.
+[eva] using specification for function printf_va_1
+[eva] spawn_h.c:101: function printf_va_1: precondition got status valid.
+[eva] Done for function printf_va_1
+[eva] computing for function waitpid <- main.
+  Called from spawn_h.c:106.
+[eva] using specification for function waitpid
+[eva] spawn_h.c:106: 
+  function waitpid, behavior stat_loc_non_null: precondition 'valid_stat_loc' got status valid.
+[eva] Done for function waitpid
+[eva] computing for function perror <- main.
+  Called from spawn_h.c:108.
+[eva] spawn_h.c:108: 
+  function perror: precondition 'valid_string_s' got status valid.
+[eva] Done for function perror
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:108.
+[eva] Done for function exit
+[eva] computing for function printf_va_2 <- main.
+  Called from spawn_h.c:110.
+[eva] using specification for function printf_va_2
+[eva] spawn_h.c:110: function printf_va_2: precondition got status valid.
+[eva] Done for function printf_va_2
+[eva:alarm] spawn_h.c:111: Warning: 
+  accessing uninitialized left-value. assert \initialized(&status);
+[eva] computing for function printf_va_3 <- main.
+  Called from spawn_h.c:112.
+[eva] using specification for function printf_va_3
+[eva] spawn_h.c:112: function printf_va_3: precondition got status valid.
+[eva] Done for function printf_va_3
+[eva] computing for function printf_va_4 <- main.
+  Called from spawn_h.c:114.
+[eva] using specification for function printf_va_4
+[eva] spawn_h.c:114: function printf_va_4: precondition got status valid.
+[eva] Done for function printf_va_4
+[eva] computing for function printf_va_5 <- main.
+  Called from spawn_h.c:116.
+[eva] using specification for function printf_va_5
+[eva] spawn_h.c:116: function printf_va_5: precondition got status valid.
+[eva] Done for function printf_va_5
+[eva] computing for function printf_va_6 <- main.
+  Called from spawn_h.c:118.
+[eva] using specification for function printf_va_6
+[eva] spawn_h.c:118: function printf_va_6: precondition got status valid.
+[eva] Done for function printf_va_6
+[eva] spawn_h.c:105: starting to merge loop iterations
+[eva] computing for function waitpid <- main.
+  Called from spawn_h.c:106.
+[eva] Done for function waitpid
+[eva] computing for function exit <- main.
+  Called from spawn_h.c:122.
+[eva] Done for function exit
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION

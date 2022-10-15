@@ -1,0 +1,120 @@
+\chapter{Utilisation}\label{sec-man}
+
+Dans ce chapitre essaye de présenter quelques bases qui permettent de tester
+la boîte à outil de \slicing à partir de l'interpréteur ou
+d'un fichier de commande.
+Pour l'utilisation de l'interface graphique,
+ se reporter à la documentation correspondante.
+Il est également possible d'exécuter certaines actions élémentaires
+en ligne de commande. Voir les options proposées à l'aide de~:
+\begin{center}
+\verb!bin/toplevel.top --help!
+\end{center}
+
+\section{Utilisation interactive}
+
+Lorsqu'on lance l'outil pour faire du slicing, il faut lui fournir le ou les
+fichiers à analyser, et au minimum l'option \verbtt{-deps}
+qui permet d'effectuer l'analyse de
+dépendances (utiliser \verbtt{--help} pour voir les autres options)~:
+\begin{center}
+\verb!bin/toplevel.top -deps fichier.c!
+\end{center}
+
+On se retrouve alors avec un prompt \verb!#!
+qui signale que l'on est sous un interpréteur \caml.\\
+
+Pour quitter l'interpréteur, il faut utiliser la commande~:
+\begin{center}
+\verb!#quit;;!
+\end{center}
+
+(le \verb!#! n'est pas le prompt, il fait parti de la commande).
+On peut aussi utiliser \verbtt{Ctrl-D}.
+
+\begin{astuce}\label{astuce-ledit}
+Comme tout interpréteur \caml, il n'a pas de capacité d'éditer la ligne de
+commande (pour corriger une faute de frappe par exemple), ni d'historique (pour
+rappeler une commande précédente). Il est donc fortement conseillé, même si ce
+n'est pas indispensable, d'installer
+\indextxt{\verbtt{ledit}}, que l'on peut obtenir à l'adresse~: \\
+\url{ftp://ftp.inria.fr/INRIA/Projects/cristal/Daniel.de\_Rauglaudre/Tools/}.
+Il suffit ensuite de faire précéder le nom de la commande par \verbtt{ledit}, tout
+simplement.
+Faire \verbtt{man ledit} pour avoir plus d'information sur les possibilités de cet
+outil.
+\end{astuce}
+
+Sous l'interpréteur, on peut utiliser n'importe quelle instruction \caml,
+et toutes les commandes spécifiques à l'outil.
+
+Pour ceux qui ne sont pas familier avec \caml,
+pour lancer une commande, il faut taper son nom suivie des arguments,
+ou de parenthèses vide s'il n'y a pas d'arguments, et terminer par deux
+points-virgules.
+
+L'interpréteur affiche le type de retour de la commande
+(\verbtt{unit} correspond au type vide),
+suivi éventuellement de la valeur retournée.
+Dans la plupart des cas, la première information n'intéresse pas l'utilisateur,
+mais cet affichage ne peut pas être désactivé.
+Il peut parfois être utile pour retrouver la signature des commandes<
+par exemple~:
+
+\centerline{\tt module S = Db.Slicing;;}
+
+affiche le type du nouveau module S, et permet donc de voir la liste des
+commandes du module \verbtt{Db.Slicing}.\\
+
+L'organisation de \ppc regroupe toutes les commandes dans le module \verbtt{Db}.
+Le sous-module \verbtt{Db.Slicing} contient les commandes de \slicing.
+Le nom d'une commande doit normalement être préfixé par le nom du
+module a qui elle appartient.
+Pour pouvoir utiliser les noms sans
+préfixe, il faut ouvrir le module à l'aide de~:
+
+\centerline{\tt open Db;;}
+
+On peut aussi choisir de renommer le module pour avoir un préfixe plus court~:
+
+\centerline{\tt module S = Db.Slicing;;}
+
+Des commandes provenant d'autres modules sont également utiles
+dans le cadre de l'utilisation du \slicing.
+\verbtt{Kui}, en particulier,
+fournit des fonctions qui permettent de naviguer dans les
+informations générées par les autres analyseurs.
+
+\section{Fichier de commandes}
+
+Les commandes peuvent être tapées directement, mais on peut également charger
+des fichiers contenant les commandes grâce à la commande \verb!#use "cmds.ml";;!.
+Le contenu du fichier \verbtt{cmds.ml} est alors interprété comme si on l'avait
+tapé, et on reprend la main sous l'interpréteur à l'issue de son exécution.\\
+
+Si l'on veut simplement lancer un fichier de commandes,
+on peut utiliser la redirection Unix.
+L'interpréteur se terminera alors à la rencontre du EOF (fin de fichier).
+
+\begin{astuce}\label{astuce-jnl-ledit}
+En utilisant \verbtt{ledit} (voir l'astuce \vpageref{astuce-ledit})
+on obtient également la possibilité de mémoriser
+l'historique, et d'avoir donc une journalisation des commandes lancées (très
+pratique comme base pour écrire un script, ou pour rejouer une séquence).
+Pour cela, il suffit de taper~:
+
+\centerline{{\tt ledit -h cmds.ml bin/toplevel.top} ... arguments...}
+\end{astuce}
+
+\section{Exemples}
+
+Quelques exemples d'utilisation peuvent être trouvées dans le répertoire de
+test. Les deux fichiers suivant fournissent quelques fonctions qui facilitent
+l'utilisation~:
+\begin{itemize}
+  \item \verbtt{libSelect.ml} propose une interface simplifiée pour des sélections
+    simples,
+  \item \verbtt{libAnim.ml} permet de générer des représentations graphiques du
+    projet à différentes étapes de sa construction afin de visualiser
+    les relations entre les spécialisations.
+\end{itemize}

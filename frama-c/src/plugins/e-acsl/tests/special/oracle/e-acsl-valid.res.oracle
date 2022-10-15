@@ -1,0 +1,10 @@
+[eva:alarm] e-acsl-valid.c:40: Warning: 
+  function f: precondition \valid(y) got status unknown.
+[e-acsl] beginning translation.
+[e-acsl] e-acsl-valid.c:30: Warning: 
+  E-ACSL construct `assigns clause in behavior' is not yet supported.
+  Ignoring annotation.
+[e-acsl] e-acsl-valid.c:26: Warning: 
+  E-ACSL construct `assigns clause in behavior' is not yet supported.
+  Ignoring annotation.
+[e-acsl] translation done in project "e-acsl".

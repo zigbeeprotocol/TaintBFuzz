@@ -1,0 +1,40 @@
+\begin{syntax}
+  rel-op ::= "==" | "!=" | "<=" | ">=" | ">" | "<"
+       \
+  pred ::= "\true" | "\false" ;
+       | term (rel-op term)+ ;               \hspace{-10mm} comparisons
+       | id "(" term ("," term)* ")" ;       \hspace{-10mm} predicate application
+       | "(" pred ")" ;                      \hspace{-10mm} parentheses
+       | [ pred "&&" pred ] ;                \hspace{-10mm} conjunction
+       | [ pred "||" pred ] ;                \hspace{-10mm} disjunction
+       | [ pred "==>" pred ] ;               \hspace{-10mm} implication
+       | pred "<==>" pred ;                  \hspace{-10mm} equivalence
+       | "!" pred ;                          \hspace{-10mm} negation
+       | pred "^^" pred ;                    \hspace{-10mm} exclusive or
+       | [ term "?" pred ":" pred ] ;        \hspace{-10mm} ternary condition
+       | [ pred "?" pred ":" pred ];
+       | "\let" id "=" term ";" pred ;       \hspace{-10mm} local binding
+       | { "\let" id "=" pred ";" pred };
+       | [ "\forall" binders ";" ] ;
+           [ integer-guards "==>" pred ];    \hspace{-10mm} univ. integer quantification
+       | [ "\exists" binders ";" ];
+           [ integer-guards "&&" pred ] ;    \hspace{-10mm} exist. integer quantification
+       | [ { "\forall" binders ";" } ] ;
+         [ { iterator-guard "==>" pred } ];  \hspace{-10mm} univ. iterator quantification
+       | [ { "\exists" binders ";" } ];
+         [ { iterator-guard "&&" pred } ] ;  \hspace{-10mm} exist. iterator quantification
+       | [ { "\forall" binders ";" pred } ]; \hspace{-10mm} univ. quantification
+       | [ { "\exists" binders ";" pred } ]; \hspace{-10mm} exist. quantification
+       | id ":" pred ;                       \hspace{-10mm} syntactic naming
+       | string ":" pred ;                   \hspace{-10mm} syntactic naming
+       \
+  [ integer-guards ] ::= [ interv  ("&&" interv)* ]
+       \
+  [ interv ]  ::= [ (term integer-guard-op)+ ] ;
+                  [ id ] ;
+                  [ (integer-guard-op term)+ ]
+       \
+  [ integer-guard-op ] ::= [ "<=" | "<" ]
+       \
+  [ { iterator-guard } ] ::= [ { id "(" term"," term ")" } ]
+\end{syntax}

@@ -1,0 +1,82 @@
+# frama-c -wp [...]
+[kernel] Parsing struct.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Assertion 'qed_ok' (file struct.i, line 21):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file struct.i, line 10) in 'g'' in 'f' at call 'g' (file struct.i, line 20)
+:
+Let a_1 = shift_sint32(shiftfield_F1_t_tab(a), 0).
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, a, 5) /\ valid_rw(Malloc_0, a_1, 5).
+}
+Prove: valid_rw(Malloc_0, a_1, 1).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function g
+------------------------------------------------------------
+
+Goal Post-condition (file struct.i, line 11) in 'g':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file struct.i, line 12) in 'g':
+Effect at line 15
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Post-condition 'P,qed_ok' in 'main':
+Let a = global(G_v_30).
+Let a_1 = Load_S2_St(a, Mint_0).
+Assume {
+  Type: IsS2_St(w) /\ IsS2_St(a_1).
+  (* Heap *)
+  Type: region(G_v_30) <= 0.
+  (* Initializer *)
+  Init: Mint_0[shiftfield_F2_St_a(a)] = 1.
+  (* Initializer *)
+  Init: Mint_0[shiftfield_F2_St_b(a)] = 2.
+  (* Initializer *)
+  Init: (w.F2_St_a) = 1.
+  (* Initializer *)
+  Init: (w.F2_St_b) = 2.
+}
+Prove: EqS2_St(a_1, w).
+
+------------------------------------------------------------
+
+Goal Post-condition 'Q,qed_ok' in 'main':
+Let a = global(G_v_30).
+Let a_1 = Load_S2_St(a, Mint_0).
+Assume {
+  Type: IsS2_St(w) /\ IsS2_St(a_1).
+  (* Heap *)
+  Type: region(G_v_30) <= 0.
+  (* Initializer *)
+  Init: Mint_0[shiftfield_F2_St_a(a)] = 1.
+  (* Initializer *)
+  Init: Mint_0[shiftfield_F2_St_b(a)] = 2.
+  (* Initializer *)
+  Init: (w.F2_St_a) = 1.
+  (* Initializer *)
+  Init: (w.F2_St_b) = 2.
+}
+Prove: EqS2_St(a_1, w).
+
+------------------------------------------------------------

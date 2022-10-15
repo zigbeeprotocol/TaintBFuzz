@@ -1,0 +1,9 @@
+[kernel] Parsing empty_base.c (with preprocessing)
+[kernel] empty_base.c:63: User Error: 
+  variable `c' has initializer but incomplete type
+[kernel] empty_base.c:67: Warning: Too many initializers for structure
+[kernel] empty_base.c:81: User Error: 
+  non-final field `f1' declared with a type containing a flexible array member.
+[kernel] User Error: stopping on file "empty_base.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

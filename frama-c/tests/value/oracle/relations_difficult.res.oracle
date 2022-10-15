@@ -1,0 +1,40 @@
+[kernel] Parsing relations_difficult.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+  p ∈ {0}
+  A ∈ {0}
+  B ∈ {0}
+  C ∈ {0}
+  Z ∈ {0}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  x ∈ {4}
+  y ∈ {1; 2}
+  p ∈ {{ &x ; &y }}
+  A ∈ {1; 2; 3}
+  B ∈ {1; 2; 4}
+  C ∈ {1; 2; 4}
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  x FROM \nothing
+  y FROM c
+  p FROM c
+  A FROM c
+  B FROM Z; c
+  C FROM c
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    x; y; p; A; B; C; __retres
+[inout] Inputs for function main:
+    x; y; p; Z

@@ -1,0 +1,101 @@
+[kernel] Parsing single.i (no preprocessing)
+[kernel] SETTING STATUS TO dont_know
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[    -    ] Assertion (file single.i, line 12)
+            tried with Test.
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     1 To be validated
+     1 Total
+--------------------------------------------------------------------------------
+[kernel] SETTING STATUS TO true
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Assertion (file single.i, line 12)
+            by Test.
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     1 Completely validated
+     1 Total
+--------------------------------------------------------------------------------
+[kernel] SETTING STATUS TO false_if_reachable
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[  Alarm  ] Assertion (file single.i, line 12)
+            By Test, with pending:
+             - Unreachable program point (file single.i, line 12)
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     1 Alarm emitted
+     1 Total
+--------------------------------------------------------------------------------
+[kernel] SETTING STATUS TO dont_know
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[  Alarm  ] Assertion (file single.i, line 12)
+            By Test, with pending:
+             - Unreachable program point (file single.i, line 12)
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     1 Alarm emitted
+     1 Total
+--------------------------------------------------------------------------------
+[kernel] SETTING STATUS TO true
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[  Alarm  ] Assertion (file single.i, line 12)
+            By Test, with pending:
+             - Unreachable program point (file single.i, line 12)
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     1 Alarm emitted
+     1 Total
+--------------------------------------------------------------------------------
+[kernel] SETTING STATUS TO false_if_reachable
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[  Alarm  ] Assertion (file single.i, line 12)
+            By Test, with pending:
+             - Unreachable program point (file single.i, line 12)
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     1 Alarm emitted
+     1 Total
+--------------------------------------------------------------------------------

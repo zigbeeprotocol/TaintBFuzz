@@ -1,0 +1,254 @@
+# frama-c -wp [...]
+[kernel] Parsing decreases.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp:hypothesis] decreases.i:44: Warning: 'Rel' relation must be well-founded
+[wp:hypothesis] decreases.i:25: Warning: 'Rel' relation must be well-founded
+[wp:hypothesis] decreases.i:30: Warning: 'Rel' relation must be well-founded
+[wp] decreases.i:71: Warning: No decreases clause for missing_2
+[wp:hypothesis] decreases.i:107: Warning: 'Wrong' relation must be well-founded
+[wp] decreases.i:109: Warning: 
+  On call to mw1, relation (Wrong) does not match caller (Rel)
+[wp:hypothesis] decreases.i:103: Warning: 'Rel' relation must be well-founded
+[wp] decreases.i:105: Warning: 
+  On call to mw2, relation (Rel) does not match caller (Wrong)
+------------------------------------------------------------
+  Function fact
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 14) in 'fact':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 17
+Assume { Type: is_uint32(n). (* Else *) Have: n != 0. }
+Prove: (0 <= n) /\ (to_uint32(n - 1) < n).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fact_i
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 37) in 'fact_i' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 37) in 'fact_i' (2/2):
+Call Effect at line 40
+Assume {
+  Type: is_sint32(n).
+  (* Goal *)
+  When: 0 <= n.
+  (* Else *)
+  Have: n != 0.
+}
+Prove: 0 < n.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 40
+Assume { Type: is_sint32(n). (* Else *) Have: n != 0. }
+Prove: 0 <= n.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function facto_gen
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 27
+Assume { Type: is_uint32(n). (* Else *) Have: n != 0. }
+Prove: P_Rel(n, to_uint32(n - 1)).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fails_fact
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 22
+Assume { Type: is_uint32(n). (* Else *) Have: n != 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fails_fact_i
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 43) in 'fails_fact_i' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 43) in 'fails_fact_i' (2/2):
+Call Effect at line 46
+Assume {
+  Type: is_sint32(n).
+  (* Goal *)
+  When: (-1) <= n.
+  (* Else *)
+  Have: n != 0.
+}
+Prove: 0 <= n.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 46
+Assume { Type: is_sint32(n). (* Else *) Have: n != 0. }
+Prove: P_Rel(n, n - 1).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fails_facto_gen
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 32
+Assume { Type: is_uint32(n). (* Else *) Have: n != 0. }
+Prove: P_Rel(n, n).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function m1
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 55
+Assume { Type: is_uint32(n). (* Then *) Have: n != 0. }
+Prove: (0 <= n) /\ (to_uint32(n - 1) < n).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function m2
+------------------------------------------------------------
+
+Goal Recursion variant (1/2):
+Call Effect at line 59
+Assume { Type: is_uint32(x). (* Then *) Have: x != 0. }
+Prove: (0 <= x) /\ (to_uint32(x - 1) < x).
+
+------------------------------------------------------------
+
+Goal Recursion variant (2/2):
+Call Effect at line 60
+Assume { Type: is_uint32(x). (* Then *) Have: 11 <= x. }
+Prove: (0 <= x) /\ (to_uint32(x - 1) < x).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function missing
+------------------------------------------------------------
+
+Goal Recursion variant (1/2):
+Call Effect at line 71
+decreases.i:71: warning from wp:
+ - Warning: Considering non decreasing call, looking for context inconsistency
+   Reason: No decreases clause for missing_2
+Assume { Type: is_uint32(n). (* Then *) Have: n != 0. }
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Recursion variant (2/2):
+Call Effect at line 72
+Assume { Type: is_uint32(n). (* Then *) Have: 31 <= n. }
+Prove: (0 <= n) /\ (to_uint32(n - 1) < n).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function mt1
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 83) in 'mt1' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 83) in 'mt1' (2/2):
+Call Effect at line 86
+Assume { Type: is_uint32(n). (* Then *) Have: n != 0. }
+Prove: to_uint32(n - 1) <= 10.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 86
+Assume { Type: is_uint32(n). (* Then *) Have: n != 0. }
+Prove: (0 <= n) /\ (to_uint32(n - 1) < n).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function mt2
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 88) in 'mt2' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (file decreases.i, line 88) in 'mt2' (2/2):
+Call Effect at line 92
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Recursion variant (1/2):
+Call Effect at line 91
+Assume { Type: is_uint32(x). (* Then *) Have: x != 0. }
+Prove: (0 <= x) /\ (to_uint32(x - 1) < x).
+
+------------------------------------------------------------
+
+Goal Recursion variant (2/2):
+Call Effect at line 92
+Assume { Type: is_uint32(x). (* Then *) Have: 11 <= x. }
+Prove: (0 <= x) /\ (to_uint32(x - 1) < x).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function mw1
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 105
+decreases.i:105: warning from wp:
+ - Warning: Considering non decreasing call, looking for context inconsistency
+   Reason: On call to mw2, relation (Rel) does not match caller (Wrong)
+Assume { Type: is_uint32(n). (* Then *) Have: n != 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function mw2
+------------------------------------------------------------
+
+Goal Recursion variant (1/2):
+Call Effect at line 109
+decreases.i:109: warning from wp:
+ - Warning: Considering non decreasing call, looking for context inconsistency
+   Reason: On call to mw1, relation (Wrong) does not match caller (Rel)
+Assume { Type: is_uint32(x). (* Then *) Have: x != 0. }
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Recursion variant (2/2):
+Call Effect at line 110
+Assume { Type: is_uint32(x). (* Then *) Have: 11 <= x. }
+Prove: P_Wrong(x, to_uint32(x - 1)).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function se
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 123
+Prove: true.
+
+------------------------------------------------------------

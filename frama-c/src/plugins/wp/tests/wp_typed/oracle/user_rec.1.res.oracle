@@ -1,0 +1,264 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing user_rec.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Global
+------------------------------------------------------------
+
+Lemma fact_ge1:
+Prove: 0<(L_fact n_0)
+
+------------------------------------------------------------
+
+Lemma fact_next:
+Assume: 'fact_ge1'
+Prove: let x_0 = (L_fact m_0) in
+       (0<n_0) -> (n_0<=m_0)
+       -> ((x_0 div (L_fact (n_0-1)))=(n_0*(x_0 div (L_fact n_0))))
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function F1
+------------------------------------------------------------
+
+Goal Post-condition (file user_rec.i, line 9) in 'F1':
+Assume {
+  Type: is_sint32(F1_0) /\ is_sint32(i) /\ is_sint32(n).
+  If n <= 1
+  Then { Have: F1_0 = 1. }
+  Else {
+    (* Invariant *)
+    Have: 0 < n.
+    (* Invariant *)
+    Have: L_fact(1) = 1.
+    (* Invariant *)
+    Have: (2 <= i) /\ (i <= (1 + n)).
+    (* Invariant *)
+    Have: L_fact(i - 1) = F1_0.
+    (* Else *)
+    Have: n < i.
+  }
+}
+Prove: L_fact(n) = F1_0.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file user_rec.i, line 15):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file user_rec.i, line 15):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file user_rec.i, line 16):
+Let x = L_fact(i - 1).
+Let x_1 = i * x.
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(1 + i) /\ is_sint32(x) /\
+      is_sint32(x_1).
+  (* Else *)
+  Have: 2 <= n.
+  (* Invariant *)
+  Have: 0 < n.
+  (* Invariant *)
+  Have: L_fact(1) = 1.
+  (* Invariant *)
+  Have: (2 <= i) /\ (i <= (1 + n)).
+  (* Then *)
+  Have: i <= n.
+  (* Invariant *)
+  Have: 0 < i.
+}
+Prove: x_1 = L_fact(i).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file user_rec.i, line 16):
+Assume {
+  Type: is_sint32(n).
+  (* Else *)
+  Have: 2 <= n.
+  (* Invariant *)
+  Have: 0 < n.
+}
+Prove: L_fact(1) = 1.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file user_rec.i, line 17):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function F2
+------------------------------------------------------------
+
+Goal Post-condition (file user_rec.i, line 23) in 'F2':
+Assume {
+  Type: is_sint32(F2_0) /\ is_sint32(i) /\ is_sint32(n).
+  (* Invariant 'RANGE' *)
+  Have: (0 < n) \/ (n <= 1).
+  (* Invariant 'PART' *)
+  Have: (L_fact(1) = 1) \/ (n <= 1).
+  (* Invariant 'RANGE' *)
+  Have: if (n <= 1) then (i = 2) else ((2 <= i) /\ (i <= (1 + n))).
+  (* Invariant 'PART' *)
+  Have: if (n <= 1) then (F2_0 = 1) else (L_fact(i - 1) = F2_0).
+  (* Else *)
+  Have: n < i.
+}
+Prove: L_fact(n) = F2_0.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'PART' (file user_rec.i, line 29):
+Let x = i * p.
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(p) /\ is_sint32(1 + i) /\
+      is_sint32(x).
+  (* Invariant 'RANGE' *)
+  Have: (0 < n) \/ (n <= 1).
+  (* Invariant 'PART' *)
+  Have: (L_fact(1) = 1) \/ (n <= 1).
+  (* Invariant 'RANGE' *)
+  Have: if (n <= 1) then (i = 2) else ((2 <= i) /\ (i <= (1 + n))).
+  (* Invariant 'PART' *)
+  Have: if (n <= 1) then (p = 1) else (L_fact(i - 1) = p).
+  (* Then *)
+  Have: i <= n.
+  (* Invariant 'RANGE' *)
+  Have: if (n <= 1) then (i = 1) else (0 < i).
+}
+Prove: if (n <= 1) then (x = 1) else (x = L_fact(i)).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'PART' (file user_rec.i, line 29):
+Assume {
+  Type: is_sint32(n).
+  (* Invariant 'RANGE' *)
+  Have: (0 < n) \/ (n <= 1).
+}
+Prove: (L_fact(1) = 1) \/ (n <= 1).
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'RANGE' (file user_rec.i, line 28):
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(p) /\ is_sint32(1 + i).
+  (* Invariant 'RANGE' *)
+  Have: (0 < n) \/ (n <= 1).
+  (* Invariant 'PART' *)
+  Have: (L_fact(1) = 1) \/ (n <= 1).
+  (* Invariant 'RANGE' *)
+  Have: if (n <= 1) then (i = 2) else ((2 <= i) /\ (i <= (1 + n))).
+  (* Invariant 'PART' *)
+  Have: if (n <= 1) then (p = 1) else (L_fact(i - 1) = p).
+  (* Then *)
+  Have: i <= n.
+}
+Prove: if (n <= 1) then (i = 1) else (0 < i).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'RANGE' (file user_rec.i, line 28):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file user_rec.i, line 30):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function F4
+------------------------------------------------------------
+
+Goal Post-condition (file user_rec.i, line 36) in 'F4':
+Let x = L_fact(n).
+Assume {
+  Type: is_sint32(F4_0) /\ is_sint32(n) /\ is_sint32(n_1).
+  (* Invariant 'RANGE' *)
+  Have: (0 < n) \/ (n <= 1).
+  (* Invariant 'NEVER' *)
+  Have: ((x / x) = 1) \/ (n <= 1).
+  (* Invariant 'RANGE' *)
+  Have: if (n <= 1) then (n_1 = n) else ((0 < n_1) /\ (n_1 <= n)).
+  (* Invariant 'NEVER' *)
+  Have: if (n <= 1) then (F4_0 = 1) else ((x / L_fact(n_1)) = F4_0).
+  (* Else *)
+  Have: n_1 <= 1.
+}
+Prove: x = F4_0.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'NEVER' (file user_rec.i, line 42):
+Let x = 1 + n.
+Let x_1 = L_fact(n).
+Let x_2 = n_1 - 1.
+Let x_3 = n_1 * p.
+Assume {
+  Type: is_sint32(n) /\ is_sint32(n_1) /\ is_sint32(p) /\ is_sint32(x_2) /\
+      is_sint32(x_3).
+  (* Invariant 'RANGE' *)
+  Have: (0 < n) \/ (n <= 1).
+  (* Invariant 'NEVER' *)
+  Have: ((x_1 / x_1) = 1) \/ (n <= 1).
+  (* Invariant 'RANGE' *)
+  Have: if (n <= 1) then (n_1 = n) else ((0 < n_1) /\ (n_1 <= n)).
+  (* Invariant 'NEVER' *)
+  Have: if (n <= 1) then (p = 1) else ((x_1 / L_fact(n_1)) = p).
+  (* Then *)
+  Have: 2 <= n_1.
+  (* Invariant 'RANGE' *)
+  Have: if (n <= 1) then (x = n_1) else (n_1 <= x).
+}
+Prove: if (n <= 1) then (x_3 = 1) else ((x_1 / L_fact(x_2)) = x_3).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'NEVER' (file user_rec.i, line 42):
+Let x = L_fact(n).
+Assume {
+  Type: is_sint32(n).
+  (* Invariant 'RANGE' *)
+  Have: (0 < n) \/ (n <= 1).
+}
+Prove: ((x / x) = 1) \/ (n <= 1).
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'RANGE' (file user_rec.i, line 41):
+Let x = L_fact(n).
+Let x_1 = 1 + n.
+Assume {
+  Type: is_sint32(n) /\ is_sint32(n_1) /\ is_sint32(p) /\ is_sint32(n_1 - 1).
+  (* Invariant 'RANGE' *)
+  Have: (0 < n) \/ (n <= 1).
+  (* Invariant 'NEVER' *)
+  Have: ((x / x) = 1) \/ (n <= 1).
+  (* Invariant 'RANGE' *)
+  Have: if (n <= 1) then (n_1 = n) else ((0 < n_1) /\ (n_1 <= n)).
+  (* Invariant 'NEVER' *)
+  Have: if (n <= 1) then (p = 1) else ((x / L_fact(n_1)) = p).
+  (* Then *)
+  Have: 2 <= n_1.
+}
+Prove: if (n <= 1) then (x_1 = n_1) else (n_1 <= x_1).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'RANGE' (file user_rec.i, line 41):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file user_rec.i, line 43):
+Prove: true.
+
+------------------------------------------------------------

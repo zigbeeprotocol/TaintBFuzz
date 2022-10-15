@@ -1,0 +1,37 @@
+[kernel] Parsing used-files.i (no preprocessing)
+[kernel] Parsing used-files1.i (no preprocessing)
+[kernel] Parsing used-files2.i (no preprocessing)
+[kernel] Parsing used-files3.i (no preprocessing)
+[kernel] Parsing used-files4.i (no preprocessing)
+[kernel] Parsing used-files5.i (no preprocessing)
+[kernel] Parsing used-files6.i (no preprocessing)
+[kernel] Parsing used-files7.i (no preprocessing)
+[kernel] Parsing used-files8.i (no preprocessing)
+[kernel] Parsing used-files9.c (with preprocessing)
+[kernel] Parsing used-files1.h (with preprocessing)
+[kernel] Parsing used-files2.h (with preprocessing)
+[metrics] Used files starting at function 'main':
+  - command line has 8 out of 12 file(s) being used
+  - 1 used file(s) inside #include directives, of which 1 '.c' file(s).
+  
+  Used command-line files (8)
+  ===========================
+  used-files.i \
+  used-files1.h \
+  used-files1.i \
+  used-files2.i \
+  used-files3.i \
+  used-files6.i \
+  used-files7.i \
+  used-files8.i \
+  
+  Unused command-line files (4)
+  =============================
+  used-files2.h \
+  used-files4.i \
+  used-files5.i \
+  used-files9.c \
+  
+  Used, but implicitly included C files (1)
+  =========================================
+  used-files10.c \

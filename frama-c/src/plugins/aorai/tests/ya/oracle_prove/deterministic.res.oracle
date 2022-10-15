@@ -1,0 +1,3 @@
+[kernel] Parsing deterministic.i (no preprocessing)
+[kernel] Parsing TMPDIR/aorai_deterministic_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

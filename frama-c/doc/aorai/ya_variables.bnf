@@ -1,0 +1,11 @@
+\begin{syntax}
+directive ::= ... | '$' id ':' type
+\\
+type::= 'char' | 'int' | 'long'
+\\
+guard ::= '{' condition '}' action*
+\\
+action ::= '$' id ':=' lval ';'
+\\
+lval ::= ... | '$'id
+\end{syntax}

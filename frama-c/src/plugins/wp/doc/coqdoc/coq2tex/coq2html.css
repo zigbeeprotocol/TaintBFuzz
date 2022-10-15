@@ -1,0 +1,153 @@
+/* Classes:
+     h1.title     the title of the page
+     div.coq      encloses all generated body
+     div.doc      contents of (** *) comments
+     div.footer   footer
+     div.togglescript   "Proof." line
+     div.proofscript  contents of proof script
+     span.docright contents of (**r *) comments
+     span.bracket contents of [ ] within comments
+     span.kwd     Coq keyword
+     span.tactic  Coq tactic
+     span.id      any other identifier
+*/
+
+
+body {
+    color: #222;
+    font-family: "Verdana", sans;
+    font-size: 11px;
+    width: 18cm;
+    margin-left: 2.5cm;
+    margin-top:  0.5cm;
+    margin-bottom: 1cm;
+    padding:     4mm 18mm 4mm 28mm;
+    background: #ffffff url(frama-c.png) no-repeat fixed 5mm 1cm ;
+}
+
+h1 {
+    width: 18cm;
+    font-family: "Optima", "Verdana", "Arial", sans;
+    text-align: left;
+    margin-top: 5mm;
+    margin-bottom: 2mm;
+    padding-left: 3mm;
+}
+
+h1.section {
+    color: #000;
+    margin-left: -5%;
+    border-left: 20px solid darkorange;
+    border-bottom: thin solid #404040;
+}
+
+h2.section {
+    width: 18cm;
+    color: #000;
+    font-family: "Optima", "Verdana", "Arial", sans;
+    margin-left: -5%;
+    margin-top: 5mm;
+    margin-bottom: 2mm;
+    padding-left: 3mm;
+    border-bottom: thin solid #404040;
+}
+
+div.coq {
+  margin-left: 5%;
+  margin-right: 5%;
+  color : #465F91 ; 
+  font-size: 11px; font-family: "Everson Mono", monospace
+}
+
+div.doc {
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+  font-family: serif;
+  color: #000;
+  font-size: 13px;
+}
+
+div.toggleproof {
+  text-decoration: underline;
+  font-size: 11px;
+  color: #555;
+}
+
+div.toggleproof:hover {
+  cursor: pointer;
+  font-size: 11px;
+  color: #555;
+}
+
+span.toggleltac {
+  text-decoration: underline;
+  font-size: 11px;
+  color: #555;
+}
+
+span.toggleltac:hover {
+  cursor: pointer;
+  font-size: 11px;
+  color: #555;
+}
+
+div.ltacscript {
+  font-size: 11px;
+  color: #555;
+}
+
+div.proofscript {
+  font-size: 11px;
+  color: #555;
+}
+
+div.admitted {
+  color: violet ;
+}
+
+div.footer {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 0.8em;
+  font-style: italic;
+}  
+
+span.docright {
+  position: absolute;
+  left: 60%;
+  width: 40%;
+  font-family: serif;
+}
+
+span.bracket {
+  font-size: 12px; font-family: "Everson Mono", monospace;
+  color: #008000;
+}
+
+span.kwd {
+  color: #cf1d1d;
+}
+
+span.comment {
+  color: darkgreen;
+}
+
+span.tactic {
+  color: darkblue;
+}
+
+span.id { }
+
+ul { 
+  margin-top: 0; 
+  margin-bottom: 3pt;
+  margin-left: 0;
+  margin-right: 10%;
+}
+
+li { margin-left: 0; padding-left: 2pt; }
+
+a:visited { color: darkblue; text-decoration: none }
+a:link    { color: darkblue; text-decoration: none }
+a:hover   { background-color: lightgray; color: firebrick }
+a:active  { background-color: lightgray; color: darkgreen }

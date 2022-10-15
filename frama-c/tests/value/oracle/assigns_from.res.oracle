@@ -1,0 +1,751 @@
+[kernel] Parsing assigns_from.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  u ∈ {0}
+  v ∈ {0}
+  k ∈ {0}
+  a[0..9] ∈ {0}
+  constante ∈ {2}
+  t[0..99] ∈ {0}
+  p_t ∈ {{ &t[0] }}
+  t17[0..9] ∈ {0}
+[eva] computing for function main1 <- main.
+  Called from assigns_from.i:224.
+[eva] computing for function f <- main1 <- main.
+  Called from assigns_from.i:30.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] Recording results for main1
+[from] Computing for function main1
+[from] Done for function main1
+[eva] assigns_from.i:12: function main1: assigns got status valid.
+[eva] assigns_from.i:15: 
+  function main1, behavior true: assigns got status valid.
+[eva] assigns_from.i:15: 
+  function main1, behavior true: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:16: 
+  function main1, behavior true: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:19: 
+  function main1, behavior ok_too_large: assigns got status valid.
+[eva] assigns_from.i:19: 
+  function main1, behavior ok_too_large: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:20: 
+  function main1, behavior ok_too_large: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:23: 
+  function main1, behavior wrong: assigns got status valid.
+[eva] assigns_from.i:23: 
+  function main1, behavior wrong: \from ... part in assign clause got status valid.
+[eva:alarm] assigns_from.i:24: Warning: 
+  function main1, behavior wrong: \from ... part in assign clause got status unknown (cannot validate direct dependencies).
+[eva] Done for function main1
+[eva] computing for function main15 <- main.
+  Called from assigns_from.i:225.
+[eva] Recording results for main15
+[from] Computing for function main15
+[from] Done for function main15
+[eva] assigns_from.i:37: function main15: assigns got status valid.
+[eva] assigns_from.i:37: 
+  function main15: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:37: 
+  function main15: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:37: 
+  function main15: \from ... part in assign clause got status valid.
+[eva] Done for function main15
+[eva] computing for function main2 <- main.
+  Called from assigns_from.i:226.
+[eva] Recording results for main2
+[from] Computing for function main2
+[from] Done for function main2
+[eva] assigns_from.i:45: function main2: assigns got status valid.
+[eva] assigns_from.i:45: 
+  function main2: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:48: 
+  function main2, behavior true: assigns got status valid.
+[eva] assigns_from.i:48: 
+  function main2, behavior true: \from ... part in assign clause got status valid.
+[eva:alarm] assigns_from.i:52: Warning: 
+  function main2, behavior wrongassigns: assigns got status unknown.
+[eva] assigns_from.i:52: 
+  function main2, behavior wrongassigns: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:56: 
+  function main2, behavior true2: assigns got status valid.
+[eva] assigns_from.i:56: 
+  function main2, behavior true2: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:60: 
+  function main2, behavior wrongfrom: assigns got status valid.
+[eva:alarm] assigns_from.i:60: Warning: 
+  function main2, behavior wrongfrom: \from ... part in assign clause got status unknown (cannot validate direct dependencies).
+[eva] Done for function main2
+[eva] computing for function Frama_C_interval <- main.
+  Called from assigns_from.i:227.
+[eva] using specification for function Frama_C_interval
+[eva] Done for function Frama_C_interval
+[eva] computing for function main3 <- main.
+  Called from assigns_from.i:228.
+[eva] Recording results for main3
+[from] Computing for function main3
+[from] Done for function main3
+[eva] assigns_from.i:67: function main3: assigns got status valid.
+[eva] assigns_from.i:67: 
+  function main3: \from ... part in assign clause got status valid.
+[eva] Done for function main3
+[eva] computing for function main3 <- main.
+  Called from assigns_from.i:229.
+[eva] Recording results for main3
+[from] Computing for function main3
+[from] Done for function main3
+[eva:alarm] assigns_from.i:67: Warning: 
+  function main3: assigns got status unknown.
+[eva] Done for function main3
+[eva] computing for function main4 <- main.
+  Called from assigns_from.i:230.
+[eva] Recording results for main4
+[from] Computing for function main4
+[from] Done for function main4
+[eva] assigns_from.i:78: 
+  function main4, behavior true: assigns got status valid.
+[eva] assigns_from.i:78: 
+  function main4, behavior true: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:82: 
+  function main4, behavior wrong: assigns got status valid.
+[eva:alarm] assigns_from.i:82: Warning: 
+  function main4, behavior wrong: \from ... part in assign clause got status unknown (cannot validate direct dependencies).
+[eva] Done for function main4
+[eva] computing for function main5 <- main.
+  Called from assigns_from.i:231.
+[eva] Recording results for main5
+[from] Computing for function main5
+[from] Done for function main5
+[eva] assigns_from.i:92: 
+  function main5, behavior wrong: assigns got status valid.
+[eva:alarm] assigns_from.i:92: Warning: 
+  function main5, behavior wrong: \from ... part in assign clause got status unknown (cannot validate direct dependencies).
+[eva] assigns_from.i:95: 
+  function main5, behavior true: assigns got status valid.
+[eva] assigns_from.i:95: 
+  function main5, behavior true: \from ... part in assign clause got status valid.
+[eva] Done for function main5
+[eva] computing for function Frama_C_interval <- main.
+  Called from assigns_from.i:232.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- main.
+  Called from assigns_from.i:233.
+[eva] Done for function Frama_C_interval
+[eva] computing for function main6_right <- main.
+  Called from assigns_from.i:234.
+[eva] Recording results for main6_right
+[from] Computing for function main6_right
+[from] Done for function main6_right
+[eva] assigns_from.i:111: function main6_right: assigns got status valid.
+[eva] Done for function main6_right
+[eva] computing for function main6_wrong <- main.
+  Called from assigns_from.i:235.
+[eva] Recording results for main6_wrong
+[from] Computing for function main6_wrong
+[from] Done for function main6_wrong
+[eva:alarm] assigns_from.i:102: Warning: 
+  function main6_wrong: assigns got status unknown.
+[eva] Done for function main6_wrong
+[eva] computing for function main7 <- main.
+  Called from assigns_from.i:236.
+[eva] Recording results for main7
+[from] Computing for function main7
+[from] Done for function main7
+[eva] assigns_from.i:119: 
+  function main7, behavior right: assigns got status valid.
+[eva:alarm] assigns_from.i:122: Warning: 
+  function main7, behavior wrong: assigns got status unknown.
+[eva] Done for function main7
+[eva] computing for function main8 <- main.
+  Called from assigns_from.i:239.
+[eva] Recording results for main8
+[from] Computing for function main8
+[from] Done for function main8
+[eva] assigns_from.i:130: function main8: assigns got status valid.
+[eva] assigns_from.i:130: 
+  function main8: \from ... part in assign clause got status valid.
+[eva] Done for function main8
+[eva] computing for function main8 <- main.
+  Called from assigns_from.i:241.
+[eva] Recording results for main8
+[from] Computing for function main8
+[from] Done for function main8
+[eva:alarm] assigns_from.i:130: Warning: 
+  function main8: assigns got status unknown.
+[eva] Done for function main8
+[eva] computing for function main9 <- main.
+  Called from assigns_from.i:243.
+[eva] Recording results for main9
+[from] Computing for function main9
+[from] Done for function main9
+[eva] assigns_from.i:135: function main9: assigns got status valid.
+[eva] Done for function main9
+[eva] computing for function main10 <- main.
+  Called from assigns_from.i:244.
+[kernel:annot:missing-spec] assigns_from.i:152: Warning: 
+  Neither code nor specification for function c, generating default assigns from the prototype
+[eva] computing for function c <- main10 <- main.
+  Called from assigns_from.i:152.
+[eva] using specification for function c
+[eva] Done for function c
+[eva] assigns_from.i:152: starting to merge loop iterations
+[eva] computing for function c <- main10 <- main.
+  Called from assigns_from.i:152.
+[eva] Done for function c
+[eva] computing for function c <- main10 <- main.
+  Called from assigns_from.i:152.
+[eva] Done for function c
+[eva] computing for function c <- main10 <- main.
+  Called from assigns_from.i:152.
+[eva] Done for function c
+[eva] computing for function c <- main10 <- main.
+  Called from assigns_from.i:152.
+[eva] Done for function c
+[eva:alarm] assigns_from.i:154: Warning: assertion got status unknown.
+[eva] Recording results for main10
+[from] Computing for function main10
+[from] Done for function main10
+[eva] Done for function main10
+[eva] computing for function main11 <- main.
+  Called from assigns_from.i:245.
+[eva] Recording results for main11
+[from] Computing for function main11
+[from] Done for function main11
+[eva] assigns_from.i:157: function main11: assigns got status valid.
+[eva] assigns_from.i:157: 
+  function main11: \from ... part in assign clause got status valid.
+[eva] Done for function main11
+[eva] computing for function main11 <- main.
+  Called from assigns_from.i:246.
+[eva] Recording results for main11
+[from] Computing for function main11
+[from] Done for function main11
+[eva:alarm] assigns_from.i:157: Warning: 
+  function main11: assigns got status unknown.
+[eva:alarm] assigns_from.i:157: Warning: 
+  function main11: \from ... part in assign clause got status unknown (cannot validate direct dependencies).
+[eva] Done for function main11
+[eva] computing for function Frama_C_interval <- main.
+  Called from assigns_from.i:247.
+[eva] Done for function Frama_C_interval
+[eva] computing for function main11 <- main.
+  Called from assigns_from.i:247.
+[eva] Recording results for main11
+[from] Computing for function main11
+[from] Done for function main11
+[eva] Done for function main11
+[eva] computing for function main12 <- main.
+  Called from assigns_from.i:248.
+[eva] Recording results for main12
+[from] Computing for function main12
+[from] Done for function main12
+[eva] assigns_from.i:169: 
+  function main12, behavior ok: assigns got status valid.
+[eva] assigns_from.i:167: 
+  function main12, behavior ok: \from ... part in assign clause got status valid.
+[eva] Done for function main12
+[eva] computing for function main13 <- main.
+  Called from assigns_from.i:249.
+[eva] Recording results for main13
+[from] Computing for function main13
+[from] Done for function main13
+[eva] assigns_from.i:179: 
+  function main13, behavior ok: assigns got status valid.
+[eva] assigns_from.i:174: 
+  function main13, behavior ok: \from ... part in assign clause got status valid.
+[eva] assigns_from.i:179: 
+  function main13, behavior bad: assigns got status valid.
+[eva:alarm] assigns_from.i:177: Warning: 
+  function main13, behavior bad: \from ... part in assign clause got status unknown (cannot validate direct dependencies).
+[eva] Done for function main13
+[eva] computing for function main14 <- main.
+  Called from assigns_from.i:250.
+[eva] assigns_from.i:183: starting to merge loop iterations
+[eva] Recording results for main14
+[from] Computing for function main14
+[from] Done for function main14
+[eva] assigns_from.i:181: function main14: assigns got status valid.
+[eva:alarm] assigns_from.i:181: Warning: 
+  function main14: \from ... part in assign clause got status unknown (cannot validate direct dependencies).
+[eva] Done for function main14
+[eva] computing for function main16 <- main.
+  Called from assigns_from.i:251.
+[eva] assigns_from.i:188: starting to merge loop iterations
+[eva] Recording results for main16
+[from] Computing for function main16
+[from] Done for function main16
+[eva] assigns_from.i:186: function main16: assigns got status valid.
+[eva:alarm] assigns_from.i:186: Warning: 
+  function main16: \from ... part in assign clause got status unknown (cannot validate direct dependencies).
+[eva] Done for function main16
+[eva] computing for function main17 <- main.
+  Called from assigns_from.i:252.
+[eva] assigns_from.i:195: starting to merge loop iterations
+[eva] Recording results for main17
+[from] Computing for function main17
+[from] Done for function main17
+[eva] assigns_from.i:193: function main17: assigns got status valid.
+[eva:alarm] assigns_from.i:193: Warning: 
+  function main17: \from ... part in assign clause got status unknown (cannot validate direct and indirect dependencies).
+[eva] Done for function main17
+[eva] computing for function main18 <- main.
+  Called from assigns_from.i:253.
+[eva] computing for function f18 <- main18 <- main.
+  Called from assigns_from.i:215.
+[eva] using specification for function f18
+[eva] Done for function f18
+[eva] Recording results for main18
+[from] Computing for function main18
+[from] Done for function main18
+[eva] Done for function main18
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  k ∈ {0}
+[eva:final-states] Values at end of function main1:
+  u ∈ {0}
+  k ∈ {3}
+[eva:final-states] Values at end of function main10:
+  t10[0..13] ∈ {3} or UNINITIALIZED
+     [14..37] ∈ {3}
+     [38..49] ∈ {3} or UNINITIALIZED
+  i ∈ {50}
+[eva:final-states] Values at end of function main11:
+  a[0..1] ∈ {0; 3}
+   [2] ∈ {3}
+   [3..8] ∈ {0}
+   [9] ∈ {0; 3}
+[eva:final-states] Values at end of function main12:
+  __retres ∈ {{ &t[0] }}
+[eva:final-states] Values at end of function main13:
+  
+[eva:final-states] Values at end of function main14:
+  t[0..1] ∈ {0}
+   [2..38] ∈ [0..38]
+   [39..99] ∈ {0}
+  i ∈ {39}
+[eva:final-states] Values at end of function main15:
+  a[0..2] ∈ {0}
+   [3] ∈ {2}
+   [4] ∈ {3}
+   [5] ∈ {4}
+   [6..9] ∈ {0}
+[eva:final-states] Values at end of function main16:
+  t[0] ∈ {0}
+   [1] ∈ [0..19]
+   [2..38] ∈ [0..38]
+   [39..99] ∈ {0}
+  i ∈ {20}
+[eva:final-states] Values at end of function main17:
+  t17[0][bits 0 to 7] ∈ [0..9]
+     [0][bits 8 to 31] ∈ {0}
+     [1][bits 0 to 7] ∈ [0..9]
+     [1][bits 8 to 31] ∈ {0}
+     [2][bits 0 to 7] ∈ [0..9]
+     [2][bits 8 to 31] ∈ {0}
+     [3][bits 0 to 7] ∈ [0..9]
+     [3][bits 8 to 31] ∈ {0}
+     [4][bits 0 to 7] ∈ [0..9]
+     [4][bits 8 to 31] ∈ {0}
+     [5][bits 0 to 7] ∈ [0..9]
+     [5][bits 8 to 31] ∈ {0}
+     [6][bits 0 to 7] ∈ [0..9]
+     [6][bits 8 to 31] ∈ {0}
+     [7][bits 0 to 7] ∈ [0..9]
+     [7][bits 8 to 31] ∈ {0}
+     [8][bits 0 to 7] ∈ [0..9]
+     [8][bits 8 to 31] ∈ {0}
+     [9][bits 0 to 7] ∈ [0..9]
+     [9][bits 8 to 31] ∈ {0}
+  j ∈ [10..2147483647]
+[eva:final-states] Values at end of function main18:
+  base_a ∈ {17}
+  a_0.addr ∈
+     {{ garbled mix of &{base_a; base_b}
+      (origin: Misaligned {assigns_from.i:215}) }}
+     .i ∈
+     {{ garbled mix of &{base_a; base_b}
+      (origin: Misaligned {assigns_from.i:215}) }} or UNINITIALIZED
+  base_b ∈ {11}
+  b.addr ∈
+   {{ garbled mix of &{base_a; base_b}
+    (origin: Misaligned {assigns_from.i:215}) }}
+   .i ∈
+   {{ garbled mix of &{base_a; base_b}
+    (origin: Misaligned {assigns_from.i:215}) }} or UNINITIALIZED
+[eva:final-states] Values at end of function main2:
+  a[0..2] ∈ {0}
+   [3] ∈ {2}
+   [4] ∈ {3}
+   [5] ∈ {4}
+   [6..9] ∈ {0}
+[eva:final-states] Values at end of function main3:
+  a[0..2] ∈ {0; 3}
+   [3] ∈ {2; 3}
+   [4] ∈ {3}
+   [5] ∈ {3; 4}
+   [6] ∈ {3}
+   [7..9] ∈ {0; 3}
+[eva:final-states] Values at end of function main4:
+  a[0..1] ∈ {0; 3}
+   [2] ∈ {3}
+   [3] ∈ {2; 3}
+   [4] ∈ {3}
+   [5] ∈ {3; 4}
+   [6] ∈ {3}
+   [7..9] ∈ {0; 3}
+[eva:final-states] Values at end of function main5:
+  a[0..1] ∈ {0; 3}
+   [2] ∈ {3}
+   [3] ∈ {2; 3}
+   [4] ∈ {3}
+   [5] ∈ {3; 4}
+   [6] ∈ {3}
+   [7..9] ∈ {0; 3}
+[eva:final-states] Values at end of function main6_right:
+  a[0..1] ∈ {0; 3}
+   [2] ∈ {3}
+   [3..5] ∈ {0}
+   [6] ∈ {3}
+   [7..9] ∈ {0; 3}
+[eva:final-states] Values at end of function main6_wrong:
+  a[0..1] ∈ {0; 3}
+   [2..6] ∈ {0}
+   [7..9] ∈ {0; 3}
+[eva:final-states] Values at end of function main7:
+  a[0..1] ∈ {0; 3}
+   [2..8] ∈ {0}
+   [9] ∈ {0; 3}
+[eva:final-states] Values at end of function main8:
+  c_0 ∈ {4}
+  d ∈ {4} or UNINITIALIZED
+[eva:final-states] Values at end of function main9:
+  
+[eva:final-states] Values at end of function main:
+  u ∈ {0}
+  k ∈ {3}
+  a[0..1] ∈ {0; 3}
+   [2] ∈ {3}
+   [3..8] ∈ {0}
+   [9] ∈ {0; 3}
+  constante ∈ {2}
+  t[0] ∈ {0}
+   [1] ∈ [0..19]
+   [2..38] ∈ [0..38]
+   [39..99] ∈ {0}
+  t17[0][bits 0 to 7] ∈ [0..9]
+     [0][bits 8 to 31] ∈ {0}
+     [1][bits 0 to 7] ∈ [0..9]
+     [1][bits 8 to 31] ∈ {0}
+     [2][bits 0 to 7] ∈ [0..9]
+     [2][bits 8 to 31] ∈ {0}
+     [3][bits 0 to 7] ∈ [0..9]
+     [3][bits 8 to 31] ∈ {0}
+     [4][bits 0 to 7] ∈ [0..9]
+     [4][bits 8 to 31] ∈ {0}
+     [5][bits 0 to 7] ∈ [0..9]
+     [5][bits 8 to 31] ∈ {0}
+     [6][bits 0 to 7] ∈ [0..9]
+     [6][bits 8 to 31] ∈ {0}
+     [7][bits 0 to 7] ∈ [0..9]
+     [7][bits 8 to 31] ∈ {0}
+     [8][bits 0 to 7] ∈ [0..9]
+     [8][bits 8 to 31] ∈ {0}
+     [9][bits 0 to 7] ∈ [0..9]
+     [9][bits 8 to 31] ∈ {0}
+  j ∈ [0..9]
+  a_0 ∈ {0; 1; 2; 3}
+  b ∈ {6; 7; 8; 9}
+  c_0 ∈ {4}
+  d ∈ {4} or UNINITIALIZED
+  p ∈ {{ &c_0 ; &d }}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main10
+[from] Computing for function c <-main10
+[from] Done for function c
+[from] Done for function main10
+[from] Computing for function main11
+[from] Done for function main11
+[from] Computing for function main12
+[from] Done for function main12
+[from] Computing for function main13
+[from] Done for function main13
+[from] Computing for function main14
+[from] Done for function main14
+[from] Computing for function main15
+[from] Done for function main15
+[from] Computing for function main16
+[from] Done for function main16
+[from] Computing for function main17
+[from] Done for function main17
+[from] Computing for function main18
+[from] Computing for function f18 <-main18
+[from] Done for function f18
+[from] Done for function main18
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main3
+[from] Done for function main3
+[from] Computing for function main4
+[from] Done for function main4
+[from] Computing for function main5
+[from] Done for function main5
+[from] Computing for function main6_right
+[from] Done for function main6_right
+[from] Computing for function main6_wrong
+[from] Done for function main6_wrong
+[from] Computing for function main7
+[from] Done for function main7
+[from] Computing for function main8
+[from] Done for function main8
+[from] Computing for function main9
+[from] Done for function main9
+[from] Computing for function main
+[from] Computing for function Frama_C_interval <-main
+[from] Done for function Frama_C_interval
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  \result FROM a; b
+[from] Function c:
+  \result FROM \nothing
+[from] Function f:
+  k FROM u
+[from] Function f18:
+  a_0 FROM a_0; b (and SELF)
+  b FROM a_0; b (and SELF)
+[from] Function main1:
+  u FROM v
+  k FROM \nothing
+[from] Function main10:
+  NO EFFECTS
+[from] Function main11:
+  a[2] FROM \nothing
+[from] Function main12:
+  \result FROM \nothing
+[from] Function main13:
+  \result FROM p_t
+[from] Function main14:
+  t[2..38] FROM \nothing (and SELF)
+[from] Function main15:
+  a[3..5] FROM \nothing
+[from] Function main16:
+  t[1..19] FROM \nothing (and SELF)
+[from] Function main17:
+  t17{[0][bits 0 to 7]; [1][bits 0 to 7]; [2][bits 0 to 7]; [3][bits 0 to 7];
+      [4][bits 0 to 7]; [5][bits 0 to 7]; [6][bits 0 to 7]; [7][bits 0 to 7];
+      [8][bits 0 to 7]; [9][bits 0 to 7]}
+     FROM p; i (and SELF)
+[from] Function main18:
+  NO EFFECTS
+[from] Function main2:
+  a[3..5] FROM \nothing
+[from] Function main3:
+  a[0..9] FROM i (and SELF)
+[from] Function main4:
+  a[2] FROM \nothing
+[from] Function main5:
+  a[2] FROM a[4]
+[from] Function main6_right:
+  a[3..5] FROM \nothing
+[from] Function main6_wrong:
+  a[2..6] FROM \nothing
+[from] Function main7:
+  a{[2]; [7..8]} FROM \nothing
+[from] Function main8:
+  c_0 FROM p (and SELF)
+  d FROM p (and SELF)
+[from] Function main9:
+  NO EFFECTS
+[from] Function main:
+  u FROM v
+  k FROM \nothing
+  a{[0..1]; [9]} FROM \nothing (and SELF)
+   [2..8] FROM \nothing
+  constante FROM \nothing
+  t[1..38] FROM \nothing (and SELF)
+  t17{[0][bits 0 to 7]; [1][bits 0 to 7]; [2][bits 0 to 7]; [3][bits 0 to 7];
+      [4][bits 0 to 7]; [5][bits 0 to 7]; [6][bits 0 to 7]; [7][bits 0 to 7];
+      [8][bits 0 to 7]; [9][bits 0 to 7]}
+     FROM \nothing (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to f at assigns_from.i:30 (by main1):
+  k FROM u
+[from] call to c at assigns_from.i:152 (by main10):
+  \result FROM \nothing
+[from] call to f18 at assigns_from.i:215 (by main18):
+  a_0 FROM a_0; b (and SELF)
+  b FROM a_0; b (and SELF)
+[from] call to main1 at assigns_from.i:224 (by main):
+  u FROM v
+  k FROM \nothing
+[from] call to main15 at assigns_from.i:225 (by main):
+  a[3..5] FROM \nothing
+[from] call to main2 at assigns_from.i:226 (by main):
+  a[3..5] FROM \nothing
+[from] call to Frama_C_interval at assigns_from.i:227 (by main):
+  \result FROM a; b
+[from] call to main3 at assigns_from.i:228 (by main):
+  a[6] FROM i
+[from] call to main3 at assigns_from.i:229 (by main):
+  a[0..9] FROM i (and SELF)
+[from] call to main4 at assigns_from.i:230 (by main):
+  a[2] FROM \nothing
+[from] call to main5 at assigns_from.i:231 (by main):
+  a[2] FROM a[4]
+[from] call to Frama_C_interval at assigns_from.i:232 (by main):
+  \result FROM a; b
+[from] call to Frama_C_interval at assigns_from.i:233 (by main):
+  \result FROM a; b
+[from] call to main6_right at assigns_from.i:234 (by main):
+  a[3..5] FROM \nothing
+[from] call to main6_wrong at assigns_from.i:235 (by main):
+  a[2..6] FROM \nothing
+[from] call to main7 at assigns_from.i:236 (by main):
+  a{[2]; [7..8]} FROM \nothing
+[from] call to main8 at assigns_from.i:239 (by main):
+  c_0 FROM p
+[from] call to main8 at assigns_from.i:241 (by main):
+  c_0 FROM p (and SELF)
+  d FROM p (and SELF)
+[from] call to main9 at assigns_from.i:243 (by main):
+  NO EFFECTS
+[from] call to main10 at assigns_from.i:244 (by main):
+  NO EFFECTS
+[from] call to main11 at assigns_from.i:245 (by main):
+  a[2] FROM \nothing
+[from] call to main11 at assigns_from.i:246 (by main):
+  a[2] FROM \nothing
+[from] call to main11 at assigns_from.i:247 (by main):
+  a[2] FROM \nothing
+[from] call to Frama_C_interval at assigns_from.i:247 (by main):
+  \result FROM a; b
+[from] call to main12 at assigns_from.i:248 (by main):
+  \result FROM \nothing
+[from] call to main13 at assigns_from.i:249 (by main):
+  \result FROM p_t
+[from] call to main14 at assigns_from.i:250 (by main):
+  t[2..38] FROM \nothing (and SELF)
+[from] call to main16 at assigns_from.i:251 (by main):
+  t[1..19] FROM \nothing (and SELF)
+[from] call to main17 at assigns_from.i:252 (by main):
+  t17{[0][bits 0 to 7]; [1][bits 0 to 7]; [2][bits 0 to 7]; [3][bits 0 to 7];
+      [4][bits 0 to 7]; [5][bits 0 to 7]; [6][bits 0 to 7]; [7][bits 0 to 7];
+      [8][bits 0 to 7]; [9][bits 0 to 7]}
+     FROM p; i (and SELF)
+[from] call to main18 at assigns_from.i:253 (by main):
+  NO EFFECTS
+[from] entry point:
+  u FROM v
+  k FROM \nothing
+  a{[0..1]; [9]} FROM \nothing (and SELF)
+   [2..8] FROM \nothing
+  constante FROM \nothing
+  t[1..38] FROM \nothing (and SELF)
+  t17{[0][bits 0 to 7]; [1][bits 0 to 7]; [2][bits 0 to 7]; [3][bits 0 to 7];
+      [4][bits 0 to 7]; [5][bits 0 to 7]; [6][bits 0 to 7]; [7][bits 0 to 7];
+      [8][bits 0 to 7]; [9][bits 0 to 7]}
+     FROM \nothing (and SELF)
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    k
+[inout] Inputs for function f:
+    u
+[inout] Out (internal) for function main1:
+    u; k
+[inout] Inputs for function main1:
+    u; v
+[inout] Out (internal) for function main10:
+    t10[0..49]; i; tmp
+[inout] Inputs for function main10:
+    \nothing
+[inout] Out (internal) for function main11:
+    a[2]
+[inout] Inputs for function main11:
+    \nothing
+[inout] Out (internal) for function main12:
+    __retres
+[inout] Inputs for function main12:
+    \nothing
+[inout] Out (internal) for function main13:
+    \nothing
+[inout] Inputs for function main13:
+    p_t
+[inout] Out (internal) for function main14:
+    t[2..38]; i
+[inout] Inputs for function main14:
+    \nothing
+[inout] Out (internal) for function main15:
+    a[3..5]
+[inout] Inputs for function main15:
+    \nothing
+[inout] Out (internal) for function main16:
+    t[1..19]; i
+[inout] Inputs for function main16:
+    \nothing
+[inout] Out (internal) for function main17:
+    t17{[0][bits 0 to 7]; [1][bits 0 to 7]; [2][bits 0 to 7]; [3][bits 0 to 7];
+        [4][bits 0 to 7]; [5][bits 0 to 7]; [6][bits 0 to 7]; [7][bits 0 to 7];
+        [8][bits 0 to 7]; [9][bits 0 to 7]}; j
+[inout] Inputs for function main17:
+    \nothing
+[inout] Out (internal) for function main18:
+    base_a; a_0; base_b; b
+[inout] Inputs for function main18:
+    \nothing
+[inout] Out (internal) for function main2:
+    a[3..5]
+[inout] Inputs for function main2:
+    \nothing
+[inout] Out (internal) for function main3:
+    a[0..9]
+[inout] Inputs for function main3:
+    \nothing
+[inout] Out (internal) for function main4:
+    a[2]
+[inout] Inputs for function main4:
+    \nothing
+[inout] Out (internal) for function main5:
+    a[2]
+[inout] Inputs for function main5:
+    a[4]
+[inout] Out (internal) for function main6_right:
+    a[3..5]
+[inout] Inputs for function main6_right:
+    \nothing
+[inout] Out (internal) for function main6_wrong:
+    a[2..6]
+[inout] Inputs for function main6_wrong:
+    \nothing
+[inout] Out (internal) for function main7:
+    a{[2]; [7..8]}
+[inout] Inputs for function main7:
+    \nothing
+[inout] Out (internal) for function main8:
+    c_0; d
+[inout] Inputs for function main8:
+    \nothing
+[inout] Out (internal) for function main9:
+    \nothing
+[inout] Inputs for function main9:
+    \nothing
+[inout] Out (internal) for function main:
+    u; k; a[0..9]; constante; t[1..38];
+    t17{[0][bits 0 to 7]; [1][bits 0 to 7]; [2][bits 0 to 7]; [3][bits 0 to 7];
+        [4][bits 0 to 7]; [5][bits 0 to 7]; [6][bits 0 to 7]; [7][bits 0 to 7];
+        [8][bits 0 to 7]; [9][bits 0 to 7]}; j; a_0; b; c_0; d; p; tmp_2; 
+    tmp_3
+[inout] Inputs for function main:
+    u; v; a[4]; p_t

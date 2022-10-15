@@ -1,0 +1,516 @@
+/* -------------------------------------------------------------------------- */
+/* --- Box Containers                                                     --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xBoxes-hbox
+{
+    display: flex ;
+    overflow: hidden ;
+    flex-flow: row nowrap ;
+    align-items: baseline ;
+}
+
+.dome-xBoxes-vbox
+{
+    display: flex ;
+    overflow: hidden ;
+    flex-flow: column nowrap ;
+    align-items: stretch ;
+}
+
+.dome-xBoxes-grid
+{
+    flex: 1 1 auto ;
+    overflow: auto ;
+    display: grid ;
+    display: grid;
+    grid-auto-rows: auto;
+    grid-auto-flow: row;
+    align-items: stretch;
+    align-content: start;
+    justify-content: start;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Extensibility                                                      --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xBoxes-pack
+{
+    flex: 0 0 auto ;
+    align-self: flex-start ;
+}
+
+.dome-xBoxes-box
+{
+    flex: 0 0 auto ;
+}
+
+.dome-xBoxes-fill
+{
+    flex: 1 1 auto ;
+}
+
+.dome-xBoxes-scroll
+{
+    flex: 1 1 auto ;
+    overflow: auto ;
+}
+
+.dome-container > .dome-xBoxes-fill
+{
+    width:  100% ;
+    height: 100% ;
+}
+
+.dome-container > .dome-xBoxes-scroll
+{
+    width:  100% ;
+    height: 100% ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Spaces                                                             --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xBoxes-space
+{
+    flex: 0 1 24px ;
+}
+
+.dome-xBoxes-filler
+{
+    flex: 1 1 24px ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* ---  XSplitter Style Sheet                                             --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xSplitter-container {
+    position: relative ;
+    width: 100% ;
+    height: 100% ;
+}
+
+.dome-xSplitter-no-cursor { }
+.dome-xSplitter-h-cursor  { cursor: col-resize ; }
+.dome-xSplitter-v-cursor  { cursor: row-resize ; }
+
+.dome-xSplitter-hidden {
+    display: none;
+}
+
+.dome-xSplitter-block {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.dome-xSplitter-hflex {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.dome-xSplitter-vflex {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.dome-xSplitter-hfold {
+    flex: none;
+    min-width: 32px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.dome-xSplitter-vfold {
+    flex: none;
+    min-height: 32px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.dome-xSplitter-hpane {
+    flex: auto;
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+}
+
+.dome-xSplitter-vpane {
+    flex: auto;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+.dome-xSplitter-hline {
+    width: 1px;
+    height: 100%;
+}
+
+.dome-xSplitter-vline {
+    width: 100%;
+    height: 1px;
+}
+
+.dome-xSplitter-grab {
+    position: relative ;
+    z-index: 1 ;
+    border: 0px ;
+}
+
+.dome-xSplitter-hgrab {
+    left: -1px ;
+    width: 3px ;
+    height: 100% ;
+    cursor: col-resize ;
+}
+
+.dome-xSplitter-vgrab {
+    top: -1px ;
+    height: 3px ;
+    width: 100% ;
+    cursor: row-resize ;
+}
+
+.dome-xSplitter-hvgrab {
+    position: relative;
+    z-index: 2 ;
+    top: -4px ;
+    left: -4px ;
+    height: 9px;
+    width: 9px;
+    border-radius: 4px;
+    cursor: move;
+}
+
+.dome-xSplitter-hpos-A { position: absolute; left: 0px; height: 100% }
+.dome-xSplitter-hpos-R { position: absolute; width: 1px; height: 100% }
+.dome-xSplitter-hpos-B { position: absolute; right: 0px; height: 100% }
+
+.dome-xSplitter-vpos-A { position: absolute; top: 0px; width: 100% }
+.dome-xSplitter-vpos-R { position: absolute; height: 1px; width: 100% }
+.dome-xSplitter-vpos-B { position: absolute; bottom: 0px; width: 100% }
+.dome-xSplitter-hvpos { position: absolute; width: 1px; height: 1px }
+
+.dome-xSplitter-hline,
+.dome-xSplitter-vline
+{
+    background: var(--splitter) ;
+}
+
+.dome-xSplitter-pane
+{
+    position: absolute;
+    overflow: hidden;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- GridLayout Styles                                                  --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xGridLayout {
+    flex: 1 1 auto ;
+    width: 100% ;
+    height: 100% ;
+    position: relative ;
+    overflow: auto ;
+}
+
+.dome-xGridLayout-splitter {
+    z-index: 1 ;
+    position: absolute ;
+}
+
+.dome-xGridLayout-hsplit { cursor: col-resize }
+.dome-xGridLayout-hdrag  { cursor: ew-resize  }
+.dome-xGridLayout-vsplit { cursor: row-resize }
+.dome-xGridLayout-vdrag  { cursor: ns-resize  }
+
+.dome-xGridLayout-target {
+    z-index: 2 ;
+    position: absolute ;
+    border-radius: 12px ;
+    background: var(--grid-layout-target) ;
+    opacity: 0.5 ;
+}
+
+.dome-xGridLayout-holder {
+    z-index: -1 ;
+    position: absolute ;
+    overflow: hidden ;
+    background: var(--grid-layout-holder) ;
+    opacity: 0.5 ;
+}
+
+.dome-xGridLayout-item {
+    z-index: 0 ;
+    position: absolute ;
+    overflow: hidden ;
+}
+
+.dome-xGridLayout-item.dome-dragging
+{
+    z-index: +1 ;
+    transition: all 0.1s ease-out ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Form Containers                                                    --- */
+/* -------------------------------------------------------------------------- */
+
+/* Main Form */
+.dome-xForm-grid
+{
+    flex: 1 1 auto;
+    overflow: auto;
+    display: grid;
+    padding: 12px 32px;
+    grid-template-columns: [left] auto [field] auto [right] ;
+    grid-gap: 4px 12px;
+    grid-auto-rows: auto;
+    grid-auto-flow: row;
+    align-items: start;
+    align-content: start;
+    justify-content: start;
+}
+
+/* Field List */
+.dome-xForm-list
+{
+    display: grid;
+    grid-template-columns: [field] auto [right] ;
+    grid-gap: 4px ;
+    grid-auto-rows: auto;
+    grid-auto-flow: row;
+    align-items: start;
+}
+
+/* Block Container */
+.dome-xForm-block
+{
+    margin-bottom: 6px ;
+    margin-top: 6px ;
+    position: relative ;
+    grid-column-start: left ;
+    grid-column-end: right ;
+    justify-self: start ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Fields                                                             --- */
+/* -------------------------------------------------------------------------- */
+
+/* Label */
+.dome-xForm-label
+{
+    position: relative ;
+    grid-column-start: left ;
+    grid-column-end: field ;
+    justify-self: end ;
+}
+
+.dome-xForm-section
+{
+    margin-bottom: 6px ;
+    position: relative ;
+    left: -6px ;
+    grid-column-start: left ;
+    grid-column-end: right ;
+    justify-self: start ;
+}
+
+.dome-xForm-section .dome-disabled {
+    color: var(--background-disabled) ;
+}
+
+.dome-xForm-hsep
+{
+    grid-column-start: left ;
+    grid-column-end: right ;
+    height: 6px ;
+}
+
+.dome-xForm-fold
+{
+    position: absolute ;
+    top: 2px ;
+    fill: var(--info-text-discrete) ;
+    left: -14px ;
+}
+
+.dome-xForm-block .dome-xForm-label
+{
+    display: none ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Field                                                              --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xForm-field
+{
+    position: relative ;
+    grid-column-start: field ;
+    grid-column-end: right ;
+    justify-self: start ;
+}
+
+.dome-xForm-label.dome-disabled, .dome-xForm-field.dome-disabled
+{
+    color: var(--background-disabled) ;
+    opacity: 0.9 ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Errors                                                             --- */
+/* -------------------------------------------------------------------------- */
+
+/* Error Icon */
+.dome-xForm-error
+{
+    position: absolute ;
+    top: -1px ;
+    fill: var(--error) ;
+    margin-left: 6px ;
+}
+
+/* Error Warning */
+.dome-xForm-warning
+{
+    visibility: hidden ;
+    position: absolute ;
+    top: 3px ;
+    width: max-content ;
+    color: var(--warning) ;
+    margin-left: 4px ;
+    font-size: smaller ;
+}
+
+/* Hovered Warning */
+.dome-xForm-error:hover .dome-xForm-warning
+{
+    visibility: visible ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Text Fields                                                        --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xForm-text-field
+{
+    font-size: 10pt ;
+    width: 180px ;
+    padding-top:    1px ;
+    padding-bottom: 1px ;
+    padding-right: 4px ;
+    padding-left:  4px ;
+}
+
+.dome-xForm-textarea-field
+{
+    border-color: var(--border-discrete) ;
+    font-size: 10pt ;
+    padding-top:    2px ;
+    padding-bottom: 2px ;
+    padding-right: 4px ;
+    padding-left:  4px ;
+}
+
+.dome-xForm-field.dome-disabled .dome-xForm-textarea-field
+{
+    opacity: 0.6 ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Number Fields                                                      --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xForm-number-field
+{
+    text-align: right ;
+    padding-right: 12px ;
+    padding-left:  12px ;
+    width: 80px ;
+}
+
+.dome-xForm-spinner-field
+{
+    text-align: right ;
+    padding-left:  12px ;
+    width: 80px ;
+}
+
+.dome-xForm-units
+{
+    color: var(--info-text-discrete) ;
+    font-size: smaller ;
+    margin-left: 4px ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Sliders                                                            --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xForm-slider-field
+{
+    padding-right: 12px ;
+    padding-left:  12px ;
+    width: 120px ;
+}
+
+.dome-xForm-slider-value
+{
+    position: relative ;
+    top: -4px ;
+}
+
+.dome-xForm-slider-hide
+{
+    opacity: 0.0 ;
+    transition: opacity 0.5s ease-in 0.1s ;
+}
+
+.dome-xForm-slider-show
+{
+    transition: none ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Date & Time                                                        --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xForm-date-field
+{
+    text-align: right ;
+    width: 137px ;
+}
+
+.dome-xForm-time-field
+{
+    text-align: right ;
+    width: 109px ;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Color                                                              --- */
+/* -------------------------------------------------------------------------- */
+
+.dome-xForm-color-field
+{
+    position: relative ;
+    top: -1px ;
+    height: 21px ;
+    width: 32px ;
+}
+
+.dome-disabled .dome-xForm-color-field
+{
+    opacity: 0.2 ;
+}
+
+/* -------------------------------------------------------------------------- */

@@ -1,0 +1,39 @@
+[kernel] Parsing n5.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[kernel] n5.i:21: Warning: 
+  No code nor implicit assigns clause for function may_not_terminate, generating default assigns from the prototype
+[eva] computing for function may_not_terminate <- main.
+  Called from n5.i:21.
+[eva] using specification for function may_not_terminate
+[eva] Done for function may_not_terminate
+[eva] computing for function f <- main.
+  Called from n5.i:22.
+[kernel] n5.i:12: Warning: 
+  No code nor implicit assigns clause for function never_terminates, generating default assigns from the prototype
+[eva] computing for function never_terminates <- f <- main.
+  Called from n5.i:12.
+[eva] using specification for function never_terminates
+[eva] Done for function never_terminates
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function never_terminates <- main.
+  Called from n5.i:23.
+[eva] Done for function never_terminates
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[nonterm:stmt] n5.i:12: Warning: 
+  non-terminating function call
+  stack: f :: n5.i:22 <- main
+[nonterm:stmt] n5.i:23: Warning: 
+  non-terminating function call
+  stack: main
+[nonterm] Analysis done.

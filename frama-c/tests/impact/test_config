@@ -1,0 +1,2 @@
+PLUGIN: @EVA_PLUGINS@ impact
+OPT: -impact-print @EVA_OPTIONS@

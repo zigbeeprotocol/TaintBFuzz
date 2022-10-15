@@ -1,0 +1,6 @@
+[kernel] Parsing bts0519.c (with preprocessing)
+[kernel] bts0519.c:10: User Error: 
+  static specifier inside array argument is allowed only in function argument
+[kernel] User Error: stopping on file "bts0519.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

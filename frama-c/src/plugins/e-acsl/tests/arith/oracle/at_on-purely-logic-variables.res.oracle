@@ -1,0 +1,130 @@
+[e-acsl] beginning translation.
+[e-acsl] at_on-purely-logic-variables.c:67: Warning: 
+  E-ACSL construct
+  `\at on purely logic variables that needs to allocate too much memory (bigger than int_max bytes)'
+  is not yet supported.
+  Ignoring annotation.
+[e-acsl] at_on-purely-logic-variables.c:70: Warning: 
+  E-ACSL construct `\at with logic variable linked to C variable'
+  is not yet supported.
+  Ignoring annotation.
+[e-acsl] translation done in project "e-acsl".
+[eva:alarm] at_on-purely-logic-variables.c:28: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:28: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:29: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:29: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:29: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:34: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:34: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:31: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:38: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:38: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:42: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:42: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:42: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:46: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:46: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:46: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status invalid.
+[eva:alarm] at_on-purely-logic-variables.c:46: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:45: Warning: 
+  accessing uninitialized left-value.
+  assert
+  \initialized(__gen_e_acsl_at_6 +
+               (int)((int)((int)(__gen_e_acsl_u_7 - 9) * 32) +
+                     (int)(__gen_e_acsl_v_5 - -4)));
+[eva:alarm] at_on-purely-logic-variables.c:44: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:8: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:8: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:8: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:8: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:7: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:7: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:7: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:7: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:7: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:7: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:7: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:7: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:8: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:8: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:8: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:8: Warning: 
+  function __gen_e_acsl_f: postcondition got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:16: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:16: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:16: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:59: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:59: Warning: 
+  function __e_acsl_assert_register_ulong: precondition data->values == \null ||
+                                                        \valid(data->values) got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:56: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:66: Warning: 
+  assertion got status unknown.
+[eva:alarm] at_on-purely-logic-variables.c:69: Warning: 
+  assertion got status unknown.

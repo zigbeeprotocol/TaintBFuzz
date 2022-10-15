@@ -1,0 +1,25 @@
+[kernel] Parsing alias.i (no preprocessing)
+[impact] beginning analysis
+[eva] Analyzing an incomplete application starting at f
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  P ∈ [--..--]
+  c ∈ [--..--]
+[eva:alarm] alias.i:7: Warning: function f: precondition got status unknown.
+[eva:alarm] alias.i:11: Warning: out of bounds write. assert \valid(y);
+[eva:alarm] alias.i:12: Warning: out of bounds read. assert \valid_read(x + 1);
+[eva:alarm] alias.i:13: Warning: out of bounds write. assert \valid(y);
+[eva:alarm] alias.i:15: Warning: out of bounds read. assert \valid_read(x + 1);
+[eva:alarm] alias.i:18: Warning: out of bounds read. assert \valid_read(y);
+[eva] Recording results for f
+[eva] done for function f
+[eva] alias.i:18: assertion 'Eva,mem_access' got final status invalid.
+[scope:rm_asserts] removing 2 assertion(s)
+[pdg] computing for function f
+[pdg] done for function f
+[impact] impacted statements of stmt(s) 2 are:
+    alias.i:11 (sid 3): *y = 4;alias.i:12 (sid 4): int a = *(x + 1) + 2;
+    alias.i:13 (sid 5): *y = 2;alias.i:15 (sid 9): __retres = *(x + 1);
+    alias.i:14 (sid 18): return_label: return __retres;
+[impact] analysis done

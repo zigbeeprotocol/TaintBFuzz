@@ -1,0 +1,70 @@
+[kernel] Parsing annot.c (with preprocessing)
+[eva] Analyzing a complete application starting at loop
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+[eva:alarm] annot.c:22: Warning: loop invariant got status unknown.
+[eva] annot.c:25: starting to merge loop iterations
+[eva:alarm] annot.c:26: Warning: signed overflow. assert s + 2 ≤ 2147483647;
+[eva] Recording results for loop
+[eva] done for function loop
+[pdg] computing for function loop
+[pdg] done for function loop
+[pdg] PDG for loop
+ {n1}: InCtrl
+ {n2}: VarDecl : n
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: VarDecl : i
+ {n5}: VarDecl : s
+ {n6}: int s = 0;
+   -[-c-]-> 1
+   -[a--]-> 5
+ {n7}: i = 0;
+   -[-c-]-> 1
+   -[a--]-> 4
+ {n8}: while(1)
+   -[-c-]-> 1
+   -[-c-]-> 8
+   -[-c-]-> 9
+   -[-c-]-> 12
+ {n9}: i < n
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+   -[--d]-> 4
+   -[--d]-> 7
+   -[-c-]-> 8
+   -[-c-]-> 9
+   -[--d]-> 11
+   -[-c-]-> 12
+ {n10}: s += 2;
+   -[-c-]-> 1
+   -[a-d]-> 5
+   -[--d]-> 6
+   -[-c-]-> 8
+   -[-c-]-> 9
+   -[--d]-> 10
+   -[-c-]-> 12
+ {n11}: i ++;
+   -[-c-]-> 1
+   -[a-d]-> 4
+   -[--d]-> 7
+   -[-c-]-> 8
+   -[-c-]-> 9
+   -[--d]-> 11
+   -[-c-]-> 12
+ {n12}: break;
+   -[-c-]-> 1
+   -[-c-]-> 8
+   -[-c-]-> 9
+   -[-c-]-> 12
+ {n13}: return s;
+   -[-c-]-> 1
+   -[--d]-> 5
+   -[--d]-> 6
+   -[--d]-> 10
+ {n14}: OutRet
+   -[--d]-> 13

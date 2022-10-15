@@ -1,0 +1,12 @@
+%init:		a;
+%accept:	c;
+%deterministic;
+
+$x : int;
+$y : int;
+
+a : { CALL(main) } $x := *x; $y := *y; -> b;
+
+b : { RETURN(main) } $x := $y; $y := $x; -> c;
+
+c : -> c;

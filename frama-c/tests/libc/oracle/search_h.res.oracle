@@ -1,0 +1,76 @@
+[kernel] Parsing search_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  root ∈ {0}
+[eva] computing for function fgets <- main.
+  Called from search_h.c:25.
+[eva] using specification for function fgets
+[eva:alarm] search_h.c:25: Warning: 
+  function fgets: precondition 'valid_stream' got status unknown.
+[eva] search_h.c:25: function fgets: precondition 'room_s' got status valid.
+[eva] Done for function fgets
+[eva] search_h.c:27: Call to builtin strlen
+[eva:alarm] search_h.c:27: Warning: 
+  function strlen: precondition 'valid_string_s' got status unknown.
+[eva:alarm] search_h.c:28: Warning: 
+  accessing out of bounds index. assert 0 ≤ (int)(length - 1);
+[eva:alarm] search_h.c:28: Warning: 
+  accessing uninitialized left-value.
+  assert \initialized(&str[(int)(length - 1)]);
+[eva] search_h.c:30: Call to builtin malloc
+[eva] search_h.c:30: allocating variable __malloc_main_l30
+[eva] computing for function strcpy <- main.
+  Called from search_h.c:31.
+[eva] using specification for function strcpy
+[eva:alarm] search_h.c:31: Warning: 
+  function strcpy: precondition 'valid_string_src' got status unknown.
+[eva:alarm] search_h.c:31: Warning: 
+  function strcpy: precondition 'room_string' got status unknown.
+[eva] search_h.c:31: 
+  function strcpy: precondition 'separation' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:373: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function strcmp
+[eva] Done for function strcpy
+[eva:alarm] search_h.c:32: Warning: 
+  out of bounds write. assert \valid(&elementptr->count);
+[kernel:annot:missing-spec] search_h.c:34: Warning: 
+  Neither code nor specification for function tsearch, generating default assigns from the prototype
+[eva] computing for function tsearch <- main.
+  Called from search_h.c:34.
+[eva] using specification for function tsearch
+[eva:invalid-assigns] search_h.c:34: 
+  Completely invalid destination for assigns clause *compar. Ignoring.
+[eva] Done for function tsearch
+[eva] computing for function fprintf_va_1 <- main.
+  Called from search_h.c:36.
+[eva] using specification for function fprintf_va_1
+[eva] search_h.c:36: function fprintf_va_1: precondition got status valid.
+[eva] Done for function fprintf_va_1
+[eva] computing for function exit <- main.
+  Called from search_h.c:38.
+[eva] using specification for function exit
+[eva] Done for function exit
+[eva:alarm] search_h.c:40: Warning: 
+  out of bounds read. assert \valid_read((struct element **)node);
+[kernel:annot:missing-spec] search_h.c:46: Warning: 
+  Neither code nor specification for function twalk, generating default assigns from the prototype
+[eva] computing for function twalk <- main.
+  Called from search_h.c:46.
+[eva] using specification for function twalk
+[eva:invalid-assigns] search_h.c:46: 
+  Completely invalid destination for assigns clause *action. Ignoring.
+[eva] Done for function twalk
+[eva] Recording results for main
+[eva] done for function main
+[eva] search_h.c:40: assertion 'Eva,mem_access' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_heap_status ∈ [--..--]
+  str[0..2048] ∈ [--..--] or UNINITIALIZED
+  length ∈ {0}
+  elementptr ∈ UNINITIALIZED
+  node ∈ UNINITIALIZED
+  __retres ∈ {0}
+  S___fc_stderr[0..1] ∈ [--..--]

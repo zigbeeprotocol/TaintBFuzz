@@ -1,0 +1,26 @@
+[kernel] Parsing loop_join.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  U[0..9999] ∈ {0}
+[eva] loop_join.i:5: starting to merge loop iterations
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  U[0..199] ∈ {0}
+   [200] ∈ {-1; 0}
+   [201..9999] ∈ {0}
+  i ∈ {400}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  U[0..1000] FROM \nothing (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    U[0..1000]; i
+[inout] Inputs for function main:
+    \nothing

@@ -1,0 +1,99 @@
+[kernel] Parsing sys_select.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function socket <- main.
+  Called from sys_select.c:9.
+[eva] using specification for function socket
+[eva] Done for function socket
+[eva] computing for function exit <- main.
+  Called from sys_select.c:10.
+[eva] using specification for function exit
+[eva] Done for function exit
+[eva] sys_select.c:16: Call to builtin memset
+[eva] sys_select.c:16: function memset: precondition 'valid_s' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:134: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memset
+[eva] computing for function htonl <- main.
+  Called from sys_select.c:18.
+[eva] using specification for function htonl
+[eva] Done for function htonl
+[eva] computing for function htons <- main.
+  Called from sys_select.c:19.
+[eva] using specification for function htons
+[eva] Done for function htons
+[eva] computing for function bind <- main.
+  Called from sys_select.c:20.
+[eva] using specification for function bind
+[eva] sys_select.c:20: 
+  function bind: precondition 'valid_sockfd,sockfd' got status valid.
+[eva] sys_select.c:20: 
+  function bind: precondition 'valid_read_addr' got status valid.
+[eva] Done for function bind
+[eva] computing for function exit <- main.
+  Called from sys_select.c:21.
+[eva] Done for function exit
+[eva] computing for function FD_ZERO <- main.
+  Called from sys_select.c:22.
+[eva] using specification for function FD_ZERO
+[eva] sys_select.c:22: 
+  function FD_ZERO: precondition 'valid_fdset' got status valid.
+[eva] Done for function FD_ZERO
+[eva] computing for function FD_SET <- main.
+  Called from sys_select.c:24.
+[eva] using specification for function FD_SET
+[eva] sys_select.c:24: 
+  function FD_SET: precondition 'valid_fdset' got status valid.
+[eva] sys_select.c:24: 
+  function FD_SET: precondition 'initialization' got status valid.
+[eva] Done for function FD_SET
+[eva] sys_select.c:30: Call to builtin memcpy
+[eva] sys_select.c:30: 
+  function memcpy: precondition 'valid_dest' got status valid.
+[eva] sys_select.c:30: 
+  function memcpy: precondition 'valid_src' got status valid.
+[eva] sys_select.c:30: 
+  function memcpy: precondition 'separation' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:101: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva] computing for function select <- main.
+  Called from sys_select.c:31.
+[eva] using specification for function select
+[eva] sys_select.c:31: function select: precondition 'nfds' got status valid.
+[eva] sys_select.c:31: function select: precondition 'readfs' got status valid.
+[eva] sys_select.c:31: 
+  function select: precondition 'writefds' got status valid.
+[eva] sys_select.c:31: 
+  function select: precondition 'errorfds' got status valid.
+[eva] sys_select.c:31: function select: precondition 'timeout' got status valid.
+[eva:invalid-assigns] sys_select.c:31: 
+  Completely invalid destination for assigns clause *writefds. Ignoring.
+[eva:invalid-assigns] sys_select.c:31: 
+  Completely invalid destination for assigns clause *errorfds. Ignoring.
+[eva] Done for function select
+[eva] computing for function FD_ISSET <- main.
+  Called from sys_select.c:32.
+[eva] using specification for function FD_ISSET
+[eva] sys_select.c:32: 
+  function FD_ISSET: precondition 'valid_fdset' got status valid.
+[eva] sys_select.c:32: 
+  function FD_ISSET: precondition 'initialization' got status valid.
+[eva] Done for function FD_ISSET
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_sockfds[0..1023] ∈ [--..--]
+  __fc_socket_counter ∈ [--..--]
+  __fc_fds_state ∈ [--..--]
+  fd1 ∈ [0..1023]
+  max_fd ∈ [0..1023]
+  fds1 ∈ [--..--]
+  fds2 ∈ [--..--]
+  addr.sin_family ∈ {2}
+      {.sin_port; .sin_addr} ∈ [--..--]
+  res ∈ [--..--]
+  timeout ∈ [--..--]
+  __retres ∈ {0}

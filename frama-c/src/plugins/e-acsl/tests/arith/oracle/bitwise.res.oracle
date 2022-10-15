@@ -1,0 +1,110 @@
+[e-acsl] beginning translation.
+[e-acsl] translation done in project "e-acsl".
+[eva:alarm] bitwise.c:14: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:16: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:18: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:18: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:20: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:20: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:22: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:22: Warning: 
+  function __e_acsl_assert_register_int: precondition data->values == \null ||
+                                                      \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:28: Warning: 
+  function __e_acsl_assert_register_uint: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:30: Warning: 
+  function __e_acsl_assert_register_uint: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:32: Warning: 
+  function __e_acsl_assert_register_uint: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:32: Warning: 
+  function __e_acsl_assert_register_uint: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:34: Warning: 
+  function __e_acsl_assert_register_uint: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:34: Warning: 
+  function __e_acsl_assert_register_uint: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:36: Warning: 
+  function __e_acsl_assert_register_uint: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:36: Warning: 
+  function __e_acsl_assert_register_uint: precondition data->values == \null ||
+                                                       \valid(data->values) got status unknown.
+[eva:alarm] bitwise.c:42: Warning: 
+  function __e_acsl_assert_copy_values: precondition dest->values == \null ||
+                                                     \valid(dest->values) got status unknown.
+[eva:alarm] bitwise.c:42: Warning: 
+  function __e_acsl_assert_copy_values: precondition src->values == \null ||
+                                                     \valid(src->values) got status unknown.
+[eva:alarm] bitwise.c:42: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:42: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:44: Warning: 
+  function __e_acsl_assert_copy_values: precondition dest->values == \null ||
+                                                     \valid(dest->values) got status unknown.
+[eva:alarm] bitwise.c:44: Warning: 
+  function __e_acsl_assert_copy_values: precondition src->values == \null ||
+                                                     \valid(src->values) got status unknown.
+[eva:alarm] bitwise.c:44: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:44: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:46: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:47: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:48: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:49: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:50: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:57: Warning: 
+  function __e_acsl_assert_copy_values: precondition dest->values == \null ||
+                                                     \valid(dest->values) got status unknown.
+[eva:alarm] bitwise.c:57: Warning: 
+  function __e_acsl_assert_copy_values: precondition src->values == \null ||
+                                                     \valid(src->values) got status unknown.
+[eva:alarm] bitwise.c:57: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:57: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:59: Warning: 
+  function __e_acsl_assert_copy_values: precondition dest->values == \null ||
+                                                     \valid(dest->values) got status unknown.
+[eva:alarm] bitwise.c:59: Warning: 
+  function __e_acsl_assert_copy_values: precondition src->values == \null ||
+                                                     \valid(src->values) got status unknown.
+[eva:alarm] bitwise.c:59: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:59: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:61: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:62: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:63: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:64: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] bitwise.c:65: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.

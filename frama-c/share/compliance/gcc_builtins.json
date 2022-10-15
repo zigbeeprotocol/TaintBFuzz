@@ -1,0 +1,1336 @@
+{
+    "description":"GCC builtins supported by Frama-C",
+    "source":"Mostly https://gcc.gnu.org/onlinedocs/gcc/C-Extensions.html, from pages with 'Builtins' in their title",
+    "notes": {
+        "rettype":"Return type of the builtin. Whitespace is important: types are matched as exact strings, with a single space between components.",
+        "args":"List of the types of the builtin arguments. Whitespace is important: types are matched as exact strings, with a single space between components. The full list of 'known' type names is available in cil_builtins.ml.",
+        "types":"When present, a list indicating that this is a builtin template, to be instantiated for each type in the list. Instantiation is the replacement of each occurrence of 'type' in 'rettype' and 'args' with the elements of this list.",
+        "variadic":"When present, this builtin behaves as a variadic function.",
+        "_comment": [
+            "Complex types are unsupported, so the following builtins cannot be added:",
+            "cabs",
+            "cabsf",
+            "cabsh",
+            "cacos",
+            "cacosf",
+            "cacosl",
+            "cacosh",
+            "cacoshf",
+            "cacoshl",
+            "carg",
+            "cargf",
+            "cargl",
+            "casin",
+            "casinf",
+            "casinl",
+            "casinh",
+            "casinhf",
+            "casinhl",
+            "catan",
+            "catanf",
+            "catanl",
+            "catanh",
+            "catanhf",
+            "catanhl",
+            "ccos",
+            "ccosf",
+            "ccosl",
+            "ccosh",
+            "ccoshf",
+            "ccoshl",
+            "cexp",
+            "cexpf",
+            "cexpl",
+            "cimag",
+            "cimagf",
+            "cimagl",
+            "clog",
+            "clogf",
+            "clogl",
+            "conj",
+            "conjf",
+            "conjl",
+            "cpow",
+            "cpowf",
+            "cpowl",
+            "cproj",
+            "cprojf",
+            "cprojl",
+            "creal",
+            "crealf",
+            "creall",
+            "csin",
+            "csinf",
+            "csinl",
+            "csinh",
+            "csinhf",
+            "csinhl",
+            "csqrt",
+            "csqrtf",
+            "csqrtl",
+            "ctan",
+            "ctanf",
+            "ctanl",
+            "ctanh",
+            "ctanhf",
+            "ctanhl",
+            "Also, the type 'wint_t' is not specified in 'theMachine', so the following builtins that use it cannot be added:",
+            "iswalnum",
+            "iswalpha",
+            "iswblank",
+            "iswcntrl",
+            "iswdigit",
+            "iswgraph",
+            "iswlower",
+            "iswprint",
+            "iswpunct",
+            "iswspace",
+            "iswupper",
+            "iswxdigit",
+            "towlower",
+            "towupper"
+        ]
+    },
+    "data":{
+        "__builtin__Exit": {
+            "rettype":"void",
+            "args": ["int"]
+        },
+        "__builtin___fprintf_chk": {
+            "rettype":"int",
+            "args": ["void *","int","char const *"],
+            "variadic":true
+        },
+        "__builtin___memcpy_chk": {
+            "rettype":"void *",
+            "args": ["void *","void const *","size_t","size_t"]
+        },
+        "__builtin___memmove_chk": {
+            "rettype":"void *",
+            "args": ["void *","void const *","size_t","size_t"]
+        },
+        "__builtin___mempcpy_chk": {
+            "rettype":"void *",
+            "args": ["void *","void const *","size_t","size_t"]
+        },
+        "__builtin___memset_chk": {
+            "rettype":"void *",
+            "args": ["void *","int","size_t","size_t"]
+        },
+        "__builtin___printf_chk": {
+            "rettype":"int",
+            "args": ["int","char const *"],
+            "variadic":true
+        },
+        "__builtin___snprintf_chk": {
+            "rettype":"int",
+            "args": ["char *","size_t","int","size_t","char const *"],
+            "variadic":true
+        },
+        "__builtin___sprintf_chk": {
+            "rettype":"int",
+            "args": ["char *","int","size_t","char const *"],
+            "variadic":true
+        },
+        "__builtin___stpcpy_chk": {
+            "rettype":"char *",
+            "args": ["char *","char const *","size_t"]
+        },
+        "__builtin___strcat_chk": {
+            "rettype":"char *",
+            "args": ["char *","char const *","size_t"]
+        },
+        "__builtin___strcpy_chk": {
+            "rettype":"char *",
+            "args": ["char *","char const *","size_t"]
+        },
+        "__builtin___strncat_chk": {
+            "rettype":"char *",
+            "args": ["char *","char const *","size_t","size_t"]
+        },
+        "__builtin___strncpy_chk": {
+            "rettype":"char *",
+            "args": ["char *","char const *","size_t","size_t"]
+        },
+        "__builtin___vfprintf_chk": {
+            "rettype":"int",
+            "args": ["void *","int","char const *","__builtin_va_list"]
+        },
+        "__builtin___vprintf_chk": {
+            "rettype":"int",
+            "args": ["int","char const *","__builtin_va_list"]
+        },
+        "__builtin___vsnprintf_chk": {
+            "rettype":"int",
+            "args": ["char *","size_t","int","size_t","char const *","__builtin_va_list"]
+        },
+        "__builtin___vsprintf_chk": {
+            "rettype":"int",
+            "args": ["char *","int","size_t","char const *","__builtin_va_list"]
+        },
+        "__builtin_abs": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_acos": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_acosf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_acosh": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_acoshf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_acoshl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_acosl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_alloca": {
+            "rettype":"void *",
+            "args": ["size_t"]
+        },
+        "__builtin_asin": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_asinf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_asinh": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_asinhf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_asinhl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_asinl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_atan": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_atan2": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_atan2f": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_atan2l": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_atanf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_atanh": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_atanhf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_atanhl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_atanl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_bswap16": {
+            "rettype":"uint16_t",
+            "args": ["uint16_t"]
+        },
+        "__builtin_bswap32": {
+            "rettype":"uint32_t",
+            "args": ["uint32_t"]
+        },
+        "__builtin_bswap64": {
+            "rettype":"uint64_t",
+            "args": ["uint64_t"]
+        },
+        "__builtin_calloc": {
+            "rettype":"void *",
+            "args": ["size_t","size_t"]
+        },
+        "__builtin_cbrt": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_cbrtf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_cbrtl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_ceil": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_ceilf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_ceill": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_constant_p": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_copysign": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_copysignf": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_copysignl": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_cos": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_cosf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_cosh": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_coshf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_coshl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_cosl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_erf": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_erfc": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_erfcf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_erfcl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_erff": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_erfl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_exit": {
+            "rettype":"void",
+            "args": ["int"]
+        },
+        "__builtin_exp": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_exp2": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_exp2f": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_exp2l": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_expect": {
+            "rettype":"long",
+            "args": ["long","long"]
+        },
+        "__builtin_expf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_expl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_expm1": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_expm1f": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_expm1l": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_fabs": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_fabsf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_fabsl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_fdim": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_fdimf": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_fdiml": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_ffs": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_ffsl": {
+            "rettype":"int",
+            "args": ["long"]
+        },
+        "__builtin_ffsll": {
+            "rettype":"int",
+            "args": ["long long"]
+        },
+        "__builtin_floor": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_floorf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_floorl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_fma": {
+            "rettype":"double",
+            "args": ["double","double","double"]
+        },
+        "__builtin_fmaf": {
+            "rettype":"float",
+            "args": ["float","float","float"]
+        },
+        "__builtin_fmal": {
+            "rettype":"long double",
+            "args": ["long double","long double","long double"]
+        },
+        "__builtin_fmax": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_fmaxf": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_fmaxl": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_fmin": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_fminf": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_fminl": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_fmod": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_fmodf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_fmodl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_fprintf": {
+            "rettype":"int",
+            "args": ["void *","char const *"],
+            "variadic":true
+        },
+        "__builtin_fputs": {
+            "rettype":"int",
+            "args": ["char const *","void *"]
+        },
+        "__builtin_frame_address": {
+            "rettype":"void *",
+            "args": ["unsigned int"]
+        },
+        "__builtin_free": {
+            "rettype":"void",
+            "args": ["void *"]
+        },
+        "__builtin_frexp": {
+            "rettype":"double",
+            "args": ["double","int *"]
+        },
+        "__builtin_frexpf": {
+            "rettype":"float",
+            "args": ["float","int *"]
+        },
+        "__builtin_frexpl": {
+            "rettype":"long double",
+            "args": ["long double","int *"]
+        },
+        "__builtin_fscanf": {
+            "rettype":"int",
+            "args": ["void *","char const *"],
+            "variadic":true
+        },
+        "__builtin_huge_val": {
+            "rettype":"double",
+            "args": []
+        },
+        "__builtin_huge_valf": {
+            "rettype":"float",
+            "args": []
+        },
+        "__builtin_huge_vall": {
+            "rettype":"long double",
+            "args": []
+        },
+        "__builtin_hypot": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_hypotf": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_hypotl": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_ia32_lfence": {
+            "rettype":"void",
+            "args": []
+        },
+        "__builtin_ia32_mfence": {
+            "rettype":"void",
+            "args": []
+        },
+        "__builtin_ia32_sfence": {
+            "rettype":"void",
+            "args": []
+        },
+        "__builtin_ilogb": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_ilogbf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_ilogbl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_inf": {
+            "rettype":"double",
+            "args": []
+        },
+        "__builtin_inff": {
+            "rettype":"float",
+            "args": []
+        },
+        "__builtin_infl": {
+            "rettype":"long double",
+            "args": []
+        },
+        "__builtin_isalnum": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_isalpha": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_isblank": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_iscntrl": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_isdigit": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_isgraph": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_islower": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_isprint": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_ispunct": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_isspace": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_isupper": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_isxdigit": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_labs": {
+            "rettype":"long",
+            "args": ["long"]
+        },
+        "__builtin_ldexp": {
+            "rettype":"double",
+            "args": ["double","int"]
+        },
+        "__builtin_ldexpf": {
+            "rettype":"float",
+            "args": ["float","int"]
+        },
+        "__builtin_ldexpl": {
+            "rettype":"long double",
+            "args": ["long double","int"]
+        },
+        "__builtin_lgamma": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_lgammaf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_lgammal": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_llabs": {
+            "rettype":"long long",
+            "args": ["long long"]
+        },
+        "__builtin_llrint": {
+            "rettype":"long long",
+            "args": ["double"]
+        },
+        "__builtin_llrintf": {
+            "rettype":"long long",
+            "args": ["float"]
+        },
+        "__builtin_llrintl": {
+            "rettype":"long long",
+            "args": ["long double"]
+        },
+        "__builtin_llround": {
+            "rettype":"long long",
+            "args": ["double"]
+        },
+        "__builtin_llroundf": {
+            "rettype":"long long",
+            "args": ["float"]
+        },
+        "__builtin_llroundl": {
+            "rettype":"long long",
+            "args": ["long double"]
+        },
+        "__builtin_log": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_log10": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_log10f": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_log10l": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_log1p": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_log1pf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_log1pl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_log2": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_log2f": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_log2l": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_logb": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_logbf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_logbl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_logf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_logl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_lrint": {
+            "rettype":"long",
+            "args": ["double"]
+        },
+        "__builtin_lrintf": {
+            "rettype":"long",
+            "args": ["float"]
+        },
+        "__builtin_lrintl": {
+            "rettype":"long",
+            "args": ["long double"]
+        },
+        "__builtin_lround": {
+            "rettype":"long",
+            "args": ["double"]
+        },
+        "__builtin_lroundf": {
+            "rettype":"long",
+            "args": ["float"]
+        },
+        "__builtin_lroundl": {
+            "rettype":"long",
+            "args": ["long double"]
+        },
+        "__builtin_malloc": {
+            "rettype":"void *",
+            "args": ["size_t"]
+        },
+        "__builtin_memchr": {
+            "rettype":"void *",
+            "args": ["void const *","int","size_t"]
+        },
+        "__builtin_memcmp": {
+            "rettype":"int",
+            "args": ["void const *","void const *","size_t"]
+        },
+        "__builtin_memcpy": {
+            "rettype":"void *",
+            "args": ["void *","void const *","size_t"]
+        },
+        "__builtin_mempcpy": {
+            "rettype":"void *",
+            "args": ["void *","void const *","size_t"]
+        },
+        "__builtin_memset": {
+            "rettype":"void *",
+            "args": ["void *","int","size_t"]
+        },
+        "__builtin_modf": {
+            "rettype":"double",
+            "args": ["double","double *"]
+        },
+        "__builtin_modff": {
+            "rettype":"float",
+            "args": ["float","float *"]
+        },
+        "__builtin_modfl": {
+            "rettype":"long double",
+            "args": ["long double","long double *"]
+        },
+        "__builtin_nan": {
+            "rettype":"double",
+            "args": ["char const *"]
+        },
+        "__builtin_nanf": {
+            "rettype":"float",
+            "args": ["char const *"]
+        },
+        "__builtin_nanl": {
+            "rettype":"long double",
+            "args": ["char const *"]
+        },
+        "__builtin_nans": {
+            "rettype":"double",
+            "args": ["char const *"]
+        },
+        "__builtin_nansf": {
+            "rettype":"float",
+            "args": ["char const *"]
+        },
+        "__builtin_nansl": {
+            "rettype":"long double",
+            "args": ["char const *"]
+        },
+        "__builtin_nearbyint": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_nearbyintf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_nearbyintl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_nextafter": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_nextafterf": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_nextafterl": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_nexttoward": {
+            "rettype":"double",
+            "args": ["double","long double"]
+        },
+        "__builtin_nexttowardf": {
+            "rettype":"float",
+            "args": ["float","long double"]
+        },
+        "__builtin_nexttowardl": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_object_size": {
+            "rettype":"size_t",
+            "args": ["void *","int"]
+        },
+        "__builtin_offsetof": {
+            "rettype":"size_t",
+            "args": ["size_t"]
+        },
+        "__builtin_parity": {
+            "rettype":"int",
+            "args": ["unsigned int"]
+        },
+        "__builtin_parityl": {
+            "rettype":"int",
+            "args": ["unsigned long"]
+        },
+        "__builtin_parityll": {
+            "rettype":"int",
+            "args": ["unsigned long long"]
+        },
+        "__builtin_pow": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_powf": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_powi": {
+            "rettype":"double",
+            "args": ["double","int"]
+        },
+        "__builtin_powif": {
+            "rettype":"float",
+            "args": ["float","int"]
+        },
+        "__builtin_powil": {
+            "rettype":"long double",
+            "args": ["long double","int"]
+        },
+        "__builtin_powl": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_prefetch": {
+            "rettype":"void",
+            "args": ["void const *"],
+            "variadic":true
+        },
+        "__builtin_printf": {
+            "rettype":"int",
+            "args": ["char const *"],
+            "variadic":true
+        },
+        "__builtin_putchar": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_puts": {
+            "rettype":"int",
+            "args": ["char const *"]
+        },
+        "__builtin_realloc": {
+            "rettype":"void *",
+            "args": ["void *","size_t"]
+        },
+        "__builtin_remainder": {
+            "rettype":"double",
+            "args": ["double","double"]
+        },
+        "__builtin_remainderf": {
+            "rettype":"float",
+            "args": ["float","float"]
+        },
+        "__builtin_remainderl": {
+            "rettype":"long double",
+            "args": ["long double","long double"]
+        },
+        "__builtin_remquo": {
+            "rettype":"double",
+            "args": ["double","double","int *"]
+        },
+        "__builtin_remquof": {
+            "rettype":"float",
+            "args": ["float","float","int *"]
+        },
+        "__builtin_remquol": {
+            "rettype":"long double",
+            "args": ["long double","long double","int *"]
+        },
+        "__builtin_return": {
+            "rettype":"void",
+            "args": ["void const *"]
+        },
+        "__builtin_return_address": {
+            "rettype":"void *",
+            "args": ["unsigned int"]
+        },
+        "__builtin_rint": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_rintf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_rintl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_round": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_roundf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_roundl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_scalbln": {
+            "rettype":"double",
+            "args": ["double","long"]
+        },
+        "__builtin_scalblnf": {
+            "rettype":"float",
+            "args": ["float","long"]
+        },
+        "__builtin_scalblnl": {
+            "rettype":"long double",
+            "args": ["long double","long"]
+        },
+        "__builtin_scalbn": {
+            "rettype":"double",
+            "args": ["double","int"]
+        },
+        "__builtin_scalbnf": {
+            "rettype":"float",
+            "args": ["float","int"]
+        },
+        "__builtin_scalbnl": {
+            "rettype":"long double",
+            "args": ["long double","int"]
+        },
+        "__builtin_scanf": {
+            "rettype":"int",
+            "args": ["char const *"],
+            "variadic":true
+        },
+        "__builtin_sin": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_sinf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_sinh": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_sinhf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_sinhl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_sinl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_snprintf": {
+            "rettype":"int",
+            "args": ["char *","size_t","char const *"],
+            "variadic":true
+        },
+        "__builtin_sprintf": {
+            "rettype":"int",
+            "args": ["char *","char const *"],
+            "variadic":true
+        },
+        "__builtin_sqrt": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_sqrtf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_sqrtl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_sscanf": {
+            "rettype":"int",
+            "args": ["char const *","char const *"],
+            "variadic":true
+        },
+        "__builtin_stdarg_start": {
+            "rettype":"void",
+            "args": ["__builtin_va_list"]
+        },
+        "__builtin_stpcpy": {
+            "rettype":"char *",
+            "args": ["char *","char const *"]
+        },
+        "__builtin_strcat": {
+            "rettype":"char *",
+            "args": ["char *","char const *"]
+        },
+        "__builtin_strchr": {
+            "rettype":"char *",
+            "args": ["char *","int"]
+        },
+        "__builtin_strcmp": {
+            "rettype":"int",
+            "args": ["char const *","char const *"]
+        },
+        "__builtin_strcpy": {
+            "rettype":"char *",
+            "args": ["char *","char const *"]
+        },
+        "__builtin_strcspn": {
+            "rettype":"size_t",
+            "args": ["char const *","char const *"]
+        },
+        "__builtin_strlen": {
+            "rettype":"size_t",
+            "args": ["char const *"]
+        },
+        "__builtin_strncat": {
+            "rettype":"char *",
+            "args": ["char *","char const *","size_t"]
+        },
+        "__builtin_strncmp": {
+            "rettype":"int",
+            "args": ["char const *","char const *","size_t"]
+        },
+        "__builtin_strncpy": {
+            "rettype":"char *",
+            "args": ["char *","char const *","size_t"]
+        },
+        "__builtin_strpbrk": {
+            "rettype":"char *",
+            "args": ["char const *","char const *"]
+        },
+        "__builtin_strrchr": {
+            "rettype":"char *",
+            "args": ["char const *","int"]
+        },
+        "__builtin_strspn": {
+            "rettype":"size_t",
+            "args": ["char const *","char const *"]
+        },
+        "__builtin_strstr": {
+            "rettype":"char *",
+            "args": ["char const *","char const *"]
+        },
+        "__builtin_tan": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_tanf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_tanh": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_tanhf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_tanhl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_tanl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_tgamma": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_tgammaf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_tgammal": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_tolower": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_toupper": {
+            "rettype":"int",
+            "args": ["int"]
+        },
+        "__builtin_trunc": {
+            "rettype":"double",
+            "args": ["double"]
+        },
+        "__builtin_truncf": {
+            "rettype":"float",
+            "args": ["float"]
+        },
+        "__builtin_truncl": {
+            "rettype":"long double",
+            "args": ["long double"]
+        },
+        "__builtin_types_compatible_p": {
+            "rettype":"int",
+            "args": ["size_t","size_t"]
+        },
+        "__builtin_unreachable": {
+            "rettype":"void",
+            "args": []
+        },
+        "__builtin_vfprintf": {
+            "rettype":"int",
+            "args": ["void *","char const *","__builtin_va_list"]
+        },
+        "__builtin_vfscanf": {
+            "rettype":"int",
+            "args": ["void *","char const *","__builtin_va_list"]
+        },
+        "__builtin_vprintf": {
+            "rettype":"int",
+            "args": ["char const *","__builtin_va_list"]
+        },
+        "__builtin_vscanf": {
+            "rettype":"int",
+            "args": ["char const *","__builtin_va_list"]
+        },
+        "__builtin_vsnprintf": {
+            "rettype":"int",
+            "args": ["char *","size_t","char const *","__builtin_va_list"]
+        },
+        "__builtin_vsprintf": {
+            "rettype":"int",
+            "args": ["char *","char const *","__builtin_va_list"]
+        },
+        "__builtin_vsscanf": {
+            "rettype":"int",
+            "args": ["char const *","char const *","__builtin_va_list"]
+        },
+        "__sync_add_and_fetch": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_and_and_fetch": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_bool_compare_and_swap": {
+            "rettype":"int",
+            "args": ["T volatile *", "T", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_fetch_and_add": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_fetch_and_and": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_fetch_and_nand": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_fetch_and_or": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_fetch_and_sub": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_fetch_and_xor": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_lock_release": {
+            "rettype":"void",
+            "args": ["T volatile *"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_lock_test_and_set": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_nand_and_fetch": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_or_and_fetch": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_sub_and_fetch": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_val_compare_and_swap": {
+            "rettype":"T",
+            "args": ["T volatile *","T","T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        },
+        "__sync_xor_and_fetch": {
+            "rettype":"T",
+            "args": ["T volatile *", "T"],
+            "types":["int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"],
+            "variadic":true
+        }
+    }
+}

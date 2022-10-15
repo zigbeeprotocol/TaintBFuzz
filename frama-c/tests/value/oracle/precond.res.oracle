@@ -1,0 +1,215 @@
+[kernel] Parsing precond.c (with preprocessing)
+[eva] Analyzing an incomplete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ [--..--]
+  pf2 ∈ {{ &f2 }}
+[eva] computing for function f <- main.
+  Called from precond.c:31.
+[eva] precond.c:31: function f: precondition 'i_plus_one' got status valid.
+[eva] precond.c:31: function f: precondition 'i' got status valid.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from precond.c:32.
+[eva] precond.c:32: function f: precondition 'i_plus_one' got status valid.
+[eva] precond.c:32: function f: precondition 'i' got status valid.
+[eva] Recording results for f
+[eva] Done for function f
+[kernel] precond.c:34: Warning: 
+  No code nor implicit assigns clause for function g, generating default assigns from the prototype
+[eva] computing for function g <- main.
+  Called from precond.c:34.
+[eva] using specification for function g
+[eva:alarm] precond.c:34: Warning: function g: precondition got status unknown.
+[eva] Done for function g
+[eva] computing for function aux <- main.
+  Called from precond.c:36.
+[kernel] precond.c:21: Warning: 
+  No code nor implicit assigns clause for function f2, generating default assigns from the prototype
+[eva] computing for function f2 <- aux <- main.
+  Called from precond.c:21.
+[eva] using specification for function f2
+[eva] precond.c:21: function f2: precondition got status valid.
+[eva] Done for function f2
+[eva] Recording results for aux
+[eva] Done for function aux
+[eva] computing for function aux <- main.
+  Called from precond.c:37.
+[eva] computing for function f2 <- aux <- main.
+  Called from precond.c:21.
+[eva:alarm] precond.c:21: Warning: function f2: precondition got status unknown.
+[eva] Done for function f2
+[eva] Recording results for aux
+[eva] Done for function aux
+[eva] precond.c:39: function f: precondition 'i_plus_one' got status valid.
+[eva] precond.c:39: function f: precondition 'i' got status valid.
+[eva] precond.c:39: Reusing old results for call to f
+[eva] computing for function f <- main.
+  Called from precond.c:40.
+[eva] precond.c:40: function f: precondition 'i_plus_one' got status valid.
+[eva:alarm] precond.c:40: Warning: 
+  function f: precondition 'i' got status invalid.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  x ∈ {0; 1}
+[eva:final-states] Values at end of function aux:
+  
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'f'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Pre-condition 'i_plus_one'
+            requires i_plus_one: i + 1 ≥ 0
+            by Call Preconditions.
+[  Alarm  ] Pre-condition 'i'
+            requires i: i ≥ 0
+            By Call Preconditions, with pending:
+             - Unreachable instruction (file precond.c, line 40)
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'f2'
+--------------------------------------------------------------------------------
+
+[    -    ] Pre-condition (file precond.c, line 15)
+            requires i ≥ 0
+            tried with Call Preconditions.
+[    -    ] Assigns nothing
+            assigns \nothing;
+            tried with Inferred annotations.
+[    -    ] Default behavior
+            default behavior
+            tried with Frama-C kernel.
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'aux'
+--------------------------------------------------------------------------------
+
+[    -    ] Instance of 'Pre-condition (file precond.c, line 15)' at instruction (file precond.c, line 21)
+
+            status of 'requires i ≥ 0' of f2 at stmt 4
+            tried with Eva.
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'g'
+--------------------------------------------------------------------------------
+
+[    -    ] Pre-condition (file precond.c, line 24)
+            requires x ≤ 8
+            tried with Call Preconditions.
+[    -    ] Assigns nothing
+            assigns \nothing;
+            tried with Inferred annotations.
+[    -    ] Default behavior
+            default behavior
+            tried with Frama-C kernel.
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'main'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Instance of 'Pre-condition 'i_plus_one'' at call 'f' (file precond.c, line 31)
+
+            status of 'requires i_plus_one: i + 1 ≥ 0' of f at stmt 10
+            by Eva.
+[  Valid  ] Instance of 'Pre-condition 'i'' at call 'f' (file precond.c, line 31)
+
+            status of 'requires i: i ≥ 0' of f at stmt 10
+            by Eva.
+[  Valid  ] Instance of 'Pre-condition 'i_plus_one'' at call 'f' (file precond.c, line 32)
+
+            status of 'requires i_plus_one: i + 1 ≥ 0' of f at stmt 13
+            by Eva.
+[  Valid  ] Instance of 'Pre-condition 'i'' at call 'f' (file precond.c, line 32)
+
+            status of 'requires i: i ≥ 0' of f at stmt 13
+            by Eva.
+[    -    ] Instance of 'Pre-condition (file precond.c, line 24)' at call 'g' (file precond.c, line 34)
+
+            status of 'requires x ≤ 8' of g at stmt 16
+            tried with Eva.
+[  Valid  ] Instance of 'Pre-condition 'i_plus_one'' at instruction (file precond.c, line 39)
+
+            status of 'requires i_plus_one: i + 1 ≥ 0' of f at stmt 19
+            by Eva.
+[  Valid  ] Instance of 'Pre-condition 'i'' at instruction (file precond.c, line 39)
+
+            status of 'requires i: i ≥ 0' of f at stmt 19
+            by Eva.
+[  Valid  ] Instance of 'Pre-condition 'i_plus_one'' at instruction (file precond.c, line 40)
+
+            status of 'requires i_plus_one: i + 1 ≥ 0' of f at stmt 20
+            by Eva.
+[  Alarm  ] Instance of 'Pre-condition 'i'' at instruction (file precond.c, line 40)
+
+            status of 'requires i: i ≥ 0' of f at stmt 20
+            By Eva, with pending:
+             - Unreachable instruction (file precond.c, line 40)
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     8 Completely validated
+     8 To be validated
+     2 Alarms emitted
+    18 Total
+--------------------------------------------------------------------------------
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'f'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Pre-condition 'i_plus_one'
+            requires i_plus_one: i + 1 ≥ 0
+            by Call Preconditions.
+[  Alarm  ] Pre-condition 'i'
+            requires i: i ≥ 0
+            By Call Preconditions, with pending:
+             - Unreachable instruction (file precond.c, line 40)
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'f2'
+--------------------------------------------------------------------------------
+
+[    -    ] Pre-condition (file precond.c, line 15)
+            requires i ≥ 0
+            tried with Call Preconditions.
+[    -    ] Assigns nothing
+            assigns \nothing;
+            tried with Inferred annotations.
+[    -    ] Default behavior
+            default behavior
+            tried with Frama-C kernel.
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'g'
+--------------------------------------------------------------------------------
+
+[    -    ] Pre-condition (file precond.c, line 24)
+            requires x ≤ 8
+            tried with Call Preconditions.
+[    -    ] Assigns nothing
+            assigns \nothing;
+            tried with Inferred annotations.
+[    -    ] Default behavior
+            default behavior
+            tried with Frama-C kernel.
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     1 Completely validated
+     6 To be validated
+     1 Alarm emitted
+     8 Total
+--------------------------------------------------------------------------------

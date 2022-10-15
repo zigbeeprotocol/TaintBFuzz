@@ -1,0 +1,37 @@
+# frama-c -wp [...]
+[kernel] Parsing frama_c_exo1_solved.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 10 goals scheduled
+[wp] [Alt-Ergo] Goal typed_exo1_ensures : Valid
+[wp] [Alt-Ergo] Goal typed_exo1_ensures_2 : Valid
+[wp] [Alt-Ergo] Goal typed_exo1_loop_invariant_preserved : Valid
+[wp] [Qed] Goal typed_exo1_loop_invariant_established : Valid
+[wp] [Alt-Ergo] Goal typed_exo1_loop_invariant_2_preserved : Valid
+[wp] [Qed] Goal typed_exo1_loop_invariant_2_established : Valid
+[wp] [Qed] Goal typed_exo1_loop_assigns : Valid
+[wp] [Qed] Goal typed_exo1_assigns : Valid
+[wp] [Qed] Goal typed_exo1_loop_variant_decrease : Valid
+[wp] [Qed] Goal typed_exo1_loop_variant_positive : Valid
+[wp] Proved goals:   10 / 10
+  Qed:             6 
+  Alt-Ergo:        4
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  exo1                      6        4       10       100%
+------------------------------------------------------------
+[wp] Running WP plugin...
+[rte:annot] annotating function exo1
+[wp] 5 goals scheduled
+[wp] [Qed] Goal typed_exo1_assert_rte_signed_overflow : Valid
+[wp] [Alt-Ergo] Goal typed_exo1_assert_rte_mem_access : Valid
+[wp] [Alt-Ergo] Goal typed_exo1_assert_rte_mem_access_2 : Valid
+[wp] [Qed] Goal typed_exo1_assert_rte_signed_overflow_2 : Valid
+[wp] [Qed] Goal typed_exo1_assert_rte_signed_overflow_3 : Valid
+[wp] Proved goals:    5 / 5
+  Qed:             3 
+  Alt-Ergo:        2
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  exo1                      9        6       15       100%
+------------------------------------------------------------

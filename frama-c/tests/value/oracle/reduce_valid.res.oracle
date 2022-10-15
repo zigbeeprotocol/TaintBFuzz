@@ -1,0 +1,53 @@
+[kernel] Parsing reduce_valid.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..1] ∈ {0}
+  u[0..1] ∈ {0}
+  p ∈ {0}
+  q ∈ {0}
+  r ∈ {0}
+  A ∈ {0}
+  offs ∈ {0}
+[eva:alarm] reduce_valid.i:9: Warning: out of bounds write. assert \valid(p);
+[eva] reduce_valid.i:16: Frama_C_show_each_ici: {0}
+[eva:alarm] reduce_valid.i:17: Warning: out of bounds write. assert \valid(q);
+[kernel] reduce_valid.i:17: Warning: 
+  all target addresses were invalid. This path is assumed to be dead.
+[eva:alarm] reduce_valid.i:24: Warning: 
+  out of bounds read. assert \valid_read(r + offs);
+[eva] reduce_valid.i:25: Frama_C_show_each_r: {{ &t }}
+[eva:alarm] reduce_valid.i:26: Warning: 
+  accessing out of bounds index. assert (int)((int)h + 1) < 2;
+[eva] Recording results for main
+[eva] done for function main
+[eva] reduce_valid.i:17: assertion 'Eva,mem_access' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  t[0] ∈ {4}
+   [1] ∈ {3}
+  u[0] ∈ {0}
+   [1] ∈ {1}
+  p ∈ {{ &t[0] }}
+  q ∈ {0}
+  r ∈ {{ &t[0] }}
+  A ∈ {3}
+  offs ∈ {1}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  t[0..1] FROM c
+  u[1] FROM h
+  p FROM c
+  q FROM \nothing
+  r FROM e; f
+  A FROM c; e; f; g
+  offs FROM g
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    t[0..1]; u[1]; p; q; r; A; offs; tmp
+[inout] Inputs for function main:
+    t[1]; p; q; r; offs

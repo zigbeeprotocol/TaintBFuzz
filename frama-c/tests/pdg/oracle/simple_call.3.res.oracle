@@ -1,0 +1,52 @@
+[kernel] Parsing simple_call.c (with preprocessing)
+[eva] Analyzing a complete application starting at call_multiple_global_outputs
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ [--..--]
+  G1 ∈ [--..--]
+  G2 ∈ [--..--]
+  S ∈ [--..--]
+[eva] computing for function multiple_global_outputs <- 
+                          call_multiple_global_outputs.
+  Called from simple_call.c:39.
+[eva] Recording results for multiple_global_outputs
+[eva] Done for function multiple_global_outputs
+[eva] Recording results for call_multiple_global_outputs
+[eva] done for function call_multiple_global_outputs
+[pdg] computing for function call_multiple_global_outputs
+[from] Computing for function multiple_global_outputs
+[from] Done for function multiple_global_outputs
+[pdg] done for function call_multiple_global_outputs
+[pdg] PDG for call_multiple_global_outputs
+ {n1}: InCtrl
+ {n2}: VarDecl : x
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: VarDecl : y
+   -[a--]-> 5
+ {n5}: In2
+   -[a--]-> 4
+ {n6}: Call16-InCtrl : multiple_global_outputs(x,y);
+   -[-c-]-> 1
+ {n7}: Call16-In1 : multiple_global_outputs(x,y);
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+   -[-c-]-> 6
+ {n8}: Call16-In2 : multiple_global_outputs(x,y);
+   -[-c-]-> 1
+   -[--d]-> 4
+   -[--d]-> 5
+   -[-c-]-> 6
+ {n9}: Call16-Out(G) : multiple_global_outputs(x,y);
+   -[-c-]-> 1
+   -[-c-]-> 6
+   -[--d]-> 8
+ {n10}: Call16-Out(S.a) : multiple_global_outputs(x,y);
+   -[-c-]-> 1
+   -[-c-]-> 6
+   -[--d]-> 7
+ {n11}: return;
+   -[-c-]-> 1

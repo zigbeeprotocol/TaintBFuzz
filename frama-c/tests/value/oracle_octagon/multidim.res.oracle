@@ -1,0 +1,18 @@
+101a102
+> [kernel] multidim.c:66: more than 1(20) elements to enumerate. Approximating.
+103a105
+> [kernel] multidim.c:67: more than 1(20) elements to enumerate. Approximating.
+105a108
+> [kernel] multidim.c:66: more than 1(28) elements to enumerate. Approximating.
+107a111
+> [kernel] multidim.c:67: more than 1(28) elements to enumerate. Approximating.
+134,135d137
+< [kernel] multidim.c:66: more than 1(28) elements to enumerate. Approximating.
+< [kernel] multidim.c:67: more than 1(28) elements to enumerate. Approximating.
+180a183
+> [kernel] multidim.c:136: more than 1(1000) elements to enumerate. Approximating.
+182a186
+> [kernel] multidim.c:137: more than 1(1000) elements to enumerate. Approximating.
+203,204d206
+< [kernel] multidim.c:136: more than 1(1000) elements to enumerate. Approximating.
+< [kernel] multidim.c:137: more than 1(1000) elements to enumerate. Approximating.

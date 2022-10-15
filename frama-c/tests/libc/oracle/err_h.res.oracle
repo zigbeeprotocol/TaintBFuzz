@@ -1,0 +1,110 @@
+[kernel] Parsing err_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] computing for function warn <- main.
+  Called from err_h.c:39.
+[eva] using specification for function warn
+[eva] err_h.c:39: 
+  function warn: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] Done for function warn
+[eva] computing for function warn <- main.
+  Called from err_h.c:40.
+[eva] err_h.c:40: 
+  function warn: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] Done for function warn
+[eva] computing for function warnx <- main.
+  Called from err_h.c:41.
+[eva] using specification for function warnx
+[eva] err_h.c:41: 
+  function warnx: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] Done for function warnx
+[eva] computing for function vaw <- main.
+  Called from err_h.c:42.
+[eva] computing for function vwarn <- vaw <- main.
+  Called from err_h.c:12.
+[eva] using specification for function vwarn
+[eva] err_h.c:12: 
+  function vwarn: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] Done for function vwarn
+[eva] Recording results for vaw
+[eva] Done for function vaw
+[eva] computing for function vawx <- main.
+  Called from err_h.c:43.
+[eva] computing for function vwarnx <- vawx <- main.
+  Called from err_h.c:19.
+[eva] using specification for function vwarnx
+[eva] err_h.c:19: 
+  function vwarnx: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] Done for function vwarnx
+[eva] Recording results for vawx
+[eva] Done for function vawx
+[eva] computing for function err <- main.
+  Called from err_h.c:45.
+[eva] using specification for function err
+[eva] err_h.c:45: 
+  function err: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] err_h.c:45: Warning: 
+  cannot interpret assigns clause \exit_status
+  (unsupported logic var \exit_status); effects will be ignored
+[eva] Done for function err
+[eva] computing for function err <- main.
+  Called from err_h.c:49.
+[eva] err_h.c:49: 
+  function err: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] err_h.c:49: Warning: 
+  cannot interpret assigns clause \exit_status
+  (unsupported logic var \exit_status); effects will be ignored
+[eva] Done for function err
+[eva] computing for function errx <- main.
+  Called from err_h.c:53.
+[eva] using specification for function errx
+[eva] err_h.c:53: 
+  function errx: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] err_h.c:53: Warning: 
+  cannot interpret assigns clause \exit_status
+  (unsupported logic var \exit_status); effects will be ignored
+[eva] Done for function errx
+[eva] computing for function vae <- main.
+  Called from err_h.c:57.
+[eva] computing for function verr <- vae <- main.
+  Called from err_h.c:26.
+[eva] using specification for function verr
+[eva] err_h.c:26: 
+  function verr: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] err_h.c:26: Warning: 
+  cannot interpret assigns clause \exit_status
+  (unsupported logic var \exit_status); effects will be ignored
+[eva] Done for function verr
+[eva] Recording results for vae
+[eva] Done for function vae
+[eva] computing for function vaex <- main.
+  Called from err_h.c:61.
+[eva] computing for function verrx <- vaex <- main.
+  Called from err_h.c:33.
+[eva] using specification for function verrx
+[eva] err_h.c:33: 
+  function verrx: precondition 'fmt_valid_read_or_null' got status valid.
+[eva] err_h.c:33: Warning: 
+  cannot interpret assigns clause \exit_status
+  (unsupported logic var \exit_status); effects will be ignored
+[eva] Done for function verrx
+[eva] Recording results for vaex
+[eva] Done for function vaex
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function vae:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function vaex:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function vaw:
+  ap ∈ {{ &__va_args_14[0] }}
+[eva:final-states] Values at end of function vawx:
+  ap ∈ {{ &__va_args_16[0] }}
+[eva:final-states] Values at end of function main:
+  a ∈ {1}
+  p ∈ {2}
+  __retres ∈ {0}

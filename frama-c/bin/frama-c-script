@@ -1,0 +1,282 @@
+#!/bin/bash
+##########################################################################
+#                                                                        #
+#  This file is part of Frama-C.                                         #
+#                                                                        #
+#  Copyright (C) 2007-2022                                               #
+#    CEA (Commissariat à l'énergie atomique et aux énergies              #
+#         alternatives)                                                  #
+#                                                                        #
+#  you can redistribute it and/or modify it under the terms of the GNU   #
+#  Lesser General Public License as published by the Free Software       #
+#  Foundation, version 2.1.                                              #
+#                                                                        #
+#  It is distributed in the hope that it will be useful,                 #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#  GNU Lesser General Public License for more details.                   #
+#                                                                        #
+#  See the GNU Lesser General Public License version 2.1                 #
+#  for more details (enclosed in the file licenses/LGPLv2.1).            #
+#                                                                        #
+##########################################################################
+
+WORKING_DIR="."
+while [ "$1" != "" ] ; do
+    case "$1" in
+        -check) shift;;
+        -C) shift; WORKING_DIR="$1";;
+        *) break;;
+    esac
+   shift
+done
+
+usage() {
+   echo "usage: $0 [-C working-dir] cmd [args]"
+   echo ""
+   echo "  where cmd is:"
+   echo ""
+   echo "  - build [--jbdb build_commands.json] [--sources file...]"
+   echo "      Produces a GNUmakefile for Frama-C analyses."
+   echo "      Uses a build_commands.json if available."
+   echo ""
+   echo "  - configure machdep"
+   echo "      Runs an existing configure script to only consider files"
+   echo "      in Frama-C's libc; this will hopefully disable non-essential"
+   echo "      and non-POSIX external libraries."
+   echo "      (run 'frama-c -machdep help' to get the list of machdeps)."
+   echo ""
+   echo "  - creduce <args>"
+   echo "      Use the external tool C-Reduce to minimize C files when"
+   echo "      debugging crashes and fatal errors. Run without arguments for"
+   echo "      more details."
+   echo ""
+   echo "  - estimate-difficulty file..."
+   echo "      Applies several heuristics to try and estimate the difficulty"
+   echo "      of analyzing the specified files with Frama-C."
+   echo ""
+   echo "  - find-fun function-name [dir...]"
+   echo "      Lists files in dir... declaring or defining function-name"
+   echo "      [default: PWD /usr/include]."
+   echo "      Heuristics-based: neither correct nor complete."
+   echo ""
+   echo "  - flamegraph flamegraph.txt [dir]"
+   echo "      Generates flamegraph.svg and flamegraph.html in dir"
+   echo "      [default: FRAMAC_SESSION]."
+   echo "      Also opens it in a browser, unless variable NOGUI is set."
+   echo ""
+   echo "  - help"
+   echo "      Displays this help message and exits."
+   echo ""
+   echo "  - heuristic-detect-recursion file..."
+   echo "      Uses a heuristic, syntactic-based, callgraph to detect recursive"
+   echo "      calls. Results are guaranteed neither correct nor complete."
+   echo ""
+   echo "  - heuristic-list-functions want_defs want_decls file..."
+   echo "      Uses heuristics to find possible function definitions and declarations."
+   echo "      If [want_defs] is true, lists definitions."
+   echo "      If [want_decls] is true, lists declarations."
+   echo "      Results are guaranteed neither correct nor complete."
+   echo ""
+   echo "  - heuristic-print-callgraph [--dot outfile] file..."
+   echo "      Prints a heuristic, syntactic-based, callgraph for the"
+   echo "      specified files. Use --dot outfile to print it in DOT"
+   echo "      (Graphviz) format, to [outfile]. If [outfile] is '-',"
+   echo "      prints to stdout."
+   echo ""
+   echo "  - list-files [path/to/compile_commands.json]"
+   echo "      Lists all sources in the given compile_commands.json"
+   echo "      [default: ./compile_commands.json]."
+   echo "      Also lists files defining a 'main' function"
+   echo "      (heuristics-based; neither correct nor complete)."
+   echo ""
+   echo "  - list-functions [files] [Frama-C options]"
+   echo "      Parses all sources in [files] and lists all function"
+   echo "      definitions, with source location and number of statements."
+   echo "      Accepts Frama-C options (e.g. -cpp-extra-args for parsing)."
+   echo ""
+   echo "  - make-wrapper target arg..."
+   echo "      Runs 'make target arg...', parsing the output to suggest"
+   echo "      useful commands in case of failure."
+   echo ""
+   echo "  - normalize-jcdb [path/to/compile_commands.json]"
+   echo "      Applies some transformations to an existing compile_commands.json"
+   echo "      (such as relativizing paths) to improve portability."
+   echo "      [default: ./compile_commands.json]"
+   echo ""
+   echo "  - summary [options]"
+   echo "      Monitors and summarizes multiple analyses dispatched by a Makefile"
+   echo "      in the current PWD."
+   echo "      Use $0 summary --help for more informations."
+   exit "$1"
+}
+
+if [ $# -lt 1 ]; then
+    usage 1
+fi
+
+DIR="$( cd "$( dirname "$0" )" && pwd )"
+cd "$WORKING_DIR"
+
+# All scripts called by frama-c-script may rely on FRAMAC_BIN pointing to the
+# directory containing frama-c, frama-c-config and frama-c-script.
+export FRAMAC_BIN="$DIR"
+FRAMAC_SHARE=$("${DIR}/frama-c-config" -print-share-path)
+if [ -z ${FRAMAC_SESSION+x} ]; then
+    FRAMAC_SESSION="./.frama-c";
+fi
+
+command="$1"
+
+# [check_path_exists path]: if [path] exists,
+# ask if it should be overwritten
+check_path_exists() {
+    if [ -e "$1" ]; then
+        read -p "warning: '$1' already exists. Overwrite? [y/N] " yn
+        case $yn in
+            [Yy]) ;;
+            *)
+                echo "Exiting without overwriting."
+                exit 0;;
+        esac
+    fi
+}
+
+# [open file]
+open_file() {
+    case "$OSTYPE" in
+        cygwin*)
+            cmd /c start "$1"
+            ;;
+        linux*)
+            xdg-open "$1"
+            ;;
+        darwin*)
+            open "$1"
+            ;;
+    esac
+}
+
+flamegraph() {
+    if [ "$#" -eq 0 ]; then
+        echo "error: 'flamegraph' command requires a path";
+        exit 1
+    fi
+    if [ ! -e "$1" ]; then
+        echo "error: '$1' not found"
+        exit 1
+    else
+        path="$1"
+    fi
+    if [ "$#" -ge 2 ]; then
+        dir="${2%/}"
+    else
+        dir="$FRAMAC_SESSION"
+    fi
+    if [ ! -d "$dir" ]; then
+        mkdir "$dir" || { echo "error: could not create '$dir'"; exit 1; }
+    fi
+    out_svg="$dir/flamegraph.svg"
+    "${FRAMAC_SHARE}/analysis-scripts/flamegraph.pl" \
+        --title "Eva Flamegraph" --inverted --hash "$path" \
+        --width 1400 --fontsize 11 > "$out_svg.tmp"
+    if [ ! $? -eq 0 ]; then
+        echo "Error creating flamegraph, aborting."
+        exit 1
+    fi
+    mv "$out_svg.tmp" "$out_svg"
+    out_html="$dir/flamegraph.html"
+    cat <<EOF > "$out_html"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Eva Flamegraph</title>
+  </head>
+  <body>
+    <embed src="flamegraph.svg" style="max-width:100%;width:1400px;min-width:1000px">
+  </body>
+</html>
+EOF
+    if [ -z "$NOGUI" ]; then
+        open_file "$out_html"
+    fi
+}
+
+configure_for_frama_c() {
+    if [ "$#" -eq 0 ]; then
+        echo "error: 'configure' command requires a machdep";
+        exit 1
+    fi
+    MACHDEP=${1^^} # to uppercase
+    shift
+    CPP="gcc -E -nostdinc -fno-builtin -I${FRAMAC_SHARE}/libc -D__FC_MACHDEP_${MACHDEP}" ./configure "$@"
+}
+
+case "$command" in
+    "help" | "-help" | "--help" | "-h")
+        usage 0;
+        ;;
+    "build")
+        shift;
+        ${FRAMAC_SHARE}/analysis-scripts/build.py "$@";
+        ;;
+    "list-files")
+        shift;
+        "${FRAMAC_SHARE}"/analysis-scripts/list_files.py "$@";
+        ;;
+    "list-functions")
+        shift;
+        # to avoid a slow startup, we only load plugins which perform syntactic
+        # transformations. This may trigger annotation errors due to missing
+        # plugins, so we disable those
+        "${DIR}"/frama-c "$@" -no-autoload-plugins -load-module variadic,instantiate,"${FRAMAC_SHARE}"/analysis-scripts/list_functions.ml -kernel-warn-key annot-error=inactive -kernel-verbose 0;
+        ;;
+    "find-fun")
+        shift;
+        "${FRAMAC_SHARE}"/analysis-scripts/find_fun.py "$@";
+        ;;
+    "flamegraph")
+        shift;
+        flamegraph "$@";
+        ;;
+    "summary")
+        shift;
+        "${FRAMAC_SHARE}"/analysis-scripts/summary.py "$@";
+        ;;
+    "configure")
+        shift;
+        configure_for_frama_c "$@";
+        ;;
+    "heuristic-print-callgraph")
+        shift;
+        ${FRAMAC_SHARE}/analysis-scripts/print_callgraph.py "$@";
+        ;;
+    "heuristic-detect-recursion")
+        shift;
+        ${FRAMAC_SHARE}/analysis-scripts/detect_recursion.py "$@";
+        ;;
+    "heuristic-list-functions")
+        shift;
+        ${FRAMAC_SHARE}/analysis-scripts/heuristic_list_functions.py "$@";
+        ;;
+    "estimate-difficulty")
+        shift;
+        ${FRAMAC_SHARE}/analysis-scripts/estimate_difficulty.py "$@";
+        ;;
+    "make-wrapper")
+        shift;
+        "${FRAMAC_SHARE}"/analysis-scripts/make_wrapper.py "$0" "$@";
+        ;;
+    "normalize-jcdb")
+        shift;
+        "${FRAMAC_SHARE}"/analysis-scripts/normalize_jcdb.py "$@";
+        ;;
+    "creduce")
+        shift;
+        ${FRAMAC_SHARE}/analysis-scripts/creduce.sh "$@";
+        ;;
+    *)
+        echo "error: unrecognized command: $command";
+        exit 1
+esac

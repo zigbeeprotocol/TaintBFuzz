@@ -1,0 +1,48 @@
+[kernel] Parsing syntactic_hook.i (no preprocessing)
+[kernel] syntactic_hook.i:8: New global node introducing identifier f(22)
+[kernel] First occurrence of f
+[kernel] syntactic_hook.i:10: New global node introducing identifier k(25)
+[kernel] First occurrence of k
+[kernel] syntactic_hook.i:12: New global node introducing identifier k(25)
+[kernel] New occurrence of existing identifier k
+[kernel] syntactic_hook.i:14: New global node introducing identifier main(31)
+[kernel] First occurrence of main
+[kernel] syntactic_hook.i:16: New global node introducing identifier t(35)
+[kernel] First occurrence of t
+[kernel] syntactic_hook.i:16: Warning: [SH]: definition of local function t
+[kernel] :0: New global node introducing identifier g(37)
+[kernel] First occurrence of g
+[kernel:typing:implicit-function-declaration] syntactic_hook.i:20: Warning: 
+  Calling undeclared function g. Old style K&R code?
+[kernel] syntactic_hook.i:20: Warning: 
+  [SH]: implicit declaration for prototype g
+[kernel] syntactic_hook.i:21: Dropping side-effect in sizeof.
+[kernel] syntactic_hook.i:21: Warning: 
+  [SH]: dropping side effect in sizeof: (x++) is converted to tmp
+[kernel] syntactic_hook.i:23: Warning: 
+  [SH]: side effect of expression x++ occurs in conditional part of
+  expression x && x++. It is not always executed.
+[kernel] syntactic_hook.i:24: Warning: 
+  [SH]: side effect of expression x++ occurs in conditional part of
+  expression x && (x++ || x). It is not always executed.
+[kernel] syntactic_hook.i:25: Warning: 
+  [SH]: side effect of expression x++ occurs in conditional part of
+  expression x || x++. It is not always executed.
+[kernel] syntactic_hook.i:26: Warning: 
+  [SH]: side effect of expression x++ occurs in conditional part of
+  expression x ? x++ : x++. It is not always executed.
+[kernel] syntactic_hook.i:26: Warning: 
+  [SH]: side effect of expression x++ occurs in conditional part of
+  expression x ? x++ : x++. It is not always executed.
+[kernel] syntactic_hook.i:30: User Error: 
+  Declaration of f does not match previous declaration from syntactic_hook.i:8 (different number of arguments).
+[kernel] syntactic_hook.i:30: Warning: 
+  [SH]: conflict with declaration of f at line 8: different number of arguments
+[kernel] syntactic_hook.i:30: User Error: 
+  Inconsistent formals
+  28    }
+  29    
+  30    int f(int); //error: conflicting decls
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[kernel] User Error: stopping on file "syntactic_hook.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

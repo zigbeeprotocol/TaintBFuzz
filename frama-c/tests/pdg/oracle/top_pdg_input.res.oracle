@@ -1,0 +1,324 @@
+[kernel] Parsing top_pdg_input.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+  tab[0] ∈ {0}
+     [1] ∈ {7}
+  S ∈ {0}
+  G ∈ {0}
+[eva] computing for function f1 <- main.
+  Called from top_pdg_input.c:38.
+[eva] computing for function no_results <- f1 <- main.
+  Called from top_pdg_input.c:13.
+[eva] Recording results for no_results
+[eva] Done for function no_results
+[eva] Recording results for f1
+[eva] Done for function f1
+[eva] computing for function f2 <- main.
+  Called from top_pdg_input.c:39.
+[eva] computing for function no_results <- f2 <- main.
+  Called from top_pdg_input.c:20.
+[eva] Recording results for no_results
+[eva] Done for function no_results
+[eva] Recording results for f2
+[eva] Done for function f2
+[eva:alarm] top_pdg_input.c:40: Warning: 
+  out of bounds read. assert \valid_read(p_str + i);
+[eva:alarm] top_pdg_input.c:40: Warning: 
+  out of bounds read. assert \valid_read(p_str + 0);
+[eva] computing for function strlen <- main.
+  Called from top_pdg_input.c:40.
+[eva:alarm] top_pdg_input.c:31: Warning: 
+  out of bounds read. assert \valid_read(q);
+[eva] top_pdg_input.c:31: starting to merge loop iterations
+[eva:alarm] top_pdg_input.c:31: Warning: 
+  signed overflow. assert k + 1 ≤ 2147483647;
+[eva] Recording results for strlen
+[eva] Done for function strlen
+[eva] Recording results for main
+[eva] done for function main
+[eva] top_pdg_input.c:40: assertion 'Eva,mem_access' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f1:
+Cannot filter: dumping raw memory (including unchanged variables)
+  nondet ∈ [--..--]
+  tab[0] ∈ {0}
+     [1] ∈ {7}
+  S ∈ {0}
+  G ∈ {1}
+  i ∈ {1}
+  v ∈ {1; 7}
+  tmp_0 ∈ {1; 7}
+  p_str ∈ {{ NULL ; &S_p_str[0] }}
+  i ∈ UNINITIALIZED
+  tmp_0 ∈ UNINITIALIZED
+  tmp_1 ∈ UNINITIALIZED
+  tmp_2 ∈ UNINITIALIZED
+  S_p_str[0] ∈ {{ NULL ; &S_0_S_p_str[0] }}
+         [1] ∈ {{ NULL ; &S_1_S_p_str[0] }}
+  S_0_S_p_str[0..1] ∈ [--..--]
+  S_1_S_p_str[0..1] ∈ [--..--]
+[eva:final-states] Values at end of function f2:
+Cannot filter: dumping raw memory (including unchanged variables)
+  nondet ∈ [--..--]
+  tab[0] ∈ {0}
+     [1] ∈ {7}
+  S.a ∈ {2}
+   .t[0..4] ∈ {0}
+  G ∈ {1}
+  i ∈ {1}
+  s.a ∈ {2}
+   .t[0..4] ∈ {0}
+  tmp_0 ∈ {0; 1}
+  p_str ∈ {{ NULL ; &S_p_str[0] }}
+  i ∈ {1; 7}
+  tmp_0 ∈ UNINITIALIZED
+  tmp_1 ∈ UNINITIALIZED
+  tmp_2 ∈ UNINITIALIZED
+  __retres ∈ {2; 3}
+  S_p_str[0] ∈ {{ NULL ; &S_0_S_p_str[0] }}
+         [1] ∈ {{ NULL ; &S_1_S_p_str[0] }}
+  S_0_S_p_str[0..1] ∈ [--..--]
+  S_1_S_p_str[0..1] ∈ [--..--]
+[eva:final-states] Values at end of function strlen:
+  q ∈ {{ &S_0_S_p_str{[0], [1]} }}
+  k ∈ [0..2147483647]
+[eva:final-states] Values at end of function main:
+Cannot filter: dumping raw memory (including unchanged variables)
+  nondet ∈ [--..--]
+  tab[0] ∈ {0}
+     [1] ∈ {7}
+  S.a ∈ {2}
+   .t[0..4] ∈ {0}
+  G ∈ {1}
+  p_str ∈ {{ &S_p_str[0] }}
+  i ∈ {3; 4; 9; 10}
+  tmp_0 ∈ {2; 3}
+  tmp_1 ∈ {{ NULL ; &S_0_S_p_str[0] }}
+  tmp_2 ∈ [0..2147483647]
+  S_p_str[0] ∈ {{ NULL ; &S_0_S_p_str[0] }}
+         [1] ∈ {{ NULL ; &S_1_S_p_str[0] }}
+  S_0_S_p_str[0..1] ∈ [--..--]
+  S_1_S_p_str[0..1] ∈ [--..--]
+[from] Computing for function no_results
+[from] Done for function no_results
+[from] Computing for function f1
+[from] Done for function f1
+[from] Computing for function f2
+[from] Done for function f2
+[from] Computing for function strlen
+[from] Done for function strlen
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function no_results:
+  FROMTOP
+  \result FROM ANYTHING(origin:Unknown)
+[from] Function f1:
+  FROMTOP
+  \result FROM ANYTHING(origin:Unknown)
+[from] Function f2:
+  FROMTOP
+  \result FROM ANYTHING(origin:Unknown)
+[from] Function strlen:
+  \result FROM p; S_0_S_p_str[0..1]
+[from] Function main:
+  FROMTOP
+  \result FROM ANYTHING(origin:Unknown)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function no_results:
+    __retres
+[inout] Inputs for function no_results:
+    \nothing
+[inout] Out (internal) for function f1:
+    ANYTHING(origin:Unknown)
+[inout] Inputs for function f1:
+    nondet; tab[1]; G
+[inout] Out (internal) for function f2:
+    ANYTHING(origin:Unknown)
+[inout] Inputs for function f2:
+    nondet; S
+[inout] Out (internal) for function strlen:
+    q; k
+[inout] Inputs for function strlen:
+    S_0_S_p_str[0..1]
+[inout] Out (internal) for function main:
+    ANYTHING(origin:Unknown)
+[inout] Inputs for function main:
+    nondet; tab[1]; S; G; S_p_str[0]; S_0_S_p_str[0..1]
+[pdg] computing for function no_results
+[pdg] Top for function no_results
+[pdg] computing for function f1
+[pdg] Warning: too imprecise value analysis : abort
+[pdg] Top for function f1
+[pdg] computing for function f2
+[pdg] Warning: too imprecise value analysis : abort
+[pdg] Top for function f2
+[pdg] computing for function strlen
+[pdg] done for function strlen
+[pdg] computing for function main
+[pdg] Warning: too imprecise value analysis : abort
+[pdg] Top for function main
+[pdg] ====== PDG GRAPH COMPUTED ======
+[pdg] PDG for no_results
+ Top PDG
+[pdg] PDG for f1
+ Top PDG
+[pdg] PDG for f2
+ Top PDG
+[pdg] PDG for strlen
+ {n19}: InCtrl
+ {n20}: VarDecl : p
+   -[a--]-> 21
+ {n21}: In1
+   -[a--]-> 20
+ {n22}: VarDecl : q
+ {n23}: VarDecl : k
+ {n24}: int k = 0;
+   -[-c-]-> 19
+   -[a--]-> 23
+ {n25}: q = p;
+   -[-c-]-> 19
+   -[--d]-> 20
+   -[--d]-> 21
+   -[a--]-> 22
+ {n26}: while(1)
+   -[-c-]-> 19
+   -[-c-]-> 26
+   -[-c-]-> 27
+   -[-c-]-> 30
+ {n27}: *q
+   -[-c-]-> 19
+   -[--d]-> 22
+   -[--d]-> 25
+   -[-c-]-> 26
+   -[-c-]-> 27
+   -[--d]-> 29
+   -[-c-]-> 30
+   -[--d]-> 33
+ {n28}: k ++;
+   -[-c-]-> 19
+   -[a-d]-> 23
+   -[--d]-> 24
+   -[-c-]-> 26
+   -[-c-]-> 27
+   -[--d]-> 28
+   -[-c-]-> 30
+ {n29}: q ++;
+   -[-c-]-> 19
+   -[a-d]-> 22
+   -[--d]-> 25
+   -[-c-]-> 26
+   -[-c-]-> 27
+   -[--d]-> 29
+   -[-c-]-> 30
+ {n30}: break;
+   -[-c-]-> 19
+   -[-c-]-> 26
+   -[-c-]-> 27
+   -[-c-]-> 30
+ {n31}: return k;
+   -[-c-]-> 19
+   -[--d]-> 23
+   -[--d]-> 24
+   -[--d]-> 28
+ {n32}: OutRet
+   -[--d]-> 31
+ {n33}: In(S_0_S_p_str[0..1])
+[pdg] PDG for main
+ Top PDG
+[eva] Analyzing a complete application starting at main_asm
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+  tab[0] ∈ {0}
+     [1] ∈ {7}
+  S ∈ {0}
+  G ∈ {0}
+[eva] computing for function fun_asm <- main_asm.
+  Called from top_pdg_input.c:51.
+[eva] top_pdg_input.c:45: Warning: 
+  assuming assembly code has no effects in function fun_asm
+[eva] Recording results for fun_asm
+[eva] Done for function fun_asm
+[eva] Recording results for main_asm
+[eva] done for function main_asm
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function fun_asm:
+  __retres ∈ {4}
+[eva:final-states] Values at end of function main_asm:
+  j ∈ {3}
+[from] Computing for function fun_asm
+[from] Done for function fun_asm
+[from] Computing for function main_asm
+[from] Done for function main_asm
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function fun_asm:
+  \result FROM i
+[from] Function main_asm:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function fun_asm:
+    __retres
+[inout] Inputs for function fun_asm:
+    \nothing
+[inout] Out (internal) for function main_asm:
+    j; tmp
+[inout] Inputs for function main_asm:
+    \nothing
+[pdg] computing for function fun_asm
+[pdg] top_pdg_input.c:45: Warning: Ignoring inline assembly code
+[pdg] done for function fun_asm
+[pdg] computing for function main_asm
+[pdg] done for function main_asm
+[pdg] ====== PDG GRAPH COMPUTED ======
+[pdg] PDG for fun_asm
+ {n47}: InCtrl
+ {n48}: VarDecl : i
+   -[a--]-> 49
+ {n49}: In1
+   -[a--]-> 48
+ {n50}: VarDecl : __retres
+ {n51}: __asm__ ("BLA");
+   -[-c-]-> 47
+ {n52}: __retres = i + 1;
+   -[-c-]-> 47
+   -[--d]-> 48
+   -[--d]-> 49
+   -[a--]-> 50
+ {n53}: return __retres;
+   -[-c-]-> 47
+   -[--d]-> 50
+   -[--d]-> 52
+ {n54}: OutRet
+   -[--d]-> 53
+[pdg] PDG for main_asm
+ {n55}: InCtrl
+ {n56}: VarDecl : j
+ {n57}: VarDecl : tmp
+ {n58}: int j = 3;
+   -[-c-]-> 55
+   -[a--]-> 56
+ {n59}: Call53-InCtrl : tmp = fun_asm(j);
+   -[-c-]-> 55
+ {n60}: Call53-In1 : tmp = fun_asm(j);
+   -[-c-]-> 55
+   -[--d]-> 56
+   -[--d]-> 58
+   -[-c-]-> 59
+ {n61}: Call53-OutRet : tmp = fun_asm(j);
+   -[-c-]-> 55
+   -[a--]-> 57
+   -[-c-]-> 59
+   -[--d]-> 60
+ {n62}: return tmp;
+   -[-c-]-> 55
+   -[--d]-> 57
+   -[--d]-> 61
+ {n63}: OutRet
+   -[--d]-> 62

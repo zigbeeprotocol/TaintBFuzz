@@ -1,0 +1,58 @@
+\lstdefinelanguage{ACSL}{%
+  morekeywords={assert,assigns,assumes,axiom,axiomatic,behavior,behaviors,
+    boolean,breaks,complete,continues,data,decreases,disjoint,ensures,
+    exit_behavior,ghost,global,inductive,integer,invariant,lemma,logic,loop,
+    model,predicate,reads,real,requires,returns,sizeof,strong,struct,terminates,type,
+    union,variant,writes},
+%  otherkeywords={\\at,\\base_addr,\\block_length,\\false,\\fresh,\\from,
+%                 \\initialized,\\lambda,\\let,\\match,\\max,\\nothing,\\null,
+%                 \\numof,\\old,\\result,\\specified,\\strlen,\\sum,\\true,
+%                 \\valid,\\valid_range},
+  keywordsprefix={\\},
+  alsoletter={\\},
+  morecomment=[l]{//},
+  moredelim=*[s]{/*@}{*/}
+}
+\lstset{
+basicstyle={\ttfamily},
+keywordstyle={\bfseries\color{red}},
+showstringspaces=false,
+stringstyle={\rmfamily\color{gray}}
+}
+
+\lstdefinelanguage{Ocaml}[Objective]{Caml}{%
+deletekeywords={when,module,struct,sig,begin,end},%
+morekeywords=[2]{failwith,raise,when},%
+morekeywords=[3]{module,struct,sig,begin,end},%
+escapechar=?,
+literate=%
+{~}{${\scriptstyle\thicksim}$}1%
+{<}{$<$}1%
+{>}{$>$}1%
+{->}{$\rightarrow$}1%
+{<-}{$\leftarrow$}1%
+{:=}{$\leftarrow$}1%
+{<=}{$\leq$}1%
+{>=}{$\geq$}1%
+{==}{$\equiv$}1%
+{!=}{$\not\equiv$}1%
+{<>}{$\neq$}1%
+{'a}{$\alpha$}1%
+{'b}{$\beta$}1%
+{'c}{$\gamma$}1%
+{µ}{`{}}1%
+}
+
+\newcommand{\framac}{\textsl{Frama-C}\xspace}
+\newcommand{\ocaml}{\textsl{OCaml}\xspace}
+
+\lstnewenvironment{ocamlcode}{\lstset{language=Ocaml}}{}
+
+\newcommand{\pros}{\textcolor{Green2}{\ding{52}}}
+\newcommand{\cons}{\textcolor{red}{\ding{56}}}
+
+\newcommand{\yes}{\textcolor{SeaGreen4}{Yes}}
+\newcommand{\no}{\textcolor{Brown4}{No}}
+
+\newcommand{\orangepale}[1]{{\textcolor{frama-c-2}{#1}}}
+\newcommand{\gris}[1]{{\textcolor{gray}{#1}}}

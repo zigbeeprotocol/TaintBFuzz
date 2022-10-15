@@ -1,0 +1,233 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing opaque_struct.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function assigned_via_pointer
+[rte:annot] annotating function assigns
+[rte:annot] annotating function assigns_effect
+[rte:annot] annotating function chunk_typing
+[rte:annot] annotating function initialized_assigns
+[rte:annot] annotating function uninitialized_assigns
+[kernel:annot:missing-spec] opaque_struct.i:79: Warning: 
+  Neither code nor specification for function use, generating default assigns from the prototype
+------------------------------------------------------------
+  Axiomatic 'test'
+------------------------------------------------------------
+
+Lemma fail:
+Prove: (EqS1_S S1_0 S2_0)
+
+------------------------------------------------------------
+
+Lemma succeed_L1:
+Prove: true
+
+------------------------------------------------------------
+
+Lemma succeed_L2:
+Prove: 0<=BytesLength_of_S1_S
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function assigned_via_pointer
+------------------------------------------------------------
+
+Goal Check 'fail' (file opaque_struct.i, line 60):
+Let a = havoc(Mint_undef_0, Mint_0, p, Length_of_S1_S).
+Let a_1 = havoc(Mint_undef_3, Mint_3, p, Length_of_S1_S).
+Let a_2 = havoc(Mint_undef_5, Mint_5, p, Length_of_S1_S).
+Let a_3 = havoc(Mint_undef_7, Mint_7, p, Length_of_S1_S).
+Let a_4 = havoc(Mchar_undef_0, Mchar_0, p, Length_of_S1_S).
+Let a_5 = havoc(Mint_undef_2, Mint_2, p, Length_of_S1_S).
+Let a_6 = havoc(Mint_undef_4, Mint_4, p, Length_of_S1_S).
+Let a_7 = havoc(Mint_undef_6, Mint_6, p, Length_of_S1_S).
+Let a_8 = havoc(Mint_undef_1, Mint_1, p, Length_of_S1_S).
+Assume {
+  Type: is_bool_chunk(Mint_0) /\ is_sint16_chunk(Mint_3) /\
+      is_sint32_chunk(Mint_5) /\ is_sint64_chunk(Mint_7) /\
+      is_sint8_chunk(Mchar_0) /\ is_uint16_chunk(Mint_2) /\
+      is_uint32_chunk(Mint_4) /\ is_uint64_chunk(Mint_6) /\
+      is_uint8_chunk(Mint_1) /\ is_bool_chunk(a) /\ is_sint16_chunk(a_1) /\
+      is_sint32_chunk(a_2) /\ is_sint64_chunk(a_3) /\ is_sint8_chunk(a_4) /\
+      is_uint16_chunk(a_5) /\ is_uint32_chunk(a_6) /\ is_uint64_chunk(a_7) /\
+      is_uint8_chunk(a_8).
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ framed(Mptr_0) /\ sconst(Mchar_0).
+}
+Prove: EqS1_S(Load_S1_S(p, a, a_8, a_4, a_5, a_1, a_6, a_2, a_7, a_3,
+                havoc(Mf32_undef_0, Mf32_0, p, Length_of_S1_S),
+                havoc(Mf64_undef_0, Mf64_0, p, Length_of_S1_S),
+                havoc(Mptr_undef_0, Mptr_0, p, Length_of_S1_S)),
+         Load_S1_S(p, Mint_0, Mint_1, Mchar_0, Mint_2, Mint_3, Mint_4,
+           Mint_5, Mint_6, Mint_7, Mf32_0, Mf64_0, Mptr_0)).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function assigns
+------------------------------------------------------------
+
+Goal Check 'fail' (file opaque_struct.i, line 24):
+Prove: EqS1_S(S1_0, S1_1).
+
+------------------------------------------------------------
+
+Goal Check 'succeed' (file opaque_struct.i, line 25):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function assigns_effect
+------------------------------------------------------------
+
+Goal Check 'fail' (file opaque_struct.i, line 69):
+Let x = Mint_0[p].
+Let a_1 = havoc(Mint_undef_0, Mint_0, a, Length_of_S1_S).
+Let a_2 = a_1[p].
+Assume {
+  Type: is_sint32_chunk(Mint_0) /\ is_sint32(x) /\ is_sint32_chunk(a_1) /\
+      is_sint32(a_2).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(p.base) <= 0).
+  (* Pre-condition *)
+  Have: separated(a, Length_of_S1_S, c, 1).
+}
+Prove: a_2 = x.
+
+------------------------------------------------------------
+
+Goal Check 'fail' (file opaque_struct.i, line 70):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\
+      (region(q.base) <= 0).
+  (* Pre-condition *)
+  Have: separated(a, Length_of_S1_S, c, 1).
+}
+Prove: of_f32(havoc(Mf32_undef_0, Mf32_0, a, Length_of_S1_S)[q])
+         = of_f32(Mf32_0[q]).
+
+------------------------------------------------------------
+
+Goal Check 'succeed' (file opaque_struct.i, line 71):
+Let x = Mchar_0[c].
+Let a_1 = havoc(Mchar_undef_0, Mchar_0, a, Length_of_S1_S).
+Let a_2 = a_1[c].
+Assume {
+  Type: is_sint8_chunk(Mchar_0) /\ is_sint8(x) /\ is_sint8_chunk(a_1) /\
+      is_sint8(a_2).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(c.base) <= 0) /\ sconst(Mchar_0).
+  (* Pre-condition *)
+  Have: separated(a, Length_of_S1_S, c, 1).
+}
+Prove: a_2 = x.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function chunk_typing
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file opaque_struct.i, line 81):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file opaque_struct.i, line 81):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function initialized_assigns
+------------------------------------------------------------
+
+Goal Check 'fails' (file opaque_struct.i, line 38):
+Let a = havoc(Init_undef_0, Init_0, p, Length_of_S1_S).
+Assume {
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ linked(Malloc_0) /\ cinits(Init_0).
+  (* Pre-condition *)
+  Have: IsInit_S1_S(p, Init_0).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, p, Length_of_S1_S).
+  (* Call Effects *)
+  Have: cinits(a).
+}
+Prove: IsInit_S1_S(p, a).
+
+------------------------------------------------------------
+
+Goal Check 'succeed' (file opaque_struct.i, line 39):
+Let x = p.base.
+Assume {
+  (* Heap *)
+  Type: (region(x) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, p, Length_of_S1_S).
+}
+Prove: 0 <= (BytesLength_of_S1_S * (Malloc_0[x] / Length_of_S1_S)).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function uninitialized_assigns
+------------------------------------------------------------
+
+Goal Check 'fail' (file opaque_struct.i, line 54):
+Let a = havoc(Init_undef_0, Init_0, p, Length_of_S1_S).
+Assume {
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ cinits(Init_0).
+  (* Pre-condition *)
+  Have: !IsInit_S1_S(p, Init_0).
+  (* Call Effects *)
+  Have: cinits(a).
+}
+Prove: !IsInit_S1_S(p, a).
+
+------------------------------------------------------------
+
+Goal Check 'fail' (file opaque_struct.i, line 55):
+Let a = havoc(Init_undef_0, Init_0, p, Length_of_S1_S).
+Assume {
+  (* Heap *)
+  Type: (region(p.base) <= 0) /\ cinits(Init_0).
+  (* Pre-condition *)
+  Have: !IsInit_S1_S(p, Init_0).
+  (* Call Effects *)
+  Have: cinits(a).
+}
+Prove: IsInit_S1_S(p, a).
+
+------------------------------------------------------------
+[wp] opaque_struct.i:31: Warning: 
+  Memory model hypotheses for function 'g':
+  /*@ behavior wp_typed:
+        requires \separated(p, &S1, &S2, &p); */
+  void g(void);
+[wp] opaque_struct.i:64: Warning: 
+  Memory model hypotheses for function 'assign':
+  /*@ behavior wp_typed:
+        requires \separated(a, &S1, &S2); */
+  void assign(struct S *a);
+[wp] opaque_struct.i:67: Warning: 
+  Memory model hypotheses for function 'assigns_effect':
+  /*@
+     behavior wp_typed:
+       requires \separated(a, &S1, &S2);
+       requires \separated(c, &S1, &S2);
+       requires \separated(p_0, &S1, &S2);
+       requires \separated(q, &S1, &S2);
+     */
+  void assigns_effect(int *p_0, float *q, char *c, struct S *a);
+[wp] opaque_struct.i:76: Warning: 
+  Memory model hypotheses for function 'use':
+  /*@ behavior wp_typed:
+        requires \separated(s, &S1, &S2); */
+  void use(struct S *s);
+[wp] opaque_struct.i:79: Warning: 
+  Memory model hypotheses for function 'chunk_typing':
+  /*@
+     behavior wp_typed:
+       requires \separated(sc, &S1, &S2);
+       requires \separated(uc, &S1, &S2);
+     */
+  void chunk_typing(unsigned char *uc, signed char *sc);

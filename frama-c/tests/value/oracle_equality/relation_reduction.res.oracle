@@ -1,0 +1,23 @@
+24,27d23
+< [eva:alarm] relation_reduction.i:20: Warning: 
+<   accessing out of bounds index. assert 0 ≤ y;
+< [eva:alarm] relation_reduction.i:20: Warning: 
+<   accessing out of bounds index. assert y < 9;
+34,37c30,33
+<   R1 ∈ [-2147483648..2147483637]
+<   R2 ∈ [-2147483638..2147483647]
+<   R3 ∈ [--..--]
+<   R4 ∈ {0; 1; 2; 3; 4; 5}
+---
+>   R1 ∈ {0; 2}
+>   R2 ∈ {0; 12}
+>   R3 ∈ {0; 7}
+>   R4 ∈ {0; 2}
+48c44
+<   R4 FROM tab[0..8]; x (and SELF)
+---
+>   R4 FROM tab[0..5]; x (and SELF)
+53c49
+<     y; t; tab[0..8]
+---
+>     y; t; tab[0..5]

@@ -1,0 +1,381 @@
+[kernel] Parsing csmith.i (no preprocessing)
+[slicing] slicing requests in progress...
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G1 ∈ {0}
+  G1b ∈ {0}
+  G2 ∈ {0}
+[eva] computing for function f1 <- main.
+  Called from csmith.i:234.
+[eva] Recording results for f1
+[eva] Done for function f1
+[eva] computing for function f1b <- main.
+  Called from csmith.i:235.
+[eva] Recording results for f1b
+[eva] Done for function f1b
+[eva] computing for function f2 <- main.
+  Called from csmith.i:236.
+[eva] Recording results for f2
+[eva] Done for function f2
+[eva] computing for function bts181 <- main.
+  Called from csmith.i:237.
+[eva] Recording results for bts181
+[eva] Done for function bts181
+[eva] computing for function bts181b <- main.
+  Called from csmith.i:238.
+[eva] Recording results for bts181b
+[eva] Done for function bts181b
+[eva] computing for function bts807 <- main.
+  Called from csmith.i:239.
+[eva] Recording results for bts807
+[eva] Done for function bts807
+[eva] computing for function bts809 <- main.
+  Called from csmith.i:240.
+[eva] Recording results for bts809
+[eva] Done for function bts809
+[eva] computing for function bts879 <- main.
+  Called from csmith.i:241.
+[eva] Recording results for bts879
+[eva] Done for function bts879
+[eva] computing for function bts879b <- main.
+  Called from csmith.i:242.
+[eva] Recording results for bts879b
+[eva] Done for function bts879b
+[eva] computing for function bts899 <- main.
+  Called from csmith.i:243.
+[eva] csmith.i:135: starting to merge loop iterations
+[eva:alarm] csmith.i:141: Warning: signed overflow. assert x + 1 ≤ 2147483647;
+[eva] Recording results for bts899
+[eva] Done for function bts899
+[eva:alarm] csmith.i:243: Warning: 
+  signed overflow. assert x + tmp_5 ≤ 2147483647;
+                   (tmp_5 from bts899())
+[eva] computing for function bts906 <- main.
+  Called from csmith.i:244.
+[eva] csmith.i:149: starting to merge loop iterations
+[eva] csmith.i:150: starting to merge loop iterations
+[eva] Recording results for bts906
+[eva] Done for function bts906
+[eva:alarm] csmith.i:244: Warning: 
+  signed overflow. assert x + tmp_6 ≤ 2147483647;
+                   (tmp_6 from bts906())
+[eva] computing for function bts906b <- main.
+  Called from csmith.i:245.
+[eva] csmith.i:168: starting to merge loop iterations
+[eva] csmith.i:169: starting to merge loop iterations
+[eva] Recording results for bts906b
+[eva] Done for function bts906b
+[eva:alarm] csmith.i:245: Warning: 
+  signed overflow. assert x + tmp_7 ≤ 2147483647;
+                   (tmp_7 from bts906b())
+[eva] computing for function bts963 <- main.
+  Called from csmith.i:247.
+[eva] csmith.i:211: starting to merge loop iterations
+[eva] Recording results for bts963
+[eva] Done for function bts963
+[eva:alarm] csmith.i:247: Warning: 
+  signed overflow. assert x + tmp_8 ≤ 2147483647;
+                   (tmp_8 from bts963())
+[eva] computing for function bts963b <- main.
+  Called from csmith.i:248.
+[eva] csmith.i:223: starting to merge loop iterations
+[eva] Recording results for bts963b
+[eva] Done for function bts963b
+[eva:alarm] csmith.i:248: Warning: 
+  signed overflow. assert x + tmp_9 ≤ 2147483647;
+                   (tmp_9 from bts963b())
+[eva] Recording results for main
+[eva] done for function main
+[slicing] initializing slicing ...
+[slicing] interpreting slicing requests from the command line...
+[pdg] computing for function main
+[from] Computing for function f1
+[from] Done for function f1
+[from] Computing for function f1b
+[from] Done for function f1b
+[from] Computing for function f2
+[from] Done for function f2
+[from] Computing for function bts181
+[from] Done for function bts181
+[from] Computing for function bts181b
+[from] Done for function bts181b
+[from] Computing for function bts807
+[from] Done for function bts807
+[from] Computing for function bts809
+[from] Done for function bts809
+[from] Computing for function bts879
+[from] Done for function bts879
+[from] Computing for function bts879b
+[from] Done for function bts879b
+[from] Computing for function bts899
+[from] Done for function bts899
+[from] Computing for function bts906
+[from] Done for function bts906
+[from] Computing for function bts906b
+[from] Done for function bts906b
+[from] Computing for function bts963
+[from] Done for function bts963
+[from] Computing for function bts963b
+[from] Done for function bts963b
+[pdg] done for function main
+[slicing] applying all slicing requests...
+[slicing] applying 0 actions...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[pdg] computing for function bts963b
+[pdg] done for function bts963b
+[pdg] computing for function bts963
+[pdg] done for function bts963
+[pdg] computing for function bts906b
+[pdg] done for function bts906b
+[pdg] computing for function bts906
+[pdg] done for function bts906
+[pdg] computing for function bts899
+[pdg] done for function bts899
+[pdg] computing for function bts879b
+[pdg] done for function bts879b
+[pdg] computing for function bts879
+[pdg] done for function bts879
+[pdg] computing for function bts809
+[pdg] done for function bts809
+[pdg] computing for function bts807
+[pdg] done for function bts807
+[pdg] computing for function bts181b
+[pdg] done for function bts181b
+[pdg] computing for function bts181
+[pdg] done for function bts181
+[pdg] computing for function f2
+[pdg] done for function f2
+[pdg] computing for function f1b
+[pdg] done for function f1b
+[pdg] computing for function f1
+[pdg] done for function f1
+[slicing] exporting project to 'Slicing export'...
+[slicing] applying all slicing requests...
+[slicing] applying 0 actions...
+[sparecode] remove unused global declarations from project 'Slicing export tmp'
+[sparecode] removed unused global declarations in new project 'Slicing export'
+/* Generated by Frama-C */
+int G1;
+void f1_slice_1(void)
+{
+  G1 = 3;
+  goto break_cont_1;
+  break_cont_1: return;
+}
+
+int G1b;
+void f1b_slice_1(void)
+{
+  G1b = 3;
+  goto B;
+  B: ;
+  return;
+}
+
+int G2;
+void f2_slice_1(void)
+{
+  while (1) {
+    G2 = 3;
+    break;
+  }
+  return;
+}
+
+int bts181_slice_1(int c)
+{
+  int y = 0;
+  if (c) y = 3;
+  return y;
+}
+
+int bts181b_slice_1(int c)
+{
+  int y = 0;
+  if (c) y = 3;
+  return y;
+}
+
+int bts807_slice_1(void)
+{
+  int __retres;
+  int g;
+  if (1) goto _LOR;
+  else {
+    _LOR: ;
+    g = 21;
+    __retres = g;
+    goto return_label;
+  }
+  return_label: return __retres;
+}
+
+int bts809_slice_1(void)
+{
+  int __retres;
+  int x;
+  x = 10;
+  goto L;
+  L: ;
+  __retres = x;
+  goto return_label;
+  return_label: return __retres;
+}
+
+int bts879_slice_1(int c)
+{
+  int __retres;
+  int tmp;
+  if (c) tmp = 0; else tmp = 10;
+  int p = tmp;
+  if (p) goto _LOR;
+  else 
+    if (0) {
+      _LOR: {
+              __retres = 1;
+              goto return_label;
+            }
+    }
+  __retres = 0;
+  return_label: return __retres;
+}
+
+int bts879b_slice_1(int c)
+{
+  int __retres;
+  int tmp;
+  if (c) tmp = 0; else tmp = 10;
+  int p = tmp;
+  if (p) {
+    __retres = 1;
+    goto return_label;
+  }
+  __retres = 0;
+  return_label: return __retres;
+}
+
+int bts899_slice_1(void)
+{
+  int x = 254;
+  {
+    int i = 17;
+    while (i != -9) {
+      if (! i) goto __Cont;
+      x ++;
+      __Cont: i --;
+    }
+  }
+  return x;
+}
+
+int bts906_slice_1(void)
+{
+  int __retres;
+  int x = 0;
+  int i = 2;
+  while (1) {
+    if (! i) {
+      x ++;
+      __retres = x;
+      goto return_label;
+    }
+    B: i --;
+  }
+  return_label: return __retres;
+}
+
+int bts906b_slice_1(void)
+{
+  int __retres;
+  int x = 0;
+  int i = 2;
+  while (1) {
+    if (! i) {
+      x ++;
+      __retres = x;
+      goto return_label;
+    }
+    B: i --;
+  }
+  return_label: return __retres;
+}
+
+int bts963_slice_1(void)
+{
+  int __retres;
+  int x = 0;
+  L: ;
+  x ++;
+  if (x < 3) goto L;
+  else {
+    __retres = x;
+    goto return_label;
+  }
+  return_label: return __retres;
+}
+
+int bts963b_slice_1(void)
+{
+  int __retres;
+  int x = 0;
+  L: ;
+  x ++;
+  if (x < 3) goto L;
+  else {
+    __retres = x;
+    goto return_label;
+  }
+  return_label: return __retres;
+}
+
+int main(int n)
+{
+  int tmp;
+  int tmp_0;
+  int tmp_1;
+  int tmp_2;
+  int tmp_3;
+  int tmp_4;
+  int tmp_5;
+  int tmp_6;
+  int tmp_7;
+  int tmp_8;
+  int tmp_9;
+  int x = 0;
+  f1_slice_1();
+  x += G1;
+  f1b_slice_1();
+  x += G1b;
+  f2_slice_1();
+  x += G2;
+  tmp = bts181_slice_1(n);
+  x += tmp;
+  tmp_0 = bts181b_slice_1(n);
+  x += tmp_0;
+  tmp_1 = bts807_slice_1();
+  x += tmp_1;
+  tmp_2 = bts809_slice_1();
+  x += tmp_2;
+  tmp_3 = bts879_slice_1(n);
+  x += tmp_3;
+  tmp_4 = bts879b_slice_1(n);
+  x += tmp_4;
+  tmp_5 = bts899_slice_1();
+  x += tmp_5;
+  tmp_6 = bts906_slice_1();
+  x += tmp_6;
+  tmp_7 = bts906b_slice_1();
+  x += tmp_7;
+  tmp_8 = bts963_slice_1();
+  x += tmp_8;
+  tmp_9 = bts963b_slice_1();
+  x += tmp_9;
+  return x;
+}
+
+
+[kernel] Parsing ocode_0_csmith.i (no preprocessing)

@@ -1,0 +1,7 @@
+[kernel] Parsing bad_return_bts_599.i (no preprocessing)
+[kernel] bad_return_bts_599.i:7: User Error: 
+  Return statement without a value in function returning int
+[kernel] bad_return_bts_599.i:12: User Error: 
+  Return statement without a value in function returning int
+[kernel] User Error: stopping on file "bad_return_bts_599.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

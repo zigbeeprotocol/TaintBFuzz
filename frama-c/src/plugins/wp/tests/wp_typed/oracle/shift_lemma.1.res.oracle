@@ -1,0 +1,70 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing shift_lemma.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Assertion (file shift_lemma.i, line 21):
+Let x = Mint_0[shiftfield_F2_s_d(p)].
+Let a = shiftfield_F2_s_u(p).
+Assume {
+  Type: is_sint32(x) /\ is_sint32(Mint_0[shiftfield_F2_s_e(p)]) /\
+      is_sint32(Mint_0[shiftfield_F1_t_c(shift_S1_t(a, 0))]) /\
+      is_sint32(Mint_0[shiftfield_F1_t_c(shift_S1_t(a, 1))]).
+  (* Heap *)
+  Type: region(p.base) <= 0.
+  (* Pre-condition *)
+  Have: P_inv(Mint_0, p).
+}
+Prove: x = 0.
+
+------------------------------------------------------------
+
+Goal Assertion (file shift_lemma.i, line 22):
+Let a = shiftfield_F2_s_u(p).
+Assume {
+  Type: is_sint32(Mint_0[shiftfield_F2_s_e(p)]) /\
+      is_sint32(Mint_0[shiftfield_F1_t_c(shift_S1_t(a, 0))]) /\
+      is_sint32(Mint_0[shiftfield_F1_t_c(shift_S1_t(a, 1))]).
+  (* Heap *)
+  Type: region(p.base) <= 0.
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 9).
+  (* Pre-condition *)
+  Have: P_inv(Mint_0, p).
+  (* Assertion *)
+  Have: Mint_0[shiftfield_F2_s_d(p)] = 0.
+}
+Prove: Mint_0[shiftfield_F1_t_c(shift_S1_t(a, i))] = 0.
+
+------------------------------------------------------------
+
+Goal Assertion (file shift_lemma.i, line 23):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file shift_lemma.i, line 24):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file shift_lemma.i, line 25):
+Let x = Mint_0[shiftfield_F2_s_e(p)].
+Assume {
+  Type: is_sint32(x).
+  (* Heap *)
+  Type: region(p.base) <= 0.
+  (* Pre-condition *)
+  Have: P_inv(Mint_0, p).
+  (* Assertion *)
+  Have: Mint_0[shiftfield_F2_s_d(p)] = 0.
+  (* Assertion *)
+  Have: forall i : Z. ((0 <= i) -> ((i <= 9) ->
+      (Mint_0[shiftfield_F1_t_c(shift_S1_t(shiftfield_F2_s_u(p), i))] = 0))).
+}
+Prove: x = 0.
+
+------------------------------------------------------------

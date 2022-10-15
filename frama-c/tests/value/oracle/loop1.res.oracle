@@ -1,0 +1,67 @@
+[kernel] Parsing loop1.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  U[0] ∈ {1}
+   [1] ∈ {2}
+   [2..99] ∈ {0}
+  NULL_GLOBAL_LOOSING_BITS_ONE_BY_ONE ∈ {0}
+[eva] computing for function main1 <- main.
+  Called from loop1.i:25.
+[eva] loop1.i:8: 
+  cannot evaluate ACSL term, no environment to evaluate \at(_,LoopCurrent)
+[eva:alarm] loop1.i:8: Warning: assertion got status unknown.
+[eva] loop1.i:9: 
+  cannot evaluate ACSL term, no environment to evaluate \at(_,LoopEntry)
+[eva:alarm] loop1.i:9: Warning: assertion got status unknown.
+[eva] loop1.i:5: starting to merge loop iterations
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from loop1.i:26.
+[eva] loop1.i:17: starting to merge loop iterations
+[eva:alarm] loop1.i:19: Warning: accessing out of bounds index. assert i < 100;
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  U[0] ∈ {1; 7}
+   [1] ∈ {2; 7}
+   [2..99] ∈ {0; 7}
+  i ∈ {100}
+[eva:final-states] Values at end of function main2:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  NON TERMINATING FUNCTION
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Non-terminating function main2 (no dependencies)
+[from] Done for function main2
+[from] Computing for function main
+[from] Non-terminating function main (no dependencies)
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  U[0..99] FROM \nothing (and SELF)
+[from] Function main2:
+  NON TERMINATING - NO EFFECTS
+[from] Function main:
+  NON TERMINATING - NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    U[0..99]; i
+[inout] Inputs for function main1:
+    \nothing
+[inout] Out (internal) for function main2:
+    U[0..99]; i
+[inout] Inputs for function main2:
+    \nothing
+[inout] Out (internal) for function main:
+    U[0..99]
+[inout] Inputs for function main:
+    \nothing

@@ -1,0 +1,43 @@
+[kernel] Parsing loops.c (with preprocessing)
+[eva] Analyzing an incomplete application starting at loop_with_goto
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  after ∈ [--..--]
+[eva:alarm] loops.c:120: Warning: signed overflow. assert -2147483648 ≤ n - 1;
+[eva] Recording results for loop_with_goto
+[eva] done for function loop_with_goto
+[pdg] computing for function loop_with_goto
+[pdg] done for function loop_with_goto
+[pdg] PDG for loop_with_goto
+ {n1}: InCtrl
+ {n2}: VarDecl : n
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: n > 0
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+ {n5}: L:
+   -[-c-]-> 1
+   -[-c-]-> 4
+   -[-c-]-> 7
+ {n6}: L: n --;
+   -[-c-]-> 1
+   -[a-d]-> 2
+   -[--d]-> 3
+   -[-c-]-> 4
+   -[--d]-> 6
+   -[-c-]-> 7
+ {n7}: goto L;
+   -[-c-]-> 1
+   -[-c-]-> 4
+   -[-c-]-> 5
+   -[-c-]-> 7
+ {n8}: return n;
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+ {n9}: OutRet
+   -[--d]-> 8

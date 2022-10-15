@@ -1,0 +1,20 @@
+# frama-c -wp -wp-rte -warn-unsigned-overflow [...]
+[kernel] Parsing binary-multiplication-without-overflow.c (with preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function BinaryMultiplication
+[wp] Goal typed_lemma_half : not tried
+[wp] Goal typed_lemma_size : trivial
+[wp] Goal typed_BinaryMultiplication_ensures_product : not tried
+[wp] Goal typed_BinaryMultiplication_assert_a1_ok_deductible : not tried
+[wp] Goal typed_BinaryMultiplication_loop_invariant_inv1_ok_preserved : not tried
+[wp] Goal typed_BinaryMultiplication_loop_invariant_inv1_ok_established : not tried
+[wp] Goal typed_BinaryMultiplication_loop_invariant_inv2_ok_deductible_preserved : not tried
+[wp] Goal typed_BinaryMultiplication_loop_invariant_inv2_ok_deductible_established : not tried
+[wp] Goal typed_BinaryMultiplication_assert : not tried
+[wp] Goal typed_BinaryMultiplication_assert_rte_unsigned_overflow : not tried
+[wp] Goal typed_BinaryMultiplication_assert_rte_unsigned_overflow_2 : not tried
+[wp] Goal typed_BinaryMultiplication_assert_rte_unsigned_overflow_3 : not tried
+[wp] Goal typed_BinaryMultiplication_assert_rte_unsigned_overflow_4 : not tried
+[wp] Goal typed_BinaryMultiplication_loop_assigns : trivial
+[wp] Goal typed_BinaryMultiplication_loop_variant_decrease : not tried
+[wp] Goal typed_BinaryMultiplication_loop_variant_positive : not tried

@@ -1,0 +1,25 @@
+<?js var returns = obj; const self = this; ?>
+
+<table class="params">
+    <thead>
+    <tr>
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+<?js returns.forEach(function (r) { ?>
+
+    <tr>
+    <td class="type">
+        <?js if (r.type && r.type.names) { ?>
+            <?js= self.partial('type.tmpl', r.type.names) ?>
+        <?js } ?>
+    </td>
+    <td class="description last">
+        <?js= r.description ?>
+    </td>
+
+<?js }); ?>
+    </tbody>
+</table>

@@ -1,0 +1,152 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml; charset=ISO-8859-1"/>
+<link rel="stylesheet" href="style.css" type="text/css"/>
+<title>Frama-C</title>
+</head>
+
+<body>
+
+  <h1><img src="www/src/images/logo.png" alt="Frama-C"/></h1>
+
+<ul>
+  <li> The <a href="http://www.frama-c.cea.fr/">public website</a>
+  (<a href="www/export/index.html">local</a>)
+  </li>
+  <li> The <a href="http://blog.frama-c.com/">blog</a>
+  </li>
+  <li> Dev tools :
+  <ul><li>
+    <a href="https://bts-frama-c.cea.fr/">old BTS</a>
+    </li><li>
+    <a href="http://bts.frama-c.com/">new BTS</a>
+    </li><li>
+    <a href="metrics.html">kernel metrics</a>(<tt>make metrics</tt>)
+    </li><li>
+    <a href="https://svn.frama-c.com/">browse SVN</a>
+    </li><li>
+     <a
+       href="http://lists.gforge.inria.fr/cgi-bin/mailman/listinfo/frama-c-commits">dev
+       mailing list</a>
+    </li><li>
+    <a href="http://gforge.inria.fr/projects/frama-c/">Gforge Frama-C page</a>
+    </li></ul>
+  </li>
+  <li>User manual
+    <ul>
+      <li>The user manual : <a href="userman/userman.pdf">pdf version</a>
+      (<tt>cd userman; make</tt>)
+      </li>
+      <li> French version of <a href="value/main.pdf">value</a>
+      (<tt>cd value; make</tt>)
+      </li>
+    </ul>
+  </li>
+  <li>ACSL: ANSI C Specification Language
+    <ul>
+     <li> Reference manual (<tt>cd speclang; make</tt>)
+     (<a href="speclang/acsl.pdf" >.pdf)</a>,
+     </li>
+     <li> Implemented features (<tt>cd speclang; make</tt>)
+     (<a href="speclang/acsl-implementation.pdf">.pdf)</a>,
+     </li>
+     <li> Tutorial (<tt>cd speclang; make acsl-mini-tutorial.pdf</tt>)
+     (<a href="speclang/acsl-mini-tutorial.pdf.pdf">.pdf)</a>,
+     </li>
+    </ul>
+  </li>
+  <li>
+  <a href="architecture/architecture.pdf">Software Architecture (pdf)</a>
+  (<tt>cd architecture; make</tt>)
+  </li><li>
+  <a href="manuals/plugin-development-guide.pdf">Plugin Development Guide (pdf)</a>
+  (<tt>cd developer; make</tt>) (<a href="developer/developer.pdf">local pdf version)</a>
+  </li>
+  <li><a href="code/html/index.html">Source Documentation</a>
+  (<tt>make doc</tt> for the whole documentation
+  or <tt>make html</tt> for generating only the kernel documentation)
+  </li>
+  <li>Dependencies Graph (<a href="call_graph.ps">.ps</a>,
+                          <a href="call_graph.dot">.dot</a>,
+			  or <a href="call_graph.svg">.svg</a>) (<tt>make dots</tt>)
+  </li>
+  <li>Some plugins:
+    <ul><li>
+      <a href="code/occurrence/index.html">occurrence</a>
+      (<a href="www/export/occurrence.html">doc web</a>)
+    </li><li>
+      <a href="code/metrics/index.html">metrics</a>
+    </li><li>
+      <a href="code/syntactic_callgraph/index.html">syntactic_callgraph</a>
+    </li><li>
+      <a href="code/value/index.html">value</a>
+      (<a href="www/export/value.html">doc web</a>)
+    </li><li>
+      <a href="code/rte/index.html">rte</a>
+    </li><li>
+      <a href="code/from/index.html">from</a>
+    </li><li>
+      <a href="code/inout/index.html">inout</a>
+    </li><li>
+      <a href="code/users/index.html">users</a>
+    </li><li>
+      <a href="code/constant_propagation/index.html">constant_propagation</a>
+      (<a href="www/export/constant_propagation.html">doc web</a>)
+    </li><li>
+      <a href="code/semantic_callgraph/index.html">semantic_callgraph</a>
+    </li><li>
+      <a href="code/impact/index.html">impact</a>
+      (<a href="www/export/impact.html">doc web</a>)
+    </li><li>
+      <a href="code/pdg/index.html">pdg</a>
+      (<a href="pdg/index.html">rapport</a> <tt>cd pdg; make</tt>)
+    </li><li>
+      <a href="code/scope/index.html">scope</a>
+      (<a href="scope/index.html">rapport</a> <tt>cd scope; make</tt>)
+      (<a href="www/export/scope.html">doc web</a>)
+    </li><li>
+      <a href="code/sparecode/index.html">sparecode</a>
+      (<a href="www/export/sparecode.html">doc web</a>)
+    </li><li>
+      <a href="code/slicing/index.html">slicing</a>
+      (<a href="slicing/index.html">rapport</a> <tt>cd slicing; make</tt>)
+      (<a href="www/export/slicing.html">doc web</a>)
+    </li><li>
+      <a href="code/mthread/index.html">mthread</a>
+    </li><li>
+      <a href="code/security_slicing/index.html">security_slicing</a>
+    </li><li>
+      <a href="code/wp/index.html">wp</a>
+      (<a href="../share/why/index.html">WHY library</a>)
+      (<a href="wp/Spec/index.html">spec</a> : <tt>cd wp/Spec; make</tt>)
+      (<a href="wp/Notes/index.html">informal notes</a> : <tt>cd wp/Notes; make</tt>)
+      (<a href="wp/Implem/index.html">implementation</a> : <tt>cd wp/Implem; make</tt>)
+      (<a href="wp/Coq/doc/toc.html">modélisation COQ</a>)
+      (<a href="code/wp/metrics.html">metrics</a> : <tt>make Wp_metrics)</tt>)
+    </li><li>
+      <a href="code/cxx_elsa/index.html">cxx</a>
+    </li><li>
+      <a href="http://krakatoa.lri.fr/">Jessie</a>
+     </li><li>
+     <a href="code/aorai/index.html">aorai</a>
+      (<a href="manuals/aorai-manual.pdf">pdf manual</a>)
+      (<a href="www/export/aorai.html">doc web</a>)
+    </li>
+    </ul>
+  </li>
+  <li>Other links and documentations:
+    <ul><li>
+      <a href="ai_for_real_programs/p.ps">Techniques for the Verification of Real-World C Programs</a>
+      </li><li>
+      <a href="http://en.wikipedia.org/wiki/Frama-C">Wikipedia(en)</a>
+      </li><li>
+      <a href="http://www.slideshare.net/UlissesCosta/correct-sorting-with-framac">Correct sorting with Frama-C</a> : an online presentation of a proof of a bubbleSort function.
+      </li></ul>
+  </li>
+</ul>
+</body>
+</html>

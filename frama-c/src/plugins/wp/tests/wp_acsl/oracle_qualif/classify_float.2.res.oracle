@@ -1,0 +1,13 @@
+# frama-c -wp -wp-model 'Typed (Real)' [...]
+[kernel] Parsing classify_float.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] 3 goals scheduled
+[wp] [Qed] Goal typed_real_lemma_InfN_not_finite : Valid
+[wp] [Qed] Goal typed_real_lemma_InfP_not_finite : Valid
+[wp] [Qed] Goal typed_real_lemma_NaN_not_finite : Valid
+[wp] Proved goals:    3 / 3
+  Qed:             3
+------------------------------------------------------------
+ Axiomatics                WP     Alt-Ergo  Total   Success
+  Lemma                     3        -        3       100%
+------------------------------------------------------------

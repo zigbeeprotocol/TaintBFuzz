@@ -1,0 +1,43 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing logicref.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function fvrange_n
+------------------------------------------------------------
+
+Goal Post-condition (file logicref.i, line 11) in 'fvrange_n':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file logicref.i, line 14):
+Assume {
+  Type: is_sint32(i) /\ is_sint32(k).
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: (0 <= i) /\ (i < k) /\ P_vrange(Malloc_0, a, k).
+}
+Prove: valid_rw(Malloc_0, shift_sint32(a, i), 1).
+
+------------------------------------------------------------
+
+Goal Assigns (file logicref.i, line 11) in 'fvrange_n':
+Effect at line 15
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function gcd
+------------------------------------------------------------
+
+Goal Post-condition (file logicref.i, line 23) in 'gcd':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'gcd':
+Prove: true.
+
+------------------------------------------------------------

@@ -1,0 +1,31 @@
+[kernel] Parsing builtin_termination.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] builtin_termination.c:15: 
+  Call to builtin Frama_C_strlen for function strlen
+[eva] builtin_termination.c:15: 
+  function strlen: precondition 'valid_string_s' got status valid.
+[eva] builtin_termination.c:16: 
+  Call to builtin Frama_C_strlen for function strlen
+[eva:alarm] builtin_termination.c:16: Warning: 
+  function strlen: precondition 'valid_string_s' got status invalid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  str1[0] ∈ {111}
+      [1] ∈ {107}
+      [2..3] ∈ {0}
+  str2[0] ∈ {111}
+      [1] ∈ {107}
+      [2..3] ∈ UNINITIALIZED
+  len1 ∈ {2} or UNINITIALIZED
+  len2 ∈ UNINITIALIZED
+  __retres ∈ {0}
+[nonterm:stmt] builtin_termination.c:16: Warning: 
+  non-terminating function call
+  stack: main
+[nonterm] Analysis done.

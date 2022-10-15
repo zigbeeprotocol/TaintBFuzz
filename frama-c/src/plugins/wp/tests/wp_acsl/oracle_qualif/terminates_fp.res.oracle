@@ -1,0 +1,72 @@
+# frama-c -wp [...]
+[kernel] Parsing terminates_fp.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] terminates_fp.i:42: Warning: 
+  Missing terminates clause for no_t_spec, populates 'terminates \true'
+[wp] Warning: Missing RTE guards
+[wp] terminates_fp.i:62: Warning: 
+  Missing terminates clause for no_t_spec_cond, populates 'terminates \true'
+[wp] terminates_fp.i:70: Warning: 
+  Missing terminates clause for no_t_spec_cond_m, populates 'terminates \true'
+[wp] terminates_fp.i:56: Warning: 
+  Missing terminates clause for no_t_spec_in_bhv, populates 'terminates \true'
+[wp] terminates_fp.i:22: Warning: 
+  Missing terminates clause for t_spec, populates 'terminates \true'
+[wp] terminates_fp.i:36: Warning: 
+  Missing terminates clause for t_spec_in_bhv, populates 'terminates \true'
+[wp] terminates_fp.i:78: Warning: 
+  Missing terminates clause for warns_recursive, populates 'terminates \true'
+[wp] terminates_fp.i:78: Warning: 
+  In 'warns_recursive', no 'calls' specification for statement(s) on line(s): 
+  line 79, 
+  Assuming that they can call 'warns_recursive'
+[wp] terminates_fp.i:9: Warning: 
+  Missing terminates clause for gt, populates 'terminates \true'
+[wp] terminates_fp.i:11: Warning: 
+  Missing terminates clause for ht, populates 'terminates \true'
+[wp] terminates_fp.i:79: Warning: Missing 'calls' for default behavior
+[wp] terminates_fp.i:78: Warning: 
+  No 'decreases' clause on recursive function 'warns_recursive', cannot prove termination
+[wp] 29 goals scheduled
+[wp] [Qed] Goal typed_t_spec_call_point_gt_ht_s2 : Valid
+[wp] [Qed] Goal typed_t_spec_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_t_spec_in_bhv_call_point_gt_hnt_s6 : Valid
+[wp] [Qed] Goal typed_t_spec_in_bhv_complete_B1_B2 : Valid
+[wp] [Qed] Goal typed_t_spec_in_bhv_disjoint_B1_B2 : Valid
+[wp] [Qed] Goal typed_t_spec_in_bhv_terminates_part1 : Valid
+[wp] [Qed] Goal typed_t_spec_in_bhv_terminates_part2 : Valid
+[wp] [Qed] Goal typed_t_spec_in_bhv_call_point_gt_hnt_s6 : Valid
+[wp] [Qed] Goal typed_t_spec_in_bhv_call_point_gt_hnt_s6 : Valid
+[wp] [Qed] Goal typed_no_t_spec_call_point_gnt_hnt_s10 : Valid
+[wp] [Qed] Goal typed_no_t_spec_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_no_t_spec_terminates_part2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_no_t_spec_in_bhv_call_point_gnt_hnt_s14 : Valid
+[wp] [Qed] Goal typed_no_t_spec_in_bhv_complete_B1_B2 : Valid
+[wp] [Qed] Goal typed_no_t_spec_in_bhv_disjoint_B1_B2 : Valid
+[wp] [Qed] Goal typed_no_t_spec_in_bhv_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_no_t_spec_in_bhv_terminates_part2 : Unsuccess
+[wp] [Qed] Goal typed_no_t_spec_in_bhv_call_point_gnt_hnt_s14 : Valid
+[wp] [Qed] Goal typed_no_t_spec_in_bhv_call_point_gnt_hnt_s14 : Valid
+[wp] [Qed] Goal typed_no_t_spec_cond_call_point_gt_hnt_s18 : Valid
+[wp] [Qed] Goal typed_no_t_spec_cond_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_no_t_spec_cond_terminates_part2 : Unsuccess
+[wp] [Qed] Goal typed_no_t_spec_cond_m_call_point_gt_ht_s22 : Valid
+[wp] [Qed] Goal typed_no_t_spec_cond_m_call_point_hnt_s24_part1 : Valid
+[wp] [Qed] Goal typed_no_t_spec_cond_m_call_point_hnt_s24_part2 : Valid
+[wp] [Qed] Goal typed_no_t_spec_cond_m_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_no_t_spec_cond_m_terminates_part2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_no_t_spec_cond_m_terminates_part3 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_warns_recursive_terminates : Unsuccess
+[wp] Proved goals:   23 / 29
+  Qed:            21 
+  Alt-Ergo:        2  (unsuccess: 6)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  t_spec                    2        -        2       100%
+  t_spec_in_bhv             6        1        7       100%
+  no_t_spec                 2        -        3      66.7%
+  no_t_spec_in_bhv          5        1        7      85.7%
+  no_t_spec_cond            2        -        3      66.7%
+  no_t_spec_cond_m          4        -        6      66.7%
+  warns_recursive           -        -        1       0.0%
+------------------------------------------------------------

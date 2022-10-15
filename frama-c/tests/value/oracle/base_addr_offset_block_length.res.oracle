@@ -1,0 +1,53 @@
+[kernel] Parsing base_addr_offset_block_length.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+  z ∈ {0}
+[eva:alarm] base_addr_offset_block_length.i:9: Warning: 
+  function main: precondition got status unknown.
+[eva] base_addr_offset_block_length.i:17: assertion got status valid.
+[eva] base_addr_offset_block_length.i:18: assertion got status valid.
+[eva] base_addr_offset_block_length.i:19: assertion got status valid.
+[eva:alarm] base_addr_offset_block_length.i:20: Warning: 
+  assertion got status unknown.
+[eva] base_addr_offset_block_length.i:21: assertion got status valid.
+[eva] base_addr_offset_block_length.i:22: assertion got status valid.
+[eva:alarm] base_addr_offset_block_length.i:23: Warning: 
+  assertion got status unknown.
+[eva] base_addr_offset_block_length.i:24: assertion got status valid.
+[eva] base_addr_offset_block_length.i:25: assertion got status valid.
+[eva] base_addr_offset_block_length.i:26: assertion got status valid.
+[eva] base_addr_offset_block_length.i:27: assertion got status valid.
+[eva] base_addr_offset_block_length.i:28: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  px ∈ {{ &x + {4} }}
+  px2 ∈ {{ &x + {12} }}
+  py ∈ {{ &y + {8} }}
+  pz ∈ {{ &z + {4} }}
+  p ∈ {{ &x + {4} ; &y }}
+  q ∈ {{ &x + {8} ; &y + {4} }}
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+  z ∈ {0}
+[eva] base_addr_offset_block_length.i:20: assertion got status valid.
+[eva] base_addr_offset_block_length.i:23: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  px ∈ {{ &x + {4} }}
+  px2 ∈ {{ &x + {12} }}
+  py ∈ {{ &y + {8} }}
+  pz ∈ {{ &z + {4} }}
+  p ∈ {{ &x + {4} ; &y }}
+  q ∈ {{ &x + {8} ; &y + {4} }}

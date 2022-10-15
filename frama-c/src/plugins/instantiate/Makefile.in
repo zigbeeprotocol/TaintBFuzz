@@ -1,0 +1,96 @@
+##########################################################################
+#                                                                        #
+#  This file is part of Frama-C.                                         #
+#                                                                        #
+#  Copyright (C) 2007-2022                                               #
+#    CEA (Commissariat à l'énergie atomique et aux énergies              #
+#         alternatives)                                                  #
+#                                                                        #
+#  you can redistribute it and/or modify it under the terms of the GNU   #
+#  Lesser General Public License as published by the Free Software       #
+#  Foundation, version 2.1.                                              #
+#                                                                        #
+#  It is distributed in the hope that it will be useful,                 #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#  GNU Lesser General Public License for more details.                   #
+#                                                                        #
+#  See the GNU Lesser General Public License version 2.1                 #
+#  for more details (enclosed in the file licenses/LGPLv2.1).            #
+#                                                                        #
+##########################################################################
+
+# Do not use ?= to initialize both below variables
+# (fixed efficiency issue, see GNU Make manual, Section 8.11)
+ifndef FRAMAC_SHARE
+FRAMAC_SHARE  :=$(shell frama-c-config -print-share-path)
+endif
+ifndef FRAMAC_LIBDIR
+FRAMAC_LIBDIR :=$(shell frama-c-config -print-libpath)
+endif
+
+SRC_STRING:= \
+	mem_utils \
+	memcmp \
+	memcpy \
+	memmove \
+	memset
+SRC_STRING:=$(addprefix string/, $(SRC_STRING))
+
+SRC_STDLIB:= \
+	basic_alloc \
+	calloc \
+	free \
+	malloc
+SRC_STDLIB:=$(addprefix stdlib/, $(SRC_STDLIB))
+
+###################
+# Plug-in Setting #
+###################
+
+PLUGIN_DIR ?= .
+PLUGIN_ENABLE := @ENABLE_INSTANTIATE@
+PLUGIN_NAME := Instantiate
+PLUGIN_EXTRA_DIRS:=\
+	string\
+	stdlib
+PLUGIN_CMI :=
+PLUGIN_CMO := \
+	options basic_blocks \
+	global_context instantiator_builder \
+	transform register \
+	$(SRC_STRING) \
+	$(SRC_STDLIB)
+
+PLUGIN_DISTRIBUTED := $(PLUGIN_ENABLE)
+PLUGIN_DISTRIB_EXTERNAL:= Makefile.in configure.ac configure
+#PLUGIN_NO_DEFAULT_TEST := no
+PLUGIN_TESTS_DIRS := string stdlib options api plugin
+PLUGIN_DISTRIB_TESTS := \
+  $(foreach dir, $(addprefix tests/,$(PLUGIN_TESTS_DIRS)), \
+    $(dir)/oracle/* \
+    $(filter-out result oracle,$(dir)/*)) \
+  ) \
+  $(filter-out result oracle,tests/*)) \
+  $(foreach dir, tests $(addprefix tests/,$(PLUGIN_TESTS_DIRS)), \
+    $(dir)/test_config)
+
+################
+# Generic part #
+################
+
+include $(FRAMAC_SHARE)/Makefile.dynamic
+
+#####################################
+# Regenerating the Makefile on need #
+#####################################
+
+ifeq ("$(FRAMAC_INTERNAL)","yes")
+CONFIG_STATUS_DIR=$(FRAMAC_SRC)
+else
+CONFIG_STATUS_DIR=.
+endif
+
+$(Instantiate_DIR)/Makefile: $(Instantiate_DIR)/Makefile.in \
+				$(CONFIG_STATUS_DIR)/config.status
+	cd $(CONFIG_STATUS_DIR) && ./config.status --file $@

@@ -1,0 +1,110 @@
+[kernel] Parsing initial.i (no preprocessing)
+[impact] beginning analysis
+[eva] Analyzing a complete application starting at main1
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x1 ∈ {0}
+  x2 ∈ {0}
+  y2 ∈ {0}
+  z2 ∈ {0}
+  x3 ∈ {0}
+  c ∈ [--..--]
+[eva] computing for function g1 <- main1.
+  Called from initial.i:25.
+[eva] computing for function f1 <- g1 <- main1.
+  Called from initial.i:19.
+[eva] Recording results for f1
+[eva] Done for function f1
+[eva] Recording results for g1
+[eva] Done for function g1
+[eva] initial.i:24: starting to merge loop iterations
+[eva] computing for function g1 <- main1.
+  Called from initial.i:25.
+[eva] initial.i:19: Reusing old results for call to f1
+[eva] Recording results for g1
+[eva] Done for function g1
+[eva] Recording results for main1
+[eva] done for function main1
+[from] Computing for function f1
+[from] Done for function f1
+[from] Computing for function g1
+[from] Done for function g1
+[pdg] initial.i:24: Warning: no final state. Probably unreachable...
+[impact] impacted statements of stmt(s) 7 are:
+[impact] analysis done
+[impact] beginning analysis
+[eva] Analyzing a complete application starting at main2
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x1 ∈ {0}
+  x2 ∈ {0}
+  y2 ∈ {0}
+  z2 ∈ {0}
+  x3 ∈ {0}
+  c ∈ [--..--]
+[eva] computing for function h2 <- main2.
+  Called from initial.i:58.
+[eva] computing for function g2 <- h2 <- main2.
+  Called from initial.i:52.
+[eva] computing for function f2 <- g2 <- h2 <- main2.
+  Called from initial.i:46.
+[eva] Recording results for f2
+[eva] Done for function f2
+[eva] computing for function aux2 <- g2 <- h2 <- main2.
+  Called from initial.i:47.
+[eva] Recording results for aux2
+[eva] Done for function aux2
+[eva] Recording results for g2
+[eva] Done for function g2
+[eva] Recording results for h2
+[eva] Done for function h2
+[eva] Recording results for main2
+[eva] done for function main2
+[from] Computing for function f2
+[from] Done for function f2
+[from] Computing for function aux2
+[from] Done for function aux2
+[from] Computing for function g2
+[from] Done for function g2
+[from] Computing for function h2
+[from] Done for function h2
+[pdg] initial.i:57: Warning: no final state. Probably unreachable...
+[impact] impacted statements of stmt(s) 24 are:
+    initial.i:35 (sid 15): x2 = y2;initial.i:40 (sid 18): y2 = z2;
+    initial.i:46 (sid 24): f2();initial.i:47 (sid 27): aux2();
+    initial.i:52 (sid 32): g2();initial.i:53 (sid 33): z2 = x2;
+    initial.i:58 (sid 38): h2();
+[impact] analysis done
+[impact] beginning analysis
+[eva] Analyzing a complete application starting at main3
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x1 ∈ {0}
+  x2 ∈ {0}
+  y2 ∈ {0}
+  z2 ∈ {0}
+  x3 ∈ {0}
+  c ∈ [--..--]
+[eva] computing for function g3 <- main3.
+  Called from initial.i:81.
+[eva] computing for function f3 <- g3 <- main3.
+  Called from initial.i:69.
+[eva] Recording results for f3
+[eva] Done for function f3
+[eva] Recording results for g3
+[eva] Done for function g3
+[eva] initial.i:80: starting to merge loop iterations
+[eva] initial.i:81: Reusing old results for call to g3
+[eva] Recording results for main3
+[eva] done for function main3
+[from] Computing for function f3
+[from] Done for function f3
+[from] Computing for function g3
+[from] Done for function g3
+[pdg] initial.i:80: Warning: no final state. Probably unreachable...
+[impact] impacted statements of stmt(s) 44 are:
+    initial.i:71 (sid 47): x3 = x3;initial.i:81 (sid 53): g3();
+[impact] analysis done

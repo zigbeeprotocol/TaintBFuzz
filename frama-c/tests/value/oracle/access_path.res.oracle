@@ -1,0 +1,29 @@
+[kernel] Parsing access_path.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] access_path.i:2: Warning: out of bounds read. assert \valid_read(p);
+[eva:alarm] access_path.i:2: Warning: out of bounds write. assert \valid(*p);
+[eva:alarm] access_path.i:2: Warning: 
+  signed overflow. assert *(*p) + 1 ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __retres ∈ {0}
+  S_0_S_p[0] ∈ [-2147483647..2147483647]
+         [1] ∈ [--..--]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  S_0_S_p[0] FROM p; S_p[0]; S_0_S_p[0]
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    __retres; S_0_S_p[0]
+[inout] Inputs for function main:
+    S_p[0]; S_0_S_p[0]

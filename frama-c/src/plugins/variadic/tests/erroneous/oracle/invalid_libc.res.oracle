@@ -1,0 +1,5 @@
+[variadic] invalid_libc.i:2: Declaration of variadic function fprintf.
+[variadic:libc] invalid_libc.i:2: Warning: 
+  The standard function fprintf was expected to have at least 2 fixed parameters but only has 1.
+  No variadic translation will be performed.
+[variadic] invalid_libc.i:6: Generic translation of call to variadic function.

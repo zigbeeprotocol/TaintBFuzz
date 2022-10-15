@@ -1,0 +1,15 @@
+# frama-c -wp [...]
+[kernel] Parsing issue_508.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 3 goals scheduled
+[wp] [Alt-Ergo] Goal typed_add_assigns_part1 : Valid
+[wp] [Qed] Goal typed_add_assigns_part2 : Valid
+[wp] [Qed] Goal typed_add_assigns_part3 : Valid
+[wp] Proved goals:    3 / 3
+  Qed:             2 
+  Alt-Ergo:        1
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  add                       2        1        3       100%
+------------------------------------------------------------

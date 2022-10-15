@@ -1,0 +1,3 @@
+## Z3: there is no Github release archive with binaries for Alpine (musl), but\n
+##     there is an Alpine package\n
+RUN sudo apk add z3

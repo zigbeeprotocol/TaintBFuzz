@@ -1,0 +1,62 @@
+[kernel] Parsing from1.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+  cx ∈ {0}
+  cy ∈ {0}
+  cz ∈ {0}
+  sx ∈ {0}
+  sy ∈ {0}
+  s ∈ {0}
+[eva] computing for function f <- main.
+  Called from from1.i:23.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function sf <- main.
+  Called from from1.i:25.
+[eva] Recording results for sf
+[eva] Done for function sf
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  cy ∈ {0}
+[eva:final-states] Values at end of function sf:
+  __retres ∈ {0}
+[eva:final-states] Values at end of function main:
+  G ∈ [--..--]
+  cx ∈ {0}
+  cy ∈ {0}
+  s_0 ∈ {0}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function sf
+[from] Done for function sf
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  cy FROM cx
+[from] Function sf:
+  \result FROM ps; s_0.a
+[from] Function main:
+  G FROM x; y (and SELF)
+  cx FROM cz
+  cy FROM cz
+  \result FROM sx
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    cy
+[inout] Inputs for function f:
+    cx
+[inout] Out (internal) for function sf:
+    __retres
+[inout] Inputs for function sf:
+    s_0.a
+[inout] Out (internal) for function main:
+    G; cx; cy; s_0; tmp
+[inout] Inputs for function main:
+    cx; cz; sx; sy

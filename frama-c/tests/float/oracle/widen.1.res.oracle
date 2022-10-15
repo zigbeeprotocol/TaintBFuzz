@@ -1,0 +1,59 @@
+[kernel] Parsing widen.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  rand ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from widen.c:50.
+[eva] widen.c:13: starting to merge loop iterations
+[eva] widen.c:16: starting to merge loop iterations
+[eva] widen.c:24: Frama_C_show_each_double_inf: [1. .. inf]
+[eva] widen.c:25: starting to merge loop iterations
+[eva] widen.c:34: Frama_C_show_each_float_inf: [1. .. inf]
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from widen.c:51.
+[eva] widen.c:40: starting to merge loop iterations
+[eva] widen.c:45: Frama_C_show_each: [-0. .. 0.]
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  max ∈ [1. .. inf]
+  f ∈ [1. .. inf]
+  d ∈ [1. .. inf]
+[eva:final-states] Values at end of function main2:
+  d ∈ [-0. .. 0.]
+[eva:final-states] Values at end of function main:
+  
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  NO EFFECTS
+[from] Function main2:
+  NO EFFECTS
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    max; f; d
+[inout] Inputs for function main1:
+    rand
+[inout] Out (internal) for function main2:
+    d
+[inout] Inputs for function main2:
+    \nothing
+[inout] Out (internal) for function main:
+    \nothing
+[inout] Inputs for function main:
+    rand

@@ -1,0 +1,72 @@
+# frama-c -wp [...]
+[kernel] Parsing find.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 41 goals scheduled
+[wp] [Qed] Goal typed_find_complete_found_not_found : Valid
+[wp] [Qed] Goal typed_find_disjoint_found_not_found : Valid
+[wp] [Qed] Goal typed_find_ensures_Range : Valid
+[wp] [Qed] Goal typed_find_ensures_NoneBefore : Valid
+[wp] [Alt-Ergo] Goal typed_find_loop_invariant_NotFound_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_find_loop_invariant_NotFound_established : Valid
+[wp] [Alt-Ergo] Goal typed_find_loop_invariant_Range_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_find_loop_invariant_Range_established : Valid
+[wp] [Alt-Ergo] Goal typed_find_loop_invariant_Valid_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_find_loop_invariant_Valid_established : Valid
+[wp] [Qed] Goal typed_find_loop_assigns : Valid
+[wp] [Qed] Goal typed_find_loop_variant_decrease : Valid
+[wp] [Qed] Goal typed_find_loop_variant_positive : Valid
+[wp] [Alt-Ergo] Goal typed_find_not_found_ensures : Valid
+[wp] [Alt-Ergo] Goal typed_find_found_ensures : Valid
+[wp] [Alt-Ergo] Goal typed_find_found_ensures_2 : Valid
+[wp] [Qed] Goal typed_find_ptr_complete_found_not_found : Valid
+[wp] [Qed] Goal typed_find_ptr_disjoint_found_not_found : Valid
+[wp] [Qed] Goal typed_find_ptr_ensures_Range : Valid
+[wp] [Qed] Goal typed_find_ptr_ensures_NoneBefore : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_loop_invariant_NotFound_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_loop_invariant_NotFound_established : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_loop_invariant_Range_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_loop_invariant_Range_established : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_loop_invariant_Valid_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_loop_invariant_Valid_established : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_assert_Hack : Valid
+[wp] [Qed] Goal typed_find_ptr_loop_assigns : Valid
+[wp] [Qed] Goal typed_find_ptr_loop_variant_decrease : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_loop_variant_positive : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_not_found_ensures : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_found_ensures : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_found_ensures_2 : Valid
+[wp] [Alt-Ergo] Goal typed_iter_ptr_ensures_Last : Valid
+[wp] [Alt-Ergo] Goal typed_iter_ptr_loop_invariant_Range_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_iter_ptr_loop_invariant_Range_established : Valid
+[wp] [Alt-Ergo] Goal typed_iter_ptr_loop_invariant_Valid_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_iter_ptr_loop_invariant_Valid_established : Valid
+[wp] [Qed] Goal typed_iter_ptr_loop_assigns : Valid
+[wp] [Qed] Goal typed_iter_ptr_loop_variant_decrease : Valid
+[wp] [Alt-Ergo] Goal typed_iter_ptr_loop_variant_positive : Valid
+[wp] Proved goals:   41 / 41
+  Qed:            15 
+  Alt-Ergo:       26
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  find                      7        9       16       100%
+  find_ptr                  6       11       17       100%
+  iter_ptr                  2        6        8       100%
+------------------------------------------------------------
+[wp] Running WP plugin...
+[rte:annot] annotating function find
+[rte:annot] annotating function find_ptr
+[rte:annot] annotating function iter_ptr
+[wp] 3 goals scheduled
+[wp] [Alt-Ergo] Goal typed_find_assert_rte_mem_access : Valid
+[wp] [Qed] Goal typed_find_assert_rte_signed_overflow : Valid
+[wp] [Alt-Ergo] Goal typed_find_ptr_assert_rte_mem_access : Valid
+[wp] Proved goals:    3 / 3
+  Qed:             1 
+  Alt-Ergo:        2
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  find                      8       10       18       100%
+  find_ptr                  6       12       18       100%
+  iter_ptr                  2        6        8       100%
+------------------------------------------------------------

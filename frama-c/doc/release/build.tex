@@ -1,0 +1,360 @@
+\chapter{The Build Stage}
+
+The procedure for creating the source distribution.
+
+\section{Prerequisites}
+
+\begin{itemize}
+\item All tools needed to compile Frama-C (that you should have anyways)
+\item \texttt{bash} v4.0 or higher
+\item \texttt{git-lfs}
+\item GNU \texttt{parallel}
+\item a \TeX distribution (e.g. \TeX{}live),
+including notably the following utilities:
+\begin{itemize}
+\item \texttt{latexmk}
+\item (recommended) \texttt{texfot}
+\end{itemize}
+\end{itemize}
+
+\section{Final checks}
+
+\begin{itemize}
+
+\item Check plug-in dependencies in all \texttt{configure.*}, in case they have
+  changed: if you don't know them, ask plug-in developers to verify them.
+
+\todo{should be done when the plugin is modified}
+
+\item Check the headers and corresponding licenses files for new files
+  \todo{should be done when the plugin is modified}
+
+%  (\texttt{make check-headers} is your friend, but it is done by CI anyway).
+
+
+\item Check the contents of \texttt{INSTALL.md} \todo{Should always be up to date}
+  \begin{itemize}
+    \item Update the Frama-C version number in the `Reference configuration` section
+    \item In particular, check and update a full known good configuration for
+    opam packages, including alt-ergo, why3, coq, etc.
+    Use \verb+bin/check-reference-configuration.sh+ to help check if the
+    configuration is ok. You can also try running
+    \verb+make wp-qualif+.
+  \end{itemize}
+\item Check the contents of \texttt{README.md} \todo{Should always be up to date}
+\item Check the contents of \texttt{Changelog}
+  \todo{Should always be up to date}
+\item Carefully read the output of the configure to be sure that there are no
+  buggy messages. Make sure you have required OPAM packages installed in your machine,
+  e.g. alt-ergo.
+\end{itemize}
+
+\section{Update the Sources}\label{sec:update-sources}
+
+There are many administrative steps, coordinated by the release manager.
+\begin{enumerate}
+\item [{\em Non-beta only}] If a new version of the ACSL manual is to be released, make sure you also
+  have a clone of the \texttt{acsl} manual Github repository
+  (\url{git@github.com:acsl-language/acsl.git}) in the \texttt{doc}
+  directory
+\item Update files \texttt{VERSION} and \texttt{VERSION\_CODENAME}
+  (for beta releases, add suffix \texttt{\textasciitilde{}beta})
+\item [{\em Non-beta only}] Update file \texttt{ALL\_VERSIONS}. \todo{This section must be put somewhere else in the release manual}
+\item Update files
+  \texttt{src/plugins/wp/Changelog} and
+  \texttt{src/plugins/e-acsl/doc/Changelog},
+  to add the header corresponding to the
+  new version. % For the final release, use the script
+  % \texttt{doc/changelog/generate} to check that the HTML page can be built,
+  % and check its contents.
+\item Update the Frama-C's authors list in files
+  \texttt{src/plugins/gui/help\_manager.ml} and \texttt{opam/opam}.
+  Traditionally, an author is added if they have contributed 100+ LoC in
+  the release, as counted by:
+  \begin{verbatim}
+  git ls-files -z | \
+  parallel -0 -n1 git blame --line-porcelain | \
+  sed -n 's/^author //p' | sort -f | uniq -ic | sort -nr
+  \end{verbatim}
+  (source for the command: \url{https://gist.github.com/amitchhajer/4461043})
+\item Recompile and test to check that all is fine.
+\item Check the documentation as per Section~\ref{update_doc}
+\item update the \texttt{opam} directory: update the version name and
+  version number in the fields \texttt{version}, \texttt{doc} and
+  \texttt{depends} in \texttt{opam/opam}. \textbf{NB:} for a beta version, be sure
+  to use a tilde \textasciitilde{} between the version number and \texttt{beta},
+  and not a dash \texttt{-}.
+\item Create the last commit
+\item Create the tag using \texttt{git tag \$(cat VERSION | sed -e "s/~/-/")} and push it (e.g. via \texttt{git push origin \$(cat VERSION | sed -e "s/~/-/")})
+\end{enumerate}
+
+\section{Update the Documentation}\label{update_doc}
+
+\subsection{Manuals}
+
+Most manuals depend on the \texttt{VERSION} file, so make sure to regenerate
+them when this file changes.
+Also, most of the manuals include an appendix with the list of
+changes that have happened, divided by version of Frama-C. Make sure that the
+first section has the correct release name.
+
+\todo{Mention the other things that change from one release to the
+  other, such as the ACSL version number}
+
+\todo{The release manager should create fresh Changes sections in \texttt{master}. But When?: at fork time, or when the release is ready?}
+
+
+The official \FramaC documents relative to the kernel and ACSL to be released
+must be recompiled in order to take into account the \texttt{VERSION}
+file:
+
+\begin{center}
+  \begin{tabular}{lll}
+    \hline
+    \textsf{User Manual} &
+    \texttt{doc/userman} &
+    \expertise{Julien} \\
+    \textsf{Developer Manual} &
+    \texttt{doc/developer} &
+    \expertise{Julien} \\
+    \textsf{ACSL Implementation}  &
+    \texttt{doc/acsl} (from Github) &
+    \expertise{Virgile} \\
+    % \textsf{man page} &
+    % \texttt{man/frama-c.1} &
+    % \expertise{Virgile} \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Documents relative to the plug-ins can be found at the same place. This list
+isn't exhaustive:
+
+\begin{center}
+  \begin{tabular}{lll}
+    \hline
+    \textsf{RTE}  &
+    \texttt{doc/rte} &
+    \expertise{Julien} \\
+    \textsf{Aoraï}  &
+    \texttt{doc/aorai} &
+    \expertise{Virgile} \\
+    \textsf{Metrics}  &
+    \texttt{doc/metrics} &
+    \expertise{André} \\
+    \textsf{Value Analysis}  &
+    \texttt{doc/value} &
+    \expertise{David} \\
+    \textsf{WP}  &
+    \texttt{src/plugins/wp/doc/manual/} &
+    \expertise{Loïc} \\
+  \end{tabular}
+\end{center}
+
+Clone the \texttt{acsl} manual
+(\url{git@github.com:acsl-language/acsl.git}) in
+\texttt{doc/acsl} in order to generate the ACSL reference and implementation
+manuals.
+
+% manuals (which uses git-annex) are now deprecated in favor of using the
+% Github wiki
+%Clone the \texttt{manuals} repository
+%(\url{git@git.frama-c.com:frama-c/manuals.git}) in
+%\texttt{doc/manuals} in order to update the manuals (required by the
+%\texttt{install} target below).
+
+In the \texttt{doc} directory, just run \texttt{make all} to compile
+and install all manuals, together with some final coherence checks with
+respect to the current Frama-C implementation (notably
+for the developer manual and ACSL implementation manual).
+
+% No longer use git annex (as recommended by VP)
+%\paragraph{Getting the manuals on the web (ultimately)}
+%
+% In \texttt{doc/manuals} after installing all the manuals:
+%\begin{shell}
+%git annex add .
+%git annex copy . --to origin
+%git commit -am "manuals for release ...."
+%git push
+%\end{shell}
+
+\subsection{API documentation}
+
+To update the \textsf{API} documentation, you must update the
+\texttt{@since} tags. This involves the following script (\texttt{sed -i} must
+work for this purpose):
+\begin{shell}
+./bin/update_api_doc.sh <NEXT>
+\end{shell}
+\verb+<NEXT>+ is the long name of the final release, i.e.
+\verb+`cat VERSION`-`VERSION_CODENAME`+
+(without the \verb+beta+ suffix, if any).
+
+Check that no \verb|+dev| suffix remains inside comments:
+
+\begin{shell}
+git grep +dev src
+\end{shell}
+
+Test by recompiling Frama-C and rebuilding the API documentation:
+\begin{shell}
+make -j byte gui-byte
+make doc # or just doc-kernel
+\end{shell}
+
+\todo{What is this step:
+check consistency of API documentation. (the plug-in development guide
+  (\texttt{make check-devguide}) doesn't work anymore)}
+
+\section{Build the Source Distribution}
+\label{sec:build-source-distr}
+
+This steps creates the tarball of Frama-C, the tarball of the API and
+copy them to the website. It also copies the manuals.
+
+\textbf{Note}: all standard plugins must be enabled to ensure they are distributed
+in the \verb+.tar.gz+. Some plug-ins require optional dependencies
+(e.g. markdown-report and \verb+ppx_deriving+), so you must ensure that,
+when running \verb+./configure+, no plugins that should be distributed are missing.
+Some of the checks are performed by the release build script, but not all of them.
+Also, some plug-ins may have components depending on optional packages
+(e.g. Server and \verb+zmq+), which are not always thoroughly tested. If such
+plug-ins are only partially enabled, check that the non-compiled sources are
+distributed in any case, or report it as a bug to their developers.
+
+If you have never run \verb+make src-distrib+, you can try a standalone build
+of the \verb+.tar.gz+ itself, before doing the rest (don't forget to use
+\verb+OPEN_SOURCE=yes+).
+Refer to Appendix \ref{chap:make-src-distrib} if you have problems when
+doing so. In any case, the archive will be recreated by a script, so you can
+skip this step.
+
+You need to have installed \texttt{git-lfs}, otherwise the build
+script will not correctly use lfs when putting large files in the
+website git.
+
+\expertise{release manager} Use the script
+\texttt{build-src-distrib.sh} for this purpose (\texttt{bash version
+  4} required).
+
+The script will search for the following repositories:
+
+\begin{itemize}
+  \item \texttt{./doc/acsl} (\texttt{git@github.com:acsl-language/acsl.git})
+  \item \texttt{./frama-c.wiki} (\texttt{git@git.frama-c.com:pub/frama-c.wiki.git})
+  \item \texttt{./website} (\texttt{git@git.frama-c.com:pub/pub.frama-c.com.git})
+\end{itemize}
+
+If they are not available, they can be cloned by the script.
+
+The following steps will be performed by the script:
+
+\begin{itemize}
+  \item compile manuals
+  \item build source distribution
+  \item build the API bundle
+  \item build the documentation companions
+  \item update locally the wiki pages
+  \item create a new branch for the website
+  \item run some sanity checks on the source distribution
+  \item generate the \texttt{opam} file
+\end{itemize}
+
+In order to create "ready to deploy" wiki and website pages, a file \texttt{main\_changes.md}
+must be provided. The expected format is:
+
+\begin{lstlisting}
+# Kernel
+
+- item
+- ...
+
+# <Plugin-Name> (Prefer alphabetic order)
+
+- item
+- ...
+
+# ...
+
+\end{lstlisting}
+
+The performed sanity checks are:
+
+\begin{itemize}
+  \item verification that no non-free files are distributed,
+  \item verification that no non-free plugins are distributed,
+  \item no \texttt{/home/user} path can be found in the distribution,
+  \item the source code can be compiled and tests succeed.
+\end{itemize}
+
+Note that there are some interactive steps in the script, that ask for user
+approval before going further.
+
+Finally, ensure that locale \verb+en_US.UTF-8+ is available on your system,
+as it is used by the script to ensure a proper encoding of the generated files.
+
+Now, run the script:
+\begin{shell}
+./bin/build-src-distrib.sh
+\end{shell}
+
+The generated files are available in the \texttt{./distributed} repository.
+After testing more extensively the distribution, the following actions should
+be performed:
+
+\begin{itemize}
+  \item push stable branch on the public repository
+  \item push stable tag on the public repository
+  \item push the local Frama-C wiki branch to the public repository
+  \item push the generated website branch
+\end{itemize}
+
+\section{Testing the Distribution}
+
+Please check that the distribution (sources and API) is OK:
+\begin{enumerate}
+\item check for possible path/environment leaks in the \texttt{tar.gz}:
+  grep for the path where your Frama-C git directory is, e.g.
+  \texttt{/home/user/git/frama-c}. It should appear nowhere in the archive.
+\item check that \texttt{./configure \&\& make -j \&\& sudo make install} works fine
+  (or check e.g. \texttt{./configure --prefix=\$PWD/build \&\& make -j \&\& make install});
+\item Alternatively, you can use \texttt{docker} to compile the archive against a
+  precise configuration:
+  \begin{itemize}
+    \item \verb+cp distributed/frama-c-<VERSION>.tar.gz developer_tools/docker+
+    \item \verb+cd developer_tools/docker+
+    \item \verb+make Dockerfile.dev+
+    \item \verb+docker build . -t framac/frama-c:dev --target frama-c-gui-slim \+\\
+          \verb+  -f Dockerfile.dev --build-arg=from_archive=frama-c-<VERSION>.tar.gz+
+    \end{itemize}
+\item test the installed binaries (especially the GUI). (On Linux, OCI tests
+  everything but the GUI); If you've taken the \texttt{docker} route, you might
+  want to install the \href{https://github.com/mviereck/x11docker}{\texttt{x11docker}} script,
+  in order to be able to launch
+  \verb+x11docker framac/frama-c:dev frama-c-gui+
+\item redo the two steps above on Windows/WSL \expertise{André}\expertise{Allan},
+  macOS \expertise{André}\expertise{Loïc}\\\expertise{Thibaud};
+  \begin{itemize}
+  \item For instance, you can compile and test as follows:
+  \item \verb+./configure --prefix="$PWD/build"+
+  \item \verb+make+;
+  \item \verb+make install+;
+  \item \verb+rm -f ~/.why3.conf; why3 config detect+;
+  \item \verb+build/bin/frama-c tests/idct/*.c -eva -wp -wp-rte+
+  \item If you have a GUI, replace \verb+frama-c+ above with \verb+frama-c-gui+
+    and click around, see if things work (e.g. no segmentation faults).
+  \end{itemize}
+\item have a look at the documentation of the API (untar, open
+  \texttt{index.html} in a browser, click on a few links, etc).
+  If there are minor bugs/typos, note them for later, but it's not
+  worth delaying the release to fix them.
+\item consider decompressing both the current and the previous release archives
+  in different directories, then using \texttt{meld} to compare them. This
+  allows spotting if some files were unexpectedly added, for instance.
+\end{enumerate}
+
+
+%%%Local Variables:
+%%%TeX-master: "release"
+%%%End:

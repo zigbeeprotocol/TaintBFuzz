@@ -1,0 +1,127 @@
+% BNF grammar
+\newcommand{\indextt}[1]{\index{#1@\protect\keyword{#1}}}
+\newcommand{\indexttbs}[1]{\index{#1@\protect\keywordbs{#1}}}
+\newif\ifspace
+\newif\ifnewentry
+\newcommand{\addspace}{\ifspace ~ \spacefalse \fi}
+\newcommand{\term}[2]{\addspace\hbox{\lstinline|#1|%
+\ifthenelse{\equal{#2}{}}{}{\indexttbase{#2}{#1}}}\spacetrue}
+\newcommand{\nonterm}[2]{%
+  \ifthenelse{\equal{#2}{}}%
+             {\addspace\hbox{\textsl{#1}\ifnewentry\index{grammar entries!\textsl{#1}}\fi}\spacetrue}%
+             {\addspace\hbox{\textsl{#1}\footnote{#2}\ifnewentry\index{grammar entries!\textsl{#1}}\fi}\spacetrue}}
+\newcommand{\repetstar}{$^*$\spacetrue}
+\newcommand{\repetplus}{$^+$\spacetrue}
+\newcommand{\repetone}{$^?$\spacetrue}
+\newcommand{\lparen}{\addspace(}
+\newcommand{\rparen}{)}
+\newcommand{\orelse}{\addspace$\mid$\spacetrue}
+\newcommand{\sep}{ \\[2mm] \spacefalse\newentrytrue}
+\newcommand{\newl}{ \\ & & \spacefalse}
+\newcommand{\alt}{ \\ & $\mid$ & \spacefalse}
+\newcommand{\is}{ & $::=$ & \newentryfalse}
+\newenvironment{syntax}{\begin{tabular}{@{}rrll@{}}\spacefalse\newentrytrue}{\end{tabular}}
+\newcommand{\synt}[1]{$\spacefalse#1$}
+\newcommand{\emptystring}{$\epsilon$\spacetrue}
+\newcommand{\below}{See\; below}
+
+\makeatletter
+\newboolean{extension}
+\setboolean{extension}{false}
+
+\newenvironment{new}{%
+\ifthenelse{\boolean{extension}}%
+{\let\full@i\relax\let\endfull@i\relax}%
+{\def\full@i{\setbox\z@\vbox\bgroup}%
+\def\endfull@i{\egroup}}%
+\full@i%
+\begin{changebar}\color{red}\bgroup}
+{\egroup\end{changebar}\endfull@i}
+\makeatother
+
+\newcommand{\machineboxGrisee}[1]{\centerline{%
+  \colorbox{GrisClair}{%
+    \parbox[t]{4cm}{
+  \vspace*{-3ex}
+  \begin{tabbing}
+%   X\=X\=X\=X\=X\=X\=X\=X\=X\=X\=X\=X\=X\= \kill
+  X\=X\=X\=X\=X\=XX\=XX\=XX\=XX\=XX\=XX\=XX\=XX\= \kill
+  #1
+  \end{tabbing}
+  \vspace*{-3ex}
+  }}%
+   }%
+}
+
+\newcommand{\boiteGrise}[2]{\centerline{%
+  \colorbox{GrisClair}{
+    \parbox[t]{#1}{%
+%     \vspace*{-2ex}
+    #2
+%     \vspace*{-1ex}
+  }}%
+   }%
+}
+
+%%%% Symboles logiques %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\true}{\mathsf{true}} % true
+\newcommand{\false}{\mathsf{false}} % false
+\newcommand{\logand}{~\wedge~}    % symbole and
+\newcommand{\logor}{~\vee~}   % symbole or
+\newcommand{\logimpli}{\Rightarrow} % symbole implique logique
+\newcommand{\logequiv}{\Leftrightarrow} % symbole equivalent logique
+\newcommand{\bdef}{~\hat =~}    % symbole de d\'efinition
+
+%%%%%%%%% Divers %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\bigor}{\mathsf{OR}}  % ou generalise (article FME)
+\newcommand{\dirp}[1]{\otimes_{#1}} % produit direct + operation binaire
+
+\newcommand{\biter}{{\sc iterate}}
+\newcommand{\bunion}{{\sc union}}
+\newcommand{\bUnion}{{\sc UNION}}
+\newcommand{\bimpl}{\Rightarrow}
+
+\newcommand{\aorai}{Aora\"i\xspace}
+\newcommand{\buchi}{\textnormal{B\"uchi}\xspace}
+\newcommand{\ltltoba}{\textit{LTL2BA}}
+
+\newcounter{CptrDefs}
+\newcommand{\CorpsDef}{
+  \vskip 5pt
+    \refstepcounter{CptrDefs}
+    \noindent $\!\!\!\!\!\!$ \vrule width 2pt ~ 
+    \begin{minipage}{ \textwidth}
+      \noindent \textbf{Definition \theCptrDefs ~}
+      \itshape
+}
+\newenvironment{definition}[1]
+               {\CorpsDef {\bf (#1)}
+                }
+               {\end{minipage}
+                \mdseries
+                \vskip 5pt
+               }
+
+\newcommand{\axiom}{\textit{\textbf{axiom}}}
+\newcommand{\logic}{\textit{\textbf{logic}}}
+\newcommand{\integer}{\textit{\textbf{integer}}}
+\newcommand{\axiomatic}{\textit{\textbf{axiomatic}}}
+\newcommand{\predicate}{\textit{\textbf{predicate}}}
+\newcommand{\transStart}{\textit{transStart}}
+\newcommand{\transStop}{\textit{transStop}}
+\newcommand{\transCond}{\textit{transCond}}
+
+\newcommand{\curStates}{\lstinline|aorai_CurStates|\xspace}
+\newcommand{\curTrans}{\textit{curTr}}
+\newcommand{\curStatesOld}{\textit{buch\_CurStates\_old}}
+\newcommand{\curStatus}{\textit{Status}}
+\newcommand{\curOp}{\textit{Operation}}
+
+\newcommand{\requires}{\textbf{requires}}
+\newcommand{\ensures}{\textbf{ensures}}
+\newcommand{\assumes}{\textbf{assumes}}
+\newcommand{\behavior}{\textbf{behavior}}
+\newcommand{\result}{\backslash\textbf{result}}
+\newcommand{\old}{\backslash\textbf{old}}

@@ -1,0 +1,7 @@
+54,55d53
+< [eva] fptr.i:67: Frama_C_show_each_F: {{ NULL + [0..4294967295] ; &h ; &hh }}
+< [eva] fptr.i:68: Reusing old results for call to f
+67c65
+<   n ∈ {0; 1; 2}
+---
+>   n ∈ {0; 1}

@@ -1,0 +1,7 @@
+98c98,101
+< [eva] domains_function.c:63: Reusing old results for call to use
+---
+> [eva] computing for function use <- test_propagation <- main.
+>   Called from domains_function.c:63.
+> [eva] Recording results for use
+> [eva] Done for function use

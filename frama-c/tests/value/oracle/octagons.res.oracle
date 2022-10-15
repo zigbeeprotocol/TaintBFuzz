@@ -1,0 +1,475 @@
+[kernel] Parsing octagons.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  undet ∈ [--..--]
+[eva] computing for function demo <- main.
+  Called from octagons.c:227.
+[eva] computing for function Frama_C_interval <- demo <- main.
+  Called from octagons.c:12.
+[eva] using specification for function Frama_C_interval
+[eva] octagons.c:12: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] octagons.c:13: Warning: 
+  signed overflow. assert -2147483648 ≤ y - k;
+[eva:alarm] octagons.c:14: Warning: 
+  signed overflow. assert x + 3 ≤ 2147483647;
+[eva] Recording results for demo
+[eva] Done for function demo
+[eva] computing for function integer_types <- main.
+  Called from octagons.c:228.
+[eva] computing for function Frama_C_interval <- integer_types <- main.
+  Called from octagons.c:23.
+[eva] octagons.c:23: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- integer_types <- main.
+  Called from octagons.c:24.
+[eva] octagons.c:24: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:29: Frama_C_show_each_reduced_unsigned: [3..13], [0..309]
+[eva] computing for function Frama_C_interval <- integer_types <- main.
+  Called from octagons.c:31.
+[eva] octagons.c:31: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- integer_types <- main.
+  Called from octagons.c:32.
+[eva] octagons.c:32: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:37: 
+  Frama_C_show_each_unreduced_unsigned: [0..4294967295], [0..4294967295]
+[eva] computing for function Frama_C_interval <- integer_types <- main.
+  Called from octagons.c:40.
+[eva] octagons.c:40: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- integer_types <- main.
+  Called from octagons.c:41.
+[eva] octagons.c:41: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:46: Frama_C_show_each_reduced_char: [-7..3], [6..100]
+[eva] computing for function Frama_C_interval <- integer_types <- main.
+  Called from octagons.c:49.
+[eva] octagons.c:49: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:54: Frama_C_show_each_unreduced_char: [-128..127], [-128..127]
+[eva] computing for function Frama_C_interval <- integer_types <- main.
+  Called from octagons.c:58.
+[eva] octagons.c:58: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:63: Frama_C_show_each_reduced_int: [-7..3], [6..127]
+[eva] Recording results for integer_types
+[eva] Done for function integer_types
+[eva] computing for function arith <- main.
+  Called from octagons.c:229.
+[eva] computing for function Frama_C_interval <- arith <- main.
+  Called from octagons.c:70.
+[eva] octagons.c:70: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- arith <- main.
+  Called from octagons.c:73.
+[eva] octagons.c:73: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- arith <- main.
+  Called from octagons.c:74.
+[eva] octagons.c:74: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:79: Frama_C_show_each_precise: [42..66],0%2
+[eva] octagons.c:81: Frama_C_show_each_imprecise: [2..106],0%2
+[eva] computing for function Frama_C_interval <- arith <- main.
+  Called from octagons.c:82.
+[eva] octagons.c:82: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:86: Frama_C_show_each: {50; 60; 70}
+[eva] computing for function Frama_C_interval <- arith <- main.
+  Called from octagons.c:89.
+[eva] octagons.c:89: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- arith <- main.
+  Called from octagons.c:90.
+[eva] octagons.c:90: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:94: Frama_C_show_each: [-29..29]
+[eva] Recording results for arith
+[eva] Done for function arith
+[eva] computing for function join <- main.
+  Called from octagons.c:230.
+[eva] computing for function Frama_C_interval <- join <- main.
+  Called from octagons.c:103.
+[eva] octagons.c:103: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] octagons.c:106: Warning: 
+  signed overflow. assert -2147483648 ≤ a + k;
+[eva:alarm] octagons.c:106: Warning: 
+  signed overflow. assert a + k ≤ 2147483647;
+[eva] computing for function Frama_C_interval <- join <- main.
+  Called from octagons.c:108.
+[eva] octagons.c:108: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:113: Frama_C_show_each_join_positive: [0..53]
+[eva:alarm] octagons.c:116: Warning: 
+  signed overflow. assert -2147483648 ≤ a + k;
+[eva:alarm] octagons.c:116: Warning: 
+  signed overflow. assert a + k ≤ 2147483647;
+[eva:alarm] octagons.c:116: Warning: 
+  signed overflow. assert -((int)(a + k)) ≤ 2147483647;
+[eva] computing for function Frama_C_interval <- join <- main.
+  Called from octagons.c:118.
+[eva] octagons.c:118: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:123: Frama_C_show_each_join_negative: [-47..0]
+[eva] Recording results for join
+[eva] Done for function join
+[eva] computing for function loop <- main.
+  Called from octagons.c:231.
+[eva] computing for function Frama_C_interval <- loop <- main.
+  Called from octagons.c:128.
+[eva] octagons.c:128: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- loop <- main.
+  Called from octagons.c:129.
+[eva] octagons.c:129: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:133: starting to merge loop iterations
+[eva:alarm] octagons.c:134: Warning: 
+  signed overflow. assert a + 2 ≤ 2147483647;
+[eva:alarm] octagons.c:135: Warning: 
+  signed overflow. assert b + 2 ≤ 2147483647;
+[eva:alarm] octagons.c:137: Warning: 
+  signed overflow. assert a + k ≤ 2147483647;
+[eva:alarm] octagons.c:140: Warning: 
+  signed overflow. assert -2147483648 ≤ c - a;
+[eva] octagons.c:142: Frama_C_show_each_singleton_1: {1}
+[eva] octagons.c:143: Frama_C_show_each_imprecise: [-2147483648..1]
+[eva] octagons.c:144: Frama_C_show_each_precise: [-8..8]
+[eva] Recording results for loop
+[eva] Done for function loop
+[eva] computing for function pointers <- main.
+  Called from octagons.c:232.
+[eva] computing for function Frama_C_interval <- pointers <- main.
+  Called from octagons.c:151.
+[eva] octagons.c:151: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:154: Frama_C_show_each_singleton_1: {1}
+[eva] computing for function Frama_C_interval <- pointers <- main.
+  Called from octagons.c:155.
+[eva] octagons.c:155: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:156: Frama_C_show_each_singleton_1: {1}
+[eva] computing for function Frama_C_interval <- pointers <- main.
+  Called from octagons.c:157.
+[eva] octagons.c:157: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:158: Frama_C_show_each_unknown: [-1024..1024]
+[eva] octagons.c:160: Frama_C_show_each_unknown: [-2047..2049]
+[eva] octagons.c:163: Frama_C_show_each_singleton_2: {2}
+[eva] Recording results for pointers
+[eva] Done for function pointers
+[eva] computing for function saturate <- main.
+  Called from octagons.c:233.
+[eva] computing for function Frama_C_interval <- saturate <- main.
+  Called from octagons.c:169.
+[eva] octagons.c:169: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- saturate <- main.
+  Called from octagons.c:170.
+[eva] octagons.c:170: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:174: Frama_C_show_each_saturate: [-5..5]
+[eva] Recording results for saturate
+[eva] Done for function saturate
+[eva] computing for function interprocedural <- main.
+  Called from octagons.c:234.
+[eva] computing for function Frama_C_interval <- interprocedural <- main.
+  Called from octagons.c:182.
+[eva] octagons.c:182: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- interprocedural <- main.
+  Called from octagons.c:183.
+[eva] octagons.c:183: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function neg <- interprocedural <- main.
+  Called from octagons.c:184.
+[eva] Recording results for neg
+[eva] Done for function neg
+[eva] computing for function neg <- interprocedural <- main.
+  Called from octagons.c:185.
+[eva] Recording results for neg
+[eva] Done for function neg
+[eva] computing for function diff <- interprocedural <- main.
+  Called from octagons.c:194.
+[eva] Recording results for diff
+[eva] Done for function diff
+[eva] computing for function diff <- interprocedural <- main.
+  Called from octagons.c:198.
+[eva] Recording results for diff
+[eva] Done for function diff
+[eva] octagons.c:201: Frama_C_show_each_equal: [0..16], [0..16], [0..16]
+[eva] Recording results for interprocedural
+[eva] Done for function interprocedural
+[eva] computing for function dump <- main.
+  Called from octagons.c:235.
+[eva] computing for function Frama_C_interval <- dump <- main.
+  Called from octagons.c:206.
+[eva] octagons.c:206: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- dump <- main.
+  Called from octagons.c:207.
+[eva] octagons.c:207: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] octagons.c:210: 
+  Frama_C_dump_each:
+  # octagon:
+  {[ k - tmp ∈ {0}
+     a - b ∈ [-8..0]
+     k - b ∈ [-128..128]
+     tmp - b ∈ [-128..128]
+     b - c ∈ [0..8]
+     a - c ∈ [-8..8]
+      ]}
+  ==END OF DUMP==
+[eva] Recording results for dump
+[eva] Done for function dump
+[eva] computing for function pub301 <- main.
+  Called from octagons.c:236.
+[eva] computing for function Frama_C_interval <- pub301 <- main.
+  Called from octagons.c:216.
+[eva] octagons.c:216: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- pub301 <- main.
+  Called from octagons.c:217.
+[eva] octagons.c:217: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] Recording results for pub301
+[eva] Done for function pub301
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function arith:
+  Frama_C_entropy_source ∈ [--..--]
+  k ∈ {0; 1; 2; 3; 4}
+  a ∈ [-1024..1024]
+  b ∈ [-1024..1024]
+  x ∈ [-28..0]
+  y ∈ [1..29]
+  r ∈ [-29..106]
+[eva:final-states] Values at end of function demo:
+  Frama_C_entropy_source ∈ [--..--]
+  y ∈ [--..--]
+  k ∈ [0..10]
+  x ∈ [-2147483648..2147483644]
+  r ∈ [-7..3]
+  t ∈ [6..2147483644] or UNINITIALIZED
+[eva:final-states] Values at end of function diff:
+  __retres ∈ [0..16]
+[eva:final-states] Values at end of function dump:
+  Frama_C_entropy_source ∈ [--..--]
+  k ∈ [0..8]
+  a ∈ [-128..128]
+  b ∈ [-128..136]
+  c ∈ [-128..128]
+[eva:final-states] Values at end of function integer_types:
+  Frama_C_entropy_source ∈ [--..--]
+  k ∈ [0..10]
+  x ∈ [--..--]
+  y ∈ [0..65536]
+  r ∈ [--..--]
+  t ∈ [--..--] or UNINITIALIZED
+  ck ∈ [0..10]
+  cx ∈ [--..--]
+  cy ∈ [--..--]
+  cr ∈ [--..--]
+  ct ∈ [--..--] or UNINITIALIZED
+  ix ∈ [-138..127]
+  ir ∈ [-7..3]
+  it ∈ [6..127] or UNINITIALIZED
+[eva:final-states] Values at end of function join:
+  Frama_C_entropy_source ∈ [--..--]
+  a ∈ [--..--]
+  b ∈ [-2147483647..2147483647]
+  r ∈ [-47..0]
+  k ∈ {-1; 0; 1; 2; 3; 4}
+[eva:final-states] Values at end of function loop:
+  Frama_C_entropy_source ∈ [--..--]
+  k ∈ [-8..8]
+  a ∈ [-1024..2147483647]
+  b ∈ [-1023..2147483647]
+  c ∈ [-1023..2147483647]
+  d ∈ [-1032..2147483647]
+  d1 ∈ {1}
+  d2 ∈ [-2147483648..1]
+  d3 ∈ [-8..8]
+[eva:final-states] Values at end of function neg:
+  __retres ∈ [-12..4]
+[eva:final-states] Values at end of function interprocedural:
+  Frama_C_entropy_source ∈ [--..--]
+  a ∈ [-4..12]
+  b ∈ [-4..12]
+  neg_a ∈ [-12..4]
+  neg_b ∈ [-12..4]
+  r1 ∈ [0..16]
+  r2 ∈ [0..16]
+  r3 ∈ [0..16]
+[eva:final-states] Values at end of function pointers:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ [-1024..1024]
+  y ∈ [-1022..1026]
+  r ∈ {2}
+  px ∈ {{ &x }}
+  pr ∈ {{ &r }}
+[eva:final-states] Values at end of function pub301:
+  Frama_C_entropy_source ∈ [--..--]
+  len ∈ [0..1024]
+  n ∈ [0..63]
+[eva:final-states] Values at end of function saturate:
+  Frama_C_entropy_source ∈ [--..--]
+  k ∈ [-6..4]
+  x ∈ [-1024..1024]
+  y ∈ [-1030..1028]
+  z ∈ [-1029..1029]
+  result ∈ [-5..5]
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+[from] Computing for function arith
+[from] Computing for function Frama_C_interval <-arith
+[from] Done for function Frama_C_interval
+[from] Done for function arith
+[from] Computing for function demo
+[from] Done for function demo
+[from] Computing for function diff
+[from] Done for function diff
+[from] Computing for function dump
+[from] Done for function dump
+[from] Computing for function integer_types
+[from] Done for function integer_types
+[from] Computing for function join
+[from] Done for function join
+[from] Computing for function loop
+[from] Done for function loop
+[from] Computing for function neg
+[from] Done for function neg
+[from] Computing for function interprocedural
+[from] Done for function interprocedural
+[from] Computing for function pointers
+[from] Done for function pointers
+[from] Computing for function pub301
+[from] Done for function pub301
+[from] Computing for function saturate
+[from] Done for function saturate
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function arith:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function demo:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function diff:
+  \result FROM x; y
+[from] Function dump:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function integer_types:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function join:
+  Frama_C_entropy_source FROM Frama_C_entropy_source; undet (and SELF)
+[from] Function loop:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function neg:
+  \result FROM x
+[from] Function interprocedural:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function pointers:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function pub301:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function saturate:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source; undet (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function arith:
+    Frama_C_entropy_source; k; a; b; x; y; r
+[inout] Inputs for function arith:
+    Frama_C_entropy_source
+[inout] Out (internal) for function demo:
+    Frama_C_entropy_source; y; k; x; r; t
+[inout] Inputs for function demo:
+    Frama_C_entropy_source; undet
+[inout] Out (internal) for function diff:
+    __retres
+[inout] Inputs for function diff:
+    \nothing
+[inout] Out (internal) for function dump:
+    Frama_C_entropy_source; k; tmp; a; b; c
+[inout] Inputs for function dump:
+    Frama_C_entropy_source
+[inout] Out (internal) for function integer_types:
+    Frama_C_entropy_source; k; x; y; r; t; tmp; tmp_0; tmp_1; tmp_2; ck; 
+    cx; cy; cr; ct; tmp_3; tmp_4; tmp_5; ix; ir; it; tmp_6
+[inout] Inputs for function integer_types:
+    Frama_C_entropy_source; undet
+[inout] Out (internal) for function join:
+    Frama_C_entropy_source; a; b; r; k
+[inout] Inputs for function join:
+    Frama_C_entropy_source; undet
+[inout] Out (internal) for function loop:
+    Frama_C_entropy_source; k; a; b; c; d; i; d1; d2; d3
+[inout] Inputs for function loop:
+    Frama_C_entropy_source
+[inout] Out (internal) for function neg:
+    __retres
+[inout] Inputs for function neg:
+    \nothing
+[inout] Out (internal) for function interprocedural:
+    Frama_C_entropy_source; a; b; neg_a; neg_b; r1; r2; r3
+[inout] Inputs for function interprocedural:
+    Frama_C_entropy_source
+[inout] Out (internal) for function pointers:
+    Frama_C_entropy_source; x; y; r; px; pr
+[inout] Inputs for function pointers:
+    Frama_C_entropy_source
+[inout] Out (internal) for function pub301:
+    Frama_C_entropy_source; len; tmp; n; tmp_0
+[inout] Inputs for function pub301:
+    Frama_C_entropy_source
+[inout] Out (internal) for function saturate:
+    Frama_C_entropy_source; k; x; y; z; result
+[inout] Inputs for function saturate:
+    Frama_C_entropy_source
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source
+[inout] Inputs for function main:
+    Frama_C_entropy_source; undet

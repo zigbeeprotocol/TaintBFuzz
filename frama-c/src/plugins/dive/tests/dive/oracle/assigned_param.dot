@@ -1,0 +1,22 @@
+digraph G {
+  cp2 [label=<w>, shape=box, style="bold", ];
+  cp3 [label=<x>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+       style="filled", ];
+  cp5 [label=<x>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+       style="filled", ];
+  cp7 [label=<z>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+       style="filled", ];
+  cp9 [label=<z>, shape=box, fillcolor="#FFBBBB", color="#FF0000",
+       style="filled", ];
+  
+  subgraph cluster_cs_1 { label=<main>; cp9;cp5;cp2;
+    subgraph cluster_cs_2 { label=<f>; cp7;cp3;
+       };
+     };
+  
+  cp3 -> cp2;
+  cp5 -> cp3;
+  cp7 -> cp3;
+  cp9 -> cp7;
+  
+  }

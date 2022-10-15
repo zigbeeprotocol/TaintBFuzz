@@ -1,0 +1,5 @@
+122,125d121
+< [eva:alarm] library.i:44: Warning: 
+<   non-finite float value. assert \is_finite(*pf);
+< [eva:alarm] library.i:44: Warning: 
+<   non-finite float value. assert \is_finite(\add_float(*pf, *pf));

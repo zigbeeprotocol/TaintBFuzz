@@ -1,0 +1,35 @@
+[kernel] Parsing shifts.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  e ∈ {0}
+[eva] computing for function f <- main.
+  Called from shifts.c:19.
+[eva] shifts.c:13: assertion got status valid.
+[eva] shifts.c:8: function f, behavior a: postcondition got status valid.
+[eva] shifts.c:9: function f, behavior b: postcondition got status valid.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  e ∈ {168}
+  y ∈ {168}
+[eva:final-states] Values at end of function main:
+  e ∈ {168}
+  __retres ∈ {0}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  e FROM x
+  \result FROM x
+[from] Function main:
+  e FROM \nothing
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======

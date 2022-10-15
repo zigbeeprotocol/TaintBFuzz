@@ -1,0 +1,272 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing reference_and_struct.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function call_array_in_struct_param
+------------------------------------------------------------
+
+Goal Post-condition 'Pload2' in 'call_array_in_struct_param':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Pload3' in 'call_array_in_struct_param':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 98) in 'call_array_in_struct_param':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 98) in 'call_array_in_struct_param':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_and_struct.i, line 83) in 'load_5'' in 'call_array_in_struct_param' at call 'load_5' (file reference_and_struct.i, line 102)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_on_array_in_struct_global
+------------------------------------------------------------
+
+Goal Post-condition 'Pload' in 'call_on_array_in_struct_global':
+Let a = s.F2_S_tab.
+Assume {
+  (* Heap *)
+  Type: IsS2_S(s).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'load_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (a[i_1] = reg_load_0[i_1]))).
+}
+Prove: a[i] = reg_load_0[i].
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 91) in 'call_on_array_in_struct_global':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 91) in 'call_on_array_in_struct_global':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_and_struct.i, line 83) in 'load_5'' in 'call_on_array_in_struct_global' at call 'load_5' (file reference_and_struct.i, line 94)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_reset
+------------------------------------------------------------
+
+Goal Post-condition (file reference_and_struct.i, line 20) in 'call_reset':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 19) in 'call_reset':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 19) in 'call_reset' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 19) in 'call_reset' (2/2):
+Effect at line 23
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_and_struct.i, line 11) in 'reset'' in 'call_reset' at call 'reset' (file reference_and_struct.i, line 23)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_reset_1_5
+------------------------------------------------------------
+
+Goal Post-condition 'Presset_mat' in 'call_reset_1_5':
+Assume {
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'reset_1_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      ((v[i_1].F1_T_a) = 0))).
+}
+Prove: (v[i].F1_T_a) = 0.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 63) in 'call_reset_1_5':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 63) in 'call_reset_1_5':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_and_struct.i, line 53) in 'reset_1_5'' in 'call_reset_1_5' at call 'reset_1_5' (file reference_and_struct.i, line 67)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_reset_5
+------------------------------------------------------------
+
+Goal Post-condition 'Preset_5' in 'call_reset_5':
+Assume {
+  (* Heap *)
+  Type: IsArray_S1_T(ts_1).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      ((ts_0[i_1].F1_T_a) = 0))).
+  (* Call Effects *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 9) ->
+      (((i_1 < 0) \/ (5 <= i_1)) -> (ts_1[i_1] = ts_0[i_1])))).
+}
+Prove: (ts_0[i].F1_T_a) = 0.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 35) in 'call_reset_5':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 35) in 'call_reset_5':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_and_struct.i, line 26) in 'reset_5'' in 'call_reset_5' at call 'reset_5' (file reference_and_struct.i, line 39)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_reset_5_dim2
+------------------------------------------------------------
+
+Goal Post-condition 'Presset_mat' in 'call_reset_5_dim2':
+Let m = smatrix_0[1].
+Assume {
+  (* Heap *)
+  Type: IsArray_d2_S1_T(smatrix_1).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      ((m[i_1].F1_T_a) = 0))).
+  (* Call Effects *)
+  Have: forall i_1 : Z. ((i_1 != 1) -> (smatrix_1[i_1] = smatrix_0[i_1])).
+}
+Prove: (m[i].F1_T_a) = 0.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 71) in 'call_reset_5_dim2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 71) in 'call_reset_5_dim2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_and_struct.i, line 26) in 'reset_5'' in 'call_reset_5_dim2' at call 'reset_5' (file reference_and_struct.i, line 75)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_reset_5_tps
+------------------------------------------------------------
+
+Goal Post-condition 'Preset_5_tps' in 'call_reset_5_tps':
+Let a = tps_0[9].
+Let a_1 = shift_S1_T(a, 0).
+Let a_2 = havoc(Mint_undef_0, Mint_0, a_1, 10).
+Assume {
+  (* Heap *)
+  Type: linked(Malloc_0) /\ (forall i_1 : Z. region(tps_0[i_1].base) <= 0).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 4).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, a_1, 10).
+  (* Call 'reset_5' *)
+  Have: forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 4) ->
+      (a_2[shiftfield_F1_T_a(shift_S1_T(a, i_1))] = 0))).
+}
+Prove: a_2[shiftfield_F1_T_a(shift_S1_T(a, i))] = 0.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 45) in 'call_reset_5_tps':
+Call Effect at line 49
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 45) in 'call_reset_5_tps':
+Call Effect at line 49
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file reference_and_struct.i, line 26) in 'reset_5'' in 'call_reset_5_tps' at call 'reset_5' (file reference_and_struct.i, line 49)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reset
+------------------------------------------------------------
+
+Goal Post-condition (file reference_and_struct.i, line 13) in 'reset':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file reference_and_struct.i, line 12) in 'reset':
+Prove: true.
+
+------------------------------------------------------------
+[wp] reference_and_struct.i:15: Warning: 
+  Memory model hypotheses for function 'reset':
+  /*@ behavior wp_typed_ref:
+        requires \valid(p); */
+  void reset(struct T *p);
+[wp] reference_and_struct.i:48: Warning: 
+  Memory model hypotheses for function 'call_reset_5_tps':
+  /*@
+     behavior wp_typed_ref:
+       requires \separated(tps[9] + (0 .. 4), (struct T **)tps + (..));
+     */
+  void call_reset_5_tps(void);
+[wp] reference_and_struct.i:88: Warning: 
+  Memory model hypotheses for function 'load_5':
+  /*@
+     behavior wp_typed_ref:
+       requires \separated(hp + (..), (int *)reg_load + (..));
+     */
+  void load_5(int *hp);

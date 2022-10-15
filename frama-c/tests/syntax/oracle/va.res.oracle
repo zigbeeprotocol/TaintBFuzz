@@ -1,0 +1,12 @@
+[kernel] Parsing va.c (with preprocessing)
+[kernel] va.c:12: User Error: 
+  redefinition of 'x' in the same scope.
+  Previous declaration was at va.c:11
+[kernel] va.c:18: User Error: 
+  redefinition of 'x' in the same scope.
+  Previous declaration was at va.c:17
+[kernel] va.c:26: User Error: 
+  The last argument in call to __builtin_va_start should be the last formal argument of f
+[kernel] User Error: stopping on file "va.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

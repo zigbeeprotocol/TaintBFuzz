@@ -1,0 +1,14 @@
+# frama-c -wp [...]
+[kernel] Parsing postassigns2.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 3 goals scheduled
+[wp] [Qed] Goal typed_mess1_exits : Valid
+[wp] [Qed] Goal typed_mess1_assigns_exit : Valid
+[wp] [Qed] Goal typed_mess1_assigns_normal : Valid
+[wp] Proved goals:    3 / 3
+  Qed:             3
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  mess1                     3        -        3       100%
+------------------------------------------------------------

@@ -1,0 +1,12 @@
+34,36c34
+< [eva] bitwise_pointer.i:18: 
+<   Assigning imprecise value to p.
+<   The imprecision originates from Arithmetic {bitwise_pointer.i:18}
+---
+> [eva] bitwise_pointer.i:18: Assigning imprecise value to p.
+41,43c39
+< [eva] bitwise_pointer.i:22: 
+<   Assigning imprecise value to p1.
+<   The imprecision originates from Arithmetic {bitwise_pointer.i:22}
+---
+> [eva] bitwise_pointer.i:22: Assigning imprecise value to p1.

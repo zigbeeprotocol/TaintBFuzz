@@ -1,0 +1,67 @@
+[kernel] Parsing slevel_return.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+[eva] computing for function main1 <- main.
+  Called from slevel_return.i:44.
+[eva] slevel_return.i:7: function main1: postcondition got status valid.
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from slevel_return.i:45.
+[eva] slevel_return.i:38: 
+  Frama_C_dump_each:
+  # cvalue:
+  x ∈ {-3}
+  y ∈ {0; 1; 6}
+  c ∈ [--..--]
+  c ∈ [--..--]
+  ==END OF DUMP==
+[eva] slevel_return.i:23: function main2: postcondition got status valid.
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  x ∈ {-3; 0; 5}
+  y ∈ {0; 1; 6}
+[eva:final-states] Values at end of function main2:
+  x ∈ {-3; 0; 5}
+  y ∈ {0; 1; 6}
+[eva:final-states] Values at end of function main:
+  x ∈ {-3; 0; 5}
+  y ∈ {0; 1; 6}
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main2
+[from] Done for function main2
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main1:
+  x FROM c
+  y FROM c (and SELF)
+[from] Function main2:
+  x FROM c
+  y FROM c (and SELF)
+[from] Function main:
+  x FROM c
+  y FROM c (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main1:
+    x; y
+[inout] Inputs for function main1:
+    \nothing
+[inout] Out (internal) for function main2:
+    x; y
+[inout] Inputs for function main2:
+    \nothing
+[inout] Out (internal) for function main:
+    x; y
+[inout] Inputs for function main:
+    \nothing

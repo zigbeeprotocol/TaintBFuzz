@@ -1,0 +1,35 @@
+53a54,55
+> [kernel] struct2.i:78: Warning: 
+>   all target addresses were invalid. This path is assumed to be dead.
+57,58d58
+<   accessing out of bounds index. assert 0 ≤ (int)(tab2[i] + j);
+< [eva:alarm] struct2.i:82: Warning: 
+79,80d78
+<   accessing out of bounds index. assert (int)(i + j) < 2;
+< [eva:alarm] struct2.i:185: Warning: 
+98c96
+< [scope:rm_asserts] removing 2 assertion(s)
+---
+> [scope:rm_asserts] removing 1 assertion(s)
+135,137c133,134
+<   tab3[0..1] ∈ [--..--]
+<   tab4[0] ∈ {0; 2}
+<       [1] ∈ {0}
+---
+>   tab3[0] ∈ {0; 1}
+>       [1] ∈ [--..--]
+140c137,138
+<   tab6[0..1] ∈ {0; 2}
+---
+>   tab6[0] ∈ {0}
+>       [1] ∈ {2}
+206,207c204,205
+<     s4.e[0].a; s8.b; s7; tab1[0..1]; tab2[0..1]; tab3[0..1]; tab4[0]; tab5[0];
+<     tab6[0..1]; p; p2; p3; p4; p5; p6; p7; q; r; s; t; a; b
+---
+>     s4.e[0].a; s8.b; s7; tab1[0..1]; tab2[0..1]; tab3[0..1]; tab5[0]; tab6[1];
+>     p; p2; p3; p4; p5; p6; p7; q; r; s; t; a; b
+211c209
+<            [9].a}; s1; s2; s5.e[0].b; s6.b; s8; tabl[0..1]; tab1[0..1];
+---
+>            [9].a}; s1; s2; s5.e[0].b; s6.b; s8; tabl[0..1]; tab1[0];

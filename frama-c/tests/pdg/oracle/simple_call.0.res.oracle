@@ -1,0 +1,68 @@
+[kernel] Parsing simple_call.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ [--..--]
+  G1 ∈ [--..--]
+  G2 ∈ [--..--]
+  S ∈ [--..--]
+[eva] computing for function call <- main.
+  Called from simple_call.c:58.
+[eva:alarm] simple_call.c:45: Warning: 
+  signed overflow. assert G + y ≤ 2147483647;
+[eva] Recording results for call
+[eva] Done for function call
+[eva] Recording results for main
+[eva] done for function main
+[pdg] computing for function main
+[from] Computing for function call
+[from] Done for function call
+[pdg] done for function main
+[pdg] PDG for main
+ {n1}: InCtrl
+ {n2}: VarDecl : a
+ {n3}: VarDecl : b
+ {n4}: VarDecl : c
+ {n5}: int a = 0;
+   -[-c-]-> 1
+   -[a--]-> 2
+ {n6}: int b = 1;
+   -[-c-]-> 1
+   -[a--]-> 3
+ {n7}: int c = 3;
+   -[-c-]-> 1
+   -[a--]-> 4
+ {n8}: Call39-InCtrl : a = call(a + b,b + c);
+   -[-c-]-> 1
+ {n9}: Call39-In1 : a = call(a + b,b + c);
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+   -[--d]-> 5
+   -[--d]-> 6
+   -[-c-]-> 8
+ {n10}: Call39-In2 : a = call(a + b,b + c);
+   -[-c-]-> 1
+   -[--d]-> 3
+   -[--d]-> 4
+   -[--d]-> 6
+   -[--d]-> 7
+   -[-c-]-> 8
+ {n11}: Call39-Out(G) : a = call(a + b,b + c);
+   -[-c-]-> 1
+   -[-c-]-> 8
+   -[--d]-> 10
+   -[--d]-> 15
+ {n12}: Call39-OutRet : a = call(a + b,b + c);
+   -[-c-]-> 1
+   -[a--]-> 2
+   -[-c-]-> 8
+   -[--d]-> 9
+ {n13}: return a;
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 12
+ {n14}: OutRet
+   -[--d]-> 13
+ {n15}: In(G)

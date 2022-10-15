@@ -1,0 +1,17 @@
+# frama-c -wp -wp-steps 50 [...]
+[kernel] Parsing wp_behav.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 5 goals scheduled
+[wp] [Alt-Ergo] Goal typed_f_ensures_qed_ko : Unsuccess
+[wp] [Alt-Ergo] Goal typed_f_x1_ensures_qed_ko : Unsuccess
+[wp] [Alt-Ergo] Goal typed_f_x2_ensures_qed_ko : Unsuccess
+[wp] [Alt-Ergo] Goal typed_min_bx_ensures_qed_ko : Unsuccess
+[wp] [Alt-Ergo] Goal typed_min_by_ensures_qed_ko : Unsuccess
+[wp] Proved goals:    0 / 5
+  Alt-Ergo:        0  (unsuccess: 5)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f                         -        -        3       0.0%
+  min                       -        -        2       0.0%
+------------------------------------------------------------

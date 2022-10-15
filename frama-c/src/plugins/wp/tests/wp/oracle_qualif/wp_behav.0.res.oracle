@@ -1,0 +1,38 @@
+# frama-c -wp -wp-timeout 1 [...]
+[kernel] Parsing wp_behav.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] wp_behav.c:82: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+[wp] 19 goals scheduled
+[wp] [Qed] Goal typed_f_ensures_qed_ok : Valid
+[wp] [Qed] Goal typed_f_x1_ensures_qed_ok : Valid
+[wp] [Qed] Goal typed_f_assert_qed_ok : Valid
+[wp] [Qed] Goal typed_f_x2_ensures_qed_ok : Valid
+[wp] [Qed] Goal typed_f_assert_qed_ok_2 : Valid
+[wp] [Qed] Goal typed_min_complete_bx_by : Valid
+[wp] [Qed] Goal typed_min_disjoint_bx_by : Valid
+[wp] [Qed] Goal typed_min_bx_ensures_qed_ok : Valid
+[wp] [Qed] Goal typed_min_by_ensures_qed_ok : Valid
+[wp] [Alt-Ergo] Goal typed_bhv_complete_neg_pos : Valid
+[wp] [Qed] Goal typed_bhv_pos_ensures_qed_ok : Valid
+[wp] [Qed] Goal typed_bhv_neg_ensures_qed_ok : Valid
+[wp] [Alt-Ergo] Goal typed_assert_needed_assert_ko : Unsuccess
+[wp] [Qed] Goal typed_assert_needed_assert_qed_ok_ok_with_hyp : Valid
+[wp] [Alt-Ergo] Goal typed_bts0513_ensures_ko1 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bts0513_ensures_ko2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_razT_loop_invariant_qed_ok_preserved : Valid
+[wp] [Qed] Goal typed_razT_loop_invariant_qed_ok_established : Valid
+[wp] [Alt-Ergo] Goal typed_razT_b1_ensures_e1 : Unsuccess
+[wp] Proved goals:   15 / 19
+  Qed:            13 
+  Alt-Ergo:        2  (unsuccess: 4)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f                         5        -        5       100%
+  min                       4        -        4       100%
+  bhv                       2        1        3       100%
+  assert_needed             1        -        2      50.0%
+  bts0513                   -        -        2       0.0%
+  razT                      1        1        3      66.7%
+------------------------------------------------------------

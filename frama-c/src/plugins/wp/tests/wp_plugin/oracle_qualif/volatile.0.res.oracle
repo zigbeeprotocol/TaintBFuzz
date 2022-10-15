@@ -1,0 +1,26 @@
+# frama-c -wp [...]
+[kernel] Parsing volatile.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 5 goals scheduled
+[wp] [Alt-Ergo] Goal typed_job_assigns_assert_KO_WHEN_VOLATILE : Unsuccess
+[wp] [Alt-Ergo] Goal typed_job_read_assert_KO_WHEN_VOLATILE : Unsuccess
+[wp] [Qed] Goal typed_job_struct_assert_ok_dead_code : Valid
+[wp] [Alt-Ergo] Goal typed_job_struct_assigns_assert_KO_WHEN_VOLATILE : Unsuccess
+[wp] [Alt-Ergo] Goal typed_default_init_check_KO_WHEN_VOLATILE : Unsuccess
+[wp] Proved goals:    1 / 5
+  Qed:             1 
+  Alt-Ergo:        0  (unsuccess: 4)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  job_assigns               -        -        1       0.0%
+  job_read                  -        -        1       0.0%
+  job_struct                1        -        1       100%
+  job_struct_assigns        -        -        1       0.0%
+  default_init              -        -        1       0.0%
+------------------------------------------------------------
+[wp] volatile.i:33: Warning: 
+  Memory model hypotheses for function 'job_struct_assigns':
+  /*@ behavior wp_typed:
+        requires \separated(p, &sv); */
+  void job_struct_assigns(struct st_v *p);

@@ -1,0 +1,239 @@
+[kernel] Parsing unravel-variance.i (no preprocessing)
+[slicing] slicing requests in progress...
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[kernel:annot:missing-spec] unravel-variance.i:31: Warning: 
+  Neither code nor specification for function scanf, generating default assigns from the prototype
+[eva] computing for function scanf <- main.
+  Called from unravel-variance.i:31.
+[eva] using specification for function scanf
+[eva] Done for function scanf
+[eva:alarm] unravel-variance.i:32: Warning: 
+  accessing uninitialized left-value. assert \initialized(&n);
+[eva] computing for function scanf <- main.
+  Called from unravel-variance.i:34.
+[eva] Done for function scanf
+[eva:alarm] unravel-variance.i:35: Warning: 
+  accessing uninitialized left-value. assert \initialized(&x[i]);
+[eva:alarm] unravel-variance.i:35: Warning: 
+  non-finite float value. assert \is_finite(x[i]);
+[eva:alarm] unravel-variance.i:36: Warning: 
+  non-finite float value. assert \is_finite(\mul_float(x[i], x[i]));
+[eva] unravel-variance.i:32: starting to merge loop iterations
+[eva] computing for function scanf <- main.
+  Called from unravel-variance.i:34.
+[eva] Done for function scanf
+[eva:alarm] unravel-variance.i:35: Warning: 
+  non-finite float value. assert \is_finite(\add_float(t1, x[i]));
+[eva:alarm] unravel-variance.i:36: Warning: 
+  accessing uninitialized left-value. assert \initialized(&x[i]);
+[eva:alarm] unravel-variance.i:36: Warning: 
+  non-finite float value. assert \is_finite(x[i]);
+[eva:alarm] unravel-variance.i:36: Warning: 
+  non-finite float value.
+  assert \is_finite(\add_float(ssq, \mul_float(x[i], x[i])));
+[eva] computing for function scanf <- main.
+  Called from unravel-variance.i:34.
+[eva] Done for function scanf
+[eva] computing for function scanf <- main.
+  Called from unravel-variance.i:34.
+[eva] Done for function scanf
+[eva] computing for function scanf <- main.
+  Called from unravel-variance.i:34.
+[eva] Done for function scanf
+[eva:alarm] unravel-variance.i:35: Warning: 
+  accessing out of bounds index. assert i < 1024;
+[eva:alarm] unravel-variance.i:38: Warning: 
+  non-finite float value. assert \is_finite(\div_float(t1, (float)n));
+[eva:alarm] unravel-variance.i:39: Warning: 
+  non-finite float value. assert \is_finite(\mul_float((float)n, avg));
+[eva:alarm] unravel-variance.i:39: Warning: 
+  signed overflow. assert -2147483648 ≤ n - 1;
+[eva:alarm] unravel-variance.i:39: Warning: 
+  non-finite float value.
+  assert \is_finite(\mul_float(\mul_float((float)n, avg), avg));
+[eva:alarm] unravel-variance.i:39: Warning: 
+  non-finite float value.
+  assert
+  \is_finite(\sub_float(ssq, \mul_float(\mul_float((float)n, avg), avg)));
+[eva:alarm] unravel-variance.i:39: Warning: 
+  non-finite float value.
+  assert
+  \is_finite(\div_float(\sub_float(ssq,
+                                  \mul_float(\mul_float((float)n, avg), avg)),
+                       (float)((int)(n - 1))));
+[eva:alarm] unravel-variance.i:40: Warning: 
+  non-finite float value. assert \is_finite(\mul_float(t1, avg));
+[eva:alarm] unravel-variance.i:40: Warning: 
+  non-finite float value.
+  assert \is_finite(\sub_float(ssq, \mul_float(t1, avg)));
+[eva:alarm] unravel-variance.i:40: Warning: 
+  non-finite float value.
+  assert
+  \is_finite(\div_float(\sub_float(ssq, \mul_float(t1, avg)),
+                       (float)((int)(n - 1))));
+[eva:alarm] unravel-variance.i:41: Warning: 
+  non-finite float value. assert \is_finite(\mul_float(t1, t1));
+[eva:alarm] unravel-variance.i:41: Warning: 
+  non-finite float value.
+  assert \is_finite(\div_float(\mul_float(t1, t1), (float)n));
+[eva:alarm] unravel-variance.i:42: Warning: 
+  non-finite float value. assert \is_finite(\sub_float(ssq, t1));
+[eva:alarm] unravel-variance.i:42: Warning: 
+  non-finite float value.
+  assert \is_finite(\div_float(\sub_float(ssq, t1), (float)((int)(n - 1))));
+[eva:alarm] unravel-variance.i:46: Warning: 
+  accessing uninitialized left-value. assert \initialized(&x[i]);
+[eva:alarm] unravel-variance.i:46: Warning: 
+  non-finite float value. assert \is_finite(x[i]);
+[eva:alarm] unravel-variance.i:46: Warning: 
+  non-finite float value. assert \is_finite(\sub_float(x[i], avg));
+[eva:alarm] unravel-variance.i:48: Warning: 
+  non-finite float value. assert \is_finite(\mul_float(dev, dev));
+[eva] unravel-variance.i:44: starting to merge loop iterations
+[eva:alarm] unravel-variance.i:47: Warning: 
+  non-finite float value. assert \is_finite(\add_float(t2, dev));
+[eva:alarm] unravel-variance.i:48: Warning: 
+  non-finite float value.
+  assert \is_finite(\add_float(t1, \mul_float(dev, dev)));
+[eva:alarm] unravel-variance.i:50: Warning: 
+  non-finite float value. assert \is_finite(\mul_float(t2, t2));
+[eva:alarm] unravel-variance.i:50: Warning: 
+  non-finite float value.
+  assert \is_finite(\div_float(\mul_float(t2, t2), (float)n));
+[eva:alarm] unravel-variance.i:50: Warning: 
+  non-finite float value.
+  assert \is_finite(\sub_float(t1, \div_float(\mul_float(t2, t2), (float)n)));
+[eva:alarm] unravel-variance.i:50: Warning: 
+  non-finite float value.
+  assert
+  \is_finite(\div_float(\sub_float(t1,
+                                  \div_float(\mul_float(t2, t2), (float)n)),
+                       (float)((int)(n - 1))));
+[eva:alarm] unravel-variance.i:51: Warning: 
+  non-finite float value.
+  assert \is_finite(\div_float(t1, (float)((int)(n - 1))));
+[eva:alarm] unravel-variance.i:52: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert -2147483649 < var2;
+[eva:alarm] unravel-variance.i:52: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert var2 < 2147483648;
+[kernel:annot:missing-spec] unravel-variance.i:52: Warning: 
+  Neither code nor specification for function printf1, generating default assigns from the prototype
+[eva] computing for function printf1 <- main.
+  Called from unravel-variance.i:52.
+[eva] using specification for function printf1
+[eva] Done for function printf1
+[eva:alarm] unravel-variance.i:53: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert -2147483649 < var3;
+[eva:alarm] unravel-variance.i:53: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert var3 < 2147483648;
+[kernel:annot:missing-spec] unravel-variance.i:53: Warning: 
+  Neither code nor specification for function printf2, generating default assigns from the prototype
+[eva] computing for function printf2 <- main.
+  Called from unravel-variance.i:53.
+[eva] using specification for function printf2
+[eva] Done for function printf2
+[eva:alarm] unravel-variance.i:54: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert -2147483649 < var4;
+[eva:alarm] unravel-variance.i:54: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert var4 < 2147483648;
+[kernel:annot:missing-spec] unravel-variance.i:54: Warning: 
+  Neither code nor specification for function printf3, generating default assigns from the prototype
+[eva] computing for function printf3 <- main.
+  Called from unravel-variance.i:54.
+[eva] using specification for function printf3
+[eva] Done for function printf3
+[eva:alarm] unravel-variance.i:55: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert -2147483649 < var5;
+[eva:alarm] unravel-variance.i:55: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert var5 < 2147483648;
+[kernel:annot:missing-spec] unravel-variance.i:55: Warning: 
+  Neither code nor specification for function printf4, generating default assigns from the prototype
+[eva] computing for function printf4 <- main.
+  Called from unravel-variance.i:55.
+[eva] using specification for function printf4
+[eva] Done for function printf4
+[eva:alarm] unravel-variance.i:56: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert -2147483649 < var1;
+[eva:alarm] unravel-variance.i:56: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert var1 < 2147483648;
+[kernel:annot:missing-spec] unravel-variance.i:56: Warning: 
+  Neither code nor specification for function printf5, generating default assigns from the prototype
+[eva] computing for function printf5 <- main.
+  Called from unravel-variance.i:56.
+[eva] using specification for function printf5
+[eva] Done for function printf5
+[eva] Recording results for main
+[eva] done for function main
+[scope:rm_asserts] removing 2 assertion(s)
+[slicing] initializing slicing ...
+[slicing] interpreting slicing requests from the command line...
+[pdg] computing for function main
+[from] Computing for function scanf
+[from] Done for function scanf
+[from] Computing for function printf1
+[from] Done for function printf1
+[from] Computing for function printf2
+[from] Done for function printf2
+[from] Computing for function printf3
+[from] Done for function printf3
+[from] Computing for function printf4
+[from] Done for function printf4
+[from] Computing for function printf5
+[from] Done for function printf5
+[pdg] done for function main
+[slicing] applying all slicing requests...
+[slicing] applying 0 actions...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[slicing] exporting project to 'Slicing export'...
+[slicing] applying all slicing requests...
+[slicing] applying 0 actions...
+[sparecode] remove unused global declarations from project 'Slicing export tmp'
+[sparecode] removed unused global declarations in new project 'Slicing export'
+/* Generated by Frama-C */
+int scanf(char const *, int *p);
+
+int printf2(char const *, int);
+
+void main(void)
+{
+  float x[1024];
+  float var3;
+  float t1;
+  float ssq;
+  float avg;
+  int i;
+  int n;
+  t1 = (float)0;
+  ssq = (float)0;
+  scanf("%d",& n);
+  i = 0;
+  while (i < n) {
+    scanf("%f",(int *)(& x[i]));
+    t1 += x[i];
+    ssq += x[i] * x[i];
+    i ++;
+  }
+  avg = t1 / (float)n;
+  var3 = (ssq - ((float)n * avg) * avg) / (float)(n - 1);
+  printf2("variance (one pass, using average): %f \n",(int)var3);
+  return;
+}
+
+
+[kernel] Parsing ocode_1_unravel-variance.i (no preprocessing)

@@ -1,0 +1,76 @@
+{
+  "sources": {
+    "PTEST_DIR/audit.c": "01010101010101010101010101010101",
+    "PTEST_DIR/audit_included.h": "c2cc488143a476f69cf2ed04c3439e6e",
+    "PTEST_DIR/non_existing_file.h": "1234567890abcdef1234567890abcdef"
+  },
+  "kernel": {
+    "warning-categories": {
+      "enabled": [
+        "*", "CERT", "CERT:EXP", "CERT:EXP:46", "CERT:MSC", "CERT:MSC:38",
+        "acsl-extension", "annot", "annot:missing-spec", "annot-error",
+        "audit", "check", "check:volatile", "cmdline", "ghost",
+        "ghost:bad-use", "inline", "linker",
+        "linker:drop-conflicting-unused", "parser",
+        "parser:conditional-feature", "pp", "pp:compilation-db", "typing",
+        "typing:implicit-conv-void-ptr",
+        "typing:implicit-function-declaration",
+        "typing:incompatible-pointer-types",
+        "typing:incompatible-types-call", "typing:inconsistent-specifier",
+        "typing:int-conversion", "typing:no-proto"
+      ],
+      "disabled": [
+        "CERT:EXP:10", "acsl-float-compare", "ghost:already-ghost",
+        "parser:decimal-float", "transient-block"
+      ]
+    }
+  },
+  "eva": {
+    "correctness-parameters": {
+      "-absolute-valid-range": "",
+      "-eva-all-rounding-modes-constants": "false",
+      "-eva-alloc-returns-null": "true",
+      "-eva-builtin": "",
+      "-eva-builtins-auto": "true",
+      "-eva-context-depth": "2",
+      "-eva-context-valid-pointers": "false",
+      "-eva-context-width": "2",
+      "-eva-initialization-padding-globals": "yes",
+      "-eva-initialized-locals": "false",
+      "-eva-new-initial-state": "0",
+      "-eva-reduce-on-logic-alarms": "false",
+      "-eva-undefined-pointer-comparison-propagate-all": "false",
+      "-eva-use-spec": "",
+      "-eva-warn-copy-indeterminate": "",
+      "-eva-warn-pointer-subtraction": "true",
+      "-eva-warn-signed-converted-downcast": "false",
+      "-eva-warn-undefined-pointer-comparison": "pointer",
+      "-initialized-padding-locals": "true",
+      "-lib-entry": "false",
+      "-main": "main",
+      "-safe-arrays": "true",
+      "-unspecified-access": "false",
+      "-warn-invalid-bool": "true",
+      "-warn-invalid-pointer": "false",
+      "-warn-left-shift-negative": "true",
+      "-warn-pointer-downcast": "true",
+      "-warn-right-shift-negative": "false",
+      "-warn-signed-downcast": "false",
+      "-warn-signed-overflow": "true",
+      "-warn-special-float": "non-finite",
+      "-warn-unsigned-downcast": "false",
+      "-warn-unsigned-overflow": "false"
+    },
+    "warning-categories": {
+      "enabled": [
+        "*", "alarm", "builtins", "builtins:missing-spec",
+        "builtins:override", "experimental", "libc", "libc:unsupported-spec",
+        "locals-escaping", "malloc", "malloc:imprecise", "signed-overflow"
+      ],
+      "disabled": [
+        "garbled-mix", "invalid-assigns", "loop-unroll", "malloc:weak",
+        "missing-loop-unroll", "missing-loop-unroll:for"
+      ]
+    }
+  }
+}

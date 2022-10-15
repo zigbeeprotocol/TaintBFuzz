@@ -1,0 +1,126 @@
+[kernel] Parsing alarms.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  u1 ∈ {0}
+  u2 ∈ {0}
+  f ∈ {0}
+  d ∈ {0}
+  big ∈ {0}
+  ull ∈ {0}
+  rand ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from alarms.i:70.
+[eva:alarm] alarms.i:16: Warning: NaN float value. assert ¬\is_NaN(u1.f);
+[eva:alarm] alarms.i:18: Warning: NaN double value. assert ¬\is_NaN(u2.d);
+[eva] alarms.i:19: 
+  Frama_C_dump_each:
+  # cvalue:
+  u1{.l[bits 0 to 31]; .f; .d[bits 0 to 31]} ∈ [-inf .. inf]
+    {.l[bits 32 to 63]; .f[bits 32 to 63]; .d[bits 32 to 63]} ∈ [--..--]
+  u2{.l; .f[bits 0 to 63]; .d} ∈ [-inf .. inf]
+  f ∈ [-inf .. inf]
+  d ∈ [-inf .. inf]
+  big ∈ {0}
+  ull ∈ {0}
+  rand ∈ [--..--]
+  l ∈ [--..--]
+  tmp ∈ UNINITIALIZED
+  l ∈ [--..--]
+  ==END OF DUMP==
+[kernel:annot:missing-spec] alarms.i:21: Warning: 
+  Neither code nor specification for function fd, generating default assigns from the prototype
+[eva] computing for function fd <- main1 <- main.
+  Called from alarms.i:21.
+[eva] using specification for function fd
+[eva] Done for function fd
+[eva:alarm] alarms.i:21: Warning: 
+  NaN double value. assert ¬\is_NaN(tmp);
+                    (tmp from fd())
+[eva] computing for function fd <- main1 <- main.
+  Called from alarms.i:22.
+[eva] Done for function fd
+[eva:alarm] alarms.i:23: Warning: 
+  non-finite double value. assert \is_finite(vd);
+[eva:alarm] alarms.i:23: Warning: NaN double value. assert ¬\is_NaN(vd);
+[eva:alarm] alarms.i:23: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert -9223372036854775809 < vd;
+[eva:alarm] alarms.i:23: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert vd < 9223372036854775808;
+[eva:alarm] alarms.i:24: Warning: non-finite float value. assert \is_finite(vf);
+[eva:alarm] alarms.i:24: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert -9223372036854775809 < vf;
+[eva:alarm] alarms.i:24: Warning: 
+  overflow in conversion from floating-point to integer.
+  assert vf < 9223372036854775808;
+[eva] computing for function fd <- main1 <- main.
+  Called from alarms.i:25.
+[eva] Done for function fd
+[eva:alarm] alarms.i:26: Warning: NaN double value. assert ¬\is_NaN(vd);
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from alarms.i:71.
+[eva:alarm] alarms.i:39: Warning: 
+  NaN double value. assert ¬\is_NaN(\div_double((double)0., (double)0.));
+[eva] alarms.i:41: assertion got status valid.
+[eva] alarms.i:42: assertion got status valid.
+[eva] alarms.i:43: assertion got status valid.
+[eva] alarms.i:44: assertion got status valid.
+[eva] alarms.i:47: assertion got status valid.
+[eva:alarm] alarms.i:50: Warning: 
+  NaN double value. assert ¬\is_NaN(\div_double((double)0., (double)0.));
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] computing for function main3 <- main.
+  Called from alarms.i:72.
+[eva] computing for function fd <- main3 <- main.
+  Called from alarms.i:64.
+[eva] Done for function fd
+[eva:alarm] alarms.i:65: Warning: NaN double value. assert ¬\is_NaN(d_0);
+[eva] computing for function fabs <- main3 <- main.
+  Called from alarms.i:65.
+[eva] Recording results for fabs
+[eva] Done for function fabs
+[eva] Recording results for main3
+[eva] Done for function main3
+[eva] Recording results for main
+[eva] done for function main
+[eva] alarms.i:39: assertion 'Eva,is_nan' got final status invalid.
+[eva] alarms.i:50: assertion 'Eva,is_nan' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function fabs:
+  __retres ∈ [0. .. inf]
+[eva:final-states] Values at end of function main1:
+  u1{.l[bits 0 to 31]; .f; .d[bits 0 to 31]} ∈ [-inf .. inf]
+    {.l[bits 32 to 63]; .f[bits 32 to 63]; .d[bits 32 to 63]} ∈ [--..--]
+  u2{.l; .f[bits 0 to 63]; .d} ∈ [-inf .. inf]
+  f ∈ [-inf .. inf]
+  d ∈ [-inf .. inf]
+  big ∈ {1.38350580553e+19}
+  ull ∈ {13835058055282163712}
+  vf ∈ [-9.22337203685e+18 .. 9.2233714871e+18]
+  vd ∈ [-inf .. inf]
+  i ∈ [-9223372036854775808..9223372036854774784]
+  j ∈ [-9223372036854775808..9223371487098961920]
+  mvd ∈ [-inf .. inf]
+[eva:final-states] Values at end of function main2:
+  f_0 ∈ [-3. .. 17.]
+  f_infinity ∈ [-3. .. inf]
+  f_nan ∈ [-3. .. 17.]
+  f_infinity_nan ∈ [-3. .. inf]
+[eva:final-states] Values at end of function main3:
+  d_0 ∈ [-inf .. inf]
+  r ∈ [0. .. inf]
+[eva:final-states] Values at end of function main:
+  u1{.l[bits 0 to 31]; .f; .d[bits 0 to 31]} ∈ [-inf .. inf]
+    {.l[bits 32 to 63]; .f[bits 32 to 63]; .d[bits 32 to 63]} ∈ [--..--]
+  u2{.l; .f[bits 0 to 63]; .d} ∈ [-inf .. inf]
+  f ∈ [-inf .. inf]
+  d ∈ [-inf .. inf]
+  big ∈ {1.38350580553e+19}
+  ull ∈ {13835058055282163712}

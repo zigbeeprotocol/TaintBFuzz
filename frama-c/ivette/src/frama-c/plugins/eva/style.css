@@ -1,0 +1,319 @@
+/* -------------------------------------------------------------------------- */
+/* --- Call Stack Info                                                    --- */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --eva-min-width: 90px;
+}
+
+.eva-info {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  background: var(--background-profound);
+  padding: 2px;
+}
+
+.eva-info-wrap {
+  flex: auto;
+  flex-wrap: wrap;
+}
+
+.eva-callsite {
+  flex: 0 0 auto;
+  fill: var(--selected-element);
+  background: var(--background-softer);
+  border-radius: 4px;
+  border: thin solid var(--border);
+  padding-right: 7px;
+}
+
+.eva-cell-container {
+  display: flex;
+  justify-content: center;
+}
+
+.eva-cell-left {
+  flex: 1;
+}
+
+.eva-cell-content {
+  margin-left: 4px;
+  margin-right: 4px;
+  flex: 0 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: baseline;
+}
+
+.eva-header-text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eva-cell-right {
+  display: flex;
+  flex: 1;
+  min-width: max-content;
+  justify-content: flex-end;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Alarms                                                             --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-cell-alarms {
+  margin: 0px;
+  padding: 0px;
+  margin-right: 4px;
+}
+
+.eva-alarm-info {
+  font-size: x-small;
+  padding: 0px;
+  margin: 1px;
+}
+
+.eva-alarm-none { display: none; }
+.eva-alarm-True { fill: var(--eva-alarms-true); }
+.eva-alarm-False { fill: var(--eva-alarms-false); }
+.eva-alarm-Unknown { fill: var(--eva-alarms-unknown); }
+
+/* -------------------------------------------------------------------------- */
+/* --- Styling Statement display                                          --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-stmt {
+  color: var(--info-text);
+  font-weight: normal;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Function Section Header                                            --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-function {
+  padding: 2px;
+  background: var(--background-profound);
+  height: 25px;
+  align-items: center;
+}
+
+.eva-fct-fold {
+  margin-left: 4px;
+  margin-right: 8px;
+  padding: 0px;
+}
+
+.eva-fct-name {
+  font-weight: bold;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Table General CSS                                                  --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-table {
+  border: 0px;
+  border-spacing: 0px;
+}
+
+.eva-table-header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: +1;
+}
+
+.eva-table tr:nth-child(n + 4) {
+  cursor: pointer;
+}
+
+.eva-table tr th {
+  border-right: thin solid var(--border);
+  border-top: thin solid var(--border);
+  border-bottom: thin solid var(--border);
+  height: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  min-width: calc(var(--eva-min-width) + 30px);
+  max-width: calc(var(--eva-min-width) + 30px);
+}
+
+.eva-table tr:nth-child(2n) {
+  background-color: var(--background-alterning-even);
+}
+
+.eva-table tr:nth-child(2n + 1) {
+  background-color: var(--background-alterning-odd);
+}
+
+.eva-table-container {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  min-height: 66px;
+}
+
+.eva-functions-section {
+  display: grid;
+  overflow: auto;
+  align-content: start;
+}
+
+.eva-nb-callstacks {
+  color: var(--info-text);
+  padding-right: 11px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Table Headers CSS                                                  --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-header-tracked {
+}
+
+.eva-header-tracked-focused {
+}
+
+.eva-header-just-focused {
+  background: var(--code-select);
+}
+
+.eva-header-pinned {
+  background: var(--eva-probes-pinned);
+}
+
+.eva-header-pinned-focused {
+  background: var(--eva-probes-pinned-focused);
+}
+
+.eva-header-after-condition {
+  display: flex;
+  justify-content: center;
+  gap: 0.3em;
+}
+
+.eva-header-buttons-container {
+  position: absolute;
+  right: 1px;
+  top: 0px;
+  padding-left: 2px;
+  display: flex;
+  z-index: +1;
+  background: inherit;
+}
+
+.eva-header-button {
+  padding: 2px 2px 3px 2px;
+}
+
+.eva-header-text {
+  display: flex;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Table Callsite Boxes                                               --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-table-callsite-box {
+  width: 18px;
+  min-width: 18px;
+  background: var(--background);
+  border: 0px;
+  text-align: center;
+  color: var(--info-text);
+  border-left: thin solid var(--border);
+  border-right: thin solid var(--border);
+  border-bottom: thin solid var(--border);
+  padding: 2px;
+}
+
+tr:first-of-type > .eva-table-callsite-box {
+  border-top: thin solid var(--border);
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Table Values                                                       --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-table-values {
+  position: relative;
+  border: 0px;
+  padding: 2px 3px 2px 3px;
+  border-bottom: thin solid var(--border);
+  border-right: thin solid var(--border);
+  min-width: var(--eva-min-width);
+  font-family: Andale Mono, monospace;
+  font-size: 9pt;
+  height: 22px;
+  min-height: 22px;
+  max-height: 22px;
+  white-space: pre;
+}
+
+.eva-table-descrs {
+  background-color: var(--background-sidebar);
+  text-align: center;
+}
+
+.eva-table-descr-sticky {
+  position: sticky;
+  top: 22px;
+  z-index: +1;
+}
+
+.eva-table-callsite-box.eva-table-header-sticky {
+  left: 0px;
+  z-index: +2;
+}
+
+.eva-table-value-sticky {
+  position: sticky;
+  left: 0px;
+  z-index: +1;
+}
+
+.eva-values-position {
+  display: inline-block;
+  width: 0px;
+}
+
+.eva-table-text {
+  cursor: text;
+  user-select: text;
+  margin-left: 1px;
+  margin-right: 1px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Miscellaneous                                                      --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-button {
+  margin: 0px;
+}
+
+.eva-italic {
+  font-style: italic;
+}
+
+.eva-focused {
+  background: var(--code-select);
+}
+
+.eva-evaluation-mode {
+  background: purple;
+  fill: white;
+}
+
+/* -------------------------------------------------------------------------- */
+/* --- Evaluation Mode CSS                                                --- */
+/* -------------------------------------------------------------------------- */
+
+.eva-evaluation-mode {
+  background: var(--eva-evaluation-mode);
+  fill: var(--text-discrete);
+}
+
+/* -------------------------------------------------------------------------- */

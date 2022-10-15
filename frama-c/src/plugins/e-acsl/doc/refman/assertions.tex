@@ -1,0 +1,17 @@
+\begin{syntax}
+  C-compound-statement ::=
+      "{" C-declaration* ;
+      C-statement* assertion+ "}"
+  \
+  C-statement ::= assertion ;
+                  C-statement
+  \
+  assertion-kind ::= "assert" ; assertion
+                   | clause-kind ; non-blocking assertion
+  \
+  assertion ::= "/*@" assertion-kind pred";" ;
+    "*/" ;
+  | { "/*@" "for" id ("," id)*":" } ;
+    { assertion-kind pred";" };
+    { "*/" }
+\end{syntax}

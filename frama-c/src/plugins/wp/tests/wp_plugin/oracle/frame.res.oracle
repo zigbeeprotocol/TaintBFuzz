@@ -1,0 +1,59 @@
+# frama-c -wp [...]
+[kernel] Parsing frame.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function alias
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 'alias':
+Let a = global(P_r_41).
+Let x = Mint_1[a].
+Let x_1 = Mint_0[a].
+Assume { Type: is_sint32(x) /\ is_sint32(x_1). }
+Prove: x_1 = x.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function global
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 'global':
+Assume { Type: is_sint32(g) /\ is_sint32(global_0). }
+Prove: global_0 = g.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function local
+------------------------------------------------------------
+
+Goal Post-condition 'FRAMED' in 'local':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 'local':
+Assume { Type: is_sint32(g) /\ is_sint32(local_0). }
+Prove: local_0 = g.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function localref
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 'localref':
+Let x = Mint_1[p].
+Let x_1 = Mint_0[p].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Heap *)
+  Type: region(p.base) <= 0.
+}
+Prove: x_1 = x.
+
+------------------------------------------------------------
+
+Goal Assertion 'FRAMED' (file frame.i, line 28):
+Prove: true.
+
+------------------------------------------------------------

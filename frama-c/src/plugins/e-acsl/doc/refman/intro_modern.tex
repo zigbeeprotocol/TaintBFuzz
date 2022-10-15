@@ -1,0 +1,110 @@
+%; whizzy-master "main.tex"
+\chapter{Introduction}
+
+This document is a reference manual for
+\ifthenelse{\boolean{PrintImplementationRq}}%
+{the \eacsl implementation provided by the \eacsl plug-in~\cite{eacsl-plugin}
+  (version\eacslpluginversion) of the \framac framework~\cite{framac}.}%
+{E-ACSL.}
+\eacsl is an acronym for ``Executable ANSI/ISO C
+Specification Language''. It is an ``executable'' subset of
+\acsl~\cite{acsl} implemented~\cite{acslimplem} in the \framac
+platform~\cite{framac}. Contrary to \acsl, each \eacsl specification is
+executable: it may be evaluated at runtime.
+
+In this document, we assume that the reader has a good knowledge of both
+ACSL~\cite{acsl} and the ANSI C programming language~\cite{standardc99,KR88}.
+
+\section{Organization of this document}
+
+This document is organized in the very same way that the reference manual of
+\acsl~\cite{acsl}.
+
+Instead of being a fully new reference manual, this document points out the
+differences between \eacsl and \acsl. Each \eacsl construct which is not pointed
+out must be considered to have the very same semantics than its \acsl
+counterpart. For clarity, each relevant grammar rules are given in BNF form
+in separate figures like the \acsl reference manual does. In these rules,
+constructs with semantic changes are displayed in \markdiff{blue}.
+
+\ifthenelse{\boolean{PrintImplementationRq}}{%
+Not all of the features mentioned in this document are currently
+implemented in the \framac's \eacsl plug-in. Those who aren't yet are signaled
+as in the following line:
+\begin{quote}
+\notimplemented[Additional remarks on the feature may appear as footnote.]%
+{This feature is not currently supported by \framac's \eacsl plug-in.}
+\end{quote}
+
+As a summary, Figure~\ref{fig:notyet} synthetizes main features that are not
+currently implemented into the \framac's \eacsl plug-in.
+\begin{figure}[htbp]\label{fig:notyet}
+  \begin{center}
+    \begin{tabular}{|l|l|}
+      \hline
+      typing
+      & mathematical reals \\
+      \hline
+      terms
+      & truth values \lstinline|\\true| and \lstinline|\\false| \\
+      & functional updates \\
+      & irrational numbers \\
+      & built-in function \lstinline|\\length| over arrays \\
+      & conversions of structure to structure \\
+      & t-sets \\
+      & abstractions \\
+      & \lstinline|\\max| and \lstinline|\\min| \\
+      & hybrid functions \\
+      & labeled memory-related built-in functions \\
+      & finite sets \\
+      & finite lists \\
+      & \lstinline|\\exit_status|
+      \\
+      \hline
+      predicates
+      & let bindings of predicates \\
+      & unguarded quantifications over small types \\
+      & quantifications over pointers and enums \\
+      & iterators \\
+      & comparisons of unions and structures \\
+      & t-sets \\
+      & hybrid predicates \\
+      & labeled memory-related built-in predicates \\
+      & dangling pointers \lstinline|\\dangling|
+      \\
+      \hline
+      clauses
+      & decreases clauses \\
+      & assigns clauses \\
+      & allocation and deallocation clauses \\
+      & abrupt clauses \\
+      & reads clauses
+      \\
+      \hline
+      annotations
+      & behavior-specific annotations (introduced by \lstinline|for|) \\
+      & loop assigns \\
+      & loop allocations \\
+      & lemmas \\
+      & inductive predicates \\
+      & axiomatic definitions \\
+      & polymorphic logic types \\
+      & concrete logic types \\
+      & specification modules \\
+      & data invariants \\
+      & model variables and model fields \\
+      & volatile variables
+      \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Summary of not-yet-implemented features.}
+\end{figure}
+}%
+{}
+
+\section{Generalities about Annotations}\label{sec:gener-about-annot}
+\nodiff
+
+\section{Notations for grammars}
+\nodiff

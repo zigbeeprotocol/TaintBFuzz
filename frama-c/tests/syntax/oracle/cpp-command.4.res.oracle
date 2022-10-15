@@ -1,0 +1,2 @@
+[kernel] Preprocessing command:
+  gcc -E -C -I. -IFRAMAC_SHARE/libc -D__FRAMAC__ -D__FC_MACHDEP_X86_32 -dD -nostdinc 'cpp-command.c' -o 'TMPDIR/FILE.i'

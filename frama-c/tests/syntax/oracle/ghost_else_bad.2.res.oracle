@@ -1,0 +1,14 @@
+[kernel] Parsing ghost_else_bad.c (with preprocessing)
+[kernel] ghost_else_bad.c:47: 
+  syntax error:
+  Location: between lines 47 and 49, before or at token: else
+  45      if(x){
+  46        x++ ;
+  
+  47      } /*@ ghost
+  48        //@ ensures \true ;
+  49        else {
+  
+  50          y++ ;
+  51        }
+[kernel] Frama-C aborted: invalid user input.

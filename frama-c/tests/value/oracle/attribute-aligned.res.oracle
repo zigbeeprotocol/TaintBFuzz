@@ -1,0 +1,150 @@
+[kernel] Parsing attribute-aligned.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  S ∈ {0}
+  A ∈ {0}
+  B ∈ {0}
+[eva] computing for function ct <- main.
+  Called from attribute-aligned.c:97.
+[eva] Recording results for ct
+[eva] Done for function ct
+[eva] computing for function dt <- main.
+  Called from attribute-aligned.c:98.
+[eva] Recording results for dt
+[eva] Done for function dt
+[eva] computing for function pt <- main.
+  Called from attribute-aligned.c:99.
+[eva] Recording results for pt
+[eva] Done for function pt
+[eva] computing for function qt <- main.
+  Called from attribute-aligned.c:100.
+[eva] Recording results for qt
+[eva] Done for function qt
+[eva] computing for function rt <- main.
+  Called from attribute-aligned.c:101.
+[eva] Recording results for rt
+[eva] Done for function rt
+[eva] computing for function st <- main.
+  Called from attribute-aligned.c:102.
+[eva] Recording results for st
+[eva] Done for function st
+[eva] computing for function tt <- main.
+  Called from attribute-aligned.c:103.
+[eva] Recording results for tt
+[eva] Done for function tt
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function ct:
+  S ∈ {1}
+  A ∈ {0}
+[eva:final-states] Values at end of function dt:
+  S ∈ {4}
+  A ∈ {0}
+[eva:final-states] Values at end of function pt:
+  S ∈ {4}
+  A ∈ {0}
+[eva:final-states] Values at end of function qt:
+  S ∈ {4}
+  A ∈ {0}
+  B ∈ {1}
+[eva:final-states] Values at end of function rt:
+  S ∈ {8}
+  A ∈ {0}
+  B ∈ {4}
+[eva:final-states] Values at end of function st:
+  S ∈ {8}
+  A ∈ {0}
+  B ∈ {4}
+[eva:final-states] Values at end of function tt:
+  S ∈ {4}
+  A ∈ {0}
+  B ∈ {4}
+[eva:final-states] Values at end of function main:
+  S ∈ {4}
+  A ∈ {0}
+  B ∈ {4}
+  __retres ∈ {0}
+[from] Computing for function ct
+[from] Done for function ct
+[from] Computing for function dt
+[from] Done for function dt
+[from] Computing for function pt
+[from] Done for function pt
+[from] Computing for function qt
+[from] Done for function qt
+[from] Computing for function rt
+[from] Done for function rt
+[from] Computing for function st
+[from] Done for function st
+[from] Computing for function tt
+[from] Done for function tt
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function ct:
+  S FROM \nothing
+  A FROM \nothing
+[from] Function dt:
+  S FROM \nothing
+  A FROM \nothing
+[from] Function pt:
+  S FROM \nothing
+  A FROM \nothing
+[from] Function qt:
+  S FROM \nothing
+  A FROM \nothing
+  B FROM \nothing
+[from] Function rt:
+  S FROM \nothing
+  A FROM \nothing
+  B FROM \nothing
+[from] Function st:
+  S FROM \nothing
+  A FROM \nothing
+  B FROM \nothing
+[from] Function tt:
+  S FROM \nothing
+  A FROM \nothing
+  B FROM \nothing
+[from] Function main:
+  S FROM \nothing
+  A FROM \nothing
+  B FROM \nothing
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function ct:
+    S; A
+[inout] Inputs for function ct:
+    \nothing
+[inout] Out (internal) for function dt:
+    S; A
+[inout] Inputs for function dt:
+    \nothing
+[inout] Out (internal) for function pt:
+    S; A
+[inout] Inputs for function pt:
+    \nothing
+[inout] Out (internal) for function qt:
+    S; A; B
+[inout] Inputs for function qt:
+    \nothing
+[inout] Out (internal) for function rt:
+    S; A; B
+[inout] Inputs for function rt:
+    \nothing
+[inout] Out (internal) for function st:
+    S; A; B
+[inout] Inputs for function st:
+    \nothing
+[inout] Out (internal) for function tt:
+    S; A; B
+[inout] Inputs for function tt:
+    \nothing
+[inout] Out (internal) for function main:
+    S; A; B; __retres
+[inout] Inputs for function main:
+    \nothing

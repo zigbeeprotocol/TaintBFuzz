@@ -1,0 +1,35 @@
+[kernel] Parsing sort4.i (no preprocessing)
+[kernel] sort4.i:25: Warning: 
+  parsing obsolete ACSL construct '\valid_range(addr,min,max)'. '\valid(addr+(min..max))' should be used instead.
+[eva] Analyzing an incomplete application starting at sort4_1
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ [--..--]
+  b ∈ [--..--]
+  c ∈ [--..--]
+  d ∈ [--..--]
+[eva:alarm] sort4.i:20: Warning: assertion got status unknown.
+[eva] Recording results for sort4_1
+[eva] done for function sort4_1
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function sort4_1:
+  a ∈ [--..--]
+  b ∈ [--..--]
+  c ∈ [--..--]
+  d ∈ [--..--]
+  tmp ∈ [-2147483647..2147483647] or UNINITIALIZED
+[from] Computing for function sort4_1
+[from] Done for function sort4_1
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function sort4_1:
+  a FROM a; b; c; d (and SELF)
+  b FROM a; b; c; d (and SELF)
+  c FROM a; b; c; d (and SELF)
+  d FROM a; b; c; d (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function sort4_1:
+    a; b; c; d; tmp
+[inout] Inputs for function sort4_1:
+    a; b; c; d

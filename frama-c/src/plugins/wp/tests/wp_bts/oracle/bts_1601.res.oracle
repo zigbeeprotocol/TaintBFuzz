@@ -1,0 +1,57 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_1601.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function foo
+------------------------------------------------------------
+
+Goal Assertion (file bts_1601.c, line 72):
+Assume {
+  Type: is_uint32(tenumRMode_0).
+  (* Residual *)
+  When: ne_f32(fRrValue_0, to_f32(.0)).
+  (* Goal *)
+  When: of_f32(fRrValue_0) = .0.
+}
+Prove: tenumRMode_0 = 1.
+
+------------------------------------------------------------
+
+Goal Assertion (file bts_1601.c, line 84):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file bts_1601.c, line 104):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file bts_1601.c, line 136):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file bts_1601.c, line 147):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file bts_1601.c, line 153):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion (file bts_1601.c, line 157):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function foo with behavior basic
+------------------------------------------------------------
+
+Goal Post-condition for 'basic' (file bts_1601.c, line 46) in 'foo':
+Prove: true.
+
+------------------------------------------------------------

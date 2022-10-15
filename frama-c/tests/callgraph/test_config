@@ -1,0 +1,5 @@
+PLUGIN: callgraph
+STDOPT:
+
+# COMMENT: Directive to add in your test file when using STDOPT:
+# COMMENT: PLUGIN: @PTEST_PLUGIN@ @EVA_PLUGINS@

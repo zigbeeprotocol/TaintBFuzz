@@ -1,0 +1,22 @@
+# frama-c -wp [...]
+[kernel] Parsing sqrt_builtins.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function test_sqrt
+------------------------------------------------------------
+
+Goal Assertion 'KO' (file sqrt_builtins.i, line 25):
+Assume { (* Call 'sqrt' *) Have: .0 <= of_f64(sqrt_f64(q)). }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function test_sqrtf
+------------------------------------------------------------
+
+Goal Assertion 'KO' (file sqrt_builtins.i, line 16):
+Assume { (* Call 'sqrtf' *) Have: .0 <= of_f32(sqrt_f32(q)). }
+Prove: false.
+
+------------------------------------------------------------

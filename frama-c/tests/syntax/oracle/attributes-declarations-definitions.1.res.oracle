@@ -1,0 +1,10 @@
+[kernel] Parsing attributes-declarations-definitions.c (with preprocessing)
+[kernel] attributes-declarations-definitions.c:12: Warning: 
+  found two contracts (old location: attributes-declarations-definitions.c:6). Merging them
+[kernel] attributes-declarations-definitions.c:21: Warning: 
+  found two contracts (old location: attributes-declarations-definitions.c:13). Merging them
+[kernel] attributes-declarations-definitions.c:62: User Error: 
+  unsupported attribute: vector_size
+[kernel] User Error: stopping on file "attributes-declarations-definitions.c" that has errors. Add
+  '-kernel-msg-key pp' for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

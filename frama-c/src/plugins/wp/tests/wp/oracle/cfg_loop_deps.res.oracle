@@ -1,0 +1,135 @@
+# frama-c -wp [...]
+[kernel] Parsing cfg_loop_deps.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function function
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'Check_Q' (file cfg_loop_deps.i, line 19):
+Let x = 1 + i.
+Assume {
+  Type: is_sint32(i) /\ is_sint32(x).
+  (* Invariant 'Inv_P' *)
+  Have: P_P(0).
+  (* Invariant 'Check_Q' *)
+  Have: P_Q(0).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(0).
+  (* Invariant 'Inv_S' *)
+  Have: P_S(0).
+  (* Invariant 'Inv_P' *)
+  Have: P_P(i).
+  (* Invariant 'Check_Q' *)
+  Have: P_Q(i).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(i).
+  (* Invariant 'Inv_S' *)
+  Have: P_S(i).
+  (* Then *)
+  Have: i <= 9.
+  (* Invariant 'Inv_P' *)
+  Have: P_P(x).
+}
+Prove: P_Q(x).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'Check_Q' (file cfg_loop_deps.i, line 19):
+Assume { (* Invariant 'Inv_P' *) Have: P_P(0). }
+Prove: P_Q(0).
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'Inv_P' (file cfg_loop_deps.i, line 18):
+Let x = 1 + i.
+Assume {
+  Type: is_sint32(i) /\ is_sint32(x).
+  (* Invariant 'Inv_P' *)
+  Have: P_P(0).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(0).
+  (* Invariant 'Inv_S' *)
+  Have: P_S(0).
+  (* Invariant 'Inv_P' *)
+  Have: P_P(i).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(i).
+  (* Invariant 'Inv_S' *)
+  Have: P_S(i).
+  (* Then *)
+  Have: i <= 9.
+}
+Prove: P_P(x).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'Inv_P' (file cfg_loop_deps.i, line 18):
+Prove: P_P(0).
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'Inv_S' (file cfg_loop_deps.i, line 21):
+Let x = 1 + i.
+Assume {
+  Type: is_sint32(i) /\ is_sint32(x).
+  (* Invariant 'Inv_P' *)
+  Have: P_P(0).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(0).
+  (* Invariant 'Inv_S' *)
+  Have: P_S(0).
+  (* Invariant 'Inv_P' *)
+  Have: P_P(i).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(i).
+  (* Invariant 'Inv_S' *)
+  Have: P_S(i).
+  (* Then *)
+  Have: i <= 9.
+  (* Invariant 'Inv_P' *)
+  Have: P_P(x).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(x).
+}
+Prove: P_S(x).
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'Inv_S' (file cfg_loop_deps.i, line 21):
+Assume {
+  (* Invariant 'Inv_P' *)
+  Have: P_P(0).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(0).
+}
+Prove: P_S(0).
+
+------------------------------------------------------------
+
+Goal Check (file cfg_loop_deps.i, line 25):
+Assume {
+  Type: is_sint32(i).
+  (* Invariant 'Inv_P' *)
+  Have: P_P(0).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(0).
+  (* Invariant 'Inv_S' *)
+  Have: P_S(0).
+  (* Invariant 'Inv_P' *)
+  Have: P_P(i).
+  (* Invariant 'Admit_R' *)
+  Have: P_R(i).
+  (* Invariant 'Inv_S' *)
+  Have: P_S(i).
+  (* Else *)
+  Have: 10 <= i.
+}
+Prove: P_W(i).
+
+------------------------------------------------------------
+
+Goal Loop assigns (file cfg_loop_deps.i, line 22):
+Prove: true.
+
+------------------------------------------------------------

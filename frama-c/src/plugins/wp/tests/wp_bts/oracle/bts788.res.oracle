@@ -1,0 +1,42 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing bts788.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Post-condition 'I0' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'I1' in 'main':
+Let x = t20_0[1].
+Assume {
+  Type: is_sint32(x) /\ is_sint32(t20_0[2]).
+  (* Heap *)
+  Type: IsArray_sint32(t20_0).
+  (* Initializer *)
+  Init: t20_0[0] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 19) -> (t20_0[i] = 0))).
+}
+Prove: x = 0.
+
+------------------------------------------------------------
+
+Goal Post-condition 'I2' in 'main':
+Let x = t20_0[2].
+Assume {
+  Type: is_sint32(t20_0[1]) /\ is_sint32(x).
+  (* Heap *)
+  Type: IsArray_sint32(t20_0).
+  (* Initializer *)
+  Init: t20_0[0] = 3.
+  (* Initializer *)
+  Init: forall i : Z. ((0 < i) -> ((i <= 19) -> (t20_0[i] = 0))).
+}
+Prove: x = 0.
+
+------------------------------------------------------------

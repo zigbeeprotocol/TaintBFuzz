@@ -1,0 +1,350 @@
+# frama-c -wp [...]
+[kernel] Parsing repeat.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] repeat.c:47: Warning: Missing assigns clause (assigns 'everything' instead)
+------------------------------------------------------------
+  Function induction
+------------------------------------------------------------
+
+Goal Post-condition (file repeat.c, line 55) in 'induction':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file repeat.c, line 61):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file repeat.c, line 61):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file repeat.c, line 62):
+Let a = L_sequence(calls_0).
+Let a_1 = a ^ [ 1, 2 ].
+Let a_2 = [ 1, 2 ].
+Let x = 1 + i.
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(x).
+  (* Heap *)
+  Type: is_sint32(calls_1).
+  (* Pre-condition *)
+  Have: L_sequence(calls_1) = nil.
+  (* Invariant *)
+  Have: 0 <= n.
+  (* Invariant *)
+  Have: (0 <= i) /\ (i <= n).
+  (* Invariant *)
+  Have: (a_2 *^ i) = a.
+  (* Then *)
+  Have: i < n.
+  (* Call 'f' *)
+  Have: L_sequence(calls_2) = a ^ [ 1 ].
+  (* Call 'g' *)
+  Have: L_sequence(calls_3) = a_1.
+  (* Invariant *)
+  Have: (-1) <= i.
+}
+Prove: (a_2 *^ x) = a_1.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file repeat.c, line 62):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file repeat.c, line 63):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 56) in 'induction' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 56) in 'induction' (2/2):
+Effect at line 65
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 56) in 'induction':
+Effect at line 65
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function master
+------------------------------------------------------------
+
+Goal Post-condition (file repeat.c, line 29) in 'master':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 30) in 'master':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 30) in 'master':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function shifted
+------------------------------------------------------------
+
+Goal Post-condition (file repeat.c, line 73) in 'shifted':
+Let a = [ 1, 2 ].
+Let a_1 = (a *^ i).
+Let a_2 = a_1 ^ [ 1, 2 ].
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n).
+  (* Heap *)
+  Type: is_sint32(calls_0).
+  (* Pre-condition *)
+  Have: L_sequence(calls_0) = nil.
+  (* Call 'f' *)
+  Have: L_sequence(calls_1) = [ 1 ].
+  (* Invariant *)
+  Have: 0 <= n.
+  (* Invariant *)
+  Have: (0 <= i) /\ (i <= n).
+  (* Invariant *)
+  Have: L_sequence(calls_2) = a_1 ^ [ 1 ].
+  (* Else *)
+  Have: n <= i.
+  (* Call 'g' *)
+  Have: L_sequence(calls_3) = a_2.
+}
+Prove: (a *^ 1 + i) = a_2.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file repeat.c, line 81):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file repeat.c, line 81):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (file repeat.c, line 82):
+Let a = [ 1, 2 ].
+Let a_1 = (a *^ i).
+Let a_2 = a_1 ^ [ 1, 2 ].
+Let x = 1 + i.
+Assume {
+  Type: is_sint32(i) /\ is_sint32(n) /\ is_sint32(x).
+  (* Heap *)
+  Type: is_sint32(calls_0).
+  (* Pre-condition *)
+  Have: L_sequence(calls_0) = nil.
+  (* Call 'f' *)
+  Have: L_sequence(calls_1) = [ 1 ].
+  (* Invariant *)
+  Have: 0 <= n.
+  (* Invariant *)
+  Have: (0 <= i) /\ (i <= n).
+  (* Invariant *)
+  Have: L_sequence(calls_2) = a_1 ^ [ 1 ].
+  (* Then *)
+  Have: i < n.
+  (* Call 'g' *)
+  Have: L_sequence(calls_3) = a_2.
+  (* Call 'f' *)
+  Have: L_sequence(calls_4) = a_1 ^ [ 1, 2, 1 ].
+  (* Invariant *)
+  Have: (-1) <= i.
+}
+Prove: (a *^ x) = a_2.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (file repeat.c, line 82):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file repeat.c, line 83):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 74) in 'shifted' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 74) in 'shifted' (2/2):
+Effect at line 85
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 74) in 'shifted' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 74) in 'shifted' (2/2):
+Effect at line 85
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function unroll
+------------------------------------------------------------
+
+Goal Post-condition (file repeat.c, line 41) in 'unroll':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant (generated):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant (generated):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (1/11):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (2/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (3/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (4/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (5/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (6/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (7/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (8/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (9/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (10/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (11/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (1/11):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (2/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (3/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (4/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (5/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (6/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (7/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (8/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (9/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (10/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file repeat.c, line 42) in 'unroll' (11/11):
+Effect at line 47
+Prove: true.
+
+------------------------------------------------------------

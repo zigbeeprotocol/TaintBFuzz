@@ -1,0 +1,69 @@
+[kernel] Parsing eval_separated.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+  y ∈ {0}
+  t1[0..5] ∈ {0}
+  t2[0..5] ∈ {0}
+[eva] eval_separated.c:5: assertion got status valid.
+[eva] eval_separated.c:6: assertion got status valid.
+[eva] eval_separated.c:8: assertion got status valid.
+[eva] eval_separated.c:9: assertion got status valid.
+[eva:alarm] eval_separated.c:11: Warning: 
+  pointer downcast. assert (unsigned int)(&q) ≤ 2147483647;
+[eva:alarm] eval_separated.c:11: Warning: 
+  signed overflow. assert -2147483648 ≤ (int)(&q) + (int)(&q);
+[eva:alarm] eval_separated.c:11: Warning: 
+  signed overflow. assert (int)(&q) + (int)(&q) ≤ 2147483647;
+[eva] eval_separated.c:11: 
+  Assigning imprecise value to q.
+  The imprecision originates from Arithmetic {eval_separated.c:11}
+[eva:alarm] eval_separated.c:12: Warning: 
+  pointer downcast. assert (unsigned int)(&r) ≤ 2147483647;
+[eva:alarm] eval_separated.c:12: Warning: 
+  signed overflow. assert -2147483648 ≤ (int)(&r) + (int)(&r);
+[eva:alarm] eval_separated.c:12: Warning: 
+  signed overflow. assert (int)(&r) + (int)(&r) ≤ 2147483647;
+[eva] eval_separated.c:12: 
+  Assigning imprecise value to r.
+  The imprecision originates from Arithmetic {eval_separated.c:12}
+[eva:alarm] eval_separated.c:13: Warning: assertion got status unknown.
+[eva:alarm] eval_separated.c:14: Warning: assertion got status unknown.
+[eva:alarm] eval_separated.c:15: Warning: assertion got status unknown.
+[eva] eval_separated.c:17: assertion got status valid.
+[eva] eval_separated.c:18: assertion got status valid.
+[eva] eval_separated.c:20: assertion got status valid.
+[eva] eval_separated.c:21: assertion got status valid.
+[eva] eval_separated.c:23: assertion got status valid.
+[eva] eval_separated.c:24: assertion got status valid.
+[eva] eval_separated.c:26: assertion got status valid.
+[eva] eval_separated.c:27: assertion got status valid.
+[eva] eval_separated.c:28: assertion got status valid.
+[eva] eval_separated.c:30: assertion got status valid.
+[eva] eval_separated.c:31: assertion got status valid.
+[eva] eval_separated.c:33: assertion got status valid.
+[eva] eval_separated.c:36: assertion got status valid.
+[eva] eval_separated.c:38: assertion got status valid.
+[eva] eval_separated.c:41: assertion got status valid.
+[eva:alarm] eval_separated.c:43: Warning: assertion got status unknown.
+[eva:alarm] eval_separated.c:45: Warning: assertion got status unknown.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  p ∈ {{ &t1 + [-8589934592..8589934588],0%4 }}
+  q ∈ {{ garbled mix of &{q} (origin: Arithmetic {eval_separated.c:11}) }}
+  r ∈ {{ garbled mix of &{r} (origin: Arithmetic {eval_separated.c:12}) }}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    p; q; r
+[inout] Inputs for function main:
+    \nothing

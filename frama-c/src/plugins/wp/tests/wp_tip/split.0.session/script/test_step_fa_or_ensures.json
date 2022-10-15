@@ -1,0 +1,5 @@
+[ { "header": "Split", "tactic": "Wp.split", "params": {},
+    "select": { "select": "clause-step", "at": 1, "kind": "have",
+                "target": "forall i_0:int. P_P \\/ P_Q \\/ P_R \\/ (P_Pi i_0) \\/ (P_Qi i_0)",
+                "pattern": "\\FP_PP_QP_R" },
+    "children": { "Goal 1/2": [], "Goal 2/2": [] } } ]

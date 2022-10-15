@@ -1,0 +1,706 @@
+# frama-c -wp [...]
+[kernel] Parsing split.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 23 goals scheduled
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 37) in 'test_step_branch':
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    If a < b
+    Then { (* Call 'gen_P' *) Have: P_P. }
+    Else { (* Call 'gen_Q' *) Have: P_Q. }
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 47) in 'test_step_or':
+  Assume { (* Pre-condition *) Have: P_P \/ P_Q \/ P_R. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 51) in 'test_step_and':
+  Assume { (* Pre-condition *) Have: P_P /\ P_Q /\ P_R. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 55) in 'test_step_peq':
+  Assume { (* Pre-condition *) Have: L_LQ = L_LP. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 59) in 'test_step_pneq':
+  Assume { (* Pre-condition *) Have: L_LQ != L_LP. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 63) in 'test_step_neq':
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: b != a.
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 67) in 'test_step_leq':
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: a <= b.
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 71) in 'test_step_lt':
+  Assume { Type: is_sint32(a) /\ is_sint32(b). (* Pre-condition *) Have: a < b.
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 75) in 'test_step_if':
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: if (a < b) then P_P else P_Q.
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 79) in 'test_step_fa_if':
+  Assume {
+    (* Heap *)
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: forall i : Z. if (a < b) then (P_P /\ P_Pi(i)) else (P_Q /\ P_Qi(i)).
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 83) in 'test_step_fa_or':
+  Assume {
+    (* Pre-condition *)
+    Have: forall i : Z. P_P \/ P_Q \/ P_R \/ P_Pi(i) \/ P_Qi(i).
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 87) in 'test_step_fa_and':
+  Assume {
+    (* Pre-condition *)
+    Have: forall i : Z. P_P /\ P_Q /\ P_R /\ P_Pi(i) /\ P_Qi(i).
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 91) in 'test_inside_leq':
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_P /\ (a <= b).
+  }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 95) in 'test_inside_lt':
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_P /\ (a < b).
+  }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 99) in 'test_inside_neq':
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_P /\ (b != a).
+  }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 103) in 'test_goal_and':
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: P_P /\ P_Q /\ P_R.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 107) in 'test_goal_eq':
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: L_LQ = L_LP.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 111) in 'test_goal_neq':
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: L_LQ != L_LP.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 115) in 'test_goal_if':
+  Assume { Type: is_sint32(a) /\ is_sint32(b). (* Pre-condition *) Have: P_S. }
+  Prove: if (a < b) then P_P else P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 119) in 'test_goal_ex_and':
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: exists i : Z. P_P /\ P_Q /\ P_Pi(i) /\ P_Qi(i).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 123) in 'test_goal_ex_or':
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: exists i : Z. P_P \/ P_Q \/ P_Pi(i) \/ P_Qi(i).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 127) in 'test_goal_ex_if':
+  Assume {
+    (* Heap *)
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_S.
+  }
+  Prove: exists i : Z. if (a < b) then (P_Pi(i) /\ P_Qi(i)) else (P_P /\ P_Q).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Goal Post-condition (file split.i, line 131) in 'test_goal_ex_imply':
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: exists i : Z. (P_Q -> (P_Pi(i) -> P_Qi(i))).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_branch_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_branch_ensures-0 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Then *)
+    When: a < b.
+    (* Call 'gen_P' *)
+    Have: P_P.
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_branch_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_branch_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_branch_ensures-1 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Else *)
+    When: b <= a.
+    (* Call 'gen_Q' *)
+    Have: P_Q.
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_or_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_or_ensures-0 (generated):
+  Assume { (* Case 1/3 *) When: P_P. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_or_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_or_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_or_ensures-1 (generated):
+  Assume { (* Case 2/3 *) When: P_Q. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_or_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_or_ensures-2 (generated):
+  Assume { (* Case 3/3 *) When: P_R. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_and_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_and_ensures-0 (generated):
+  Assume {
+    (* Pre-condition *)
+    Have: P_P.
+    (* Pre-condition *)
+    Have: P_Q.
+    (* Pre-condition *)
+    Have: P_R.
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_and_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_peq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_peq_ensures-0 (generated):
+  Assume { (* Both True *) When: (L_LP=true) /\ (L_LQ=true). }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_peq_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_peq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_peq_ensures-1 (generated):
+  Assume { (* Both False *) When: (L_LP=false) /\ (L_LQ=false). }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_pneq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_pneq_ensures-0 (generated):
+  Assume { (* True/False *) When: (L_LQ=true) /\ (L_LP=false). }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_pneq_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_pneq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_pneq_ensures-1 (generated):
+  Assume { (* False/True *) When: (L_LP=true) /\ (L_LQ=false). }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_neq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_neq_ensures-0 (generated):
+  Assume { Type: is_sint32(a) /\ is_sint32(b). (* Lt *) When: b < a. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_neq_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_neq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_neq_ensures-1 (generated):
+  Prove: true.
+  Prover Qed returns Valid
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_neq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_neq_ensures-2 (generated):
+  Assume { Type: is_sint32(a) /\ is_sint32(b). (* Gt *) When: a < b. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_leq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_leq_ensures-0 (generated):
+  Assume { Type: is_sint32(a) /\ is_sint32(b). (* Lt *) When: a < b. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_leq_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_leq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_leq_ensures-1 (generated):
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_leq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_leq_ensures-2 (generated):
+  Prove: true.
+  Prover Qed returns Valid
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_lt_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_lt_ensures-0 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Lt *)
+    When: (2 + a) <= b.
+    (* Pre-condition *)
+    Have: a < b.
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_lt_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_lt_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_lt_ensures-1 (generated):
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_lt_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_lt_ensures-2 (generated):
+  Prove: true.
+  Prover Qed returns Valid
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_if_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_if_ensures-0 (generated):
+  Assume { Type: is_sint32(a) /\ is_sint32(b). (* Then *) When: P_P /\ (a < b).
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_if_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_if_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_if_ensures-1 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Else *)
+    When: P_Q /\ (b <= a).
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_fa_if_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_fa_if_ensures-0 (generated):
+  Assume {
+    (* Heap *)
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Then *)
+    When: P_P /\ (a < b) /\ P_Pi(i).
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_fa_if_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_fa_if_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_fa_if_ensures-1 (generated):
+  Assume {
+    (* Heap *)
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Else *)
+    When: P_Q /\ (b <= a) /\ P_Qi(i).
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_fa_or_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_fa_or_ensures-0 (generated):
+  Assume { (* Goal 1/2 *) When: forall i : Z. P_Pi(i) \/ P_Qi(i). }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_fa_or_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_step_fa_or_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_fa_or_ensures-1 (generated):
+  Assume { (* Goal 2/2 *) When: P_P \/ P_Q \/ P_R. }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_step_fa_and_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_step_fa_and_ensures-0 (generated):
+  Assume {
+    (* Split (distrib forall and) *)
+    When: P_P /\ P_Q /\ P_R /\ (forall i : Z. P_Pi(i)) /\
+        (forall i : Z. P_Qi(i)).
+  }
+  Prove: P_S.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_step_fa_and_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_inside_leq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_leq_ensures-0 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Lt *)
+    When: a < b.
+    (* Pre-condition *)
+    Have: P_P.
+  }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_inside_leq_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_inside_leq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_leq_ensures-1 (generated):
+  Assume { (* Pre-condition *) Have: P_P. }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_inside_leq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_leq_ensures-2 (generated):
+  Prove: true.
+  Prover Qed returns Valid
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_inside_lt_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_lt_ensures-0 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Lt *)
+    When: (2 + a) <= b.
+    (* Pre-condition *)
+    Have: P_P /\ (a < b).
+  }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_inside_lt_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_inside_lt_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_lt_ensures-1 (generated):
+  Assume { (* Pre-condition *) Have: P_P. }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_inside_lt_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_lt_ensures-2 (generated):
+  Prove: true.
+  Prover Qed returns Valid
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_inside_neq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_neq_ensures-0 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Lt *)
+    When: b < a.
+    (* Pre-condition *)
+    Have: P_P.
+  }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_inside_neq_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_inside_neq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_neq_ensures-1 (generated):
+  Prove: true.
+  Prover Qed returns Valid
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_inside_neq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_inside_neq_ensures-2 (generated):
+  Assume {
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Gt *)
+    When: a < b.
+    (* Pre-condition *)
+    Have: P_P.
+  }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_goal_and_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_and_ensures-0 (generated):
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: P_P.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_goal_and_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_goal_and_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_and_ensures-1 (generated):
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_goal_and_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_and_ensures-2 (generated):
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: P_R.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_goal_eq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_eq_ensures-0 (generated):
+  Assume { Have: (L_LQ=true). (* Pre-condition *) Have: P_S. }
+  Prove: (L_LP=true).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_goal_eq_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_goal_eq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_eq_ensures-1 (generated):
+  Assume { Have: (L_LP=true). (* Pre-condition *) Have: P_S. }
+  Prove: (L_LQ=true).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_goal_neq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_neq_ensures-0 (generated):
+  Assume { Have: (L_LQ=true). (* Pre-condition *) Have: P_S. }
+  Prove: (L_LP=false).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_goal_neq_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_goal_neq_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_neq_ensures-1 (generated):
+  Assume { Have: (L_LP=true). (* Pre-condition *) Have: P_S. }
+  Prove: (L_LQ=false).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_goal_if_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_if_ensures-0 (generated):
+  Assume {
+    Have: a < b.
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_S.
+  }
+  Prove: P_P.
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_goal_if_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_goal_if_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_if_ensures-1 (generated):
+  Assume {
+    Have: b <= a.
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_S.
+  }
+  Prove: P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_goal_ex_and_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_ex_and_ensures-0 (generated):
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: exists i : Z. P_Pi(i) /\ P_Qi(i).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_goal_ex_and_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_goal_ex_and_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_ex_and_ensures-1 (generated):
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: P_P /\ P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_goal_ex_or_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_ex_or_ensures-0 (generated):
+  Assume { (* Pre-condition *) Have: P_S. }
+  Prove: P_P \/ P_Q \/ (exists i : Z. P_Pi(i)) \/ (exists i : Z. P_Qi(i)).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_goal_ex_or_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_goal_ex_if_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_ex_if_ensures-0 (generated):
+  Assume {
+    Have: a < b.
+    (* Heap *)
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_S.
+  }
+  Prove: exists i : Z. P_Pi(i) /\ P_Qi(i).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_goal_ex_if_ensures : Unsuccess
+[wp:script:allgoals] 
+  typed_test_goal_ex_if_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_ex_if_ensures-1 (generated):
+  Assume {
+    Have: b <= a.
+    (* Heap *)
+    Type: is_sint32(a) /\ is_sint32(b).
+    (* Pre-condition *)
+    Have: P_S.
+  }
+  Prove: P_P /\ P_Q.
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_test_goal_ex_imply_ensures subgoal:
+  
+  Goal Wp.Tactical.typed_test_goal_ex_imply_ensures-0 (generated):
+  Assume {
+    Have: P_Q.
+    Have: forall i : Z. P_Pi(i).
+    (* Pre-condition *)
+    Have: P_S.
+  }
+  Prove: exists i : Z. P_Qi(i).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_test_goal_ex_imply_ensures : Unsuccess
+[wp] Proved goals:    0 / 23

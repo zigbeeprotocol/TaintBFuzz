@@ -1,0 +1,58 @@
+# frama-c -wp [...]
+[kernel] Parsing clusters.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] clusters.i:40: Warning: 
+  Missing terminates clause for callee_no_r, populates 'terminates \true'
+[wp] [CFG] Goal callee_no_r_terminates : Valid (Trivial)
+[wp] Warning: Missing RTE guards
+[wp] clusters.i:45: Warning: 
+  Missing terminates clause for caller_no_cluster, populates 'terminates \true'
+[wp] clusters.i:60: Warning: 
+  Missing terminates clause for fp, populates 'terminates \true'
+[wp] clusters.i:54: Warning: 
+  Missing terminates clause for function, populates 'terminates \true'
+[wp] clusters.i:28: Warning: 
+  Missing terminates clause for mutual_1, populates 'terminates \true'
+[wp] clusters.i:35: Warning: 
+  Missing terminates clause for mutual_2, populates 'terminates \true'
+[wp] clusters.i:11: Warning: 
+  Missing terminates clause for simpl_r, populates 'terminates \true'
+[wp] clusters.i:15: Warning: 
+  Missing terminates clause for simpl_rf, populates 'terminates \true'
+[wp] clusters.i:60: Warning: 
+  No 'decreases' clause on recursive function 'simpl_rf', cannot prove termination
+[wp] clusters.i:60: Warning: 
+  No 'decreases' clause on recursive function 'mutual_1', cannot prove termination
+[wp] clusters.i:36: Warning: No decreases clause for mutual_1
+[wp] clusters.i:60: Warning: 
+  No 'decreases' clause on recursive function 'fp', cannot prove termination
+[wp] clusters.i:55: Warning: No decreases clause for fp
+[wp] 15 goals scheduled
+[wp] [Qed] Goal typed_simpl_r_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_simpl_r_variant : Valid
+[wp] [Qed] Goal typed_simpl_rf_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_simpl_rf_terminates_part2 : Unsuccess
+[wp] [Qed] Goal typed_mutual_1_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_mutual_1_terminates_part2 : Unsuccess
+[wp] [Qed] Goal typed_mutual_2_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_mutual_2_variant : Unsuccess (Degenerated)
+[wp] [Qed] Goal typed_caller_no_cluster_terminates : Valid
+[wp] [Qed] Goal typed_fp_call_point_function_s41 : Valid
+[wp] [Qed] Goal typed_fp_terminates_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_fp_terminates_part2 : Unsuccess
+[wp] [Qed] Goal typed_function_terminates : Valid
+[wp] [Alt-Ergo] Goal typed_function_variant : Unsuccess (Degenerated)
+[wp] [Qed] Goal typed_function_call_fp_requires : Valid
+[wp] Proved goals:   11 / 16
+  Qed:             9 
+  Alt-Ergo:        1  (unsuccess: 5)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  simpl_r                   1        1        2       100%
+  simpl_rf                  1        -        2      50.0%
+  mutual_1                  1        -        2      50.0%
+  mutual_2                  1        -        2      50.0%
+  caller_no_cluster         1        -        1       100%
+  fp                        2        -        3      66.7%
+  function                  2        -        3      66.7%
+------------------------------------------------------------

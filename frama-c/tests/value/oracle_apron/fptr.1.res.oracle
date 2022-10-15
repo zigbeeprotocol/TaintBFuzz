@@ -1,0 +1,34 @@
+42c42,45
+< [eva] fptr.i:9: Reusing old results for call to h
+---
+> [eva] computing for function h <- f <- main_uninit.
+>   Called from fptr.i:9.
+> [eva] Recording results for h
+> [eva] Done for function h
+50,51c53,60
+< [eva] fptr.i:9: Reusing old results for call to hh
+< [eva] fptr.i:9: Reusing old results for call to h
+---
+> [eva] computing for function hh <- f <- main_uninit.
+>   Called from fptr.i:9.
+> [eva] Recording results for hh
+> [eva] Done for function hh
+> [eva] computing for function h <- f <- main_uninit.
+>   Called from fptr.i:9.
+> [eva] Recording results for h
+> [eva] Done for function h
+55c64,75
+< [eva] fptr.i:68: Reusing old results for call to f
+---
+> [eva] computing for function f <- main_uninit.
+>   Called from fptr.i:68.
+> [eva] computing for function hh <- f <- main_uninit.
+>   Called from fptr.i:9.
+> [eva] Recording results for hh
+> [eva] Done for function hh
+> [eva] computing for function h <- f <- main_uninit.
+>   Called from fptr.i:9.
+> [eva] Recording results for h
+> [eva] Done for function h
+> [eva] Recording results for f
+> [eva] Done for function f

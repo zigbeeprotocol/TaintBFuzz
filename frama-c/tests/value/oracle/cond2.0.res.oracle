@@ -1,0 +1,49 @@
+[kernel] Parsing cond2.i (no preprocessing)
+[eva] Analyzing a complete application starting at zero_ou_un_0
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  Gx ∈ [--..--]
+  Gy ∈ [--..--]
+  px ∈ {0}
+  py ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+  T[0..99] ∈ {0}
+  r ∈ {0}
+  s ∈ {0}
+  t ∈ {0}
+  u ∈ {0}
+[eva] cond2.i:26: starting to merge loop iterations
+[eva:alarm] cond2.i:26: Warning: signed overflow. assert x + 2 ≤ 2147483647;
+[eva] cond2.i:27: starting to merge loop iterations
+[eva:alarm] cond2.i:27: Warning: signed overflow. assert y + 5 ≤ 2147483647;
+[eva] Recording results for zero_ou_un_0
+[eva] done for function zero_ou_un_0
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function zero_ou_un_0:
+  x ∈ {0; 2}
+  y ∈ {1; 2}
+  r ∈ {0; 1}
+  s ∈ {0; 1}
+  t ∈ {0; 1}
+  u ∈ {1}
+  i ∈ [0..2147483647]
+[from] Computing for function zero_ou_un_0
+[from] Done for function zero_ou_un_0
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function zero_ou_un_0:
+  x FROM Gx
+  y FROM Gy
+  r FROM Gx (and SELF)
+  s FROM Gx; Gy (and SELF)
+  t FROM Gx; Gy (and SELF)
+  u FROM Gx
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function zero_ou_un_0:
+    x; y; r; s; t; u; i
+[inout] Out (external) for function zero_ou_un_0:
+    x; y; r; s; t; u
+[inout] Inputs for function zero_ou_un_0:
+    Gx; Gy; x; y

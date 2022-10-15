@@ -1,0 +1,110 @@
+[kernel] Parsing noreturn.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva] computing for function warn_may_never_end <- main.
+  Called from noreturn.i:26.
+[eva] Recording results for warn_may_never_end
+[eva] Done for function warn_may_never_end
+[eva] computing for function warn_may_never_end <- main.
+  Called from noreturn.i:27.
+[eva] Recording results for warn_may_never_end
+[eva] Done for function warn_may_never_end
+[eva] computing for function warn_never_ends <- main.
+  Called from noreturn.i:28.
+[eva] Recording results for warn_never_ends
+[eva] Done for function warn_never_ends
+[kernel:annot:missing-spec] noreturn.i:29: Warning: 
+  Neither code nor specification for function stop, generating default assigns from the prototype
+[eva] computing for function stop <- main.
+  Called from noreturn.i:29.
+[eva] using specification for function stop
+[eva] Done for function stop
+[kernel:annot:missing-spec] noreturn.i:30: Warning: 
+  Neither code nor specification for function haltme, generating default assigns from the prototype
+[eva] computing for function haltme <- main.
+  Called from noreturn.i:30.
+[eva] using specification for function haltme
+[eva] Done for function haltme
+[eva] computing for function never_ends <- main.
+  Called from noreturn.i:31.
+[eva] Recording results for never_ends
+[eva] Done for function never_ends
+[eva] computing for function should_never_end <- main.
+  Called from noreturn.i:32.
+[eva] Recording results for should_never_end
+[eva] noreturn.i:13: Warning: 
+  function should_never_end may terminate but has the noreturn attribute
+[eva] Done for function should_never_end
+[eva] computing for function should_never_end <- main.
+  Called from noreturn.i:33.
+[eva] Recording results for should_never_end
+[eva] Done for function should_never_end
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function never_ends:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function should_never_end:
+  
+[eva:final-states] Values at end of function warn_may_never_end:
+  
+[eva:final-states] Values at end of function warn_never_ends:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function main:
+  x ∈ {0}
+[from] Computing for function never_ends
+[from] Non-terminating function never_ends (no dependencies)
+[from] Done for function never_ends
+[from] Computing for function should_never_end
+[from] Done for function should_never_end
+[from] Computing for function warn_may_never_end
+[from] Done for function warn_may_never_end
+[from] Computing for function warn_never_ends
+[from] Non-terminating function warn_never_ends (no dependencies)
+[from] Done for function warn_never_ends
+[from] Computing for function main
+[from] Computing for function stop <-main
+[from] Done for function stop
+[from] Computing for function haltme <-main
+[from] Done for function haltme
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function haltme:
+  \result FROM \nothing
+[from] Function never_ends:
+  NON TERMINATING - NO EFFECTS
+[from] Function should_never_end:
+  NO EFFECTS
+[from] Function stop:
+  NO EFFECTS
+[from] Function warn_may_never_end:
+  NO EFFECTS
+[from] Function warn_never_ends:
+  NON TERMINATING - NO EFFECTS
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function never_ends:
+    \nothing
+[inout] Inputs for function never_ends:
+    \nothing
+[inout] Out (internal) for function should_never_end:
+    \nothing
+[inout] Inputs for function should_never_end:
+    \nothing
+[inout] Out (internal) for function warn_may_never_end:
+    \nothing
+[inout] Inputs for function warn_may_never_end:
+    \nothing
+[inout] Out (internal) for function warn_never_ends:
+    \nothing
+[inout] Inputs for function warn_never_ends:
+    \nothing
+[inout] Out (internal) for function main:
+    x
+[inout] Inputs for function main:
+    v

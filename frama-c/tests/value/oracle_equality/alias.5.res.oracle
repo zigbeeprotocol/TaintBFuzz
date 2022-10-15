@@ -1,0 +1,6 @@
+59a60
+> [eva] alias.i:260: starting to merge loop iterations
+167c168
+<   y ∈ {0; 3; 77}
+---
+>   y ∈ {77}

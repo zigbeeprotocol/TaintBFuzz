@@ -1,0 +1,118 @@
+[kernel] Parsing calls_and_implicits.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..4] ∈ {0}
+  G ∈ {0}
+  G2 ∈ {0}
+[eva] computing for function f <- main.
+  Called from calls_and_implicits.c:34.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from calls_and_implicits.c:35.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function f2 <- main.
+  Called from calls_and_implicits.c:36.
+[eva] Recording results for f2
+[eva] Done for function f2
+[eva] computing for function swap <- main.
+  Called from calls_and_implicits.c:38.
+[eva] Recording results for swap
+[eva] Done for function swap
+[eva] Recording results for main
+[eva] done for function main
+[inout] InOut (internal) for function f:
+  Operational inputs:
+    G
+  Operational inputs on termination:
+    G
+  Sure outputs:
+    G; __retres
+[inout] InOut (internal) for function f2:
+  Operational inputs:
+    G
+  Operational inputs on termination:
+    G
+  Sure outputs:
+    G2; __retres
+[inout] InOut (internal) for function swap:
+  Operational inputs:
+    G; G2
+  Operational inputs on termination:
+    G; G2
+  Sure outputs:
+    G; G2; tmp
+[inout] InOut (internal) for function main:
+  Operational inputs:
+    \nothing
+  Operational inputs on termination:
+    \nothing
+  Sure outputs:
+    t{[0]; [2]}; G; G2; __retres
+[pdg] computing for function main
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function f2
+[from] Done for function f2
+[from] Computing for function swap
+[from] Done for function swap
+[pdg] done for function main
+[pdg] PDG for main
+ {n1}: InCtrl
+ {n2}: VarDecl : __retres
+ {n3}: G = 0;
+   -[-c-]-> 1
+ {n4}: G2 = 0;
+   -[-c-]-> 1
+ {n5}: Call15-InCtrl : t[G] = f();
+   -[-c-]-> 1
+ {n6}: Call15-Out(G) : t[G] = f();
+   -[-c-]-> 1
+   -[--d]-> 3
+   -[-c-]-> 5
+ {n7}: Call15-OutRet : t[G] = f();
+   -[-c-]-> 1
+   -[-c-]-> 5
+   -[a--](G)-> 6
+ {n8}: Call16-InCtrl : t[G] = f();
+   -[-c-]-> 1
+ {n9}: Call16-Out(G) : t[G] = f();
+   -[-c-]-> 1
+   -[--d](G)-> 6
+   -[-c-]-> 8
+ {n10}: Call16-OutRet : t[G] = f();
+   -[-c-]-> 1
+   -[-c-]-> 8
+   -[a--](G)-> 9
+ {n11}: Call17-InCtrl : G = f2();
+   -[-c-]-> 1
+ {n12}: Call17-Out(G2) : G = f2();
+   -[-c-]-> 1
+   -[--d](G)-> 9
+   -[-c-]-> 11
+ {n13}: Call17-OutRet : G = f2();
+   -[-c-]-> 1
+   -[--d](G)-> 9
+   -[-c-]-> 11
+ {n14}: Call19-InCtrl : swap();
+   -[-c-]-> 1
+ {n15}: Call19-Out(G) : swap();
+   -[-c-]-> 1
+   -[--d](G2)-> 12
+   -[-c-]-> 14
+ {n16}: Call19-Out(G2) : swap();
+   -[-c-]-> 1
+   -[--d]-> 13
+   -[-c-]-> 14
+ {n17}: __retres = 0;
+   -[-c-]-> 1
+   -[a--]-> 2
+ {n18}: return __retres;
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 17
+ {n19}: OutRet
+   -[--d]-> 18

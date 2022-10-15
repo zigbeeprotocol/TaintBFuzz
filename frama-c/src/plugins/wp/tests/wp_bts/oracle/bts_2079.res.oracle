@@ -1,0 +1,35 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_2079.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Post-condition 'Obs,P' in 'main':
+Assume { Type: is_sint32(k). (* Heap *) Type: region(0) <= 0. }
+Prove: P_S(k).
+
+------------------------------------------------------------
+
+Goal Post-condition 'Obs,Q' in 'main':
+Assume { Type: is_sint32(k). (* Heap *) Type: region(0) <= 0. }
+Prove: P_S(k).
+
+------------------------------------------------------------
+
+Goal Post-condition 'Obs,R' in 'main':
+Assume { Type: is_sint32(k). (* Heap *) Type: region(0) <= 0. }
+Prove: P_S(45 + k).
+
+------------------------------------------------------------
+
+Goal Post-condition 'Eval,P' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Eval,Q' in 'main':
+Prove: true.
+
+------------------------------------------------------------

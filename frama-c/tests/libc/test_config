@@ -1,0 +1,2 @@
+PLUGIN: @EVA_PLUGINS@
+OPT: -eva @EVA_CONFIG@ -cpp-extra-args='-nostdinc -I@FRAMAC_SHARE@/libc'

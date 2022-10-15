@@ -1,0 +1,11 @@
+[
+    {
+        "arguments": [
+            "-include",
+            "stdio.h",
+            "-DZERO=0"
+        ],
+        "directory": ".",
+        "file": "no-stdio.c"
+    }
+]

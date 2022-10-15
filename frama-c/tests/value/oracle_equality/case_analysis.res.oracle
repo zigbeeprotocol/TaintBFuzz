@@ -1,0 +1,9 @@
+11a12,15
+> [eva] case_analysis.i:18: 
+>   The evaluation of the expression r * r
+>   led to bottom without alarms:
+>   at this point the product of states has no possible concretization.
+18c22
+<   rq ∈ [-0.0000000000000000 .. 100.0000000000000000]
+---
+>   rq ∈ [0.0000000000000000 .. 100.0000000000000000]

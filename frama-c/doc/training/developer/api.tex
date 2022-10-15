@@ -1,0 +1,280 @@
+\subsection{Datatype}
+
+\begin{frame}{Overview}
+
+  \begin{itemize}
+  \item a \emph{datatype} is a fundamental notion of \framac
+  \item it provides standard operations for a given type in a single module
+  \item most types used in \framac have an associated datatype
+  \item many \framac functors require a datatype as argument
+  \item subsumes the \framac notion of \emph{type value}, which may be seen
+    as type as first class values
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Type}
+  \begin{itemize}
+  \item implemented in the low-level module \lstinline+Type+
+  \item for each monomorphic type \texttt{ty}, a (unique) value of type
+    \lstinline+ty Type.t+ dynamically represents the type \texttt{ty} as a ML
+    value. 
+  \item type values allow to use dynamic typing in \framac as shown latter.
+  \item type values for basic \ocaml types are provided in \lstinline+Datatype+
+\begin{ocamlcode}
+(* extract of datatype.mli *)
+val unit: unit Type.t
+val int: int Type.t
+val string: string Type.t
+val formatter: Format.formatter Type.t
+...
+\end{ocamlcode}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Datatype}
+  \framesubtitle{Signature}
+
+\begin{ocamlcode}
+(* extract of datatype.mli *)
+module type S = sig
+  type t
+  val ty: t Type.t
+  val name: string
+  val equal: t -> t -> bool
+  val compare: t -> t -> int
+  val hash: t -> int
+  val copy: t -> t  
+  val pretty: Format.formatter -> t -> unit
+  ... (* other less important functions *)
+end
+\end{ocamlcode}  
+\end{frame}
+
+\begin{frame}[fragile]{Datatype}
+  \framesubtitle{Signature with collections}
+
+\begin{ocamlcode}
+(* extract of datatype.mli *)
+module type S_with_collections = sig
+  include S
+  module Set: Set with type elt = t
+  module Map: Map with type key = t
+  module Hashtbl: Hashtbl with type key = t
+end
+\end{ocamlcode}  
+\end{frame}
+
+\begin{frame}[fragile]{Datatype}
+  \framesubtitle{Existing Datatypes}
+
+  \begin{itemize}
+  \item module \lstinline+Datatype+: datatypes for basic \ocaml types
+\begin{ocamlcode}
+(* extract of datatype.mli *)
+module Unit: S_with_collections
+module Int: S_with_collections
+module String: S_with_collections
+module Formatter: S
+\end{ocamlcode}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Datatype}
+  \framesubtitle{Existing Datatypes (again)}
+
+  \begin{itemize}
+  \item module \lstinline+Cil_datatype+: datatypes for AST types
+\begin{ocamlcode}
+(* extract of cil_datatype.mli *)
+module Stmt: sig
+  include Datatype.S_with_collections
+    with type t = stmt
+  ...
+end
+\end{ocamlcode}
+\item \framac data structures usually implement includes at least
+  \lstinline+Datatype.S+
+\begin{ocamlcode}
+(* extract of property_status.mli *)
+include Datatype.S with type t = status
+\end{ocamlcode}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Datatype}
+  \framesubtitle{How to create a new one?}
+\small
+\begin{ocamlcode}
+module Rational = struct
+  type rational = { num: int; denom: int }
+  include Datatype.Make_with_collections
+    (struct
+       type t = rational
+       let name = "Rational.t"
+       let reprs = [ { num = 0; denom = 1 } ]
+       include Datatype.Serializable_undefined
+       let equal (x:t) y = x = y
+       let compare (x:t) y = Pervasives.compare x y
+       let hash (x:t) = Hashtbl.hash x
+       let copy x = x
+       let pretty fmt x = 
+         Format.fprintf fmt "%d/%d" x.num y.denom
+     end)
+  ...
+end
+\end{ocamlcode}
+\end{frame}
+
+\begin{frame}{Polymorphism}
+  \framesubtitle{Overview}
+
+\begin{itemize}
+\item type values only possible for monomorphic types
+\item create a type value for each monomorphic instance of a polymorphic type
+\item type value must be unique for a single monomorphic type
+\item how to know if a type value of a monomorphic instance already exists?
+\item using \texttt{Datatype.Polymorphic}, \texttt{Datatype.Polymorphic2}
+  instead of \texttt{Datatype.Make} solves this issue.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]{Polymorphism}
+  \framesubtitle{Use}
+\begin{ocamlcode}
+module Rational = 
+  Datatype.Pair(Datatype.Int)(Datatype.Int)
+let rational = 
+  Datatype.pair Datatype.int Datatype.int
+
+module Rational_string_map = 
+  Rational.Map.Make(String)
+
+let rational_list_list2unit = 
+  Datatype.func
+    (Datatype.list (Datatype.list rational))
+    Datatype.unit
+\end{ocamlcode}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Dynamic Linking}
+
+\begin{frame}{Dynamic Linking}
+
+\begin{itemize}
+\item (most) plug-ins are dynamically linked against Frama-C
+\item their API are statically unknown
+\item they are dynamically registered and accessed
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Export a Value}
+
+\begin{frame}[fragile]{Export a Value}
+
+\begin{itemize}
+\item Functions manipulating command line options are automatically exported
+\item others values must be explicitly exported thanks to \lstinline+Dynamic+
+\end{itemize}
+
+\begin{ocamlcode}
+let run () = ...
+let run = 
+  Dynamic.register ~plugin:"Wp" "run"
+    (Datatype.func Datatype.unit Datatype.unit)
+    ~journalize:false
+    cmdline_run
+\end{ocamlcode}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Use a Dynamic API}
+
+\begin{frame}[fragile]{Use a Dynamic API}
+\begin{ocamlcode}
+let run_wp =
+  Dynamic.get ~plugin:"Wp" "run"
+    (Datatype.func Datatype.unit Datatype.unit)
+
+let main () = ...; run_wp (); ...
+\end{ocamlcode}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Abstract Type}
+
+\begin{frame}[fragile]{Abstract Type}
+\framesubtitle{Definition}
+
+\begin{ocamlcode}
+(* plugin.ml *)
+module Rational = struct
+  type rational = int * int
+  include Datatype.Make_with_collections
+    (struct let name = "Rational.t" ... end)
+  let make n d = ...
+  let make = 
+    Dynamic.register
+      ~plugin:"Plugin" "Rational.make"
+      (Datatype.func2 
+         Datatype.int Datatype.int ty)
+      ~journalize:false
+      make
+end
+
+\end{ocamlcode}
+\end{frame}
+
+\begin{frame}[fragile]{Abstract Type}
+\framesubtitle{Use}
+
+\begin{itemize}
+\item Cannot directly access to \lstinline+Rational.ty+
+\end{itemize}
+
+\begin{ocamlcode}
+(* user.ml *)
+module Rational = 
+  Type.Abstract
+    (struct let name = "Rational.t" end)
+
+let make_rational =
+  Dynamic.get
+    ~plugin:"Plugin" "Rational.make"
+    (Datatype.func2
+       Datatype.int Datatype.int Rational.ty)
+
+let half = make_rational 1 2
+\end{ocamlcode}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Journalisation}
+
+\begin{frame}[fragile]{Journalisation}
+
+\begin{itemize}
+\item must provide ocaml pretty-printers
+\item set labeled argument \lstinline+journalize+
+\end{itemize}
+
+\begin{ocamlcode}
+let run () = ...
+let run = 
+  Dynamic.register ~plugin:"Wp" "run"
+    (Datatype.func Datatype.unit Datatype.unit)
+    ~journalize:true
+    cmdline_run
+\end{ocamlcode}
+\end{frame}

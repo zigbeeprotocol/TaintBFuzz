@@ -1,0 +1,59 @@
+[kernel] Parsing contract_special_float.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+[eva:alarm] contract_special_float.c:91: Warning: 
+  non-finite double value. assert \is_finite(v);
+[eva] computing for function fun <- main.
+  Called from contract_special_float.c:92.
+[eva] using specification for function fun
+[eva:alarm] contract_special_float.c:92: Warning: 
+  function fun: precondition 'domain_arg' got status unknown.
+[eva] Done for function fun
+[eva:alarm] contract_special_float.c:93: Warning: 
+  non-finite double value. assert \is_finite(v);
+[eva] computing for function fun_no_default <- main.
+  Called from contract_special_float.c:94.
+[eva] using specification for function fun_no_default
+[eva:alarm] contract_special_float.c:94: Warning: 
+  function fun_no_default: precondition 'domain_arg' got status unknown.
+[eva] Done for function fun_no_default
+[eva:alarm] contract_special_float.c:95: Warning: 
+  non-finite double value. assert \is_finite(v);
+[eva] computing for function fun_no_disjoint <- main.
+  Called from contract_special_float.c:96.
+[eva] using specification for function fun_no_disjoint
+[eva:alarm] contract_special_float.c:96: Warning: 
+  function fun_no_disjoint: precondition 'not_negative' got status unknown.
+[eva:alarm] contract_special_float.c:96: Warning: 
+  function fun_no_disjoint: precondition 'not_infinite' got status unknown.
+[eva] contract_special_float.c:96: 
+  function fun_no_disjoint: precondition 'not_nan' got status valid.
+[eva] Done for function fun_no_disjoint
+[eva:alarm] contract_special_float.c:97: Warning: 
+  non-finite double value. assert \is_finite(v);
+[eva] computing for function fun_no_complete <- main.
+  Called from contract_special_float.c:98.
+[eva] using specification for function fun_no_complete
+[eva:alarm] contract_special_float.c:98: Warning: 
+  function fun_no_complete: precondition 'not_negative' got status unknown.
+[eva:alarm] contract_special_float.c:98: Warning: 
+  function fun_no_complete: precondition 'not_infinite' got status unknown.
+[eva] contract_special_float.c:98: 
+  function fun_no_complete: precondition 'not_nan' got status valid.
+[eva] Done for function fun_no_complete
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  a ∈ [1. .. 1.79769313486e+308]
+  w ∈ [-0. .. 1.79769313486e+308]
+  b ∈ [1. .. 1.79769313486e+308]
+  x ∈ [-0. .. 1.79769313486e+308]
+  c ∈ [1. .. 1.79769313486e+308]
+  y ∈ [-0. .. 1.79769313486e+308]
+  d ∈ [1. .. 1.79769313486e+308]
+  z ∈ [-0. .. 1.79769313486e+308]
+  __retres ∈ {0}

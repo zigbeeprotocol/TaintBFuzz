@@ -1,0 +1,3 @@
+/*@ loop invariant ...
+    loop variant high - low;
+*/

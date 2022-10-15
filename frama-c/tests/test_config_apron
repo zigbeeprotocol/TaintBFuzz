@@ -1,0 +1,15 @@
+MACRO: EVA_MAIN_PLUGINS eva,scope
+MACRO: EVA_PLUGINS from,inout @EVA_MAIN_PLUGINS@ variadic
+MACRO: EVA_CONFIG @EVA_OPTIONS@ -machdep x86_32
+MACRO: EVA_TEST -eva @EVA_CONFIG@ -out -input -deps
+
+MACRO: RTE_TEST -rte -no-warn-invalid-pointer
+
+# Compare the result with the oracle of the default config.
+FILTER: diff --new-file %{dep:@PTEST_SUITE_DIR@/oracle/@PTEST_ORACLE@} -
+
+PLUGIN: @EVA_PLUGINS@
+OPT: @EVA_TEST@
+
+# Late declaration to allow redefinition of EVA_OPTIONS in subsidiary test_config_xxx files
+MACRO: EVA_OPTIONS -eva-show-progress -eva-msg-key=-summary -eva-auto-loop-unroll 0 -eva-domains apron-octagon -eva-warn-key experimental=inactive

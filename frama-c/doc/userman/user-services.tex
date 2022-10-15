@@ -1,0 +1,189 @@
+\chapter{General Kernel Services}\label{user-services}
+
+This chapter presents some important services offered by the \FramaC platform.
+
+\section{Projects}\label{sec:project}\index{Project|bfit}
+
+A \FramaC project groups together one source code with the states (parameters,
+results, \etc) of the \FramaC kernel and analyzers. 
+
+In one \FramaC session, several projects may exist at the same time, while
+there is always one and only one so-called \emph{current} project in which
+analyses are performed.  Thus projects help to structure a code analysis
+session into well-defined entities. For instance, it is possible to perform an
+analysis on the same code with different parameters and to compare the obtained
+results. It is also possible to extract a program $p'$ from an initial program
+$p$ and to compare the results of an analysis run separately on $p$ and $p'$.
+
+\subsection{Creating Projects}
+
+A new project is created in the following cases:
+\begin{itemize}
+\item at initialization time, a default project is created; or
+\item \emph{via} an explicit user action in the GUI; or
+\item a source code transforming analysis has been made. The analyzer then
+  creates a new project based on the original project and containing the
+  modified source code. A typical example is code slicing which tries to
+  simplify a program by preserving a specified behaviour.
+\end{itemize}
+
+\subsection{Using Projects}
+
+The list of existing projects of a given session is visible in the graphical
+mode through the \texttt{Project} menu (see Section~\ref{sec:menubar}). Among
+other actions on projects (duplicating, renaming, removing, saving, \etc), this
+menu allows the user to switch between different projects during the same
+session.
+
+In batch mode, the only way to handle a multi-project session is through
+the command line options \optionuse{-}{then-on}, \optionuse{-}{then-last} or
+\optionuse{-}{then-replace} (see Section~\ref{sec:then}). It is also possible to
+remove existing projects through the option \optiondef{-}{remove-projects}. It
+might be useful to prevent prohibitive memory consumptions. In particular, the
+category \texttt{@all\_but\_current} removes all the existing projects, but the
+current one.
+
+\subsection{Saving and Loading Projects}\label{sec:saveload}
+
+A session can be saved to disk and reloaded by using the options
+\texttt{\optiondef{-}{save} <file>} and \texttt{\optiondef{-}{load} <file>}
+respectively. Saving is performed when \FramaC exits without error. In case of a
+fatal error or an unexpected error, saving is done as well, but the generated
+file is modified into \texttt{file.crash} since it may have been corrupted. In
+other error cases, no saving is done. The same operations are available
+through the GUI.
+
+When saving, \emph{all} existing projects are dumped into an unique
+non-human-readable file.
+
+When loading, the following actions are done in sequence:
+\begin{enumerate}
+\item all the existing projects of the current session are deleted;
+\item all the projects stored in the file are loaded;
+\item the saved current project is restored;
+\item \FramaC is replayed with the parameters of the saved current project,
+  except for those parameters explicitly set in the current session.
+\end{enumerate}
+
+Consider for instance the following command.
+\begin{shell}
+\$ frama-c -load foo.sav -eva
+\end{shell}
+It loads all projects saved in the file \texttt{foo.sav}. Then, it runs the
+value analysis in the new current project if and only if it was not already
+computed at save time.
+
+\begin{convention}
+Saving the result of a time-consuming analysis before trying to use it in
+different settings is usually a good idea.
+\end{convention}
+
+\begin{important}
+Beware that all the existing projects are deleted, even if an error occurs when
+reading the file. We strongly recommend you to save the existing projects before
+loading another project file.
+\end{important}
+
+\paragraph{Special Cases}
+
+Options \optionuse{-}{help}, \optionuse{-}{verbose},
+\optionuse{-}{debug}\xspace(and 
+their corresponding plugin-specific counterpart) 
+as well as \optionuse{-}{explain}, \optionuse{-}{quiet}\xspace and
+\optionuse{-}{unicode}\xspace are not saved on disk.
+
+\section{Dependencies between Analyses}
+
+Usually analyses do have parameters (see Chapter~\ref{user-analysis}). Whenever
+the values of these parameters change, the results of the analyses may also
+change. In order to avoid displaying results that are inconsistent with the
+current value of parameters, \FramaC automatically discards results of an
+analysis when one of the analysis parameters changes.
+
+Consider the two following
+commands.\optionidx{-}{save}\optionidx{-}{load}\optionidx{-}{absolute-valid-range}%
+\optionidx{-}{ulevel}
+\begin{shell}
+\$ frama-c -save foo.sav -ulevel 5 -absolute-valid-range 0-0x1000 -eva foo.c
+\$ frama-c -load foo.sav
+\end{shell}
+\FramaC runs the value analysis plug-in on the file \texttt{foo.c} where loops
+are unrolled $5$ times (option \texttt{-ulevel}, see
+Section~\ref{sec:normalize}). To compute its result, the value analysis
+assumes the memory range 0:0x1000 is addressable  (option
+\texttt{-absolute-valid-range}, see Section~\ref{sec:customizing-analyzers}).
+Just
+after, \FramaC saves the results on file \texttt{foo.sav} and exits.
+
+At loading time, \FramaC knows that it is not necessary to redo the value
+analysis since the parameters have not been changed.
+
+Consider now the two following commands.
+\optionidx{-}{save}\optionidx{-}{load}\optionidx{-}{absolute-valid-range}%
+\optionidx{-}{ulevel}
+\begin{shell}
+\$ frama-c -save foo.sav -ulevel 5 -absolute-valid-range 0-0x1000 -eva foo.c
+\$ frama-c -load foo.sav -absolute-valid-range 0-0x2000
+\end{shell}
+The first command produces the very same result than above. However, in the
+second (load) command, \FramaC knows that one parameter has changed. Thus it
+discards the saved results of the value analysis and recomputes it on the same
+source code by using the parameters
+\texttt{-ulevel 5 -absolute-valid-range 0-0x2000} (and the
+default value of each other parameter).
+
+In the same fashion, results from an analysis $A_1$ may well depend on results from another
+analysis $A_2$. Whenever the results from $A_2$ change, \FramaC automatically discards
+results from $A_1$. For instance, slicing results depend on value analysis
+results; thus the slicing results are discarded whenever the value analysis
+ones are.
+
+\section{Journalisation}\label{sec:journal}
+
+Journalisation logs each operation that modifies some parameters or results
+into a file called a \emph{journal}\index{Journal|bfit}. Observational
+operations like viewing the set of possibles values of a variable in the GUI
+are not logged.
+
+By default, the name of the journal is
+\texttt{SESSION\_DIR/frama\_c\_journal.ml} where \texttt{SESSION\_DIR} is the
+\FramaC session directory (see Section~\ref{sec:var-session}). It can be
+modified by using the option \optiondef{-}{journal-name}.
+
+A journal is a valid \FramaC dynamic plug-in. Thus it can be loaded by using
+the option \optionuse{-}{load-script} (see Section~\ref{sec:use-plugins}). The
+journal replays the very same results as the ones computed in the original
+session.
+
+Journals are commonly used for the three different purposes described
+thereafter.
+\begin{itemize}
+\item Easily replaying a given set of analysis operations in order to reach a
+  certain state. Once the final state is reached, further analyses can be
+  performed normally. Beware that journals may be source dependent and thus may
+  not necessarily be reused on different source codes to perform the same
+  analyses.
+%
+\item Acting as a macro language for plug-in developers. They can perform 
+  actions on the GUI to generate a journal and then adapt it to perform
+  a more general but similar task.
+%
+\item Debugging. In the GUI, a journal is always generated, even when an error
+  occurs. The output journal usually contains information about this
+  error. Thus it provides an easy way to reproduce the very same
+  error. Consequently, it is advised to attach the journal when reporting an
+  error in the \FramaC BTS (see Chapter~\ref{user-errors}).
+\end{itemize}
+
+By default, a journal is generated upon exit of the session only whenever
+\FramaC crashes in graphical mode. In all other cases, no journal is
+generated. This behavior may be customized by using the option
+\optiondef{-}{journal-enable} (resp. \optiondef{-}{journal-disable}) that
+generates (resp. does not generate) a journal upon exiting the session.
+
+\paragraph{Special Cases}
+
+Modifications of options \optionuse{-}{help}, \optionuse{-}{verbose},
+\optionuse{-}{debug}\xspace (and their corresponding counterpart) as well as
+\optionuse{-}{explain}, \optionuse{-}{quiet}\xspace and
+\optionuse{-}{unicode}\xspace are not written in the journal.

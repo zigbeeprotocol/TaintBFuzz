@@ -1,0 +1,246 @@
+\chapter{Introduction}
+
+\section{Objectif}
+
+L'objectif initial a été de réaliser un module de \slicing
+dans le cadre d'un outil généraliste d'analyse de programme (voir
+\cite{ppcSlicing}).
+Or, la plupart des réductions à effectuer se basent sur l'analyse des
+dépendances entre les données du programme.
+En effet, si l'utilisateur demande la sélection
+d'une instruction \verb!return x;!, il va falloir retrouver ce qui permet de
+calculer cette valeur de \verbtt{x} dans les instructions qui précèdent.\\
+
+Il s'agit donc de calculer le \indexdef{graphe de dépendances} d'une fonction
+(appelé \indexdef{PDG}~: {\it Program Dependence Graph} dans la littérature)
+c'est-à-dire de représenter finement les liens de
+dépendances entre les différentes instructions qui la composent.
+Le résultat ce calcul est un graphe dans lequel les sommets
+représentent les instructions,
+éventuellement décomposées en plusieurs noeuds représentant
+le calcul d'informations élémentaires.\\
+
+Dans le cadre de l'outil de \slicing,
+l'intérêt de ce calcul préalable est de pouvoir
+travailler en plusieurs passes lors de l'application des
+requêtes de réduction sans avoir à
+refaire ce calcul qui peut être lourd (alias, dépendances partielles, etc). En
+effet, même si l'on souhaite à terme calculer des réductions qui utilisent
+davantage la sémantique du programme, les réductions à l'aide des dépendances
+peuvent simplifier le problème.\\
+
+Par la suite, il a été jugé intéressant de considérer ce calcul
+comme un module à part entière car il peut avoir d'autres
+utilités comme étudier la
+propagation du flot d'information pour des analyses de sécurité, par exemple.
+
+\section{Spécifications du PDG}\label{sec-flot}
+
+Le PDG que l'on souhaite calculer comporte plusieurs types de dépendances~:
+
+\subsection{Dépendances sur la valeur des données}
+
+Les \indextxtdef{dépendances sur la valeur}{dépendance!valeur}
+d'une donnée sont les plus intuitives.
+
+\begin{exemple}
+  \begin{tabular}{m{3.5cm}m{\linewidth-4.3cm}}
+\begin{clisting}
+x = a + b;
+\end{clisting}
+&
+Ici, \verbtt{x} dépend de
+\verbtt{a} et \verbtt{b} car la valeur de \verbtt{x} après cette instruction dépend
+des valeurs de \verbtt{a} et \verbtt{b} avant.
+\end{tabular}
+\end{exemple}
+
+La question se pose néanmoins de définir la granularité à laquelle
+on s'intéresse aux données.
+L'utilisation d'autres analyses et structures de données de \ppc
+conduit à choisir la même précision
+(pour plus de détail, voir par exemple l'analyse de valeurs de \ppc).
+
+\subsection{Dépendances de calcul d'adresse}
+
+Pour les affectations, la valeur qui est écrite en mémoire dépend de la partie
+droite, mais le choix de l'adresse à laquelle on l'écrit peut également dépendre
+de variables qui apparaissent dans la partie gauche.
+
+\begin{exemple}
+\begin{tabular}{m{3.5cm}m{\linewidth-4.3cm}}
+\begin{clisting}
+*p = x;
+\end{clisting}
+&
+Ici, la valeur de la donnée modifiée dépend de \verbtt{x},
+mais le choix de la case dans laquelle on la range dépend de \verbtt{p}.
+En effet, si $p$ pointe sur $a$ ou $b$, c'est soit  \verbtt{a} soit \verbtt{b} qui
+va être modifié. 
+\end{tabular}
+\end{exemple}
+
+On parle alors de \indextxtdef{dépendances sur l'adresse}{dépendance!adresse}.
+
+\subsection{Dépendances de contrôle}
+
+Lorsqu'une donnée peut-être modifiée par plusieurs chemins d'exécution,
+elle dépend des conditions qui permettent de choisir le chemin.
+
+\begin{exemple}
+\begin{tabular}{m{3.5cm}m{\linewidth-4.3cm}}
+\begin{clisting}
+if (c) 
+  x = a;
+L :
+\end{clisting}
+& 
+La valeur de \verbtt{x} en \verbtt{L} dépend de \verbtt{a}, mais aussi de \verbtt{c}.\\
+\end{tabular}
+\end{exemple}
+
+Il s'agit d'une \indextxtdef{dépendance de contrôle}{dépendance!contrôle}.
+
+\subsection{Dépendances sur les déclarations}
+
+Lorsque des variables sont utilisées dans une instruction, celle-ci dépend de
+leurs déclarations, car si on veut la compiler, il faut que les variables
+existent.
+
+Les déclarations des variables lues (partie droite d'une affectation) sont
+considérées comme participant au calcul de la valeur.
+Les déclarations des
+variables utilisées pour déterminer la case affectée (partie gauche d'une
+affectation) sont considérées comme des dépendances sur l'adresse.
+
+\begin{exemple}
+\begin{tabular}{m{3.5cm}m{\linewidth-4.3cm}}
+\begin{clisting}
+/* 1 */ int x;
+/* 2 */ int y;
+...
+/* i */ x = 3;
+/* j */ y = 4;
+...
+/* n */ x = y;
+\end{clisting}
+&
+L'instruction (n) a une dépendance d'adresse sur la déclaration de x (1),
+et des dépendances de donnée sur l'affectation de y (j)
+et sa déclaration (2). Dans ce cas, on aurait pu se passer de de cette dernière
+dépendance car (j) dépend déjà de (2), mais ce n'est pas forcement le cas
+en présence d'alias.
+\end{tabular}
+\end{exemple}
+
+\subsection{Résumé}
+
+On voit donc qu'on distingue trois types de dépendances~:
+\begin{itemize}
+\item les calculs de valeurs,
+\item les calculs d'adresses,
+ \item le contrôle.
+\end{itemize}
+
+
+\section{État de l'art}\label{sec-lart}
+
+Voyons tout d'abord ce que dit la littérature sur ce sujet
+afin de voir les solutions qui peuvent répondre à notre besoin,
+et les points à modifier.
+
+\subsection{Origine}
+
+Les graphes de dépendances ont principalement été étudiés dans le cadre du
+\slicing{}, mais ils sont aussi utilisés dans les travaux sur la compilation.
+
+\subsection{Graphes de dépendances}
+
+\cite{Ottenstein84}, puis \cite{Ferrante87}
+introduisent la notion de PDG ({\it Program Dependence Graph}).
+Un tel graphe est utilisé pour représenter les différentes dépendances
+entre les instructions d'un programme.
+Ils l'exploitent pour calculer les instructions
+qui influencent la valeur des variables en un point.\\
+
+Cette représentation, initialement intraprocédurale, a été étendue
+à l'analyse interprocédurale dans \cite{horwitz88interprocedural} où elle
+porte le nom de SDG ({\it System Dependance Graph}).
+Elle est maintenant, à quelques variantes près,
+quasiment universellement utilisée.
+
+\subsection{Exploitation du graphe}
+
+Lorsque l'on utilise le graphe de dépendance pour faire du \slicing,
+le calcul se résume à un problème d'accessibilité à un noeud car comme le dit
+Susan Horwitz~:
+
+\begin{definition}{slicing selon \cite{horwitz88interprocedural}}
+A slice of a program with respect to program point p and variable x
+consists of a set of statements of the program that might affect
+the value of x at p.
+\end{definition}
+
+c'est-à-dire qu'il faut garder toutes les instructions correspondant à des
+noeuds du graphe pour lesquels il existe un chemin vers le noeud représentant le
+calcul de {\tt x} en {\tt p}.
+Mais le problème est que ce noeud n'existe que si {\tt x} est défini
+par l'instruction située en {\tt p}.
+
+Nous verrons que cette limitation peut être levée si l'on garde
+(ou recalcule) les structures de données utilisées
+lors de la construction du graphe.\\
+
+Le traitement des appels de fonction est souvent compliqué par le fait qu'il
+est également ramené à un problème d'accessibilité dans un graphe qui,
+cette fois, représente toute l'application. Or, dans un tel graphe,
+si on ne prend pas de précautions supplémentaires,
+on parcourt des chemins impossibles qui entrent dans une fonction
+par un appel, et sortent par un autre site d'appel.
+Ces chemins existent en effet dans le graphe,
+mais pas dans la réalité.
+
+Comme nous nous proposons de traiter ce problème de manière modulaire,
+nous devrions échapper à une partie de ce problème.
+Mais nous verrons par la suite que l'utilisation d'une analyse d'alias globale
+produit néanmoins quelques effets de bord indésirables.
+
+\subsection{Programmes non structurés}
+
+Les premiers algorithmes utilisés fonctionnent
+correctement sur des programmes structurés,
+mais produisent des résultats erronés en présence de \verbtt{goto}.
+
+Le problème vient du fait que ces instructions ne modifient pas de données~:
+il n'y a donc pas de dépendance de donnée~; et il n'y a pas
+de dépendance de contrôle non plus car dans le CFG,
+une seule branche sort du noeud pour aller vers le point de branchement.
+
+Plusieurs personnes (\cite{Choi94},  \cite{agrawal94slicing},
+\cite{harman98new},  \cite{kumar02better} entre autres)
+se sont donc intéressées
+aux sauts (\verbtt{goto}) qui brisaient la structure du programme.
+Ce point, qui nous intéresse tout particulièrement, est présenté en détail
+en \S\ref{sec-cdg}.
+
+\subsection{Pointeurs et données structurées}
+
+De nombreux articles s'intéressent aux traitements des données structurées,
+et plus encore des pointeurs. Dans le cadre de cette étude,
+nous n'avons pas exploré ces recherches étant donné que
+nous nous appuyons déjà sur une analyse d'alias précise.
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{Plan}
+
+Les trois chapitres suivants
+exposent comment est calculé notre graphe de dépendances.
+
+Puis, nous verrons au chapitre \ref{sec-find} comment
+exploiter les informations calculées et au chapitre
+\ref{sec-mark} comment associer des informations aux éléments
+et les propager dans le graphe.
+
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

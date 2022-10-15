@@ -1,0 +1,74 @@
+\documentclass[a4paper,11pt,twoside,openright,web]{frama-c-book}
+
+\newcommand{\framacversion}%
+           {\input{../../VERSION} (\input{../../VERSION_CODENAME}\unskip)}
+%%\usepackage{microtype}
+\input{macros_modern}
+\input{./frama-c-affiliation.tex}
+%%modern \usepackage{pslatex}
+%%modern \usepackage{a4wide}
+
+% \usepackage[latin1]{inputenc} % for hevea
+%%modern \usepackage[T1]{fontenc}
+%%modern \usepackage{verbatim}
+%%modern \usepackage{moreverb}
+
+%-----------------------------------------------
+% barre de révision (utilisée pour A FAIRE)
+%%modern \usepackage[outerbars]{changebar} 
+
+%\definecolor{bleu}{rgb}{0.15,0.3,0.7}
+%\definecolor{orange}{rgb}{1.00,0.50,0.00}
+%\definecolor{gris}{rgb}{0.8,0.8,0.8}
+
+%\setlength{changebarsep}{40pt}
+%\setlength{changebarwidth}{10pt}
+%\cbcolor{bleu}
+%%unused \newenvironment{afaire}%
+%%unused  {\begin{changebar}}{\end{changebar}}
+
+%%unused \newenvironment{doc_afaire}%
+%%unused  {\begin{changebar}\color{orange}}{\color{black}\end{changebar}}
+
+%-----------------------------------------------
+% Commandes pour mettre des ref dans l'index :
+%% \newcommand{\idb}[1]{\textbf{#1}}
+%% \newcommand{\indextxt}[1]{\index{#1}{\bf #1}}
+%% \newcommand{\indexdef}[1]{\index{#1|idb}{{\bf #1}}}
+%% \newcommand{\indextxtdef}[2]{\index{#2|idb}{{\bf #1}}}
+
+%-----------------------------------------------
+% un peu plus de place pour la reliure :
+%%modern \addtolength{\oddsidemargin}{1cm}
+%%modern \addtolength{\evensidemargin}{-0.5cm}
+%%modern \addtolength{\textwidth}{-1cm}
+%%modern \addtolength{\textheight}{1cm}
+
+%-----------------------------------------------
+% définition des marques pour les itemize
+%%modern \renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\triangleright$}
+%==============================================================================
+\begin{document}
+
+\coverpage{RTE --- Runtime Error Annotation Generation}
+
+\begin{titlepage}
+\begin{flushleft}
+\includegraphics[height=14mm]{cealistlogo.jpg}
+\end{flushleft}
+\vfill
+\title{Frama-C's RTE plug-in}{for Frama-C \framacversion}
+\author{Philippe Herrmann and Julien Signoles}
+\begin{tabular}{l}
+  \fcaffiliationen
+\end{tabular}
+\vfill
+\begin{flushleft}
+  \textcopyright 2010-{\the\year} CEA LIST
+
+\end{flushleft}
+\end{titlepage}
+\input{rte.tex}
+
+\end{document}

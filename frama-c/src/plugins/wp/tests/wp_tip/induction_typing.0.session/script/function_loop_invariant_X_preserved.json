@@ -1,0 +1,5 @@
+[ { "header": "Induction", "tactic": "Wp.induction",
+    "params": { "base": { "select": "kint", "val": "0" } },
+    "select": { "select": "inside-goal", "occur": 0, "target": "1+i_1",
+                "pattern": "+1$i" },
+    "children": { "Base": [], "Induction (sup)": [], "Induction (inf)": [] } } ]

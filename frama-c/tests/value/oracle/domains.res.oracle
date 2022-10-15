@@ -1,0 +1,28 @@
+[kernel] Parsing domains.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] domains.i:19: starting to merge loop iterations
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  a ∈ {8}
+  b ∈ [--..--]
+  i ∈ [1..2147483647]
+  k ∈ {12}
+  r ∈ {1}
+  t[0..1] ∈ [--..--]
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    a; b; i; k; r; t[0..1]
+[inout] Inputs for function main:
+    \nothing

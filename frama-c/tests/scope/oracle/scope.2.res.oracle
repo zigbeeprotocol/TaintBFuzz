@@ -1,0 +1,23 @@
+[kernel] Parsing scope.c (with preprocessing)
+[eva] Analyzing a complete application starting at loop
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  S1 ∈ {0}
+  S2 ∈ {0}
+  T[0..99] ∈ {0}
+[eva] scope.c:67: starting to merge loop iterations
+[eva:alarm] scope.c:68: Warning: signed overflow. assert a + 1 ≤ 2147483647;
+[eva:alarm] scope.c:69: Warning: signed overflow. assert b + 1 ≤ 2147483647;
+[eva:alarm] scope.c:70: Warning: signed overflow. assert s + 1 ≤ 2147483647;
+[eva:alarm] scope.c:75: Warning: signed overflow. assert a + 1 ≤ 2147483647;
+[eva:alarm] scope.c:76: Warning: signed overflow. assert b + 1 ≤ 2147483647;
+[eva:alarm] scope.c:77: Warning: signed overflow. assert i + 1 ≤ 2147483647;
+[eva] Recording results for loop
+[eva] done for function loop
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function loop:
+  a ∈ [1..2147483647]
+  b ∈ [1..2147483647]
+  i ∈ [1..2147483647]
+  s ∈ [0..2147483647]

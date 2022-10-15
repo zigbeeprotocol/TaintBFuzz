@@ -1,0 +1,39 @@
+# frama-c -wp [...]
+[kernel] Parsing assigned_not_initialized_memvar.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function array
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memvar.i, line 31):
+Assume {
+  Type: is_sint32(i_1).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 9).
+  (* Else *)
+  Have: 10 <= i_1.
+}
+Prove: (Init_array_0[i]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function atomic
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memvar.i, line 17):
+Assume { Type: is_sint32(i). (* Else *) Have: 10 <= i. }
+Prove: (Init_x_0=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function comp
+------------------------------------------------------------
+
+Goal Check 'FAIL' (file assigned_not_initialized_memvar.i, line 24):
+Assume { Type: is_sint32(i). (* Else *) Have: 10 <= i. }
+Prove: ((Init_s_0.Init_F1_S_i)=true) /\
+    (forall i_1 : Z. ((0 <= i_1) -> ((i_1 <= 9) ->
+     ((Init_s_0.Init_F1_S_a)[i_1]=true)))).
+
+------------------------------------------------------------

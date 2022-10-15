@@ -1,0 +1,32 @@
+\documentclass[a4paper,11pt,twoside,openright,web,lang=french]{frama-c-book}
+
+%\usepackage[french]{babel}
+
+\input{macros_slicing.tex}
+\input{./frama-c-affiliation.tex}
+%==============================================================================
+\begin{document}
+
+\coverpage{Slicing --- Documentation technique}
+
+\begin{titlepage}
+\begin{flushleft}
+\includegraphics[height=14mm]{../images/cealistlogo.jpg}
+\end{flushleft}
+\vfill
+\title{Documentation du greffon Slicing}{Conception d'un outil de Slicing}
+\author{Anne Pacalet et Patrick Baudin}
+\begin{tabular}{l}
+  \fcaffiliationfr
+\end{tabular}
+\vfill
+\begin{flushleft}
+  \textcopyright 2006-2021 CEA LIST
+
+\end{flushleft}
+\end{titlepage}
+
+\begin{sloppypar}
+\input{slicing.tex}
+\end{sloppypar}
+\end{document}

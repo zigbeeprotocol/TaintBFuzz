@@ -1,0 +1,47 @@
+[kernel] Parsing leaf2.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+  H ∈ {0}
+  I ∈ {0}
+[eva:alarm] leaf2.i:6: Warning: 
+  pointer downcast. assert (unsigned int)(&I) ≤ 2147483647;
+[kernel:annot:missing-spec] leaf2.i:6: Warning: 
+  Neither code nor specification for function f, generating default assigns from the prototype
+[eva] computing for function f <- main.
+  Called from leaf2.i:6.
+[eva] using specification for function f
+[eva] Done for function f
+[eva] leaf2.i:6: 
+  Assigning imprecise value to G.
+  The imprecision originates from Library function {leaf2.i:6}
+[eva:alarm] leaf2.i:7: Warning: signed overflow. assert -2147483648 ≤ G + 1;
+[eva:alarm] leaf2.i:7: Warning: signed overflow. assert G + 1 ≤ 2147483647;
+[eva] leaf2.i:7: 
+  Assigning imprecise value to G.
+  The imprecision originates from Library function {leaf2.i:6}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  G ∈ {{ garbled mix of &{I} (origin: Library function {leaf2.i:6}) }}
+  H ∈ {{ garbled mix of &{I} (origin: Library function {leaf2.i:6}) }}
+[from] Computing for function main
+[from] Computing for function f <-main
+[from] Done for function f
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  H FROM q; i; H (and SELF)
+  \result FROM q; i; H
+[from] Function main:
+  G FROM H
+  H FROM H (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    G; H
+[inout] Inputs for function main:
+    G; H

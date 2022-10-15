@@ -1,0 +1,3764 @@
+[kernel] Parsing math_builtins.c (with preprocessing)
+[kernel:parser:decimal-float] math_builtins.c:318: Warning: 
+  Floating-point constant 5.8 is not represented exactly. Will use 0x1.7333333333333p2.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+  any_double ∈ [--..--]
+  any_float ∈ [--..--]
+[eva] computing for function test_cos_det <- main.
+  Called from math_builtins.c:740.
+[eva] math_builtins.c:19: Call to builtin Frama_C_cos for function cos
+[eva] math_builtins.c:19: 
+  function cos: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:20: Call to builtin Frama_C_cos for function cos
+[eva] math_builtins.c:20: 
+  function cos: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:21: Call to builtin Frama_C_cos for function cos
+[eva] math_builtins.c:21: 
+  function cos: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_cos_det
+[eva] Done for function test_cos_det
+[eva] computing for function test_sin_det <- main.
+  Called from math_builtins.c:741.
+[eva] math_builtins.c:25: Call to builtin Frama_C_sin for function sin
+[eva] math_builtins.c:25: 
+  function sin: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:26: Call to builtin Frama_C_sin for function sin
+[eva] math_builtins.c:26: 
+  function sin: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:27: Call to builtin Frama_C_sin for function sin
+[eva] math_builtins.c:27: 
+  function sin: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_sin_det
+[eva] Done for function test_sin_det
+[eva] computing for function test_acos <- main.
+  Called from math_builtins.c:742.
+[eva] math_builtins.c:31: Call to builtin acos
+[eva] math_builtins.c:31: 
+  function acos: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:32: Call to builtin acos
+[eva] math_builtins.c:32: 
+  function acos: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:33: Call to builtin acos
+[eva] math_builtins.c:33: 
+  function acos: precondition 'in_domain' got status valid.
+[eva:alarm] math_builtins.c:34: Warning: 
+  non-finite double value. assert \is_finite(any_double);
+[eva] math_builtins.c:34: Call to builtin acos
+[eva:alarm] math_builtins.c:34: Warning: 
+  function acos: precondition 'in_domain' got status unknown.
+[eva] math_builtins.c:36: Call to builtin acos
+[eva:alarm] math_builtins.c:36: Warning: 
+  function acos: precondition 'in_domain' got status invalid.
+[eva] math_builtins.c:40: Call to builtin acos
+[eva:alarm] math_builtins.c:40: Warning: 
+  function acos: precondition 'in_domain' got status invalid.
+[eva] math_builtins.c:43: Call to builtin acos
+[eva] math_builtins.c:43: 
+  function acos: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:44: Call to builtin acos
+[eva] math_builtins.c:44: 
+  function acos: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_acos <- main.
+  Called from math_builtins.c:45.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:46: Call to builtin acos
+[eva] math_builtins.c:46: 
+  function acos: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:48: Call to builtin acosf
+[eva] math_builtins.c:48: 
+  function acosf: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:49: Call to builtin acosf
+[eva] math_builtins.c:49: 
+  function acosf: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:50: Call to builtin acosf
+[eva] math_builtins.c:50: 
+  function acosf: precondition 'in_domain' got status valid.
+[eva:alarm] math_builtins.c:51: Warning: 
+  non-finite float value. assert \is_finite(any_float);
+[eva] math_builtins.c:51: Call to builtin acosf
+[eva:alarm] math_builtins.c:51: Warning: 
+  function acosf: precondition 'in_domain' got status unknown.
+[eva] math_builtins.c:53: Call to builtin acosf
+[eva:alarm] math_builtins.c:53: Warning: 
+  function acosf: precondition 'in_domain' got status invalid.
+[eva] Recording results for test_acos
+[eva] Done for function test_acos
+[eva] computing for function test_asin <- main.
+  Called from math_builtins.c:743.
+[eva] math_builtins.c:59: Call to builtin asin
+[eva] math_builtins.c:59: 
+  function asin: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:60: Call to builtin asin
+[eva] math_builtins.c:60: 
+  function asin: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:61: Call to builtin asin
+[eva] math_builtins.c:61: 
+  function asin: precondition 'in_domain' got status valid.
+[eva:alarm] math_builtins.c:62: Warning: 
+  non-finite double value. assert \is_finite(any_double);
+[eva] math_builtins.c:62: Call to builtin asin
+[eva:alarm] math_builtins.c:62: Warning: 
+  function asin: precondition 'in_domain' got status unknown.
+[eva] math_builtins.c:64: Call to builtin asin
+[eva:alarm] math_builtins.c:64: Warning: 
+  function asin: precondition 'in_domain' got status invalid.
+[eva] math_builtins.c:68: Call to builtin asin
+[eva:alarm] math_builtins.c:68: Warning: 
+  function asin: precondition 'in_domain' got status invalid.
+[eva] math_builtins.c:71: Call to builtin asin
+[eva] math_builtins.c:71: 
+  function asin: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:72: Call to builtin asin
+[eva] math_builtins.c:72: 
+  function asin: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_asin <- main.
+  Called from math_builtins.c:73.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:74: Call to builtin asin
+[eva] math_builtins.c:74: 
+  function asin: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:76: Call to builtin asinf
+[eva] math_builtins.c:76: 
+  function asinf: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:77: Call to builtin asinf
+[eva] math_builtins.c:77: 
+  function asinf: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:78: Call to builtin asinf
+[eva] math_builtins.c:78: 
+  function asinf: precondition 'in_domain' got status valid.
+[eva:alarm] math_builtins.c:79: Warning: 
+  non-finite float value. assert \is_finite(any_float);
+[eva] math_builtins.c:79: Call to builtin asinf
+[eva:alarm] math_builtins.c:79: Warning: 
+  function asinf: precondition 'in_domain' got status unknown.
+[eva] math_builtins.c:81: Call to builtin asinf
+[eva:alarm] math_builtins.c:81: Warning: 
+  function asinf: precondition 'in_domain' got status invalid.
+[eva] Recording results for test_asin
+[eva] Done for function test_asin
+[eva] computing for function test_atan <- main.
+  Called from math_builtins.c:744.
+[eva] math_builtins.c:87: Call to builtin atan
+[eva] math_builtins.c:87: 
+  function atan: precondition 'number_arg' got status valid.
+[eva:alarm] math_builtins.c:88: Warning: 
+  non-finite double value. assert \is_finite(any_double);
+[eva] math_builtins.c:88: Call to builtin atan
+[eva] math_builtins.c:88: 
+  function atan: precondition 'number_arg' got status valid.
+[eva] math_builtins.c:89: Call to builtin atan
+[eva] math_builtins.c:89: 
+  function atan: precondition 'number_arg' got status valid.
+[eva] math_builtins.c:90: Call to builtin atan
+[eva] math_builtins.c:90: 
+  function atan: precondition 'number_arg' got status valid.
+[eva] computing for function double_interval <- test_atan <- main.
+  Called from math_builtins.c:91.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:92: Call to builtin atan
+[eva] math_builtins.c:92: 
+  function atan: precondition 'number_arg' got status valid.
+[eva] math_builtins.c:94: Call to builtin atanf
+[eva] math_builtins.c:94: 
+  function atanf: precondition 'number_arg' got status valid.
+[eva:alarm] math_builtins.c:95: Warning: 
+  non-finite float value. assert \is_finite(any_float);
+[eva] math_builtins.c:95: Call to builtin atanf
+[eva] math_builtins.c:95: 
+  function atanf: precondition 'number_arg' got status valid.
+[eva] Recording results for test_atan
+[eva] Done for function test_atan
+[eva] computing for function test_atan2_det <- main.
+  Called from math_builtins.c:745.
+[eva] math_builtins.c:99: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:99: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:100: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:100: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:101: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:101: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:102: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:102: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:103: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:103: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:104: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:104: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:105: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:105: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:106: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:106: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:107: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:107: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:108: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:108: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:109: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:109: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:110: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:110: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:111: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:111: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] Recording results for test_atan2_det
+[eva] Done for function test_atan2_det
+[eva] computing for function test_atan2 <- main.
+  Called from math_builtins.c:746.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:116.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:117.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:118: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:118: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:119.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:120: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:120: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:121.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:122: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:122: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:123.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:124: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:124: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:125.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:126: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:126: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:127.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:128.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:129: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:129: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:130.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:131: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:131: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:132.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:133: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:133: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:134.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:135: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:135: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] computing for function double_interval <- test_atan2 <- main.
+  Called from math_builtins.c:136.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:137: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:137: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:138: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:138: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:139: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:139: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:140: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:140: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] math_builtins.c:141: Call to builtin Frama_C_atan2 for function atan2
+[eva] math_builtins.c:141: 
+  function atan2: precondition 'number_args' got status valid.
+[eva] Recording results for test_atan2
+[eva] Done for function test_atan2
+[eva] computing for function test_pow_det <- main.
+  Called from math_builtins.c:747.
+[eva] math_builtins.c:145: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:145: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:146: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:146: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:147: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:147: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:148: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:148: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:149: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:149: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:150: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:150: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:151: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:151: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:152: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:152: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] Recording results for test_pow_det
+[eva] Done for function test_pow_det
+[eva] computing for function test_pow_singleton_exp <- main.
+  Called from math_builtins.c:748.
+[eva] computing for function double_interval <- test_pow_singleton_exp <- main.
+  Called from math_builtins.c:168.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:170: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:170: Warning: 
+  function pow: precondition 'finite_logic_res' got status invalid.
+[eva] math_builtins.c:172: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:172: Warning: 
+  function pow: precondition 'finite_logic_res' got status invalid.
+[eva] computing for function double_interval <- test_pow_singleton_exp <- main.
+  Called from math_builtins.c:175.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:176: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:176: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] math_builtins.c:177: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:177: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] math_builtins.c:180: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:180: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] math_builtins.c:181: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:181: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow_singleton_exp <- main.
+  Called from math_builtins.c:184.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:185: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:185: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow_singleton_exp <- main.
+  Called from math_builtins.c:186.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:187: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:187: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow_singleton_exp <- main.
+  Called from math_builtins.c:190.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:191: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:191: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:192: 
+  Frama_C_show_each_i: [0.0000000000000000 .. 1.0000000000000000*2^-1000]
+[eva] computing for function double_interval <- test_pow_singleton_exp <- main.
+  Called from math_builtins.c:193.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:194: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:194: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:195: 
+  Frama_C_show_each_j:
+  [0.2500000000000000*2^-1022 .. 1.2707064924076672*2^-330]
+[eva] math_builtins.c:199: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:199: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:200: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:200: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_pow_singleton_exp <- main.
+  Called from math_builtins.c:202.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:203: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:203: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:204: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:204: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:205: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:205: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:206: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:206: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:207: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:207: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_pow_singleton_exp <- main.
+  Called from math_builtins.c:209.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:210: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:210: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:211: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:211: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] Recording results for test_pow_singleton_exp
+[eva] Done for function test_pow_singleton_exp
+[eva] computing for function test_pow <- main.
+  Called from math_builtins.c:749.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:217.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:218: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:218: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:219.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:220: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:220: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:221.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:222: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:222: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:228.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:229.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:230: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:230: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:231.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:232: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:232: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:233.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:234: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:234: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:235.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:236.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:237: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:237: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:240.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:241.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:242: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:242: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:245.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:246.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:247: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:247: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:248.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:249.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:250: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:250: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:254.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:255.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:256: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:256: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:259.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:260.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:261: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:261: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:264.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:265.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:266: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:266: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:269.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:270.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:271: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:271: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:274.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:275.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:276: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:276: Warning: 
+  function pow: precondition 'finite_logic_res' got status invalid.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:277.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:278: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:278: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:279.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:280: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:280: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:281.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:282: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:282: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:285.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:286.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:287: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:287: Warning: 
+  function pow: precondition 'finite_logic_res' got status invalid.
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:290.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:291.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:292: Call to builtin Frama_C_pow for function pow
+[eva:alarm] math_builtins.c:292: Warning: 
+  function pow: precondition 'finite_logic_res' got status unknown.
+[eva] math_builtins.c:292: Frama_C_show_each_unreachable:
+[eva] computing for function double_interval <- test_pow <- main.
+  Called from math_builtins.c:294.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:295: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:295: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] Recording results for test_pow
+[eva] Done for function test_pow
+[eva] computing for function test_fmod_det <- main.
+  Called from math_builtins.c:750.
+[eva] math_builtins.c:405: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:405: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:406: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:406: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:407: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:407: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:408: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:408: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:409: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:409: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:410: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:410: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:411: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:411: Warning: 
+  function fmod: precondition 'in_domain' got status invalid.
+[eva] Recording results for test_fmod_det
+[eva] Done for function test_fmod_det
+[eva] computing for function test_fmod <- main.
+  Called from math_builtins.c:751.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:416.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:417: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:417: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:418: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:418: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:419: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:419: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:420: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:420: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:421.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:422: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:422: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:423: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:423: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:424.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:425.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:426: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:426: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:427.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:428.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:429: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:429: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] math_builtins.c:430: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:430: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:431.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:432.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:433: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:433: Warning: 
+  function fmod: precondition 'in_domain' got status unknown.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:434.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:435.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:436: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:436: Warning: 
+  function fmod: precondition 'in_domain' got status unknown.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:437.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:438: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:438: Warning: 
+  function fmod: precondition 'in_domain' got status invalid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:439.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:440: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:440: Warning: 
+  function fmod: precondition 'in_domain' got status unknown.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:441.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:442: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:442: Warning: 
+  function fmod: precondition 'in_domain' got status unknown.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:443.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:444: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:444: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:445.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:446: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:446: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:447.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:448: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:448: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:449.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:450: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:450: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:451.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:452: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:452: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:453.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:454: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:454: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:455.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:456: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:456: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:457.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:458: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:458: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:459.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:460.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:461: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:461: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:462.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:463: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:463: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:464.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:465: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:465: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:466.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:467: Call to builtin Frama_C_fmod for function fmod
+[eva] math_builtins.c:467: 
+  function fmod: precondition 'in_domain' got status valid.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:468.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:469.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:470: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:470: Warning: 
+  function fmod: precondition 'in_domain' got status unknown.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:471.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:472: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:472: Warning: 
+  function fmod: precondition 'in_domain' got status unknown.
+[eva] computing for function double_interval <- test_fmod <- main.
+  Called from math_builtins.c:473.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:474: Call to builtin Frama_C_fmod for function fmod
+[eva:alarm] math_builtins.c:474: Warning: 
+  function fmod: precondition 'in_domain' got status unknown.
+[eva] Recording results for test_fmod
+[eva] Done for function test_fmod
+[eva] computing for function test_sqrt_det <- main.
+  Called from math_builtins.c:752.
+[eva] math_builtins.c:478: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:478: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:478: 
+  function sqrt: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:479: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:479: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:479: 
+  function sqrt: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:480: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:480: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:480: Warning: 
+  function sqrt: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:481: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:481: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:481: 
+  function sqrt: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:482: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:482: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:482: 
+  function sqrt: precondition 'arg_positive' got status valid.
+[eva] Recording results for test_sqrt_det
+[eva] Done for function test_sqrt_det
+[eva] computing for function test_sqrt <- main.
+  Called from math_builtins.c:753.
+[eva] computing for function double_interval <- test_sqrt <- main.
+  Called from math_builtins.c:486.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:487: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:487: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:487: 
+  function sqrt: precondition 'arg_positive' got status valid.
+[eva] computing for function double_interval <- test_sqrt <- main.
+  Called from math_builtins.c:488.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:489: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:489: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:489: Warning: 
+  function sqrt: precondition 'arg_positive' got status unknown.
+[eva] computing for function double_interval <- test_sqrt <- main.
+  Called from math_builtins.c:490.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:491: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:491: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:491: Warning: 
+  function sqrt: precondition 'arg_positive' got status unknown.
+[eva] computing for function double_interval <- test_sqrt <- main.
+  Called from math_builtins.c:492.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:493: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:493: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:493: Warning: 
+  function sqrt: precondition 'arg_positive' got status invalid.
+[eva] Recording results for test_sqrt
+[eva] Done for function test_sqrt
+[eva] computing for function test_exp_det <- main.
+  Called from math_builtins.c:754.
+[eva] math_builtins.c:516: Call to builtin Frama_C_exp for function exp
+[eva] math_builtins.c:516: 
+  function exp: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:516: 
+  function exp: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:516: 
+  function exp: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:517: Call to builtin Frama_C_exp for function exp
+[eva] math_builtins.c:517: 
+  function exp: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:517: 
+  function exp: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:517: 
+  function exp: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:518: Call to builtin Frama_C_exp for function exp
+[eva] math_builtins.c:518: 
+  function exp: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:518: 
+  function exp: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:518: 
+  function exp: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:519: Call to builtin Frama_C_exp for function exp
+[eva] math_builtins.c:519: 
+  function exp: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:519: 
+  function exp: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:519: 
+  function exp: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:520: Call to builtin Frama_C_exp for function exp
+[eva] math_builtins.c:520: 
+  function exp: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:520: 
+  function exp: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:520: 
+  function exp: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:521: Call to builtin Frama_C_exp for function exp
+[eva:alarm] math_builtins.c:521: Warning: 
+  function exp: precondition 'not_overflow' got status invalid.
+[eva] math_builtins.c:521: 
+  function exp: no state left, precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:521: 
+  function exp: no state left, precondition 'not_nan' got status valid.
+[eva] Recording results for test_exp_det
+[eva] Done for function test_exp_det
+[eva] computing for function test_log_det <- main.
+  Called from math_builtins.c:755.
+[eva] math_builtins.c:533: Call to builtin Frama_C_log for function log
+[eva] math_builtins.c:533: 
+  function log: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:533: 
+  function log: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:534: Call to builtin Frama_C_log for function log
+[eva] math_builtins.c:534: 
+  function log: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:534: 
+  function log: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:535: Call to builtin Frama_C_log for function log
+[eva] math_builtins.c:535: 
+  function log: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:535: Warning: 
+  function log: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:536: Call to builtin Frama_C_log for function log
+[eva] math_builtins.c:536: 
+  function log: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:536: Warning: 
+  function log: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:537: Call to builtin Frama_C_log for function log
+[eva] math_builtins.c:537: 
+  function log: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:537: Warning: 
+  function log: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:538: Call to builtin Frama_C_log for function log
+[eva] math_builtins.c:538: 
+  function log: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:538: Warning: 
+  function log: precondition 'arg_positive' got status invalid.
+[eva] Recording results for test_log_det
+[eva] Done for function test_log_det
+[eva] computing for function test_log10_det <- main.
+  Called from math_builtins.c:756.
+[eva] math_builtins.c:551: Call to builtin Frama_C_log10 for function log10
+[eva] math_builtins.c:551: 
+  function log10: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:551: 
+  function log10: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:552: Call to builtin Frama_C_log10 for function log10
+[eva] math_builtins.c:552: 
+  function log10: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:552: 
+  function log10: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:553: Call to builtin Frama_C_log10 for function log10
+[eva] math_builtins.c:553: 
+  function log10: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:553: Warning: 
+  function log10: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:554: Call to builtin Frama_C_log10 for function log10
+[eva] math_builtins.c:554: 
+  function log10: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:554: Warning: 
+  function log10: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:555: Call to builtin Frama_C_log10 for function log10
+[eva] math_builtins.c:555: 
+  function log10: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:555: Warning: 
+  function log10: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:556: Call to builtin Frama_C_log10 for function log10
+[eva] math_builtins.c:556: 
+  function log10: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:556: Warning: 
+  function log10: precondition 'arg_positive' got status invalid.
+[eva] Recording results for test_log10_det
+[eva] Done for function test_log10_det
+[eva] computing for function test_powf_det <- main.
+  Called from math_builtins.c:758.
+[eva] math_builtins.c:156: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:156: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:157: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:157: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:158: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:158: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:159: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:159: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:160: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:160: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:161: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:161: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:162: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:162: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:163: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:163: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] Recording results for test_powf_det
+[eva] Done for function test_powf_det
+[eva] computing for function test_powf_singleton_exp <- main.
+  Called from math_builtins.c:759.
+[eva] computing for function double_interval <- test_powf_singleton_exp <- main.
+  Called from math_builtins.c:301.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:303: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:303: Warning: 
+  function powf: precondition 'finite_logic_res' got status invalid.
+[eva] math_builtins.c:305: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:305: Warning: 
+  function powf: precondition 'finite_logic_res' got status invalid.
+[eva] computing for function double_interval <- test_powf_singleton_exp <- main.
+  Called from math_builtins.c:308.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:309: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:309: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] math_builtins.c:310: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:310: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] math_builtins.c:313: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:313: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] math_builtins.c:314: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:314: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf_singleton_exp <- main.
+  Called from math_builtins.c:317.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:318: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:318: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_powf_singleton_exp <- main.
+  Called from math_builtins.c:319.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:320: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:320: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf_singleton_exp <- main.
+  Called from math_builtins.c:323.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:324: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:324: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:325: 
+  Frama_C_show_each_i: [0.0000000000000000 .. 1.0000000000000000*2^-120]
+[eva] computing for function double_interval <- test_powf_singleton_exp <- main.
+  Called from math_builtins.c:326.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:327: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:327: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:328: Frama_C_show_each_j: {0}
+[eva] math_builtins.c:332: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:332: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:333: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:333: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_powf_singleton_exp <- main.
+  Called from math_builtins.c:335.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:336: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:336: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:337: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:337: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:338: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:338: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:339: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:339: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:340: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:340: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_powf_singleton_exp <- main.
+  Called from math_builtins.c:342.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:343: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:343: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:344: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:344: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] Recording results for test_powf_singleton_exp
+[eva] Done for function test_powf_singleton_exp
+[eva] computing for function test_powf <- main.
+  Called from math_builtins.c:760.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:350.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:351: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:351: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:352.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:353: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:353: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:354.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:355: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:355: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:361.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:362.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:363: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:363: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:364.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:365: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:365: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:366.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:367: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:367: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:368.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:369.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:370: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:370: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:373.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:374.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:375: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:375: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:378.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:379.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:380: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:380: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:383.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:384.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:385: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:385: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:389.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:390.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:391: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:391: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:394.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:395.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:396: Call to builtin Frama_C_powf for function powf
+[eva:alarm] math_builtins.c:396: Warning: 
+  function powf: precondition 'finite_logic_res' got status unknown.
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:399.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] computing for function double_interval <- test_powf <- main.
+  Called from math_builtins.c:400.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:401: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:401: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] Recording results for test_powf
+[eva] Done for function test_powf
+[eva] computing for function test_sqrtf_det <- main.
+  Called from math_builtins.c:761.
+[eva] math_builtins.c:497: Call to builtin Frama_C_sqrtf for function sqrtf
+[eva] math_builtins.c:497: 
+  function sqrtf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:497: 
+  function sqrtf: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:498: Call to builtin Frama_C_sqrtf for function sqrtf
+[eva] math_builtins.c:498: 
+  function sqrtf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:498: 
+  function sqrtf: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:499: Call to builtin Frama_C_sqrtf for function sqrtf
+[eva] math_builtins.c:499: 
+  function sqrtf: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:499: Warning: 
+  function sqrtf: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:500: Call to builtin Frama_C_sqrtf for function sqrtf
+[eva] math_builtins.c:500: 
+  function sqrtf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:500: 
+  function sqrtf: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:501: Call to builtin Frama_C_sqrtf for function sqrtf
+[eva] math_builtins.c:501: 
+  function sqrtf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:501: 
+  function sqrtf: precondition 'arg_positive' got status valid.
+[eva] Recording results for test_sqrtf_det
+[eva] Done for function test_sqrtf_det
+[eva] computing for function test_sqrtf <- main.
+  Called from math_builtins.c:762.
+[eva] computing for function double_interval <- test_sqrtf <- main.
+  Called from math_builtins.c:505.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:506: Call to builtin Frama_C_sqrtf for function sqrtf
+[eva] math_builtins.c:506: 
+  function sqrtf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:506: 
+  function sqrtf: precondition 'arg_positive' got status valid.
+[eva] computing for function double_interval <- test_sqrtf <- main.
+  Called from math_builtins.c:507.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:508: Call to builtin Frama_C_sqrtf for function sqrtf
+[eva] math_builtins.c:508: 
+  function sqrtf: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:508: Warning: 
+  function sqrtf: precondition 'arg_positive' got status unknown.
+[eva] computing for function double_interval <- test_sqrtf <- main.
+  Called from math_builtins.c:509.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:510: Call to builtin Frama_C_sqrtf for function sqrtf
+[eva] math_builtins.c:510: 
+  function sqrtf: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:510: Warning: 
+  function sqrtf: precondition 'arg_positive' got status unknown.
+[eva] computing for function double_interval <- test_sqrtf <- main.
+  Called from math_builtins.c:511.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:512: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:512: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:512: Warning: 
+  function sqrt: precondition 'arg_positive' got status invalid.
+[eva] Recording results for test_sqrtf
+[eva] Done for function test_sqrtf
+[eva] computing for function test_expf_det <- main.
+  Called from math_builtins.c:763.
+[eva] math_builtins.c:525: Call to builtin Frama_C_expf for function expf
+[eva] math_builtins.c:525: 
+  function expf: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:525: 
+  function expf: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:525: 
+  function expf: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:526: Call to builtin Frama_C_expf for function expf
+[eva] math_builtins.c:526: 
+  function expf: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:526: 
+  function expf: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:526: 
+  function expf: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:527: Call to builtin Frama_C_expf for function expf
+[eva] math_builtins.c:527: 
+  function expf: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:527: 
+  function expf: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:527: 
+  function expf: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:528: Call to builtin Frama_C_expf for function expf
+[eva] math_builtins.c:528: 
+  function expf: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:528: 
+  function expf: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:528: 
+  function expf: precondition 'not_nan' got status valid.
+[eva] math_builtins.c:529: Call to builtin Frama_C_expf for function expf
+[eva] math_builtins.c:529: 
+  function expf: precondition 'not_overflow' got status valid.
+[eva] math_builtins.c:529: 
+  function expf: precondition 'not_plus_infinity' got status valid.
+[eva] math_builtins.c:529: 
+  function expf: precondition 'not_nan' got status valid.
+[eva] Recording results for test_expf_det
+[eva] Done for function test_expf_det
+[eva] computing for function test_logf_det <- main.
+  Called from math_builtins.c:764.
+[eva] math_builtins.c:542: Call to builtin Frama_C_logf for function logf
+[eva] math_builtins.c:542: 
+  function logf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:542: 
+  function logf: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:543: Call to builtin Frama_C_logf for function logf
+[eva] math_builtins.c:543: 
+  function logf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:543: 
+  function logf: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:544: Call to builtin Frama_C_logf for function logf
+[eva] math_builtins.c:544: 
+  function logf: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:544: Warning: 
+  function logf: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:545: Call to builtin Frama_C_logf for function logf
+[eva] math_builtins.c:545: 
+  function logf: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:545: Warning: 
+  function logf: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:546: Call to builtin Frama_C_logf for function logf
+[eva] math_builtins.c:546: 
+  function logf: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:546: Warning: 
+  function logf: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:547: Call to builtin Frama_C_logf for function logf
+[eva] math_builtins.c:547: 
+  function logf: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:547: Warning: 
+  function logf: precondition 'arg_positive' got status invalid.
+[eva] Recording results for test_logf_det
+[eva] Done for function test_logf_det
+[eva] computing for function test_log10f_det <- main.
+  Called from math_builtins.c:765.
+[eva] math_builtins.c:560: Call to builtin Frama_C_log10f for function log10f
+[eva] math_builtins.c:560: 
+  function log10f: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:560: 
+  function log10f: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:561: Call to builtin Frama_C_log10f for function log10f
+[eva] math_builtins.c:561: 
+  function log10f: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:561: 
+  function log10f: precondition 'arg_positive' got status valid.
+[eva] math_builtins.c:562: Call to builtin Frama_C_log10f for function log10f
+[eva] math_builtins.c:562: 
+  function log10f: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:562: Warning: 
+  function log10f: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:563: Call to builtin Frama_C_log10f for function log10f
+[eva] math_builtins.c:563: 
+  function log10f: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:563: Warning: 
+  function log10f: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:564: Call to builtin Frama_C_log10f for function log10f
+[eva] math_builtins.c:564: 
+  function log10f: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:564: Warning: 
+  function log10f: precondition 'arg_positive' got status invalid.
+[eva] math_builtins.c:565: Call to builtin Frama_C_log10f for function log10f
+[eva] math_builtins.c:565: 
+  function log10f: precondition 'finite_arg' got status valid.
+[eva:alarm] math_builtins.c:565: Warning: 
+  function log10f: precondition 'arg_positive' got status invalid.
+[eva] Recording results for test_log10f_det
+[eva] Done for function test_log10f_det
+[eva] computing for function test_diff_pow_powf <- main.
+  Called from math_builtins.c:767.
+[eva] math_builtins.c:569: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:569: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] math_builtins.c:570: Call to builtin Frama_C_powf for function powf
+[eva] math_builtins.c:570: 
+  function powf: precondition 'finite_logic_res' got status valid.
+[eva] Recording results for test_diff_pow_powf
+[eva] Done for function test_diff_pow_powf
+[eva] computing for function test_floor_det <- main.
+  Called from math_builtins.c:769.
+[eva] math_builtins.c:574: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:574: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:575: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:575: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:576: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:576: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:577: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:577: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:578: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:578: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:579: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:579: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_floor_det
+[eva] Done for function test_floor_det
+[eva] computing for function test_ceil_det <- main.
+  Called from math_builtins.c:770.
+[eva] math_builtins.c:583: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:583: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:584: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:584: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:585: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:585: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:586: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:586: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:587: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:587: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:588: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:588: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_ceil_det
+[eva] Done for function test_ceil_det
+[eva] computing for function test_trunc_det <- main.
+  Called from math_builtins.c:771.
+[eva] math_builtins.c:592: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:592: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:593: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:593: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:594: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:594: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:595: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:595: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:596: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:596: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:597: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:597: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_trunc_det
+[eva] Done for function test_trunc_det
+[eva] computing for function test_round_det <- main.
+  Called from math_builtins.c:772.
+[eva] math_builtins.c:601: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:601: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:602: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:602: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:603: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:603: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:604: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:604: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:605: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:605: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:606: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:606: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_round_det
+[eva] Done for function test_round_det
+[eva] computing for function test_floor <- main.
+  Called from math_builtins.c:773.
+[eva] computing for function double_interval <- test_floor <- main.
+  Called from math_builtins.c:611.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:612: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:612: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_floor <- main.
+  Called from math_builtins.c:613.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:614: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:614: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_floor <- main.
+  Called from math_builtins.c:615.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:616: Call to builtin Frama_C_floor for function floor
+[eva] math_builtins.c:616: 
+  function floor: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_floor
+[eva] Done for function test_floor
+[eva] computing for function test_ceil <- main.
+  Called from math_builtins.c:774.
+[eva] computing for function double_interval <- test_ceil <- main.
+  Called from math_builtins.c:621.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:622: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:622: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_ceil <- main.
+  Called from math_builtins.c:623.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:624: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:624: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_ceil <- main.
+  Called from math_builtins.c:625.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:626: Call to builtin Frama_C_ceil for function ceil
+[eva] math_builtins.c:626: 
+  function ceil: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_ceil
+[eva] Done for function test_ceil
+[eva] computing for function test_trunc <- main.
+  Called from math_builtins.c:775.
+[eva] computing for function double_interval <- test_trunc <- main.
+  Called from math_builtins.c:631.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:632: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:632: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_trunc <- main.
+  Called from math_builtins.c:633.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:634: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:634: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_trunc <- main.
+  Called from math_builtins.c:635.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:636: Call to builtin Frama_C_trunc for function trunc
+[eva] math_builtins.c:636: 
+  function trunc: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_trunc
+[eva] Done for function test_trunc
+[eva] computing for function test_round <- main.
+  Called from math_builtins.c:776.
+[eva] computing for function double_interval <- test_round <- main.
+  Called from math_builtins.c:641.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:642: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:642: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_round <- main.
+  Called from math_builtins.c:643.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:644: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:644: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_round <- main.
+  Called from math_builtins.c:645.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:646: Call to builtin Frama_C_round for function round
+[eva] math_builtins.c:646: 
+  function round: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_round
+[eva] Done for function test_round
+[eva] computing for function test_floorf_det <- main.
+  Called from math_builtins.c:778.
+[eva] math_builtins.c:650: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:650: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:651: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:651: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:652: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:652: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:653: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:653: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:654: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:654: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:655: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:655: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_floorf_det
+[eva] Done for function test_floorf_det
+[eva] computing for function test_ceilf_det <- main.
+  Called from math_builtins.c:779.
+[eva] math_builtins.c:659: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:659: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:660: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:660: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:661: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:661: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:662: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:662: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:663: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:663: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:664: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:664: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_ceilf_det
+[eva] Done for function test_ceilf_det
+[eva] computing for function test_truncf_det <- main.
+  Called from math_builtins.c:780.
+[eva] math_builtins.c:668: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:668: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:669: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:669: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:670: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:670: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:671: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:671: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:672: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:672: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:673: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:673: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_truncf_det
+[eva] Done for function test_truncf_det
+[eva] computing for function test_roundf_det <- main.
+  Called from math_builtins.c:781.
+[eva] math_builtins.c:677: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:677: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:678: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:678: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:679: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:679: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:680: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:680: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:681: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:681: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:682: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:682: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_roundf_det
+[eva] Done for function test_roundf_det
+[eva] computing for function test_floorf <- main.
+  Called from math_builtins.c:782.
+[eva] computing for function double_interval <- test_floorf <- main.
+  Called from math_builtins.c:687.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:688: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:688: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_floorf <- main.
+  Called from math_builtins.c:689.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:690: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:690: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_floorf <- main.
+  Called from math_builtins.c:691.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:692: Call to builtin Frama_C_floorf for function floorf
+[eva] math_builtins.c:692: 
+  function floorf: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_floorf
+[eva] Done for function test_floorf
+[eva] computing for function test_ceilf <- main.
+  Called from math_builtins.c:783.
+[eva] computing for function double_interval <- test_ceilf <- main.
+  Called from math_builtins.c:697.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:698: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:698: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_ceilf <- main.
+  Called from math_builtins.c:699.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:700: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:700: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_ceilf <- main.
+  Called from math_builtins.c:701.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:702: Call to builtin Frama_C_ceilf for function ceilf
+[eva] math_builtins.c:702: 
+  function ceilf: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_ceilf
+[eva] Done for function test_ceilf
+[eva] computing for function test_truncf <- main.
+  Called from math_builtins.c:784.
+[eva] computing for function double_interval <- test_truncf <- main.
+  Called from math_builtins.c:707.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:708: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:708: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_truncf <- main.
+  Called from math_builtins.c:709.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:710: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:710: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_truncf <- main.
+  Called from math_builtins.c:711.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:712: Call to builtin Frama_C_truncf for function truncf
+[eva] math_builtins.c:712: 
+  function truncf: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_truncf
+[eva] Done for function test_truncf
+[eva] computing for function test_roundf <- main.
+  Called from math_builtins.c:785.
+[eva] computing for function double_interval <- test_roundf <- main.
+  Called from math_builtins.c:717.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:718: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:718: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_roundf <- main.
+  Called from math_builtins.c:719.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:720: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:720: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] computing for function double_interval <- test_roundf <- main.
+  Called from math_builtins.c:721.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva] math_builtins.c:722: Call to builtin Frama_C_roundf for function roundf
+[eva] math_builtins.c:722: 
+  function roundf: precondition 'finite_arg' got status valid.
+[eva] Recording results for test_roundf
+[eva] Done for function test_roundf
+[eva] computing for function test_uninit <- main.
+  Called from math_builtins.c:787.
+[eva:alarm] math_builtins.c:728: Warning: 
+  accessing uninitialized left-value. assert \initialized(&a);
+[eva] computing for function double_interval <- test_uninit <- main.
+  Called from math_builtins.c:733.
+[eva] Recording results for double_interval
+[eva] Done for function double_interval
+[eva:alarm] math_builtins.c:735: Warning: 
+  accessing uninitialized left-value. assert \initialized(&a);
+[eva] math_builtins.c:735: Call to builtin Frama_C_sqrt for function sqrt
+[eva] math_builtins.c:735: 
+  function sqrt: precondition 'finite_arg' got status valid.
+[eva] math_builtins.c:735: 
+  function sqrt: precondition 'arg_positive' got status valid.
+[eva:alarm] math_builtins.c:736: Warning: 
+  accessing uninitialized left-value. assert \initialized(&b);
+[eva] math_builtins.c:736: Call to builtin Frama_C_pow for function pow
+[eva] math_builtins.c:736: 
+  function pow: precondition 'finite_logic_res' got status valid.
+[eva] Recording results for test_uninit
+[eva] Done for function test_uninit
+[eva] Recording results for main
+[eva] done for function main
+[eva] math_builtins.c:728: 
+  assertion 'Eva,initialization' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function double_interval:
+  __retres ∈ [-1.2237906221789607*2^1023 .. 1.2237906221789607*2^1023]
+[eva:final-states] Values at end of function test_acos:
+  half_pi ∈ {1.5707963267948965}
+  pi ∈ {3.1415926535897931}
+  zero ∈ {0}
+  acos_image ∈ [0.0000000000000000 .. 3.1415926535897931]
+  d64__x ∈ {1.047197551196597}
+  d64__y ∈ {2.094395102393195}
+  d64__xy ∈ [1.047197551196597 .. 2.094395102393195]
+  f32__half_pi ∈ {1.570796}
+  f32__pi ∈ {3.141592}
+  f32__zero ∈ {0}
+  f32__acosf_image ∈ [0.000000 .. 3.141592]
+[eva:final-states] Values at end of function test_asin:
+  zero ∈ {0}
+  minus_half_pi ∈ {-1.5707963267948965}
+  half_pi ∈ {1.5707963267948965}
+  asin_image ∈ [-1.5707963267948965 .. 1.5707963267948965]
+  d64__x ∈ {-1.047197551196597*2^-1}
+  d64__y ∈ {1.047197551196597*2^-1}
+  d64__xy ∈ [-1.047197551196597*2^-1 .. 1.047197551196597*2^-1]
+  f32__zero ∈ {0}
+  f32__minus_half_pi ∈ {-1.570796}
+  f32__half_pi ∈ {1.570796}
+  f32__asinf_image ∈ [-1.570796 .. 1.570796]
+[eva:final-states] Values at end of function test_atan:
+  zero ∈ {0}
+  atan_image ∈ [-1.5707963267948965 .. 1.5707963267948965]
+  d64__x ∈ {-1.107148717794090}
+  d64__y ∈ {1.107148717794090}
+  d64__xy ∈ [-1.107148717794090 .. 1.107148717794090]
+  f32__zero ∈ {0}
+  f32__atanf_image ∈ [-1.570796 .. 1.570796]
+[eva:final-states] Values at end of function test_atan2:
+  x ∈ [1.0000000000000000 .. 5.0000000000000000]
+  y ∈ [-0.0000000000000000 .. 0.0000000000000000]
+  a ∈ [1.5999166744782948*2^-7 .. 1.5582969777755348]
+  b ∈ [1.3325625311548295*2^-5 .. 3.0916342578678506]
+  c ∈ [-2.9441970937399126 .. -1.3211894193170146*2^-3]
+  d ∈ [-2.9764439761751662 .. -2.6779450445889869]
+  e ∈ {-1.5707963267948965}
+  f ∈ [-1.5707963267948965*2^-1 .. -0.0000000000000000]
+  g ∈ [0.0000000000000000 .. 1.8545904360032243*2^-2]
+  h ∈ [-3.1415929794311523 .. 3.1415929794311523]
+  i ∈ [-3.1415929794311523 .. 3.1415929794311523]
+  j ∈ [-3.1415929794311523 .. 3.1415929794311523]
+  k ∈ {0}
+  l ∈ {-0.0000000000000000}
+  m ∈ {3.1415926535897931}
+  n ∈ {-3.1415926535897931}
+[eva:final-states] Values at end of function test_atan2_det:
+  a ∈ {1.5707963267948965}
+  b ∈ {0}
+  c ∈ {1.5707963267948965}
+  d ∈ {-0.0000000000000000}
+  e ∈ {-1.5707963267948965}
+  f ∈ {-1.5707963267948965}
+  g ∈ {-1.5707963267948965}
+  h ∈ {-1.5707963267948965}
+  i ∈ {0}
+  j ∈ {1.1071487177940904}
+  k ∈ {-1.1071487177940904}
+  l ∈ {2.0344439357957027}
+  m ∈ {-2.0344439357957027}
+[eva:final-states] Values at end of function test_ceil:
+  x ∈ [-2.5000000000000000 .. -1.0000000000000000*2^-1]
+  a ∈ [-0.0000000000000000 .. 2.0000000000000000]
+  b ∈ [-0.0000000000000000 .. 1.0000000000000000]
+  c ∈ [-2.0000000000000000 .. -0.0000000000000000]
+[eva:final-states] Values at end of function test_ceil_det:
+  a ∈ {2.0000000000000000}
+  b ∈ {1.0000000000000000}
+  c ∈ {0}
+  d ∈ {-0.0000000000000000}
+  e ∈ {-0.0000000000000000}
+  f ∈ {-1.0000000000000000}
+[eva:final-states] Values at end of function test_ceilf:
+  f32__x ∈ [-2.500000 .. -1.000000*2^-1]
+  f32__a ∈ [-0.000000 .. 2.000000]
+  f32__b ∈ [-0.000000 .. 1.000000]
+  f32__c ∈ [-2.000000 .. -0.000000]
+[eva:final-states] Values at end of function test_ceilf_det:
+  f32__a ∈ {2.000000}
+  f32__b ∈ {1.000000}
+  f32__c ∈ {0}
+  f32__d ∈ {-0.000000}
+  f32__e ∈ {-0.000000}
+  f32__f ∈ {-1.000000}
+[eva:final-states] Values at end of function test_cos_det:
+  x ∈ {1.0806046117362795*2^-1}
+  y ∈ {1.0000000000000000}
+  z ∈ {1.0806046117362795*2^-1}
+[eva:final-states] Values at end of function test_diff_pow_powf:
+  __fc_errno ∈ [--..--]
+  d ∈ {1.3824840787361052*2^-96}
+  f32__f ∈ {1.382483*2^-96}
+[eva:final-states] Values at end of function test_exp_det:
+  __fc_errno ∈ [--..--]
+  a ∈ {1.7094457008275896*2^60}
+  b ∈ {1.0826822658929016*2^-3}
+  c ∈ {1.0000000000000000}
+  d ∈ {1.0000000000000000}
+  e ∈ {1.4715177646857693*2^-2}
+[eva:final-states] Values at end of function test_expf_det:
+  __fc_errno ∈ [--..--]
+  f32__a ∈ {1.709445*2^60}
+  f32__b ∈ {1.082682*2^-3}
+  f32__c ∈ {1.000000}
+  f32__d ∈ {1.000000}
+  f32__e ∈ {1.471517*2^-2}
+[eva:final-states] Values at end of function test_floor:
+  x ∈ [-2.5000000000000000 .. -1.0000000000000000*2^-1]
+  a ∈ [-1.0000000000000000 .. 1.0000000000000000]
+  b ∈ [-0.0000000000000000 .. 0.0000000000000000]
+  c ∈ [-3.0000000000000000 .. -1.0000000000000000]
+[eva:final-states] Values at end of function test_floor_det:
+  a ∈ {1.0000000000000000}
+  b ∈ {0}
+  c ∈ {0}
+  d ∈ {-0.0000000000000000}
+  e ∈ {-1.0000000000000000}
+  f ∈ {-2.0000000000000000}
+[eva:final-states] Values at end of function test_floorf:
+  f32__x ∈ [-2.500000 .. -1.000000*2^-1]
+  f32__a ∈ [-1.000000 .. 1.000000]
+  f32__b ∈ [-0.000000 .. 0.000000]
+  f32__c ∈ [-3.000000 .. -1.000000]
+[eva:final-states] Values at end of function test_floorf_det:
+  f32__a ∈ {1.000000}
+  f32__b ∈ {0}
+  f32__c ∈ {0}
+  f32__d ∈ {-0.000000}
+  f32__e ∈ {-1.000000}
+  f32__f ∈ {-2.000000}
+[eva:final-states] Values at end of function test_fmod:
+  x ∈ [-3.0000000000000000 .. 2.0000000000000000]
+  y ∈ [-4.0000000000000000 .. 5.0000000000000000]
+  a ∈ [0.0000000000000000 .. 1.4999999999999998]
+  b ∈ [0.0000000000000000 .. 1.4999999999999998]
+  c ∈ [-1.4999999999999998 .. -0.0000000000000000]
+  d ∈ [-1.4999999999999998 .. -0.0000000000000000]
+  e ∈ [1.5000000000000000*2^-1 .. 1.2500000000000000]
+  f ∈ [1.5000000000000000*2^-1 .. 1.2500000000000000]
+  g ∈ [4.0000000000000000 .. 5.5000000000000000]
+  h ∈ [0.0000000000000000 .. 5.4999999999999991]
+  i ∈ [0.0000000000000000 .. 5.4999999999999991]
+  j ∈ [-4.4999999999999991 .. 4.4999999999999991]
+  k ∈ [-2.0000000000000000 .. 4.5000000000000000]
+  l ∈ [-1.9999999999999998*2^-4 .. 1.9999999999999998*2^-4]
+  m ∈ [-1.9999999999999998*2^-4 .. 1.9999999999999998*2^-4]
+  n ∈ [0.0000000000000000 .. 1.9999999999999998*2^-10]
+  o ∈ [-1.9999999999999998*2^-10 .. -0.0000000000000000]
+  p ∈ [0.0000000000000000 .. 1.9999999999999998*2^-10]
+  q ∈ [1.5000000000000000*2^-14 .. 1.0000000000000000*2^-11]
+  r ∈ [0.0000000000000000 .. 1.0000025599999997*2^-9]
+  s ∈ [0.0000000000000000 .. 1.5999999999999998*2^-4]
+  t ∈ [-1.5999999999999998*2^-4 .. -0.0000000000000000]
+  u ∈ [-3.9999999999999996 .. -0.0000000000000000]
+  v1 ∈ [1.0000000000000000 .. 3.0000000000000000]
+  v2 ∈ [1.0000000000000000 .. 3.0000000000000000]
+  v3 ∈ [-3.0000000000000000 .. -1.0000000000000000]
+  v4 ∈ [-3.0000000000000000 .. -1.0000000000000000]
+  w1 ∈ [0.0000000000000000 .. 3.0000000000000000]
+  w2 ∈ [-2.0000000000000000 .. 3.0000000000000000]
+  w3 ∈ [-3.0000000000000000 .. 2.0000000000000000]
+[eva:final-states] Values at end of function test_fmod_det:
+  a ∈ {1.7500000000000000}
+  b ∈ {-1.7500000000000000}
+  c ∈ {-0.0000000000000000}
+  d ∈ {0}
+  e ∈ {0}
+  f ∈ {0}
+[eva:final-states] Values at end of function test_log10_det:
+  a ∈ {1.6245399138793950}
+  b ∈ {-1.8061799739838871*2^-1}
+[eva:final-states] Values at end of function test_log10f_det:
+  f32__a ∈ {1.624539}
+  f32__b ∈ {-1.806180*2^-1}
+[eva:final-states] Values at end of function test_log_det:
+  a ∈ {3.7406413886725258}
+  b ∈ {-2.0794415416798357}
+[eva:final-states] Values at end of function test_logf_det:
+  f32__a ∈ {3.740641}
+  f32__b ∈ {-2.079441}
+[eva:final-states] Values at end of function test_pow:
+  __fc_errno ∈ [--..--]
+  x ∈ [-1.4551915228366852*2^36 .. -1.1641532182693481*2^33]
+  y ∈ [-1.0000000000000000*2^-1 .. 9.5000000000000000]
+  a ∈ {1.0000000000000000}
+  b ∈ {1.0000000000000000}
+  c ∈ {1.0000000000000000}
+  d ∈ [0.0000000000000000 .. 327.9450894181683225]
+  e ∈ [-64.0000000000000000 .. 1.1259101122907695*2^14]
+  f ∈ [-64.0000000000000000 .. 421.8750000000000000]
+  g ∈ [1.7652004904783322*2^-3 .. 4.7568284600108841]
+  h ∈ [1.4142135623730951*2^-3 .. 1.7469281074217106]
+  i ∈ [-1.9999999999999998*2^1023 .. 1.9999999999999998*2^1023]
+  j ∈ [-1.0000000000000000 .. 1.9999999999999998*2^1023]
+  k ∈ [-1.4163703918457031*2^18 .. 1.4036245608028963*2^52]
+  l ∈ [-1024.0000000000000000 .. 256.0000000000000000]
+  m ∈ [-0.0000000000000000 .. 1.5258789062500000*2^16]
+  n ∈ [1.0362151436839746*2^-15 .. 1.9999999999999998*2^1023]
+  o ∈ {1.0000000000000000}
+  p ∈ [-1.4551915228366852*2^25 .. 1.1641532182693481*2^23]
+  q ∈ [-1.9999999999999998*2^1023 .. 1.9999999999999998*2^1023]
+  r ∈ [1.2649110640673517*2^-2 .. 1.4725502860585131*2^31]
+[eva:final-states] Values at end of function test_pow_det:
+  __fc_errno ∈ [--..--]
+  a ∈ {1.0000000000000000}
+  b ∈ {0}
+  c ∈ {1.0000000000000000}
+  d ∈ {1.2247448713915889}
+  e ∈ {3.6539061185009513}
+  f ∈ {1.1857484052378015*2^-2}
+  g ∈ {1.6817928305074290*2^-21}
+  h ∈ {1.0000000000000000}
+[eva:final-states] Values at end of function test_pow_singleton_exp:
+  __fc_errno ∈ [--..--]
+  x ∈ [-3.5000000000000000 .. -1.0000000000000000*2^-3]
+  c ∈ [0.0000000000000000 .. 4.5603590867386749]
+  d ∈ [1.7542478229978975*2^-3 .. 1.9999999999999998*2^1023]
+  e ∈ [-1.9999999999999998*2^1023 .. 1.9999999999999998*2^1023]
+  f ∈ [1.3061224489795917*2^-4 .. 1.9999999999999998*2^1023]
+  g ∈ [1.0000000000000000*2^975 .. 1.9999999999999998*2^1023]
+  h ∈ [-1.9999999999999998*2^1023 .. -1.3699635576194850*2^-10]
+  i ∈ [0.0000000000000000 .. 1.0000000000000000*2^-1000]
+  j ∈ [0.2500000000000000*2^-1022 .. 1.2707064924076672*2^-330]
+  k ∈ [1.7469281074217106 .. 5.6568542494923805]
+  l ∈ [2.1836601342771384 .. 11.3137084989847611]
+  m ∈ [1.3196114778086369*2^-5 .. 22.6274169979695223]
+  n ∈ [1.9097831327702532*2^-4 .. 8.0000000000000000]
+  o ∈ [1.4142135623730951*2^-1 .. 1.4251349413858991]
+  p ∈ [1.6817928305074290*2^-4 .. 10.0014719999210708]
+  q ∈ [1.0000000000000000*2^-8 .. 289.5314941406250000]
+  r ∈ [1.3061224489795917*2^-4 .. 64.0000000000000000]
+  s ∈ [-8.0000000000000000 .. -1.1428571428571428*2^-2]
+[eva:final-states] Values at end of function test_powf:
+  __fc_errno ∈ [--..--]
+  f32__x ∈ [-0.000000 .. 10.000000]
+  f32__y ∈ [-0.000000 .. 5.000000]
+  f32__a ∈ {1.000000}
+  f32__b ∈ {1.000000}
+  f32__c ∈ {1.000000}
+  f32__d ∈ [0.000000 .. 327.945098]
+  f32__e ∈ [-64.000000 .. 1.125910*2^14]
+  f32__f ∈ [-64.000000 .. 421.875000]
+  f32__g ∈ [1.765200*2^-3 .. 4.756828]
+  f32__h ∈ [1.414213*2^-3 .. 1.746928]
+  f32__i ∈ [-1.999999*2^127 .. 1.999999*2^127]
+  f32__j ∈ [-1.000000 .. 1.999999*2^127]
+  f32__k ∈ [-1.416370*2^18 .. 1.403624*2^52]
+  f32__l ∈ [-1024.000000 .. 256.000000]
+  f32__m ∈ [-0.000000 .. 1.525878*2^16]
+[eva:final-states] Values at end of function test_powf_det:
+  __fc_errno ∈ [--..--]
+  f32__a ∈ {1.000000}
+  f32__b ∈ {0}
+  f32__c ∈ {1.000000}
+  f32__d ∈ {1.224744}
+  f32__e ∈ {3.653906}
+  f32__f ∈ {1.185748*2^-2}
+  f32__g ∈ {1.681792*2^-21}
+  f32__h ∈ {1.000000}
+[eva:final-states] Values at end of function test_powf_singleton_exp:
+  __fc_errno ∈ [--..--]
+  f32__x ∈ [-3.500000 .. -1.000000*2^-3]
+  f32__c ∈ [0.000000 .. 4.560359]
+  f32__d ∈ [1.754247*2^-3 .. 1.999999*2^127]
+  f32__e ∈ [-1.999999*2^127 .. 1.999999*2^127]
+  f32__f ∈ [1.306122*2^-4 .. 1.999999*2^127]
+  f32__g ∈ [1.000002*2^116 .. 1.741105*2^121]
+  f32__h ∈ [-1.999999*2^127 .. -1.369963*2^-10]
+  f32__i ∈ [0.000000 .. 1.000000*2^-120]
+  f32__j ∈ {0}
+  f32__k ∈ [1.746928 .. 5.656854]
+  f32__l ∈ [2.183660 .. 11.313708]
+  f32__m ∈ [1.319611*2^-5 .. 22.627416]
+  f32__n ∈ [1.909783*2^-4 .. 8.000000]
+  f32__o ∈ [1.414213*2^-1 .. 1.425134]
+  f32__p ∈ [1.681792*2^-4 .. 10.001472]
+  f32__q ∈ [1.000000*2^-8 .. 289.531494]
+  f32__r ∈ [1.306122*2^-4 .. 64.000000]
+  f32__s ∈ [-8.000000 .. -1.142857*2^-2]
+[eva:final-states] Values at end of function test_round:
+  x ∈ [-2.5000000000000000 .. -1.0000000000000000*2^-1]
+  a ∈ [-1.0000000000000000 .. 2.0000000000000000]
+  b ∈ [-0.0000000000000000 .. 1.0000000000000000]
+  c ∈ [-3.0000000000000000 .. -1.0000000000000000]
+[eva:final-states] Values at end of function test_round_det:
+  a ∈ {2.0000000000000000}
+  b ∈ {1.0000000000000000}
+  c ∈ {0}
+  d ∈ {-0.0000000000000000}
+  e ∈ {-1.0000000000000000}
+  f ∈ {-2.0000000000000000}
+[eva:final-states] Values at end of function test_roundf:
+  f32__x ∈ [-2.500000 .. -1.000000*2^-1]
+  f32__a ∈ [-1.000000 .. 2.000000]
+  f32__b ∈ [-0.000000 .. 1.000000]
+  f32__c ∈ [-3.000000 .. -1.000000]
+[eva:final-states] Values at end of function test_roundf_det:
+  f32__a ∈ {2.000000}
+  f32__b ∈ {1.000000}
+  f32__c ∈ {0}
+  f32__d ∈ {-0.000000}
+  f32__e ∈ {-1.000000}
+  f32__f ∈ {-2.000000}
+[eva:final-states] Values at end of function test_sin_det:
+  x ∈ {1.6829419696157930*2^-1}
+  y ∈ {0}
+  z ∈ {-1.6829419696157930*2^-1}
+[eva:final-states] Values at end of function test_sqrt:
+  x ∈ [-6.5000000000000000 .. -1.6000000000000000*2^-4]
+  a ∈ [-0.0000000000000000 .. 2.2360679774997898]
+  b ∈ [-0.0000000000000000 .. 0.0000000000000000]
+  c ∈ {-0.0000000000000000}
+[eva:final-states] Values at end of function test_sqrt_det:
+  a ∈ {6.4903774928735851}
+  b ∈ {1.4142135623730951*2^-2}
+  c ∈ {0}
+  d ∈ {-0.0000000000000000}
+[eva:final-states] Values at end of function test_sqrtf:
+  f32__x ∈ [-6.500000 .. -1.600000*2^-4]
+  f32__a ∈ [-0.000000 .. 2.236068]
+  b ∈ [-0.0000000000000000 .. 0.0000000000000000]
+  c ∈ {-0.0000000000000000}
+[eva:final-states] Values at end of function test_sqrtf_det:
+  f32__a ∈ {6.490377}
+  f32__b ∈ {1.414213*2^-2}
+  f32__c ∈ {0}
+  f32__d ∈ {-0.000000}
+[eva:final-states] Values at end of function test_uninit:
+  __fc_errno ∈ [--..--]
+  a ∈ {1.0000000000000000*2^-1}
+  b ∈ [1.0000000000000000*2^-2 .. 8.5000000000000000]
+  r ∈ [1.0000000000000000*2^-1 .. 2.9154759474226503]
+[eva:final-states] Values at end of function test_trunc:
+  x ∈ [-2.5000000000000000 .. -1.0000000000000000*2^-1]
+  a ∈ [-0.0000000000000000 .. 1.0000000000000000]
+  b ∈ [-0.0000000000000000 .. 0.0000000000000000]
+  c ∈ [-2.0000000000000000 .. -0.0000000000000000]
+[eva:final-states] Values at end of function test_trunc_det:
+  a ∈ {1.0000000000000000}
+  b ∈ {0}
+  c ∈ {0}
+  d ∈ {-0.0000000000000000}
+  e ∈ {-0.0000000000000000}
+  f ∈ {-1.0000000000000000}
+[eva:final-states] Values at end of function test_truncf:
+  f32__x ∈ [-2.500000 .. -1.000000*2^-1]
+  f32__a ∈ [-0.000000 .. 1.000000]
+  f32__b ∈ [-0.000000 .. 0.000000]
+  f32__c ∈ [-2.000000 .. -0.000000]
+[eva:final-states] Values at end of function test_truncf_det:
+  f32__a ∈ {1.000000}
+  f32__b ∈ {0}
+  f32__c ∈ {0}
+  f32__d ∈ {-0.000000}
+  f32__e ∈ {-0.000000}
+  f32__f ∈ {-1.000000}
+[eva:final-states] Values at end of function main:
+  __fc_errno ∈ [--..--]
+  __retres ∈ {0}
+[from] Computing for function double_interval
+[from] Done for function double_interval
+[from] Computing for function test_acos
+[from] Computing for function acos <-test_acos
+[from] Done for function acos
+[from] Computing for function acosf <-test_acos
+[from] Done for function acosf
+[from] Done for function test_acos
+[from] Computing for function test_asin
+[from] Computing for function asin <-test_asin
+[from] Done for function asin
+[from] Computing for function asinf <-test_asin
+[from] Done for function asinf
+[from] Done for function test_asin
+[from] Computing for function test_atan
+[from] Computing for function atan <-test_atan
+[from] Done for function atan
+[from] Computing for function atanf <-test_atan
+[from] Done for function atanf
+[from] Done for function test_atan
+[from] Computing for function test_atan2
+[from] Computing for function atan2 <-test_atan2
+[from] Done for function atan2
+[from] Done for function test_atan2
+[from] Computing for function test_atan2_det
+[from] Done for function test_atan2_det
+[from] Computing for function test_ceil
+[from] Computing for function ceil <-test_ceil
+[from] Done for function ceil
+[from] Done for function test_ceil
+[from] Computing for function test_ceil_det
+[from] Done for function test_ceil_det
+[from] Computing for function test_ceilf
+[from] Computing for function ceilf <-test_ceilf
+[from] Done for function ceilf
+[from] Done for function test_ceilf
+[from] Computing for function test_ceilf_det
+[from] Done for function test_ceilf_det
+[from] Computing for function test_cos_det
+[from] Computing for function cos <-test_cos_det
+[from] Done for function cos
+[from] Done for function test_cos_det
+[from] Computing for function test_diff_pow_powf
+[from] Computing for function pow <-test_diff_pow_powf
+[from] Done for function pow
+[from] Computing for function powf <-test_diff_pow_powf
+[from] Done for function powf
+[from] Done for function test_diff_pow_powf
+[from] Computing for function test_exp_det
+[from] Computing for function exp <-test_exp_det
+[from] Done for function exp
+[from] Done for function test_exp_det
+[from] Computing for function test_expf_det
+[from] Computing for function expf <-test_expf_det
+[from] Done for function expf
+[from] Done for function test_expf_det
+[from] Computing for function test_floor
+[from] Computing for function floor <-test_floor
+[from] Done for function floor
+[from] Done for function test_floor
+[from] Computing for function test_floor_det
+[from] Done for function test_floor_det
+[from] Computing for function test_floorf
+[from] Computing for function floorf <-test_floorf
+[from] Done for function floorf
+[from] Done for function test_floorf
+[from] Computing for function test_floorf_det
+[from] Done for function test_floorf_det
+[from] Computing for function test_fmod
+[from] Computing for function fmod <-test_fmod
+[from] Done for function fmod
+[from] Done for function test_fmod
+[from] Computing for function test_fmod_det
+[from] Done for function test_fmod_det
+[from] Computing for function test_log10_det
+[from] Computing for function log10 <-test_log10_det
+[from] Done for function log10
+[from] Done for function test_log10_det
+[from] Computing for function test_log10f_det
+[from] Computing for function log10f <-test_log10f_det
+[from] Done for function log10f
+[from] Done for function test_log10f_det
+[from] Computing for function test_log_det
+[from] Computing for function log <-test_log_det
+[from] Done for function log
+[from] Done for function test_log_det
+[from] Computing for function test_logf_det
+[from] Computing for function logf <-test_logf_det
+[from] Done for function logf
+[from] Done for function test_logf_det
+[from] Computing for function test_pow
+[from] Done for function test_pow
+[from] Computing for function test_pow_det
+[from] Done for function test_pow_det
+[from] Computing for function test_pow_singleton_exp
+[from] Done for function test_pow_singleton_exp
+[from] Computing for function test_powf
+[from] Done for function test_powf
+[from] Computing for function test_powf_det
+[from] Done for function test_powf_det
+[from] Computing for function test_powf_singleton_exp
+[from] Done for function test_powf_singleton_exp
+[from] Computing for function test_round
+[from] Computing for function round <-test_round
+[from] Done for function round
+[from] Done for function test_round
+[from] Computing for function test_round_det
+[from] Done for function test_round_det
+[from] Computing for function test_roundf
+[from] Computing for function roundf <-test_roundf
+[from] Done for function roundf
+[from] Done for function test_roundf
+[from] Computing for function test_roundf_det
+[from] Done for function test_roundf_det
+[from] Computing for function test_sin_det
+[from] Computing for function sin <-test_sin_det
+[from] Done for function sin
+[from] Done for function test_sin_det
+[from] Computing for function test_sqrt
+[from] Computing for function sqrt <-test_sqrt
+[from] Done for function sqrt
+[from] Done for function test_sqrt
+[from] Computing for function test_sqrt_det
+[from] Done for function test_sqrt_det
+[from] Computing for function test_sqrtf
+[from] Computing for function sqrtf <-test_sqrtf
+[from] Done for function sqrtf
+[from] Done for function test_sqrtf
+[from] Computing for function test_sqrtf_det
+[from] Done for function test_sqrtf_det
+[from] Computing for function test_uninit
+[from] Done for function test_uninit
+[from] Computing for function test_trunc
+[from] Computing for function trunc <-test_trunc
+[from] Done for function trunc
+[from] Done for function test_trunc
+[from] Computing for function test_trunc_det
+[from] Done for function test_trunc_det
+[from] Computing for function test_truncf
+[from] Computing for function truncf <-test_truncf
+[from] Done for function truncf
+[from] Done for function test_truncf
+[from] Computing for function test_truncf_det
+[from] Done for function test_truncf_det
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function acos:
+  \result FROM x
+[from] Function acosf:
+  \result FROM x
+[from] Function asin:
+  \result FROM x
+[from] Function asinf:
+  \result FROM x
+[from] Function atan:
+  \result FROM x
+[from] Function atan2:
+  \result FROM y; x
+[from] Function atanf:
+  \result FROM x
+[from] Function ceil:
+  \result FROM x
+[from] Function ceilf:
+  \result FROM x
+[from] Function cos:
+  \result FROM x
+[from] Function double_interval:
+  \result FROM min; max; nondet
+[from] Function exp:
+  __fc_errno FROM x
+  \result FROM x
+[from] Function expf:
+  __fc_errno FROM x
+  \result FROM x
+[from] Function floor:
+  \result FROM x
+[from] Function floorf:
+  \result FROM x
+[from] Function fmod:
+  \result FROM x; y
+[from] Function log:
+  \result FROM x
+[from] Function log10:
+  \result FROM x
+[from] Function log10f:
+  \result FROM x
+[from] Function logf:
+  \result FROM x
+[from] Function pow:
+  __fc_errno FROM x; y
+  \result FROM x; y
+[from] Function powf:
+  __fc_errno FROM x; y
+  \result FROM x; y
+[from] Function round:
+  \result FROM x
+[from] Function roundf:
+  \result FROM x
+[from] Function sin:
+  \result FROM x
+[from] Function sqrt:
+  \result FROM x
+[from] Function sqrtf:
+  \result FROM x
+[from] Function test_acos:
+  NO EFFECTS
+[from] Function test_asin:
+  NO EFFECTS
+[from] Function test_atan:
+  NO EFFECTS
+[from] Function test_atan2:
+  NO EFFECTS
+[from] Function test_atan2_det:
+  NO EFFECTS
+[from] Function test_ceil:
+  NO EFFECTS
+[from] Function test_ceil_det:
+  NO EFFECTS
+[from] Function test_ceilf:
+  NO EFFECTS
+[from] Function test_ceilf_det:
+  NO EFFECTS
+[from] Function test_cos_det:
+  NO EFFECTS
+[from] Function test_diff_pow_powf:
+  __fc_errno FROM \nothing
+[from] Function test_exp_det:
+  __fc_errno FROM \nothing
+[from] Function test_expf_det:
+  __fc_errno FROM \nothing
+[from] Function test_floor:
+  NO EFFECTS
+[from] Function test_floor_det:
+  NO EFFECTS
+[from] Function test_floorf:
+  NO EFFECTS
+[from] Function test_floorf_det:
+  NO EFFECTS
+[from] Function test_fmod:
+  NO EFFECTS
+[from] Function test_fmod_det:
+  NO EFFECTS
+[from] Function test_log10_det:
+  NO EFFECTS
+[from] Function test_log10f_det:
+  NO EFFECTS
+[from] Function test_log_det:
+  NO EFFECTS
+[from] Function test_logf_det:
+  NO EFFECTS
+[from] Function test_pow:
+  __fc_errno FROM nondet
+[from] Function test_pow_det:
+  __fc_errno FROM \nothing
+[from] Function test_pow_singleton_exp:
+  __fc_errno FROM nondet
+[from] Function test_powf:
+  __fc_errno FROM nondet
+[from] Function test_powf_det:
+  __fc_errno FROM \nothing
+[from] Function test_powf_singleton_exp:
+  __fc_errno FROM nondet
+[from] Function test_round:
+  NO EFFECTS
+[from] Function test_round_det:
+  NO EFFECTS
+[from] Function test_roundf:
+  NO EFFECTS
+[from] Function test_roundf_det:
+  NO EFFECTS
+[from] Function test_sin_det:
+  NO EFFECTS
+[from] Function test_sqrt:
+  NO EFFECTS
+[from] Function test_sqrt_det:
+  NO EFFECTS
+[from] Function test_sqrtf:
+  NO EFFECTS
+[from] Function test_sqrtf_det:
+  NO EFFECTS
+[from] Function test_uninit:
+  __fc_errno FROM nondet
+[from] Function trunc:
+  \result FROM x
+[from] Function test_trunc:
+  NO EFFECTS
+[from] Function test_trunc_det:
+  NO EFFECTS
+[from] Function truncf:
+  \result FROM x
+[from] Function test_truncf:
+  NO EFFECTS
+[from] Function test_truncf_det:
+  NO EFFECTS
+[from] Function main:
+  __fc_errno FROM nondet
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function double_interval:
+    __retres
+[inout] Inputs for function double_interval:
+    nondet
+[inout] Out (internal) for function test_acos:
+    half_pi; pi; zero; acos_image; bottom; bottom_0; d64__x; d64__y; d64__xy;
+    f32__half_pi; f32__pi; f32__zero; f32__acosf_image; bottom_1
+[inout] Inputs for function test_acos:
+    nondet; any_double; any_float
+[inout] Out (internal) for function test_asin:
+    zero; minus_half_pi; half_pi; asin_image; bottom; bottom_0; d64__x; 
+    d64__y; d64__xy; f32__zero; f32__minus_half_pi; f32__half_pi;
+    f32__asinf_image; bottom_1
+[inout] Inputs for function test_asin:
+    nondet; any_double; any_float
+[inout] Out (internal) for function test_atan:
+    zero; atan_image; d64__x; d64__y; d64__xy; f32__zero; f32__atanf_image
+[inout] Inputs for function test_atan:
+    nondet; any_double; any_float
+[inout] Out (internal) for function test_atan2:
+    x; y; a; b; c; d; e; f; g; h; i; j; k; l; m; n
+[inout] Inputs for function test_atan2:
+    nondet
+[inout] Out (internal) for function test_atan2_det:
+    a; b; c; d; e; f; g; h; i; j; k; l; m
+[inout] Inputs for function test_atan2_det:
+    \nothing
+[inout] Out (internal) for function test_ceil:
+    x; a; b; c
+[inout] Inputs for function test_ceil:
+    nondet
+[inout] Out (internal) for function test_ceil_det:
+    a; b; c; d; e; f
+[inout] Inputs for function test_ceil_det:
+    \nothing
+[inout] Out (internal) for function test_ceilf:
+    f32__x; tmp; f32__a; tmp_1; f32__b; tmp_3; f32__c
+[inout] Inputs for function test_ceilf:
+    nondet
+[inout] Out (internal) for function test_ceilf_det:
+    f32__a; f32__b; f32__c; f32__d; f32__e; f32__f
+[inout] Inputs for function test_ceilf_det:
+    \nothing
+[inout] Out (internal) for function test_cos_det:
+    x; y; z
+[inout] Inputs for function test_cos_det:
+    \nothing
+[inout] Out (internal) for function test_diff_pow_powf:
+    __fc_errno; d; f32__f
+[inout] Inputs for function test_diff_pow_powf:
+    \nothing
+[inout] Out (internal) for function test_exp_det:
+    __fc_errno; a; b; c; d; e
+[inout] Inputs for function test_exp_det:
+    nondet
+[inout] Out (internal) for function test_expf_det:
+    __fc_errno; f32__a; f32__b; f32__c; f32__d; f32__e
+[inout] Inputs for function test_expf_det:
+    \nothing
+[inout] Out (internal) for function test_floor:
+    x; a; b; c
+[inout] Inputs for function test_floor:
+    nondet
+[inout] Out (internal) for function test_floor_det:
+    a; b; c; d; e; f
+[inout] Inputs for function test_floor_det:
+    \nothing
+[inout] Out (internal) for function test_floorf:
+    f32__x; tmp; f32__a; tmp_1; f32__b; tmp_3; f32__c
+[inout] Inputs for function test_floorf:
+    nondet
+[inout] Out (internal) for function test_floorf_det:
+    f32__a; f32__b; f32__c; f32__d; f32__e; f32__f
+[inout] Inputs for function test_floorf_det:
+    \nothing
+[inout] Out (internal) for function test_fmod:
+    x; y; a; b; c; d; e; f; g; h; i; j; k; l; m; n; o; p; q; r; s; tmp_18; 
+    t; u; v1; v2; v3; v4; w1; w2; w3
+[inout] Inputs for function test_fmod:
+    nondet
+[inout] Out (internal) for function test_fmod_det:
+    a; b; c; d; e; f
+[inout] Inputs for function test_fmod_det:
+    nondet
+[inout] Out (internal) for function test_log10_det:
+    a; b
+[inout] Inputs for function test_log10_det:
+    nondet
+[inout] Out (internal) for function test_log10f_det:
+    f32__a; f32__b
+[inout] Inputs for function test_log10f_det:
+    nondet
+[inout] Out (internal) for function test_log_det:
+    a; b
+[inout] Inputs for function test_log_det:
+    nondet
+[inout] Out (internal) for function test_logf_det:
+    f32__a; f32__b
+[inout] Inputs for function test_logf_det:
+    nondet
+[inout] Out (internal) for function test_pow:
+    __fc_errno; x; y; a; b; c; d; e; f; g; h; i; j; k; l; m; n; o; p; q; r
+[inout] Inputs for function test_pow:
+    nondet
+[inout] Out (internal) for function test_pow_det:
+    __fc_errno; a; b; c; d; e; f; g; h
+[inout] Inputs for function test_pow_det:
+    \nothing
+[inout] Out (internal) for function test_pow_singleton_exp:
+    __fc_errno; x; c; d; e; f; g; h; i; j; k; l; m; n; o; p; q; r; s
+[inout] Inputs for function test_pow_singleton_exp:
+    nondet
+[inout] Out (internal) for function test_powf:
+    __fc_errno; f32__x; f32__y; tmp; f32__a; tmp_1; f32__b; tmp_3; f32__c;
+    tmp_5; tmp_6; f32__d; tmp_8; f32__e; tmp_10; f32__f; tmp_12; tmp_13;
+    f32__g; tmp_15; tmp_16; f32__h; tmp_18; tmp_19; f32__i; tmp_21; tmp_22;
+    f32__j; tmp_24; tmp_25; f32__k; tmp_27; tmp_28; f32__l; tmp_30; tmp_31;
+    f32__m
+[inout] Inputs for function test_powf:
+    nondet
+[inout] Out (internal) for function test_powf_det:
+    __fc_errno; f32__a; f32__b; f32__c; f32__d; f32__e; f32__f; f32__g; f32__h
+[inout] Inputs for function test_powf_det:
+    \nothing
+[inout] Out (internal) for function test_powf_singleton_exp:
+    __fc_errno; f32__x; tmp; tmp_0; f32__c; f32__d; f32__e; f32__f; tmp_5;
+    f32__g; tmp_7; f32__h; tmp_9; f32__i; tmp_11; f32__j; f32__k; f32__l;
+    tmp_15; f32__m; f32__n; f32__o; f32__p; f32__q; tmp_21; f32__r; f32__s
+[inout] Inputs for function test_powf_singleton_exp:
+    nondet
+[inout] Out (internal) for function test_round:
+    x; a; b; c
+[inout] Inputs for function test_round:
+    nondet
+[inout] Out (internal) for function test_round_det:
+    a; b; c; d; e; f
+[inout] Inputs for function test_round_det:
+    \nothing
+[inout] Out (internal) for function test_roundf:
+    f32__x; tmp; f32__a; tmp_1; f32__b; tmp_3; f32__c
+[inout] Inputs for function test_roundf:
+    nondet
+[inout] Out (internal) for function test_roundf_det:
+    f32__a; f32__b; f32__c; f32__d; f32__e; f32__f
+[inout] Inputs for function test_roundf_det:
+    \nothing
+[inout] Out (internal) for function test_sin_det:
+    x; y; z
+[inout] Inputs for function test_sin_det:
+    \nothing
+[inout] Out (internal) for function test_sqrt:
+    x; a; b; c
+[inout] Inputs for function test_sqrt:
+    nondet
+[inout] Out (internal) for function test_sqrt_det:
+    a; b; c; d
+[inout] Inputs for function test_sqrt_det:
+    nondet
+[inout] Out (internal) for function test_sqrtf:
+    f32__x; tmp; f32__a; tmp_1; b; tmp_3; c; tmp_5
+[inout] Inputs for function test_sqrtf:
+    nondet
+[inout] Out (internal) for function test_sqrtf_det:
+    f32__a; f32__b; f32__c; f32__d
+[inout] Inputs for function test_sqrtf_det:
+    nondet
+[inout] Out (internal) for function test_uninit:
+    __fc_errno; a; b; r
+[inout] Inputs for function test_uninit:
+    nondet
+[inout] Out (internal) for function test_trunc:
+    x; a; b; c
+[inout] Inputs for function test_trunc:
+    nondet
+[inout] Out (internal) for function test_trunc_det:
+    a; b; c; d; e; f
+[inout] Inputs for function test_trunc_det:
+    \nothing
+[inout] Out (internal) for function test_truncf:
+    f32__x; tmp; f32__a; tmp_1; f32__b; tmp_3; f32__c
+[inout] Inputs for function test_truncf:
+    nondet
+[inout] Out (internal) for function test_truncf_det:
+    f32__a; f32__b; f32__c; f32__d; f32__e; f32__f
+[inout] Inputs for function test_truncf_det:
+    \nothing
+[inout] Out (internal) for function main:
+    __fc_errno; __retres
+[inout] Inputs for function main:
+    nondet; any_double; any_float
+/* Generated by Frama-C */
+#include "errno.h"
+#include "math.h"
+static int volatile nondet;
+static double volatile any_double;
+static float volatile any_float;
+double double_interval(double min, double max)
+{
+  double __retres;
+  if (nondet) {
+    __retres = min;
+    goto return_label;
+  }
+  else {
+    __retres = max;
+    goto return_label;
+  }
+  return_label: return __retres;
+}
+
+void test_cos_det(void)
+{
+  double x = cos(1.);
+  double y = cos(0.);
+  double z = cos(- 1.);
+  return;
+}
+
+void test_sin_det(void)
+{
+  double x = sin(1.);
+  double y = sin(0.);
+  double z = sin(- 1.);
+  return;
+}
+
+extern int ( /* missing proto */ Frama_C_show_each_bottom)();
+
+void test_acos(void)
+{
+  double half_pi = acos(0.);
+  double pi = acos(- 1.);
+  double zero = acos(1.);
+  /*@ assert Eva: is_nan_or_infinite: \is_finite(any_double); */
+  double acos_image = acos(any_double);
+  if (nondet) {
+    double bottom = acos(- 1.5);
+    Frama_C_show_each_bottom(bottom);
+  }
+  if (nondet) {
+    double bottom_0 = acos(1.5);
+    Frama_C_show_each_bottom(bottom_0);
+  }
+  double d64__x = acos(0.5);
+  double d64__y = acos(- 0.5);
+  double d64__xy = double_interval(- 0.5,0.5);
+  d64__xy = acos(d64__xy);
+  float f32__half_pi = acosf(0.f);
+  float f32__pi = acosf(- 1.f);
+  float f32__zero = acosf(1.f);
+  /*@ assert Eva: is_nan_or_infinite: \is_finite(any_float); */
+  float f32__acosf_image = acosf(any_float);
+  if (nondet) {
+    float bottom_1 = acosf(2.f);
+    Frama_C_show_each_bottom(bottom_1);
+  }
+  return;
+}
+
+void test_asin(void)
+{
+  double zero = asin(0.);
+  double minus_half_pi = asin(- 1.);
+  double half_pi = asin(1.);
+  /*@ assert Eva: is_nan_or_infinite: \is_finite(any_double); */
+  double asin_image = asin(any_double);
+  if (nondet) {
+    double bottom = asin(- 1.5);
+    Frama_C_show_each_bottom(bottom);
+  }
+  if (nondet) {
+    double bottom_0 = asin(1.5);
+    Frama_C_show_each_bottom(bottom_0);
+  }
+  double d64__x = asin(- 0.5);
+  double d64__y = asin(0.5);
+  double d64__xy = double_interval(- 0.5,0.5);
+  d64__xy = asin(d64__xy);
+  float f32__zero = asinf(0.f);
+  float f32__minus_half_pi = asinf(- 1.f);
+  float f32__half_pi = asinf(1.f);
+  /*@ assert Eva: is_nan_or_infinite: \is_finite(any_float); */
+  float f32__asinf_image = asinf(any_float);
+  if (nondet) {
+    float bottom_1 = asinf(2.f);
+    Frama_C_show_each_bottom(bottom_1);
+  }
+  return;
+}
+
+void test_atan(void)
+{
+  double zero = atan(0.);
+  /*@ assert Eva: is_nan_or_infinite: \is_finite(any_double); */
+  double atan_image = atan(any_double);
+  double d64__x = atan(- 2.);
+  double d64__y = atan(2.);
+  double d64__xy = double_interval(- 2.,2.);
+  d64__xy = atan(d64__xy);
+  float f32__zero = atanf(0.f);
+  /*@ assert Eva: is_nan_or_infinite: \is_finite(any_float); */
+  float f32__atanf_image = atanf(any_float);
+  return;
+}
+
+void test_atan2_det(void)
+{
+  double a = atan2(1.,0.);
+  double b = atan2(0.,1.);
+  double c = atan2(1.,- 0.);
+  double d = atan2(- 0.,1.);
+  double e = atan2(- 1.,0.);
+  double f = atan2(- 1.,0.);
+  double g = atan2(- 1.,- 0.);
+  double h = atan2(- 1.,- 0.);
+  double i = atan2(0.,0.);
+  double j = atan2(2.,1.);
+  double k = atan2(- 2.,1.);
+  double l = atan2(2.,- 1.);
+  double m = atan2(- 2.,- 1.);
+  return;
+}
+
+void test_atan2(void)
+{
+  double x;
+  double y;
+  y = double_interval(0.125,10.);
+  x = double_interval(0.125,10.);
+  double a = atan2(y,x);
+  x = double_interval(- 2.5,3.);
+  double b = atan2(y,x);
+  y = double_interval(- 1.25,- 0.5);
+  double c = atan2(y,x);
+  x = double_interval(- 3.,- 2.5);
+  double d = atan2(y,x);
+  x = double_interval(- 0.,0.);
+  double e = atan2(y,x);
+  x = double_interval(1.,5.);
+  y = double_interval(- 1.,- 0.);
+  double f = atan2(y,x);
+  y = double_interval(0.,0.5);
+  double g = atan2(y,x);
+  y = double_interval(- 0.,0.5);
+  double h = atan2(y,x);
+  y = double_interval(- 0.5,0.);
+  double i = atan2(y,x);
+  y = double_interval(- 0.,0.);
+  double j = atan2(y,x);
+  double k = atan2(0.,x);
+  double l = atan2(- 0.,x);
+  double m = atan2(0.,- x);
+  double n = atan2(- 0.,- x);
+  return;
+}
+
+void test_pow_det(void)
+{
+  double a = pow(1.,8.);
+  double b = pow(0.,1.);
+  double c = pow(12.,0.);
+  double d = pow(2.25,0.25);
+  double e = pow(178.25,0.25);
+  double f = pow(129.5,- 0.25);
+  double g = pow(512.,- 2.25);
+  double h = pow(0.,0.);
+  return;
+}
+
+void test_powf_det(void)
+{
+  float f32__a = powf((float)1.,(float)8.);
+  float f32__b = powf((float)0.,(float)1.);
+  float f32__c = powf((float)12.,(float)0.);
+  float f32__d = powf((float)2.25,(float)0.25);
+  float f32__e = powf((float)178.25,(float)0.25);
+  float f32__f = powf((float)129.5,(float)(- 0.25));
+  float f32__g = powf((float)512.,(float)(- 2.25));
+  float f32__h = powf((float)0.,(float)0.);
+  return;
+}
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_show_each_unreachable)();
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_show_each_i)();
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_show_each_j)();
+
+void test_pow_singleton_exp(void)
+{
+  double x;
+  x = double_interval(- 3.5,- 2.75);
+  if (nondet) {
+    pow(x,1.5);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    pow(x,- 1.5);
+    Frama_C_show_each_unreachable();
+  }
+  x = double_interval(- 3.5,2.75);
+  double c = pow(x,1.5);
+  double d = pow(x,- 1.5);
+  double e = pow(x,- 3.);
+  double f = pow(x,- 2.);
+  x = double_interval((double)(1LL << 50),(double)(1LL << 62));
+  double g = pow(x,19.5);
+  x = double_interval((double)(- (1LL << 49)),- .75);
+  double h = pow(x,23.0);
+  x = double_interval(0.125,0.25);
+  double i = pow(x,500.);
+  Frama_C_show_each_i(i);
+  x = double_interval(1.25,2.0);
+  double j = pow(x,- 1024.);
+  Frama_C_show_each_j(j);
+  double k = pow(x,2.5);
+  double l = pow(x,3.5);
+  x = double_interval(0.25,4.125);
+  double m = pow(x,- 2.25);
+  double n = pow(x,- 1.5);
+  double o = pow(x,0.25);
+  double p = pow(x,1.625);
+  double q = pow(x,4.);
+  x = double_interval(- 3.5,- 0.125);
+  double r = pow(x,- 2.);
+  double s = pow(x,- 1.);
+  return;
+}
+
+void test_pow(void)
+{
+  double x;
+  double y;
+  y = double_interval(- 18.5,12.125);
+  double a = pow(1.0,y);
+  x = double_interval(- 15.25,32.75);
+  double b = pow(x,0.0);
+  y = double_interval(- 0.0,0.0);
+  double c = pow(x,y);
+  x = double_interval(- 4.0,7.5);
+  y = double_interval(2.125,2.875);
+  double d = pow(x,y);
+  y = double_interval(2.125,4.875);
+  double e = pow(x,y);
+  y = double_interval(2.0,3.0);
+  double f = pow(x,y);
+  y = double_interval(- 0.75,- 0.);
+  x = double_interval(0.125,7.5);
+  double g = pow(x,y);
+  y = double_interval(0.25,2.5);
+  x = double_interval(0.5,1.25);
+  double h = pow(x,y);
+  x = double_interval(- 1.0,1.0);
+  y = double_interval(- 1.0,1.0);
+  double i = pow(x,y);
+  x = double_interval(- 1.0,1.0);
+  y = double_interval(- 0.5,1.0);
+  double j = pow(x,y);
+  x = double_interval(- 13.,430.);
+  y = double_interval(3.,6.);
+  double k = pow(x,y);
+  x = double_interval(- 4.,- 2.);
+  y = double_interval(3.,5.);
+  double l = pow(x,y);
+  x = double_interval(- 0.,10.);
+  y = double_interval(- 0.,5.);
+  double m = pow(x,y);
+  x = double_interval(- 0.0,10.0);
+  y = double_interval(- 4.5,- 3.5);
+  double n = pow(x,y);
+  x = double_interval(- 5.,- 0.5);
+  y = double_interval(- 0.875,- 0.125);
+  if (nondet) {
+    pow(x,y);
+    Frama_C_show_each_unreachable();
+  }
+  y = double_interval(- 0.25,0.25);
+  double o = pow(x,y);
+  y = double_interval(10.,11.5);
+  double p = pow(x,y);
+  y = double_interval(- 9876.5,1234.5);
+  double q = pow(x,y);
+  x = double_interval(1e10,1e11);
+  y = double_interval(1e14,1e15);
+  if (nondet) {
+    pow(x,y);
+    Frama_C_show_each_unreachable();
+  }
+  x = double_interval(- 1e11,- 1e10);
+  y = double_interval(1e14,1e15);
+  if (nondet) {
+    pow(x,y);
+    Frama_C_show_each_unreachable();
+  }
+  y = double_interval(- 0.5,9.5);
+  double r = pow(10.0,y);
+  return;
+}
+
+void test_powf_singleton_exp(void)
+{
+  float f32__x;
+  double tmp;
+  double tmp_0;
+  double tmp_5;
+  double tmp_7;
+  double tmp_9;
+  double tmp_11;
+  double tmp_15;
+  double tmp_21;
+  tmp = double_interval(- 3.5,- 2.75);
+  f32__x = (float)tmp;
+  if (nondet) {
+    powf(f32__x,(float)1.5);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    powf(f32__x,(float)(- 1.5));
+    Frama_C_show_each_unreachable();
+  }
+  tmp_0 = double_interval(- 3.5,2.75);
+  f32__x = (float)tmp_0;
+  float f32__c = powf(f32__x,(float)1.5);
+  float f32__d = powf(f32__x,(float)(- 1.5));
+  float f32__e = powf(f32__x,(float)(- 3.));
+  float f32__f = powf(f32__x,(float)(- 2.));
+  tmp_5 = double_interval((double)(1LL << 20),(double)(1LL << 21));
+  f32__x = (float)tmp_5;
+  float f32__g = powf(f32__x,(float)5.8);
+  tmp_7 = double_interval((double)(- (1LL << 49)),- .75);
+  f32__x = (float)tmp_7;
+  float f32__h = powf(f32__x,(float)23.0);
+  tmp_9 = double_interval(0.125,0.25);
+  f32__x = (float)tmp_9;
+  float f32__i = powf(f32__x,(float)60.);
+  Frama_C_show_each_i(f32__i);
+  tmp_11 = double_interval(1.25,2.0);
+  f32__x = (float)tmp_11;
+  float f32__j = powf(f32__x,(float)(- 1024.));
+  Frama_C_show_each_j(f32__j);
+  float f32__k = powf(f32__x,(float)2.5);
+  float f32__l = powf(f32__x,(float)3.5);
+  tmp_15 = double_interval(0.25,4.125);
+  f32__x = (float)tmp_15;
+  float f32__m = powf(f32__x,(float)(- 2.25));
+  float f32__n = powf(f32__x,(float)(- 1.5));
+  float f32__o = powf(f32__x,(float)0.25);
+  float f32__p = powf(f32__x,(float)1.625);
+  float f32__q = powf(f32__x,(float)4.);
+  tmp_21 = double_interval(- 3.5,- 0.125);
+  f32__x = (float)tmp_21;
+  float f32__r = powf(f32__x,(float)(- 2.));
+  float f32__s = powf(f32__x,(float)(- 1.));
+  return;
+}
+
+void test_powf(void)
+{
+  float f32__x;
+  float f32__y;
+  double tmp;
+  double tmp_1;
+  double tmp_3;
+  double tmp_5;
+  double tmp_6;
+  double tmp_8;
+  double tmp_10;
+  double tmp_12;
+  double tmp_13;
+  double tmp_15;
+  double tmp_16;
+  double tmp_18;
+  double tmp_19;
+  double tmp_21;
+  double tmp_22;
+  double tmp_24;
+  double tmp_25;
+  double tmp_27;
+  double tmp_28;
+  double tmp_30;
+  double tmp_31;
+  tmp = double_interval(- 18.5,12.125);
+  f32__y = (float)tmp;
+  float f32__a = powf((float)1.0,f32__y);
+  tmp_1 = double_interval(- 15.25,32.75);
+  f32__x = (float)tmp_1;
+  float f32__b = powf(f32__x,(float)0.0);
+  tmp_3 = double_interval(- 0.0,0.0);
+  f32__y = (float)tmp_3;
+  float f32__c = powf(f32__x,f32__y);
+  tmp_5 = double_interval(- 4.0,7.5);
+  f32__x = (float)tmp_5;
+  tmp_6 = double_interval(2.125,2.875);
+  f32__y = (float)tmp_6;
+  float f32__d = powf(f32__x,f32__y);
+  tmp_8 = double_interval(2.125,4.875);
+  f32__y = (float)tmp_8;
+  float f32__e = powf(f32__x,f32__y);
+  tmp_10 = double_interval(2.0,3.0);
+  f32__y = (float)tmp_10;
+  float f32__f = powf(f32__x,f32__y);
+  tmp_12 = double_interval(- 0.75,- 0.);
+  f32__y = (float)tmp_12;
+  tmp_13 = double_interval(0.125,7.5);
+  f32__x = (float)tmp_13;
+  float f32__g = powf(f32__x,f32__y);
+  tmp_15 = double_interval(0.25,2.5);
+  f32__y = (float)tmp_15;
+  tmp_16 = double_interval(0.5,1.25);
+  f32__x = (float)tmp_16;
+  float f32__h = powf(f32__x,f32__y);
+  tmp_18 = double_interval(- 1.0,1.0);
+  f32__x = (float)tmp_18;
+  tmp_19 = double_interval(- 1.0,1.0);
+  f32__y = (float)tmp_19;
+  float f32__i = powf(f32__x,f32__y);
+  tmp_21 = double_interval(- 1.0,1.0);
+  f32__x = (float)tmp_21;
+  tmp_22 = double_interval(- 0.5,1.0);
+  f32__y = (float)tmp_22;
+  float f32__j = powf(f32__x,f32__y);
+  tmp_24 = double_interval(- 13.,430.);
+  f32__x = (float)tmp_24;
+  tmp_25 = double_interval(3.,6.);
+  f32__y = (float)tmp_25;
+  float f32__k = powf(f32__x,f32__y);
+  tmp_27 = double_interval(- 4.,- 2.);
+  f32__x = (float)tmp_27;
+  tmp_28 = double_interval(3.,5.);
+  f32__y = (float)tmp_28;
+  float f32__l = powf(f32__x,f32__y);
+  tmp_30 = double_interval(- 0.,10.);
+  f32__x = (float)tmp_30;
+  tmp_31 = double_interval(- 0.,5.);
+  f32__y = (float)tmp_31;
+  float f32__m = powf(f32__x,f32__y);
+  return;
+}
+
+void test_fmod_det(void)
+{
+  double a = fmod(4.0,2.25);
+  double b = fmod(- 4.0,2.25);
+  double c = fmod(- 0.0,2.25);
+  double d = fmod(0.0,2.25);
+  double e = fmod(0.0,0.0009765625);
+  double f = fmod(1.25,0.0009765625);
+  if (nondet) {
+    fmod(0.125,0.0);
+    Frama_C_show_each_unreachable();
+  }
+  return;
+}
+
+void test_fmod(void)
+{
+  double x;
+  double y;
+  double tmp_18;
+  x = double_interval(2.,9.5);
+  double a = fmod(x,1.5);
+  double b = fmod(x,- 1.5);
+  double c = fmod(- x,1.5);
+  double d = fmod(- x,- 1.5);
+  x = double_interval(.75,1.25);
+  double e = fmod(x,1.5);
+  double f = fmod(x,- 1.5);
+  x = double_interval(4.,5.5);
+  y = double_interval(6.5,8.);
+  double g = fmod(x,y);
+  x = double_interval(6.5,8.);
+  y = double_interval(4.,5.5);
+  double h = fmod(x,y);
+  double i = fmod(x,- y);
+  x = double_interval(- 9.,8.75);
+  y = double_interval(- 2.,4.5);
+  double j = fmod(x,y);
+  x = double_interval(- 2.,4.5);
+  y = double_interval(- 9.,8.75);
+  double k = fmod(x,y);
+  y = double_interval(- 0.0,0.0);
+  if (nondet) {
+    fmod(x,y);
+    Frama_C_show_each_unreachable();
+  }
+  y = double_interval(0.0,0.125);
+  double l = fmod(x,y);
+  y = double_interval(- 0.125,- 0.0);
+  double m = fmod(x,y);
+  x = double_interval(1e308,1.1e308);
+  double n = fmod(x,0.001953125);
+  x = double_interval(- 1.1e308,- 1e308);
+  double o = fmod(x,0.001953125);
+  x = double_interval(1e308,1.00001e308);
+  double p = fmod(x,0.001953125);
+  x = double_interval(1.600000000000001e11,1.600000000000005e11);
+  double q = fmod(x,0.001953125);
+  x = double_interval(1.759218604000011e13,1759218604000015e13);
+  double r = fmod(x,0.00195313);
+  x = double_interval(0.5,0.505);
+  double s = fmod(x,0.1);
+  tmp_18 = double_interval(0.5,0.505);
+  x = - tmp_18;
+  double t = fmod(x,0.1);
+  x = double_interval((double)(-8),- 6.5);
+  double u = fmod(x,(double)4);
+  x = double_interval((double)6,(double)7);
+  y = double_interval((double)(-5),(double)(-4));
+  double v1 = fmod(x,y);
+  y = double_interval((double)4,(double)5);
+  double v2 = fmod(x,y);
+  x = double_interval((double)(-7),(double)(-6));
+  double v3 = fmod(x,y);
+  y = double_interval((double)(-5),(double)(-4));
+  double v4 = fmod(x,y);
+  x = double_interval((double)2,(double)3);
+  y = double_interval((double)(-4),(double)5);
+  double w1 = fmod(x,y);
+  x = double_interval((double)(-2),(double)3);
+  double w2 = fmod(x,y);
+  x = double_interval((double)(-3),(double)2);
+  double w3 = fmod(x,y);
+  return;
+}
+
+void test_sqrt_det(void)
+{
+  double a = sqrt(42.125);
+  double b = sqrt(0.125);
+  if (nondet) {
+    sqrt(- 2.);
+    Frama_C_show_each_unreachable();
+  }
+  double c = sqrt(0.);
+  double d = sqrt(- 0.);
+  return;
+}
+
+void test_sqrt(void)
+{
+  double x = double_interval(- 0.0,5.0);
+  double a = sqrt(x);
+  x = double_interval(- 6.5,0.0);
+  double b = sqrt(x);
+  x = double_interval(- 6.5,- 0.0);
+  double c = sqrt(x);
+  x = double_interval(- 6.5,- 0.1);
+  if (nondet) {
+    sqrt(x);
+    Frama_C_show_each_unreachable();
+  }
+  return;
+}
+
+void test_sqrtf_det(void)
+{
+  float f32__a = sqrtf((float)42.125);
+  float f32__b = sqrtf((float)0.125);
+  if (nondet) {
+    sqrtf((float)(- 2.));
+    Frama_C_show_each_unreachable();
+  }
+  float f32__c = sqrtf((float)0.);
+  float f32__d = sqrtf((float)(- 0.));
+  return;
+}
+
+void test_sqrtf(void)
+{
+  double tmp;
+  double tmp_1;
+  double tmp_3;
+  double tmp_5;
+  tmp = double_interval(- 0.0,5.0);
+  float f32__x = (float)tmp;
+  float f32__a = sqrtf(f32__x);
+  tmp_1 = double_interval(- 6.5,0.0);
+  f32__x = (float)tmp_1;
+  float b = sqrtf(f32__x);
+  tmp_3 = double_interval(- 6.5,- 0.0);
+  f32__x = (float)tmp_3;
+  float c = sqrtf(f32__x);
+  tmp_5 = double_interval(- 6.5,- 0.1);
+  f32__x = (float)tmp_5;
+  if (nondet) {
+    sqrt((double)f32__x);
+    Frama_C_show_each_unreachable();
+  }
+  return;
+}
+
+void test_exp_det(void)
+{
+  double a = exp(42.125);
+  double b = exp(- 2.);
+  double c = exp(0.);
+  double d = exp(- 0.);
+  double e = exp(- 1.);
+  if (nondet) {
+    exp(1e100);
+    Frama_C_show_each_unreachable();
+  }
+  return;
+}
+
+void test_expf_det(void)
+{
+  float f32__a = expf((float)42.125);
+  float f32__b = expf((float)(- 2.));
+  float f32__c = expf((float)0.);
+  float f32__d = expf((float)(- 0.));
+  float f32__e = expf((float)(- 1.));
+  return;
+}
+
+void test_log_det(void)
+{
+  double a = log(42.125);
+  double b = log(0.125);
+  if (nondet) {
+    log(- 2.);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log(0.);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log(- 0.);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log(- 1.);
+    Frama_C_show_each_unreachable();
+  }
+  return;
+}
+
+void test_logf_det(void)
+{
+  float f32__a = logf((float)42.125);
+  float f32__b = logf((float)0.125);
+  if (nondet) {
+    logf((float)(- 2.));
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    logf((float)0.);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    logf((float)(- 0.));
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    logf((float)(- 1.));
+    Frama_C_show_each_unreachable();
+  }
+  return;
+}
+
+void test_log10_det(void)
+{
+  double a = log10(42.125);
+  double b = log10(0.125);
+  if (nondet) {
+    log10(- 2.);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log10(0.);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log10(- 0.);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log10(- 1.);
+    Frama_C_show_each_unreachable();
+  }
+  return;
+}
+
+void test_log10f_det(void)
+{
+  float f32__a = log10f((float)42.125);
+  float f32__b = log10f((float)0.125);
+  if (nondet) {
+    log10f((float)(- 2.));
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log10f((float)0.);
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log10f((float)(- 0.));
+    Frama_C_show_each_unreachable();
+  }
+  if (nondet) {
+    log10f((float)(- 1.));
+    Frama_C_show_each_unreachable();
+  }
+  return;
+}
+
+void test_diff_pow_powf(void)
+{
+  double d = pow(0.11,30.);
+  float f32__f = powf((float)0.11,(float)30.);
+  return;
+}
+
+void test_floor_det(void)
+{
+  double a = floor(1.5);
+  double b = floor(0.5);
+  double c = floor(0.0);
+  double d = floor(- 0.0);
+  double e = floor(- 0.5);
+  double f = floor(- 1.5);
+  return;
+}
+
+void test_ceil_det(void)
+{
+  double a = ceil(1.5);
+  double b = ceil(0.5);
+  double c = ceil(0.0);
+  double d = ceil(- 0.0);
+  double e = ceil(- 0.5);
+  double f = ceil(- 1.5);
+  return;
+}
+
+void test_trunc_det(void)
+{
+  double a = trunc(1.5);
+  double b = trunc(0.5);
+  double c = trunc(0.0);
+  double d = trunc(- 0.0);
+  double e = trunc(- 0.5);
+  double f = trunc(- 1.5);
+  return;
+}
+
+void test_round_det(void)
+{
+  double a = round(1.5);
+  double b = round(0.5);
+  double c = round(0.0);
+  double d = round(- 0.0);
+  double e = round(- 0.5);
+  double f = round(- 1.5);
+  return;
+}
+
+void test_floor(void)
+{
+  double x;
+  x = double_interval(- 0.5,1.5);
+  double a = floor(x);
+  x = double_interval(- 0.0,0.5);
+  double b = floor(x);
+  x = double_interval(- 2.5,- 0.5);
+  double c = floor(x);
+  return;
+}
+
+void test_ceil(void)
+{
+  double x;
+  x = double_interval(- 0.5,1.5);
+  double a = ceil(x);
+  x = double_interval(- 0.0,0.5);
+  double b = ceil(x);
+  x = double_interval(- 2.5,- 0.5);
+  double c = ceil(x);
+  return;
+}
+
+void test_trunc(void)
+{
+  double x;
+  x = double_interval(- 0.5,1.5);
+  double a = trunc(x);
+  x = double_interval(- 0.0,0.5);
+  double b = trunc(x);
+  x = double_interval(- 2.5,- 0.5);
+  double c = trunc(x);
+  return;
+}
+
+void test_round(void)
+{
+  double x;
+  x = double_interval(- 0.5,1.5);
+  double a = round(x);
+  x = double_interval(- 0.0,0.5);
+  double b = round(x);
+  x = double_interval(- 2.5,- 0.5);
+  double c = round(x);
+  return;
+}
+
+void test_floorf_det(void)
+{
+  float f32__a = floorf((float)1.5);
+  float f32__b = floorf((float)0.5);
+  float f32__c = floorf((float)0.0);
+  float f32__d = floorf((float)(- 0.0));
+  float f32__e = floorf((float)(- 0.5));
+  float f32__f = floorf((float)(- 1.5));
+  return;
+}
+
+void test_ceilf_det(void)
+{
+  float f32__a = ceilf((float)1.5);
+  float f32__b = ceilf((float)0.5);
+  float f32__c = ceilf((float)0.0);
+  float f32__d = ceilf((float)(- 0.0));
+  float f32__e = ceilf((float)(- 0.5));
+  float f32__f = ceilf((float)(- 1.5));
+  return;
+}
+
+void test_truncf_det(void)
+{
+  float f32__a = truncf((float)1.5);
+  float f32__b = truncf((float)0.5);
+  float f32__c = truncf((float)0.0);
+  float f32__d = truncf((float)(- 0.0));
+  float f32__e = truncf((float)(- 0.5));
+  float f32__f = truncf((float)(- 1.5));
+  return;
+}
+
+void test_roundf_det(void)
+{
+  float f32__a = roundf((float)1.5);
+  float f32__b = roundf((float)0.5);
+  float f32__c = roundf((float)0.0);
+  float f32__d = roundf((float)(- 0.0));
+  float f32__e = roundf((float)(- 0.5));
+  float f32__f = roundf((float)(- 1.5));
+  return;
+}
+
+void test_floorf(void)
+{
+  float f32__x;
+  double tmp;
+  double tmp_1;
+  double tmp_3;
+  tmp = double_interval(- 0.5,1.5);
+  f32__x = (float)tmp;
+  float f32__a = floorf(f32__x);
+  tmp_1 = double_interval(- 0.0,0.5);
+  f32__x = (float)tmp_1;
+  float f32__b = floorf(f32__x);
+  tmp_3 = double_interval(- 2.5,- 0.5);
+  f32__x = (float)tmp_3;
+  float f32__c = floorf(f32__x);
+  return;
+}
+
+void test_ceilf(void)
+{
+  float f32__x;
+  double tmp;
+  double tmp_1;
+  double tmp_3;
+  tmp = double_interval(- 0.5,1.5);
+  f32__x = (float)tmp;
+  float f32__a = ceilf(f32__x);
+  tmp_1 = double_interval(- 0.0,0.5);
+  f32__x = (float)tmp_1;
+  float f32__b = ceilf(f32__x);
+  tmp_3 = double_interval(- 2.5,- 0.5);
+  f32__x = (float)tmp_3;
+  float f32__c = ceilf(f32__x);
+  return;
+}
+
+void test_truncf(void)
+{
+  float f32__x;
+  double tmp;
+  double tmp_1;
+  double tmp_3;
+  tmp = double_interval(- 0.5,1.5);
+  f32__x = (float)tmp;
+  float f32__a = truncf(f32__x);
+  tmp_1 = double_interval(- 0.0,0.5);
+  f32__x = (float)tmp_1;
+  float f32__b = truncf(f32__x);
+  tmp_3 = double_interval(- 2.5,- 0.5);
+  f32__x = (float)tmp_3;
+  float f32__c = truncf(f32__x);
+  return;
+}
+
+void test_roundf(void)
+{
+  float f32__x;
+  double tmp;
+  double tmp_1;
+  double tmp_3;
+  tmp = double_interval(- 0.5,1.5);
+  f32__x = (float)tmp;
+  float f32__a = roundf(f32__x);
+  tmp_1 = double_interval(- 0.0,0.5);
+  f32__x = (float)tmp_1;
+  float f32__b = roundf(f32__x);
+  tmp_3 = double_interval(- 2.5,- 0.5);
+  f32__x = (float)tmp_3;
+  float f32__c = roundf(f32__x);
+  return;
+}
+
+void test_uninit(void)
+{
+  double a;
+  double b;
+  double r;
+  if (nondet) {
+    /*@ assert Eva: initialization: \initialized(&a); */
+    r = sqrt(a);
+    Frama_C_show_each_unreachable(r);
+  }
+  if (nondet) {
+    a = 0.5;
+    b = double_interval(0.25,8.5);
+  }
+  /*@ assert Eva: initialization: \initialized(&a); */
+  r = sqrt(a);
+  /*@ assert Eva: initialization: \initialized(&b); */
+  r = pow(b,a);
+  return;
+}
+
+int main(void)
+{
+  int __retres;
+  test_cos_det();
+  test_sin_det();
+  test_acos();
+  test_asin();
+  test_atan();
+  test_atan2_det();
+  test_atan2();
+  test_pow_det();
+  test_pow_singleton_exp();
+  test_pow();
+  test_fmod_det();
+  test_fmod();
+  test_sqrt_det();
+  test_sqrt();
+  test_exp_det();
+  test_log_det();
+  test_log10_det();
+  test_powf_det();
+  test_powf_singleton_exp();
+  test_powf();
+  test_sqrtf_det();
+  test_sqrtf();
+  test_expf_det();
+  test_logf_det();
+  test_log10f_det();
+  test_diff_pow_powf();
+  test_floor_det();
+  test_ceil_det();
+  test_trunc_det();
+  test_round_det();
+  test_floor();
+  test_ceil();
+  test_trunc();
+  test_round();
+  test_floorf_det();
+  test_ceilf_det();
+  test_truncf_det();
+  test_roundf_det();
+  test_floorf();
+  test_ceilf();
+  test_truncf();
+  test_roundf();
+  test_uninit();
+  __retres = 0;
+  return __retres;
+}
+
+

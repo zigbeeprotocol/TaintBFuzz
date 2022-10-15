@@ -1,0 +1,83 @@
+[kernel] Parsing alloca_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] alloca_h.c:30: Call to builtin alloca
+[eva] alloca_h.c:30: allocating variable __alloca_main_l30
+[eva] alloca_h.c:31: assertion got status valid.
+[eva] alloca_h.c:35: Call to builtin alloca
+[eva] alloca_h.c:35: allocating variable __alloca_main_l35
+[eva] alloca_h.c:40: assertion got status valid.
+[eva] computing for function f <- main.
+  Called from alloca_h.c:41.
+[eva] alloca_h.c:6: Call to builtin alloca
+[eva] alloca_h.c:6: allocating variable __alloca_f_l6
+[eva] alloca_h.c:7: Call to builtin malloc
+[eva] alloca_h.c:7: allocating variable __malloc_f_l7
+[eva] alloca_h.c:9: Call to builtin free
+[eva:alarm] alloca_h.c:9: Warning: 
+  function free: precondition 'freeable' got status unknown.
+[eva:alarm] alloca_h.c:10: Warning: 
+  accessing left-value that contains escaping addresses.
+  assert ¬\dangling(&p);
+[eva] Recording results for f
+[eva] Done for function f
+[eva] alloca_h.c:41: freeing automatic bases: {__alloca_f_l6}
+[eva] alloca_h.c:42: assertion got status valid.
+[eva] computing for function loop <- main.
+  Called from alloca_h.c:43.
+[eva] alloca_h.c:23: Call to builtin alloca
+[eva] alloca_h.c:23: allocating variable __alloca_loop_l23
+[eva] alloca_h.c:22: starting to merge loop iterations
+[eva] alloca_h.c:23: Call to builtin alloca
+[eva] alloca_h.c:23: Call to builtin alloca
+[eva] alloca_h.c:23: Call to builtin alloca
+[eva] alloca_h.c:23: Call to builtin alloca
+[eva] Recording results for loop
+[eva] Done for function loop
+[eva] alloca_h.c:43: freeing automatic bases: {__alloca_w_loop_l23}
+[eva:alarm] alloca_h.c:44: Warning: assertion got status unknown.
+[eva] alloca_h.c:45: Call to builtin alloca
+[eva] alloca_h.c:45: allocating variable __alloca_main_l45
+[eva] computing for function f2 <- main.
+  Called from alloca_h.c:46.
+[eva] alloca_h.c:16: Call to builtin alloca
+[eva] alloca_h.c:16: allocating variable __alloca_f2_l16
+[eva] Recording results for f2
+[eva] Done for function f2
+[eva] alloca_h.c:46: freeing automatic bases: {__alloca_f2_l16}
+[eva] alloca_h.c:48: assertion got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f2:
+  __fc_stack_status ∈ [--..--]
+  p ∈ {{ &__alloca_f2_l16[0] }}
+  __alloca_main_l45[0] ∈ {42}
+                   [1] ∈ {43}
+[eva:final-states] Values at end of function loop:
+  __fc_stack_status ∈ [--..--]
+  q ∈ {{ NULL ; &__alloca_w_loop_l23[0] }}
+[eva:final-states] Values at end of function f:
+  __fc_heap_status ∈ [--..--]
+  __fc_stack_status ∈ [--..--]
+  p ∈ {{ &__alloca_f_l6[0] }} or ESCAPINGADDR
+  q ∈ {{ NULL ; &__malloc_f_l7[0] }} or ESCAPINGADDR
+  r ∈ {{ NULL ; &__alloca_f_l6[0] ; &__malloc_f_l7[0] }} or ESCAPINGADDR
+[eva:final-states] Values at end of function main:
+  __fc_heap_status ∈ [--..--]
+  __fc_stack_status ∈ [--..--]
+  a ∈ {{ &__alloca_main_l30 }}
+  p ∈ {{ &__alloca_main_l35[0] }}
+  q ∈ ESCAPINGADDR
+  r ∈ ESCAPINGADDR
+  in ∈ {{ &__alloca_main_l45[0] }}
+  s ∈ ESCAPINGADDR
+  __retres ∈ {0}
+  __alloca_main_l30 ∈ {42}
+  __alloca_main_l35[0] ∈ {65}
+                   [1] ∈ {0}
+  __alloca_main_l45[0] ∈ {44}
+                   [1] ∈ {43}

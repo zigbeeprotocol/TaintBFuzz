@@ -1,0 +1,64 @@
+[kernel] Parsing struct3.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  tabst[0..9] ∈ {0}
+  tabst2[0..9] ∈ {0}
+  tab_s[0..1] ∈ {0}
+  tab_s1[0..1] ∈ {0}
+  tab_s2[0..1] ∈ {0}
+  tab_s3[0..1] ∈ {0}
+  tab_s4[0..1] ∈ {0}
+  s1 ∈ {0}
+  s2 ∈ {0}
+  s8 ∈ {0}
+  s7 ∈ {0}
+  v ∈ [--..--]
+[eva:alarm] struct3.i:42: Warning: 
+  accessing out of bounds index. assert 10 < 10;
+[kernel] struct3.i:42: Warning: 
+  all target addresses were invalid. This path is assumed to be dead.
+[eva:alarm] struct3.i:46: Warning: 
+  pointer downcast. assert (unsigned int)s2.c ≤ 2147483647;
+[eva:alarm] struct3.i:46: Warning: 
+  pointer downcast. assert (unsigned int)(s2.c + (int)s2.c) ≤ 2147483647;
+[eva] struct3.i:46: 
+  Assigning imprecise value to s2.a.
+  The imprecision originates from Arithmetic {struct3.i:46}
+[eva] Recording results for main
+[eva] done for function main
+[eva:garbled-mix] Warning: 
+  Garbled mix generated during analysis:
+  {{ garbled mix of &{s1} (origin: Arithmetic {struct3.i:46}) }}
+[eva] struct3.i:42: assertion 'Eva,index_bound' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  s1.a ∈ {2}
+    .d[0] ∈ {1}
+    .d[1..2] ∈ {2}
+    .d[3..7] ∈ {0}
+    .d[8..9] ∈ {2}
+    .b.a ∈ {3}
+    {.b.b; .e[0..9]} ∈ {0}
+    .c ∈ {{ &s1 }}
+  s2.a ∈ {{ garbled mix of &{s1} (origin: Arithmetic {struct3.i:46}) }}
+    .d[0] ∈ {1}
+    .d[1..2] ∈ {2}
+    .d[3..7] ∈ {0}
+    .d[8..9] ∈ {2}
+    .b.a ∈ {3}
+    {.b.b; .e[0..9]} ∈ {0}
+    .c ∈ {{ &s1 }}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  s1{{.a; .d[0..2]}; {.d[8..9]; .b.a}; .c} FROM \nothing
+  s2 FROM s1{.d[3..7]; {.b.b; .e[0..9]}}
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    s1{{.a; .d[0..2]}; {.d[8..9]; .b.a}; .c}; s2
+[inout] Inputs for function main:
+    s1; s2.c; v

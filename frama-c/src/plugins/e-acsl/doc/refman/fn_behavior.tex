@@ -1,0 +1,33 @@
+\begin{syntax}
+  [ function-contract ] ::= requires-clause* ;
+                            { decreases-clause? } simple-clause* ;
+                            named-behavior* completeness-clause* ;
+  \
+  clause-kind ::= "check" | "admit"
+  \
+  requires-clause ::= clause-kind? "requires" pred ";"
+  \
+  { decreases-clause } ::= { "decreases" term ("for" ident)? ";" }
+  \
+  simple-clause ::= { assigns-clause } | ensures-clause ;
+                  | { allocation-clause} | { abrupt-clause }
+  \
+  { assigns-clause } ::= { "assigns" locations ";" }
+  \
+  { locations } ::= { locations-list | "\nothing" }
+  \
+  { locations-list } ::= { location ("," location) * }
+  \
+  { location } ::= { tset }
+  \
+  ensures-clause ::= clause-kind? "ensures" pred ";"
+  \
+  named-behavior ::= "behavior" id ":" behavior-body
+  \
+  behavior-body ::= assumes-clause* requires-clause* simple-clause*
+  \
+  assumes-clause ::= "assumes" pred ";"
+  \
+  completeness-clause ::= "complete" "behaviors" (id (","id)*)? ";" ;
+                        | "disjoint" "behaviors" (id (","id)*)? ";"
+\end{syntax}

@@ -1,0 +1,128 @@
+[kernel] Parsing sys_stat_h.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  nondet ∈ [--..--]
+[eva] computing for function __va_open_mode_t <- main.
+  Called from sys_stat_h.c:10.
+[eva] using specification for function __va_open_mode_t
+[eva] sys_stat_h.c:10: 
+  function __va_open_mode_t: precondition 'valid_filename' got status valid.
+[eva] Done for function __va_open_mode_t
+[eva] computing for function close <- main.
+  Called from sys_stat_h.c:12.
+[eva] using specification for function close
+[eva] sys_stat_h.c:12: function close: precondition 'valid_fd' got status valid.
+[eva] Done for function close
+[eva] computing for function stat <- main.
+  Called from sys_stat_h.c:14.
+[eva] using specification for function stat
+[eva] sys_stat_h.c:14: 
+  function stat: precondition 'valid_pathname' got status valid.
+[eva] sys_stat_h.c:14: function stat: precondition 'valid_buf' got status valid.
+[eva] Done for function stat
+[eva] computing for function mkdir <- main.
+  Called from sys_stat_h.c:17.
+[eva] using specification for function mkdir
+[eva] sys_stat_h.c:17: 
+  function mkdir: precondition 'valid_path' got status valid.
+[eva] Done for function mkdir
+[eva] computing for function mkdir <- main.
+  Called from sys_stat_h.c:20.
+[eva:alarm] sys_stat_h.c:20: Warning: 
+  function mkdir: precondition 'valid_path' got status invalid.
+[eva] Done for function mkdir
+[eva] computing for function mkdir <- main.
+  Called from sys_stat_h.c:20.
+[eva] Done for function mkdir
+[eva] computing for function umask <- main.
+  Called from sys_stat_h.c:22.
+[eva] using specification for function umask
+[eva] Done for function umask
+[eva] computing for function umask <- main.
+  Called from sys_stat_h.c:22.
+[eva] Done for function umask
+[eva] computing for function lstat <- main.
+  Called from sys_stat_h.c:23.
+[eva] using specification for function lstat
+[eva] sys_stat_h.c:23: 
+  function lstat: precondition 'valid_path' got status valid.
+[eva] sys_stat_h.c:23: 
+  function lstat: precondition 'valid_buf' got status valid.
+[eva] Done for function lstat
+[eva] computing for function lstat <- main.
+  Called from sys_stat_h.c:23.
+[eva] Done for function lstat
+[eva] computing for function mkfifo <- main.
+  Called from sys_stat_h.c:24.
+[eva] using specification for function mkfifo
+[eva] sys_stat_h.c:24: 
+  function mkfifo: precondition 'valid_path' got status valid.
+[eva] Done for function mkfifo
+[eva] computing for function mknod <- main.
+  Called from sys_stat_h.c:25.
+[eva] using specification for function mknod
+[eva] sys_stat_h.c:25: 
+  function mknod: precondition 'valid_path' got status valid.
+[eva] Done for function mknod
+[eva] computing for function mknod <- main.
+  Called from sys_stat_h.c:25.
+[eva] Done for function mknod
+[eva] computing for function chmod <- main.
+  Called from sys_stat_h.c:27.
+[eva] using specification for function chmod
+[eva] sys_stat_h.c:27: 
+  function chmod: precondition 'valid_path' got status valid.
+[eva] Done for function chmod
+[eva] computing for function fchmod <- main.
+  Called from sys_stat_h.c:29.
+[eva] using specification for function fchmod
+[eva] Done for function fchmod
+[eva] computing for function fchmod <- main.
+  Called from sys_stat_h.c:29.
+[eva] Done for function fchmod
+[eva] computing for function fchmodat <- main.
+  Called from sys_stat_h.c:31.
+[eva] using specification for function fchmodat
+[eva] sys_stat_h.c:31: 
+  function fchmodat: precondition 'valid_path' got status valid.
+[eva] Done for function fchmodat
+[eva] computing for function fstat <- main.
+  Called from sys_stat_h.c:35.
+[eva] using specification for function fstat
+[eva] sys_stat_h.c:35: 
+  function fstat: precondition 'valid_buf' got status valid.
+[eva] Done for function fstat
+[eva] computing for function fstat <- main.
+  Called from sys_stat_h.c:35.
+[eva] Done for function fstat
+[eva] computing for function fstatat <- main.
+  Called from sys_stat_h.c:37.
+[eva] using specification for function fstatat
+[eva] sys_stat_h.c:37: 
+  function fstatat: precondition 'valid_path' got status valid.
+[eva] sys_stat_h.c:37: 
+  function fstatat: precondition 'valid_buf' got status valid.
+[eva] Done for function fstatat
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_errno ∈ [--..--]
+  __fc_fds[0..1023] ∈ [--..--]
+  fd ∈ [-1..1023]
+  st ∈ [--..--] or UNINITIALIZED
+  r ∈ {-1; 0}
+  r_mkdir ∈ {-1; 0}
+  old_mask ∈ [--..--]
+  r2 ∈ {-1; 0}
+  r3 ∈ {-1; 0}
+  r4 ∈ {-1; 0}
+  r5 ∈ {-1; 0}
+  r6 ∈ {-1; 0}
+  r7 ∈ {-1; 0}
+  buf ∈ [--..--] or UNINITIALIZED
+  r8 ∈ {-1; 0}
+  r9 ∈ {-1; 0}
+  __retres ∈ {-1; 0; 1; 2; 3}

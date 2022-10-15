@@ -1,0 +1,28 @@
+64c64,67
+< [eva] backward_add_ptr.c:91: Reusing old results for call to gm
+---
+> [eva] computing for function gm <- main3 <- main.
+>   Called from backward_add_ptr.c:91.
+> [eva] Recording results for gm
+> [eva] Done for function gm
+84c87,90
+< [eva] backward_add_ptr.c:110: Reusing old results for call to gm
+---
+> [eva] computing for function gm <- main3 <- main.
+>   Called from backward_add_ptr.c:110.
+> [eva] Recording results for gm
+> [eva] Done for function gm
+96c102,105
+< [eva] backward_add_ptr.c:125: Reusing old results for call to gm
+---
+> [eva] computing for function gm <- main3 <- main.
+>   Called from backward_add_ptr.c:125.
+> [eva] Recording results for gm
+> [eva] Done for function gm
+145c154,157
+< [eva] backward_add_ptr.c:160: Reusing old results for call to gm
+---
+> [eva] computing for function gm <- main4 <- main.
+>   Called from backward_add_ptr.c:160.
+> [eva] Recording results for gm
+> [eva] Done for function gm

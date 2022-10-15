@@ -1,0 +1,61 @@
+[kernel] Parsing partitioning-interproc.c (with preprocessing)
+[eva] Analyzing a complete application starting at cassign_test
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function cassign <- cassign_test.
+  Called from partitioning-interproc.c:24.
+[eva] computing for function Frama_C_nondet <- cassign <- cassign_test.
+  Called from partitioning-interproc.c:11.
+[eva] using specification for function Frama_C_nondet
+[eva] Done for function Frama_C_nondet
+[eva] Recording results for cassign
+[eva] Done for function cassign
+[eva] partitioning-interproc.c:26: Frama_C_show_each: {1}
+[eva] partitioning-interproc.c:30: Reusing old results for call to cassign
+[eva] computing for function cassign <- cassign_test.
+  Called from partitioning-interproc.c:30.
+[eva] computing for function Frama_C_nondet <- cassign <- cassign_test.
+  Called from partitioning-interproc.c:11.
+[eva] Done for function Frama_C_nondet
+[eva] Recording results for cassign
+[eva] Done for function cassign
+[eva] partitioning-interproc.c:32: Frama_C_show_each: {1}
+[eva] Recording results for cassign_test
+[eva] done for function cassign_test
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function cassign:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ {0} or UNINITIALIZED
+  __retres ∈ {0; 1}
+[eva:final-states] Values at end of function cassign_test:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ {0} or UNINITIALIZED
+  y ∈ {1} or UNINITIALIZED
+[from] Computing for function cassign
+[from] Computing for function Frama_C_nondet <-cassign
+[from] Done for function Frama_C_nondet
+[from] Done for function cassign
+[from] Computing for function cassign_test
+[from] Done for function cassign_test
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_nondet:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; a; b
+[from] Function cassign:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  x FROM Frama_C_entropy_source; p (and SELF)
+  \result FROM Frama_C_entropy_source
+[from] Function cassign_test:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function cassign:
+    Frama_C_entropy_source; tmp; x; __retres
+[inout] Inputs for function cassign:
+    Frama_C_entropy_source
+[inout] Out (internal) for function cassign_test:
+    Frama_C_entropy_source; x; y; tmp; tmp_0
+[inout] Inputs for function cassign_test:
+    Frama_C_entropy_source

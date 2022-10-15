@@ -1,0 +1,10 @@
+[kernel] Parsing inconsistent_decl.c (with preprocessing)
+[kernel:typing:no-proto] inconsistent_decl.c:12: Warning: 
+  Calling function f that is declared without prototype.
+  Its formals will be inferred from actual arguments
+[kernel] Parsing inconsistent_decl_2.i (no preprocessing)
+[kernel] User Error: Incompatible declaration for f:
+  different type constructors: int vs. double
+  First declaration was at inconsistent_decl.c:8
+  Current declaration is at inconsistent_decl_2.i:5
+[kernel] Frama-C aborted: invalid user input.

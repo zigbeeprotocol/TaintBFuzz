@@ -1,0 +1,266 @@
+# frama-c -wp [...]
+[kernel] Parsing multi_matrix_types.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 1 goal scheduled
+---------------------------------------------
+--- Context 'typed_job' Cluster 'Matrix' 
+---------------------------------------------
+theory Matrix
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.cint.Cint *)
+  
+  predicate IsArray_uint32 (t:int -> int) = forall i:int. is_uint32 (get t i)
+  
+  predicate IsArray_sint64 (t:int -> int) = forall i:int. is_sint64 (get t i)
+  
+  predicate EqArray_int (n:int) (t:int -> int) (t1:int -> int) =
+    forall i:int. 0 <= i -> i < n -> get t1 i = get t i
+end
+---------------------------------------------
+--- Context 'typed_job' Cluster 'S1_S' 
+---------------------------------------------
+theory S1_S
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  type S1_S =
+    | S1_S1 (F1_S_f:int) (F1_S_a:int -> int) (F1_S_b:int -> int)
+  
+  (* use Matrix *)
+  
+  predicate IsS1_S (s:S1_S) =
+    (IsArray_sint64 (F1_S_b s) /\ IsArray_uint32 (F1_S_a s)) /\
+    is_sint32 (F1_S_f s)
+  
+  predicate EqS1_S (s:S1_S) (s1:S1_S) =
+    (F1_S_f s1 = F1_S_f s /\ EqArray_int 5 (F1_S_a s) (F1_S_a s1)) /\
+    EqArray_int 5 (F1_S_b s) (F1_S_b s1)
+end
+---------------------------------------------
+--- Context 'typed_job' Cluster 'Compound' 
+---------------------------------------------
+theory Compound
+  (* use why3.BuiltIn.BuiltIn *)
+  
+  (* use bool.Bool *)
+  
+  (* use int.Int *)
+  
+  (* use int.ComputerDivision *)
+  
+  (* use real.RealInfix *)
+  
+  (* use frama_c_wp.qed.Qed *)
+  
+  (* use map.Map *)
+  
+  (* use frama_c_wp.memory.Memory *)
+  
+  function shiftfield_F1_S_f (p:addr) : addr = shift p 0
+  
+  function shiftfield_F1_S_a (p:addr) : addr = shift p 1
+  
+  function shift_uint32 (p:addr) (k:int) : addr = shift p k
+  
+  function Array_uint32 addr int (addr -> int) : int -> int
+  
+  function shiftfield_F1_S_b (p:addr) : addr = shift p 6
+  
+  function shift_sint64 (p:addr) (k:int) : addr = shift p k
+  
+  function Array_sint64 addr int (addr -> int) : int -> int
+  
+  (* use S1_S *)
+  
+  function Load_S1_S (p:addr) (mint:addr -> int) (mint1:addr -> int) (mint2:
+    addr -> int) : S1_S =
+    S1_S1 (get mint1 (shiftfield_F1_S_f p))
+    (Array_uint32 (shiftfield_F1_S_a p) 5 mint)
+    (Array_sint64 (shiftfield_F1_S_b p) 5 mint2)
+  
+  axiom Q_Array_uint32_access :
+    forall mint:addr -> int, i:int, n:int, p:addr
+     [get (Array_uint32 p n mint) i].
+     0 <= i ->
+     i < n -> get (Array_uint32 p n mint) i = get mint (shift_uint32 p i)
+  
+  axiom Q_Array_uint32_update_Mint0 :
+    forall mint:addr -> int, n:int, p:addr, q:addr, v:int
+     [Array_uint32 p n (set mint q v)].
+     not q = p -> Array_uint32 p n (set mint q v) = Array_uint32 p n mint
+  
+  axiom Q_Array_uint32_eqmem_Mint0 :
+    forall mint:addr -> int, mint1:addr -> int, n:int, n1:int, p:addr, q:addr
+     [Array_uint32 p n mint, eqmem mint mint1 q n1| Array_uint32 p n mint1,
+     eqmem mint mint1 q n1].
+     included p 1 q n1 ->
+     eqmem mint mint1 q n1 -> Array_uint32 p n mint1 = Array_uint32 p n mint
+  
+  axiom Q_Array_uint32_havoc_Mint0 :
+    forall mint:addr -> int, mint1:addr -> int, n:int, n1:int, p:addr, q:addr
+     [Array_uint32 p n (havoc mint1 mint q n1)].
+     separated p 1 q n1 ->
+     Array_uint32 p n (havoc mint1 mint q n1) = Array_uint32 p n mint
+  
+  axiom Q_Array_sint64_access :
+    forall mint:addr -> int, i:int, n:int, p:addr
+     [get (Array_sint64 p n mint) i].
+     0 <= i ->
+     i < n -> get (Array_sint64 p n mint) i = get mint (shift_sint64 p i)
+  
+  axiom Q_Array_sint64_update_Mint0 :
+    forall mint:addr -> int, n:int, p:addr, q:addr, v:int
+     [Array_sint64 p n (set mint q v)].
+     not q = p -> Array_sint64 p n (set mint q v) = Array_sint64 p n mint
+  
+  axiom Q_Array_sint64_eqmem_Mint0 :
+    forall mint:addr -> int, mint1:addr -> int, n:int, n1:int, p:addr, q:addr
+     [Array_sint64 p n mint, eqmem mint mint1 q n1| Array_sint64 p n mint1,
+     eqmem mint mint1 q n1].
+     included p 1 q n1 ->
+     eqmem mint mint1 q n1 -> Array_sint64 p n mint1 = Array_sint64 p n mint
+  
+  axiom Q_Array_sint64_havoc_Mint0 :
+    forall mint:addr -> int, mint1:addr -> int, n:int, n1:int, p:addr, q:addr
+     [Array_sint64 p n (havoc mint1 mint q n1)].
+     separated p 1 q n1 ->
+     Array_sint64 p n (havoc mint1 mint q n1) = Array_sint64 p n mint
+  
+  axiom Q_Load_S1_S_update_Mint0 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, p:addr, q:
+     addr, v:int [Load_S1_S p (set mint q v) mint1 mint2].
+     separated p 11 q 1 ->
+     Load_S1_S p (set mint q v) mint1 mint2 = Load_S1_S p mint mint1 mint2
+  
+  axiom Q_Load_S1_S_eqmem_Mint0 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, mint3:addr
+     -> int, n:int, p:addr, q:addr [Load_S1_S p mint mint2 mint3,
+     eqmem mint mint1 q n| Load_S1_S p mint1 mint2 mint3,
+     eqmem mint mint1 q n].
+     included p 11 q n ->
+     eqmem mint mint1 q n ->
+     Load_S1_S p mint1 mint2 mint3 = Load_S1_S p mint mint2 mint3
+  
+  axiom Q_Load_S1_S_havoc_Mint0 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, mint3:addr
+     -> int, n:int, p:addr, q:addr
+     [Load_S1_S p (havoc mint1 mint q n) mint2 mint3].
+     separated p 11 q n ->
+     Load_S1_S p (havoc mint1 mint q n) mint2 mint3 =
+     Load_S1_S p mint mint2 mint3
+  
+  axiom Q_Load_S1_S_update_Mint1 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, p:addr, q:
+     addr, v:int [Load_S1_S p mint2 (set mint1 q v) mint].
+     separated p 11 q 1 ->
+     Load_S1_S p mint2 (set mint1 q v) mint = Load_S1_S p mint2 mint1 mint
+  
+  axiom Q_Load_S1_S_eqmem_Mint1 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, mint3:addr
+     -> int, n:int, p:addr, q:addr [Load_S1_S p mint3 mint1 mint,
+     eqmem mint1 mint2 q n| Load_S1_S p mint3 mint2 mint,
+     eqmem mint1 mint2 q n].
+     included p 11 q n ->
+     eqmem mint1 mint2 q n ->
+     Load_S1_S p mint3 mint2 mint = Load_S1_S p mint3 mint1 mint
+  
+  axiom Q_Load_S1_S_havoc_Mint1 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, mint3:addr
+     -> int, n:int, p:addr, q:addr
+     [Load_S1_S p mint3 (havoc mint2 mint1 q n) mint].
+     separated p 11 q n ->
+     Load_S1_S p mint3 (havoc mint2 mint1 q n) mint =
+     Load_S1_S p mint3 mint1 mint
+  
+  axiom Q_Load_S1_S_update_Mint2 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, p:addr, q:
+     addr, v:int [Load_S1_S p mint1 mint (set mint2 q v)].
+     separated p 11 q 1 ->
+     Load_S1_S p mint1 mint (set mint2 q v) = Load_S1_S p mint1 mint mint2
+  
+  axiom Q_Load_S1_S_eqmem_Mint2 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, mint3:addr
+     -> int, n:int, p:addr, q:addr [Load_S1_S p mint1 mint mint2,
+     eqmem mint2 mint3 q n| Load_S1_S p mint1 mint mint3,
+     eqmem mint2 mint3 q n].
+     included p 11 q n ->
+     eqmem mint2 mint3 q n ->
+     Load_S1_S p mint1 mint mint3 = Load_S1_S p mint1 mint mint2
+  
+  axiom Q_Load_S1_S_havoc_Mint2 :
+    forall mint:addr -> int, mint1:addr -> int, mint2:addr -> int, mint3:addr
+     -> int, n:int, p:addr, q:addr
+     [Load_S1_S p mint1 mint (havoc mint3 mint2 q n)].
+     separated p 11 q n ->
+     Load_S1_S p mint1 mint (havoc mint3 mint2 q n) =
+     Load_S1_S p mint1 mint mint2
+end
+[wp:print-generated] 
+  theory WP
+    (* use why3.BuiltIn.BuiltIn *)
+    
+    (* use bool.Bool *)
+    
+    (* use int.Int *)
+    
+    (* use int.ComputerDivision *)
+    
+    (* use real.RealInfix *)
+    
+    (* use frama_c_wp.qed.Qed *)
+    
+    (* use map.Map *)
+    
+    (* use frama_c_wp.memory.Memory *)
+    
+    (* use S1_S *)
+    
+    (* use Compound *)
+    
+    goal wp_goal :
+      forall t:addr -> int, t1:addr -> int, t2:addr -> int, a:addr, i:int.
+       let a1 = Load_S1_S a t t2 t1 in
+       let a2 = Load_S1_S a t (set t2 (shiftfield_F1_S_f a) i) t1 in
+       region (a.base) <= 0 -> IsS1_S a1 -> IsS1_S a2 -> EqS1_S a2 a1
+  end
+[wp] 1 goal generated
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition (file multi_matrix_types.i, line 10) in 'job':
+Let a = Load_S1_S(p, Mint_0, Mint_1, Mint_2).
+Let a_1 = Load_S1_S(p, Mint_0, Mint_1[shiftfield_F1_S_f(p) <- v], Mint_2).
+Assume {
+  Type: IsS1_S(a) /\ IsS1_S(a_1).
+  (* Heap *)
+  Type: region(p.base) <= 0.
+}
+Prove: EqS1_S(a_1, a).
+
+------------------------------------------------------------

@@ -1,0 +1,3 @@
+[kernel] Parsing assigns.c (with preprocessing)
+[kernel] Parsing TMPDIR/aorai_assigns_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

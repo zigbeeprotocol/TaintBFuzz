@@ -1,0 +1,30 @@
+%init:		a;
+%accept:	i;
+%deterministic;
+
+$x : int;
+$y : int;
+
+a : { CALL(main) } -> b;
+
+b :
+  { CALL(f) } $x := f().x; $y := $x; -> c
+| { CALL(g) } -> d
+;
+
+c : { RETURN(f) } -> e;
+
+d : { RETURN(g) } -> g;
+
+e :
+  { CALL(h) && $x > 0 } -> f
+| { RETURN(main) } -> i
+;
+
+f : { RETURN(h) } -> g;
+
+g : { CALL(i) } -> h;
+
+h : { RETURN(i) } $y := 0; $x := 1; -> e;
+
+i : -> i;

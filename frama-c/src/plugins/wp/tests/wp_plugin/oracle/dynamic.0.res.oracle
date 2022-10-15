@@ -1,0 +1,338 @@
+# frama-c -wp [...]
+[kernel] Parsing dynamic.i (no preprocessing)
+[wp] Running WP plugin...
+[wp:calls] Computing dynamic calls.
+[wp] dynamic.i:32: Calls f1 f2
+[wp] dynamic.i:46: Calls g
+[wp] dynamic.i:67: Calls h1 h2
+[wp] dynamic.i:80: Calls (for bhv1) h1 h2 h0
+[wp] dynamic.i:80: Calls (for bhv0) h1 h2 h0
+[wp] dynamic.i:89: Calls h1
+[wp] dynamic.i:102: Calls unreachable_g
+[wp:calls] Dynamic call(s): 6.
+[wp] Warning: Missing RTE guards
+[wp] dynamic.i:80: Warning: Missing 'calls' for default behavior
+
+Goal Call point f1 f2 in 'call' at instruction (file dynamic.i, line 32):
+Let a = Mptr_0[shiftfield_F1_S_f(closure_0)].
+Let a_1 = global(G_f2_30).
+Let a_2 = global(G_f1_22).
+Let x = Mint_0[shiftfield_F1_S_param(closure_0)].
+Assume {
+  Type: is_sint32(x).
+  (* Heap *)
+  Type: (region(closure_0.base) <= 0) /\ framed(Mptr_0).
+  (* Pre-condition *)
+  Have: (a = a_1) \/ ((a = a_2) /\ (IAbs.abs(x) <= 5)).
+}
+Prove: (a = a_2) \/ (a = a_1).
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 28) in 'call' (1/2):
+Tags: Call f1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 28) in 'call' (2/2):
+Tags: Call f2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dynamic.i, line 12) in 'f1'' in 'call' at instruction (file dynamic.i, line 32)
+:
+Tags: Call f1.
+Let x = Mint_0[shiftfield_F1_S_param(closure_0)].
+Assume {
+  Type: is_sint32(x).
+  (* Heap *)
+  Type: (region(closure_0.base) <= 0) /\ framed(Mptr_0).
+  (* Pre-condition *)
+  Have: IAbs.abs(x) <= 5.
+  (* Instance of 'f1' *)
+  (* Call point f1 f2 *)
+  Have: Mptr_0[shiftfield_F1_S_f(closure_0)] = global(G_f1_22).
+}
+Prove: ((-10) <= x) /\ (x <= 10).
+
+------------------------------------------------------------
+
+Goal Call point h1 h2 in 'behavior' at instruction (file dynamic.i, line 67):
+Assume { (* Heap *) Type: region(p.base) <= 0. }
+Prove: (global(G_h1_61) = p) \/ (global(G_h2_67) = p).
+
+------------------------------------------------------------
+
+Goal Call point h1 h2 in 'behavior' at instruction (file dynamic.i, line 67):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bhv1' (file dynamic.i, line 64) in 'behavior' (1/2):
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bhv1' (file dynamic.i, line 64) in 'behavior' (2/2):
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 63) in 'behavior' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 63) in 'behavior' (2/2):
+Call Effect at line 67
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 63) in 'behavior' (1/4):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 63) in 'behavior' (2/4):
+Call Effect at line 67
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 63) in 'behavior' (3/4):
+Call Result at line 67
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 63) in 'behavior' (4/4):
+Call Result at line 67
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Call point h1 h2 h0 for bhv1 in 'some_behaviors' at instruction (file dynamic.i, line 80):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bhv1' (file dynamic.i, line 73) in 'some_behaviors' (1/3):
+Tags: Call h0.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bhv1' (file dynamic.i, line 73) in 'some_behaviors' (2/3):
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bhv1' (file dynamic.i, line 73) in 'some_behaviors' (3/3):
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 72) in 'some_behaviors' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 72) in 'some_behaviors' (2/2):
+Call Effect at line 80
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 72) in 'some_behaviors' (1/5):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 72) in 'some_behaviors' (2/5):
+Call Effect at line 80
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 72) in 'some_behaviors' (3/5):
+Call Result at line 80
+Tags: Call h0.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 72) in 'some_behaviors' (4/5):
+Call Result at line 80
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv1' (file dynamic.i, line 72) in 'some_behaviors' (5/5):
+Call Result at line 80
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Call point h1 h2 h0 for bhv0 in 'some_behaviors' at instruction (file dynamic.i, line 80):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bhv0' (file dynamic.i, line 77) in 'some_behaviors' (1/3):
+Tags: Call h0.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bhv0' (file dynamic.i, line 77) in 'some_behaviors' (2/3):
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition for 'bhv0' (file dynamic.i, line 77) in 'some_behaviors' (3/3):
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (2/3):
+Call Effect at line 80
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (3/3):
+Call Effect at line 80
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (1/6):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (2/6):
+Call Effect at line 80
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (3/6):
+Call Effect at line 80
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (4/6):
+Call Result at line 80
+Tags: Call h0.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (5/6):
+Call Result at line 80
+Tags: Call h2.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns for 'bhv0' nothing in 'some_behaviors' (6/6):
+Call Result at line 80
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Call point h1 in 'missing_context' at instruction (file dynamic.i, line 89):
+Assume { (* Heap *) Type: region(p.base) <= 0. }
+Prove: global(G_h1_61) = p.
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 84) in 'missing_context':
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dynamic.i, line 85) in 'missing_context':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dynamic.i, line 85) in 'missing_context' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dynamic.i, line 85) in 'missing_context' (2/2):
+Call Result at line 89
+Tags: Call h1.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Call point unreachable_g in 'no_call' at instruction (file dynamic.i, line 102):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 96) in 'no_call' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition (file dynamic.i, line 96) in 'no_call' (2/2):
+Tags: Call unreachable_g.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dynamic.i, line 93) in 'unreachable_g'' in 'no_call' at instruction (file dynamic.i, line 102)
+:
+Tags: Call unreachable_g.
+Prove: true.
+
+------------------------------------------------------------
+[wp] dynamic.i:65: Warning: 
+  Memory model hypotheses for function 'behavior':
+  /*@ behavior wp_typed:
+        requires \separated(p + (..), &X1); */
+  int behavior(int (*p)(void));
+[wp] dynamic.i:78: Warning: 
+  Memory model hypotheses for function 'some_behaviors':
+  /*@ behavior wp_typed:
+        requires \separated(p + (..), &X1); */
+  int some_behaviors(int (*p)(void));
+[wp] dynamic.i:87: Warning: 
+  Memory model hypotheses for function 'missing_context':
+  /*@ behavior wp_typed:
+        requires \separated(p, &X1); */
+  int missing_context(int (*p)(void));

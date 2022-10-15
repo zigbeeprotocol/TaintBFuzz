@@ -1,0 +1,27 @@
+# frama-c -wp [...]
+[kernel] Parsing overflow2.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 14 goals scheduled
+[wp] [Qed] Goal typed_pointers_and_companions_ensures_post : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_assert_a01 : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_assert_a02 : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_assert_a03 : Valid
+[wp] [Alt-Ergo] Goal typed_pointers_and_companions_assert_a04 : Valid
+[wp] [Alt-Ergo] Goal typed_pointers_and_companions_assert_a05 : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_assigns : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_ulong_ensures_postul : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_ulong_assert_a06 : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_ulong_assert_a07 : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_ulong_assert_a08 : Valid
+[wp] [Alt-Ergo] Goal typed_pointers_and_companions_ulong_assert_a09 : Valid
+[wp] [Alt-Ergo] Goal typed_pointers_and_companions_ulong_assert_a10 : Valid
+[wp] [Qed] Goal typed_pointers_and_companions_ulong_assigns : Valid
+[wp] Proved goals:   14 / 14
+  Qed:            10 
+  Alt-Ergo:        4
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  pointers_and_companions   5        2        7       100%
+  pointers_and_companions_ulong   5   2       7       100%
+------------------------------------------------------------

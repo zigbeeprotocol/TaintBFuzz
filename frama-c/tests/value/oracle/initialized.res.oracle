@@ -1,0 +1,421 @@
+[kernel] Parsing initialized.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  b1 ∈ [--..--]
+  b2 ∈ [--..--]
+  b3 ∈ [--..--]
+  b4 ∈ [--..--]
+  b5 ∈ [--..--]
+  b6 ∈ [--..--]
+  rand ∈ [--..--]
+  v1 ∈ {0}
+  i6 ∈ [--..--]
+[eva] computing for function g1 <- main.
+  Called from initialized.c:193.
+[eva] initialized.c:19: starting to merge loop iterations
+[eva:alarm] initialized.c:21: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:22: Warning: assertion got status unknown.
+[eva] computing for function Frama_C_interval <- g1 <- main.
+  Called from initialized.c:24.
+[eva] using specification for function Frama_C_interval
+[eva] initialized.c:24: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- g1 <- main.
+  Called from initialized.c:25.
+[eva] initialized.c:25: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] initialized.c:26: Warning: assertion got status unknown.
+[eva] computing for function Frama_C_interval <- g1 <- main.
+  Called from initialized.c:28.
+[eva] initialized.c:28: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- g1 <- main.
+  Called from initialized.c:29.
+[eva] initialized.c:29: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] initialized.c:30: Warning: assertion got status unknown.
+[eva] computing for function Frama_C_interval <- g1 <- main.
+  Called from initialized.c:32.
+[eva] initialized.c:32: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- g1 <- main.
+  Called from initialized.c:33.
+[eva] initialized.c:33: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] initialized.c:34: assertion got status valid.
+[eva] computing for function Frama_C_interval <- g1 <- main.
+  Called from initialized.c:36.
+[eva] initialized.c:36: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] computing for function Frama_C_interval <- g1 <- main.
+  Called from initialized.c:37.
+[eva] initialized.c:37: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva:alarm] initialized.c:38: Warning: assertion got status unknown.
+[eva] Recording results for g1
+[eva] Done for function g1
+[eva] computing for function g2 <- main.
+  Called from initialized.c:194.
+[eva:alarm] initialized.c:50: Warning: 
+  pointer downcast. assert (unsigned int)(&b4) ≤ 2147483647;
+[eva:alarm] initialized.c:50: Warning: 
+  signed overflow. assert -2147483648 ≤ (int)(&b4) + (int)(&b4);
+[eva:alarm] initialized.c:50: Warning: 
+  signed overflow. assert (int)(&b4) + (int)(&b4) ≤ 2147483647;
+[eva] initialized.c:50: 
+  Assigning imprecise value to t[6].
+  The imprecision originates from Arithmetic {initialized.c:50}
+[eva] initialized.c:51: 
+  Assigning imprecise value to t[7].
+  The imprecision originates from Arithmetic {initialized.c:50}
+[eva] initialized.c:63: 
+  Frama_C_dump_each:
+  # cvalue:
+  Frama_C_entropy_source ∈ [--..--]
+  b1 ∈ [--..--]
+  b2 ∈ [--..--]
+  b3 ∈ [--..--]
+  b4 ∈ [--..--]
+  b5 ∈ [--..--]
+  b6 ∈ [--..--]
+  rand ∈ [--..--]
+  t[0..1] ∈ {0x11223344} or UNINITIALIZED
+   [2..3] ∈ {0x55667788} or UNINITIALIZED
+   [4..5] ∈ {0x12345678; 0x23456789} or UNINITIALIZED
+   [6..7] ∈
+   {{ garbled mix of &{b4}
+    (origin: Arithmetic {initialized.c:50}) }} or UNINITIALIZED
+   [8..9] ∈ {1; 2} or UNINITIALIZED
+   [10][bits 0 to 23] ∈ {0} or UNINITIALIZED
+   {[10][bits 24 to 31]#; [11][bits 0 to 23]#} ∈
+   {0x11111111} or UNINITIALIZED
+   {[11][bits 24 to 31]; [12][bits 0 to 23]} ∈ {0} or UNINITIALIZED
+   {[12][bits 24 to 31]#; [13][bits 0 to 23]#} ∈
+   {0x11111111; 0x22222222} or UNINITIALIZED
+   [13][bits 24 to 31] ∈ {0} or UNINITIALIZED
+  v1 ∈ {0}
+  i6 ∈ [--..--]
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva:alarm] initialized.c:66: Warning: assertion got status unknown.
+[eva] initialized.c:68: 
+  Frama_C_dump_each:
+  # cvalue:
+  Frama_C_entropy_source ∈ [--..--]
+  b1 ∈ [--..--]
+  b2 ∈ [--..--]
+  b3 ∈ [--..--]
+  b4 ∈ [--..--]
+  b5 ∈ [--..--]
+  b6 ∈ [--..--]
+  rand ∈ [--..--]
+  t{[0]; [1][bits 0 to 23]#} ∈
+   {0x11223344} or UNINITIALIZED repeated %32, bits 0 to 55 
+   [1][bits 24 to 31]# ∈ {0x11223344}%32, bits 24 to 31 
+   [2][bits 0 to 23]# ∈ {0x55667788}%32, bits 0 to 23 
+   [bits 88 to 127]# ∈
+   {0x55667788} or UNINITIALIZED repeated %32, bits 24 to 63 
+   [4..5] ∈ {0x12345678; 0x23456789} or UNINITIALIZED
+   [6..7] ∈
+   {{ garbled mix of &{b4}
+    (origin: Arithmetic {initialized.c:50}) }} or UNINITIALIZED
+   [8..9] ∈ {1; 2} or UNINITIALIZED
+   [10][bits 0 to 23] ∈ {0} or UNINITIALIZED
+   {[10][bits 24 to 31]#; [11][bits 0 to 23]#} ∈
+   {0x11111111} or UNINITIALIZED
+   {[11][bits 24 to 31]; [12][bits 0 to 23]} ∈ {0} or UNINITIALIZED
+   {[12][bits 24 to 31]#; [13][bits 0 to 23]#} ∈
+   {0x11111111; 0x22222222} or UNINITIALIZED
+   [13][bits 24 to 31] ∈ {0} or UNINITIALIZED
+  p_0 ∈ {{ &t + {7} }}
+  v1 ∈ {0}
+  i6 ∈ [--..--]
+  __retres ∈ UNINITIALIZED
+  ==END OF DUMP==
+[eva] initialized.c:70: Frama_C_show_each: {0x66778811}
+[eva:alarm] initialized.c:72: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:74: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:76: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:78: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:80: Warning: assertion got status unknown.
+[eva] Recording results for g2
+[eva] Done for function g2
+[eva] computing for function g3 <- main.
+  Called from initialized.c:195.
+[eva:alarm] initialized.c:89: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:93: Warning: 
+  accessing uninitialized left-value. assert \initialized(&r2);
+[eva:alarm] initialized.c:96: Warning: 
+  accessing uninitialized left-value. assert \initialized(&x3);
+[eva] computing for function f <- g3 <- main.
+  Called from initialized.c:98.
+[eva] initialized.c:11: starting to merge loop iterations
+[eva:alarm] initialized.c:8: Warning: 
+  function f: postcondition got status invalid.
+[eva:alarm] initialized.c:8: Warning: 
+  function f: postcondition got status unknown.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] computing for function f <- g3 <- main.
+  Called from initialized.c:99.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] Recording results for g3
+[eva] Done for function g3
+[eva] computing for function g4 <- main.
+  Called from initialized.c:196.
+[eva:alarm] initialized.c:104: Warning: 
+  accessing uninitialized left-value. assert \initialized(&y);
+[eva] Recording results for g4
+[eva] Done for function g4
+[eva] computing for function g5 <- main.
+  Called from initialized.c:197.
+[eva] computing for function wrong_assigns <- g5 <- main.
+  Called from initialized.c:127.
+[eva] using specification for function wrong_assigns
+[eva:ensures-false] initialized.c:114: Warning: 
+  function wrong_assigns: this postcondition evaluates to false in this
+  context. If it is valid, either a precondition was not verified for this
+  call, or some assigns/from clauses are incomplete (or incorrect).
+[eva] Done for function wrong_assigns
+[eva] initialized.c:130: assertion got status valid.
+[eva] initialized.c:131: assertion got status valid.
+[eva:alarm] initialized.c:133: Warning: assertion got status unknown.
+[eva] Recording results for g5
+[eva] Done for function g5
+[eva] computing for function g6 <- main.
+  Called from initialized.c:198.
+[eva:alarm] initialized.c:143: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:144: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:145: Warning: assertion got status unknown.
+[eva] initialized.c:146: assertion got status valid.
+[eva:alarm] initialized.c:147: Warning: assertion got status unknown.
+[eva] initialized.c:148: assertion got status valid.
+[eva] Recording results for g6
+[eva] Done for function g6
+[eva] computing for function g7 <- main.
+  Called from initialized.c:199.
+[eva] computing for function Frama_C_make_unknown <- g7 <- main.
+  Called from initialized.c:153.
+[eva] using specification for function Frama_C_make_unknown
+[eva] initialized.c:153: 
+  function Frama_C_make_unknown: precondition 'valid_p' got status valid.
+[eva] Done for function Frama_C_make_unknown
+[eva] initialized.c:154: assertion got status valid.
+[eva] Recording results for g7
+[eva] Done for function g7
+[eva] computing for function reduce_by_negation <- main.
+  Called from initialized.c:200.
+[eva:alarm] initialized.c:164: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:165: Warning: check 'invalid' got status invalid.
+[eva:alarm] initialized.c:168: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:169: Warning: check 'unknown' got status unknown.
+[eva:alarm] initialized.c:172: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:173: Warning: check 'unknown' got status unknown.
+[eva:alarm] initialized.c:177: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:178: Warning: check 'unknown' got status unknown.
+[eva:alarm] initialized.c:182: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:183: Warning: check 'invalid' got status unknown.
+[eva] initialized.c:186: starting to merge loop iterations
+[eva:alarm] initialized.c:188: Warning: assertion got status unknown.
+[eva:alarm] initialized.c:189: Warning: check 'unknown' got status unknown.
+[eva] Recording results for reduce_by_negation
+[eva] Done for function reduce_by_negation
+[eva] Recording results for main
+[eva] done for function main
+[eva] initialized.c:93: assertion 'Eva,initialization' got final status invalid.
+[eva] initialized.c:104: 
+  assertion 'Eva,initialization' got final status invalid.
+[scope:rm_asserts] removing 3 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  t1[0] ∈ UNINITIALIZED
+    [1..2] ∈ {1; 2} or UNINITIALIZED
+    [3..4] ∈ UNINITIALIZED
+  t2[0] ∈ UNINITIALIZED
+    [1..248] ∈ [1..248] or UNINITIALIZED
+    [249] ∈ UNINITIALIZED
+[eva:final-states] Values at end of function g1:
+  Frama_C_entropy_source ∈ [--..--]
+  t1[0..19] ∈ {1}
+  t2[0..3] ∈ {2} or UNINITIALIZED
+    [4..19] ∈ {2}
+  t3[0..5] ∈ {3} or UNINITIALIZED
+    [6..12] ∈ {3}
+    [13..19] ∈ {3} or UNINITIALIZED
+  t4[0..6] ∈ {4} or UNINITIALIZED
+    [7] ∈ {4}
+    [8..19] ∈ {4} or UNINITIALIZED
+  t5[0..19] ∈ {5} or UNINITIALIZED
+  t6[0..19] ∈ {6} or UNINITIALIZED
+  i ∈ {7; 8; 9}
+  j ∈ {4; 5; 6; 7}
+[eva:final-states] Values at end of function g2:
+  t{[0]; [1][bits 0 to 23]#} ∈
+   {0x11223344} or UNINITIALIZED repeated %32, bits 0 to 55 
+   [1][bits 24 to 31]# ∈ {0x11223344}%32, bits 24 to 31 
+   [2][bits 0 to 23]# ∈ {0x55667788}%32, bits 0 to 23 
+   [bits 88 to 119]# ∈
+   {0x55667788} or UNINITIALIZED repeated %32, bits 24 to 55 
+   [3][bits 24 to 31]# ∈ {0x55667788}%32, bits 24 to 31 
+   [4..5] ∈ {0x12345678; 0x23456789} or UNINITIALIZED
+   [6][bits 0 to 23] ∈
+   {{ garbled mix of &{b4} (origin: Arithmetic {initialized.c:50}) }}
+   {[6][bits 24 to 31]; [7]} ∈
+   {{ garbled mix of &{b4}
+    (origin: Arithmetic {initialized.c:50}) }} or UNINITIALIZED
+   [8] ∈ {1; 2} or UNINITIALIZED
+   [9] ∈ {1; 2}
+   [10][bits 0 to 23] ∈ {0} or UNINITIALIZED
+   [10][bits 24 to 31]# ∈ {0x11111111} or UNINITIALIZED%32, bits 0 to 7 
+   [11][bits 0 to 23]# ∈ {0x11111111}%32, bits 8 to 31 
+   [11][bits 24 to 31] ∈ {0}
+   [12][bits 0 to 23] ∈ {0} or UNINITIALIZED
+   {[12][bits 24 to 31]#; [13][bits 0 to 23]#} ∈
+   {0x11111111; 0x22222222} or UNINITIALIZED
+   [13][bits 24 to 31] ∈ {0}
+  p_0 ∈ {{ &t + {7} }}
+[eva:final-states] Values at end of function g3:
+  r1 ∈ {2}
+  x1 ∈ {1}
+  x2 ∈ UNINITIALIZED
+  x3 ∈ {1}
+  r3 ∈ {2}
+  t1[0] ∈ UNINITIALIZED
+    [1..2] ∈ {1; 2}
+    [3..4] ∈ UNINITIALIZED
+  t2[0] ∈ UNINITIALIZED
+    [1..248] ∈ [1..248]
+    [249] ∈ UNINITIALIZED
+[eva:final-states] Values at end of function g4:
+  NON TERMINATING FUNCTION
+[eva:final-states] Values at end of function g6:
+  i6 ∈ UNINITIALIZED
+[eva:final-states] Values at end of function g7:
+  Frama_C_entropy_source ∈ [--..--]
+  key[0..63] ∈ [--..--]
+     [64..127] ∈ UNINITIALIZED
+[eva:final-states] Values at end of function reduce_by_negation:
+  x ∈ {0} or UNINITIALIZED
+  y ∈ {0} or UNINITIALIZED
+  p ∈ {{ &x ; &y }}
+  t[0..9] ∈ [0..9] or UNINITIALIZED
+[eva:final-states] Values at end of function g5:
+  v ∈ UNINITIALIZED
+  p ∈ {{ &v1 ; &v2 }}
+[eva:final-states] Values at end of function main:
+  Frama_C_entropy_source ∈ [--..--]
+  i6 ∈ UNINITIALIZED
+  __retres ∈ {0}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function g1
+[from] Computing for function Frama_C_interval <-g1
+[from] Done for function Frama_C_interval
+[from] Done for function g1
+[from] Computing for function g2
+[from] Done for function g2
+[from] Computing for function g3
+[from] Done for function g3
+[from] Computing for function g4
+[from] Non-terminating function g4 (no dependencies)
+[from] Done for function g4
+[from] Computing for function g6
+[from] Done for function g6
+[from] Computing for function g7
+[from] Computing for function Frama_C_make_unknown <-g7
+[from] Done for function Frama_C_make_unknown
+[from] Done for function g7
+[from] Computing for function reduce_by_negation
+[from] Done for function reduce_by_negation
+[from] Computing for function g5
+[from] Computing for function wrong_assigns <-g5
+[from] Done for function wrong_assigns
+[from] Done for function g5
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function Frama_C_make_unknown:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  key[0..63] FROM Frama_C_entropy_source
+[from] Function f:
+  t1[1..4] FROM m; t; n (and SELF)
+  t2[1..248] FROM m; t; n (and SELF)
+[from] Function g1:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function g2:
+  NO EFFECTS
+[from] Function g3:
+  NO EFFECTS
+[from] Function g4:
+  NON TERMINATING - NO EFFECTS
+[from] Function g6:
+  i6 FROM rand (and SELF)
+[from] Function g7:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] Function reduce_by_negation:
+  NO EFFECTS
+[from] Function wrong_assigns:
+  v{.a; .b} FROM \nothing
+[from] Function g5:
+  NO EFFECTS
+[from] Function main:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  i6 FROM rand (and SELF)
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    i; t1[1..4]; t2[1..248]
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function g1:
+    Frama_C_entropy_source; t1[0..19]; t2[0..19]; t3[0..19]; t4[0..19];
+    t5[0..19]; t6[0..19]; i; j; i_0
+[inout] Inputs for function g1:
+    Frama_C_entropy_source; rand
+[inout] Out (internal) for function g2:
+    t[0..13]; p; p_0
+[inout] Inputs for function g2:
+    b4; b5
+[inout] Out (internal) for function g3:
+    r1; x1; x2; x3; r3; t1[1..2]; t2[1..248]
+[inout] Inputs for function g3:
+    b1; b2; b3; b6
+[inout] Out (internal) for function g4:
+    x
+[inout] Inputs for function g4:
+    \nothing
+[inout] Out (internal) for function g6:
+    i6
+[inout] Inputs for function g6:
+    rand
+[inout] Out (internal) for function g7:
+    Frama_C_entropy_source; key[0..63]
+[inout] Inputs for function g7:
+    Frama_C_entropy_source
+[inout] Out (internal) for function reduce_by_negation:
+    x; y; p; tmp; t[0..9]; i
+[inout] Inputs for function reduce_by_negation:
+    rand
+[inout] Out (internal) for function g5:
+    v{.a; .b}; p; tmp
+[inout] Inputs for function g5:
+    rand
+[inout] Out (internal) for function main:
+    Frama_C_entropy_source; i6; __retres
+[inout] Inputs for function main:
+    Frama_C_entropy_source; b1; b2; b3; b4; b5; b6; rand

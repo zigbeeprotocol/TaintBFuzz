@@ -1,0 +1,64 @@
+37d36
+< [eva:alarm] gauges.c:26: Warning: signed overflow. assert l + 1 ≤ 2147483647;
+67d65
+< [eva:alarm] gauges.c:48: Warning: signed overflow. assert l + 1 ≤ 2147483647;
+108d105
+< [eva:alarm] gauges.c:81: Warning: signed overflow. assert k + 1 ≤ 2147483647;
+110d106
+< [eva:alarm] gauges.c:84: Warning: signed overflow. assert k + 1 ≤ 2147483647;
+116a113
+> [eva:alarm] gauges.c:81: Warning: signed overflow. assert k + 1 ≤ 2147483647;
+118c115,116
+< [eva] gauges.c:86: Frama_C_show_each: [0..2147483647]
+---
+> [eva:alarm] gauges.c:84: Warning: signed overflow. assert k + 1 ≤ 2147483647;
+> [eva] gauges.c:86: Frama_C_show_each: [15..2147483647]
+132d129
+< [eva:alarm] gauges.c:99: Warning: signed overflow. assert c + 1 ≤ 2147483647;
+175d171
+< [eva:alarm] gauges.c:140: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+285,286d280
+< [eva:alarm] gauges.c:220: Warning: 
+<   signed overflow. assert -2147483648 ≤ n - 1;
+300,302c294
+< [eva:alarm] gauges.c:240: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+< [eva] gauges.c:242: 
+<   Frama_C_show_each: {45; 46; 47; 48; 49; 50; 51}, [0..2147483647]
+---
+> [eva] gauges.c:242: Frama_C_show_each: {45; 46; 47; 48; 49; 50; 51}, [0..46]
+308,310c300
+< [eva:alarm] gauges.c:251: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+< [eva] gauges.c:254: 
+<   Frama_C_show_each: {48; 49; 50; 51; 52; 53; 54}, [0..2147483647]
+---
+> [eva] gauges.c:254: Frama_C_show_each: {48; 49; 50; 51; 52; 53; 54}, [0..49]
+316d305
+< [eva:alarm] gauges.c:263: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+318c307
+<   Frama_C_show_each: {-59; -58; -57; -56; -55; -54; -53}, [0..2147483647]
+---
+>   Frama_C_show_each: {-59; -58; -57; -56; -55; -54; -53}, [0..65]
+324d312
+< [eva:alarm] gauges.c:274: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+326c314
+<   Frama_C_show_each: {-64; -63; -62; -61; -60; -59; -58}, [0..2147483647]
+---
+>   Frama_C_show_each: {-64; -63; -62; -61; -60; -59; -58}, [0..70]
+334d321
+< [eva:alarm] gauges.c:293: Warning: signed overflow. assert j + 1 ≤ 2147483647;
+336c323
+<   Frama_C_show_each: {-593; -592; -591; -590; -589; -588}, [0..2147483647]
+---
+>   Frama_C_show_each: {-593; -592; -591; -590; -589; -588}, [0..598]
+778c765
+<   n ∈ [-2147483648..99]
+---
+>   n ∈ [-2147483547..99]
+781c768
+<   i ∈ [0..2147483647]
+---
+>   i ∈ [10..2147483647]
+817c804
+<   i ∈ [0..2147483647]
+---
+>   i ∈ [0..21]

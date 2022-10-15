@@ -1,0 +1,7 @@
+[kernel] Parsing test_switch2.c (with preprocessing)
+[aorai] test_switch2.c:34: Warning: 
+  Call to opc not conforming to automaton (post-cond). Assuming it is on a dead path
+[aorai] test_switch2.c:23: Warning: 
+  Call to opc not conforming to automaton (pre-cond). Assuming it is on a dead path
+[kernel] Parsing TMPDIR/aorai_test_switch2_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

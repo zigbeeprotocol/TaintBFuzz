@@ -1,0 +1,86 @@
+[kernel] Parsing m12_2.i (no preprocessing)
+[kernel] m12_2.i:51: Warning: 
+  Unspecified sequence with side effect:
+  /* y <- i */
+  y = i;
+  y ++;
+  /*  <-  */
+  tmp = i;
+  /* i <-  */
+  i ++;
+  /* z <- tmp */
+  z = y + tmp;
+[kernel] m12_2.i:55: Warning: 
+  Unspecified sequence with side effect:
+  /* i <-  */
+  i ++;
+  /* y <- i */
+  y = i;
+  y ++;
+  /* z <-  */
+  z = i + y;
+[kernel] m12_2.i:59: Warning: 
+  Unspecified sequence with side effect:
+  /* x <- tmp_1 */
+  x = 3;
+  tmp_1 = x;
+  x ++;
+  
+  /*  <- x */
+[kernel] m12_2.i:63: Warning: 
+  Unspecified sequence with side effect:
+  /*  <-  */
+  tmp_2 = i;
+  /* i <-  */
+  i ++;
+  /* z <- i tmp_2 */
+  z = i + tmp_2;
+[kernel] m12_2.i:67: Warning: 
+  Unspecified sequence with side effect:
+  /* i <-  */
+  i = 3;
+  /* z <- i */
+  z = (i + i) + 8;
+[kernel] m12_2.i:69: Warning: 
+  Unspecified sequence with side effect:
+  /* this_st.st_m <-  */
+  this_st.st_m = 3;
+  /* z <- this_st.st_m */
+  z = (this_st.st_m + this_st.st_m) + 8;
+[kernel] m12_2.i:77: Warning: 
+  Unspecified sequence with side effect:
+  /* i <-  */
+  i ++;
+  /*  <- i */
+[kernel] m12_2.i:81: Warning: 
+  Unspecified sequence with side effect:
+  /* i <-  */
+  i ++;
+  /* i <- tmp_5
+  */
+  if ((3 * 8) * 1) {
+    SI_32 tmp_5;
+    tmp_5 = i;
+    i ++;
+    
+    if (tmp_5) tmp_6 = 1; else tmp_6 = 0;
+  }
+  else tmp_6 = 0;
+  /* z <-  */
+  z = i + tmp_6;
+[kernel] m12_2.i:85: Warning: 
+  Unspecified sequence with side effect:
+  /* i <-  */
+  i ++;
+  /* i <- tmp_8
+  */
+  if ((3 * 8) * 0) tmp_9 = 1;
+  else {
+    SI_32 tmp_8;
+    tmp_8 = i;
+    i ++;
+    
+    if (tmp_8) tmp_9 = 1; else tmp_9 = 0;
+  }
+  /* z <-  */
+  z = i + tmp_9;

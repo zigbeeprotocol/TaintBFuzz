@@ -1,0 +1,53 @@
+[kernel] Parsing inout.i (no preprocessing)
+[eva] Analyzing a complete application starting at call_may_not_terminate
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  Xt ∈ {0}
+  Xs ∈ {0}
+  Xs_I ∈ {0}
+  Ys ∈ {0}
+  Ys_I ∈ {0}
+  Z ∈ {0}
+  I ∈ {0}
+  I_size ∈ {8}
+  Itab[0] ∈ {-40}
+      [1] ∈ {-25}
+      [2] ∈ {-15}
+      [3] ∈ {-5}
+      [4] ∈ {5}
+      [5] ∈ {15}
+      [6] ∈ {25}
+      [7] ∈ {40}
+  I5_nt ∈ {0}
+[eva] computing for function may_not_terminate <- call_may_not_terminate.
+  Called from inout.i:68.
+[eva] Recording results for may_not_terminate
+[eva] Done for function may_not_terminate
+[eva] Recording results for call_may_not_terminate
+[eva] done for function call_may_not_terminate
+[from] Computing for function may_not_terminate
+[from] Done for function may_not_terminate
+[from] Computing for function call_may_not_terminate
+[from] Done for function call_may_not_terminate
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function may_not_terminate:
+  Xs FROM i3
+[from] Function call_may_not_terminate:
+  Xs FROM j3
+[from] ====== END OF DEPENDENCIES ======
+[inout] InOut (internal) for function may_not_terminate:
+  Operational inputs:
+    I5_nt; i1; i2; i3; i4; i5_nt
+  Operational inputs on termination:
+    i1; i2; i3; i4
+  Sure outputs:
+    Xs; es
+[inout] InOut (internal) for function call_may_not_terminate:
+  Operational inputs:
+    I5_nt; j1; j2; j3; j4; j5; c1; c2
+  Operational inputs on termination:
+    j1; j2; j3; j4; j5; c1; c2
+  Sure outputs:
+    Xs

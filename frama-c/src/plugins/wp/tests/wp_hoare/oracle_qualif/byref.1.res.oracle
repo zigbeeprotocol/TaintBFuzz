@@ -1,0 +1,43 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing byref.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 12 goals scheduled
+[wp] [Qed] Goal typed_ref_f_ensures : Valid
+[wp] [Qed] Goal typed_ref_f_assigns : Valid
+[wp] [Qed] Goal typed_ref_wrong_without_ref_ensures : Valid
+[wp] [Qed] Goal typed_ref_wrong_without_ref_call_f_requires : Valid
+[wp] [Qed] Goal typed_ref_pointer_ensures : Valid
+[wp] [Qed] Goal typed_ref_pointer_call_f_requires : Valid
+[wp] [Qed] Goal typed_ref_local_ensures : Valid
+[wp] [Qed] Goal typed_ref_local_call_f_requires : Valid
+[wp] [Qed] Goal typed_ref_formal_ensures : Valid
+[wp] [Qed] Goal typed_ref_formal_call_f_requires : Valid
+[wp] [Qed] Goal typed_ref_global_ensures : Valid
+[wp] [Qed] Goal typed_ref_global_call_f_requires : Valid
+[wp] Proved goals:   12 / 12
+  Qed:            12
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f                         2        -        2       100%
+  wrong_without_ref         2        -        2       100%
+  pointer                   2        -        2       100%
+  local                     2        -        2       100%
+  formal                    2        -        2       100%
+  global                    2        -        2       100%
+------------------------------------------------------------
+[wp] byref.i:14: Warning: 
+  Memory model hypotheses for function 'f':
+  /*@ behavior wp_typed_ref:
+        requires \valid(r); */
+  void f(int *r);
+[wp] byref.i:20: Warning: 
+  Memory model hypotheses for function 'wrong_without_ref':
+  /*@ behavior wp_typed_ref:
+        requires \valid(q); */
+  int wrong_without_ref(int *q);
+[wp] byref.i:31: Warning: 
+  Memory model hypotheses for function 'pointer':
+  /*@ behavior wp_typed_ref:
+        requires \valid(q); */
+  int pointer(int *q);

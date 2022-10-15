@@ -1,0 +1,118 @@
+# frama-c -wp [...]
+[kernel] Parsing alias_assigns_hypotheses.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 30 goals scheduled
+[wp] [Qed] Goal typed_global_alias_ensures : Valid
+[wp] [Qed] Goal typed_global_alias_ensures_2 : Valid
+[wp] [Qed] Goal typed_global_alias_assigns : Valid
+[wp] [Qed] Goal typed_global_no_alias_ensures : Valid
+[wp] [Qed] Goal typed_global_no_alias_assigns : Valid
+[wp] [Qed] Goal typed_formal_alias_ensures : Valid
+[wp] [Qed] Goal typed_formal_alias_ensures_2 : Valid
+[wp] [Qed] Goal typed_formal_alias_assigns : Valid
+[wp] [Qed] Goal typed_formal_no_alias_ensures : Valid
+[wp] [Qed] Goal typed_formal_no_alias_assigns : Valid
+[wp] [Qed] Goal typed_formal_alias_array_ensures : Valid
+[wp] [Qed] Goal typed_formal_alias_array_ensures_2 : Valid
+[wp] [Qed] Goal typed_formal_alias_array_ensures_3 : Valid
+[wp] [Qed] Goal typed_formal_alias_array_assigns_part1 : Valid
+[wp] [Qed] Goal typed_formal_alias_array_assigns_part2 : Valid
+[wp] [Qed] Goal typed_field_alias_ensures : Valid
+[wp] [Qed] Goal typed_field_alias_ensures_2 : Valid
+[wp] [Qed] Goal typed_field_alias_assigns : Valid
+[wp] [Qed] Goal typed_field_range_alias_ensures : Valid
+[wp] [Qed] Goal typed_field_range_alias_ensures_2 : Valid
+[wp] [Qed] Goal typed_field_range_alias_assigns : Valid
+[wp] [Qed] Goal typed_set_alias_ensures : Valid
+[wp] [Qed] Goal typed_set_alias_ensures_2 : Valid
+[wp] [Qed] Goal typed_set_alias_assigns : Valid
+[wp] [Qed] Goal typed_comprehension_alias_ensures : Valid
+[wp] [Qed] Goal typed_comprehension_alias_ensures_2 : Valid
+[wp] [Qed] Goal typed_comprehension_alias_assigns : Valid
+[wp] [Qed] Goal typed_union_alias_ensures : Valid
+[wp] [Qed] Goal typed_union_alias_ensures_2 : Valid
+[wp] [Qed] Goal typed_union_alias_assigns : Valid
+[wp] Proved goals:   30 / 30
+  Qed:            30
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  global_alias              3        -        3       100%
+  global_no_alias           2        -        2       100%
+  formal_alias              3        -        3       100%
+  formal_no_alias           2        -        2       100%
+  formal_alias_array        5        -        5       100%
+  field_alias               3        -        3       100%
+  field_range_alias         3        -        3       100%
+  set_alias                 3        -        3       100%
+  comprehension_alias       3        -        3       100%
+  union_alias               3        -        3       100%
+------------------------------------------------------------
+[wp] alias_assigns_hypotheses.i:17: Warning: 
+  Memory model hypotheses for function 'global_alias':
+  /*@
+     behavior wp_typed:
+       requires \separated(g_alias, (int *)global + (..), &g_alias);
+     */
+  void global_alias(void);
+[wp] alias_assigns_hypotheses.i:24: Warning: 
+  Memory model hypotheses for function 'global_no_alias':
+  /*@ behavior wp_typed:
+        requires \separated(g_alias, &g_alias); */
+  void global_no_alias(void);
+[wp] alias_assigns_hypotheses.i:32: Warning: 
+  Memory model hypotheses for function 'formal_alias':
+  /*@ behavior wp_typed:
+        requires \separated(f_alias, (int *)global + (..)); */
+  void formal_alias(int *f_alias);
+[wp] alias_assigns_hypotheses.i:48: Warning: 
+  Memory model hypotheses for function 'formal_alias_array':
+  /*@
+     behavior wp_typed:
+       requires \separated((int *)global + (..), &(*alias_array)[0 .. 1]);
+       requires \separated(alias_array + (..), (int *)global + (..));
+     */
+  void formal_alias_array(int (*alias_array)[2]);
+[wp] alias_assigns_hypotheses.i:61: Warning: 
+  Memory model hypotheses for function 'field_alias':
+  /*@
+     behavior wp_typed:
+       requires \separated((int *)global + (..), &x->x);
+       requires \separated(x, (int *)global + (..));
+     */
+  void field_alias(struct X *x);
+[wp] alias_assigns_hypotheses.i:73: Warning: 
+  Memory model hypotheses for function 'field_range_alias':
+  /*@
+     behavior wp_typed:
+       requires \separated((int *)global + (..), &(x + (0 .. 3))->x);
+       requires \separated(x + (..), (int *)global + (..));
+     */
+  void field_range_alias(struct X *x);
+[wp] alias_assigns_hypotheses.i:81: Warning: 
+  Memory model hypotheses for function 'set_alias':
+  /*@
+     behavior wp_typed:
+       requires \separated((int *)global + (..), &g_alias, {g_alias, f_alias});
+       requires \separated(f_alias, (int *)global + (..), &g_alias);
+     */
+  void set_alias(int *f_alias);
+[wp] alias_assigns_hypotheses.i:92: Warning: 
+  Memory model hypotheses for function 'comprehension_alias':
+  /*@
+     behavior wp_typed:
+       requires
+         \separated(
+           (int *)global + (..), &g_alias,
+           {alias | int *alias; alias ≡ \at(g_alias,Pre)}
+           );
+     */
+  void comprehension_alias(void);
+[wp] alias_assigns_hypotheses.i:102: Warning: 
+  Memory model hypotheses for function 'union_alias':
+  /*@
+     behavior wp_typed:
+       requires \separated((int *)global + (..), &g_alias, {g_alias, f_alias});
+       requires \separated(f_alias, (int *)global + (..), &g_alias);
+     */
+  void union_alias(int *f_alias);

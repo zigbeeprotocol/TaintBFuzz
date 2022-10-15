@@ -1,0 +1,25 @@
+<?js
+    var data = obj;
+    var self = this;
+    const href = /^\[(.+)\]\((.+)\) */;
+?>
+
+<?js if (data.augments && data.augments.length) { ?>
+  <div class="summary">
+  <table class="summary">
+  <tbody>
+  <?js data.augments.forEach(function(a,descr) {
+          var m = href.exec(a) ; ?>
+       <tr>
+   <?js   if (m) { ?>
+       <td><a href="<?js= m[2] ?>"><?js= m[1] ?></a></td>
+   <?js   } else { ?>
+       <td><?js= a ?></td>
+   <?js   } ?>
+       <td>Super Class Methods</td>
+       </tr>
+  <?js }) ?>
+  </tbody>
+  </table>
+  </div>
+<?js } ?>

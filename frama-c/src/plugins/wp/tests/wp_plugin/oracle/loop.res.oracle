@@ -1,0 +1,184 @@
+# frama-c -wp [...]
+[kernel] Parsing loop.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function init
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok' in 'init':
+Let a_1 = shift_sint32(t, a).
+Let x = -a.
+Let a_2 = havoc(Mint_undef_0, Mint_0, a_1, i - a).
+Let x_1 = 1 + b.
+Assume {
+  Type: is_sint32(a) /\ is_sint32(b) /\ is_sint32(i).
+  (* Heap *)
+  Type: (region(t.base) <= 0) /\ linked(Malloc_0).
+  (* Goal *)
+  When: (i_1 <= b) /\ (a <= i_1).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, a_1, 1 + b - a).
+  (* Pre-condition *)
+  Have: a <= b.
+  (* Invariant 'qed_ok' *)
+  Have: a <= x_1.
+  (* Invariant 'qed_ok' *)
+  Have: (a <= i) /\ (i <= x_1).
+  (* Invariant 'qed_ok' *)
+  Have: forall i_2 : Z. ((a <= i_2) -> ((i_2 < i) ->
+      (a_2[shift_sint32(t, i_2)] = e))).
+  (* Else *)
+  Have: b < i.
+}
+Prove: a_2[shift_sint32(t, i_1)] = e.
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'qed_ok' (file loop.i, line 12):
+Let a_1 = shift_sint32(t, a).
+Let x = -a.
+Let x_1 = 1 + b.
+Let x_2 = 1 + i.
+Assume {
+  Type: is_sint32(a) /\ is_sint32(b) /\ is_sint32(i) /\ is_sint32(x_2).
+  (* Heap *)
+  Type: (region(t.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, a_1, 1 + b - a).
+  (* Pre-condition *)
+  Have: a <= b.
+  (* Invariant 'qed_ok' *)
+  Have: a <= x_1.
+  (* Invariant 'qed_ok' *)
+  Have: (a <= i) /\ (i <= x_1).
+  (* Invariant 'qed_ok' *)
+  Have: forall i_1 : Z. ((a <= i_1) -> ((i_1 < i) ->
+      (havoc(Mint_undef_0, Mint_0, a_1, i - a)[shift_sint32(t, i_1)] = e))).
+  (* Then *)
+  Have: i <= b.
+}
+Prove: a <= x_2.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'qed_ok' (file loop.i, line 12):
+Assume {
+  Type: is_sint32(a) /\ is_sint32(b).
+  (* Heap *)
+  Type: (region(t.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, shift_sint32(t, a), 1 + b - a).
+  (* Pre-condition *)
+  Have: a <= b.
+}
+Prove: a <= (1 + b).
+
+------------------------------------------------------------
+
+Goal Preservation of Invariant 'qed_ok' (file loop.i, line 13):
+Let x = 1 + i.
+Let a_1 = shift_sint32(t, a).
+Let x_1 = -a.
+Let a_2 = havoc(Mint_undef_0, Mint_0, a_1, i - a).
+Let x_2 = 1 + b.
+Assume {
+  Type: is_sint32(a) /\ is_sint32(b) /\ is_sint32(i) /\ is_sint32(x).
+  (* Heap *)
+  Type: (region(t.base) <= 0) /\ linked(Malloc_0).
+  (* Goal *)
+  When: (a <= i_1) /\ (i_1 <= i).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, a_1, 1 + b - a).
+  (* Pre-condition *)
+  Have: a <= b.
+  (* Invariant 'qed_ok' *)
+  Have: a <= x_2.
+  (* Invariant 'qed_ok' *)
+  Have: (a <= i) /\ (i <= x_2).
+  (* Invariant 'qed_ok' *)
+  Have: forall i_2 : Z. ((a <= i_2) -> ((i_2 < i) ->
+      (a_2[shift_sint32(t, i_2)] = e))).
+  (* Then *)
+  Have: i <= b.
+  (* Invariant 'qed_ok' *)
+  Have: a <= x.
+}
+Prove: a_2[shift_sint32(t, i) <- e][shift_sint32(t, i_1)] = e.
+
+------------------------------------------------------------
+
+Goal Establishment of Invariant 'qed_ok' (file loop.i, line 13):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns 'qed_ok' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns 'qed_ok' (2/3):
+Effect at line 15
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns 'qed_ok' (3/3):
+Effect at line 16
+Let a_1 = shift_sint32(t, a).
+Let x = -a.
+Let a_2 = havoc(Mint_undef_0, Mint_0, a_1, i - a).
+Let a_3 = shift_sint32(t, i).
+Let x_1 = 1 + i.
+Let x_2 = 1 + b.
+Assume {
+  Type: is_sint32(a) /\ is_sint32(b) /\ is_sint32(i) /\ is_sint32(x_1).
+  (* Heap *)
+  Type: (region(t.base) <= 0) /\ linked(Malloc_0).
+  (* Goal *)
+  When: !invalid(Malloc_0, a_3, 1).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, a_1, 1 + b - a).
+  (* Pre-condition *)
+  Have: a <= b.
+  (* Invariant 'qed_ok' *)
+  Have: a <= x_2.
+  (* Invariant 'qed_ok' *)
+  Have: (a <= i) /\ (i <= x_2).
+  (* Invariant 'qed_ok' *)
+  Have: forall i_1 : Z. ((a <= i_1) -> ((i_1 < i) ->
+      (a_2[shift_sint32(t, i_1)] = e))).
+  (* Then *)
+  Have: i <= b.
+  (* Invariant 'qed_ok' *)
+  Have: a <= x_1.
+  (* Invariant 'qed_ok' *)
+  Have: forall i_1 : Z. ((i_1 <= i) -> ((a <= i_1) ->
+      (a_2[a_3 <- e][shift_sint32(t, i_1)] = e))).
+}
+Prove: included(a_3, 1, a_1, 1 + i - a).
+
+------------------------------------------------------------
+
+Goal Assigns 'qed_ok' in 'init':
+Effect at line 15
+Let x = 1 + b.
+Let a_1 = shift_sint32(t, a).
+Let x_1 = -a.
+Assume {
+  Have: a < i.
+  Have: !invalid(Malloc_0, a_1, i - a).
+  Type: is_sint32(a) /\ is_sint32(b) /\ is_sint32(i).
+  (* Heap *)
+  Type: (region(t.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, a_1, 1 + b - a).
+  (* Pre-condition *)
+  Have: a <= b.
+  (* Invariant 'qed_ok' *)
+  Have: a <= x.
+}
+Prove: i <= x.
+
+------------------------------------------------------------

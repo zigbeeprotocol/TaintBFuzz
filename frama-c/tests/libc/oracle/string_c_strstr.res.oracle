@@ -1,0 +1,292 @@
+[kernel] Parsing string_c_strstr.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:52.
+[eva] string_c_strstr.c:52: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:52: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:241: 
+  function strstr: postcondition 'result_null_or_in_haystack' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:53.
+[eva] string_c_strstr.c:53: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:53: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:54.
+[eva] string_c_strstr.c:54: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:54: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:55.
+[eva] string_c_strstr.c:55: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:55: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:56.
+[eva] string_c_strstr.c:56: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:56: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:57.
+[eva] string_c_strstr.c:57: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:57: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:58.
+[eva] string_c_strstr.c:58: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:58: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:59.
+[eva] string_c_strstr.c:59: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:59: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] FRAMAC_SHARE/libc/string.c:292: starting to merge loop iterations
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:60.
+[eva] string_c_strstr.c:60: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:60: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:61.
+[eva] string_c_strstr.c:61: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:61: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:62.
+[eva] string_c_strstr.c:62: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:62: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:64.
+[eva] string_c_strstr.c:64: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:64: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] FRAMAC_SHARE/libc/string.h:243: 
+  cannot evaluate ACSL term, unsupported ACSL construct: logic function memcmp
+[eva:alarm] FRAMAC_SHARE/libc/string.h:241: Warning: 
+  function strstr: postcondition 'result_null_or_in_haystack' got status unknown.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:65.
+[eva] string_c_strstr.c:65: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:65: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:66.
+[eva] string_c_strstr.c:66: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:66: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:67.
+[eva] string_c_strstr.c:67: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:67: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:68.
+[eva] string_c_strstr.c:68: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:68: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:69.
+[eva] string_c_strstr.c:69: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:69: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:70.
+[eva] string_c_strstr.c:70: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:70: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:71.
+[eva] string_c_strstr.c:71: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:71: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:72.
+[eva] string_c_strstr.c:72: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:72: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:73.
+[eva] string_c_strstr.c:73: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:73: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:74.
+[eva] string_c_strstr.c:74: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:74: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:75.
+[eva] string_c_strstr.c:75: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:75: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:76.
+[eva] string_c_strstr.c:76: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:76: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:77.
+[eva] string_c_strstr.c:77: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:77: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:78.
+[eva] string_c_strstr.c:78: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:78: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:79.
+[eva] string_c_strstr.c:79: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:79: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:80.
+[eva] string_c_strstr.c:80: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:80: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:81.
+[eva] string_c_strstr.c:81: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:81: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:82.
+[eva] string_c_strstr.c:82: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:82: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:83.
+[eva] string_c_strstr.c:83: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:83: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:84.
+[eva] string_c_strstr.c:84: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:84: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] computing for function strstr <- main.
+  Called from string_c_strstr.c:85.
+[eva] string_c_strstr.c:85: 
+  function strstr: precondition 'valid_string_haystack' got status valid.
+[eva] string_c_strstr.c:85: 
+  function strstr: precondition 'valid_string_needle' got status valid.
+[eva] Recording results for strstr
+[eva] Done for function strstr
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function strstr:
+  __retres ∈
+          {{ NULL ; "" ; "abcd" ; "abcd" ; "abcd" + {1} ; "abcd" + {2} ;
+             "abcd" + {3} ; "abcd" ; "abcd" + {1} ; "abcd" + {2} ;
+             "ababa" + {1} ; "ababab" + {1} ; "abababa" + {1} ;
+             "abababab" + {1} ; "ababababa" + {1} ; "abbababab" + {2} ;
+             "abbababab" + {3} ; "abacabcabcab" + {4} ;
+             "nanabanabanana" + {3} ; "nanabanabanana" + {4} ;
+             "nanabanabanana" + {1} ; "nanabanabanana" + {8} ;
+             "_ _\255_ _" + {2} }}
+[eva:final-states] Values at end of function main:
+  __retres ∈ {0}

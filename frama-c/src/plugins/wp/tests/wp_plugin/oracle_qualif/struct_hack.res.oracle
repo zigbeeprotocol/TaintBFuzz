@@ -1,0 +1,29 @@
+# frama-c -wp [...]
+[kernel] Parsing struct_hack.i (no preprocessing)
+[kernel] struct_hack.i:46: Warning: 
+  parsing obsolete ACSL construct '\valid_range(addr,min,max)'. '\valid(addr+(min..max))' should be used instead.
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] struct_hack.i:37: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+[wp] struct_hack.i:53: Warning: 
+  Missing assigns clause (assigns 'everything' instead)
+[wp] 10 goals scheduled
+[wp] [Alt-Ergo] Goal typed_f0_loop_invariant_qed_ok_preserved : Valid
+[wp] [Qed] Goal typed_f0_loop_invariant_qed_ok_established : Valid
+[wp] [Alt-Ergo] Goal typed_f0_assert_qed_ok : Valid
+[wp] [Qed] Goal typed_f0_loop_variant_decrease : Valid
+[wp] [Qed] Goal typed_f0_loop_variant_positive : Valid
+[wp] [Alt-Ergo] Goal typed_f1_loop_invariant_qed_ok_preserved : Valid
+[wp] [Qed] Goal typed_f1_loop_invariant_qed_ok_established : Valid
+[wp] [Alt-Ergo] Goal typed_f1_assert_qed_ok : Valid
+[wp] [Qed] Goal typed_f1_loop_variant_decrease : Valid
+[wp] [Qed] Goal typed_f1_loop_variant_positive : Valid
+[wp] Proved goals:   10 / 10
+  Qed:             6 
+  Alt-Ergo:        4
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f0                        3        2        5       100%
+  f1                        3        2        5       100%
+------------------------------------------------------------

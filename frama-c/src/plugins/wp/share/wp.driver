@@ -1,0 +1,115 @@
+/**************************************************************************/
+/*                                                                        */
+/*  This file is part of WP plug-in of Frama-C.                           */
+/*                                                                        */
+/*  Copyright (C) 2007-2022                                               */
+/*    CEA (Commissariat a l'energie atomique et aux energies              */
+/*         alternatives)                                                  */
+/*                                                                        */
+/*  you can redistribute it and/or modify it under the terms of the GNU   */
+/*  Lesser General Public License as published by the Free Software       */
+/*  Foundation, version 2.1.                                              */
+/*                                                                        */
+/*  It is distributed in the hope that it will be useful,                 */
+/*  but WITHOUT ANY WARRANTY; without even the implied warranty of        */
+/*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         */
+/*  GNU Lesser General Public License for more details.                   */
+/*                                                                        */
+/*  See the GNU Lesser General Public License version 2.1                 */
+/*  for more details (enclosed in the file licenses/LGPLv2.1).            */
+/*                                                                        */
+/**************************************************************************/
+
+library qed:
+why3.import += "int.Abs:IAbs";
+why3.import += "frama_c_wp.qed.Qed";
+why3.qualifier := "frama_c_wp.qed";
+
+library const:
+why3.import += "map.Const";
+
+library minmax_int:
+why3.import += "int.MinMax:Ig";
+logic integer "\\max"(integer,integer) =
+      commutative:associative:idempotent:
+      {why3="Ig.max"};
+logic integer "\\min"(integer,integer) =
+      commutative:associative:idempotent:
+      {why3="Ig.min"};
+
+library minmax_real:
+why3.import += "real.MinMax:Rg";
+logic real "\\max"(real,real) =
+      commutative:associative:idempotent:
+      {why3="Rg.max"};
+logic real "\\min"(real,real) =
+      commutative:associative:idempotent:
+      {why3="Rg.min"};
+
+library cint:
+why3.import += "frama_c_wp.cint.Cint";
+
+library cbits: cint
+logic boolean "bit_test"(integer,integer) := \bit_test_stdlib;
+why3.import += "frama_c_wp.cbits.Cbits";
+
+library cfloat: cmath sqrt
+why3.import += "frama_c_wp.cfloat.Cfloat";
+type "rounding_mode"   = "Rounding.mode";
+ctor "\\Up"()          = "Rounding.RTP";
+ctor "\\Down"()        = "Rounding.RTN";
+ctor "\\ToZero"()      = "Rounding.RTZ";
+ctor "\\NearestAway"() = "Rounding.RNA";
+ctor "\\NearestEven"() = "Rounding.RNE";
+predicate "\\is_finite"(float32) = "is_finite_f32";
+predicate "\\is_finite"(float64) = "is_finite_f64";
+predicate "\\is_NaN"(float32) = "is_NaN_f32";
+predicate "\\is_NaN"(float64) = "is_NaN_f64";
+predicate "\\is_infinite"(float32) = "is_infinite_f32" ;
+predicate "\\is_infinite"(float64) = "is_infinite_f64" ;
+predicate "\\is_plus_infinity"(float32) = "is_positive_infinite_f32";
+predicate "\\is_plus_infinity"(float64) = "is_positive_infinite_f64";
+predicate "\\is_minus_infinity"(float32) = "is_negative_infinite_f32";
+predicate "\\is_minus_infinity"(float64) = "is_negative_infinite_f64";
+logic float32 "\\round_float"(rounding_mode,real) = "round_float";
+logic float64 "\\round_double"(rounding_mode,real) = "round_double";
+
+library vset:
+type set = "set";
+why3.import := "vset.Vset";
+
+library vlist:
+why3.import := "frama_c_wp.vlist.Vlist";
+
+library memory:
+why3.import := "frama_c_wp.memory.Memory";
+
+library sqrt: cmath
+why3.import += "real.Square";
+why3.import += "frama_c_wp.cmath.Square";
+
+library exponential: qed
+why3.import += "real.ExpLog" ;
+why3.import += "frama_c_wp.cmath.ExpLog" ;
+
+library power: exponential sqrt
+why3.import += "real.PowerReal" ;
+
+library truncate: qed
+why3.import += "real.Truncate" ;
+
+library cmath: qed
+why3.import += "real.Abs:RAbs" ;
+why3.import += "frama_c_wp.cmath.Cmath";
+
+library trigonometry: sqrt cmath
+why3.import += "real.Trigonometry";
+
+library arctrigo: trigonometry
+why3.import += "frama_c_wp.cmath.ArcTrigo";
+
+library hyperbolic: sqrt exponential
+why3.import += "real.Hyperbolic";
+
+library polar: sqrt trigonometry
+why3.import += "real.Polar";

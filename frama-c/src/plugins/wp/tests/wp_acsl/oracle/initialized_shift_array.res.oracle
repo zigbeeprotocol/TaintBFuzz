@@ -1,0 +1,134 @@
+# frama-c -wp [...]
+[kernel] Parsing initialized_shift_array.i (no preprocessing)
+[wp] Running WP plugin...
+[kernel] initialized_shift_array.i:52: Warning: 
+  No code nor implicit assigns clause for function test, generating default assigns from the prototype
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function fail_cell_after_end
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'fail_cell_after_end' at call 'test' (file initialized_shift_array.i, line 50)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fail_cell_before
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'fail_cell_before' at call 'test' (file initialized_shift_array.i, line 34)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fail_partial_not_full
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'fail_partial_not_full' at call 'test' (file initialized_shift_array.i, line 55)
+:
+Assume { (* Goal *) When: (0 <= i) /\ (i <= 2). }
+Prove: (([false..])[1 <- true][0 <- true][i]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fail_too_long
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'fail_too_long' at call 'test' (file initialized_shift_array.i, line 38)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fail_too_long_from_1
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'fail_too_long_from_1' at call 'test' (file initialized_shift_array.i, line 42)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fail_too_long_from_2
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'fail_too_long_from_2' at call 'test' (file initialized_shift_array.i, line 46)
+:
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function succ_from_1_from_1
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'succ_from_1_from_1' at call 'test' (file initialized_shift_array.i, line 23)
+:
+Assume { (* Goal *) When: (0 < i) /\ (i <= 2). }
+Prove: (([false..])[2 <- true][1 <- true][i]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function succ_full_first_cell
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'succ_full_first_cell' at call 'test' (file initialized_shift_array.i, line 10)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function succ_full_from_1
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'succ_full_from_1' at call 'test' (file initialized_shift_array.i, line 18)
+:
+Assume {
+  (* Goal *)
+  When: (0 < i) /\ (i <= 2).
+  (* Initializer *)
+  Init: (Init_buf_0[0]=true).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 < i_1) -> ((i_1 <= 2) ->
+      (Init_buf_0[i_1]=true))).
+}
+Prove: (Init_buf_0[i]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function succ_full_from_2
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'succ_full_from_2' at call 'test' (file initialized_shift_array.i, line 27)
+:
+Assume {
+  (* Goal *)
+  When: (2 <= i) /\ (i <= 2).
+  (* Initializer *)
+  Init: (Init_buf_0[0]=true).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 < i_1) -> ((i_1 <= 2) ->
+      (Init_buf_0[i_1]=true))).
+}
+Prove: (Init_buf_0[2]=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function succ_full_full
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file initialized_shift_array.i, line 2) in 'test'' in 'succ_full_full' at call 'test' (file initialized_shift_array.i, line 14)
+:
+Assume {
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 2).
+  (* Initializer *)
+  Init: (Init_buf_0[0]=true).
+  (* Initializer *)
+  Init: forall i_1 : Z. ((0 < i_1) -> ((i_1 <= 2) ->
+      (Init_buf_0[i_1]=true))).
+}
+Prove: (Init_buf_0[i]=true).
+
+------------------------------------------------------------

@@ -1,0 +1,70 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_1382.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] bts_1382.i:18: Warning: 
+  Cast with incompatible pointers types (source: sint32*) (target: sint8*)
+[wp] bts_1382.i:18: Warning: 
+  Cast with incompatible pointers types (source: sint32*) (target: sint8*)
+[wp] bts_1382.i:17: Warning: 
+  Cast with incompatible pointers types (source: sint32*) (target: uint8*)
+------------------------------------------------------------
+  Function loop
+------------------------------------------------------------
+
+Goal Loop assigns (file bts_1382.i, line 15) (1/3):
+bts_1382.i:17: warning from Typed Model:
+ - Warning: Hide sub-term definition
+   Reason: Cast with incompatible pointers types (source: sint32*) (target: uint8*)
+bts_1382.i:18: warning from Typed Model:
+ - Warning: Hide sub-term definition
+   Reason: Cast with incompatible pointers types (source: sint32*) (target: sint8*)
+bts_1382.i:18: warning from Typed Model:
+ - Warning: Hide sub-term definition
+   Reason: Cast with incompatible pointers types (source: sint32*) (target: sint8*)
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file bts_1382.i, line 15) (2/3):
+Call Effect at line 17
+bts_1382.i:17: warning from Typed Model:
+ - Warning: Hide sub-term definition
+   Reason: Cast with incompatible pointers types (source: sint32*) (target: uint8*)
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: linked(Malloc_0).
+  (* Goal *)
+  When: !invalid(Malloc_0, w, 1).
+  (* Then *)
+  Have: i <= 99.
+}
+Prove: global(G_dest_45) = w.
+
+------------------------------------------------------------
+
+Goal Loop assigns (file bts_1382.i, line 15) (3/3):
+Call Effect at line 18
+bts_1382.i:17: warning from Typed Model:
+ - Warning: Hide sub-term definition
+   Reason: Cast with incompatible pointers types (source: sint32*) (target: uint8*)
+bts_1382.i:18: warning from Typed Model:
+ - Warning: Hide sub-term definition
+   Reason: Cast with incompatible pointers types (source: sint32*) (target: sint8*)
+bts_1382.i:18: warning from Typed Model:
+ - Warning: Hide sub-term definition
+   Reason: Cast with incompatible pointers types (source: sint32*) (target: sint8*)
+Let a = shift_sint8(w, 0).
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: linked(Malloc_0).
+  (* Goal *)
+  When: !invalid(Malloc_0, a, 4).
+  (* Then *)
+  Have: i <= 99.
+}
+Prove: included(a, 4, global(G_dest_45), 1).
+
+------------------------------------------------------------

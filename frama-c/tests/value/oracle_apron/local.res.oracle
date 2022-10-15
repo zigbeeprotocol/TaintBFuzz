@@ -1,0 +1,7 @@
+22c22,25
+< [eva] local.i:13: Reusing old results for call to f
+---
+> [eva] computing for function f <- g <- main.
+>   Called from local.i:13.
+> [eva] Recording results for f
+> [eva] Done for function f

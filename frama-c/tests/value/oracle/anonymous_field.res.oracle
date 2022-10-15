@@ -1,0 +1,45 @@
+[kernel] Parsing anonymous_field.i (no preprocessing)
+[kernel] anonymous_field.i:1: Warning: 
+  unnamed fields are a C11 extension (use -c11 to avoid this warning)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  Sa ∈ {0}
+[eva] computing for function set_anonymous_struct <- main.
+  Called from anonymous_field.i:19.
+[eva] anonymous_field.i:10: 
+  function set_anonymous_struct: postcondition got status valid.
+[eva] Recording results for set_anonymous_struct
+[eva] Done for function set_anonymous_struct
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function set_anonymous_struct:
+  Sa{.a; .__anonCompField1.gcc_a} ∈ {42}
+    {.__anonCompField1.gcc_b; .b} ∈ {3}
+[eva:final-states] Values at end of function main:
+  Sa{.a; .__anonCompField1.gcc_a} ∈ {42}
+    {.__anonCompField1.gcc_b; .b} ∈ {3}
+  __retres ∈ {0}
+[from] Computing for function set_anonymous_struct
+[from] Done for function set_anonymous_struct
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function set_anonymous_struct:
+  Sa.__anonCompField1.gcc_a FROM Sa.a
+    .__anonCompField1.gcc_b FROM Sa.b
+[from] Function main:
+  Sa FROM \nothing
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function set_anonymous_struct:
+    Sa.__anonCompField1
+[inout] Inputs for function set_anonymous_struct:
+    Sa{.a; .b}
+[inout] Out (internal) for function main:
+    Sa; __retres
+[inout] Inputs for function main:
+    Sa{.a; .b}

@@ -1,0 +1,16 @@
+[kernel] Parsing empty_base.c (with preprocessing)
+[kernel] empty_base.c:13: User Error: 
+  empty structs only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+[kernel] empty_base.c:48: User Error: 
+  zero-length arrays only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+[kernel] empty_base.c:50: User Error: 
+  empty initializers only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+  48    struct empty empty_array_of_empty[0];
+  49    struct empty array_of_empty[1];
+  50    struct empty many_empty[3] = {{}};
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  51    
+  52    comp array_of_comp[1] = {{.a = 17, .b = 45, .e = {}}};
+[kernel] User Error: stopping on file "empty_base.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

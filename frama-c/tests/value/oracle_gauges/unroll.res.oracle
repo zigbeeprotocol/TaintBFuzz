@@ -1,0 +1,8 @@
+13d12
+< [eva:alarm] unroll.i:34: Warning: signed overflow. assert -2147483648 ≤ j - 1;
+14a14
+> [eva] unroll.i:39: starting to merge loop iterations
+24c24
+<   j ∈ [-2147483648..-123]
+---
+>   j ∈ {-238}

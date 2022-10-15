@@ -1,0 +1,172 @@
+# frama-c -wp [...]
+[kernel] Parsing user_init.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 23 goals scheduled
+[wp] [Qed] Goal typed_init_t2_v2_loop_assigns_part1 : Valid
+[wp] [Script] Goal typed_init_t2_v2_loop_assigns_part2 : Valid
+[wp] [Script] Goal typed_init_t2_v2_loop_assigns_part3 : Valid
+[wp] [Qed] Goal typed_init_t2_v2_loop_assigns_2_part1 : Valid
+[wp] [Script] Goal typed_init_t2_v2_loop_assigns_2_part2 : Valid
+[wp] [Script] Goal typed_init_t2_v2_loop_assigns_2_part3 : Valid
+[wp] [Qed] Goal typed_init_t2_v2_assigns_part1 : Valid
+[wp] [Script] Goal typed_init_t2_v2_assigns_part2 : Valid
+[wp] [Qed] Goal typed_init_t2_v3_loop_assigns_part1 : Valid
+[wp] [Script] Goal typed_init_t2_v3_loop_assigns_part2 : Valid
+[wp] [Script] Goal typed_init_t2_v3_loop_assigns_part3 : Valid
+[wp] [Qed] Goal typed_init_t2_v3_loop_assigns_2_part1 : Valid
+[wp] [Qed] Goal typed_init_t2_v3_loop_assigns_2_part2 : Valid
+[wp] [Qed] Goal typed_init_t2_v3_assigns_part1 : Valid
+[wp] [Script] Goal typed_init_t2_v3_assigns_part2 : Valid
+[wp] [Qed] Goal typed_init_t2_bis_v2_loop_assigns_part1 : Valid
+[wp] [Script] Goal typed_init_t2_bis_v2_loop_assigns_part2 : Valid
+[wp] [Script] Goal typed_init_t2_bis_v2_loop_assigns_part3 : Valid
+[wp] [Qed] Goal typed_init_t2_bis_v2_assigns_exit_part1 : Valid
+[wp] [Script] Goal typed_init_t2_bis_v2_assigns_exit_part2 : Valid
+[wp] [Qed] Goal typed_init_t2_bis_v2_assigns_exit_part3 : Valid
+[wp] [Qed] Goal typed_init_t2_bis_v2_assigns_normal_part1 : Valid
+[wp] [Script] Goal typed_init_t2_bis_v2_assigns_normal_part2 : Valid
+[wp] Proved goals:   23 / 23
+  Qed:            11 
+  Script:         12 
+  Alt-Ergo:        0  (unsuccess: 12)
+[wp] Proof script for typed_init_t2_bis_v2_assigns_normal_part2:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_138) /\\ (i_1<=i_139) /\\ (0<=i_0) /\\ (i_138<=i_0) /\\ (i_139<=i_1)\n/\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0088,
+                                    "steps": 24 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0116,
+                                    "steps": 24 } ] } } ]
+[wp] Proof script for typed_init_t2_bis_v2_assigns_exit_part2:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_138) /\\ (i_1<=i_139) /\\ (0<=i_0) /\\ (i_138<=i_0) /\\ (i_139<=i_1)\n/\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0088,
+                                    "steps": 24 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0116,
+                                    "steps": 24 } ] } } ]
+[wp] Proof script for typed_init_t2_bis_v2_loop_assigns_part3:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_2:int.\n(i_0<=i_1) /\\ (i_2<=i_3) /\\ (0<=i_0) /\\ (i_1<=i_0) /\\ (i_3<=i_2) /\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0074,
+                                    "steps": 31 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0078,
+                                    "steps": 31 } ] } } ]
+[wp] Proof script for typed_init_t2_bis_v2_loop_assigns_part2:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_9) /\\ (i_1<=i_10) /\\ (0<=i_0) /\\ (i_9<=i_0) /\\ (i_10<=i_1)\n/\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0124,
+                                    "steps": 43 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0121,
+                                    "steps": 43 } ] } } ]
+[wp] Proof script for typed_init_t2_v3_assigns_part2:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_149) /\\ (i_1<=i_150) /\\ (0<=i_0) /\\ (i_149<=i_0) /\\ (i_150<=i_1)\n/\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.011,
+                                    "steps": 16 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0092,
+                                    "steps": 16 } ] } } ]
+[wp] Proof script for typed_init_t2_v3_loop_assigns_part3:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_4) /\\ (i_1<=i_6) /\\ (0<=i_0) /\\ (i_4<=i_0) /\\ (i_6<=i_1) /\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0169,
+                                    "steps": 33 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0081,
+                                    "steps": 33 } ] } } ]
+[wp] Proof script for typed_init_t2_v3_loop_assigns_part2:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_13) /\\ (i_1<=i_14) /\\ (0<=i_0) /\\ (i_13<=i_0) /\\ (i_14<=i_1)\n/\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0139,
+                                    "steps": 45 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0127,
+                                    "steps": 45 } ] } } ]
+[wp] Proof script for typed_init_t2_v2_assigns_part2:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_158) /\\ (i_1<=i_159) /\\ (0<=i_0) /\\ (i_158<=i_0) /\\ (i_159<=i_1)\n/\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.011,
+                                    "steps": 16 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0092,
+                                    "steps": 16 } ] } } ]
+[wp] Proof script for typed_init_t2_v2_loop_assigns_2_part3:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_2:int.\n(i_0<=i_1) /\\ (0<=i_0) /\\ (i_1<=i_0) /\\ (j_1<=i_2) /\\ (i_2<=j_1) /\\ (i_0<=9)",
+                  "pattern": "\\E$i0$i$j$j9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0094,
+                                    "steps": 26 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0101,
+                                    "steps": 26 } ] } } ]
+[wp] Proof script for typed_init_t2_v2_loop_assigns_2_part2:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_13) /\\ (i_1<=i_14) /\\ (0<=i_0) /\\ (i_13<=i_0) /\\ (i_14<=i_1)\n/\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0099,
+                                    "steps": 42 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0124,
+                                    "steps": 42 } ] } } ]
+[wp] Proof script for typed_init_t2_v2_loop_assigns_part3:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_8) /\\ (i_1<=i_9) /\\ (0<=i_0) /\\ (i_8<=i_0) /\\ (i_9<=i_1) /\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0098,
+                                    "steps": 35 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0048,
+                                    "steps": 35 } ] } } ]
+[wp] Proof script for typed_init_t2_v2_loop_assigns_part2:
+  [ { "header": "Split", "tactic": "Wp.split", "params": {},
+      "select": { "select": "clause-goal",
+                  "target": "exists i_0,i_1:int.\n(i_0<=i_21) /\\ (i_1<=i_22) /\\ (0<=i_0) /\\ (i_21<=i_0) /\\ (i_22<=i_1)\n/\\ (i_0<=9)",
+                  "pattern": "\\E$i$i0$i$i9" },
+      "children": { "Goal 1/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0098,
+                                    "steps": 35 } ],
+                    "Goal 2/2": [ { "prover": "Alt-Ergo:2.2.0",
+                                    "verdict": "valid", "time": 0.0048,
+                                    "steps": 35 } ] } } ]
+[wp] Updated session
+   - 12 new valid scripts
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  init_t2_v2                3        -        8       100%
+  init_t2_v3                4        -        7       100%
+  init_t2_bis_v2            4        -        8       100%
+------------------------------------------------------------

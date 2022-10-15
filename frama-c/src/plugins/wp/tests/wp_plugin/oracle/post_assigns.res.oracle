@@ -1,0 +1,42 @@
+# frama-c -wp [...]
+[kernel] Parsing post_assigns.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function receive
+------------------------------------------------------------
+
+Goal Post-condition (file post_assigns.i, line 9) in 'receive':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file post_assigns.i, line 10) in 'receive' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file post_assigns.i, line 10) in 'receive' (2/2):
+Call Effect at line 14
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file post_assigns.i, line 10) in 'receive' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file post_assigns.i, line 10) in 'receive' (2/2):
+Call Effect at line 14
+Prove: true.
+
+------------------------------------------------------------
+[wp] post_assigns.i:12: Warning: 
+  Memory model hypotheses for function 'receive':
+  /*@
+     behavior wp_typed:
+       requires \separated(message + (..), &size);
+       ensures \separated(message + (0 .. \at(size,Post)), &size);
+     */
+  void receive(int n, char *message);

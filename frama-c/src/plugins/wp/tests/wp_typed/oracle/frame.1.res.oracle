@@ -1,0 +1,98 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing frame.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function compound
+------------------------------------------------------------
+
+Goal Assertion 'SEP' (file frame.i, line 10):
+Assume {
+  Type: is_sint32(k).
+  (* Heap *)
+  Type: IsArray_S1(comp_0) /\
+      (forall i : Z. region(comp_0[i].F1_ptr.base) <= 0).
+  (* Pre-condition *)
+  Have: (0 <= k) /\ (k <= 19).
+}
+Prove: (comp_0[k].F1_ptr) != global(L_m_28).
+
+------------------------------------------------------------
+
+Goal Assertion 'RES' (file frame.i, line 11):
+Let a = comp_0[k].F1_ptr.
+Let a_1 = global(L_m_28).
+Let x = Mint_0[a <- 4][a_1].
+Assume {
+  Type: is_sint32(k) /\ is_sint32(x).
+  (* Heap *)
+  Type: IsArray_S1(comp_0) /\
+      (forall i : Z. region(comp_0[i].F1_ptr.base) <= 0).
+  (* Pre-condition *)
+  Have: (0 <= k) /\ (k <= 19).
+  (* Initializer *)
+  Init: Mint_0[a_1] = 1.
+  (* Assertion 'SEP' *)
+  Have: a != a_1.
+}
+Prove: x = 1.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function formal_region
+------------------------------------------------------------
+
+Goal Assertion 'A,X' (file frame.i, line 34):
+Let a = Mptr_0[global(L_x_37)].
+Assume {
+  (* Heap *)
+  Type: framed(Mptr_0) /\ linked(Malloc_0).
+  (* Initializer *)
+  Init: a = shiftfield_F2_S_b(global(P_s_36)).
+}
+Prove: valid_rd(Malloc_0[P_s_36 <- 1][L_x_37 <- 1], a, 1).
+
+------------------------------------------------------------
+
+Goal Assertion 'A,Y' (file frame.i, line 35):
+Let a = Mptr_0[global(L_x_37)].
+Assume {
+  (* Heap *)
+  Type: framed(Mptr_0) /\ linked(Malloc_0).
+  (* Initializer *)
+  Init: a = shiftfield_F2_S_b(global(P_s_36)).
+  (* Assertion 'A,X' *)
+  Have: valid_rd(Malloc_0[P_s_36 <- 1][L_x_37 <- 1], a, 1).
+}
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function local_region
+------------------------------------------------------------
+
+Goal Assertion 'A,X' (file frame.i, line 25):
+Let a = Mptr_0[global(L_x_32)].
+Assume {
+  (* Heap *)
+  Type: framed(Mptr_0) /\ linked(Malloc_0).
+  (* Initializer *)
+  Init: a = shift_sint8(global(L_b_31), 0).
+}
+Prove: valid_rd(Malloc_0[L_b_31 <- 4][L_x_32 <- 1], a, 4).
+
+------------------------------------------------------------
+
+Goal Assertion 'A,Y' (file frame.i, line 26):
+Let a = Mptr_0[global(L_x_32)].
+Assume {
+  (* Heap *)
+  Type: framed(Mptr_0) /\ linked(Malloc_0).
+  (* Initializer *)
+  Init: a = shift_sint8(global(L_b_31), 0).
+  (* Assertion 'A,X' *)
+  Have: valid_rd(Malloc_0[L_b_31 <- 4][L_x_32 <- 1], a, 4).
+}
+Prove: false.
+
+------------------------------------------------------------

@@ -1,0 +1,295 @@
+[kernel] Parsing reevaluate_alarms.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  S ∈ {0}
+  T[0..4] ∈ {0}
+  n ∈ {1}
+[eva] computing for function loop <- main.
+  Called from reevaluate_alarms.i:34.
+[eva] reevaluate_alarms.i:13: starting to merge loop iterations
+[eva:alarm] reevaluate_alarms.i:14: Warning: 
+  signed overflow. assert S + i ≤ 2147483647;
+[eva:alarm] reevaluate_alarms.i:14: Warning: 
+  out of bounds write. assert \valid(tmp);
+                       (tmp from p++)
+[eva] Recording results for loop
+[eva] Done for function loop
+[eva] computing for function compute_n <- main.
+  Called from reevaluate_alarms.i:36.
+[eva] reevaluate_alarms.i:19: starting to merge loop iterations
+[eva:alarm] reevaluate_alarms.i:20: Warning: 
+  signed overflow. assert n * i ≤ 2147483647;
+[eva] Recording results for compute_n
+[eva] Done for function compute_n
+[eva] computing for function init_p <- main.
+  Called from reevaluate_alarms.i:40.
+[eva] Recording results for init_p
+[eva] Done for function init_p
+[eva] computing for function initialized_p <- main.
+  Called from reevaluate_alarms.i:41.
+[eva:alarm] reevaluate_alarms.i:30: Warning: 
+  accessing uninitialized left-value. assert \initialized(p);
+[eva] Recording results for initialized_p
+[eva] Done for function initialized_p
+[eva] computing for function init_p <- main.
+  Called from reevaluate_alarms.i:43.
+[eva] Recording results for init_p
+[eva] Done for function init_p
+[eva] computing for function initialized_p <- main.
+  Called from reevaluate_alarms.i:44.
+[eva] Recording results for initialized_p
+[eva] Done for function initialized_p
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function compute_n:
+  n ∈ [1..2147483647]
+  i ∈ {6}
+[eva:final-states] Values at end of function init_p:
+  x ∈ {0} or UNINITIALIZED
+  y ∈ {0} or UNINITIALIZED
+[eva:final-states] Values at end of function initialized_p:
+  x ∈ {1}
+[eva:final-states] Values at end of function loop:
+  S ∈ [0..2147483647]
+  T[0..4] ∈ [0..2147483647]
+  i ∈ {5}
+  p ∈ {{ &T + [0..--],0%4 }}
+[eva:final-states] Values at end of function main:
+  S ∈ [0..2147483647]
+  T[0..4] ∈ [0..2147483647]
+  n ∈ [1..2147483647]
+  x ∈ {0}
+  y ∈ {0}
+  __retres ∈ {0}
+[from] Computing for function compute_n
+[from] Done for function compute_n
+[from] Computing for function init_p
+[from] Done for function init_p
+[from] Computing for function initialized_p
+[from] Done for function initialized_p
+[from] Computing for function loop
+[from] Done for function loop
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function compute_n:
+  n FROM n (and SELF)
+[from] Function init_p:
+  x FROM n; p (and SELF)
+  y FROM n; p (and SELF)
+[from] Function initialized_p:
+  NO EFFECTS
+[from] Function loop:
+  S FROM S (and SELF)
+  T[0..4] FROM S (and SELF)
+  \result FROM S
+[from] Function main:
+  S FROM S (and SELF)
+  T[0..4] FROM S (and SELF)
+  n FROM n (and SELF)
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function compute_n:
+    n; i
+[inout] Inputs for function compute_n:
+    n
+[inout] Out (internal) for function init_p:
+    x; y
+[inout] Inputs for function init_p:
+    n
+[inout] Out (internal) for function initialized_p:
+    x
+[inout] Inputs for function initialized_p:
+    x; y
+[inout] Out (internal) for function loop:
+    S; T[0..4]; i; p; tmp
+[inout] Inputs for function loop:
+    S
+[inout] Out (internal) for function main:
+    S; T[0..4]; n; x; y; __retres
+[inout] Inputs for function main:
+    S; n
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'loop'
+--------------------------------------------------------------------------------
+
+[    -    ] Assertion 'Eva,signed_overflow' (file reevaluate_alarms.i, line 14)
+            tried with Eva.
+[    -    ] Assertion 'Eva,mem_access' (file reevaluate_alarms.i, line 14)
+            tried with Eva.
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'compute_n'
+--------------------------------------------------------------------------------
+
+[    -    ] Assertion 'Eva,signed_overflow' (file reevaluate_alarms.i, line 20)
+            tried with Eva.
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'initialized_p'
+--------------------------------------------------------------------------------
+
+[    -    ] Assertion 'Eva,initialization' (file reevaluate_alarms.i, line 30)
+            tried with Eva.
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     4 To be validated
+     4 Total
+--------------------------------------------------------------------------------
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  S ∈ {0}
+  T[0..4] ∈ {0}
+  n ∈ {1}
+[eva] computing for function loop <- main.
+  Called from reevaluate_alarms.i:34.
+[eva] Recording results for loop
+[eva] Done for function loop
+[eva] computing for function compute_n <- main.
+  Called from reevaluate_alarms.i:36.
+[eva] Recording results for compute_n
+[eva] Done for function compute_n
+[eva] computing for function init_p <- main.
+  Called from reevaluate_alarms.i:40.
+[eva] Recording results for init_p
+[eva] Done for function init_p
+[eva] computing for function initialized_p <- main.
+  Called from reevaluate_alarms.i:41.
+[eva] Recording results for initialized_p
+[eva] Done for function initialized_p
+[eva] computing for function init_p <- main.
+  Called from reevaluate_alarms.i:43.
+[eva] Recording results for init_p
+[eva] Done for function init_p
+[eva] computing for function initialized_p <- main.
+  Called from reevaluate_alarms.i:44.
+[eva] Recording results for initialized_p
+[eva] Done for function initialized_p
+[eva] Recording results for main
+[eva] done for function main
+[eva] reevaluate_alarms.i:14: 
+  assertion 'Eva,signed_overflow' got final status valid.
+[eva] reevaluate_alarms.i:14: assertion 'Eva,mem_access' got final status valid.
+[eva] reevaluate_alarms.i:20: 
+  assertion 'Eva,signed_overflow' got final status valid.
+[eva] reevaluate_alarms.i:30: 
+  assertion 'Eva,initialization' got final status valid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function compute_n:
+  n ∈ {120}
+  i ∈ {6}
+[eva:final-states] Values at end of function init_p:
+  x ∈ {0}
+  y ∈ {0} or UNINITIALIZED
+[eva:final-states] Values at end of function initialized_p:
+  x ∈ {1}
+[eva:final-states] Values at end of function loop:
+  S ∈ {10}
+  T[0] ∈ {0}
+   [1] ∈ {1}
+   [2] ∈ {3}
+   [3] ∈ {6}
+   [4] ∈ {10}
+  i ∈ {5}
+  p ∈ {{ &T[5] }}
+[eva:final-states] Values at end of function main:
+  S ∈ {10}
+  T[0] ∈ {0}
+   [1] ∈ {1}
+   [2] ∈ {3}
+   [3] ∈ {6}
+   [4] ∈ {10}
+  n ∈ {120}
+  x ∈ {0}
+  y ∈ {0}
+  __retres ∈ {0}
+[from] Computing for function compute_n
+[from] Done for function compute_n
+[from] Computing for function init_p
+[from] Done for function init_p
+[from] Computing for function initialized_p
+[from] Done for function initialized_p
+[from] Computing for function loop
+[from] Done for function loop
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function compute_n:
+  n FROM n (and SELF)
+[from] Function init_p:
+  x FROM n; p (and SELF)
+  y FROM n; p (and SELF)
+[from] Function initialized_p:
+  NO EFFECTS
+[from] Function loop:
+  S FROM S (and SELF)
+  T[0..4] FROM S (and SELF)
+  \result FROM S
+[from] Function main:
+  S FROM S (and SELF)
+  T[0..4] FROM S (and SELF)
+  n FROM n (and SELF)
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function compute_n:
+    n; i
+[inout] Inputs for function compute_n:
+    n
+[inout] Out (internal) for function init_p:
+    x; y
+[inout] Inputs for function init_p:
+    n
+[inout] Out (internal) for function initialized_p:
+    x
+[inout] Inputs for function initialized_p:
+    x; y
+[inout] Out (internal) for function loop:
+    S; T[0..4]; i; p; tmp
+[inout] Inputs for function loop:
+    S
+[inout] Out (internal) for function main:
+    S; T[0..4]; n; x; y; __retres
+[inout] Inputs for function main:
+    S; n
+[report] Computing properties status...
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'loop'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Assertion 'Eva,signed_overflow' (file reevaluate_alarms.i, line 14)
+            by Eva (v2).
+[  Valid  ] Assertion 'Eva,mem_access' (file reevaluate_alarms.i, line 14)
+            by Eva (v2).
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'compute_n'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Assertion 'Eva,signed_overflow' (file reevaluate_alarms.i, line 20)
+            by Eva (v2).
+
+--------------------------------------------------------------------------------
+--- Properties of Function 'initialized_p'
+--------------------------------------------------------------------------------
+
+[  Valid  ] Assertion 'Eva,initialization' (file reevaluate_alarms.i, line 30)
+            by Eva (v2).
+
+--------------------------------------------------------------------------------
+--- Status Report Summary
+--------------------------------------------------------------------------------
+     4 Completely validated
+     4 Total
+--------------------------------------------------------------------------------

@@ -1,0 +1,10 @@
+[kernel] Parsing line_number.c (with preprocessing)
+[kernel] line_number.c:6: 
+  syntax error:
+  
+  4     */
+  5     
+  6     //@ assert \result == 0;
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  7     extern int p(void void);
+[kernel] Frama-C aborted: invalid user input.

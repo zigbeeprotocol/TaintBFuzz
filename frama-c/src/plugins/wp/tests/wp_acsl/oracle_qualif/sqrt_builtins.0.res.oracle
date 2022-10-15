@@ -1,0 +1,14 @@
+# frama-c -wp [...]
+[kernel] Parsing sqrt_builtins.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 2 goals scheduled
+[wp] [Alt-Ergo] Goal typed_test_sqrtf_assert_KO : Unsuccess
+[wp] [Alt-Ergo] Goal typed_test_sqrt_assert_KO : Unsuccess
+[wp] Proved goals:    0 / 2
+  Alt-Ergo:        0  (unsuccess: 2)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  test_sqrtf                -        -        1       0.0%
+  test_sqrt                 -        -        1       0.0%
+------------------------------------------------------------

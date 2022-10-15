@@ -1,0 +1,2 @@
+PLUGIN: @PTEST_PLUGIN@,eva,scope,inout,reduc
+CMD: @frama-c@ -no-autoload-plugins -eva -eva-no-print -eva-verbose 0 @PTEST_FILE@ -then -reduc -reduc-gen-annot all -then -no-reduc -wp -wp-print -wp-prover none -wp-share @PTEST_SHARE_DIR@ -wp-msg-key shell

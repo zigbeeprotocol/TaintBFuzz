@@ -1,0 +1,80 @@
+[kernel] Parsing array_zero_length.i (no preprocessing)
+[kernel] array_zero_length.i:11: Warning: 
+  declaration of array of 'zero-length arrays' ('char [0]`);
+  zero-length arrays are a compiler extension
+[kernel] array_zero_length.i:16: Warning: 
+  declaration of array of 'zero-length arrays' ('char [0]`);
+  zero-length arrays are a compiler extension
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva:unknown-size] array_zero_length.i:8: Warning: 
+  during initialization of variable 'T', size of type 'char []' cannot be
+  computed (Size of array without number of elements.)
+[eva:unknown-size] array_zero_length.i:10: Warning: 
+  during initialization of variable 'V', size of type 'char [][2]' cannot be
+  computed (Size of array without number of elements.)
+[eva:unknown-size] array_zero_length.i:11: Warning: 
+  during initialization of variable 'W', size of type 'char [][0]' cannot be
+  computed (Size of array without number of elements.)
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0..4294967295] ∈ {0} or UNINITIALIZED
+  V[0..2147483647][0..1] ∈ {0} or UNINITIALIZED
+  W[bits 0 to ..] ∈ {0} or UNINITIALIZED
+  W2[0..1][0] ∈ {0}
+  pW ∈ {0}
+[eva] array_zero_length.i:25: assertion got status valid.
+[eva] array_zero_length.i:29: assertion got status valid.
+[eva] array_zero_length.i:31: assertion got status valid.
+[eva] array_zero_length.i:33: assertion got status valid.
+[eva] array_zero_length.i:35: assertion got status valid.
+[eva:alarm] array_zero_length.i:37: Warning: 
+  out of bounds write. assert \valid(&T[2]);
+[eva:alarm] array_zero_length.i:38: Warning: 
+  out of bounds write. assert \valid(&T[1]);
+[eva:alarm] array_zero_length.i:38: Warning: 
+  accessing uninitialized left-value. assert \initialized(&T[3]);
+[eva:alarm] array_zero_length.i:38: Warning: 
+  out of bounds read. assert \valid_read(&T[3]);
+[eva:alarm] array_zero_length.i:40: Warning: 
+  out of bounds write. assert \valid(&V[2][1]);
+[eva:alarm] array_zero_length.i:41: Warning: 
+  out of bounds write. assert \valid(&V[1][1]);
+[eva:alarm] array_zero_length.i:41: Warning: 
+  accessing uninitialized left-value. assert \initialized(&V[3][1]);
+[eva:alarm] array_zero_length.i:41: Warning: 
+  out of bounds read. assert \valid_read(&V[3][1]);
+[eva:alarm] array_zero_length.i:43: Warning: 
+  out of bounds write. assert \valid(&W[2][1]);
+[eva:alarm] array_zero_length.i:44: Warning: 
+  out of bounds write. assert \valid(&W[1][1]);
+[eva:alarm] array_zero_length.i:44: Warning: 
+  accessing uninitialized left-value. assert \initialized(&W[3][1]);
+[eva:alarm] array_zero_length.i:44: Warning: 
+  out of bounds read. assert \valid_read(&W[3][1]);
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  T[0] ∈ {0} or UNINITIALIZED
+   [1] ∈ {0; 3} or UNINITIALIZED
+   [2] ∈ {3}
+   [3..4294967295] ∈ {0} or UNINITIALIZED
+  V{[0][0..1]; [1][0]} ∈ {0} or UNINITIALIZED
+   [1][1] ∈ {0; 3} or UNINITIALIZED
+   [2][0] ∈ {0} or UNINITIALIZED
+   [2][1] ∈ {0; 3} or UNINITIALIZED
+   [3..2147483647][0..1] ∈ {0} or UNINITIALIZED
+  W[bits 0 to 7] ∈ {0} or UNINITIALIZED
+   [bits 8 to 15] ∈ {0; 3; 6} or UNINITIALIZED
+   [bits 16 to ..] ∈ {0} or UNINITIALIZED
+  pW ∈ {{ NULL ; &W[-1] }}
+  sT ∈ [--..--]
+  sU ∈ {0}
+  sV ∈ [--..--]
+  sW ∈ [--..--]
+  sT1 ∈ {0}
+  sU1 ∈ {0}
+  sV1 ∈ {0}
+  sW1 ∈ {0}
+  sW2 ∈ {2}

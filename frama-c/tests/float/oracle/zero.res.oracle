@@ -1,0 +1,62 @@
+[kernel] Parsing zero.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  rand ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from zero.i:55.
+[eva:alarm] zero.i:55: Warning: function main1: precondition got status unknown.
+[eva] zero.i:10: Frama_C_show_each: {1}
+[eva] zero.i:17: Frama_C_show_each: {1}
+[eva] zero.i:23: Frama_C_show_each_1: [1.40129846432e-45 .. 3.40282346639e+38]
+[eva] zero.i:25: Frama_C_show_each_2: [-0. .. 0.]
+[eva] zero.i:29: Frama_C_show_each_3: [-3.40282346639e+38 .. -1.40129846432e-45]
+[eva] zero.i:31: Frama_C_show_each_4: [-0. .. 0.]
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function equality_between_zeros <- main.
+  Called from zero.i:56.
+[eva] Recording results for equality_between_zeros
+[eva] Done for function equality_between_zeros
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function equality_between_zeros:
+  f1 ∈ [0. .. 10.]
+  f2 ∈ [-0. .. 10.]
+  r ∈ [-0. .. 10.]
+[eva:final-states] Values at end of function main1:
+  f ∈ {-0.}
+  i1 ∈ {1}
+  i2 ∈ {1}
+  i3 ∈ {0}
+[eva:final-states] Values at end of function main:
+  
+[from] Computing for function equality_between_zeros
+[from] Done for function equality_between_zeros
+[from] Computing for function main1
+[from] Done for function main1
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function equality_between_zeros:
+  NO EFFECTS
+[from] Function main1:
+  NO EFFECTS
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function equality_between_zeros:
+    f1; tmp; f2; tmp_0; r
+[inout] Inputs for function equality_between_zeros:
+    rand
+[inout] Out (internal) for function main1:
+    f; i1; i2; i3
+[inout] Inputs for function main1:
+    \nothing
+[inout] Out (internal) for function main:
+    \nothing
+[inout] Inputs for function main:
+    rand

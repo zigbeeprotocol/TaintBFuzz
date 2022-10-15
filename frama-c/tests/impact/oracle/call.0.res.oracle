@@ -1,0 +1,42 @@
+[kernel] Parsing call.i (no preprocessing)
+[impact] beginning analysis
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+  X ∈ {0}
+[eva] computing for function test <- main.
+  Called from call.i:24.
+[eva] computing for function p1 <- test <- main.
+  Called from call.i:16.
+[eva] using specification for function p1
+[eva] Done for function p1
+[kernel:annot:missing-spec] call.i:16: Warning: 
+  Neither code nor specification for function p2, generating default assigns from the prototype
+[eva] computing for function p2 <- test <- main.
+  Called from call.i:16.
+[eva] using specification for function p2
+[eva] Done for function p2
+[eva] Recording results for test
+[eva] Done for function test
+[eva] Recording results for main
+[eva] done for function main
+[pdg] computing for function main
+[from] Computing for function test
+[from] Computing for function p1 <-test
+[from] Done for function p1
+[from] Computing for function p2 <-test
+[from] Done for function p2
+[from] Done for function test
+[pdg] done for function main
+[pdg] computing for function test
+[pdg] done for function test
+[pdg] computing for function p1
+[pdg] done for function p1
+[pdg] computing for function p2
+[pdg] done for function p2
+[impact] impacted statements of stmt(s) 8 are:
+    call.i:16 (sid 2): if(X) <..>call.i:16 (sid 3): p1(1);
+    call.i:16 (sid 4): p2(0);call.i:24 (sid 9): test();
+[impact] analysis done

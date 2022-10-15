@@ -1,0 +1,588 @@
+##########################################################################
+#                                                                        #
+#  This file is part of the Frama-C's E-ACSL plug-in.                    #
+#                                                                        #
+#  Copyright (C) 2012-2021                                               #
+#    CEA (Commissariat à l'énergie atomique et aux énergies              #
+#         alternatives)                                                  #
+#                                                                        #
+#  you can redistribute it and/or modify it under the terms of the GNU   #
+#  Lesser General Public License as published by the Free Software       #
+#  Foundation, version 2.1.                                              #
+#                                                                        #
+#  It is distributed in the hope that it will be useful,                 #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of        #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
+#  GNU Lesser General Public License for more details.                   #
+#                                                                        #
+#  See the GNU Lesser General Public License version 2.1                 #
+#  for more details (enclosed in the file licenses/LGPLv2.1).            #
+#                                                                        #
+##########################################################################
+
+#######################
+# Frama-C Environment #
+#######################
+
+# Do not use ?= to initialize both below variables
+# (fixed efficiency issue, see GNU Make manual, Section 8.11)
+ifndef FRAMAC_SHARE
+FRAMAC_SHARE  :=$(shell frama-c-config -print-share-path)
+endif
+ifndef FRAMAC_LIBDIR
+FRAMAC_LIBDIR :=$(shell frama-c-config -print-libpath)
+endif
+
+###################
+# Plug-in sources #
+###################
+
+# libraries
+SRC_LIBRARIES:= \
+	error \
+	builtins \
+	functions \
+	misc \
+	gmp_types \
+	logic_aggr \
+	varname
+SRC_LIBRARIES:=$(addprefix src/libraries/, $(SRC_LIBRARIES))
+
+# project initializer
+SRC_PROJECT_INITIALIZER:= \
+	rtl \
+	prepare_ast
+SRC_PROJECT_INITIALIZER:=\
+  $(addprefix src/project_initializer/, $(SRC_PROJECT_INITIALIZER))
+
+# analyses
+ANALYSES_CMI:= \
+	analyses_types
+ANALYSES_CMI:=$(addprefix src/analyses/, $(ANALYSES_CMI))
+
+SRC_ANALYSES:= \
+	lscope \
+	analyses_datatype \
+	rte \
+	e_acsl_visitor \
+	logic_normalizer \
+	bound_variables \
+	interval \
+	typing \
+	labels \
+	literal_strings \
+	memory_tracking \
+	exit_points \
+	analyses
+SRC_ANALYSES:=$(addprefix src/analyses/, $(SRC_ANALYSES))
+
+# code generator
+CODE_GENERATOR_CMI:= \
+	contract_types
+CODE_GENERATOR_CMI:=$(addprefix src/code_generator/, $(CODE_GENERATOR_CMI))
+
+SRC_CODE_GENERATOR:= \
+	translation_error \
+	smart_exp \
+	smart_stmt \
+	gmp \
+	env \
+	assert \
+	rational \
+	typed_number \
+	assigns \
+	logic_functions \
+	loops \
+	quantif \
+	memory_translate \
+	logic_array \
+	translate_utils \
+	translate_ats \
+	translate_terms \
+	translate_predicates \
+	translate_rtes \
+	contract \
+	translate_annots \
+	temporal \
+	memory_observer \
+	literal_observer \
+	global_observer \
+	libc \
+	injector
+SRC_CODE_GENERATOR:=$(addprefix src/code_generator/, $(SRC_CODE_GENERATOR))
+
+#########################
+# Plug-in configuration #
+#########################
+
+PLUGIN_DIR ?=.
+PLUGIN_EXTRA_DIRS:=\
+	src \
+	src/libraries \
+	src/analyses \
+	src/project_initializer \
+	src/code_generator
+PLUGIN_ENABLE:=@ENABLE_E_ACSL@
+PLUGIN_NAME:=E_ACSL
+PLUGIN_CMO:= src/local_config \
+	src/options \
+	$(SRC_LIBRARIES) \
+	$(SRC_PROJECT_INITIALIZER) \
+	$(SRC_ANALYSES) \
+	$(SRC_CODE_GENERATOR) \
+	src/main
+PLUGIN_CMI:= \
+	$(LIBRARIES_CMI) \
+	$(ANALYSES_CMI) \
+	$(CODE_GENERATOR_CMI)
+PLUGIN_HAS_MLI:=yes
+PLUGIN_DISTRIBUTED:=yes
+PLUGIN_DEPENDENCIES:= RteGen
+PLUGIN_GENERATED:=
+
+# We "save" this variable so that it can be used once PLUGIN_DIR has been reset
+EACSL_PLUGIN_DIR:=$(PLUGIN_DIR)
+
+# Suppress a spurious warning with OCaml >= 4.04.0
+$(EACSL_PLUGIN_DIR)/src/analyses/memory_tracking.cmo \
+$(EACSL_PLUGIN_DIR)/src/analyses/memory_tracking.cmi: E_ACSL_BFLAGS+= -w -60
+$(EACSL_PLUGIN_DIR)/src/analyses/memory_tracking.cmx: E_ACSL_OFLAGS+= -w -60
+
+###############
+# Local Flags #
+###############
+# Do not edit the line below: it is automatically set by 'make e-acsl-distrib'
+IS_DISTRIBUTED:=no
+
+#######################
+# Local configuration #
+#######################
+
+PLUGIN_GENERATED += $(EACSL_PLUGIN_DIR)/src/local_config.ml
+
+VERSION_FILE=$(FRAMAC_ROOT_SRCDIR)/VERSION
+
+################
+# Version      #
+################
+
+EACSL_VERSION:=$(shell sed -e 's/\\(.*\\)/\\1/' $(VERSION_FILE))
+
+$(EACSL_PLUGIN_DIR)/src/local_config.ml: $(EACSL_PLUGIN_DIR)/Makefile $(VERSION_FILE)
+	$(PRINT_MAKING) $@
+	$(RM) $@
+	$(ECHO) "(* This file was automatically generated from $<. Don't edit it. *)" >> $@
+	$(ECHO) "let version = \""$(EACSL_VERSION)"\"" >> $@
+	$(CHMOD_RO) $@
+
+###########
+# Testing #
+###########
+
+ifeq (@MAY_RUN_TESTS@,yes)
+
+-include in_frama_ci
+
+PLUGIN_TESTS_DIRS := \
+	examples \
+	bts \
+	concurrency \
+	constructs \
+	arith \
+	memory \
+	gmp-only \
+	full-mtracking \
+	format \
+	temporal \
+	special \
+	builtin \
+	libc
+
+PLUGIN_TESTS_LIB := $(EACSL_PLUGIN_DIR)/tests/E_ACSL_test.ml
+
+DEV?=
+ifeq ("$(DEV)","yes")
+  EACSL_TEST_CONFIG:=dev
+endif
+
+ifdef EACSL_TEST_CONFIG
+  # Prepend PTESTS_OPTS with the test config to use. If the user-provided
+  # PTESTS_OPTS variable contains another -config instruction, then it will be
+  # prioritized over the one selected by the Makefile.
+  E_ACSL_TESTS E_ACSL_DEFAULT_TESTS: override PTESTS_OPTS:=-config $(EACSL_TEST_CONFIG) $(PTESTS_OPTS)
+endif
+
+TEST_DEPENDENCIES:= \
+	$(EACSL_PLUGIN_DIR)/tests/ptests_config \
+	$(EACSL_PLUGIN_DIR)/tests/test_config \
+	$(EACSL_PLUGIN_DIR)/tests/test_config_dev \
+	$(EACSL_PLUGIN_DIR)/tests/E_ACSL_test.cmo \
+	$(EACSL_PLUGIN_DIR)/tests/wrapper.sh
+
+ifeq ($(OCAMLBEST),opt)
+TEST_DEPENDENCIES += \
+	$(EACSL_PLUGIN_DIR)/tests/E_ACSL_test.cmxs
+endif
+
+ifneq ("$(PLUGIN_ENABLE)","no")
+# Add the test dependencies to the test targets, but also to
+# `plugins_ptests_config` so that they are built along with the main target.
+plugins_ptests_config: $(TEST_DEPENDENCIES)
+E_ACSL_TESTS E_ACSL_DEFAULT_TESTS: $(TEST_DEPENDENCIES)
+tests:: $(TEST_DEPENDENCIES)
+endif
+
+clean::
+	for d in $(E_ACSL_EXTRA_DIRS); do \
+	  $(RM) $$d/*~; \
+	done
+	$(PRINT_RM) cleaning generated test files
+	$(RM) $(E_ACSL_DIR)/tests/*.cm* $(E_ACSL_DIR)/tests/*.o
+	$(RM) $(foreach dir, $(PLUGIN_TESTS_DIRS), tests/$(dir)/result/*)
+
+endif
+
+################################################
+# Third-party C libraries                      #
+################################################
+
+EACSL_LIBDIR := $(EACSL_PLUGIN_DIR)/lib
+
+############
+# DLMALLOC #
+############
+
+EACSL_DLMALLOC_REL_DIR := contrib/libdlmalloc
+EACSL_DLMALLOC_DIR := $(EACSL_PLUGIN_DIR)/$(EACSL_DLMALLOC_REL_DIR)
+EACSL_DLMALLOC_LIBNAME = libeacsl-dlmalloc.a
+EACSL_DLMALLOC_LIB = $(EACSL_LIBDIR)/$(EACSL_DLMALLOC_LIBNAME)
+EACSL_DLMALLOC_SRC = $(EACSL_DLMALLOC_DIR)/dlmalloc.c
+EACSL_DLMALLOC_OBJ  = dlmalloc.o
+# Don't forget to update "e-acsl-gcc.sh" if the flags are updated
+EACSL_DLMALLOC_FLAGS = \
+  -DHAVE_MORECORE=0 \
+  -DHAVE_MMAP=1  \
+  -DNO_MALLINFO=1 \
+  -DNO_MALLOC_STATS=1 \
+  -DMSPACES=1 \
+  -DONLY_MSPACES \
+  -DMALLOC_ALIGNMENT=32 \
+  -DMSPACE_PREFIX="__e_acsl_" \
+  -DUSE_LOCKS=1 \
+  -DUSE_SPIN_LOCKS=1
+
+$(EACSL_DLMALLOC_LIB): $(EACSL_DLMALLOC_SRC) $(EACSL_PLUGIN_DIR)/Makefile
+	$(MKDIR) $(EACSL_LIBDIR)
+	echo 'CC           $<'
+	$(CC) $< -c -O2 -g3 -o$(EACSL_DLMALLOC_OBJ) $(EACSL_DLMALLOC_FLAGS)
+	echo 'AR           $@'
+	$(AR) crus $@ $(EACSL_DLMALLOC_OBJ)
+	echo 'RANLIB       $@'
+	ranlib $@
+
+ifneq ("$(PLUGIN_ENABLE)","no")
+all:: $(EACSL_DLMALLOC_LIB)
+
+clean::
+	$(RM) $(EACSL_DLMALLOC_LIB)
+endif
+
+############
+# Cleaning #
+############
+
+EACSL_CLEANFILES = doc/doxygen/doxygen.cfg \
+	Makefile config.log config.status configure .depend autom4te.cache/* \
+	META.frama-c-e_acsl Makefile.plugin.generated src/local_config.ml \
+	top/* \
+	$(TEST_DEPENDENCIES)
+
+e-acsl-distclean: clean
+	$(PRINT_RM) generated project files
+	$(RM) $(wildcard $(addprefix $(E_ACSL_DIR)/, $(EACSL_CLEANFILES)))
+
+#################################################################
+# Common variables between source distribution and installation #
+#################################################################
+
+EACSL_C_DIRECTORIES := \
+	e-acsl \
+	e-acsl/internals \
+	e-acsl/instrumentation_model \
+	e-acsl/observation_model \
+	e-acsl/observation_model/internals \
+	e-acsl/observation_model/bittree_model \
+	e-acsl/observation_model/segment_model \
+	e-acsl/numerical_model \
+	e-acsl/libc_replacements
+
+EACSL_SCRIPTS := \
+	scripts/e-acsl-gcc.sh
+
+EACSL_BASHCOMPS := \
+	scripts/e-acsl-gcc.sh.comp
+
+EACSL_MANPAGES := \
+	man/e-acsl-gcc.sh.1
+
+################################
+# Building source distribution #
+################################
+
+EACSL_CONTRIB_FILES = \
+  $(EACSL_DLMALLOC_REL_DIR)/dlmalloc.c
+
+EACSL_DOC_FILES = \
+	doc/doxygen/doxygen.cfg.in \
+	doc/Changelog \
+	$(EACSL_MANPAGES)
+
+EACSL_TEST_FILES = \
+	tests/test_config_dev \
+	tests/test_config \
+	tests/wrapper.sh \
+	tests/gmp-only/test_config \
+	tests/gmp-only/test_config_dev \
+	tests/full-mtracking/test_config \
+	tests/full-mtracking/test_config_dev \
+	tests/builtin/test_config \
+	tests/builtin/test_config_dev \
+	tests/temporal/test_config \
+	tests/temporal/test_config_dev \
+	tests/format/test_config \
+	tests/format/test_config_dev \
+	tests/concurrency/test_config \
+	tests/concurrency/test_config_dev \
+	tests/E_ACSL_test.ml
+
+EACSL_TESTS_C_FILES = \
+  $(foreach dir, $(addprefix tests/,$(PLUGIN_TESTS_DIRS)), \
+      $(dir)/*.[ich] \
+  ) \
+  tests/utils/signalled.h
+
+# Test files without header management
+EACSL_DISTRIB_TESTS = \
+  $(EACSL_TESTS_C_FILES) \
+  $(foreach dir, $(addprefix tests/,$(PLUGIN_TESTS_DIRS)), \
+      $(dir)/test_config \
+      $(dir)/test_config_dev \
+      $(dir)/oracle/* \
+      $(dir)/oracle_dev/* \
+  ) \
+  tests/builtin/utils \
+  tests/format/utils
+
+EACSL_RTL_FILES = $(EACSL_RTL_SRC)
+
+EACSL_SCRIPT_FILES = $(EACSL_SCRIPTS)
+
+EACSL_BASHCOMP_FILES = $(EACSL_BASHCOMPS)
+
+EACSL_LICENSE_FILES = \
+  license/CEA_LGPL license/SPARETIMELABS \
+  license/headache_config.txt license/LGPLv2.1
+
+EACSL_MISC_FILES = \
+  configure.ac Makefile.in README tab-in-changelog.sh
+
+EACSL_SHARE_FILES = \
+	$(addprefix share/,$(addsuffix /*.[ch],$(EACSL_C_DIRECTORIES)))
+
+EACSL_DISTRIB_EXTERNAL =\
+  $(EACSL_SHARE_FILES) \
+  $(EACSL_MISC_FILES) \
+  $(EACSL_DOC_FILES) \
+  $(EACSL_TEST_FILES) \
+  $(EACSL_RTL_FILES) \
+  $(EACSL_SCRIPT_FILES) \
+  $(EACSL_BASHCOMP_FILES) \
+  $(EACSL_LICENSE_FILES) \
+  $(EACSL_CONTRIB_FILES)
+
+PLUGIN_DISTRIB_EXTERNAL:= $(EACSL_DISTRIB_EXTERNAL)
+
+# Files of `DISTRIB_FILES` without header and not listed in file
+# `headers/header_specs.txt`.
+PLUGIN_HEADER_EXCEPTIONS:=
+
+# Files that are not listed in `DISTRIB_FILES`
+# and dedicated to distributed tests
+PLUGIN_DISTRIB_TESTS:= $(EACSL_DISTRIB_TESTS)
+
+########
+# Misc #
+########
+
+wc:
+	ocamlwc -p $(EACSL_OCAML_FILES)
+
+# Files to format with clang-format
+EACSL_CLANG_FORMAT_SRC:=\
+	$(addprefix $(EACSL_PLUGIN_DIR)/,$(EACSL_TESTS_C_FILES)) \
+	$(addprefix $(EACSL_PLUGIN_DIR)/,$(EACSL_SHARE_FILES))
+
+# Format C files
+eacsl-clang-format:
+	if command -v clang-format >/dev/null; then \
+		echo "Formatting E-ACSL C files with clang-format..."; \
+		clang-format -i $(EACSL_CLANG_FORMAT_SRC); \
+	else \
+		echo "clang-format should be installed to check the formatting of E-ACSL C files"; \
+	fi;
+
+# Check if C files are correctly formatted
+eacsl-lint-c:
+	if command -v clang-format >/dev/null; then \
+		echo "Checking formatting of E-ACSL C files..."; \
+		clang-format --dry-run -Werror $(EACSL_CLANG_FORMAT_SRC); \
+	else \
+		echo "clang-format should be installed to check the formatting of E-ACSL C files"; \
+	fi;
+
+# Check for the absence of <TAB> characters in the changelog
+eacsl-lint-changelog:
+	echo "Checking changelog of E-ACSL for the absence of <TAB> characters..."
+	$(EACSL_PLUGIN_DIR)/tab-in-changelog.sh
+
+# Extend lint step with E-ACSL specific lint
+lint:: eacsl-lint-changelog eacsl-lint-c
+
+##########
+# Header #
+##########
+
+ifneq ("$(FRAMAC_INTERNAL)","yes")
+
+EACSL_SPARETIMELABS= \
+	$(EACSL_PLUGIN_DIR)/share/e-acsl/internals/e_acsl_rtl_io.h \
+	$(EACSL_PLUGIN_DIR)/share/e-acsl/internals/e_acsl_rtl_io.c
+
+EACSL_SHARE_BARE= \
+	$(addprefix share/,$(addsuffix /*.[ch],$(EACSL_C_DIRECTORIES)))
+EACSL_SHARE=$(addprefix $(EACSL_PLUGIN_DIR)/, $(EACSL_SHARE_BARE))
+EACSL_CEA_SHARE=$(filter-out $(EACSL_SPARETIMELABS), $(wildcard $(EACSL_SHARE)))
+
+EACSL_CEA_LGPL_BARE= src/*.ml src/*/*.ml src/*.mli src/*/*.mli \
+	E_ACSL.mli \
+	Makefile.in configure.ac tab-in-changelog.sh \
+	scripts/*.sh \
+	scripts/*.comp \
+	tests/E_ACSL_test.ml \
+	tests/wrapper.sh \
+	man/e-acsl-gcc.sh.1
+EACSL_CEA_LGPL=$(addprefix $(EACSL_PLUGIN_DIR)/, $(EACSL_CEA_LGPL_BARE)) \
+               $(EACSL_CEA_SHARE)
+
+# valid values: open-source, close-source
+EACSL_HEADERS?=open-source
+headers::
+	@echo "Applying $(EACSL_HEADERS) headers..."
+	headache -c $(EACSL_PLUGIN_DIR)/license/headache_config.txt \
+                 -h $(EACSL_PLUGIN_DIR)/headers/$(EACSL_HEADERS)/CEA_LGPL_OR_PROPRIETARY.E_ACSL \
+                 $(EACSL_CEA_LGPL)
+	headache -c $(EACSL_PLUGIN_DIR)/license/headache_config.txt \
+                 -h $(EACSL_PLUGIN_DIR)/headers/$(EACSL_HEADERS)/MODIFIED_SPARETIMELABS \
+                 $(EACSL_SPARETIMELABS)
+	headache -c $(EACSL_PLUGIN_DIR)/license/headache_config.txt \
+                 -h $(EACSL_PLUGIN_DIR)/headers/$(EACSL_HEADERS)/MODIFIED_DLMALLOC \
+                 $(EACSL_PLUGIN_DIR)/contrib/libdlmalloc/dlmalloc.c
+
+endif
+
+################
+# Generic part #
+################
+
+include $(FRAMAC_SHARE)/Makefile.dynamic
+
+###########
+# Install #
+###########
+
+EACSL_INSTALL_SCRIPTS=$(addprefix $(E_ACSL_DIR)/,$(EACSL_SCRIPTS))
+
+EACSL_INSTALL_MANPAGES=$(addprefix $(E_ACSL_DIR)/,$(EACSL_MANPAGES))
+
+EACSL_INSTALL_BASHCOMPS=$(addprefix $(E_ACSL_DIR)/,$(EACSL_BASHCOMPS))
+
+EACSL_INSTALL_LIB_DIR :=$(FRAMAC_LIBDIR)/e-acsl
+
+EACSL_INSTALL_CONTRIB_DIR :=$(FRAMAC_DATADIR)/e-acsl/contrib
+
+install:: clean-install
+	$(PRINT_INSTALL) E-ACSL share files
+	for dir in $(EACSL_C_DIRECTORIES); do \
+		$(MKDIR) $(FRAMAC_DATADIR)/$$dir && \
+		$(CP) $(E_ACSL_DIR)/share/$$dir/*.[ch] $(FRAMAC_DATADIR)/$$dir ; \
+	done
+	$(PRINT_INSTALL) E-ACSL libraries
+	$(MKDIR) $(EACSL_INSTALL_LIB_DIR)
+	$(CP) $(EACSL_LIBDIR)/libeacsl-*.a $(EACSL_INSTALL_LIB_DIR)
+	$(MKDIR) $(EACSL_INSTALL_CONTRIB_DIR)/libdlmalloc
+	$(CP) $(EACSL_DLMALLOC_SRC) $(EACSL_INSTALL_CONTRIB_DIR)/libdlmalloc
+	$(PRINT_INSTALL) E-ACSL scripts
+	$(MKDIR) $(BINDIR)
+	$(CP) $(EACSL_INSTALL_SCRIPTS) $(BINDIR)/
+	$(MKDIR) $(BASHCOMPDIR)
+	$(foreach file, $(EACSL_INSTALL_BASHCOMPS), \
+		$(CP) $(file) \
+		      $(addprefix $(BASHCOMPDIR)/,$(basename $(notdir $(file)))) \
+		&&) true
+	$(PRINT_INSTALL) E-ACSL man pages
+	$(MKDIR) $(MANDIR)/man1
+	$(CP) $(EACSL_INSTALL_MANPAGES) $(MANDIR)/man1/
+
+
+EACSL_INSTALLED_SCRIPTS=$(addprefix $(BINDIR)/,$(notdir $(EACSL_SCRIPTS)))
+
+EACSL_INSTALLED_BASHCOMPS=$(addprefix $(BASHCOMPDIR)/,$(basename $(notdir $(EACSL_BASHCOMPS))))
+
+EACSL_INSTALLED_MANPAGES=$(addprefix $(MANDIR)/man1/,$(notdir $(EACSL_MANPAGES)))
+
+uninstall::
+	$(PRINT_RM) E-ACSL share files
+	$(RM) -r $(FRAMAC_DATADIR)/e-acsl
+	$(PRINT_RM) E-ACSL libraries
+	$(RM) -r $(EACSL_INSTALL_LIB_DIR)
+	$(PRINT_RM) E-ACSL scripts
+	$(RM) $(EACSL_INSTALLED_SCRIPTS)
+	$(RM) $(EACSL_INSTALLED_BASHCOMPS)
+	$(PRINT_RM) E-ACSL man pages
+	$(RM) $(EACSL_INSTALLED_MANPAGES)
+
+#####################################
+# Regenerating the Makefile on need #
+#####################################
+
+ifeq ("$(FRAMAC_INTERNAL)","yes")
+CONFIG_STATUS_DIR:=$(FRAMAC_SRC)
+CONFIG_STATUS_DIR_DEP:=
+else
+CONFIG_STATUS_DIR:=$(E_ACSL_DIR)
+CONFIG_STATUS_DIR_DEP:=$(CONFIG_STATUS_DIR)/config.status
+endif
+
+$(E_ACSL_DIR)/Makefile: $(E_ACSL_DIR)/Makefile.in $(CONFIG_STATUS_DIR_DEP)
+	cd $(CONFIG_STATUS_DIR) && ./config.status
+
+#####################################
+# Doxygen                           #
+#####################################
+
+DOXYGEN = @DOXYGEN@
+doxygen:
+	if ! test $(DOXYGEN) = "no"; then \
+		$(DOXYGEN) $(E_ACSL_DIR)/doc/doxygen/doxygen.cfg ; \
+	else \
+		echo "Warning: Skip doxygen documentation: \
+Doxygen executable not found."; \
+	fi
+
+doc:: doxygen
+
+clean::
+	$(PRINT_RM) generated documentation
+	$(RM) $(E_ACSL_DIR)/doc/doxygen/html/*
+	$(RM) $(E_ACSL_DIR)/doc/code/*
+	$(RM) $(E_ACSL_DIR)/doc/doxygen/warn.log

@@ -1,0 +1,104 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #333333;
+    --text-discrete: #606060;
+    --disabled-text: #b0b0b0;
+    --info-text: #777;
+    --info-text-discrete: #888;
+    --text-highlighted: blue;
+
+    --code-hover: lightgreen;
+    --code-select: #ffda95;
+    --code-select-hover: orange;
+    --dead-code: #bbb;
+    --non-terminating: #bbb;
+    --highlighted-marker: #ffff66;
+    --code-bullet: #ddd;
+
+    --splitter: #aaa;
+    --border: #afafaf;
+    --border-discrete: #d0d0d0;
+
+    --background: #e6e6e6;
+    --background-profound: #c0c0c0;
+    --background-profound-hover: #c6c6c6;
+    --background-disabled: #a0a0a0;
+    --background-disabled-hover: #a6a6a6;
+    --background-intense: #dcdcdc;
+    --background-softer: #f0f0f0;
+    --background-sidebar: #e3e8ec;
+    --background-button-hover: #c0c0c0;
+    --background-alterning-odd: #fdfdfd;
+    --background-alterning-even: #efefef;
+    --background-interaction: white;
+    --background-report: white;
+
+    --selected-element: #8ce0fb;
+    --checked-element: #54abef;
+
+    --lcd-button-color: #61611a;
+    --lcd-button-background: #b2b798;
+
+    --default-button-color: #e8e8e8;
+    --default-led-img: radial-gradient(circle at center, #9fd2f9, #81c9ff);
+    --default-button-img: linear-gradient(to bottom, #e8e8e8 0%, #f1f1f1 100%);
+    --default-button-hover: #ffffff;
+    --default-button-active: #f9f9f9;
+
+    --primary-button-color: #449bef;
+    --primary-button-img: linear-gradient(to bottom, #449bef 0%, #4990e2 100%);
+    --primary-button-hover: #00b6ff;
+    --primary-button-active: #ddd;
+
+    --positive-button-color: #31873e;
+    --positive-led-img: radial-gradient(circle at center, #50c140, #279c16);
+    --positive-button-img: linear-gradient(to bottom, #34ff52 0%, #48fd64 100%);
+    --positive-button-hover: #ffffff;
+    --positive-button-active: #ffffff;
+
+    --negative-button-color: #ec453e;
+    --negative-led-img: radial-gradient(circle at center, #ff5b56, #f75a55c7);
+    --negative-button-img: linear-gradient(to bottom, #ec453e 0%, #ff4c47 100%);
+    --negative-button-hover: red;
+    --negative-button-active: #ffffff;
+
+    --warning-button-color: #fece72;
+    --warning-led-img: radial-gradient(circle at center, #ffc749, #ecd44f);
+    --warning-button-img: linear-gradient(to bottom, #fece72 0%, #fcaa0e 100%);
+    --warning-button-hover: orange;
+    --warning-button-active: #ffffff;
+
+    --cancel-button-img: #c0c0c0;
+    --cancel-button-hover: #c4c4c4;
+    --cancel-button-active: #bcbcbc;
+
+    --selected-button-img: #afafaf;
+    --selected-button-hover: #a9a9a9;
+
+    --activated-button-color: #449bef;
+    --activated-button-hover: #c54dae;
+
+    --grid-layout-holder: lightblue;
+    --grid-layout-target: #64b4f0;
+
+    --error: darkorange;
+    --warning: darkorange;
+
+    --meter-optimum:  linear-gradient(to bottom, #4a0 0%, #8f0 20%, #4a0 100%);
+    --meter-subopti:  linear-gradient(to bottom, #aa0 0%, #ff0 20%, #aa0 100%);
+    --meter-evenless: linear-gradient(to bottom, #a40 0%, #f80 20%, #a40 100%);
+
+    --eva-evaluation-mode: #dc8fe1;
+    --eva-state-before: #95f5ff;
+    --eva-state-after: #fff819;
+    --eva-state-then: #c8e06e;
+    --eva-state-else: #ff834e;
+    --eva-probes-pinned: #cbe4cb;
+    --eva-probes-pinned-focused: #02da02;
+    --eva-probes-transient: #fff0d5;
+    --eva-probes-transient-focused: orange;
+    --eva-alarms-true: green;
+    --eva-alarms-false: #fb4e4a;
+    --eva-alarms-unknown: darkorange;
+  }
+}

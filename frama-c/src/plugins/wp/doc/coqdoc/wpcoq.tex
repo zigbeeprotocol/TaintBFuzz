@@ -1,0 +1,88 @@
+\documentclass[web]{frama-c-book} 
+\usepackage{longtable}
+\usepackage{pifont} 
+\usepackage{coq2latex}
+
+\input{./frama-c-affiliation.tex}
+
+\begin{document}
+\coverpage{WP Coq Handbook}
+\begin{titlepage}
+\includegraphics[height=14mm]{cealistlogo.jpg}
+\hfill~
+\vfill
+\title{WP Coq Handbook}%
+{Version 0.7 for Oxygen-20120901+dev}
+\author{Patrick Baudin, Lo�c Correnson, Zaynah Dargaye}
+\begin{center}
+  \fcaffiliationen
+\end{center}
+\vfill
+\begin{flushleft}
+  \textcopyright 2010-2012 CEA LIST
+\end{flushleft}
+\end{titlepage}
+
+\cleardoublepage
+\markright{}
+\tableofcontents
+
+\chapter*{Introduction}
+
+This document is a reference manual for using \textsf{Coq} proof assistant
+with the \textsf{Frama-C} \textsf{WP} plugin.
+
+\chapter{Core Logic}
+
+These modules are related to the internal logic $\cal L$ language of
+the \textsf{WP} plug-in, regardless any \textsf{C}-memory model. The
+module \textsf{Qedlib} deals with boolean, integer tactics and arrays.
+The module \textsf{Vset} deals with a sets and range of integers.
+
+\input{Qedlib}
+\input{Vset}
+
+\chapter{C/ACSL Arithmetics}
+
+The modules are related to the \textit{natural} model of integers and
+floats introduced by the \textsf{WP} plug-in. Predefined \textsf{ACSL}
+operators are also defined in the \textsf{Cmath} module. Bitwise
+operators are only \textit{declared} in these modules, but their
+properties are the subject of a dedicated chapter and modules.
+
+\input{Cint}
+\input{Cfloat}
+\input{Cmath}
+
+\chapter{Compounds Symbols}
+
+This chapter introduce symbols that are generated on-the-fly by
+\textsf{WP}, especially to deals with \textit{records} and
+\textit{arrays} of \textsf{C} and \textsf{ACSL}.
+
+\input{qed_generated}
+
+\chapter{Bitwise Arithmetics}
+
+This chapter entirely axiomatize the bitwise operators of
+\textsf{ACSL} over arbitrary integer. The development is divided into
+two parts: first, a general axiomatization of bits operations over
+\textsf{Z}; second, the definition of \textsf{ACSL} operators in terms
+of bits operations.
+
+\input{Bits}
+\input{Cbits}
+
+\chapter{Typed Memory Model}
+
+This chapter introduces the symbols introduced by the \textsf{Typed}
+memory model. Some of them are statically defined in module
+\textsf{Memory} presented in the chapter. But other symbols are
+generated on-the-fly by the \textsf{WP} plug-in. They are introduce in
+the \textsf{Generated Symbols} section.
+
+\input{Memory}
+\input{typed_generated}
+
+\end{document}
+

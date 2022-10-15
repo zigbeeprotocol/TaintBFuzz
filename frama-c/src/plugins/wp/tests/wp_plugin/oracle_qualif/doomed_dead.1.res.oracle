@@ -1,0 +1,70 @@
+# frama-c -wp -wp-split -wp-steps 100 [...]
+[kernel] Parsing doomed_dead.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 48 goals scheduled
+[wp] [Passed] Smoke-test typed_f1_ok_wp_smoke_dead_code_s3
+[wp] [Passed] Smoke-test typed_f1_ok_wp_smoke_dead_code_s7
+[wp] [Passed] Smoke-test typed_f1_ok_wp_smoke_dead_code_s10
+[wp] [Qed] Goal typed_f1_ok_assigns_part1 : Valid
+[wp] [Qed] Goal typed_f1_ok_assigns_part2 : Valid
+[wp] [Qed] Goal typed_f1_ok_assigns_part3 : Valid
+[wp] [Passed] Smoke-test typed_exit_wp_smoke_dead_call_s14
+[wp] [Passed] Smoke-test typed_f2_ok_wp_smoke_dead_code_s14
+[wp] [Passed] Smoke-test typed_f2_ok_wp_smoke_dead_code_s16
+[wp] [Qed] Goal typed_f2_ok_assigns_exit : Valid
+[wp] [Qed] Goal typed_f2_ok_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_f2_ok_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_f2_ok_assigns_normal_part3 : Valid
+[wp] [Passed] Smoke-test typed_exit_wp_smoke_dead_call_s22
+[wp] [Passed] Smoke-test typed_f2_ko_wp_smoke_dead_code_s22
+[wp] [Failed] Smoke-test typed_f2_ko_wp_smoke_dead_code_s23
+       Qed: Valid
+[wp] doomed_dead.i:44: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_f2_ko_wp_smoke_dead_code_s26
+[wp] [Qed] Goal typed_f2_ko_assigns_exit : Valid
+[wp] [Qed] Goal typed_f2_ko_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_f2_ko_assigns_normal_part2 : Valid
+[wp] [Passed] Smoke-test typed_call_wp_smoke_dead_call_s30
+[wp] [Passed] Smoke-test typed_f3_ok_wp_smoke_dead_code_s30
+[wp] [Passed] Smoke-test typed_f3_ok_wp_smoke_dead_code_s31
+[wp] [Passed] Smoke-test typed_f3_ok_wp_smoke_dead_code_s34
+[wp] [Qed] Goal typed_f3_ok_assigns_exit : Valid
+[wp] [Qed] Goal typed_f3_ok_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_f3_ok_assigns_normal_part2 : Valid
+[wp] [Passed] Smoke-test typed_exit_wp_smoke_dead_call_s38
+[wp] [Passed] Smoke-test typed_f4_ok_wp_smoke_dead_code_s41
+[wp] [Qed] Goal typed_f4_ok_assert : Valid
+[wp] [Qed] Goal typed_f4_ok_assigns_exit : Valid
+[wp] [Qed] Goal typed_f4_ok_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_f4_ok_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_f4_ok_assigns_normal_part3 : Valid
+[wp] [Passed] Smoke-test typed_f5_ok_wp_smoke_dead_code_s48
+[wp] [Passed] Smoke-test typed_f5_ok_wp_smoke_dead_code_s50
+[wp] [Passed] Smoke-test typed_f5_ok_wp_smoke_dead_code_s52
+[wp] [Qed] Goal typed_f5_ok_assigns_part1 : Valid
+[wp] [Qed] Goal typed_f5_ok_assigns_part2 : Valid
+[wp] [Qed] Goal typed_f5_ok_assigns_part3 : Valid
+[wp] [Passed] Smoke-test typed_f5_ko_wp_smoke_dead_code_s56
+[wp] [Failed] Smoke-test typed_f5_ko_wp_smoke_dead_code_s61
+       Qed: Valid
+[wp] doomed_dead.i:90: Warning: Failed smoke-test
+[wp] [Passed] Smoke-test typed_f5_ko_wp_smoke_dead_code_s63
+[wp] [Passed] Smoke-test typed_f5_ko_wp_smoke_dead_code_s65
+[wp] [Qed] Goal typed_f5_ko_assigns_part1 : Valid
+[wp] [Qed] Goal typed_f5_ko_assigns_part2 : Valid
+[wp] [Qed] Goal typed_f5_ko_assigns_part3 : Valid
+[wp] [Qed] Goal typed_f5_ko_assigns_part4 : Valid
+[wp] Proved goals:   46 / 48
+  Qed:            25  (failed: 2)
+  Alt-Ergo:       21
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  f1_ok                     3        3        6       100%
+  f2_ok                     4        3        7       100%
+  f2_ko                     3        3        7      85.7%
+  f3_ok                     3        4        7       100%
+  f4_ok                     5        2        7       100%
+  f5_ok                     3        3        6       100%
+  f5_ko                     4        3        8      87.5%
+------------------------------------------------------------

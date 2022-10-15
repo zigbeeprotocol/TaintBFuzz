@@ -1,0 +1,6 @@
+[ { "header": "Split", "tactic": "Wp.split", "params": {},
+    "select": { "select": "clause-step", "at": 2, "kind": "have",
+                "target": "b_0!=a_0", "pattern": "~$b$a" },
+    "children": { "Lt": [],
+                  "Eq": [ { "prover": "qed", "verdict": "valid" } ],
+                  "Gt": [] } } ]

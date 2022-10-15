@@ -1,0 +1,12 @@
+[ { "prover": "Alt-Ergo:2.2.0", "verdict": "unknown" },
+  { "prover": "script", "verdict": "unknown" },
+  { "header": "Induction", "tactic": "Wp.induction",
+    "params": { "base": { "select": "kint", "val": "0" } },
+    "select": { "select": "inside-goal", "occur": 0, "target": "y_0",
+                "pattern": "$y" },
+    "children": { "Base": [ { "prover": "Alt-Ergo:2.2.0",
+                              "verdict": "unknown" } ],
+                  "Induction (sup)": [ { "prover": "Alt-Ergo:2.2.0",
+                                         "verdict": "unknown" } ],
+                  "Induction (inf)": [ { "prover": "Alt-Ergo:2.2.0",
+                                         "verdict": "timeout", "time": 1. } ] } } ]

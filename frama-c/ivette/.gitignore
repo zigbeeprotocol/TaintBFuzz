@@ -1,0 +1,20 @@
+# --------------------------------------------------------------------------
+# --- Template .gitignore file for Dome
+# --------------------------------------------------------------------------
+
+.ivette
+.frama-c
+.dome-*.stamp
+.dome-*.back
+.eslint-cache
+node_modules
+yarn-error.log
+/bin
+/dist
+/doc/html
+/src/renderer/loader.ts
+/src/renderer/sandbox.ts
+/src/dome/doc/guides/icons.md
+/Makefile.plugins
+
+# --------------------------------------------------------------------------

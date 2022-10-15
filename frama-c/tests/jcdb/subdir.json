@@ -1,0 +1,6 @@
+[
+    { "directory": ".",
+      "command": "gcc -Isubdir2 -include included2.h",
+      "file": "subdir.c"
+    }
+]

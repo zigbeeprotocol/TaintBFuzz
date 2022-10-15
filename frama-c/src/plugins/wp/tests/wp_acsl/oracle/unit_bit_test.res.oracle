@@ -1,0 +1,39 @@
+# frama-c -wp [...]
+[kernel] Parsing unit_bit_test.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function rotate_left
+------------------------------------------------------------
+
+Goal Post-condition 'bit_zero' in 'rotate_left':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'other_bits' in 'rotate_left':
+Let x_1 = lsr(x, 31).
+Assume {
+  Type: is_uint32(x) /\ is_uint32(x_1).
+  (* Goal *)
+  When: (0 <= i) /\ (i <= 30).
+}
+Prove: (land(lor(x_1, to_uint32(lsl(x, 1))), lsl(1, 1 + i)) != 0) <->
+    (land(x, lsl(1, i)) != 0).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function sum
+------------------------------------------------------------
+
+Goal Post-condition 'ok' in 'sum':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko' in 'sum':
+Assume { Type: is_sint8(a) /\ is_sint8(b). }
+Prove: (bit_test(a, 1) \/ bit_test(b, 1)) <->
+    (bit_test(a, 1) /\ bit_test(b, 1)).
+
+------------------------------------------------------------

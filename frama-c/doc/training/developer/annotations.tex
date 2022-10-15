@@ -1,0 +1,185 @@
+\begin{frame}[fragile]{Accessing Annotations}
+
+\begin{itemize}
+\item do not read annotations directly stored in the AST
+\item global annotations: \lstinline+Globals.Annotations+
+\item function contracts: \lstinline+Kernel_function.get_spec+
+\item code annotations: \lstinline+Annotations+
+\item visitor
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Generating Annotations}
+
+\begin{itemize}
+\item do not modify AST nodes in place
+\item copy visitor
+\item global annotation: \lstinline+Globals.Annotations.add_generated+
+\item function contract: \lstinline+Kernel_function.set_spec+
+\item code annotation: \lstinline+Annotations.add+, 
+\lstinline+Annotations.add_assert+
+\begin{itemize}
+\item require a list of states in argument
+\item they are the states which the generation of the annotation depends on
+\end{itemize}
+\begin{ocamlcode}
+let value_alarm = ... in
+Annotations.add_assert 
+  kf stmt [ !Db.Value.self ] value_alarm
+\end{ocamlcode}
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Upcoming Annotations}
+
+\begin{itemize}
+\item \framac Oxygen provides a fully new API for annotations
+\item global annotations, function contracts and code annotations in a single
+  module \lstinline+Annotations+
+\item new consistent and uniform interface
+\item no more states in argument for code annotations
+\item but a so-called \emph{emitter} for any new annotation
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Property Statuses}
+\framesubtitle{Overview}
+
+\begin{itemize}
+\item each plug-in may emit a (local) status for a property $p$, that is
+  whether $p$ is valid or invalid
+  \begin{itemize}
+  \item ``valid'' means: for each execution trace from the beginning on the
+    application to $p$, $p$ is  logically valid
+  \item ``invalid'' is the opposite of ``valid''
+  \item plug-ins must be correct: it cannot says that $p$ is valid
+    if it is not (and conversely).
+  \end{itemize}
+\item the kernel automatically consolidates the result for each property
+  according to all emitted statuses
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{From Annotations to Properties}
+  \framesubtitle{Overview}
+
+\begin{itemize}
+\item ACSL annotations may contain several properties (for instance, behaviors)
+\item module \lstinline+Property+ defines properties as a single datatype
+\item it also provides operations to convert an annotation to a propertie or a
+  set of properties
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{From Annotations to Properties}
+  \framesubtitle{Example}
+
+\begin{ocamlcode}
+let _ = object
+  inherit Visitor.frama_c_inplace as self
+  method vcode_annot =
+    let ppts = 
+      Property.ip_of_code_annot 
+        (Option.get self#current_kf)
+        (Option.get self#current_stmt)
+    in
+    Pretty_utils.pp_list "%a" 
+      Property.pretty ppts;    
+    Cil.SkipChildren	
+end
+\end{ocamlcode}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Emitters}
+
+\begin{itemize}
+\item emitters emit property statuses according to parameters
+\item if a correctness parameter changes, then valid statuses may become invalid
+  (or conversely)
+\item if a tuning parameter changes, then only unknown statuses may be refined
+  into valid or invalid.
+\end{itemize}
+
+\begin{ocamlcode}
+let emitter = 
+  Emitter.create
+    "my_emitter"
+    ~correctness:[ Kernel.LibEntry.parameter ]
+    ~tuning:[ My_tuning_option.paremeter ]
+\end{ocamlcode}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Emitting Statuses}
+
+\begin{ocamlcode}
+let () =
+  Property_status.emit
+    emitter
+    ~hyps:[]
+    property
+    Property.Dont_know
+\end{ocamlcode}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Emitting Statuses}
+\framesubtitle{Dependencies}
+
+\begin{itemize}
+\item the local status \lstinline+True+ may depend on a set of hypotheses, that
+  is other annotations which must be valid to ensure validity
+\end{itemize}
+
+\begin{ocamlcode}
+let () =
+  Property_status.emit
+    emitter
+    ~hyps:[ Property.ip_lemma "fermat_theorem"]
+    property
+    Property.True
+\end{ocamlcode}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Property Statuses}
+\framesubtitle{Reachability}
+
+\begin{itemize}
+\item ``$p$ is invalid'' means: it exists an execution trace from the beginning
+  on the application to $p$ such that $p$ is logically invalid.
+\item require a proof of reachability and a proof of invalidity
+\item may be difficult
+\item 2 different local statuses: 
+  \begin{itemize}
+  \item \lstinline+False_and_reachable+
+  \item \lstinline+False_if_reachable+ which automatically adds an hypothesis
+    about reachability of $p$.
+  \end{itemize}
+\end{itemize}
+
+\end{frame}

@@ -1,0 +1,8 @@
+[kernel] Parsing cert-dcl-36.c (with preprocessing)
+[kernel] cert-dcl-36.c:12: User Error: 
+  Inconsistent storage specification for i2. Previous declaration: cert-dcl-36.c:7
+[kernel] cert-dcl-36.c:15: User Error: 
+  Inconsistent storage specification for i5. Previous declaration: cert-dcl-36.c:10
+[kernel] User Error: stopping on file "cert-dcl-36.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

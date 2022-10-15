@@ -1,0 +1,34 @@
+[kernel] Parsing val_ptr.i (no preprocessing)
+[eva] Analyzing a complete application starting at f1
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  i ∈ {0}
+  j ∈ {0}
+  x ∈ {0}
+  k ∈ {0}
+  l ∈ {0}
+  m ∈ {0}
+  n ∈ {0}
+  d ∈ {0}
+  a ∈ {0}
+  b ∈ {0}
+  c ∈ {0}
+  p ∈ {0}
+  T[0..7] ∈ {0}
+[eva] Recording results for f1
+[eva] done for function f1
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f1:
+  p ∈ {{ &T[0] }}
+[from] Computing for function f1
+[from] Done for function f1
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f1:
+  p FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f1:
+    p
+[inout] Inputs for function f1:
+    p

@@ -1,0 +1,79 @@
+[kernel] Parsing tests/wp_eva/simple.c (with preprocessing)
+[eva:alarm] tests/wp_eva/simple.c:25: Warning: assertion got status unknown.
+[eva:alarm] tests/wp_eva/simple.c:26: Warning: 
+  division by zero. assert (int)(*x - 42) ≢ 0;
+[eva:alarm] tests/wp_eva/simple.c:31: Warning: assertion got status unknown.
+[eva:alarm] tests/wp_eva/simple.c:35: Warning: assertion got status unknown.
+[eva:alarm] tests/wp_eva/simple.c:41: Warning: assertion got status unknown.
+[wp] Running WP plugin...
+[wp] tests/wp_eva/simple.c:44: Warning: 
+  Ignored 'terminates' specification:
+   \false
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Assertion (file tests/wp_eva/simple.c, line 25):
+Let x = read_sint32(MVar_z_0, 0).
+Let x_1 = read_sint32(write_sint32(MVar_z_0, 0, 1 + x), 0).
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Assertion 'Reduc' *)
+  Have: (2 <= x) /\ (x <= 1000).
+  (* Else *)
+  Have: x != 41.
+}
+Prove: P_P(x_1).
+
+------------------------------------------------------------
+
+Goal Assertion 'Eva,division_by_zero' (file tests/wp_eva/simple.c, line 26):
+Let x = read_sint32(MVar_z_0, 0).
+Let x_1 = read_sint32(write_sint32(MVar_z_0, 0, 1 + x), 0).
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1).
+  (* Assertion 'Reduc' *)
+  Have: (2 <= x) /\ (x <= 1000).
+  (* Else *)
+  Have: x != 41.
+  (* Assertion *)
+  Have: P_P(x_1).
+}
+Prove: to_sint32(x_1 - 42) != 0.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function g
+------------------------------------------------------------
+
+Goal Assertion (file tests/wp_eva/simple.c, line 31):
+Let x = read_sint32(MVar_x_0, 0).
+Let x_1 = read_sint32(MVar_y_0, 0).
+Let x_2 = read_sint32(MVar_z_0, 0).
+Let x_3 = read_sint32(write_sint32(MVar_x_0, 0, 1 + x), 0).
+Assume {
+  Type: is_sint32(x) /\ is_sint32(x_1) /\ is_sint32(x_2) /\ is_sint32(x_3).
+}
+Prove: P_P(x_1) /\ P_P(x_2) /\ P_P(x_3).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function h
+------------------------------------------------------------
+
+Goal Assertion (file tests/wp_eva/simple.c, line 35):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function h2
+------------------------------------------------------------
+
+Goal Assertion (file tests/wp_eva/simple.c, line 41):
+Let x = read_sint32(MVar_z_0, 0).
+Let x_1 = read_sint32(write_sint32(MVar_x_0, 0, x), 0).
+Assume { Type: is_sint32(x) /\ is_sint32(x_1). }
+Prove: x_1 = x.
+
+------------------------------------------------------------

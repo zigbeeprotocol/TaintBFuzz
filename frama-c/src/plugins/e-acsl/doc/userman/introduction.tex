@@ -1,0 +1,49 @@
+\chapter{Introduction}
+
+\framac~\cite{userman,fac15} is a modular analysis framework for the C
+programming language which supports the ACSL specification
+language~\cite{acsl}. This manual documents the \eacsl plug-in of \framac,
+version \eacslpluginversion. The \eacsl version you are using is indicated by the
+command \texttt{frama-c -e-acsl-version}\optionidx{-}{e-acsl-version}. \eacsl
+automatically translates an annotated C program into another program that fails
+at runtime if an annotation is violated. If no annotation is violated, the
+behavior of the new program is exactly the same as the one of the original
+program.
+
+\eacsl translation brings several benefits. First, it allows a user to monitor
+\C code and perform what is usually referred to as ``runtime assertion
+checking''~\cite{runtime-assertion-checking}\footnote{In our context, ``runtime
+  annotation checking'' would be more precise.}. This is the primary goal of
+\eacsl. Indirectly, in combination with the \rte plug-in~\cite{rte} of \framac,
+this
+usage allows the user to detect undefined behaviors in its \C code. Second, it
+allows to combine \framac and its existing analyzers with other \C analyzers
+that do not natively understand the \acsl specification language. Third, the
+possibility to detect invalid annotations during a concrete execution may be
+very helpful while writing a correct specification of a given program,
+\emph{e.g.} for later program proving.  Finally, an executable specification
+makes it possible to check assertions that cannot be verified statically and
+thus to establish a link between runtime monitoring and static analysis tools
+such as \Eva~\cite{eva}\index{Eva} or \wpplugin~\cite{wp}\index{Wp}.
+
+Annotations used by the plug-in must be written in the \eacsl specification
+language~\cite{eacsl,sac13} -- a subset of \acsl. \eacsl plug-in is still in a
+preliminary state: some parts of the \eacsl specification language are not yet
+supported. Annotations supported by the plugin are described in a separate
+document~\cite{eacsl-implem}. It is worth noting that the annotations that aim
+to be dynamically verified are not necessarily hand-written, but may be
+automatically generated instead. That is for instance the case when checking the
+absence of undefined behaviors in combination with RTE, as mentionned in the
+previous paragraph. Using \eacsl this way is therefore a fully automatic
+process. Many usages, including automatic usages, are described in companion
+research papers~\cite{rv13tutorial,rvcubes17tool,signoles18hdr}.
+
+The \eacsl plug-in is installed with \framac, but this manual does \emph{not}
+explain how to install \framac.  For installation instructions please refer to
+the \texttt{INSTALL}\footnote{
+  \url{https://git.frama-c.com/pub/frama-c/blob/master/INSTALL.md}}
+file in the \framac distribution. \index{Installation} Furthermore, even though
+this manual provides examples, it is \emph{not} a full comprehensive tutorial on
+\framac or \eacsl.
+% You can still refer to any external
+% tutorial~\cite{rv13tutorial} for additional examples.

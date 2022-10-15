@@ -1,0 +1,40 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing bsearch.c (with preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function binary_search
+[wp] 28 goals scheduled
+[wp] [Passed] Smoke-test typed_binary_search_wp_smoke_default_requires
+[wp] [Passed] Smoke-test typed_binary_search_wp_smoke_dead_loop_s3
+[wp] [Passed] Smoke-test typed_binary_search_wp_smoke_dead_code_s8
+[wp] [Passed] Smoke-test typed_binary_search_wp_smoke_dead_code_s12
+[wp] [Passed] Smoke-test typed_binary_search_wp_smoke_dead_code_s16
+[wp] [Passed] Smoke-test typed_binary_search_wp_smoke_dead_code_s17
+[wp] [Passed] Smoke-test typed_binary_search_wp_smoke_dead_code_s18
+[wp] [Alt-Ergo] Goal typed_binary_search_ensures_Result : Valid
+[wp] [Qed] Goal typed_binary_search_ensures_Found : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_ensures_NotFound : Valid
+[wp] [Qed] Goal typed_binary_search_assert_rte_signed_overflow : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_loop_invariant_Left_preserved : Valid
+[wp] [Qed] Goal typed_binary_search_loop_invariant_Left_established : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_loop_invariant_Range_preserved : Valid
+[wp] [Qed] Goal typed_binary_search_loop_invariant_Range_established : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_loop_invariant_Right_preserved : Valid
+[wp] [Qed] Goal typed_binary_search_loop_invariant_Right_established : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_assert_rte_signed_overflow_2 : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_assert_rte_signed_overflow_3 : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_assert_rte_signed_overflow_4 : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_assert_rte_signed_overflow_5 : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_assert_rte_mem_access : Valid
+[wp] [Qed] Goal typed_binary_search_assert_rte_mem_access_2 : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_assert_rte_signed_overflow_6 : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_assert_rte_signed_overflow_7 : Valid
+[wp] [Qed] Goal typed_binary_search_loop_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_binary_search_loop_variant_decrease : Valid
+[wp] [Qed] Goal typed_binary_search_loop_variant_positive : Valid
+[wp] Proved goals:   28 / 28
+  Qed:             8 
+  Alt-Ergo:       20
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  binary_search             8       20       28       100%
+------------------------------------------------------------

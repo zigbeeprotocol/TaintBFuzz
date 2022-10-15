@@ -1,0 +1,13 @@
+[kernel] Parsing callsite.i (no preprocessing)
+Call Sites for f:
+Call Sites for g:
+  - From f at #003
+  - From f at #001
+Call Sites for h:
+  - From g at #008
+  - From g at #006
+  - From f at #002
+Call Sites for k:
+  - From h at #012
+  - From h at #011
+  - From g at #007

@@ -1,0 +1,20 @@
+# frama-c -wp [...]
+[kernel] Parsing garbled_opaque_struct.i (no preprocessing)
+[wp] Running WP plugin...
+[kernel:annot:missing-spec] garbled_opaque_struct.i:2: Warning: 
+  Neither code nor specification for function f, generating default assigns from the prototype
+[wp] Warning: Missing RTE guards
+[wp] garbled_opaque_struct.i:3: Warning: 
+  Cast with incompatible pointers types (source: sint8*) (target: capture*)
+------------------------------------------------------------
+  Function g
+------------------------------------------------------------
+
+Goal Assertion (file garbled_opaque_struct.i, line 4):
+garbled_opaque_struct.i:3: warning from Typed Model:
+ - Warning: Hide \result
+   Reason: Cast with incompatible pointers types (source: sint8*) (target: capture*)
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rw(Malloc_0, b, Length_of_S1_capture).
+
+------------------------------------------------------------

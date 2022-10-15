@@ -1,0 +1,242 @@
+[kernel] Parsing bts383.c (with preprocessing)
+[kernel:typing:incompatible-types-call] bts383.c:62: Warning: 
+  expected 'char const *' but got argument of type 'int *': p + 1
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ {0}
+[eva:alarm] bts383.c:56: Warning: out of bounds read. assert \valid_read(p + 1);
+[eva:alarm] bts383.c:57: Warning: out of bounds read. assert \valid_read(p + 1);
+[eva] computing for function if1 <- main.
+  Called from bts383.c:58.
+[eva:alarm] bts383.c:10: Warning: out of bounds read. assert \valid_read(p);
+[eva:alarm] bts383.c:11: Warning: out of bounds read. assert \valid_read(p);
+[eva] Recording results for if1
+[eva] Done for function if1
+[eva] computing for function if2 <- main.
+  Called from bts383.c:59.
+[eva:alarm] bts383.c:15: Warning: out of bounds read. assert \valid_read(p);
+[eva:alarm] bts383.c:16: Warning: out of bounds read. assert \valid_read(p);
+[eva] Recording results for if2
+[eva] Done for function if2
+[eva] computing for function loop1 <- main.
+  Called from bts383.c:60.
+[eva:alarm] bts383.c:20: Warning: out of bounds read. assert \valid_read(p);
+[eva:alarm] bts383.c:22: Warning: out of bounds read. assert \valid_read(p);
+[eva] bts383.c:21: starting to merge loop iterations
+[eva] Recording results for loop1
+[eva] Done for function loop1
+[eva] computing for function loop2 <- main.
+  Called from bts383.c:61.
+[eva:alarm] bts383.c:28: Warning: out of bounds read. assert \valid_read(p);
+[eva] bts383.c:27: starting to merge loop iterations
+[eva:alarm] bts383.c:30: Warning: out of bounds read. assert \valid_read(p);
+[eva] Recording results for loop2
+[eva] Done for function loop2
+[eva] computing for function out_string <- main.
+  Called from bts383.c:62.
+[eva:alarm] bts383.c:35: Warning: out of bounds read. assert \valid_read(value);
+[eva:alarm] bts383.c:36: Warning: out of bounds read. assert \valid_read(value);
+[kernel:annot:missing-spec] bts383.c:36: Warning: 
+  Neither code nor specification for function out_char, generating default assigns from the prototype
+[eva] computing for function out_char <- out_string <- main.
+  Called from bts383.c:36.
+[eva] using specification for function out_char
+[eva] Done for function out_char
+[eva] bts383.c:35: starting to merge loop iterations
+[eva] computing for function out_char <- out_string <- main.
+  Called from bts383.c:36.
+[eva] Done for function out_char
+[eva] computing for function out_char <- out_string <- main.
+  Called from bts383.c:36.
+[eva] Done for function out_char
+[eva] computing for function out_char <- out_string <- main.
+  Called from bts383.c:36.
+[eva] Done for function out_char
+[eva] Recording results for out_string
+[eva] Done for function out_string
+[eva] computing for function fstruct <- main.
+  Called from bts383.c:63.
+[eva:alarm] bts383.c:41: Warning: out of bounds write. assert \valid(&ps->a);
+[eva:alarm] bts383.c:42: Warning: out of bounds write. assert \valid(&ps->b);
+[eva:alarm] bts383.c:43: Warning: out of bounds write. assert \valid(&ps->a);
+[eva:alarm] bts383.c:43: Warning: 
+  out of bounds read. assert \valid_read(&ps->b);
+[eva:alarm] bts383.c:44: Warning: out of bounds write. assert \valid(&ps->b);
+[eva:alarm] bts383.c:44: Warning: 
+  out of bounds read. assert \valid_read(&ps->a);
+[eva:alarm] bts383.c:45: Warning: 
+  out of bounds read. assert \valid_read(&ps->a);
+[eva:alarm] bts383.c:45: Warning: 
+  out of bounds read. assert \valid_read(&ps->b);
+[eva:alarm] bts383.c:47: Warning: out of bounds write. assert \valid(&ps->a);
+[eva:alarm] bts383.c:48: Warning: out of bounds write. assert \valid(&ps->b);
+[eva:alarm] bts383.c:49: Warning: out of bounds write. assert \valid(&ps->a);
+[eva:alarm] bts383.c:49: Warning: 
+  out of bounds read. assert \valid_read(&ps->b);
+[eva:alarm] bts383.c:50: Warning: out of bounds write. assert \valid(&ps->b);
+[eva:alarm] bts383.c:50: Warning: 
+  out of bounds read. assert \valid_read(&ps->a);
+[eva:alarm] bts383.c:51: Warning: 
+  out of bounds read. assert \valid_read(&ps->a);
+[eva:alarm] bts383.c:51: Warning: 
+  out of bounds read. assert \valid_read(&ps->b);
+[eva] Recording results for fstruct
+[eva] Done for function fstruct
+[eva:alarm] bts383.c:63: Warning: 
+  signed overflow. assert x + tmp ≤ 2147483647;
+                   (tmp from fstruct(ps + 1))
+[eva] Recording results for main
+[eva] done for function main
+[scope:rm_asserts] removing 12 assertion(s)
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function fstruct:
+  ps ∈ {{ &S_ps[2] }}
+  x ∈ {20}
+  S_ps[0] ∈ [--..--]
+      [1..2]{.a; .b} ∈ {5}
+[eva:final-states] Values at end of function if1:
+  v ∈ [--..--]
+[eva:final-states] Values at end of function if2:
+  v ∈ [--..--]
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function loop1:
+  v ∈ [--..--]
+  i ∈ [0..2147483647]
+  n ∈ [--..--]
+[eva:final-states] Values at end of function loop2:
+  v ∈ [--..--]
+  i ∈ [0..2147483647]
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function out_string:
+  value ∈ {{ &S_p + {4; 5; 6; 7; 8; 9; 10; 11} }}
+[eva:final-states] Values at end of function main:
+  v ∈ [--..--]
+  x ∈ [-2147483628..2147483647]
+  S_ps[0] ∈ [--..--]
+      [1..2]{.a; .b} ∈ {5}
+/* Generated by Frama-C */
+struct __anonstruct_Tstruct_1 {
+   int a ;
+   int b ;
+};
+typedef struct __anonstruct_Tstruct_1 Tstruct;
+int v;
+void if1(int *p)
+{
+  /*@ assert Eva: mem_access: \valid_read(p); */
+  if (*p > 0) 
+    /*@ assert Eva: mem_access: \valid_read(p); */
+    v = *p;
+  return;
+}
+
+int if2(int c, int *p)
+{
+  int __retres;
+  if (c) 
+    /*@ assert Eva: mem_access: \valid_read(p); */
+    v = *p;
+  /*@ assert Eva: mem_access: \valid_read(p); */
+  __retres = *p;
+  return __retres;
+}
+
+void loop1(int *p)
+{
+  int i;
+  /*@ assert Eva: mem_access: \valid_read(p); */
+  int n = *p;
+  i = 0;
+  while (i < n) {
+    /*@ assert Eva: mem_access: \valid_read(p); */
+    v = *p;
+    i ++;
+  }
+  return;
+}
+
+int loop2(int n, int *p)
+{
+  int __retres;
+  int i;
+  i = 0;
+  while (i < n) {
+    /*@ assert Eva: mem_access: \valid_read(p); */
+    v = *p;
+    i ++;
+  }
+  /*@ assert Eva: mem_access: \valid_read(p); */
+  __retres = *p;
+  return __retres;
+}
+
+/*@ assigns \nothing; */
+void out_char(char c);
+
+void out_string(char const *value)
+{
+  while (1) {
+    /*@ assert Eva: mem_access: \valid_read(value); */
+    if (! *value) break;
+    /*@ assert Eva: mem_access: \valid_read(value); */
+    out_char(*value);
+    value ++;
+  }
+  return;
+}
+
+int fstruct(Tstruct *ps)
+{
+  int x;
+  /*@ assert Eva: mem_access: \valid(&ps->a); */
+  ps->a = 3;
+  /*@ assert Eva: mem_access: \valid(&ps->b); */
+  ps->b = 5;
+  /*@ assert Eva: mem_access: \valid(&ps->a); */
+  /*@ assert Eva: mem_access: \valid_read(&ps->b); */
+  ps->a = ps->b;
+  /*@ assert Eva: mem_access: \valid(&ps->b); */
+  /*@ assert Eva: mem_access: \valid_read(&ps->a); */
+  ps->b = ps->a;
+  /*@ assert Eva: mem_access: \valid_read(&ps->a); */
+  /*@ assert Eva: mem_access: \valid_read(&ps->b); */
+  x = ps->a + ps->b;
+  ps ++;
+  /*@ assert Eva: mem_access: \valid(&ps->a); */
+  ps->a = 3;
+  /*@ assert Eva: mem_access: \valid(&ps->b); */
+  ps->b = 5;
+  /*@ assert Eva: mem_access: \valid(&ps->a); */
+  /*@ assert Eva: mem_access: \valid_read(&ps->b); */
+  ps->a = ps->b;
+  /*@ assert Eva: mem_access: \valid(&ps->b); */
+  /*@ assert Eva: mem_access: \valid_read(&ps->a); */
+  ps->b = ps->a;
+  /*@ assert Eva: mem_access: \valid_read(&ps->a); */
+  /*@ assert Eva: mem_access: \valid_read(&ps->b); */
+  x += ps->a + ps->b;
+  return x;
+}
+
+int main(int *p, Tstruct *ps)
+{
+  int x;
+  int tmp;
+  /*@ assert Eva: mem_access: \valid_read(p + 1); */
+  x = *(p + 1);
+  /*@ assert Eva: mem_access: \valid_read(p + 1); */
+  v = *(p + 1);
+  if1(p + 1);
+  if2(x,p + 1);
+  loop1(p + 1);
+  loop2(x,p + 1);
+  out_string((char const *)(p + 1));
+  tmp = fstruct(ps + 1);
+  /*@ assert Eva: signed_overflow: x + tmp ≤ 2147483647; */
+  x += tmp;
+  return x;
+}
+
+

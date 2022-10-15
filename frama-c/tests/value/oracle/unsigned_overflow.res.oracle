@@ -1,0 +1,27 @@
+[kernel] Parsing unsigned_overflow.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  i1 ∈ [--..--]
+  i2 ∈ [--..--]
+[eva:alarm] unsigned_overflow.c:4: Warning: assertion got status unknown.
+[eva:alarm] unsigned_overflow.c:5: Warning: assertion got status unknown.
+[eva] unsigned_overflow.c:10: Frama_C_show_each_dead:
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  v ∈ [--..--]
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    v; w; __retres
+[inout] Inputs for function main:
+    i1; i2

@@ -1,0 +1,66 @@
+[e-acsl] beginning translation.
+[e-acsl] translation done in project "e-acsl".
+[eva] memsize.c:14: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:15: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:15: Warning: assertion got status unknown.
+[eva] memsize.c:16: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:17: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:17: Warning: assertion got status unknown.
+[eva] memsize.c:20: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:20: Warning: 
+  function free: precondition 'freeable' got status unknown.
+[eva:alarm] memsize.c:21: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:21: Warning: assertion got status unknown.
+[eva] memsize.c:25: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:26: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:26: Warning: assertion got status unknown.
+[eva] FRAMAC_SHARE/libc/stdlib.h:452: Warning: 
+  no 'assigns \result \from ...' clause specified for function realloc
+[eva] memsize.c:29: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:29: Warning: 
+  function realloc: precondition 'freeable' got status unknown.
+[eva:alarm] memsize.c:30: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:30: Warning: assertion got status unknown.
+[eva] memsize.c:33: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:33: Warning: 
+  function realloc: precondition 'freeable' got status unknown.
+[eva:alarm] memsize.c:34: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:34: Warning: assertion got status unknown.
+[eva] memsize.c:37: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:37: Warning: 
+  function realloc: precondition 'freeable' got status unknown.
+[eva:alarm] memsize.c:39: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:39: Warning: assertion got status unknown.
+[eva] memsize.c:42: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:43: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:43: Warning: assertion got status unknown.
+[eva] memsize.c:46: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:47: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:47: Warning: assertion got status unknown.
+[eva] memsize.c:50: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:51: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:51: Warning: assertion got status unknown.
+[eva:alarm] memsize.c:52: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva] FRAMAC_SHARE/libc/stdlib.h:385: Warning: 
+  no 'assigns \result \from ...' clause specified for function calloc
+[eva] memsize.c:55: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:56: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:56: Warning: assertion got status unknown.
+[eva] memsize.c:60: Warning: ignoring unsupported allocates clause
+[eva:alarm] memsize.c:61: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.
+[eva:alarm] memsize.c:61: Warning: assertion got status unknown.
+[eva:alarm] memsize.c:62: Warning: 
+  function __e_acsl_assert, behavior blocking: precondition got status unknown.

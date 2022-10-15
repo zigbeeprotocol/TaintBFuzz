@@ -1,0 +1,12 @@
+[tool.black]
+line-length = 100
+include = '\.py$'
+extend-exclude = '''
+# If you modify this list of files, run "black -v ." to confirm which files are
+# properly excluded.
+  benchmark_database.py
+| frama_c_results.py
+| git_utils.py
+| results_display.py
+| summary.py
+'''

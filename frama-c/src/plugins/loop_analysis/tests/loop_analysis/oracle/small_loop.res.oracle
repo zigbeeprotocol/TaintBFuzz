@@ -1,0 +1,3 @@
+[kernel] Parsing small_loop.i (no preprocessing)
+[loop] Maximum number of iterations by loop:
+  small_loop.i:5: 10

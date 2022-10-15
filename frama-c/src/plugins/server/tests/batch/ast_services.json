@@ -1,0 +1,7 @@
+[
+  { id:"GET-1", request:"kernel.ast.fetchFunctions", data:5 },
+  { id:"GET-2", request:"kernel.ast.fetchFunctions", data:5 },
+  { id:"PRINT-F", request:"kernel.ast.printFunction", data:"f" },
+  { id:"PRINT-G", request:"kernel.ast.printFunction", data:"g" },
+  { id:"PRINT-H", request:"kernel.ast.printFunction", data:"h" }
+]

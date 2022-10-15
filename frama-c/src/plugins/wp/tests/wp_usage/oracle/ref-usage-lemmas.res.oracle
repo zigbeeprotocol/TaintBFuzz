@@ -1,0 +1,24 @@
+# frama-c -wp [...]
+[kernel] Parsing ref-usage-lemmas.i (no preprocessing)
+[wp] Running WP plugin...
+.................................................
+... Ref Usage
+.................................................
+Init: { &a b }
+Function foo: { &a b *x }
+Function main: { &a b __retres }
+.................................................
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Pre-condition (file ref-usage-lemmas.i, line 30) in 'main':
+Prove: true.
+
+------------------------------------------------------------
+[wp] ref-usage-lemmas.i:26: Warning: 
+  Memory model hypotheses for function 'foo':
+  /*@ behavior wp_typed:
+        requires \separated(x, &b); */
+  void foo(int *x);

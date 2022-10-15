@@ -1,0 +1,55 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing bts_1828.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function global_frame
+------------------------------------------------------------
+
+Goal Post-condition 'sep_iff_ref' in 'global_frame':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'one_iff_ref' in 'global_frame':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'zero_always' in 'global_frame':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'ok' (file bts_1828.i, line 60):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'ok' (file bts_1828.i, line 61):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function local_frame
+------------------------------------------------------------
+
+Goal Assertion 'ok' (file bts_1828.i, line 23):
+Assume {
+  (* Heap *)
+  Type: (region(one_0.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: valid_rw(Malloc_0, one_0, 1).
+}
+Prove: global(L_two_24) != one_0.
+
+------------------------------------------------------------
+[wp] bts_1828.i:56: Warning: 
+  Memory model hypotheses for function 'global_frame':
+  /*@
+     behavior wp_typed_ref:
+       requires \valid(one);
+       requires \valid(zero);
+       requires \separated(zero, one);
+     */
+  void global_frame(int *one, int arg);

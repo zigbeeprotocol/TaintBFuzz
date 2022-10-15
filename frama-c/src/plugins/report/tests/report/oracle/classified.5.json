@@ -1,0 +1,14 @@
+[
+  { "classid": "Parsing", "action": "ERROR", "title": "",
+    "descr": "unbound logic variable ignored. Ignoring code annotation",
+    "file": "classify.c", "line": 28 },
+  { "classid": "RTE", "action": "REVIEW", "title": "Missing RTE guards",
+    "descr": "Shall run Eva plug-in" },
+  { "classid": "UNIT", "action": "INFO", "title": "Precondition 'f'",
+    "descr": "Property Untried", "file": "classify.c", "line": 23 },
+  { "classid": "GOAL", "action": "ERROR", "title": "Postcondition 'f'",
+    "descr": "Property Untried", "file": "classify.c", "line": 24 },
+  { "classid": "unclassified.untried", "action": "REVIEW",
+    "title": "f_assigns", "descr": "Untried status", "file": "classify.c",
+    "line": 25 }
+]

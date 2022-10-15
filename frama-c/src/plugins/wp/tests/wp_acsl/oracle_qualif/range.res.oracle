@@ -1,0 +1,15 @@
+# frama-c -wp [...]
+[kernel] Parsing range.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 4 goals scheduled
+[wp] [Qed] Goal typed_test_ensures_P1_ok : Valid
+[wp] [Qed] Goal typed_test_ensures_P2_ok : Valid
+[wp] [Qed] Goal typed_test_call_val_assigns_p_requires_HP_ok : Valid
+[wp] [Qed] Goal typed_test_call_val_assigns_q_requires_HQ_ok : Valid
+[wp] Proved goals:    4 / 4
+  Qed:             4
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  test                      4        -        4       100%
+------------------------------------------------------------

@@ -1,0 +1,52 @@
+[kernel] Parsing loops.c (with preprocessing)
+[eva] Analyzing an incomplete application starting at infinite2
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  after ∈ [--..--]
+[eva] loops.c:75: starting to merge loop iterations
+[eva:alarm] loops.c:76: Warning: signed overflow. assert s + 2 ≤ 2147483647;
+[eva] Recording results for infinite2
+[eva] done for function infinite2
+[pdg] computing for function infinite2
+[pdg] loops.c:79: Warning: no final state. Probably unreachable...
+[pdg] done for function infinite2
+[pdg] PDG for infinite2
+ {n1}: InCtrl
+ {n2}: VarDecl : n
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: VarDecl : s
+ {n5}: VarDecl : i
+ {n6}: int s = 0;
+   -[-c-]-> 1
+   -[a--]-> 4
+ {n7}: int i = 1;
+   -[-c-]-> 1
+   -[a--]-> 5
+ {n8}: while(1)
+   -[-c-]-> 1
+   -[-c-]-> 8
+ {n9}: i
+   -[-c-]-> 1
+   -[--d]-> 5
+   -[--d]-> 7
+   -[-c-]-> 8
+ {n10}: block
+   -[-c-]-> 1
+   -[-c-]-> 8
+ {n11}: s += 2;
+   -[-c-]-> 1
+   -[a-d]-> 4
+   -[--d]-> 6
+   -[-c-]-> 8
+   -[-c-]-> 10
+   -[--d]-> 11
+ {n12}: break;
+   -[-c-]-> 1
+   -[-c-]-> 8
+ {n13}: return s;
+   -[-c-]-> 1
+   -[--d]-> 4
+ {n14}: OutRet

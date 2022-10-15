@@ -1,0 +1,54 @@
+# frama-c -wp [...]
+[kernel] Parsing init_const_guard.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition 'Const' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Pointed_Valid' in 'f':
+Assume { (* Heap *) Type: (region(G_x_20) <= 0) /\ linked(Malloc_0). }
+Prove: valid_rw(Malloc_0, global(G_x_20), 1).
+
+------------------------------------------------------------
+
+Goal Post-condition 'Q_ReadOnly' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Q_NotWrite' in 'f':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function g
+------------------------------------------------------------
+
+Goal Post-condition 'P_not_Const' in 'g':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'Read' (file init_const_guard.i, line 31):
+Assume { (* Heap *) Type: linked(Malloc_0). }
+Prove: valid_rd(Malloc_0, global(G_x_20), 1).
+
+------------------------------------------------------------
+
+Goal Assertion 'Guard_against_Const' (file init_const_guard.i, line 32):
+Let a = global(G_x_20).
+Assume {
+  (* Heap *)
+  Type: linked(Malloc_0).
+  (* Assertion 'Read' *)
+  Have: valid_rd(Malloc_0, a, 1).
+}
+Prove: !valid_rw(Malloc_0, a, 1).
+
+------------------------------------------------------------

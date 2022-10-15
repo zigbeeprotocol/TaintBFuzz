@@ -1,0 +1,21 @@
+# frama-c -wp [...]
+[kernel] Parsing init_label.i (no preprocessing)
+[wp] Running WP plugin...
+[kernel] init_label.i:27: Warning: 
+  No code nor implicit assigns clause for function main, generating default assigns from the prototype
+[wp] Warning: Missing RTE guards
+[wp] 4 goals scheduled
+[wp] [Qed] Goal typed_main_requires_OK : Valid
+[wp] [Alt-Ergo] Goal typed_job_ensures_OK : Valid
+[wp] [Qed] Goal typed_foreign_ensures_OK : Valid
+[wp] [Alt-Ergo] Goal typed_extra_ensures_KO : Unsuccess
+[wp] Proved goals:    3 / 4
+  Qed:             2 
+  Alt-Ergo:        1  (unsuccess: 1)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  main                      1        -        1       100%
+  job                       -        1        1       100%
+  foreign                   1        -        1       100%
+  extra                     -        -        1       0.0%
+------------------------------------------------------------

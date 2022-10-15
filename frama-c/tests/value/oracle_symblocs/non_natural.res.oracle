@@ -1,0 +1,52 @@
+57a58,59
+> [kernel] non_natural.i:30: 
+>   more than 200(12500) elements to enumerate. Approximating.
+63a66,69
+> [kernel] non_natural.i:23: 
+>   more than 200(12501) elements to enumerate. Approximating.
+> [kernel] non_natural.i:23: 
+>   more than 200(12500) elements to enumerate. Approximating.
+68a75,78
+> [kernel] non_natural.i:24: 
+>   more than 200(12501) elements to enumerate. Approximating.
+> [kernel] non_natural.i:24: 
+>   more than 200(12500) elements to enumerate. Approximating.
+76a87,88
+> [kernel] non_natural.i:25: 
+>   more than 200(12500) elements to enumerate. Approximating.
+84a97,98
+> [kernel] non_natural.i:26: 
+>   more than 200(12500) elements to enumerate. Approximating.
+92a107,108
+> [kernel] non_natural.i:27: 
+>   more than 200(12500) elements to enumerate. Approximating.
+100a117,118
+> [kernel] non_natural.i:28: 
+>   more than 200(12500) elements to enumerate. Approximating.
+108a127,128
+> [kernel] non_natural.i:29: 
+>   more than 200(12500) elements to enumerate. Approximating.
+124,143d143
+< [kernel] non_natural.i:23: 
+<   more than 200(12501) elements to enumerate. Approximating.
+< [kernel] non_natural.i:23: 
+<   more than 200(12500) elements to enumerate. Approximating.
+< [kernel] non_natural.i:24: 
+<   more than 200(12501) elements to enumerate. Approximating.
+< [kernel] non_natural.i:24: 
+<   more than 200(12500) elements to enumerate. Approximating.
+< [kernel] non_natural.i:25: 
+<   more than 200(12500) elements to enumerate. Approximating.
+< [kernel] non_natural.i:26: 
+<   more than 200(12500) elements to enumerate. Approximating.
+< [kernel] non_natural.i:27: 
+<   more than 200(12500) elements to enumerate. Approximating.
+< [kernel] non_natural.i:28: 
+<   more than 200(12500) elements to enumerate. Approximating.
+< [kernel] non_natural.i:29: 
+<   more than 200(12500) elements to enumerate. Approximating.
+< [kernel] non_natural.i:30: 
+<   more than 200(12500) elements to enumerate. Approximating.
+194a195,196
+> [kernel] non_natural.i:39: 
+>   more than 200(12500) elements to enumerate. Approximating.

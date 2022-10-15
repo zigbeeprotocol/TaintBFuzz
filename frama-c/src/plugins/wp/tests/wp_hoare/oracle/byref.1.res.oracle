@@ -1,0 +1,102 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing byref.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Post-condition (file byref.i, line 12) in 'f':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file byref.i, line 13) in 'f':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function formal
+------------------------------------------------------------
+
+Goal Post-condition (file byref.i, line 47) in 'formal':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file byref.i, line 11) in 'f'' in 'formal' at call 'f' (file byref.i, line 50)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function global
+------------------------------------------------------------
+
+Goal Post-condition (file byref.i, line 57) in 'global':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file byref.i, line 11) in 'f'' in 'global' at call 'f' (file byref.i, line 60)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function local
+------------------------------------------------------------
+
+Goal Post-condition (file byref.i, line 38) in 'local':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file byref.i, line 11) in 'f'' in 'local' at call 'f' (file byref.i, line 42)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function pointer
+------------------------------------------------------------
+
+Goal Post-condition (file byref.i, line 29) in 'pointer':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file byref.i, line 11) in 'f'' in 'pointer' at call 'f' (file byref.i, line 33)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function wrong_without_ref
+------------------------------------------------------------
+
+Goal Post-condition (file byref.i, line 18) in 'wrong_without_ref':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file byref.i, line 11) in 'f'' in 'wrong_without_ref' at call 'f' (file byref.i, line 22)
+:
+Prove: true.
+
+------------------------------------------------------------
+[wp] byref.i:14: Warning: 
+  Memory model hypotheses for function 'f':
+  /*@ behavior wp_typed_ref:
+        requires \valid(r); */
+  void f(int *r);
+[wp] byref.i:20: Warning: 
+  Memory model hypotheses for function 'wrong_without_ref':
+  /*@ behavior wp_typed_ref:
+        requires \valid(q); */
+  int wrong_without_ref(int *q);
+[wp] byref.i:31: Warning: 
+  Memory model hypotheses for function 'pointer':
+  /*@ behavior wp_typed_ref:
+        requires \valid(q); */
+  int pointer(int *q);

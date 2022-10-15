@@ -1,0 +1,484 @@
+# frama-c -wp -wp-model 'Typed (Ref)' -wp-no-let [...]
+[kernel] Parsing dispatch_var2.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function call_global
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 37) in 'call_global':
+Assume {
+  Type: is_sint32(call_global_0) /\ is_sint32(load_0) /\ is_sint32(tmp_0) /\
+      is_sint32(x).
+  (* Heap *)
+  Type: is_sint32(x_1).
+  (* Block In *)
+  Have: (Init_tmp_0=false) /\ (ta_tmp_0=false).
+  (* Call 'reset' *)
+  Have: x = 0.
+  (* Call 'load' *)
+  Have: (tmp_0 = load_0) /\ (x = load_0).
+  (* Return Effects *)
+  Have: ((Init_tmp_0=true) -> (Init_tmp_1=true)).
+  (* Return *)
+  Have: tmp_0 = call_global_0.
+}
+Prove: call_global_0 = 0.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 36) in 'call_global':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 36) in 'call_global' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 36) in 'call_global' (2/2):
+Call Result at line 42
+Assume {
+  Type: is_sint32(load_0) /\ is_sint32(tmp_0) /\ is_sint32(x).
+  (* Heap *)
+  Type: is_sint32(x_1).
+  Have: (ta_tmp_1=true) <-> (ta_tmp_0=true).
+  (* Block In *)
+  Have: (Init_tmp_0=false) /\ (ta_tmp_1=false).
+  (* Call 'reset' *)
+  Have: x = 0.
+  (* Call 'load' *)
+  Have: x = load_0.
+  (* Return Effects *)
+  Have: ((Init_tmp_0=true) -> (Init_tmp_1=true)).
+}
+Prove: (ta_tmp_0=false).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 12) in 'reset'' in 'call_global' at call 'reset' (file dispatch_var2.i, line 41)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 27) in 'load'' in 'call_global' at call 'load' (file dispatch_var2.i, line 42)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_local
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 56) in 'call_local':
+Assume {
+  Type: is_sint32(call_local_0) /\ is_sint32(load_0) /\ is_sint32(tmp_0) /\
+      is_sint32(z).
+  (* Block In *)
+  Have: (Init_tmp_0=false) /\ (Init_z_0=false) /\ (ta_tmp_0=false) /\
+      (ta_z_0=false).
+  Have: (Init_z_0=true) <-> (Init_z_1=true).
+  (* Call 'reset' *)
+  Have: z = 0.
+  (* Call Effects *)
+  Have: ((Init_z_1=true) -> (Init_z_2=true)).
+  (* Call 'load' *)
+  Have: (tmp_0 = load_0) /\ (z = load_0).
+  (* Return Effects *)
+  Have: ((Init_tmp_0=true) -> (Init_tmp_1=true)).
+  (* Return *)
+  Have: tmp_0 = call_local_0.
+}
+Prove: call_local_0 = 0.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (2/2):
+Call Effect at line 61
+Assume {
+  Type: is_sint32(status_0) /\ is_sint32(status_1) /\ is_sint32(z).
+  Have: (ta_z_1=true) <-> (ta_z_0=true).
+  (* Block In *)
+  Have: (Init_z_0=false) /\ (ta_tmp_0=false) /\ (ta_z_1=false).
+  (* Merge *)
+  Either {
+    Case:
+      Have: (Init_z_0=true) <-> (Init_z_1=true).
+      (* Call 'reset' *)
+      Have: z = 0.
+      (* Call Effects *)
+      Have: ((Init_z_1=true) -> (Init_z_2=true)).
+    Case:
+      Have: (Init_z_0=true) <-> (Init_z_3=true).
+      (* Exit Effects *)
+      Have: ((Init_z_3=true) -> (Init_z_4=true)).
+  }
+}
+Prove: (ta_z_0=false).
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (2/3):
+Call Effect at line 61
+Assume {
+  Type: is_sint32(z).
+  Have: (ta_z_1=true) <-> (ta_z_0=true).
+  (* Block In *)
+  Have: (Init_z_0=false) /\ (ta_tmp_0=false) /\ (ta_z_1=false).
+  Have: (Init_z_0=true) <-> (Init_z_1=true).
+  (* Call 'reset' *)
+  Have: z = 0.
+  (* Call Effects *)
+  Have: ((Init_z_1=true) -> (Init_z_2=true)).
+}
+Prove: (ta_z_0=false).
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_local' (3/3):
+Call Result at line 62
+Assume {
+  Type: is_sint32(load_0) /\ is_sint32(tmp_0) /\ is_sint32(z).
+  Have: (ta_tmp_1=true) <-> (ta_tmp_0=true).
+  (* Block In *)
+  Have: (Init_tmp_0=false) /\ (Init_z_0=false) /\ (ta_tmp_1=false) /\
+      (ta_z_0=false).
+  Have: (Init_z_0=true) <-> (Init_z_1=true).
+  (* Call 'reset' *)
+  Have: z = 0.
+  (* Call Effects *)
+  Have: ((Init_z_1=true) -> (Init_z_2=true)).
+  (* Call 'load' *)
+  Have: z = load_0.
+  (* Return Effects *)
+  Have: ((Init_tmp_0=true) -> (Init_tmp_1=true)).
+}
+Prove: (ta_tmp_0=false).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 12) in 'reset'' in 'call_local' at call 'reset' (file dispatch_var2.i, line 61)
+:
+Assume {
+  (* Block In *)
+  Have: (ta_tmp_0=false) /\ (ta_z_0=true) /\ (ta_z_1=false).
+}
+Prove: (ta_z_0=true).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 27) in 'load'' in 'call_local' at call 'load' (file dispatch_var2.i, line 62)
+:
+Assume {
+  Type: is_sint32(z).
+  (* Block In *)
+  Have: (Init_z_0=false) /\ (ta_tmp_0=false) /\ (ta_z_0=true) /\
+      (ta_z_1=false).
+  Have: (Init_z_0=true) <-> (Init_z_1=true).
+  (* Call 'reset' *)
+  Have: (ta_z_0=true) /\ (z = 0).
+  (* Call Effects *)
+  Have: ((Init_z_1=true) -> (Init_z_2=true)).
+}
+Prove: (ta_z_0=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_param
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 47) in 'call_param':
+Assume {
+  Type: is_sint32(call_param_0) /\ is_sint32(load_0) /\ is_sint32(tmp_0) /\
+      is_sint32(y).
+  (* Pre-condition *)
+  Have: (ta_y_0=true).
+  (* Pre-condition *)
+  Have: (ta_y_0=true).
+  (* Frame In *)
+  Have: (ta_y_1=true) /\ (ta_y_0=false).
+  (* Block In *)
+  Have: (Init_tmp_0=false) /\ (ta_tmp_0=false).
+  Have: (ta_y_1=true) <-> (ta_y_2=true).
+  (* Call 'reset' *)
+  Have: (ta_y_1=true) /\ (y = 0).
+  Have: (ta_y_2=true) <-> (ta_y_3=true).
+  (* Call 'load' *)
+  Have: (ta_y_2=true) /\ (tmp_0 = load_0) /\ (y = load_0).
+  (* Return Effects *)
+  Have: ((Init_tmp_0=true) -> (Init_tmp_1=true)).
+  (* Return *)
+  Have: tmp_0 = call_param_0.
+  (* Frame Out *)
+  Have: (ta_y_3=true).
+}
+Prove: call_param_0 = 0.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (2/2):
+Call Effect at line 51
+Assume {
+  Type: is_sint32(status_0) /\ is_sint32(status_1) /\ is_sint32(y).
+  Have: (ta_y_1=true) <-> (ta_y_0=true).
+  (* Pre-condition *)
+  Have: (ta_y_1=true).
+  (* Pre-condition *)
+  Have: (ta_y_1=true).
+  (* Frame In *)
+  Have: (ta_y_2=true) /\ (ta_y_1=false).
+  (* Block In *)
+  Have: (ta_tmp_0=false).
+  (* Merge *)
+  Either {
+    Case: (* Call 'reset' *) Have: (ta_y_2=true) /\ (y = 0).
+    Case: (* Exit 'reset' *) Have: (ta_y_2=true).
+  }
+}
+Prove: (ta_y_0=false).
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (2/3):
+Call Effect at line 51
+Assume {
+  Type: is_sint32(y).
+  Have: (ta_y_1=true) <-> (ta_y_0=true).
+  (* Pre-condition *)
+  Have: (ta_y_1=true).
+  (* Pre-condition *)
+  Have: (ta_y_1=true).
+  (* Frame In *)
+  Have: (ta_y_2=true) /\ (ta_y_1=false).
+  (* Block In *)
+  Have: (ta_tmp_0=false).
+  (* Call 'reset' *)
+  Have: (ta_y_2=true) /\ (y = 0).
+}
+Prove: (ta_y_0=false).
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'call_param' (3/3):
+Call Result at line 52
+Assume {
+  Type: is_sint32(load_0) /\ is_sint32(tmp_0) /\ is_sint32(y).
+  Have: (ta_tmp_1=true) <-> (ta_tmp_0=true).
+  (* Pre-condition *)
+  Have: (ta_y_0=true).
+  (* Pre-condition *)
+  Have: (ta_y_0=true).
+  (* Frame In *)
+  Have: (ta_y_1=true) /\ (ta_y_0=false).
+  (* Block In *)
+  Have: (Init_tmp_0=false) /\ (ta_tmp_1=false).
+  Have: (ta_y_1=true) <-> (ta_y_2=true).
+  (* Call 'reset' *)
+  Have: (ta_y_1=true) /\ (y = 0).
+  (* Call 'load' *)
+  Have: (ta_y_2=true) /\ (y = load_0).
+  (* Return Effects *)
+  Have: ((Init_tmp_0=true) -> (Init_tmp_1=true)).
+}
+Prove: (ta_tmp_0=false).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 12) in 'reset'' in 'call_param' at call 'reset' (file dispatch_var2.i, line 51)
+:
+Assume {
+  (* Pre-condition *)
+  Have: (ta_y_1=true).
+  (* Pre-condition *)
+  Have: (ta_y_1=true).
+  (* Frame In *)
+  Have: (ta_y_0=true) /\ (ta_y_1=false).
+  (* Block In *)
+  Have: (ta_tmp_0=false).
+}
+Prove: (ta_y_0=true).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 27) in 'load'' in 'call_param' at call 'load' (file dispatch_var2.i, line 52)
+:
+Assume {
+  Type: is_sint32(y).
+  (* Pre-condition *)
+  Have: (ta_y_1=true).
+  (* Pre-condition *)
+  Have: (ta_y_1=true).
+  (* Frame In *)
+  Have: (ta_y_2=true) /\ (ta_y_1=false).
+  (* Block In *)
+  Have: (ta_tmp_0=false).
+  Have: (ta_y_2=true) <-> (ta_y_0=true).
+  (* Call 'reset' *)
+  Have: (ta_y_2=true) /\ (y = 0).
+}
+Prove: (ta_y_0=true).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function call_param_ref
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 68) in 'call_param_ref':
+Assume {
+  Type: is_sint32(call_param_ref_0) /\ is_sint32(load_0) /\ is_sint32(q) /\
+      is_sint32(tmp_0).
+  (* Block In *)
+  Have: (Init_tmp_0=false) /\ (ta_tmp_0=false).
+  (* Call 'reset' *)
+  Have: q = 0.
+  (* Call 'load' *)
+  Have: (q = load_0) /\ (tmp_0 = load_0).
+  (* Return Effects *)
+  Have: ((Init_tmp_0=true) -> (Init_tmp_1=true)).
+  (* Return *)
+  Have: tmp_0 = call_param_ref_0.
+}
+Prove: call_param_ref_0 = 0.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 67) in 'call_param_ref':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 67) in 'call_param_ref' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 67) in 'call_param_ref' (2/2):
+Call Result at line 73
+Assume {
+  Type: is_sint32(load_0) /\ is_sint32(q) /\ is_sint32(tmp_0).
+  Have: (ta_tmp_1=true) <-> (ta_tmp_0=true).
+  (* Block In *)
+  Have: (Init_tmp_0=false) /\ (ta_tmp_1=false).
+  (* Call 'reset' *)
+  Have: q = 0.
+  (* Call 'load' *)
+  Have: q = load_0.
+  (* Return Effects *)
+  Have: ((Init_tmp_0=true) -> (Init_tmp_1=true)).
+}
+Prove: (ta_tmp_0=false).
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 12) in 'reset'' in 'call_param_ref' at call 'reset' (file dispatch_var2.i, line 72)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file dispatch_var2.i, line 27) in 'load'' in 'call_param_ref' at call 'load' (file dispatch_var2.i, line 73)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function incr
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 21) in 'incr':
+Assume {
+  Type: is_sint32(ip_0) /\ is_sint32(ip_1) /\ is_sint32(ip_2).
+  Have: ip_2 = ip_0.
+  Have: (1 + ip_2) = ip_1.
+}
+Prove: (1 + ip_0) = ip_1.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 20) in 'incr':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function load
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 29) in 'load':
+Assume {
+  Type: is_sint32(load_0) /\ is_sint32(lp_0) /\ is_sint32(retres_0).
+  (* Block In *)
+  Have: (ta_retres_0=false).
+  Have: retres_0 = lp_0.
+  (* Return *)
+  Have: retres_0 = load_0.
+}
+Prove: lp_0 = load_0.
+
+------------------------------------------------------------
+
+Goal Assigns nothing in 'load':
+Effect at line 31
+Assume {
+  Have: (ta_retres_1=true) <-> (ta_retres_0=true).
+  (* Block In *)
+  Have: (ta_retres_1=false).
+}
+Prove: (ta_retres_0=false).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function reset
+------------------------------------------------------------
+
+Goal Post-condition (file dispatch_var2.i, line 14) in 'reset':
+Assume { Type: is_sint32(rp_0). Have: rp_0 = 0. }
+Prove: rp_0 = 0.
+
+------------------------------------------------------------
+
+Goal Assigns (file dispatch_var2.i, line 13) in 'reset':
+Prove: true.
+
+------------------------------------------------------------
+[wp] dispatch_var2.i:16: Warning: 
+  Memory model hypotheses for function 'reset':
+  /*@ behavior wp_typed_ref:
+        requires \valid(rp); */
+  void reset(int *rp);
+[wp] dispatch_var2.i:23: Warning: 
+  Memory model hypotheses for function 'incr':
+  /*@ behavior wp_typed_ref:
+        requires \valid(ip); */
+  void incr(int *ip);
+[wp] dispatch_var2.i:31: Warning: 
+  Memory model hypotheses for function 'load':
+  /*@ behavior wp_typed_ref:
+        requires \valid(lp); */
+  int load(int *lp);
+[wp] dispatch_var2.i:70: Warning: 
+  Memory model hypotheses for function 'call_param_ref':
+  /*@ behavior wp_typed_ref:
+        requires \valid(q); */
+  int call_param_ref(int *q);

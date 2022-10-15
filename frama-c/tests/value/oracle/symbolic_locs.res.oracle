@@ -1,0 +1,294 @@
+[kernel] Parsing symbolic_locs.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  t[0..9] ∈ {0}
+  u[0..9] ∈ [--..--]
+[eva] computing for function main2_kill_direct <- main.
+  Called from symbolic_locs.i:119.
+[eva:alarm] symbolic_locs.i:29: Warning: assertion got status unknown.
+[eva] symbolic_locs.i:32: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..8] ∈ {0; 4}
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  i ∈ [0..8]
+  # symbolic-locations:
+  V: {[ t[i] -> {4} ]}
+  Z: {[ t[i] -> t[0..8]; i ]}
+  I: {[ t -> {t[i]}
+        i -> {t[i]} ]}
+  S: {[ i -> {t[i]} ]}
+  ==END OF DUMP==
+[eva] symbolic_locs.i:34: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..1] ∈ {0; 4}
+   [2] ∈ {1}
+   [3..8] ∈ {0; 4}
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  i ∈ [0..8]
+  # symbolic-locations:
+  V: {[  ]}
+  Z: {[  ]}
+  I: {[  ]}
+  S: {[  ]}
+  ==END OF DUMP==
+[eva] Recording results for main2_kill_direct
+[eva] Done for function main2_kill_direct
+[eva] computing for function main3_kill_indirect <- main.
+  Called from symbolic_locs.i:120.
+[eva:alarm] symbolic_locs.i:41: Warning: assertion got status unknown.
+[eva] symbolic_locs.i:44: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..1] ∈ {0; 4}
+   [2] ∈ {0; 1; 4}
+   [3..8] ∈ {0; 4}
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  i ∈ [0..8]
+  # symbolic-locations:
+  V: {[ t[i] -> {4} ]}
+  Z: {[ t[i] -> t[0..8]; i ]}
+  I: {[ t -> {t[i]}
+        i -> {t[i]} ]}
+  S: {[ i -> {t[i]} ]}
+  ==END OF DUMP==
+[eva] symbolic_locs.i:46: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..1] ∈ {0; 4}
+   [2] ∈ {0; 1; 4}
+   [3..8] ∈ {0; 4}
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  i ∈ {8}
+  # symbolic-locations:
+  V: {[  ]}
+  Z: {[  ]}
+  I: {[  ]}
+  S: {[  ]}
+  ==END OF DUMP==
+[eva] Recording results for main3_kill_indirect
+[eva] Done for function main3_kill_indirect
+[eva] computing for function main4_scope_right <- main.
+  Called from symbolic_locs.i:121.
+[eva:alarm] symbolic_locs.i:51: Warning: assertion got status unknown.
+[eva:alarm] symbolic_locs.i:54: Warning: 
+  pointer downcast. assert (unsigned int)(&x) ≤ 2147483647;
+[eva] symbolic_locs.i:55: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..1] ∈ {{ NULL + {0; 4} ; (int)&x }}
+   [2] ∈ {{ NULL + {0; 1; 4} ; (int)&x }}
+   [3..8] ∈ {{ NULL + {0; 4} ; (int)&x }}
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  i ∈ [0..8]
+  x ∈ UNINITIALIZED
+  # symbolic-locations:
+  V: {[ t[i] -> {{ &x }} ]}
+  Z: {[ t[i] -> t[0..8]; i ]}
+  I: {[ t -> {t[i]}
+        i -> {t[i]} ]}
+  S: {[ i -> {t[i]}
+        x -> {t[i]} ]}
+  ==END OF DUMP==
+[eva:locals-escaping] symbolic_locs.i:55: Warning: 
+  locals {x} escaping the scope of a block of main4_scope_right through t
+[eva] symbolic_locs.i:57: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..1] ∈ {0; 4} or ESCAPINGADDR
+   [2] ∈ {0; 1; 4} or ESCAPINGADDR
+   [3..8] ∈ {0; 4} or ESCAPINGADDR
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  i ∈ [0..8]
+  # symbolic-locations:
+  V: {[  ]}
+  Z: {[  ]}
+  I: {[  ]}
+  S: {[  ]}
+  ==END OF DUMP==
+[eva] Recording results for main4_scope_right
+[eva] Done for function main4_scope_right
+[eva] computing for function main5_scope_lv <- main.
+  Called from symbolic_locs.i:122.
+[eva:alarm] symbolic_locs.i:63: Warning: assertion got status unknown.
+[eva] symbolic_locs.i:65: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..8] ∈ {0; 1; 4} or ESCAPINGADDR
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  z ∈ {1}
+  i ∈ [0..8]
+  # symbolic-locations:
+  V: {[ t[i] -> {1} ]}
+  Z: {[ t[i] -> t[0..8]; i ]}
+  I: {[ t -> {t[i]}
+        i -> {t[i]} ]}
+  S: {[ i -> {t[i]} ]}
+  ==END OF DUMP==
+[eva] symbolic_locs.i:67: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..8] ∈ {0; 1; 4} or ESCAPINGADDR
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  z ∈ {1}
+  # symbolic-locations:
+  V: {[  ]}
+  Z: {[  ]}
+  I: {[  ]}
+  S: {[  ]}
+  ==END OF DUMP==
+[eva] Recording results for main5_scope_lv
+[eva] Done for function main5_scope_lv
+[eva] computing for function main6_ghost_dep <- main.
+  Called from symbolic_locs.i:123.
+[eva:alarm] symbolic_locs.i:83: Warning: assertion got status unknown.
+[eva:alarm] symbolic_locs.i:86: Warning: assertion got status unknown.
+[eva] symbolic_locs.i:98: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..8] ∈ {0; 1; 4} or ESCAPINGADDR
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  x ∈ [--..--]
+  # symbolic-locations:
+  V: {[  ]}
+  Z: {[  ]}
+  I: {[  ]}
+  S: {[  ]}
+  ==END OF DUMP==
+[eva] Recording results for main6_ghost_dep
+[eva] Done for function main6_ghost_dep
+[eva] computing for function main7_widening <- main.
+  Called from symbolic_locs.i:124.
+[eva] symbolic_locs.i:110: starting to merge loop iterations
+[eva] symbolic_locs.i:113: Frama_C_show_each: [10001..2147483647]
+[eva] Recording results for main7_widening
+[eva] Done for function main7_widening
+[eva] symbolic_locs.i:125: 
+  Frama_C_dump_each:
+  # cvalue:
+  v ∈ [--..--]
+  t[0..8] ∈ {0; 1; 4} or ESCAPINGADDR
+   [9] ∈ {0}
+  u[0..9] ∈ [--..--]
+  # symbolic-locations:
+  V: {[  ]}
+  Z: {[  ]}
+  I: {[  ]}
+  S: {[  ]}
+  ==END OF DUMP==
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main2_kill_direct:
+  t[0..1] ∈ {0; 4}
+   [2] ∈ {1}
+   [3..8] ∈ {0; 4}
+   [9] ∈ {0}
+  i ∈ [0..8]
+[eva:final-states] Values at end of function main3_kill_indirect:
+  t[0..1] ∈ {0; 4}
+   [2] ∈ {0; 1; 4}
+   [3..8] ∈ {0; 4}
+   [9] ∈ {0}
+  i ∈ {8}
+[eva:final-states] Values at end of function main4_scope_right:
+  t[0..1] ∈ {0; 4} or ESCAPINGADDR
+   [2] ∈ {0; 1; 4} or ESCAPINGADDR
+   [3..8] ∈ {0; 4} or ESCAPINGADDR
+   [9] ∈ {0}
+  i ∈ [0..8]
+[eva:final-states] Values at end of function main5_scope_lv:
+  t[0..8] ∈ {0; 1; 4} or ESCAPINGADDR
+   [9] ∈ {0}
+  z ∈ {1}
+[eva:final-states] Values at end of function main6_ghost_dep:
+  x ∈ {1}
+[eva:final-states] Values at end of function main7_widening:
+  b ∈ [0..2147483647]
+  c ∈ [0..2147483647]
+  p ∈ {{ &b ; &c }}
+[eva:final-states] Values at end of function main:
+  t[0..8] ∈ {0; 1; 4} or ESCAPINGADDR
+   [9] ∈ {0}
+[from] Computing for function main2_kill_direct
+[from] Done for function main2_kill_direct
+[from] Computing for function main3_kill_indirect
+[from] Done for function main3_kill_indirect
+[from] Computing for function main4_scope_right
+[from] Done for function main4_scope_right
+[from] Computing for function main5_scope_lv
+[from] Done for function main5_scope_lv
+[from] Computing for function main6_ghost_dep
+[from] Done for function main6_ghost_dep
+[from] Computing for function main7_widening
+[from] Done for function main7_widening
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main2_kill_direct:
+  t{[0..1]; [3..8]} FROM v (and SELF)
+   [2] FROM \nothing
+[from] Function main3_kill_indirect:
+  t[0..8] FROM v (and SELF)
+[from] Function main4_scope_right:
+  t[0..8] FROM v (and SELF)
+[from] Function main5_scope_lv:
+  t[0..8] FROM v (and SELF)
+[from] Function main6_ghost_dep:
+  NO EFFECTS
+[from] Function main7_widening:
+  NO EFFECTS
+[from] Function main:
+  t[0..8] FROM v (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main2_kill_direct:
+    t[0..8]; i
+[inout] Inputs for function main2_kill_direct:
+    v
+[inout] Out (internal) for function main3_kill_indirect:
+    t[0..8]; i
+[inout] Inputs for function main3_kill_indirect:
+    v
+[inout] Out (internal) for function main4_scope_right:
+    t[0..8]; i
+[inout] Inputs for function main4_scope_right:
+    v
+[inout] Out (internal) for function main5_scope_lv:
+    t[0..8]; z; i
+[inout] Inputs for function main5_scope_lv:
+    v
+[inout] Out (internal) for function main6_ghost_dep:
+    x; y; z; k; p; tmp; tmp_0
+[inout] Inputs for function main6_ghost_dep:
+    v
+[inout] Out (internal) for function main7_widening:
+    b; c; p; tmp
+[inout] Inputs for function main7_widening:
+    v
+[inout] Out (internal) for function main:
+    t[0..8]
+[inout] Inputs for function main:
+    v

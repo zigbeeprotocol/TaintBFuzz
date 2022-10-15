@@ -1,0 +1,8 @@
+[kernel] Parsing rettype.i (no preprocessing)
+[kernel] rettype.i:12: User Error: 
+  Declaration of foo does not match previous declaration from rettype.i:9 (different integer types:
+  'int' and 'unsigned short').
+[kernel] rettype.i:11: Warning: 
+  found two contracts (old location: rettype.i:8). Merging them
+[kernel] User Error: stopping on file "rettype.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

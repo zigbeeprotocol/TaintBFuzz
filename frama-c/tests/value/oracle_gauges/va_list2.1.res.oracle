@@ -1,0 +1,19 @@
+47a48,65
+> [eva] computing for function __builtin_va_arg <- main.
+>   Called from va_list2.c:15.
+> [eva] Done for function __builtin_va_arg
+> [eva] va_list2.c:16: Frama_C_show_each_i: [-2147483648..2147483647]
+> [eva] computing for function __builtin_va_arg <- main.
+>   Called from va_list2.c:20.
+> [eva] Done for function __builtin_va_arg
+> [eva] va_list2.c:21: 
+>   Frama_C_show_each_f: [-3.40282346639e+38 .. 3.40282346639e+38]
+> [eva] computing for function __builtin_va_arg <- main.
+>   Called from va_list2.c:15.
+> [eva] Done for function __builtin_va_arg
+> [eva] va_list2.c:16: Frama_C_show_each_i: [-2147483648..2147483647]
+> [eva] computing for function __builtin_va_arg <- main.
+>   Called from va_list2.c:20.
+> [eva] Done for function __builtin_va_arg
+> [eva] va_list2.c:21: 
+>   Frama_C_show_each_f: [-3.40282346639e+38 .. 3.40282346639e+38]

@@ -1,0 +1,76 @@
+[kernel] Parsing asm_contracts.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function f1 <- main.
+  Called from asm_contracts.c:38.
+[eva] asm_contracts.c:15: assertion 'OK' got status valid.
+[eva:alarm] asm_contracts.c:16: Warning: 
+  assertion 'UNKNOWN1' got status unknown.
+[eva:alarm] asm_contracts.c:17: Warning: 
+  assertion 'UNKNOWN2' got status unknown.
+[eva] Recording results for f1
+[eva] Done for function f1
+[eva] computing for function f2 <- main.
+  Called from asm_contracts.c:39.
+[eva] asm_contracts.c:27: assertion 'OK' got status valid.
+[eva:alarm] asm_contracts.c:28: Warning: 
+  assertion 'UNKNOWN1' got status unknown.
+[eva] Recording results for f2
+[eva] Done for function f2
+[eva] computing for function f3 <- main.
+  Called from asm_contracts.c:40.
+[eva] asm_contracts.c:33: Warning: 
+  assuming assembly code has no effects in function f3
+[eva] asm_contracts.c:34: assertion 'UNKNOWN' got status valid.
+[eva] Recording results for f3
+[eva] Done for function f3
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f1:
+  src ∈ {1}
+  dst ∈ {2}
+[eva:final-states] Values at end of function f2:
+  dwSomeValue ∈ {42}
+[eva:final-states] Values at end of function f3:
+  x ∈ {1}
+[eva:final-states] Values at end of function main:
+  __retres ∈ {0}
+[from] Computing for function f1
+[from] Done for function f1
+[from] Computing for function f2
+[from] Done for function f2
+[from] Computing for function f3
+[from] Done for function f3
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f1:
+  NO EFFECTS
+[from] Function f2:
+  NO EFFECTS
+[from] Function f3:
+  NO EFFECTS
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f1:
+    src; dst
+[inout] Inputs for function f1:
+    \nothing
+[inout] Out (internal) for function f2:
+    dwSomeValue
+[inout] Inputs for function f2:
+    \nothing
+[inout] Out (internal) for function f3:
+    x
+[inout] Inputs for function f3:
+    \nothing
+[inout] Out (internal) for function main:
+    __retres
+[inout] Inputs for function main:
+    \nothing

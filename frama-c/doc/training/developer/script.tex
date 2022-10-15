@@ -1,0 +1,92 @@
+\subsection{Browsing \protect\framac's API}
+
+\begin{frame}{Reading \texttt{.mli} files}
+\begin{block}{Access}
+\begin{itemize}
+\item Directly open the desired file in your favorite IDE
+\item Some interesting files:
+\begin{itemize}
+\item \texttt{cil/src/cil\_types.mli}, \texttt{cil.mli}
+\item \texttt{src/kernel/globals.mli}, \texttt{kernel\_functions.mli}
+\item \texttt{src/kernel/file.mli}, \texttt{visitor.mli}
+\item \texttt{src/kernel/plugin.mli}, \texttt{log.mli}
+\item \texttt{src/type/datatype.mli}, 
+\item \texttt{src/project/state\_builder.mli}
+\item \texttt{src/kernel/dynamic.mli}, \texttt{journal.mli}
+\end{itemize}
+\end{itemize}
+\end{block}
+\begin{block}{Pros and Cons}
+\begin{itemize}
+\item[\pros] Can be used directly in IDE
+\item[\cons] Requires some knowledge of where functions are
+\begin{itemize}
+\item Might be mitigated by IDE's OCaml support
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Generated HTML Documentation}
+\begin{block}{Access}
+\begin{itemize}
+\item Not compiled by default: requires \verb|make doc install-doc-code|
+\item \verb|$FRAMAC_SHARE/doc/code/html/index.html|
+\item \url{http://frama-c.com/download/frama-c-Nitrogen-20111001_api.tar.gz}
+\end{itemize}
+\end{block}
+\begin{block}{Pros and Cons}
+\begin{itemize}
+\item[\pros] Provides various indexes
+\item[\pros] Easier navigation between files
+\item[\cons] No search
+\item[\cons] Generation is costly (but required only once)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{OCamlbrowser}
+\begin{block}{Access}
+\begin{itemize}
+\item Program included in OCaml distribution (if \texttt{tcl/tk} enabled)
+\item Reads \texttt{.cmi} interfaces to provide information
+\item Requires setting up its search path
+\end{itemize}
+\end{block}
+\begin{block}{Pros and Cons}
+\begin{itemize}
+\item[\pros] Searchable (including by type)
+\item[\cons] No recursive descent in directories: must give all paths manually
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{Script-driven analysis}
+
+\begin{frame}{When to use a script?}
+\begin{itemize}
+\item replay and/or edit the \textbf{journal} of a GUI session
+\item compose analyses
+\item access functionalities that can't be done {\it via} command-line options
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Basic usage}
+\begin{itemize}
+\item All analyses and options can be accessed programmatically
+\item Provide a function \texttt{run} to set up appropriate environment...
+\item ... and launches the analyses in the desired order
+\item Register \texttt{run} itself as a toplevel analysis
+\item Sample example
+\end{itemize}
+\end{frame}
+
+\subsection{Detection of \texttt{const} violation}
+\begin{frame}{Scenario}
+\end{frame}
+
+
+% Local Variables:
+% TeX-master: "slides.tex"
+% ispell-local-dictionary: "english"
+% End:

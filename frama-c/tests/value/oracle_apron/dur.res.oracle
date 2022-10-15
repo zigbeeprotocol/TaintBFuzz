@@ -1,0 +1,4 @@
+310c310
+<   V6 ∈ [--..--] or UNINITIALIZED
+---
+>   V6 ∈ [0..32767] or UNINITIALIZED

@@ -1,0 +1,27 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing unit_hard.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Pre-condition 'p_is_33FF' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'q_is_66F0' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Pre-condition 'r_is_q1_ko' in 'main':
+Let a = addr_of_int(26352).
+Assume {
+  (* Heap *)
+  Type: (region(addr_of_int(13311).base) <= 0) /\ (region(a.base) <= 0).
+}
+Prove: shift_sint32(a, 1) = addr_of_int(26360).
+
+------------------------------------------------------------

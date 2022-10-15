@@ -1,0 +1,163 @@
+\begin{frame}[fragile]{Uses of Objects}
+\begin{block}{A small comparison}
+%TODO: trouver comment avoir des hline avec du multirow...
+\begin{tabular}{|c|c|c|}
+& Traditional OO languages & \ocaml \\
+Encapsulation & \multirow{2}{*}{Objects} & Modules \\
+Late binding & & Objects \\
+\end{tabular}
+\end{block}
+\begin{block}{Objects in \ocaml}
+\begin{itemize}
+\item used only where one an extensible behavior is explicitly desired.
+\item modules and functors often more suitable.
+\item Two usages in \framac: AST visitor and lablgtk-based GUI
+\end{itemize}
+\end{block}
+\end{frame}
+
+%TODO: faire des focus sur les différents éléments...
+\begin{frame}[fragile]{How to define a class}
+\lstset{language=Ocaml}
+\tikzset{incode/.style={baseline=-.5ex,remember picture,overlay,
+                        minimum height=0.05ex}}
+\tikzset{outline/.style={shape=ellipse,draw=Gold1,fit={#1}}}
+\tikzset{comment/.style={xshift=15mm,yshift=10mm,shape=ellipse callout,
+                         anchor=south west,callout absolute pointer={#1},
+                         at=(current page.south west),
+                         draw=Goldenrod1,fill=LightGoldenrod1!60,
+                         callout pointer arc=4}}
+\begin{overlayarea}{\textwidth}{\textheight}
+\begin{ocamlcode}
+class my_visitor ?\tikz[incode]\coordinate(prmx);?x y?\tikz[incode]\coordinate(prmy);?:
+?\tikz[incode]\coordinate(classtypb);?Visitor.frama_c_visitor?\tikz[incode]\coordinate(classtype);? =
+?\tikz[incode]\coordinate(locvarb);?let local_var = f x y in?\tikz[incode]\coordinate(locvare);?
+object(?\tikz[incode]\coordinate(selfb);?self?\tikz[incode]\coordinate(selfe);?)
+  ?\tikz[incode]\coordinate(inhb);?inherit Visitor.frama_c_inplace?\tikz[incode]\coordinate(inhe);?
+  ?\tikz[incode]\coordinate(valb);?val v1?\tikz[incode]\coordinate(vale);? = Stack.create ()
+  val ?\tikz[incode]\coordinate(mutb);?mutable?\tikz[incode]\coordinate(mute);? v2 = 0
+  ?\tikz[incode]\coordinate(methb);?method vvrbl?\tikz[incode]\coordinate(methe);? vi = ...
+      ?\tikz[incode]\coordinate(callb);\tikz[incode]\coordinate(self2b);?self?\tikz[incode]\coordinate(self2e);?#internal_method?\tikz[incode]\coordinate(calle);? v2
+  method ?\tikz[incode]\coordinate(privb);?private?\tikz[incode]\coordinate(prive);? internal_method x = ...
+end
+\end{ocamlcode}
+\end{overlayarea}
+\begin{overlayarea}{0pt}{0pt}
+\onslide<2>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline=(prmx) (prmy)] (prm) {};
+\node[comment={(prm.south west)}] {Classes can take parameters};
+\end{tikzpicture}
+}
+\onslide<3>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(classtypb) (classtype)}] (prm) {};
+\node[comment={(prm.south)}]
+     {Constrain the interface (\lstinline{class type})};
+\end{tikzpicture}
+}
+\onslide<4>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(inhb) (inhe)}] (prm) {};
+\node[comment={(prm.south)}] {Inheritance};
+\end{tikzpicture}
+}
+\onslide<5>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(selfb) (selfe)}] (prm) {};
+\node[outline={(self2b) (self2e)}] {};
+\node[comment={(prm.south west)}] {Naming current object};
+\end{tikzpicture}
+}
+\onslide<6>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(callb) (calle)}] (prm) {};
+\node[comment={(prm.south)}] {Calling a method};
+\end{tikzpicture}
+}
+\onslide<7>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(methb) (methe)}] (prm) {};
+\node[comment={(prm.south)}] {Normal (public) method};
+\end{tikzpicture}
+}
+\onslide<8>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(privb) (prive)}] (prm) {};
+\node[comment={(prm.south)}] {Private method};
+\end{tikzpicture}
+}
+\onslide<9>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(valb) (vale)}] (prm) {};
+\node[comment={(prm.south)}] {Instance variable};
+\end{tikzpicture}
+}
+\onslide<10>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(mutb) (mute)}] (prm) {};
+\node[comment={(prm.south)}] {Mutable instance variable};
+\end{tikzpicture}
+}
+\onslide<11>{%
+\begin{tikzpicture}[overlay, remember picture]
+\node[outline={(locvarb) (locvare)}] (prm) {};
+\node[comment={(prm.south)}] {Local variables};
+\end{tikzpicture}
+}
+\end{overlayarea}
+\end{frame}
+
+\begin{frame}[fragile]{Typing}
+\begin{itemize}
+\item Each \texttt{class} implicitly defines a \texttt{class type}
+\item Type is mainly the list of public methods with their type
+\item Explicit definition: \lstinline{class type my_class_type = object ... end}
+\item \alert{Structural} subtyping, not directly related to inheritance
+  \begin{itemize}
+  \item class $A$ is a subtype of $B$ if it has at least the same methods
+  \item and the type of method $m$ in $A$ is a subtype of the one in $B$
+  \item formalized duck-typing
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Definition of class members}
+\begin{tabular}{m{0.17\textwidth}|%
+                >{\centering}m{0.14\textwidth}|%
+                >{\centering}m{0.14\textwidth}|%
+                >{\centering}m{0.14\textwidth}|%
+                >{\centering}m{0.17\textwidth}|}
+\cline{2-5}
+& Method & Private method & Instance variable & Local\newline binding
+\tabularnewline
+\cline{1-5}
+\multicolumn{1}{|m{0.17\textwidth}|}
+{Available outside of object} & 
+   \yes & \no & \no & \no
+\tabularnewline
+\cline{1-5}
+\multicolumn{1}{|m{0.17\textwidth}|}{Available in inherited classes} & 
+   \yes & \yes & \yes & \no
+\tabularnewline
+\cline{1-5}
+\multicolumn{1}{|m{0.17\textwidth}|}{Late\newline binding} & 
+   \yes & \yes & \no & \no
+\tabularnewline
+\cline{1-5}
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{How to use objects}
+\lstset{language=[Objective]Caml}
+\begin{description}
+\item[creation] \lstinline{let obj = new my_visitor x y}
+\item[coercion] \lstinline{(obj :> Visitor.frama_c_visitor)}
+\item[direct definition] \lstinline{let obj = object ... end}
+\end{description}
+\end{frame}
+
+% Local Variables:
+% TeX-master: "slides.tex"
+% ispell-local-dictionary: "english"
+% End:

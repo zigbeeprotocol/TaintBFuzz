@@ -1,0 +1,25 @@
+[kernel] Parsing memchr_off.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] memchr_off.c:6: check 'valid' got status valid.
+[eva] memchr_off.c:7: check 'valid' got status valid.
+[eva] memchr_off.c:8: check 'not_found' got status valid.
+[eva] memchr_off.c:9: check 'valid' got status valid.
+[eva] memchr_off.c:10: check 'not_found' got status valid.
+[eva] memchr_off.c:11: check 'not_found' got status valid.
+[eva] memchr_off.c:12: check 'valid' got status valid.
+[eva] memchr_off.c:13: check 'zero_length' got status valid.
+[eva] memchr_off.c:15: check 'valid' got status valid.
+[eva] memchr_off.c:16: check 'not_found' got status valid.
+[eva] memchr_off.c:19: check 'valid' got status valid.
+[eva] memchr_off.c:20: check 'valid' got status valid.
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  s ∈ {{ "abc" }}
+  t ∈ {{ "abc" + {1} }}
+  ws ∈ {{ L"abc" }}

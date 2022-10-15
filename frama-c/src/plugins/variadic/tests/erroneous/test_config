@@ -1,0 +1,2 @@
+PLUGIN: variadic
+OPT: -kernel-verbose 0 -variadic-verbose 2

@@ -1,0 +1,42 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing doomed_localinit.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function access
+------------------------------------------------------------
+  Function access
+------------------------------------------------------------
+
+Goal Wp_smoke_dead_code in 'access' at instruction (file doomed_localinit.i, line 10):
+Assume {
+  (* Heap *)
+  Type: (region(ptr_0.base) <= 0) /\ linked(Malloc_0).
+  (* Then *)
+  Have: null != ptr_0.
+  (* Assertion 'rte,mem_access' *)
+  Have: valid_rw(Malloc_0, ptr_0, 1).
+}
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Wp_smoke_dead_code in 'access' at initialization of 'tmp' (file doomed_localinit.i, line 11):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file doomed_localinit.i, line 10):
+Assume {
+  (* Heap *)
+  Type: (region(ptr_0.base) <= 0) /\ linked(Malloc_0).
+  (* Then *)
+  Have: null != ptr_0.
+}
+Prove: valid_rw(Malloc_0, ptr_0, 1).
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file doomed_localinit.i, line 11):
+Assume { (* Heap *) Type: region(0) <= 0. }
+Prove: false.
+
+------------------------------------------------------------

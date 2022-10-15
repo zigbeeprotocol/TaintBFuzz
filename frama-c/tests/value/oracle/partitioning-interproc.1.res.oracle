@@ -1,0 +1,36 @@
+[kernel] Parsing partitioning-interproc.c (with preprocessing)
+[eva] Analyzing a complete application starting at fabs_test
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function fabs <- fabs_test.
+  Called from partitioning-interproc.c:50.
+[eva] Recording results for fabs
+[eva] Done for function fabs
+[eva] Recording results for fabs_test
+[eva] done for function fabs_test
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function fabs:
+  __retres ∈ [-0. .. 1.79769313486e+308]
+[eva:final-states] Values at end of function fabs_test:
+  x ∈ [-1. .. 1.]
+[from] Computing for function fabs
+[from] Done for function fabs
+[from] Computing for function fabs_test
+[from] Done for function fabs_test
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function fabs:
+  \result FROM x
+[from] Function fabs_test:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function fabs:
+    __retres
+[inout] Inputs for function fabs:
+    \nothing
+[inout] Out (internal) for function fabs_test:
+    x; tmp
+[inout] Inputs for function fabs_test:
+    \nothing

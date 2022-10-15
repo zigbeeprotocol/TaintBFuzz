@@ -1,0 +1,4 @@
+[ { "header": "Split", "tactic": "Wp.split", "params": {},
+    "select": { "select": "clause-step", "at": 3, "kind": "branch",
+                "target": "a_0<b_0", "pattern": "<$a$b" },
+    "children": { "Then": [], "Else": [] } } ]

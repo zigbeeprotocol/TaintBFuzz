@@ -1,0 +1,13 @@
+# frama-c -wp [...]
+[kernel] Parsing bitmask0x8000.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] 2 goals scheduled
+[wp] [Script] Goal typed_lemma_res_n : Valid
+[wp] [Script] Goal typed_lemma_res_y : Valid
+[wp] Proved goals:    2 / 2
+  Qed:             0 
+  Script:          2
+------------------------------------------------------------
+ Axiomatics                WP     Alt-Ergo  Total   Success
+  Lemma                     -        -        2       100%
+------------------------------------------------------------

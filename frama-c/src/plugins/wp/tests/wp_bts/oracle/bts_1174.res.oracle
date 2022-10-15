@@ -1,0 +1,22 @@
+# frama-c -wp [...]
+[kernel] Parsing bts_1174.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Assertion 'qed_ok' (file bts_1174.i, line 11):
+Let r = of_f64(x).
+Assume {
+  Type: is_sint32(a).
+  (* Goal *)
+  When: .0 <= r.
+  (* Pre-condition *)
+  Have: (r <= 10.0) /\ (-10.0 <= r).
+  (* Then *)
+  Have: a != 0.
+}
+Prove: .0 <= of_f64(mul_f64(x, to_f64(2.0))).
+
+------------------------------------------------------------

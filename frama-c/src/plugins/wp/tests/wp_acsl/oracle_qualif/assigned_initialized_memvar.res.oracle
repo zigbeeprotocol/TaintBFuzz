@@ -1,0 +1,44 @@
+# frama-c -wp -wp-timeout 20 [...]
+[kernel] Parsing assigned_initialized_memvar.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 26 goals scheduled
+[wp] [Alt-Ergo] Goal typed_initialize_loop_invariant_CHECK_preserved : Valid
+[wp] [Qed] Goal typed_initialize_loop_invariant_CHECK_established : Valid
+[wp] [Alt-Ergo] Goal typed_initialize_check_CHECK : Valid
+[wp] [Qed] Goal typed_initialize_loop_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_range_loop_invariant_CHECK_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_range_loop_invariant_CHECK_established : Valid
+[wp] [Qed] Goal typed_range_check_CHECK : Valid
+[wp] [Qed] Goal typed_range_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_range_loop_assigns_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_field_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_field_loop_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_array_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_array_loop_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_index_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_index_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_index_loop_assigns_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_descr_loop_invariant_CHECK_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_descr_loop_invariant_CHECK_established : Valid
+[wp] [Qed] Goal typed_descr_check_CHECK : Valid
+[wp] [Qed] Goal typed_descr_loop_assigns_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_descr_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_descr_loop_assigns_part3 : Valid
+[wp] [Qed] Goal typed_descr_loop_assigns_part4 : Valid
+[wp] [Qed] Goal typed_descr_loop_assigns_part5 : Valid
+[wp] [Alt-Ergo] Goal typed_comp_check_FAILS : Unsuccess
+[wp] [Qed] Goal typed_comp_loop_assigns : Valid
+[wp] Proved goals:   22 / 26
+  Qed:            15 
+  Alt-Ergo:        7  (unsuccess: 4)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  initialize                2        2        4       100%
+  range                     3        2        5       100%
+  field                     1        -        2      50.0%
+  array                     1        -        2      50.0%
+  index                     2        -        3      66.7%
+  descr                     5        3        8       100%
+  comp                      1        -        2      50.0%
+------------------------------------------------------------

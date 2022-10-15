@@ -1,0 +1,52 @@
+# frama-c -wp [...]
+[kernel] Parsing subset_fopen.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function f
+------------------------------------------------------------
+
+Goal Assertion 'Ok_A' (file subset_fopen.c, line 17):
+Assume { Type: is_sint32(i). }
+Prove: (0 <= i) /\ (i <= 9).
+
+------------------------------------------------------------
+
+Goal Assertion 'Ok_B' (file subset_fopen.c, line 18):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'Ok_C' (file subset_fopen.c, line 19):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'Ok_D' (file subset_fopen.c, line 22):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'Ok_E' (file subset_fopen.c, line 26):
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: linked(Malloc_0).
+  (* Goal *)
+  When: null != p.
+  (* Assertion 'Ok_A' *)
+  Have: (0 <= i) /\ (i <= 9).
+  (* Call 'fopen' *)
+  Have: included(p, 2, shift_S4___fc_FILE(global(G___fc_fopen_21), 0), 1024).
+}
+Prove: valid_rw(Malloc_0, p, 2).
+
+------------------------------------------------------------
+[wp] subset_fopen.c:13: Warning: 
+  Memory model hypotheses for function 'fopen':
+  /*@
+     behavior wp_typed:
+       requires \separated(&_p__fc_fopen, {filename + (..), mode + (..)});
+       ensures \separated(\result, &_p__fc_fopen);
+     */
+  FILE *fopen(char const * restrict filename, char const * restrict mode);

@@ -1,0 +1,75 @@
+<?js
+    var data = obj;
+    var props = data.subprops || data.properties;
+
+    /* sort subprops under their parent props (like opts.classname) */
+    var parentProp = null;
+    props.forEach(function(prop, i) {
+        if (!prop) { return; }
+        if ( parentProp && prop.name && prop.name.indexOf(parentProp.name + '.') === 0 ) {
+            prop.name = prop.name.substr(parentProp.name.length+1);
+            parentProp.subprops = parentProp.subprops || [];
+            parentProp.subprops.push(prop);
+            props[i] = null;
+        }
+        else {
+            parentProp = prop;
+        }
+    });
+?>
+
+<table class="props">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <?js
+         var self = this;
+         const displayProp = (prop,indent=0) => {
+            if (!prop) { return; }
+    ?>
+
+        <tr>
+            <td class="name">
+                <code>
+                   <?js for( var k = 0; k < indent; k++) { ?>
+                          &nbsp;
+                   <?js } ?>
+                   <?js= (indent ? '.' : '') + prop.name ?>
+                </code>
+            </td>
+            <td class="type">
+            <?js if (prop.type && prop.type.names) {?>
+                <?js= self.partial('type.tmpl', prop.type.names) ?>
+                <?js if (prop.optional) { ?>
+                    (opt.)
+                <?js } ?>
+            <?js } ?>
+            </td>
+            <td class="description last">
+                <?js= prop.description ?>
+            </td>
+        </tr>
+        <?js if (prop.subprops) prop.subprops.forEach((p) => displayProp(p,indent+1)); ?>
+
+    <?js
+         };
+         props.forEach( (p) => displayProp(p) );
+     ?>
+    <?js if (data.augments && data.augments.length) data.augments.forEach((a) => {
+             const href = /^\[(.+)\]\((.+)\) */;
+             const m = href.exec(a);
+             if (m) { ?>
+        <tr>
+            <td><tt>...</tt></td>
+            <td><a href="<?js= m[2] ?>"><?js= m[1] ?></a></td>
+            <td>Super Class Properties</td>
+        </tr>
+    <?js     }})?>
+    </tbody>
+</table>

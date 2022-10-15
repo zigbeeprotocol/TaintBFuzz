@@ -1,0 +1,104 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #b4cacd;
+    --text-discrete: #879da0;
+    --disabled-text: #506679;
+    --info-text: #748a8d;
+    --info-text-discrete: #778094;
+    --text-highlighted: #d4eaed;
+
+    --code-hover: #005137;
+    --code-select: #4f3d24;
+    --code-select-hover: #5f4d34;
+    --dead-code: #444;
+    --non-terminating: #444;
+    --highlighted-marker: #778822;
+    --code-bullet: #0a2234;
+
+    --splitter: #708294;
+    --border: #031b2d;
+    --border-discrete: #2a4254;
+
+    --background: #2c394b;
+    --background-profound: #082032;
+    --background-profound-hover: #0e2638;
+    --background-disabled: #525f71;
+    --background-disabled-hover: #4c596b;
+    --background-intense: #132b41;
+    --background-softer: #364455;
+    --background-sidebar: #183042;
+    --background-button-hover: #c0c0c0;
+    --background-alterning-odd: #354154;
+    --background-alterning-even: #475366;
+    --background-interaction: #4c596b;
+    --background-report: #1e2b3d;
+
+    --selected-element: #082032;
+    --checked-element: #68758e;
+
+    --lcd-button-color: #21211a;
+    --lcd-button-background: #727798;
+
+    --default-button-color: #3c495b;
+    --default-led-img: radial-gradient(circle at center, #5f92b9, #4189bf);
+    --default-button-img: linear-gradient(to bottom, #3c495b 0%, #455164 100%);
+    --default-button-hover: #364355;
+    --default-button-active: #303d4f;
+
+    --primary-button-color: #146bbf;
+    --primary-button-img: linear-gradient(to bottom, #146bbf 0%, #1960b2 100%);
+    --primary-button-hover: #0e65b9;
+    --primary-button-active: #085fb3;
+
+    --positive-button-color: #327024;
+    --positive-led-img: radial-gradient(circle at center, #20a110, #177c16);
+    --positive-button-img: linear-gradient(to bottom, #327024 0%, #2e6c20 100%);
+    --positive-button-hover: #28661a;
+    --positive-button-active: #226014;
+
+    --negative-button-color: #bc150e;
+    --negative-led-img: radial-gradient(circle at center, #df3b36, #c72a25c7);
+    --negative-button-img: linear-gradient(to bottom, #bc150e 0%, #cf1c17 100%);
+    --negative-button-hover: #b60f08;
+    --negative-button-active: #b00903;
+
+    --warning-button-color: #a4601a;
+    --warning-led-img: radial-gradient(circle at center, #efa739, #ccb41f);
+    --warning-button-img: linear-gradient(to bottom, #a4601a 0%, #a6571c 100%);
+    --warning-button-hover: #9e5114;
+    --warning-button-active: #984b0e;
+
+    --cancel-button-img: #082032;
+    --cancel-button-hover: #0e2638;
+    --cancel-button-active: #041c2e;
+
+    --selected-button-img: #355174;
+    --selected-button-hover: #456184;
+
+    --activated-button-color: #348bdf;
+    --activated-button-hover: #b53d9e;
+
+    --grid-layout-holder: #266475;
+    --grid-layout-target: #34b4c0;
+
+    --error: darkorange;
+    --warning: darkorange;
+
+    --meter-optimum:  linear-gradient(to bottom, #170 0%, #5c0 20%, #170 100%);
+    --meter-subopti:  linear-gradient(to bottom, #770 0%, #cc0 20%, #770 100%);
+    --meter-evenless: linear-gradient(to bottom, #710 0%, #c50 20%, #710 100%);
+
+    --eva-evaluation-mode: #714074;
+    --eva-state-before: #082032;
+    --eva-state-after: #321428;
+    --eva-state-then: #98a02e;
+    --eva-state-else: #8f030e;
+    --eva-probes-pinned: #1f493f;
+    --eva-probes-pinned-focused: #025d22;
+    --eva-probes-transient: #bfb095;
+    --eva-probes-transient-focused: #9f3c20;
+    --eva-alarms-true: green;
+    --eva-alarms-false: #fb4e4a;
+    --eva-alarms-unknown: darkorange;
+  }
+}

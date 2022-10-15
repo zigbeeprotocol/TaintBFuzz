@@ -1,0 +1,3 @@
+[kernel] Parsing test_recursion4.c (with preprocessing)
+[kernel] Parsing TMPDIR/aorai_test_recursion4_0.i (no preprocessing)
+[wp] Warning: Missing RTE guards

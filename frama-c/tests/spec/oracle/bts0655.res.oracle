@@ -1,0 +1,51 @@
+[kernel] Parsing bts0655.i (no preprocessing)
+[bts0655] term i has type ℤ
+[bts0655] term i has type int
+[bts0655] term \max(\at(a,Pre), \at(b,Pre)) has type ℤ
+[bts0655] term \at(a,Pre) has type ℤ
+[bts0655] term \at(a,Pre) has type unsigned int
+[bts0655] term a has type unsigned int
+[bts0655] term \at(b,Pre) has type ℤ
+[bts0655] term \at(b,Pre) has type unsigned int
+[bts0655] term b has type unsigned int
+[bts0655] term \result has type ℤ
+[bts0655] term \result has type unsigned int
+[bts0655] term \max(\old(a), \old(b)) has type ℤ
+[bts0655] term \old(a) has type ℤ
+[bts0655] term \old(a) has type unsigned int
+[bts0655] term a has type unsigned int
+[bts0655] term \old(b) has type ℤ
+[bts0655] term \old(b) has type unsigned int
+[bts0655] term b has type unsigned int
+[bts0655] term \result has type ℤ
+[bts0655] term \result has type unsigned int
+[bts0655] term \min(\old(a), \old(b)) has type ℤ
+[bts0655] term \old(a) has type ℤ
+[bts0655] term \old(a) has type unsigned int
+[bts0655] term a has type unsigned int
+[bts0655] term \old(b) has type ℤ
+[bts0655] term \old(b) has type unsigned int
+[bts0655] term b has type unsigned int
+[bts0655] term \max(\old(a), \old(b)) has type ℤ
+[bts0655] term \old(a) has type ℤ
+[bts0655] term \old(a) has type unsigned int
+[bts0655] term a has type unsigned int
+[bts0655] term \old(b) has type ℤ
+[bts0655] term \old(b) has type unsigned int
+[bts0655] term b has type unsigned int
+[bts0655] term \min(\old(a) + 1, \old(b)) has type ℤ
+[bts0655] term \old(a) + 1 has type ℤ
+[bts0655] term \old(a) has type ℤ
+[bts0655] term \old(a) has type unsigned int
+[bts0655] term a has type unsigned int
+[bts0655] term 1 has type ℤ
+[bts0655] term \old(b) has type ℤ
+[bts0655] term \old(b) has type unsigned int
+[bts0655] term b has type unsigned int
+[bts0655] term \old(a) has type ℤ
+[bts0655] term \old(a) has type unsigned int
+[bts0655] term a has type unsigned int
+[bts0655] term \abs(\old(a)) has type ℤ
+[bts0655] term \old(a) has type ℤ
+[bts0655] term \old(a) has type unsigned int
+[bts0655] term a has type unsigned int

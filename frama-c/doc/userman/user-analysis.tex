@@ -1,0 +1,283 @@
+\chapter{Platform-wide Analysis Options}
+\label{user-analysis}
+
+The options described in this chapter provide each analysis with common
+hypotheses that influence directly their behavior.  For this reason, the user
+must understand them and the interpretation the relevant plug-ins have of them.
+Please refer to individual plug-in documentations
+(e.g.~\cite{value,slicing,wp}) for specific options.
+
+%They were first
+%specific to the Value Analysis plug-in. As they are not so specific, they have
+%been translated from this plug-in to the \FramaC kernel in the Beryllium
+%release of \FramaC. However, at this day, they are not supported by all
+%plug-ins and users are invited to examine their precise effects in the
+%corresponding manuals.
+
+\section{Entry Point}
+
+The following options define the entry point of the program and related initial
+conditions.
+\begin{description}
+\item \texttt{\optiondef{-}{main} <function\_name>} specifies that all
+  analyzers should treat function \texttt{function\_name} as the entry
+  point of the program.
+\item \optiondef{-}{lib-entry} indicates that analyzers should not assume
+  globals to have their initial values at the beginning of the analysis. This
+  option, together with the specification of an entry point \texttt{f}, can be
+  used to analyze the function \texttt{f} outside of a calling context, even if
+  it is not the actual entry point of the analyzed code.
+\end{description}
+
+\section{Feedback Options}\label{sec:feedback-options}
+
+All \FramaC plug-ins define the following set of common options.
+\begin{description}
+\item[\texttt{-<plug-in shortname>-help}] (or \texttt{-<plug-in shortname>-h})
+  \optionidxdef{-}{<plug-in>-help}
+  \optionidxdef{-}{kernel-help}
+  prints out the list of options of the given plug-in.
+
+\item[\texttt{-<plug-in shortname>-verbose <n>}]
+  \optionidxdef{-}{<plug-in>-verbose}
+  \optionidxdef{-}{kernel-verbose}
+ sets the level of verbosity to
+  some positive integer \texttt{n}. A value of 0 means no information
+  messages. Default is 1.
+
+\item[\texttt{-<plug-in shortname>-debug <n>}]
+  \optionidxdef{-}{<plug-in>-debug}
+  \optionidxdef{-}{kernel-debug}
+  sets the debug level to a
+  positive integer \texttt{n}. The higher this number, the more debug messages
+  are printed. Debug messages do not have to be understandable by the end
+  user. This option's default is 0 (no debugging messages).
+\item[\texttt{-<plug-in shortname>-msg-key <keys>}]
+  \optionidxdef{-}{<plug-in>-msg-key}
+  \optionidxdef{-}{kernel-msg-key}
+  sets the categories of
+  messages that must be output for the plugin. \texttt{keys} is a 
+  comma-separated list of names. The list of available categories can be 
+  obtained with \texttt{-<plug-in shortname>-msg-key help}. To enable all
+  categories, use the wildcard \texttt{'*'}%
+  \footnote{Be sure to enclose it in single quotes or your shell might
+    expand it, leading to unexpected results.}. Categories can have 
+  subcategories, defined by a colon in their names. For instance, \texttt{a:b:c}
+  is a subcategory \texttt{c} of \texttt{a:b}, itself a
+  subcategory of \texttt{a}. Enabling a category will also enable all its
+  subcategories. An enabled category \texttt{cat} can be disabled by using
+  \texttt{-cat} in the list of \texttt{keys}. Several occurrences of the option
+  may appear on the command line and will be processed in order.
+\item[\texttt{-<plug-in shortname>-warn-key <keys>}]
+\optionidxdef{-}{<plug-in>-warn-key}
+\optionidxdef{-}{kernel-warn-key}
+allows setting the status of a category of warnings. The argument \texttt{keys} is a comma-separated
+list of \texttt{key} of the form \texttt{<category>=<status>}, where category is a warning
+category (possibly a sub-category as for messages categories above), and status is one of:
+\index{warning status}
+\begin{description}
+\item[inactive] no message is emitted for the category
+\item[feedback] a feedback message is emitted
+\item[active] a proper warning is emitted
+\item[once] a proper warning is emitted, and the status of the category is
+  reset to \texttt{inactive}, {\it i.e.}
+  at most one message for the category will be emitted.
+\item[error] a warning is emitted. \FramaC execution continues, but its
+  exit status will not be 0 at the end of the run.
+\item[abort] a warning is emitted and \FramaC will immediately abort
+ its execution with an error.
+\item[feedback-once] a feedback message is emitted, and the status is reset to
+  \texttt{inactive}
+\item[err-once] combines the actions of \texttt{error} and \texttt{once}
+  statuses.
+\end{description}
+
+The \texttt{=<status>} part might be omitted, which is equivalent to asking for \texttt{active} status.
+The new status will be propagated to subcategories, with one exception: statuses
+``abort'', ``error'' and ``err-once'' will only be propagated to subcategories
+whose current status is not ``inactive''.
+
+Finally, as for debug categories, passing \texttt{help} (without status) in the list of
+\texttt{keys} will list the available categories, together with their
+current status. Passing \texttt{*} in the list of keys will change the status
+of all warning categories, and affect warnings that do not have a category.
+Hence, \texttt{-kernel-warn-key *=abort} will stop \FramaC's execution at the
+first warning triggered by the kernel.
+\end{description}
+
+The two following options modify the behavior of output messages:
+\begin{description}
+\item[\optiondef{-}{add-symbolic-path}] takes a list of the form $path_1:name_1,
+  \dots, path_n:name_n$ in argument and replaces each $path_i$ with $name_i$ when
+  displaying file locations in messages.
+\item[\optiondef{-}{permissive}] performs less verification on validity of
+  command-line options.
+\end{description}
+
+\section{Customizing Analyzers}\label{sec:customizing-analyzers}
+
+The descriptions of the analysis options follow. For the first two, the
+description comes from the \Value manual~\cite{value}. Note that
+these options are very likely to be modified in future versions of \FramaC.
+
+\begin{description}
+\item \optiondef{-}{absolute-valid-range} \texttt{m-M}
+specifies that the only valid absolute addresses (for reading or writing)
+are those comprised between \lstinline$m$ and \lstinline$M$ inclusive.
+This option currently allows to specify only a single interval,
+although it could be improved to allow several intervals
+in a future version. $m$ and $M$
+can be written either in decimal or hexadecimal notation.
+
+\item \optiondef{-}{unsafe-arrays} can be used when the source
+code manipulates n-dimensional arrays, or arrays within structures,
+in a non-standard way. With this option, accessing
+indexes that are out of bounds will instead access
+the remainder of the struct. For example, the code below will overwrite
+the fields \lstinline|a| and \lstinline|c| of \lstinline|v|.
+\begin{ccode}
+struct s {
+  int a;
+  int b[2];
+  int c;
+};
+
+void main(struct s v) {
+  v.b[-1] = 1;
+  v.b[2] = 4;
+}
+\end{ccode}
+The opposite option, called \optiondef{-}{safe-arrays}, is set by default.
+With \texttt{-safe-arrays}, the two accesses to \lstinline|v| are considered
+invalid. (Accessing \lstinline|v.b[-2]| or \lstinline|v.b[3]| remains incorrect,
+regardless of the value of the option.)
+
+\item \optiondef{-}{warn-invalid-pointer} may be used to check that the code
+  does not perform illegal pointer arithmetics, creating pointers that do not
+  point inside an object or one past an object.
+  This option is disabled by default, allowing the creation of such invalid
+  pointers without alarm — but the dereferencing of an invalid pointer
+  \emph{always} generates an alarm.
+
+  For instance, no error is detected by default in the following example, as
+  the dereferencing is correct. However, if option
+  \texttt{-warn-invalid-pointer} is enabled, an error is detected at line 4.
+  \begin{ccode}
+    int x;
+    int *p = &x;
+    p++;  // valid
+    p++;  // undefined behavior
+    *(p-2) = 1;
+  \end{ccode}
+
+\item \optiondef{-}{unspecified-access} may be used to check when the
+  evaluation of an expression depends on the order in which its sub-expressions
+  are evaluated. For instance, this occurs with the following piece of code.
+\begin{ccode}
+int i, j, *p;
+i = 1;
+p = &i;
+j = i++ + (*p)++;
+\end{ccode}
+In this code, it is unclear in which order the elements of the right-hand side
+of the last assignment are evaluated.  Indeed, the variable j can get any value
+as i and p are aliased. The \texttt{-unspecified-access} option warns
+against such ambiguous situations. More precisely, \texttt{-unspecified-access}
+detects potential concurrent write accesses (or a write access
+and a read access) over the same location that are not separated by a sequence
+point. Note however that this option \emph{does not warn} against such accesses
+if they occur in an inner function call, such as in the following example:
+\begin{ccode}
+int x;
+int f() { return x++; }
+int g() { return f() + x++; }
+\end{ccode}
+Here, the \texttt{x} might be incremented by \texttt{g} before or after the
+call to \texttt{f}, but since the two write accesses occur in different
+functions, \texttt{-unspecified-access} does not detect that.
+
+\item \optiondef{-}{warn-pointer-downcast} may be used to check that the code
+  does not downcast a pointer to an integer type. This option is set by default.
+  In the following example, analyzers report by default an error on the third
+  line. Disabling the option removes this verification.
+  \begin{ccode}
+    int x;
+    uintptr_t addr = &x;
+    int a = &x;
+  \end{ccode}
+
+\item \optiondef{-}{warn-signed-downcast} may be used to check that the analyzed
+  code does not downcast an integer to a signed integer type. This option is
+  \emph{not} set by default. Without it, the analyzers do not perform such a
+  verification. For instance consider the following function.
+\begin{ccode}
+short truncate(int n) {
+  return (short) n;
+}
+\end{ccode}
+If \texttt{-warn-signed-downcast} is set, analyzers report an error on
+{\lstset{language=C,style=framac-code-style} \lstinline|(short) n|}
+which downcasts a signed integer to a signed
+short. Without it, no error is reported.
+
+\item \optiondef{-}{warn-unsigned-downcast} is the same as
+  \texttt{-warn-signed-downcast} for downcasts to unsigned integers. This option
+  is also \emph{not} set by default. 
+
+\item \optiondef{-}{warn-signed-overflow} may be used to check that the
+  analyzed code does not overflow on integer operations. If the opposite option
+  \texttt{-no-warn-signed-overflow} is specified, the analyzers assume that
+  operations over signed integers may overflow by following two's complement
+  representation. This option is set by default. For instance, consider the
+  function \lstinline|abs| that computes the absolute value of its
+  \lstinline|int| argument.
+\begin{ccode}
+int abs(int x) {
+  if (x < 0) x = -x;
+  return x;
+}
+\end{ccode}
+By default, analyzers detect an error on
+\lstinline|-x| since this operation overflows when \lstinline|MININT| is the
+argument of the function. But, with the \texttt{-no-warn-signed-overflow}
+option, no error is detected.  
+
+\item \optiondef{-}{warn-unsigned-overflow} is the same as
+  \texttt{-warn-signed-overflow} for operations over unsigned integers. This
+  option is \emph{not} set by default.
+
+\item \optiondef{-}{warn-left-shift-negative} can be used to check that the
+  code does not perform signed left shifts on negative values, i.e.,
+  \lstinline|x << n| with \lstinline|x| having signed type and negative
+  value. This is set by default, and can be disabled with option
+  \texttt{-no-warn-left-shift-negative}.
+
+\item \optiondef{-}{warn-right-shift-negative}, as its left-shift counterpart,
+  can be used to check for negative {\em right} shifts, i.e.,
+  \lstinline|x >> n| with \lstinline|x| having signed type and negative value.
+  This is {\em not} set by default.
+  \texttt{-no-warn-right-shift-negative} can be used to disable the option if
+  previously enabled.
+
+\item \optiondef{-}{warn-special-float} \texttt{<type>} may be used to allow
+  or forbid special floating-point values, generating alarms when they are
+  produced. \texttt{<type>} can be one of the following values:
+  \begin{description}
+  \item[\texttt{non-finite}]: warn on infinite floats or NaN
+  \item[\texttt{nan}]: warn on NaN only
+  \item[\texttt{none}]: no warnings
+  \end{description}
+
+\item \optiondef{-}{warn-invalid-bool} may be used to check that the code
+  does not use invalid \_Bool values by reading trap representations
+  from lvalues of \_Bool types. A trap representation does not represent
+  a valid value of the \_Bool type, which can only be 0 or 1.
+  This option is set by default, and can be disabled with
+  \texttt{-no-warn-invalid-bool}.
+\end{description}
+
+% Local Variables:
+% TeX-master: "userman.tex"
+% ispell-local-dictionary: "english"
+% compile-command: "make"
+% End: 

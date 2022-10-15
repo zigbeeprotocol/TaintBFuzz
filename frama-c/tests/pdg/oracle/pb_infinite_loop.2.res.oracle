@@ -1,0 +1,71 @@
+[kernel] Parsing pb_infinite_loop.c (with preprocessing)
+[eva] Analyzing a complete application starting at test_exit
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ [--..--]
+[kernel:annot:missing-spec] pb_infinite_loop.c:48: Warning: 
+  Neither code nor specification for function exit, generating default assigns from the prototype
+[eva] computing for function exit <- test_exit.
+  Called from pb_infinite_loop.c:48.
+[eva] using specification for function exit
+[eva] Done for function exit
+[eva] Recording results for test_exit
+[eva] done for function test_exit
+[pdg] computing for function test_exit
+[from] Computing for function exit
+[from] Done for function exit
+[pdg] done for function test_exit
+[pdg] PDG for test_exit
+ {n1}: InCtrl
+ {n2}: VarDecl : c
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: VarDecl : __retres
+ {n5}: c
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+ {n6}: block
+   -[-c-]-> 1
+   -[-c-]-> 5
+ {n7}: Call30-InCtrl : exit(1);
+   -[-c-]-> 1
+   -[-c-]-> 5
+ {n8}: Call30-In1 : exit(1);
+   -[-c-]-> 1
+   -[-c-]-> 5
+   -[-c-]-> 7
+ {n9}: __retres = 1;
+   -[-c-]-> 1
+   -[a--]-> 4
+   -[-c-]-> 5
+   -[-c-]-> 6
+ {n10}: block
+   -[-c-]-> 1
+   -[-c-]-> 5
+ {n11}: goto return_label;
+   -[-c-]-> 1
+   -[-c-]-> 5
+   -[-c-]-> 6
+   -[-c-]-> 12
+ {n12}: return_label:
+   -[-c-]-> 1
+ {n13}: __retres = 0;
+   -[-c-]-> 1
+   -[a--]-> 4
+   -[-c-]-> 5
+   -[-c-]-> 10
+ {n14}: goto return_label;
+   -[-c-]-> 1
+   -[-c-]-> 5
+   -[-c-]-> 10
+   -[-c-]-> 12
+ {n15}: return_label: return __retres;
+   -[-c-]-> 1
+   -[--d]-> 4
+   -[--d]-> 9
+   -[--d]-> 13
+ {n16}: OutRet
+   -[--d]-> 15

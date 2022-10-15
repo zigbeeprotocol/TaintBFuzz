@@ -1,0 +1,349 @@
+\documentclass[pdf]{beamer}
+\usepackage{alltt}
+\usepackage{array}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{beamerthemesplit}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{xkeyval}
+\usepackage{hevea}
+\usepackage{mathpartir}
+
+\usetikzlibrary{shadows}
+\usetikzlibrary{arrows}
+
+\setbeamercovered{transparent}
+
+\definecolor{lightgreen}{HTML}{95F4A2}
+\definecolor{lightred}{HTML}{F4959D}
+\definecolor{darkgreen}{HTML}{01802A}
+\usetheme{frama-c}
+
+\setbeamerfont{smaller}{size=\footnotesize}
+
+\pgfdeclareimage[width=\textwidth,interpolate=true]{gwhy}{gwhy}
+
+\title[Course 13]{1st Asian-Pacific Summer School on Formal Methods\\
+Course 12: Deductive verification of C programs with Frama-C and Jessie}
+\author[Virgile Prevosto]{Virgile Prevosto}
+\date[08-30-2009]{August 30, 2009}
+\institute[CEA List]{CEA List}
+
+\AtBeginSection[]{
+\begin{frame}
+ \frametitle{}
+ \tableofcontents[currentsection]
+ \end{frame}
+ }
+
+% Exemples de verification:
+% - moyenne ?
+% - listes ou tableaux ?
+% Choses à faire passer:
+% - les différentes composantes d'une spec, invariant (et variant) de
+% boucle
+% - comment lire la fenetre gwhy
+% - les debordements
+% - "collaboration" analyse de valeur jessie
+% - les alias et les preconditions a respecter
+% - terminaison et ensures \false
+
+%\newcommand<>{\onlyverbatim}[1]{\verb!#1!}
+
+\newcommand{\vfilll}{\vspace*{0pt plus1filll}}
+
+\newcommand{\launch}[2]{%
+\only<beamer>{%
+  \leavevmode%
+  \pdfstartlink user {%
+    /Subtype /Link
+    /A <</S /Launch
+    /F (#1)
+       >>
+       }%
+  #2%
+  \pdfendlink%
+}
+\only<handout>{#2}
+}
+
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{outline}
+\tableofcontents
+\end{frame}
+
+\section{Jessie Usage}
+
+\begin{frame}{What is Jessie?}
+\begin{itemize}
+\item<+-> Hoare-logic based plugin, developed at INRIA Saclay.
+\item<+-> Input: a program and a specification
+\item<+-> Jessie generates \alert{verification conditions}
+\item<+-> Use of \alert{Automated Theorem Provers} to discharge the VCs
+\item<+-> If all VCs are proved, \alert{the program is correct} with respect
+  to the specification
+\item<+->Otherwise: need to investigate why the proof fails
+\begin{itemize}
+\item<+-> Fix bug in the code
+\item<+-> Adds additional annotations to help ATP
+\item<+-> Interactive Proof (Coq)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What is Jessie Useful for?}
+\begin{block}{Usage}
+\begin{itemize}
+\item<+-> Proof of functional properties of the program
+\item<+-> Modular verification (function per function)
+\end{itemize}
+\end{block}
+\pause
+\begin{block}{Limitations}
+\begin{itemize}
+\item<+->Cast between pointers and integers
+\item<+->Limited support for union type
+\item<+->Aliasing requires some care
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{From Frama-C to Theorem Provers}
+\begin{tikzpicture}[%
+file/.style={minimum size=1cm,draw,rounded corners,fill=lightgreen},
+arrow/.style={line width=5pt,draw=red,-stealth'},
+tool/.style={minimum size=1cm,draw,fill=lightred,drop shadow}
+]
+\node[style=file] (c file) at (9.5,9) {C file};
+\node[style=tool] (frama-c) at (9.5,11){Frama-C};
+\node[style=tool] (jessie) at (7,11) {Jessie};
+\node[style=file] (why file) at (4.5,11) {Why file};
+\node[style=tool] (why) at (2,11) {Why};
+\node[style=file] (vc) at (2,9) {Verification conditions};
+\node[style=tool] (atp) at (8,7)
+  { \begin{minipage}{4cm}Automated provers:\newline Alt-ergo\newline Simplify\newline Z3\newline...\end{minipage}};
+\node[style=tool] (pa) at (3,6.5) {\begin{minipage}{3cm}
+    Proof assistants:\newline Coq\newline
+    Isabelle\newline PVS\end{minipage}};
+\path[style=arrow] (c file) -- (frama-c);
+\path[style=arrow] (frama-c) -- (jessie);
+\path[style=arrow] (jessie) -- (why file);
+\path[style=arrow] (why file) -- (why);
+\path[style=arrow] (why) -- (vc);
+\path[style=arrow] (vc) -- (atp);
+\path[style=arrow] (vc) -- (pa);
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]{A first example}
+  \begin{block}{Check safety of a function}
+    \begin{itemize}
+      \item Pointer accesses
+      \item Arithmetic overflow
+      \item Division
+    \end{itemize}
+  \end{block}
+  \input{mean_orig.pp}
+\end{frame}
+
+\begin{frame}<handout>{A first specification}
+  \input{mean_res.pp}
+\end{frame}
+
+\section{Function Contracts}
+
+\begin{frame}{ACSL}
+Safety of a program is important, but this is not sufficient: We also want it to
+do ``the right thing''...
+
+\pause
+But in order for jessie to verify that, we need to explain it what ``the right
+thing'' is,\pause{} and to explain it formally
+
+\pause
+This is the purpose of \alert{ACSL}, ANSI/ISO C Specification Language.
+\pause
+\begin{itemize}
+\item<+-> Behavioral specification language à la JML and Eiffel 
+\item<+-> Function contracts
+\item<+-> Logic models
+\item<+-> Independent from any plug-in
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Behavior of a function}
+  \begin{itemize}
+  \item Functional specification
+  \item<2->Pre-conditions (\texttt{requires})
+  \item<3->Post-conditions (\texttt{ensures})
+  \end{itemize}
+
+  \begin{block}{Example}
+    \input{mean_spec_orig.pp}
+  \end{block}
+\end{frame}
+
+\begin{frame}<handout>{Logic function}
+One can define logic functions as follows:
+\begin{c}
+  /*@ logic integer mean(integer x, integer y) = 
+            (x+y)/2; */
+\end{c}
+\end{frame}
+
+\begin{frame}
+  \setbeamercovered{invisible}
+  \frametitle{Side effects}
+  \begin{block}{The specification:}%
+  \input{meansig.pp}
+  \end{block}
+\only<handout>{
+  \vfill
+  \begin{block}{An admissible implementation:}
+    \begin{overprint}
+      \only<handout:1>{\input{4bad1.pp}}%
+      \only<handout:2>{\input{4bad2.pp}}%
+      \only<handout:3>{\input{4good.pp}}
+    \end{overprint}
+  \end{block}
+}
+\end{frame}
+
+ \begin{frame}<handout>
+   \frametitle{Termination}
+     \begin{itemize}
+     \item<1> Post condition true \emph{when the function exits normally.}
+     \item<3> By default, a function always terminates...
+     \item<4> ... as long as its pre-condition holds.
+     \end{itemize}
+   \input{mean_terminates.pp}
+ \end{frame}
+
+\section{Advanced Specification}
+\subsection{Example 1: Searching}
+\begin{frame}{A concrete example}
+\begin{block}{Informal spec}
+\begin{itemize}
+\item Input: a \alert{sorted} array and its length, an element to search.
+\item Output: index of the element or \texttt{-1} if not found
+\end{itemize}
+\end{block}
+\begin{block}{Implementation}
+\input{find_array_orig.pp}
+\end{block}
+\end{frame}
+
+\begin{frame}<handout>{Predicate definition}
+\begin{block}{What does ``sorted'' mean?}
+\input{predicate.pp}
+\end{block}
+\begin{block}{ACSL predicates}
+\begin{itemize}
+\item Give a formal definition of the properties of objects
+\item Can be used in annotations
+\item Must be tied to a program point when performing a memory access
+\item Some predicate can relate two or more program points (see after)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}<handout>[fragile]{Function behaviors}
+
+\verb+find_array+ has two distinct \alert{behaviors}, depending on
+whether the query is in the array or not. This can be reflected in the
+contract in the following way:
+
+\input{find_array_contract.pp}
+\end{frame}
+
+\begin{frame}<handout>{Loop invariant}
+\begin{block}{Role of the loop invariant}
+\begin{itemize}
+\item Must be inductive (if it holds at the beginning, then it holds
+  at the end)
+\item Capture the effects of one loop step
+\item Represents the only things known at the exit of the loop
+\item Must be strong enough to allow to derive the post-condition
+\end{itemize}
+\end{block}
+\begin{block}{Example}
+\input{find_array_invariant.pp}
+\end{block}
+\end{frame}
+
+\begin{frame}<handout>{Loop variant}
+\begin{block}{Total correctness}
+\begin{itemize}
+\item Needed for proving termination
+\item Expression which strictly decreases at each step
+\item And stay non-negative
+\end{itemize}
+\end{block}
+\begin{block}{Example}
+\input{find_array_variant.pp}
+\end{block}
+\end{frame}
+
+\begin{frame}<handout>{Assertions}
+\begin{block}{Usage}
+\begin{itemize}
+\item A property which must hold at a given point
+\item Allows to guide the automated provers
+\item Can be associated to a particular behavior
+\end{itemize}
+\end{block}
+\begin{block}{Example}
+\input{find_array_assertions.pp}
+\end{block}
+\end{frame}
+
+\subsection{Example 2: Sorting}
+
+\begin{frame}{An example}
+  \begin{block}{Informal specification}
+    \begin{itemize}
+      \item Input: an array and its length
+      \item Output: the array is sorted in ascending order
+    \end{itemize}
+  \end{block}
+  \input{sort_array_orig.pp}
+\end{frame}
+
+\begin{frame}<handout>{Function Calls}
+  \begin{itemize}
+    \item Post-conditions and assigns are the only things that the
+      caller knows when the callee returns
+    \item Caller must fulfill the pre-condition of callee before the call
+  \end{itemize}
+\end{frame}
+
+\begin{frame}<handout>
+  \frametitle{Inductive Predicates}
+    \begin{itemize}
+    \item Case definition: $H_i \Rightarrow Pred$
+    \item Horn clause: $Pred$ can only appear positively in $H_i$
+      (ensures consistency)
+    \item Smallest fixpoint: predicate holds iff one of the $H_i$ holds
+    \end{itemize}
+  \input{sort_inductive.pp}
+\end{frame}
+
+\begin{frame}<handout>{Axiomatics}
+It is also possible to have axiomatic definitions of predicates and 
+logic functions:
+\input{sort_axioms.pp}
+\end{frame}
+
+\end{document}
+
+Local Variables:
+mode: latex
+ispell-local-dictionary: "english"
+End:

@@ -1,0 +1,113 @@
+[kernel] Parsing slevelex.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  c ∈ [--..--]
+[eva:alarm] slevelex.i:80: Warning: assertion got status unknown.
+[eva] slevelex.i:82: Frama_C_show_each_xy: {1; 2}, {1; 2}
+[eva] computing for function f <- main.
+  Called from slevelex.i:83.
+[eva] Recording results for f
+[eva] Done for function f
+[eva] slevelex.i:84: assertion got status valid.
+[eva] computing for function gu <- main.
+  Called from slevelex.i:88.
+[eva] slevelex.i:26: assertion got status valid.
+[eva] slevelex.i:40: Frama_C_show_each_u: {1}
+[eva] slevelex.i:40: Frama_C_show_each_u: {2}
+[eva] slevelex.i:40: Frama_C_show_each_u: {3}
+[eva] slevelex.i:40: Frama_C_show_each_u: {4}
+[eva] slevelex.i:40: Frama_C_show_each_u: {5}
+[eva] slevelex.i:40: Frama_C_show_each_u: {6}
+[eva] slevelex.i:40: Frama_C_show_each_u: {7}
+[eva] slevelex.i:40: Frama_C_show_each_u: {8}
+[eva] slevelex.i:40: Frama_C_show_each_u: {9}
+[eva] slevelex.i:40: Frama_C_show_each_u: {10}
+[eva] slevelex.i:40: Frama_C_show_each_u: {11}
+[eva] slevelex.i:40: Frama_C_show_each_u: {12}
+[eva] slevelex.i:40: Frama_C_show_each_u: {13}
+[eva] slevelex.i:40: Frama_C_show_each_u: {14}
+[eva] slevelex.i:40: Frama_C_show_each_u: {15}
+[eva] slevelex.i:40: Frama_C_show_each_u: {16}
+[eva] slevelex.i:40: Frama_C_show_each_u: {17}
+[eva] slevelex.i:40: Frama_C_show_each_u: {18}
+[eva] slevelex.i:40: Frama_C_show_each_u: {19}
+[eva] slevelex.i:40: Frama_C_show_each_u: {20}
+[eva] Recording results for gu
+[eva] Done for function gu
+[eva] computing for function ginc <- main.
+  Called from slevelex.i:89.
+[eva] slevelex.i:49: assertion got status valid.
+[eva] slevelex.i:63: Frama_C_show_each_inc: {4}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {8}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {12}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {16}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {20}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {24}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {28}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {32}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {36}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {40}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {44}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {48}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {52}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {56}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {60}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {64}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {68}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {72}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {76}
+[eva] slevelex.i:63: Frama_C_show_each_inc: {80}
+[eva] Recording results for ginc
+[eva] Done for function ginc
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  x ∈ {1; 2}
+  y ∈ {1; 2}
+  __retres ∈ {0}
+[eva:final-states] Values at end of function ginc:
+  inc ∈ [4..80],0%4
+[eva:final-states] Values at end of function gu:
+  
+[eva:final-states] Values at end of function main:
+  un ∈ [1..20]
+  x ∈ {0}
+  y ∈ {1; 2}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function ginc
+[from] Done for function ginc
+[from] Computing for function gu
+[from] Done for function gu
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  \result FROM c
+[from] Function ginc:
+  NO EFFECTS
+[from] Function gu:
+  NO EFFECTS
+[from] Function main:
+  NO EFFECTS
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    x; y; __retres
+[inout] Inputs for function f:
+    c
+[inout] Out (internal) for function ginc:
+    inc
+[inout] Inputs for function ginc:
+    \nothing
+[inout] Out (internal) for function gu:
+    \nothing
+[inout] Inputs for function gu:
+    \nothing
+[inout] Out (internal) for function main:
+    un; x; y
+[inout] Inputs for function main:
+    c

@@ -1,0 +1,52 @@
+%rubber: watch main.tdo main.cb wp.bbl wp.bib 
+%rubber: depend swap1.log-file swap2.log-file swap3.log-file
+%rubber: depend ../../tests/wp_manual/working_dir/swap.c
+%rubber: depend ../../tests/wp_manual/working_dir/swap1.h
+%rubber: depend ../../tests/wp_manual/working_dir/swap2.h
+%rubber: depend wp-complete.png wp-gui-main.png wp-gui-run.png 
+%rubber: depend wp-invalid.png  wp-unknown.png  wp-valid.png
+
+\documentclass[web]{frama-c-book}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{pifont}
+
+\input{./frama-c-affiliation.tex}
+
+%\anticopyCEA{} % To comments for public version.
+\begin{document}
+\newcommand{\FCVERSION}{\input{VERSION}(\input{VERSION_CODENAME}\unskip)}
+\coverpage{Frama-C / WP {\hspace{1cm}\normalsize\tt \FCVERSION}}
+\begin{titlepage}
+\includegraphics[height=14mm]{cealistlogo.jpg}
+\hfill~
+\vfill
+\title{WP Plug-in Manual}%
+{\tt Frama-C \FCVERSION}
+\author{Patrick Baudin, François Bobot, Loïc Correnson, Zaynah Dargaye, Allan Blanchard}
+\begin{center}
+  \fcaffiliationen
+\end{center}
+\vfill
+\begin{flushleft}
+  \textcopyright 2010-{\the\year} CEA LIST
+
+  This work has been partially supported by the 'U3CAT' ANR project.
+\end{flushleft}
+\end{titlepage}
+
+\cleardoublepage
+\markright{}
+\tableofcontents
+
+\input{wp_intro.tex}
+\input{wp_plugin.tex}
+\input{wp_models.tex}
+\input{wp_simplifier.tex}
+\input{wp_builtins.tex}
+
+\bibliographystyle{alpha}
+\bibliography{wp}
+
+\end{document}
+

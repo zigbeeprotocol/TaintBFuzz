@@ -1,0 +1,5 @@
+[ { "header": "Split", "tactic": "Wp.split", "params": {},
+    "select": { "select": "clause-goal",
+                "target": "exists i_0:int.\nif (a_0<b_0) then ((P_Pi i_0) /\\ (P_Qi i_0)) else (P_P /\\ P_Q)",
+                "pattern": "\\E<&$a$bP_PP_Q" },
+    "children": { "Then": [], "Else": [] } } ]

@@ -1,0 +1,25 @@
+[kernel] Parsing bitwise_float.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] bitwise_float.c:1: Warning: 
+  function main: precondition got status unknown.
+[eva] bitwise_float.c:5: Frama_C_show_each_x: [1028443341..1084227584]
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  x ∈ {0; 2}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM a
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    x
+[inout] Inputs for function main:
+    \nothing

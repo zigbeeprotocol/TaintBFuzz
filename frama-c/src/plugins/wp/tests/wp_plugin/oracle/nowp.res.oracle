@@ -1,0 +1,5 @@
+# frama-c -wp [...]
+[kernel] Parsing nowp.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] No proof obligations

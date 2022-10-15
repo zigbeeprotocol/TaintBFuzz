@@ -1,0 +1,38 @@
+[kernel] Parsing coverage.c (with preprocessing)
+[kernel] Parsing FRAMAC_SHARE/libc/string.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] computing for function strlen <- main.
+  Called from coverage.c:9.
+[eva] Recording results for strlen
+[eva] Done for function strlen
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function strlen:
+  i ∈ {6}
+[eva:final-states] Values at end of function main:
+  s ∈ {{ "blabli" }}
+  l ∈ {6}
+[metrics] Eva coverage statistics
+  =======================
+  Syntactically reachable functions = 1 (out of 1)
+  Semantically reached functions = 1
+  Coverage estimation = 100.0%
+[metrics] Statements analyzed by Eva
+  --------------------------
+  4 stmts in analyzed functions, 4 stmts analyzed (100.0%)
+  main: 4 stmts out of 4 (100.0%)
+[metrics] Eva coverage statistics
+  =======================
+  Syntactically reachable functions = 2 (out of 116)
+  Semantically reached functions = 2
+  Coverage estimation = 100.0%
+[metrics] Statements analyzed by Eva
+  --------------------------
+  10 stmts in analyzed functions, 10 stmts analyzed (100.0%)
+  main: 4 stmts out of 4 (100.0%)
+  strlen: 6 stmts out of 6 (100.0%)

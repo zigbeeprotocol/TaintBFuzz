@@ -1,0 +1,6 @@
+%init: S0;
+%accept: S1;
+
+S0: { (*main().s).x >= 0 } -> S1
+  | { (main().s)->x < 0 } -> S1;
+S1: -> S1;

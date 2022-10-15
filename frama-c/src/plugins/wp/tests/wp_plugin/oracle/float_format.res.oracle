@@ -1,0 +1,18 @@
+# frama-c -wp [...]
+[kernel] Parsing float_format.i (no preprocessing)
+[kernel:parser:decimal-float] float_format.i:8: Warning: 
+  Floating-point constant 0.2 is not represented exactly. Will use 0x1.999999999999ap-3.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function output
+------------------------------------------------------------
+
+Goal Post-condition 'KO' in 'output':
+Let r = of_f32(x).
+Prove: ((1.0/5) + r)
+         = of_f32(to_f32(of_f64(add_f64(to_f64((3602879701896397.0/18014398509481984)),
+                                  to_f64(r))))).
+
+------------------------------------------------------------

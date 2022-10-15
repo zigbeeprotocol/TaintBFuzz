@@ -1,0 +1,878 @@
+# frama-c -wp [...]
+[kernel] Parsing precedence.i (no preprocessing)
+[kernel:annot-error] precedence.i:90: Warning: unexpected token ';'
+[kernel:annot-error] precedence.i:135: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:134: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:133: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:132: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:130: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:129: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:128: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:127: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:125: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:124: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:123: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:122: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:120: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:119: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:118: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:175: Warning: 
+  R is not a logic variable. Ignoring code annotation
+[kernel:annot-error] precedence.i:176: Warning: 
+  P is not a logic variable. Ignoring code annotation
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function bitwise
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_and_xor' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_and_xor' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_xor_and' in 'bitwise':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: lxor(r, land(p, q)) = land(p, lxor(q, r)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_xor_and' in 'bitwise':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: lxor(p, land(q, r)) = land(r, lxor(p, q)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_xor_or' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_xor_or' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_or_xor' in 'bitwise':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: lxor(p, lor(q, r)) = lor(r, lxor(p, q)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_or_xor' in 'bitwise':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: lxor(r, lor(p, q)) = lor(p, lxor(q, r)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_or_implies' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_or_implies' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_implies_or' in 'bitwise':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: lor(r, lnot(lor(p, q))) = lor(p, lor(r, lnot(q))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,r_precedence_implies_or' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,since' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_assoc_implies' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_assoc_implies' in 'bitwise':
+Let x = lnot(p).
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: lor(r, lnot(lor(q, x))) = lor(r, lor(x, lnot(q))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_implies_equiv' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_implies_equiv' in 'bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_equiv_implies' in 'bitwise':
+Let x = lnot(p).
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: lxor(r, lnot(lor(q, x))) = lor(lxor(r, lnot(q)), x).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_equiv_implies' in 'bitwise':
+Let x = lnot(p).
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: lor(r, lnot(lxor(q, x))) = lxor(lor(r, lnot(q)), x).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function comparison
+------------------------------------------------------------
+
+Goal Post-condition 'chainable_lt_lt' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'chainable_le_le' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'chainable_gt_gt' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'chainable_ge_ge' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'chainable_eq_eq' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_eq_and' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_eq_and' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_and_eq' in 'comparison':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: ((q = p) /\ (r != 0)) <-> (((q != 0) /\ (r != 0)) <-> (p != 0)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_and_eq' in 'comparison':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: ((p != 0) /\ (r = q)) <-> (((p != 0) /\ (q != 0)) <-> (r != 0)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_nonassoc_eq' in 'comparison':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: ((q = p) /\ (r = q)) <-> ((r != 0) <-> (q = p)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_nonassoc_eq' in 'comparison':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: ((q = p) /\ (r = q)) <-> ((r = q) <-> (p != 0)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_neq_and' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_neq_and' in 'comparison':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_and_neq' in 'comparison':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: ((q != p) /\ (r != 0)) <-> (!(((q != 0) /\ (r != 0)) <-> (p != 0))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_and_neq' in 'comparison':
+Assume { Type: is_sint32(p) /\ is_sint32(q) /\ is_sint32(r). }
+Prove: ((p != 0) /\ (r != q)) <-> (!(((p != 0) /\ (q != 0)) <-> (r != 0))).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function predicate
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_and_xor' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_and_xor' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_xor_and' in 'predicate':
+Prove: (P_P /\ (!(P_R <-> P_Q))) <-> (!((P_P /\ P_Q) <-> P_R)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_xor_and' in 'predicate':
+Prove: (P_R /\ (!(P_Q <-> P_P))) <-> (!((P_Q /\ P_R) <-> P_P)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_xor_or' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_xor_or' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_or_xor' in 'predicate':
+Prove: (P_R \/ (!(P_Q <-> P_P))) <-> (!((P_Q \/ P_R) <-> P_P)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_or_xor' in 'predicate':
+Prove: (P_P \/ (!(P_R <-> P_Q))) <-> (!((P_P \/ P_Q) <-> P_R)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_or_implies' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_or_implies' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_implies_or' in 'predicate':
+Prove: (P_P \/ ((P_Q -> P_R))) <-> (((P_P \/ P_Q) -> P_R)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,r_precedence_implies_or' in 'predicate':
+Prove: (P_R \/ ((P_P -> P_Q))) <-> ((P_P -> (P_Q \/ P_R))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ok,since' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_assoc_implies' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_assoc_implies' in 'predicate':
+Prove: ((((P_P -> P_Q)) -> P_R)) <-> ((P_P -> (P_Q -> P_R))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_implies_equiv' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_implies_equiv' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_equiv_implies' in 'predicate':
+Prove: ((P_P -> (P_R <-> P_Q))) <-> (((P_P -> P_Q)) <-> P_R).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_equiv_implies' in 'predicate':
+Prove: (((P_Q <-> P_P) -> P_R)) <-> (((P_Q -> P_R)) <-> P_P).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_equiv_ite' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'm_precedence_equiv_ite' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_equiv_ite' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_ite_equiv' in 'predicate':
+Prove: ((((P_Q <-> P_P) -> P_R)) /\ (((!(P_Q <-> P_P)) -> P_S))) <->
+    ((((P_Q -> P_R)) /\ (((!P_Q) -> P_S))) <-> P_P).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_ite_equiv' in 'predicate':
+Prove: (((P_P -> P_Q)) /\ (((!P_P) -> (P_S <-> P_R)))) <->
+    ((((P_P -> P_Q)) /\ (((!P_P) -> P_R))) <-> P_S).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_assoc_ite' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_assoc_ite' in 'predicate':
+Prove: (((((P_P -> P_Q)) -> ((((!P_P) -> P_R)) -> P_S))) /\
+        ((((P_P /\ (!P_Q)) \/ ((!P_P) /\ (!P_R))) -> P_U))) <->
+    (((P_P -> P_Q)) /\ (((!P_P) -> (((P_R -> P_S)) /\ (((!P_R) -> P_U)))))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_ite_forall' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'm_precedence_ite_forall' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_ite_forall' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_forall_ite' in 'predicate':
+Assume { Type: is_sint32(x). }
+Prove: (forall i : Z. ((P_Px(i) -> P_Qx(i))) /\ (((!P_Px(i)) -> P_Rx(i)))) <->
+    ((((forall i : Z. P_Px(i)) -> P_Qx(x))) /\
+     (((exists i : Z. !P_Px(i)) -> P_Rx(x)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,m_precedence_forall_ite' in 'predicate':
+Assume { Type: is_sint32(x). }
+Prove: ((((!P_Px(x)) -> P_Rx(x))) /\ ((P_Px(x) -> (forall i : Z. P_Qx(i))))) <->
+    (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> P_Rx(x)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_forall_ite' in 'predicate':
+Assume { Type: is_sint32(x). }
+Prove: (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> (forall i : Z. P_Rx(i))))) <->
+    (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> P_Rx(x)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_assoc_forall' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_assoc_forall' in 'predicate':
+Prove: (forall i_1,i : Z. P_Pxy(i_1, i)) <-> (forall i : Z. P_Pxy(i, i)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_ite_exists' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'm_precedence_ite_exists' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_ite_exists' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_exists_ite' in 'predicate':
+Assume { Type: is_sint32(x). }
+Prove: (exists i : Z. ((P_Px(i) -> P_Qx(i))) /\ (((!P_Px(i)) -> P_Rx(i)))) <->
+    ((((exists i : Z. P_Px(i)) -> P_Qx(x))) /\
+     (((forall i : Z. !P_Px(i)) -> P_Rx(x)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,m_precedence_exists_ite' in 'predicate':
+Assume { Type: is_sint32(x). }
+Prove: ((((!P_Px(x)) -> P_Rx(x))) /\ ((P_Px(x) -> (exists i : Z. P_Qx(i))))) <->
+    (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> P_Rx(x)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_exists_ite' in 'predicate':
+Assume { Type: is_sint32(x). }
+Prove: (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> (exists i : Z. P_Rx(i))))) <->
+    (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> P_Rx(x)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_assoc_exist' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_assoc_exist' in 'predicate':
+Prove: (exists i_1,i : Z. P_Pxy(i_1, i)) <-> (exists i : Z. P_Pxy(i, i)).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_ite_let' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'm_precedence_ite_let' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_ite_let' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,r_precedence_let_ite' in 'predicate':
+Assume { Type: is_sint32(a) /\ is_sint32(x). }
+Prove: (((P_Px(a) -> P_Qx(x))) /\ (((!P_Px(a)) -> P_Rx(x)))) <->
+    (((P_Px(a) -> P_Qx(a))) /\ (((!P_Px(a)) -> P_Rx(a)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,m_precedence_let_ite' in 'predicate':
+Assume { Type: is_sint32(a) /\ is_sint32(x). }
+Prove: (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> P_Rx(x)))) <->
+    (((P_Px(x) -> P_Qx(a))) /\ (((!P_Px(x)) -> P_Rx(x)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_precedence_let_ite' in 'predicate':
+Assume { Type: is_sint32(a) /\ is_sint32(x). }
+Prove: (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> P_Rx(x)))) <->
+    (((P_Px(x) -> P_Qx(x))) /\ (((!P_Px(x)) -> P_Rx(a)))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_assoc_let' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'scope_let' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'scope_let' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'ko,l_assoc_naming' in 'predicate':
+Prove: (((P_P -> P_R)) /\ (((!P_P) -> P_S))) <->
+    (((P_P -> P_Q)) /\ (((!P_P) -> P_S))).
+
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_ite_naming' in 'predicate':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function predicate_bitwise
+------------------------------------------------------------
+
+Goal Post-condition 'r_precedence_equiv_Pand' in 'predicate_bitwise':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'l_precedence_equiv_Pand' in 'predicate_bitwise':
+Prove: true.
+
+------------------------------------------------------------
+/* Generated by Frama-C */
+/*@
+axiomatic Pred {
+  predicate P;
+  
+  predicate Q;
+  
+  predicate R;
+  
+  predicate S;
+  
+  predicate U;
+  
+  }
+ */
+/*@
+axiomatic PredX {
+  predicate Px(ℤ x) ;
+  
+  predicate Qx(ℤ x) ;
+  
+  predicate Rx(ℤ x) ;
+  
+  }
+ */
+/*@
+axiomatic PredXY {
+  predicate Pxy(ℤ x, ℤ y) ;
+  
+  predicate Qxy(ℤ x, ℤ y) ;
+  
+  }
+ */
+/*@ ensures r_precedence_and_xor: (P ∧ Q) ⊻ R ⇔ (P ∧ Q) ⊻ R;
+    ensures l_precedence_and_xor: P ⊻ (Q ∧ R) ⇔ P ⊻ (Q ∧ R);
+    ensures ko: l_precedence_xor_and: (P ∧ Q) ⊻ R ⇔ P ∧ (Q ⊻ R);
+    ensures ko: r_precedence_xor_and: P ⊻ (Q ∧ R) ⇔ (P ⊻ Q) ∧ R;
+    ensures r_precedence_xor_or: (P ⊻ Q) ∨ R ⇔ (P ⊻ Q) ∨ R;
+    ensures l_precedence_xor_or: P ∨ (Q ⊻ R) ⇔ P ∨ (Q ⊻ R);
+    ensures ko: l_precedence_or_xor: (P ⊻ Q) ∨ R ⇔ P ⊻ (Q ∨ R);
+    ensures ko: r_precedence_or_xor: P ∨ (Q ⊻ R) ⇔ (P ∨ Q) ⊻ R;
+    ensures r_precedence_or_implies: P ∨ Q ⇒ R ⇔ P ∨ Q ⇒ R;
+    ensures l_precedence_or_implies: P ⇒ Q ∨ R ⇔ P ⇒ Q ∨ R;
+    ensures ko: l_precedence_implies_or: P ∨ Q ⇒ R ⇔ P ∨ (Q ⇒ R);
+    ensures ok: r_precedence_implies_or: P ⇒ Q ∨ R ⇔ (P ⇒ Q) ∨ R;
+    ensures ok: since: (P ⇒ Q) ∨ R ⇔ (P ⇒ Q) ∨ R;
+    ensures r_assoc_implies: P ⇒ Q ⇒ R ⇔ P ⇒ Q ⇒ R;
+    ensures ko: l_assoc_implies: P ⇒ Q ⇒ R ⇔ (P ⇒ Q) ⇒ R;
+    ensures r_precedence_implies_equiv: P ⇒ Q ⇔ R ⇔ P ⇒ Q ⇔ R;
+    ensures l_precedence_implies_equiv: P ⇔ Q ⇒ R ⇔ P ⇔ Q ⇒ R;
+    ensures
+      ko: r_precedence_equiv_implies: P ⇒ Q ⇔ R ⇔ P ⇒ (Q ⇔ R);
+    ensures
+      ko: l_precedence_equiv_implies: P ⇔ Q ⇒ R ⇔ (P ⇔ Q) ⇒ R;
+    ensures
+      r_precedence_equiv_ite:
+        ((P ⇔ Q) ⇒ R) ∧ (¬(P ⇔ Q) ⇒ S) ⇔
+        ((P ⇔ Q) ⇒ R) ∧ (¬(P ⇔ Q) ⇒ S);
+    ensures
+      m_precedence_equiv_ite:
+        (P ⇒ (Q ⇔ R)) ∧ (¬P ⇒ S) ⇔
+        (P ⇒ (Q ⇔ R)) ∧ (¬P ⇒ S);
+    ensures
+      l_precedence_equiv_ite:
+        (P ⇒ Q) ∧ (¬P ⇒ (R ⇔ S)) ⇔
+        (P ⇒ Q) ∧ (¬P ⇒ (R ⇔ S));
+    ensures
+      ko: r_precedence_ite_equiv:
+        ((P ⇔ Q) ⇒ R) ∧ (¬(P ⇔ Q) ⇒ S) ⇔
+        P ⇔ (Q ⇒ R) ∧ (¬Q ⇒ S);
+    ensures
+      ko: l_precedence_ite_equiv:
+        (P ⇒ Q) ∧ (¬P ⇒ (R ⇔ S)) ⇔ (P ⇒ Q) ∧ (¬P ⇒ R) ⇔ S;
+    ensures
+      r_assoc_ite:
+        (P ⇒ Q) ∧ (¬P ⇒ (R ⇒ S) ∧ (¬R ⇒ U)) ⇔
+        (P ⇒ Q) ∧ (¬P ⇒ (R ⇒ S) ∧ (¬R ⇒ U));
+    ensures
+      ko: l_assoc_ite:
+        (P ⇒ Q) ∧ (¬P ⇒ (R ⇒ S) ∧ (¬R ⇒ U)) ⇔
+        ((P ⇒ Q) ∧ (¬P ⇒ R) ⇒ S) ∧
+        (¬((P ⇒ Q) ∧ (¬P ⇒ R)) ⇒ U);
+    ensures
+      r_precedence_ite_forall:
+        (∀ ℤ x; (Px(x) ⇒ Qx(x)) ∧ (¬Px(x) ⇒ Rx(x))) ⇔
+        (∀ ℤ y; (Px(y) ⇒ Qx(y)) ∧ (¬Px(y) ⇒ Rx(y)));
+    ensures
+      m_precedence_ite_forall:
+        (Px(\old(x)) ⇒ (∀ ℤ x; Qx(x))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x))) ⇔
+        (Px(\old(x)) ⇒ (∀ ℤ y; Qx(y))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x)));
+    ensures
+      l_precedence_ite_forall:
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (∀ ℤ x; Rx(x))) ⇔
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (∀ ℤ y; Rx(y)));
+    ensures
+      ko: r_precedence_forall_ite:
+        (∀ ℤ x; (Px(x) ⇒ Qx(x)) ∧ (¬Px(x) ⇒ Rx(x))) ⇔
+        ((∀ ℤ y; Px(y)) ⇒ Qx(\old(x))) ∧
+        (¬(∀ ℤ y; Px(y)) ⇒ Rx(\old(x)));
+    ensures
+      ko: m_precedence_forall_ite:
+        (Px(\old(x)) ⇒ (∀ ℤ x; Qx(x))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x))) ⇔
+        (Px(\old(x)) ⇒ (∀ ℤ y; Qx(\old(x)))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x)));
+    ensures
+      ko: l_precedence_forall_ite:
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (∀ ℤ x; Rx(x))) ⇔
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (∀ ℤ y; Rx(\old(x))));
+    ensures
+      r_assoc_forall:
+        (∀ ℤ x; ∀ ℤ x; Pxy(x, x)) ⇔ (∀ ℤ x; Pxy(x, x));
+    ensures
+      ko: r_assoc_forall:
+        (∀ ℤ x; ∀ ℤ y; Pxy(x, y)) ⇔ (∀ ℤ x; Pxy(x, x));
+    ensures
+      r_precedence_ite_exists:
+        (∃ ℤ x; (Px(x) ⇒ Qx(x)) ∧ (¬Px(x) ⇒ Rx(x))) ⇔
+        (∃ ℤ y; (Px(y) ⇒ Qx(y)) ∧ (¬Px(y) ⇒ Rx(y)));
+    ensures
+      m_precedence_ite_exists:
+        (Px(\old(x)) ⇒ (∃ ℤ x; Qx(x))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x))) ⇔
+        (Px(\old(x)) ⇒ (∃ ℤ y; Qx(y))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x)));
+    ensures
+      l_precedence_ite_exists:
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (∃ ℤ x; Rx(x))) ⇔
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (∃ ℤ y; Rx(y)));
+    ensures
+      ko: r_precedence_exists_ite:
+        (∃ ℤ x; (Px(x) ⇒ Qx(x)) ∧ (¬Px(x) ⇒ Rx(x))) ⇔
+        ((∃ ℤ y; Px(y)) ⇒ Qx(\old(x))) ∧
+        (¬(∃ ℤ y; Px(y)) ⇒ Rx(\old(x)));
+    ensures
+      ko: m_precedence_exists_ite:
+        (Px(\old(x)) ⇒ (∃ ℤ x; Qx(x))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x))) ⇔
+        (Px(\old(x)) ⇒ (∃ ℤ y; Qx(\old(x)))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x)));
+    ensures
+      ko: l_precedence_exists_ite:
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (∃ ℤ x; Rx(x))) ⇔
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (∃ ℤ y; Rx(\old(x))));
+    ensures
+      r_assoc_exist:
+        (∃ ℤ x; ∃ ℤ x; Pxy(x, x)) ⇔ (∃ ℤ x; Pxy(x, x));
+    ensures
+      ko: r_assoc_exist:
+        (∃ ℤ x; ∃ ℤ y; Pxy(x, y)) ⇔ (∃ ℤ x; Pxy(x, x));
+    ensures
+      r_precedence_ite_let:
+        (\let x = \old(a); (Px(x) ⇒ Qx(x)) ∧ (¬Px(x) ⇒ Rx(x))) ⇔
+        (\let y = \old(a); (Px(y) ⇒ Qx(y)) ∧ (¬Px(y) ⇒ Rx(y)));
+    ensures
+      m_precedence_ite_let:
+        (Px(\old(x)) ⇒ (\let x = \old(a); Qx(x))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x))) ⇔
+        (Px(\old(x)) ⇒ (\let y = \old(a); Qx(y))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x)));
+    ensures
+      l_precedence_ite_let:
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (\let x = \old(a); Rx(x))) ⇔
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (\let y = \old(a); Rx(y)));
+    ensures
+      ko: r_precedence_let_ite:
+        (\let x = \old(a); (Px(x) ⇒ Qx(x)) ∧ (¬Px(x) ⇒ Rx(x))) ⇔
+        ((\let y = \old(a); Px(y)) ⇒ Qx(\old(x))) ∧
+        (¬(\let y = \old(a); Px(y)) ⇒ Rx(\old(x)));
+    ensures
+      ko: m_precedence_let_ite:
+        (Px(\old(x)) ⇒ (\let x = \old(a); Qx(x))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x))) ⇔
+        (Px(\old(x)) ⇒ (\let y = \old(a); Qx(\old(x)))) ∧
+        (¬Px(\old(x)) ⇒ Rx(\old(x)));
+    ensures
+      ko: l_precedence_let_ite:
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (\let x = \old(a); Rx(x))) ⇔
+        (Px(\old(x)) ⇒ Qx(\old(x))) ∧
+        (¬Px(\old(x)) ⇒ (\let y = \old(a); Rx(\old(x))));
+    ensures
+      r_assoc_let:
+        (\let x = \old(a); \let x = \old(b); Pxy(x, x)) ⇔
+        (\let x = \old(b); Pxy(x, x));
+    ensures
+      scope_let:
+        (\let x = \old(a); \let x = x + 1; Px(x)) ⇔ Px(\old(a) + 1);
+    ensures
+      scope_let:
+        (\let x = \old(x); \let y = x + 1; Pxy(x, y)) ⇔
+        Pxy(\old(x), \old(x) + 1);
+    ensures
+      ko: l_assoc_naming:
+        (P ⇒ Q) ∧ (¬P ⇒ (R: S)) ⇔ (P ⇒ (Q: R)) ∧ (¬P ⇒ S);
+    ensures
+      r_precedence_ite_naming:
+        (P ⇒ Q) ∧ (¬P ⇒ (R: S)) ⇔ (P ⇒ Q) ∧ (¬P ⇒ (R: S));
+ */
+void predicate(int x, int a, int b)
+{
+  return;
+}
+
+/*@ ensures
+      chainable_lt_lt:
+        \old(p) < \old(q) < \old(r) ⇔ \old(p) < \old(q) < \old(r);
+    ensures
+      chainable_le_le:
+        \old(p) ≤ \old(q) ≤ \old(r) ⇔ \old(p) ≤ \old(q) ≤ \old(r);
+    ensures
+      chainable_gt_gt:
+        \old(p) > \old(q) > \old(r) ⇔ \old(p) > \old(q) > \old(r);
+    ensures
+      chainable_ge_ge:
+        \old(p) ≥ \old(q) ≥ \old(r) ⇔ \old(p) ≥ \old(q) ≥ \old(r);
+    ensures
+      chainable_eq_eq:
+        \old(p) ≡ \old(q) ≡ \old(r) ⇔ \old(p) ≡ \old(q) ≡ \old(r);
+    ensures
+      r_precedence_eq_and:
+        \old(p) ≡ \old(q) ∧ R ⇔ \old(p) ≡ \old(q) ∧ R;
+    ensures
+      l_precedence_eq_and:
+        P ∧ \old(q) ≡ \old(r) ⇔ P ∧ \old(q) ≡ \old(r);
+    ensures
+      ko: r_precedence_and_eq:
+        \old(p) ≡ \old(q) ∧ \old(r) ≢ 0 ⇔
+        (\old(p) ≢ 0) ≡ (\old(q) ≢ 0 ∧ \old(r) ≢ 0);
+    ensures
+      ko: l_precedence_and_eq:
+        \old(p) ≢ 0 ∧ \old(q) ≡ \old(r) ⇔
+        (\old(p) ≢ 0 ∧ \old(q) ≢ 0) ≡ (\old(r) ≢ 0);
+    ensures
+      ko: l_nonassoc_eq:
+        \old(p) ≡ \old(q) ≡ \old(r) ⇔
+        (\old(p) ≡ \old(q)) ≡ (\old(r) ≢ 0);
+    ensures
+      ko: r_nonassoc_eq:
+        \old(p) ≡ \old(q) ≡ \old(r) ⇔
+        (\old(p) ≢ 0) ≡ (\old(q) ≡ \old(r));
+    ensures
+      r_precedence_neq_and:
+        \old(p) ≢ \old(q) ∧ R ⇔ \old(p) ≢ \old(q) ∧ R;
+    ensures
+      l_precedence_neq_and:
+        P ∧ \old(q) ≢ \old(r) ⇔ P ∧ \old(q) ≢ \old(r);
+    ensures
+      ko: r_precedence_and_neq:
+        \old(p) ≢ \old(q) ∧ \old(r) ≢ 0 ⇔
+        (\old(p) ≢ 0) ≢ (\old(q) ≢ 0 ∧ \old(r) ≢ 0);
+    ensures
+      ko: l_precedence_and_neq:
+        \old(p) ≢ 0 ∧ \old(q) ≢ \old(r) ⇔
+        (\old(p) ≢ 0 ∧ \old(q) ≢ 0) ≢ (\old(r) ≢ 0);
+ */
+void comparison(int p, int q, int r)
+{
+  return;
+}
+
+/*@ ensures
+      r_precedence_and_xor:
+        ((\old(p) & \old(q)) ^ \old(r)) ≡ ((\old(p) & \old(q)) ^ \old(r));
+    ensures
+      l_precedence_and_xor:
+        (\old(p) ^ (\old(q) & \old(r))) ≡ (\old(p) ^ (\old(q) & \old(r)));
+    ensures
+      ko: l_precedence_xor_and:
+        ((\old(p) & \old(q)) ^ \old(r)) ≡ (\old(p) & (\old(q) ^ \old(r)));
+    ensures
+      ko: r_precedence_xor_and:
+        (\old(p) ^ (\old(q) & \old(r))) ≡ ((\old(p) ^ \old(q)) & \old(r));
+    ensures
+      r_precedence_xor_or:
+        ((\old(p) ^ \old(q)) | \old(r)) ≡ ((\old(p) ^ \old(q)) | \old(r));
+    ensures
+      l_precedence_xor_or:
+        (\old(p) | (\old(q) ^ \old(r))) ≡ (\old(p) | (\old(q) ^ \old(r)));
+    ensures
+      ko: l_precedence_or_xor:
+        ((\old(p) ^ \old(q)) | \old(r)) ≡ (\old(p) ^ (\old(q) | \old(r)));
+    ensures
+      ko: r_precedence_or_xor:
+        (\old(p) | (\old(q) ^ \old(r))) ≡ ((\old(p) | \old(q)) ^ \old(r));
+    ensures
+      r_precedence_or_implies:
+        (~(\old(p) | \old(q)) | \old(r)) ≡ (~(\old(p) | \old(q)) | \old(r));
+    ensures
+      l_precedence_or_implies:
+        (~\old(p) | (\old(q) | \old(r))) ≡ (~\old(p) | (\old(q) | \old(r)));
+    ensures
+      ko: l_precedence_implies_or:
+        (~(\old(p) | \old(q)) | \old(r)) ≡ (\old(p) | (~\old(q) | \old(r)));
+    ensures
+      ok: r_precedence_implies_or:
+        (~\old(p) | (\old(q) | \old(r))) ≡ ((~\old(p) | \old(q)) | \old(r));
+    ensures
+      ok: since:
+        ((~\old(p) | \old(q)) | \old(r)) ≡ ((~\old(p) | \old(q)) | \old(r));
+    ensures
+      r_assoc_implies:
+        (~\old(p) | (~\old(q) | \old(r))) ≡
+        (~\old(p) | (~\old(q) | \old(r)));
+    ensures
+      ko: l_assoc_implies:
+        (~\old(p) | (~\old(q) | \old(r))) ≡
+        (~(~\old(p) | \old(q)) | \old(r));
+    ensures
+      r_precedence_implies_equiv:
+        (~(~\old(p) | \old(q)) ^ \old(r)) ≡
+        (~(~\old(p) | \old(q)) ^ \old(r));
+    ensures
+      l_precedence_implies_equiv:
+        (~\old(p) ^ (~\old(q) | \old(r))) ≡
+        (~\old(p) ^ (~\old(q) | \old(r)));
+    ensures
+      ko: r_precedence_equiv_implies:
+        (~(~\old(p) | \old(q)) ^ \old(r)) ≡
+        (~\old(p) | (~\old(q) ^ \old(r)));
+    ensures
+      ko: l_precedence_equiv_implies:
+        (~\old(p) ^ (~\old(q) | \old(r))) ≡
+        (~(~\old(p) ^ \old(q)) | \old(r));
+ */
+void bitwise(int p, int q, int r)
+{
+  return;
+}
+
+/*@ ensures
+      r_precedence_equiv_Pand:
+        (~\old(p) ^ \old(q)) ≢ 0 ∧ R ⇔ (~\old(p) ^ \old(q)) ≢ 0 ∧ R;
+    ensures
+      l_precedence_equiv_Pand:
+        P ∧ (~\old(q) ^ \old(r)) ≢ 0 ⇔ P ∧ (~\old(q) ^ \old(r)) ≢ 0;
+ */
+void predicate_bitwise(int p, int q, int r)
+{
+  return;
+}
+
+

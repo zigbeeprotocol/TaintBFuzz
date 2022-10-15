@@ -1,0 +1,289 @@
+%% --------------------------------------------------------------------------
+%% --- Report Plugin
+%% --------------------------------------------------------------------------
+
+\chapter{Reports}
+\label{user-report}
+
+An execution of \FramaC outputs many messages, warnings and various property statuses in textual form.
+The Graphical User Interface (see Chapter~\ref{user-gui}) is a very good place to visualize all these results,
+but there are no synthetic results and integration with development environments can be difficult.
+
+The \textttdef{report} plug-in, provided by default with the \FramaC platform, is designed for this purpose.
+It provides the following features, which we detail in turn:
+\begin{itemize}
+\item Printing a summary of property consolidated statuses;
+\item Exporting a CSV file of property consolidated statuses;
+\item Filtering and classifying warnings, errors and property consolidated statuses, based on user-defined rules in JSON format;
+\item Output the above classification in JSON format;
+\item Make Frama-C exit with a non-null status code on some classified warning or error.
+\end{itemize}
+
+\FramaC has recently earned the ability to output data in the SARIF%
+\footnote{Static Analysis Results Interchange Format,
+\url{https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=sarif}} format.
+This is performed by the \textsf{Markdown Report} plug-in, described in
+section~\ref{sarif}.
+
+
+%% --------------------------------------------------------------------------
+%% ---  Textual Report
+%% --------------------------------------------------------------------------
+
+\section{Reporting on Property Statuses}
+
+The following options of the \texttt{report} plug-in are available for reporting on consolidated property statuses:
+
+\begin{description}
+
+\item[\tt -report] Displays a summary of property statuses in textual form.
+  The output is structured by functions and behaviors. The details of which plug-ins participate
+  into the consolidation of each property status is also provided.
+  This report is designed to be human-readable, although it can be verbose, subject to changes, and
+  not suitable for integration with other tools.
+
+\item[\tt -report-print-properties] Also print the properties definition (in ACSL form) within the
+  report.
+
+\item[\tt -report-(no)-proven] If not set, filter out the proven properties from the report.
+\item[\tt -report-(no)-specialized] If not set, filter out the properties that are auxiliary instances of other properties,
+  like the preconditions of a function at its call sites.
+\item[\tt -report-untried] If set, also include in the report the properties that have not been tried.
+
+\end{description}
+
+%% --------------------------------------------------------------------------
+%% --- CSV Report
+%% --------------------------------------------------------------------------
+
+\section{Exporting to CSV}
+
+The consolidated property status database can be exported to a \texttt{CSV} file, eg. for an easy import into Excel.
+To use this feature, simply use the following option of the \texttt{report} plug-in:
+
+\begin{description}
+\item[\tt -report-csv <file>.csv] Output the report in CSV format into the specified file.
+\end{description}
+
+Notice than it is \emph{not} necessary to set \texttt{-report} option to use this feature.
+It is highly recommended to use this option in combination with the following other
+standard \FramaC options:
+
+\begin{logs}
+> frama-c ... -then -no-unicode -report-csv <file>.csv
+\end{logs}
+
+The format of the output CSV file is a collection of property consolidated statuses, with one property per line.
+Each line consists of a collection of TAB (ascii \verb+0x0A+) separated columns.
+The first line of the report contains the title of the columns, as follows:
+
+\begin{logs}
+> head -1 <file>.csv
+directory	file	line	function	property kind	status	property
+\end{logs}
+
+\section{Classification}
+
+We denote by \textit{event} any warning, error and (finally consolidated) property status emitted by any plug-in
+during the execution of \FramaC. We introduce the notion of \textit{event classification} as follows:
+\begin{itemize}
+\item An event can be assigned a \textit{class}, identified by a name;
+\item The event is associated to a location (\textit{file,line}) when available;
+\item It can be reformulated with a \textit{title} and an extended \textit{description};
+\item An event may trigger an \textit{action} when it is detected.
+\end{itemize}
+
+The classification of events is defined by the user through \emph{classification rules}
+which are provided to the \texttt{report} plug-in via configuration files in JSON format.
+A typical invocation of \FramaC with classification has the following structure:
+
+\begin{logs}
+> frama-c -report-rules <file>.json ...other plugins... -then -report-classify
+\end{logs}
+
+The collection of events starts once the classification rules have been loaded.
+Finally, a classification report is build. There are various options to tune the classification process
+and the reporting output. See section~\ref{report-classification-options} for details.
+
+\textbf{Remark:} it is possible to emit different classification reports successively
+from the command line. At each \verb+-report-classify+, the pool of collected events is flushed
+and will not be included in subsequent reports.
+
+\subsection{Action}
+
+Classified events can trigger one of the following actions:
+\begin{description}
+\item[\tt SKIP] the event is filtered out and not included in the final report;
+\item[\tt INFO] the event is kept for user information;
+\item[\tt REVIEW] the event shall be carefully read by the user, it contains
+  verifications to be performed by hand to guarantee the soundness of the provided results;
+\item[\tt ERROR] all the results shall be considered wrong due to improper use of the tool.
+\end{description}
+
+By default, \FramaC warnings shall trigger a \texttt{REVIEW} action and errors an \texttt{ERROR}
+one. However, it is possible to modify actions with classification rules.
+
+\subsection{Rules}
+
+Each classification rule is a JSON record following the structure of Figure~\ref{report-classification-rule}.
+A file of classification rules shall contain one rule or an array of rules. Several files can be loaded.
+The first rule that applies to an event takes priority over subsequent ones.
+
+An individual rule consists of one mandatory \emph{pattern} field, and other optional fields. All the details
+are provided in the figure.
+
+\begin{figure}[htbp]
+\begin{verbatim}
+{
+   // Optional Fields
+
+   "classid": "<identifier>" ; // Default is "unclassified"
+   "plugin": "<identifier>" ;  // Default is "kernel"
+   "category": "<category>" ; // Default is "*" for all categories
+   "title": "<free text>" ;    // Default is a short name of the event
+   "descr": "<free text>" ;    // Default is the entire text of the event
+   "action": "<SKIP|INFO|REVIEW|ERROR>" ; Default is 'REVIEW'
+
+   // Mandatory Pattern Field (unless a category is specified)
+
+   [ "error"        // Applies to error messages
+   | "warning"      // Applies to warning messages
+   | "unknown"      // Properties with « Unknown » status
+   | "untried"      // Properties with « Not Tried » status
+   | "invalid"      // Properties with « Invalid » status
+   | "unproved"     // Properties with any status other than « Valid »
+   ] : "<regexp>" ;
+}
+\end{verbatim}
+\caption{Classification Rule JSON Format}
+\label{report-classification-rule}
+\end{figure}
+
+Plug-ins are identified by their short name, typically \verb+"rte"+ for the \verb+Rtegen+ plug-in,
+see \verb+frama-c -plugins+ for details.
+
+Category filters apply to active warning categories\footnote{Warning categories
+  are described in section~\ref{sec:feedback-options}.}
+or warning categories promoted to errors.
+Use option \verb+frama-c -[plugin]-warn-key help+ to display the list of available warning categories for a given plugin.
+Category filters use the same syntax and meaning than warning control options: category \verb+a:b+ applies to all messages
+with category \verb+a:b[:...]+, but \emph{not} to messages with category \verb+a+ or \verb+c[:...]+.
+
+When using a category filter, the pattern field can be omitted to match all warning messages of this category.
+
+\subsection{Regular Expressions}
+
+\textsf{OCaml} regular expressions are accepted for \verb+<regexp>+ pattern fields.
+
+Regular expressions are used to determine when a rule applies to an event. The rule matches a warning or error of the specified
+plug-in if the regular expression matches a \emph{prefix} of the event message (excluding location and header).
+For property rules, the regular expression must match a \emph{prefix} of the canonical property name,
+which have the following structure:
+
+\begin{verbatim}
+<Function><Behavior><Category><Names>
+\end{verbatim}
+
+Each part of the canonical property name is optional and separated by a `\_` character.
+
+\subsection{Reformulation}
+
+The optional fields \verb+title+ and \verb+descr+ of a classification rule allow for a \emph{reformulation} of the event.
+Reformulations are plain text enriched by references to sub-parts of the matching regular expression of the event.
+Hence, \verb+\*+ stands for the entire event message, \verb+\0+ is the matched prefix, \verb+\1..\9+ refers to the corresponding
+sub-group of the \textsf{OCaml} regular expression. You can use \verb+\n+ to insert a new-line character and \verb+\<c>+ to escape
+character \verb+<c>+.
+
+\subsection{JSON Output Format}
+
+The classification results can be exported to a single file in JSON format. It consists of an array of classified events,
+each one following the format given in Figure~\ref{report-classified-event}.
+
+\begin{figure}[htbp]
+\begin{verbatim}
+{
+  "classid": "<ident>" ;
+  "action": "<INFO|REVIEW|ERROR>" ;
+  "title": "<free text>" ;
+  "descr": "<free text>" ;
+  [ "file": "<path>" ; "line": "<number>" ; ]
+}
+\end{verbatim}
+\caption{Classified Event JSON Format}
+\label{report-classified-event}
+\end{figure}
+
+\subsection{Classification Options}
+\label{report-classification-options}
+
+\begin{description}
+\item[\tt -report-classify] Report classification of all properties, errors and
+  warnings (opposite option is -report-no-classify)
+\item[\tt -report-exit] Exit on error (set by default, opposite option is
+  -report-no-exit)
+\item[\tt -report-output <*.json>]  Output -report-classify in JSON format
+\item[\tt -report-output-errors <file>]  Output number of errors to \verb+<file>+
+\item[\tt -report-output-reviews <file>]  Output number of reviews to \verb+<file>+
+\item[\tt -report-output-unclassified <file>]  Output number of unclassified to \verb+<file>+
+\item[\tt -report-absolute-path] Force absolute path in JSON output. Normal behavior is to
+  output relative filepath for files that are relative to the current working directory.
+\item[\tt -report-rules <*.json,...>]  Configure the rules to apply for
+  classification, and start monitoring.
+\item[\tt -report-status] Classify also property statuses (set by default, opposite
+  option is -report-no-status)
+\item[\tt -report-stderr] Output detailed textual classification on stderr
+  (opposite option is -report-no-stderr)
+\item[\tt -report-stdout] Force detailed textual classification on stdout
+  (opposite option is -report-no-stdout)
+\item[\tt -report-unclassified-error <action>]
+  Action to be taken on unclassified
+  errors (default is: \verb+'ERROR'+)
+\item[\tt -report-unclassified-invalid <action>]
+  Action to be taken on invalid
+  properties (default is: \verb+'ERROR'+)
+\item[\tt -report-unclassified-unknown <action>]
+  Action to be taken on unknown
+  properties (default is: \verb+'REVIEW'+)
+\item[\tt -report-unclassified-untried <action>]
+  Action to be taken on untried
+  properties (default is: \verb+'SKIP'+)
+\item[\tt -report-unclassified-warning <action>]
+  Action to be taken on unclassified
+  warnings (default is: \verb+'REVIEW'+)
+\end{description}
+
+\section{SARIF Output via the Markdown Report Plug-in}\label{sarif}
+
+SARIF is a JSON-based standard output format for static analysis results.
+It is currently supported by \FramaC in its version 2.1.0.
+Some IDEs, such as Visual Code, contain plug-ins which allow importing SARIF
+reports. A few Microsoft tools and libraries related to SARIF are available
+at \url{https://sarifweb.azurewebsites.net/}. Microsoft also publishes
+command-line tools for SARIF, made available via NPM packages and .Net Core
+applications.
+
+\subsection{Prerequisites}
+
+SARIF output is produced by the \textsf{Markdown Report} (MdR) plug-in.
+The plug-in is distributed with \FramaC, but it depends on optional
+features, namely the \texttt{opam} package \texttt{ppx\_deriving\_yojson},
+so it may not be available in every \FramaC installation.
+
+When installing \FramaC via opam, include the optional dependency
+\texttt{ppx\_deriving\_yojson} to ensure MdR will be available.
+Note that MdR has other features and output formats, which are not described
+here.
+
+\subsection{Generating a SARIF Report}
+
+To enable generation of a SARIF report, use option \texttt{-mdr-gen sarif}.
+It will produce a JSON file (by default, \texttt{report.sarif}) with an entry
+for each ACSL property.
+
+You can change the output file name with option \texttt{-mdr-out <f>}.
+
+Note that there are no filtering options in the SARIF output; it is up to the
+tools importing the file to decide which information to sort, filter, and
+display.
+
+For more details about \textsf{Markdown Report}, use option \texttt{-mdr-help.}

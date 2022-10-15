@@ -1,0 +1,265 @@
+# Fichier à inclure dans son makefile pour faire des compilation latex.
+# L'utilisateur doit définir certaines variables (notées +)
+# et peut en option en (re)définir d'autres (notées *) :
+#
+# === outils (peuvent être redéfinis si on veut préciser le path par exemple) :
+# TEXI (= texi2dvi)
+# HEVEA (HEVEAOPTS), HACHA
+
+# === fichiers :
+# * TOPTEX=top.tex : déterminé par défaut par un grep de documentclass
+# * GENERATED_TEX= : fichiers .tex générés (vide par défaut)
+#
+# * FIGURES_TODO= : noms de figures sans extension (-> .eps + .pdf)
+#                   (suppose qu'on a le .eps et le .pdf 
+#                   ou qu'on sait a une cible pour les fabriquer...)
+#
+# * HVA=macros.hva : si on a besoin de définir des choses pour hevea
+#
+# Les figures (fichiers .fig) sont compilés en postscript et/ou en pdf
+# en fonction des besoins. Si on souhaite compiler une figure en latex
+# (formules, etc) il faut simplement nommer le fichier *.tex.fig
+#
+# === les cibles fournies sont :
+# ps, pdf, doc (= ps + pdf), html, 
+# debug_latex, 
+# clean_latex, clean_hevea, clean
+#
+# loop : lance gv sur TOPTEX.ps et une boucle de compilation qui met à jour
+#        le contenu visualisé.
+#        Il est conseillé d'utiliser plutôt la cible 'sloop' pour ne pas avoir
+#        un écran qui défile en permanence.
+#------------------------------------------------------------------------------
+
+
+# l'avantage de texi2dvi par rapport à latex, 
+# c'est qu'il s'occupe de l'index, de la biblio,
+# et de lancer latex autant de fois qu'il le faut.
+TEXI?=texi2dvi
+TEXI2DVI=TEXINPUTS="$(TEXINPUTS)" BIBINPUTS="$(BIBINPUTS)" $(TEXI)
+TEXI2PDF=$(TEXI2DVI) --pdf
+
+# on n'utilise plus de traduction type caml2tex, mais directement :
+# \lstinputlisting[language=caml]{truc.ml}
+# dans le fichier latex
+
+TEX = $(shell ls *.tex)
+GENERATED_TEX ?= 
+IMAGE_TEX = $(shell ls *.image.tex 2>/dev/null)
+SRC_TEX = $(filter-out $(IMAGE_TEX) $(GENERATED_TEX),$(TEX))
+ALL_TEX = $(TEX) $(GENERATED_TEX)
+
+TOPTEX ?= $(shell grep -l documentclass $(SRC_TEX))
+SRC = $(TOPTEX:%.tex=%)
+DVI = $(SRC).dvi
+PS  = $(SRC).ps
+PDF = $(SRC).pdf
+
+CLASS = $(shell grep documentclass $(TOPTEX) \
+              | sed -e 's/.*\(book\).*/\1/' \
+              | sed -e 's/.*\(report\).*/\1/' \
+              | sed -e 's/.*\(article\).*/\1/')
+
+FIGURES_TODO  ?= 
+FIGURES_FIG  = $(shell ls *.fig 2>/dev/null)
+LATEX_FIGURES_FIG  = $(shell ls *.tex.fig 2>/dev/null)
+SIMPLE_FIGURES_FIG = $(filter-out $(LATEX_FIGURES_FIG), $(FIGURES_FIG))
+SIMPLE_FIGURES_EPS = $(SIMPLE_FIGURES_FIG:%.fig=%.eps) $(FIGURES_TODO:%=%.eps)
+SIMPLE_FIGURES_PDF = $(SIMPLE_FIGURES_FIG:%.fig=%.pdf) $(FIGURES_TODO:%=%.pdf)
+FIGURES_PSTEX = $(LATEX_FIGURES_FIG:%.tex.fig=%.eps)
+FIGURES_PDFTEX = $(LATEX_FIGURES_FIG:%.tex.fig=%.pdf)
+FIGURES_TEX = $(LATEX_FIGURES_FIG:%.tex.fig=%.tex)
+FIGURES_EPS = $(SIMPLE_FIGURES_EPS) $(FIGURES_PSTEX)
+FIGURES_PDF = $(SIMPLE_FIGURES_PDF) $(FIGURES_PDFTEX)
+GENERATED_FIGURES = $(FIGURES_EPS) $(FIGURES_PDF) $(FIGURES_TEX)
+
+# plus utile : hevea se débrouille tout seul.
+#IMAGES_GIF = $(shell grep -s gif $(SRC).html | grep "^[ ]*<IMG" | sed -e 's=[^"]*"\(.*.gif\).*=\1=')
+
+# TODO : à étendre au cas d'une biblio multiple (plusieurs fichiers .bib).
+BIB_NAME = $(shell grep -h "bibliography{" $(TOPTEX) \
+              | sed -e 's/\\bibliography{\(.*\)}/\1.bib/')
+# TODO: à modifier pour chercher dans BIBINPUTS
+
+ifneq ($(strip $(BIB_NAME)),)
+  BIB_FILE = $(BIB_NAME)
+  #BBL_FILE must be empty is there is no BIB_FILE
+  BBL_FILE=$(SRC).bbl
+endif
+
+#------------------------------------------------------------------------------
+# Cibles :
+
+.PHONY: clean clean_hevea clean_latex 
+.PHONY : ps pdf doc html 
+.PHONY : debug_latex
+
+ps :  $(PS)
+# no <TAB> here
+pdf : $(PDF)
+# no <TAB> here
+doc : ps pdf
+# no <TAB> here
+html : index.html $(IMAGES_GIF)
+# no <TAB> here
+
+debug_latex :
+	@echo "SRC = $(SRC)"
+	@echo "TEX = $(TEX)"
+	@echo "GENERATED_TEX = $(GENERATED_TEX)"
+	@echo "BIB_FILE = $(BIB_FILE)"
+	@echo "BBL_FILE = $(BBL_FILE)"
+	@echo "GENERATED_FIGURES = $(GENERATED_FIGURES)"
+	@echo "IMAGES_GIF = $(IMAGES_GIF)"
+	@echo "TEXI2DVI = $(TEXI2DVI)"
+	@echo "HVA = $(HVA)"
+
+#------------------------------------------------------------------------------
+# Dépendances :
+
+$(SRC).dvi : $(ALL_TEX) $(FIGURES_TEX) $(FIGURES_EPS) $(BBL_FILE) $(FIGURES_PDF)
+# no <TAB> here
+
+$(SRC).pdf : $(ALL_TEX) $(FIGURES_TEX) $(FIGURES_PDF) $(BBL_FILE)
+# no <TAB> here
+
+$(SRC).html : $(ALL_TEX) $(SRC).pdf $(SRC).bbl
+# no <TAB> here
+
+#------------------------------------------------------------------------------
+# Regles de production :
+
+# dessins .eps à partir des .fig de xfig
+%.eps : %.tex.fig
+	fig2dev -L pstex $< $@
+
+%.eps : %.fig
+	fig2dev -L eps $< $@
+
+%.pdf : %.tex.fig
+	fig2dev -L pdftex $< $@
+
+%.pdf : %.fig
+	fig2dev -L pdf $< $@
+
+%.tex : %.tex.fig
+	fig2dev -L pstex_t -p $* $< $@
+
+%.pdf : %.eps
+	epstopdf $<
+
+%.fig : %.dot
+	dot -Tfig $< > $@
+
+%.fig : %.dia
+	dia --filter=fig $<
+
+%.dvi : %.tex
+	@echo "=== Compilation de $<"
+	$(MAKE) clean_tmp_tex
+	$(TEXI2DVI)  $<
+
+$(SRC).bbl : $(BIB_FILE)
+	@echo "=== Fichier .bib plus récent -> effacement du .bbl"
+	rm -f $(SRC).bbl
+
+
+%.aux : %.dvi
+	@echo "=== Fichier .aux ok"
+
+%.ps : %.dvi
+	@echo "=== Conversion PostScript de $<"
+	dvips $< -o
+
+%.pdf : %.tex
+	@echo "=== Conversion en PDF de $<"
+	# ps2pdf -sPAPERSIZE=a4 $< $@
+	$(MAKE) clean_tmp_tex
+	$(TEXI2PDF) $<
+
+#-------------------------------------------------------------------------------
+# Makefile (originally from hevea documentation) :
+
+HEVEA?=hevea
+HEVEAOPTS?= -exec xxdate.exe -fix
+HACHA?=hacha
+
+#HVA = file.hva to be defined by user if needed
+HVA ?= 
+
+$(SRC).html: $(HVA) $(SRC).tex
+	$(HEVEA) $(HEVEAOPTS) $(HVA) $(SRC).tex
+
+index.html: $(SRC).html
+	$(HACHA) -o index.html $(SRC).html
+
+# ceci n'est normalement plus utile sous UNIX grace à l'option -fix de hevea
+#$(IMAGES_GIF) : $(SRC).image.tex
+	#@echo "=== Génération des images gif"
+	#imagen $(SRC)
+
+#------------------------------------------------------------------------------
+# boucle de mise au point :
+
+LOOP_GOAL=$(PS)
+
+until_success:
+	$(MAKE)  $(LOOP_GOAL);                   \
+          while [ $$? -ne 0 ]; do                \
+            touch $(DVI) $(PS) $(PDF);           \
+            $(MAKE) -q $(LOOP_GOAL);             \
+            while [ $$? -eq 0 ]; do              \
+             sleep 1;                            \
+             $(MAKE) -q $(LOOP_GOAL);            \
+            done;                                \
+            $(MAKE) $(LOOP_GOAL);                \
+          done
+
+loop:
+	$(MAKE) until_success
+	gv -watch $(PS) &
+	while ( true ); do                       \
+          $(MAKE) until_success;                 \
+          sleep 2;                               \
+        done
+
+sloop:
+	$(MAKE) -s loop
+
+#------------------------------------------------------------------------------
+clean_hevea :
+	@echo "=== Ménage des fichiers hevea"
+	rm -f $(SRC).html $(SRC).h{toc,aux,ind,idx} $(SRC).cb
+	rm -f index.html $(SRC)[0-9][0-9][0-9].html $(SRC).css
+	rm -f $(SRC).image.cb $(SRC).image.tex $(SRC)[0-9][0-9][0-9].gif 
+	rm -f previous_motif.gif next_motif.gif contents_motif.gif
+
+clean_tmp_tex :
+	@echo "=== Ménage des fichiers temporaires de latex"
+	rm -f $(SRC).aux
+	rm -f $(SRC).log
+	rm -f $(SRC).blg
+	rm -f $(SRC).idx
+	rm -f $(SRC).ind
+	rm -f $(SRC).ilg
+	rm -f $(SRC).toc
+	rm -f $(SRC).loc
+	rm -f $(SRC).lof
+	rm -f $(SRC).lot
+	rm -f $(SRC).out
+
+clean_latex : clean_tmp_tex
+	@echo "=== Ménage des fichiers latex"
+	rm -f $(SRC).bbl
+	rm -f $(SRC).dvi
+	rm -f $(SRC).ps
+	rm -f $(SRC).pdf
+	@echo "=== Ménage des figures"
+	rm -f *.~[0-9]*~ *.bak *~
+	rm -f $(GENERATED_FIGURES)
+
+
+clean : clean_latex clean_hevea 
+#------------------------------------------------------------------------------
+# vim:  set filetype=make :
+#------------------------------------------------------------------------------

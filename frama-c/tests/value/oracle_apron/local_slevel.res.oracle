@@ -1,0 +1,60 @@
+13,15c13,15
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {0; 1}
+< [eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0}, {0; 1}
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {0; 1; 2}
+---
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {1}
+> [eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0}, {0}
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {1}
+17c17
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {0; 1; 2; 3}
+---
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {1; 2; 3}
+19c19
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {0; 1; 2; 3; 4}
+---
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {1; 2; 3; 4}
+21,26c21,22
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..2147483647]
+< [eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..2147483647]
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..2147483648]
+< [eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..2147483648]
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..4294967295]
+< [eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..4294967295]
+---
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [1..79]
+> [eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..78]
+140c136
+<   r ∈ [--..--]
+---
+>   r ∈ [0..2147483647]
+381,383c377,379
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {0; 1}
+< [eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0}, {0; 1}
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {0; 1; 2}
+---
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {1}
+> [eva] local_slevel.i:18: Frama_C_show_each: {-1}, {0}, {0}
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, {1}, {1}
+385c381
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {0; 1; 2; 3}
+---
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {1; 2; 3}
+387c383
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {0; 1; 2; 3; 4}
+---
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, {1; 2; 3; 4}
+389,394c385,386
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..2147483647]
+< [eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..2147483647]
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..2147483648]
+< [eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..2147483648]
+< [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [0..4294967295]
+< [eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..4294967295]
+---
+> [eva] local_slevel.i:18: Frama_C_show_each: {1}, [1..79],1%2, [1..79]
+> [eva] local_slevel.i:18: Frama_C_show_each: {-1}, [0..78],0%2, [0..78]
+508c500
+<   r ∈ [--..--]
+---
+>   r ∈ [0..2147483647]

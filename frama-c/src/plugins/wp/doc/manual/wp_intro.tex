@@ -1,0 +1,432 @@
+\chapter{Introduction}
+
+This document describes the \textsf{Frama-C/WP} plug-in that uses external decision procedures
+to prove \textsf{ACSL} annotations of \textsf{C} functions.
+
+The \textsf{WP} plug-in is named after \emph{Weakest Precondition}
+calculus, a technique used to prove program properties initiated by
+Hoare~\cite{Hoare1969}, Floyd~\cite{Floyd1967} and
+Dijkstra~\cite{Dijkstra1968}. Recent tools implement this technique
+with great performance, for instance \textsf{Boogie}~\cite{Leino2008}
+and \textsf{Why}~\cite{Filliatre2003}. There is already a
+\textsf{Frama-C} plug-in, \textsf{Jessie}~\cite{Jessie2009}, developed
+at \textsc{INRIA}, that implements a weakest precondition calculus for
+\textsf{C} programs by compiling them into the \textsf{Why} language.
+
+The \textsf{WP} plug-in is a novel implementation of such a
+\emph{Weakest Precondition} calculus for annotated \textsf{C}
+programs, which focuses on parametrization \emph{w.r.t} the memory model.
+It is a complementary work to the \textsf{Jessie} plug-in, which relies on a
+separation memory model in the spirit of Burstall's
+work~\cite{Burstall1972}.  The \textsf{Jessie} memory model is very
+efficient for a large variety of well structured \textsf{C}-programs.
+However, it does not apply when low-level memory manipulations, such as
+heterogeneous casts, are involved. Moreover, \textsf{Jessie}
+operates by compiling the \textsf{C} program to \textsf{Why}, a
+solution that prevents the user from combining \textit{weakest
+  precondition calculus} with other techniques, such as the
+\textsf{Eva} analysis plug-in.
+
+The \textsf{WP} plug-in has been designed with cooperation in
+mind. That is, you may use \textsf{WP} for proving some annotations of
+your \textsf{C} programs, and prove others with
+different plug-ins. The recent improvements of the \textsf{Frama-C} kernel
+are then responsible for managing such partial proofs and consolidating
+them altogether.
+
+This manual is divided into three parts. This first chapter introduces
+the \textsf{WP} plug-in, the \emph{Weakest Precondition} calculus and
+\emph{Memory Models}. Then, Chapter~\ref{wp-plugin} details how to use
+and tune the plug-in within the \textsf{Frama-C}
+platform. Chapter~\ref{wp-models} provides a description for the
+included memory models. We present in Chapter~\ref{wp-simplifier} the
+simplifier module and the efficient weakest precondition engine implemented
+in the \textsf{WP} plug-in. Finally, in Chapter~\ref{wp-builtins}, we
+provide additional information on the supported ACSL built-in symbols.
+
+\clearpage
+
+%-----------------------------------------------------------------------------
+\section{Installation}
+\label{wp-install}
+%-----------------------------------------------------------------------------
+
+The \textsf{WP} plug-in is distributed with the \textsf{Frama-C}
+platform. However, it also requires the \textsf{Why-3} platform and
+you should install at least one external prover in
+order to fulfill proof obligations. An easy choice is to install the
+\textsf{Alt-Ergo} theorem prover originally developed at
+\textsc{inria} and now by \textsc{OcamlPro}\footnote{\textsf{Alt-Ergo}:
+  \url{https://alt-ergo.ocamlpro.com/}}. When using the \textsf{Opam} package
+  manager, these tools are automatically installed with \textsf{Frama-C}.
+
+When updating or installing \textsf{Why-3}, the following command should be
+run to detect available provers:
+
+\begin{lstlisting}[basicstyle=\ttfamily]
+rm -f ~/.why3.conf ; why3 config detect
+\end{lstlisting}
+
+See the documentation of \textsf{Why-3} to install other provers.
+
+
+%-----------------------------------------------------------------------------
+\section{Tutorial}
+\label{wp-tutorial}
+%-----------------------------------------------------------------------------
+
+Consider the very simple example of a function that swaps the values
+of two integers passed by reference:
+
+\listingname{swap.c}
+\cinput{../../tests/wp_manual/working_dir/swap.c}
+
+A simple, although incomplete, \textsf{ACSL} contract for this function can be:
+
+\listingname{swap1.h}
+\cinput{../../tests/wp_manual/working_dir/swap1.h}
+
+You can run \textsf{wp} on this example with:
+\logsinput{swap1.log-file}
+
+As expected, running \textsf{WP} for the \texttt{swap} contract
+results in two \emph{proof obligations} (one for each '\verb+ensures+'
+clause). The first one is discharged internally by the \textsf{Qed}
+simplifier of \textsf{WP}, the second one is terminated by
+\textsf{Alt-Ergo}.
+
+You should notice the warning ``Missing RTE guards'', emitted by the
+\textsf{WP} plug-in.  That is, the \emph{weakest precondition
+  calculus} implemented in \textsf{WP} relies on the hypothesis that
+your program is runtime-error free. In this example, the \texttt{swap}
+function dereferences its two parameters, and these two pointers
+should be valid.
+
+By default, the \textsf{WP} plug-in does not generate any proof obligation
+for verifying the absence of runtime errors in your code. Absence of runtime errors
+can be proved with other techniques, for instance by running
+the \textsf{Eva} plug-in, or by generating all the necessary annotations
+with the \textsf{RTE} plug-in.
+
+The simple contract for the \texttt{swap} function above is not strong enough to
+prevent runtime errors: pointers given as parameters might be invalid.
+Consider now the following new contract for \texttt{swap}:
+
+\listingname{swap2.h}
+\cinput{../../tests/wp_manual/working_dir/swap2.h}
+
+For simplicity, the \textsf{WP} plug-in is able to run the
+\textsf{RTE} plug-in for you, through the \texttt{-wp-rte} option.
+Now, \textsf{WP} reports that the function \textsf{swap} completely fulfills its contract,
+without any warnings regarding potential residual runtime errors:
+\logsinput{swap2.log-file}
+
+\clearpage
+We have finished the job of validating this simple \textsf{C} program with
+respect to its specification, as reported by the \emph{report} plug-in
+that displays a consolidation status of all annotations:
+\logsinput{swap3.log-file}
+\clearpage
+
+%-----------------------------------------------------------------------------
+\section{Weakest Preconditions}
+\label{wp-intro-calculus}
+%-----------------------------------------------------------------------------
+
+The principles of \emph{weakest precondition calculus} are quite
+simple in essence. Given a code annotation of your program, say, an
+assertion $Q$ after a statement $\mathit{stmt}$, the weakest precondition of $P$
+is by definition the ``simplest'' property $P$ that must be valid
+before $\mathit{stmt}$ such that $Q$ holds after the execution of $\mathit{stmt}$.
+
+\paragraph{Hoare triples.}
+In mathematical terms, we denote such a property by a Hoare triple:
+$$ \{P\}\,\mathit{stmt}\,\{Q\} $$
+which reads: \emph{``whenever $P$ holds, then after running $\mathit{stmt}$, $Q$ holds''}.
+
+Thus, we can define the weakest precondition as a function $\mathit{wp}$ over
+statements and properties such that the following Hoare triple always holds:
+
+$$ \{\mathit{wp}(stmt,Q)\}\quad \mathit{stmt} \quad \{Q\} $$
+
+For instance, consider a simple assignment over an integer local
+variable $x$; we have:
+
+$$ \{ x+1 > 0 \} \quad \mathtt{x = x+1;} \quad \{ x > 0 \} $$
+
+It should be intuitive that in this simple case, the \emph{weakest
+  precondition} for this assignment of a property $Q$ over $x$ can be
+obtained by replacing $x$ with $x+1$ in $Q$.  More generally, for any
+statement and any property, it is possible to define such a weakest
+precondition.
+
+\paragraph{Verification.}
+Consider now function contracts. We basically have
+\emph{pre-conditions}, \emph{assertions} and
+\emph{post-conditions}. Say function $f$ has a precondition $P$ and a
+post condition $Q$, we now want to prove that $f$ satisfies its
+contract, which can be formalized by:
+
+$$ \{P\}\quad f \quad \{Q\} $$
+
+Introducing $W = \mathit{wp}(f,Q)$, we have by definition of $\mathit{wp}$:
+
+$$ \{W\}\quad f \quad \{Q\} $$
+
+Suppose now that we can \emph{prove} that precondition $P$ entails
+weakest precondition $W$; we can then conclude that $P$ precondition
+of $f$ always entails its postcondition $Q$. This proof can be summarized by
+the following diagram:
+
+$$
+\frac%
+{\quad(P \Longrightarrow W) \quad\quad \{W\}\,f\,\{Q\} \quad}%
+{\{P\}\,f\,\{Q\}}
+$$
+
+This is the main idea of how to prove a property by weakest
+precondition computation. Consider an annotation $Q$, compute its weakest
+precondition $W$ across all the statements from $Q$ up to the
+beginning of the function. Then, submit the property $P \Longrightarrow
+W$ to a theorem prover, where $P$ are the preconditions of the
+function. If this proof obligation is discharged, then one may conclude
+the annotation $Q$ is valid for all executions.
+
+\paragraph{Termination.}
+We must point out a detail about program termination. Strictly
+speaking, the \emph{weakest precondition} of property $Q$ through
+statement $\mathit{stmt}$ should also ensure termination and execution without
+runtime errors.
+
+When the \verb+terminates+ clause is specified in function contracts,
+\textsf{WP} generates proof
+obligations to make sure that all loops have loop variants and that all function
+calls terminate whenever necessary (thus requiring \verb+decreases+ clause for
+recursive functions). Furthermore, \texttt{exit} behaviors of a function are
+correctly handled by \textsf{WP}. More details about proof of termination in
+\textsf{WP} are provided in Section~\ref{ss-sec:plugin-terminates}.
+
+Regarding runtime errors, the proof obligations generated by
+\textsf{WP} assume your program never raises any of them. As
+illustrated in the short tutorial example of
+section~\ref{wp-tutorial}, you should enforce the absence of runtime
+errors on your own, for instance by running the \textsf{Eva}
+plug-in or the \textsf{RTE} one and proving the generated assertions.
+
+%-----------------------------------------------------------------------------
+\section{Memory Models}
+\label{wp-intro-models}
+%-----------------------------------------------------------------------------
+
+The essence of a \emph{weakest precondition calculus} is to translate
+code annotations into mathematical properties. Consider the simple case
+of a property about an integer \textsf{C}-variable \texttt{x}:
+\begin{ccode}
+  x = x+1;
+  //@ assert P: x >= 0 ;
+\end{ccode}
+
+We can translate $P$ into the mathematical property $P(X)=X \geq 0$,
+where $X$ stands for the value of variable \texttt{x} at the
+appropriate program point. In this simple case, the effect of
+statement \texttt{x=x+1} over $P$ is actually the substitution
+$X\mapsto X+1$, that is $X+1\geq 0$.
+
+The problem when applying \emph{weakest precondition calculus} to
+\textsf{C} programs is dealing with \emph{pointers}. Consider now:
+\begin{ccode}
+  p = &x ;
+  x = x+1;
+  //@ assert Q: *p >= 0 ;
+\end{ccode}
+
+It is clear that, taking into account the aliasing between \texttt{*p}
+and \texttt{x}, the effect of the increment of \texttt{x} cannot be
+translated by a simple substitution of $X$ in $Q$.
+
+This is where \emph{memory models} come to rescue.
+
+A memory model defines a mapping from values inside the \textsf{C} memory
+heap to mathematical terms. The \textsf{WP} has been designed to support
+different memory models. There are currently three memory models
+implemented, and we plan to implement new ones in future releases.
+Those three models are all different from the one in the \textsf{Jessie}
+plug-in, which makes \textsf{WP} complementary to \textsf{Jessie}.
+
+\begin{description}
+
+\item[\texttt{Hoare} model.]  A very efficient model that generates
+  concise proof obligations. It simply maps each \textsf{C} variable to one
+  pure logical variable.\par
+
+  However, the heap cannot be represented in this model, and
+  expressions such as \texttt{*p} cannot be translated at all. You
+  can still represent pointer values, but you cannot read or write
+  the heap through pointers.
+
+\item[\texttt{Typed} model.] The default model for \textsf{WP}
+  plug-in. Heap values are stored in several \emph{separated} global
+  arrays, one for each atomic type (integers, floats, pointers) and
+  an additional one for memory allocation. Pointer values are translated
+  into an index into these arrays.\par
+
+  In order to generate reasonable proof obligations, the values stored
+  in the global array are not the machine ones, but the logical
+  ones. Hence, all \textsf{C} integer types are represented by
+  mathematical integers and each pointer type to a given type is represented
+  by a specific logical abstract datatype.\par
+
+  A consequence of having separated arrays is that heterogeneous casts
+  of pointers cannot be translated in this model. For instance within
+  this memory model, you cannot cast a pointer to \texttt{int} into a
+  pointer to \texttt{char}, and then access the internal
+  representation of the original \texttt{int} value into memory.
+
+  However, variants of the \texttt{Typed} model enable limited forms of casts.
+  See chapter~\ref{wp-models} for details.
+
+\item[\texttt{Bytes} model. (Not Implemented Yet).] This is a
+  low-level memory model, where the heap is represented as a wide
+  array of bytes. Pointer values are exactly translated into memory
+  addresses. Read and write operations from/to the heap are translated
+  into manipulation of ranges of bits in the heap.\par
+
+  This model is very \emph{precise} in the sense that all the details
+  of the program are represented. This comes at the cost of huge proof
+  obligations that are very difficult to discharge by automated
+  provers, and generally require an interactive proof assistant.
+
+\end{description}
+
+Thus, each \emph{memory model} offers a different trade-off between
+expressive power and ease of discharging proof obligations. The
+\texttt{Hoare} memory model is very restricted but generates easy proof
+obligations, \texttt{Bytes} is very expressive but generates difficult
+proof obligations, and \texttt{Typed} offers an intermediate solution.
+
+Chapter~\ref{wp-models} is dedicated to a more detailed description of
+memory models, and how the \textsf{WP} plug-in uses and \emph{combines}
+them to generate efficient proof obligations.
+
+% \paragraph{Remark.}
+% The original \texttt{Store} and \texttt{Runtime} memory models are no
+% longer available since \textsf{WP} version \verb+0.7+ (Fluorine); the \texttt{Typed} model
+% replaces the \texttt{Store} one; the \texttt{Runtime} model will be entirely
+% re-implemented as \texttt{Bytes} model in some future release.
+
+\section{Arithmetic Models}
+\label{wp-model-arith}
+
+The \textsf{WP} plug-in is able to take into account the precise
+semantics of integral and floating-point operations of \textsf{C}
+programs. However, doing so generally leads to very complex proof obligations.
+
+For tackling this complexity, the \textsf{WP} plug-in relies on several
+\textsf{arithmetic} models:
+
+\begin{description}
+
+\item[Machine Integer Model:] The kernel options are used to determine if an
+  operation is allowed to overflow or not. In case where overflows or downcasts
+  are forbidden, the model uses mathematical operators in place of modulo ones
+  to perform the computations.
+
+  For example, with kernel \emph{default} settings, addition of regular
+  \texttt{signed int} values is interpreted by mathematical addition over
+  unbounded \texttt{integers} ; and the addition of two
+  \texttt{unsigned int} is interpreted by the addition modulo $2^{32}$.
+
+  The user shall set the kernel options \texttt{-(no)-warn-xxx} to precisely tune the
+  model. Using \texttt{-rte} or \texttt{-wp-rte} will
+  generate all the necessary assertions to be verified.
+
+\item[Natural Model:] integer operations are performed on mathematical
+  integers. In \textsf{ACSL}, explicit conversions between different integer
+  types are still translated with \emph{modulo}, though. Size of integers is
+  also removed from type constrained, which avoids provers to run into deep
+  exploration of large integer domains. Only signed-ness is kept from type
+  constraints.
+
+  Except for the lesser constrained type assumptions, this model behaves like
+  the machine integer one when all kernel options \texttt{-warn-xxx} are set.
+  However, the model \emph{does not} modifies them. Hence, using \texttt{-rte}
+  or \texttt{-wp-rte} will generate a warning if some annotation might be not
+  generated.
+
+\item[Float Model:] floating-point values are represent in a special
+  theory with dedicated operations over \texttt{float} and \texttt{double}
+  values and conversion from and to their \texttt{real} representation \emph{via}
+  rounding, as defined by the \textsf{C/ACSL} semantics.
+
+  Although correct with respect to the \textsc{IEEE} specifications, this
+  model still provides very little support for proving properties with automated
+  provers. You may add additional properties using \emph{drivers}
+  as explained later.
+
+\item[Real Model:] floating-point operations are \emph{transformed} on
+  reals, with \emph{no} rounding. This is completely unsound with
+  respect to \textsf{C} and \textsf{IEEE} semantics. There is no way
+  of recovering a correct or partial property from the generated proof
+  obligations on floating-point operations with this model.
+
+\end{description}
+
+\paragraph{Remark:} with all models, there are conditions to meet for WP
+proofs to be correct. Depending on the model used and the kernel options, those conditions
+may change. WP do not generate proof obligations for runtime errors on its own. Instead, it can
+discharge the annotations generated by the \textsf{Eva} analysis plug-in, or by the \textsf{RTE} plug-in.
+Consider also using \texttt{-wp-rte} option.
+
+\section{Limitations \& Roadmap}
+
+The ambition of \textsf{WP} plug-in is to cover as many \textsf{ACSL} features as possible. However, some of them are still not available yet, because of lack of manpower or more fundamental reasons. This section provides an overview of those limitations, with roadmap indications: \textit{easy}
+means that support could be provided on demand, \textit{medium} means that
+significant manpower is required to implement the feature and \textit{hard} means that a mid-term research project would be required. This list of limitations is probably not exhaustive (yet) and will be maintained over future versions of \textsf{Frama-C/WP}.
+
+\begin{description}
+\item[Global invariants.]
+Not implemented yet (\textit{easy}).
+\item[Type invariants.]
+Type invariants requires to be coupled with new memory models and
+some memory region analysis (\textit{hard}).
+\item[Model fields.]
+This \textsf{ACSL} feature is generally coupled with type invariants and global invariants, hence it is not implemented yet. From a practical point
+of view, we think that ghost fields with logic types would be very complementary and easier to use. We are waiting for challenging use cases
+to implement these features (\textit{medium}).
+\item[Statement contracts.]
+No more supported since \textsf{Frama-C 23} (Vanadium) because of
+unsoundness bugs to be fixed and \textsf{ACSL} restrictions.
+Support shall be restored on a mid-term basis (\textit{easy}).
+\item[Non-natural loops.]
+Loop constructed with \textsf{goto} are no more supported since
+\textsf{Frama-C 23} (Vanadium) because of unsoundness bugs to be fixed.
+A new engine is under construction but is not yet ready (\textit{medium}).
+\item[Dynamic allocation.]
+All implemented memory models \emph{are} able to deal with dynamic allocation,
+which is actually used internally to manage the scope of local variables.
+However, \textsf{ACSL} clauses for specifying allocation and deallocation
+are not implemented yet (\textit{medium}).
+\item[Assigns.]
+The WP strategy for proving assign clauses is a based on a sound but incomplete verification: we check that side effects
+(writes and called assigns) are \emph{included} in specified assigns, which
+is a sufficient but not necessary condition. The known workaround is to
+specify larger assigns and to add the missing equalities to contracts.
+Indeed, looking for an efficient and more permissive strategy would be challenging (\textit{hard}).
+\item[Froms.]
+Proving \textsf{ACSL} assigns-from clauses is not implemented. It is as difficult as proving functional assigns. Although, we have designed some
+heuristics to prove assigns-from clauses in simple cases that could be implemented on a mid-term basis (\textit{medium}).
+\item[Per-behavior assigns.]
+Different assigns clause associated with distinct behaviors are difficult to
+take into account without a deep refactoring of the WP rule of calls. We currently use a sound upper-approximation of assigns for function calls that might make correct \textsf{ACSL} properties not provable by lack of precision
+(\textit{medium}).
+\item[Bytes, unions \& casts.]
+Memory models with non-typed access and bit- or byte-precision access would
+be easy to implement, although terribly inefficient. We are currently working on a new memory analysis that would provide a deep understanding of how to make \emph{different} memory models soundly working with each others on distinct memory regions. This would deserve a brand new research plan, to be founded by collaborative projects (\textit{hard}).
+\item[Floats.]
+A new sound but incomplete model for floats is provided since \textsf{Frama-C 21} (Scandium). Here, by incomplete we means that it is generally difficult
+to prove arithmetic properties of float operations by lack of good support from \textsf{SMT} solvers. Although, recent advances on our \textsf{Colibri} solver open the road to a better support for float operations in a near future (\textit{medium/hard}).
+\item[Function pointers.]
+Limited support for function pointers is provided \emph{via} an extension of \textsf{ACSL}, see Section~\ref{acsl:calls} for details. Currently, a function
+pointer must be provably equal to a finite set of known functions. Although,
+this could be easily extended to support function contracts refinement (\textit{medium}).
+\end{description}

@@ -1,0 +1,141 @@
+# frama-c -wp [...]
+[kernel] Parsing clusters.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] clusters.i:40: Warning: 
+  Missing terminates clause for callee_no_r, populates 'terminates \true'
+[wp] [CFG] Goal callee_no_r_terminates : Valid (Trivial)
+[wp] Warning: Missing RTE guards
+[wp] clusters.i:45: Warning: 
+  Missing terminates clause for caller_no_cluster, populates 'terminates \true'
+[wp] clusters.i:60: Warning: 
+  Missing terminates clause for fp, populates 'terminates \true'
+[wp] clusters.i:54: Warning: 
+  Missing terminates clause for function, populates 'terminates \true'
+[wp] clusters.i:28: Warning: 
+  Missing terminates clause for mutual_1, populates 'terminates \true'
+[wp] clusters.i:35: Warning: 
+  Missing terminates clause for mutual_2, populates 'terminates \true'
+[wp] clusters.i:11: Warning: 
+  Missing terminates clause for simpl_r, populates 'terminates \true'
+[wp] clusters.i:15: Warning: 
+  Missing terminates clause for simpl_rf, populates 'terminates \true'
+[wp] clusters.i:60: Warning: 
+  No 'decreases' clause on recursive function 'simpl_rf', cannot prove termination
+[wp] clusters.i:60: Warning: 
+  No 'decreases' clause on recursive function 'mutual_1', cannot prove termination
+[wp] clusters.i:36: Warning: No decreases clause for mutual_1
+[wp] clusters.i:60: Warning: 
+  No 'decreases' clause on recursive function 'fp', cannot prove termination
+[wp] clusters.i:55: Warning: No decreases clause for fp
+------------------------------------------------------------
+  Function caller_no_cluster
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'caller_no_cluster':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function fp
+------------------------------------------------------------
+
+Goal Call point function in 'fp' at instruction (file clusters.i, line 63):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'fp' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'fp' (2/2):
+Call Result at line 64
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function function
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'function':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 55
+clusters.i:55: warning from wp:
+ - Warning: Considering non decreasing call, looking for context inconsistency
+   Reason: No decreases clause for fp
+Assume { Type: is_uint32(n). (* Then *) Have: n != 0. }
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file clusters.i, line 59) in 'fp'' in 'function' at call 'fp' (file clusters.i, line 55)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function mutual_1
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'mutual_1' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'mutual_1' (2/2):
+Call Result at line 31
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function mutual_2
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'mutual_2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 36
+clusters.i:36: warning from wp:
+ - Warning: Considering non decreasing call, looking for context inconsistency
+   Reason: No decreases clause for mutual_1
+Assume { Type: is_uint32(n). (* Then *) Have: n != 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function simpl_r
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'simpl_r':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Recursion variant:
+Call Effect at line 12
+Assume { Type: is_uint32(n). (* Then *) Have: n != 0. }
+Prove: (0 <= n) /\ (to_uint32(n - 1) < n).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function simpl_rf
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'simpl_rf' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'simpl_rf' (2/2):
+Call Result at line 17
+Prove: false.
+
+------------------------------------------------------------

@@ -1,0 +1,258 @@
+* Optimization of the test set permitted by the internal architecture of the tool.
+** Introduction
+*** Presentation of the tool
+Frama-C [1] is a framework dedicated to the analysis of C programs. It features
+a modular structure, which eases the delimitation of the parts of the tool that
+are used in a given verification activity.
+Frama-C takes as input a set of C files, possibly augmented 
+with annotations written in ACSL, as described below.
+Frama-C's modules that are concerned by this qualification work are the kernel,
+i.e. the C front-end and the Value analysis plug-in.
+
+*** C and ACSL
+
+Frama-C targets C language as described in the ISO standard [2],
+with some popular extensions implemented in GCC and/or MSVC. It also needs some
+architecture-dependent information, in particular the size of the various
+integral types over the target architecture. Compiler and architecture specific
+behaviors are controlled via a command-line option, and it is of course 
+expected that the tests are launched using a suitable option for this argument.
+
+In addition, functional properties of the code can be specified using ACSL[3]
+annotations. ACSL is based on the notion of function contract, where the user
+describes the properties that must hold when the function is called 
+(the pre-conditions) and the properties that the function guarantees when
+it returns (the post-conditions). In addition, annotations can occur inside
+the body of the function, in the form of assertions (a property that must hold
+each time the program reaches the corresponding point) and loop invariants
+(a property that must be preserved at each iteration of the corresponding loop).
+ACSL properties are first-order formulas, with built-in predicates allowing to
+describe C memory states, including in particular the validity of a given
+memory region and separation predicates.
+
+*** Frama-C
+**** Kernel (C front-end)
+
+Frama-C's kernel is responsible for maintaining the internal state of the tool
+and in particular creating the representation of the C source files under
+analysis. For the purpose of the Value analysis plug-in, this implies the
+following four functions:
+ - parser
+ - type-checker
+ - linker
+ - CFG computation
+
+The /parser/ takes as input a pre-processed C file and computes an
+Abstract Syntax Tree (AST), called Cabs, in which each node
+corresponds to a C construction in the original source. Note that the
+pre-processing phase itself is not done by Frama-C, which relies on an
+external pre-processor, that must also be qualified. In a typical
+process, this would be the same pre-processor that is used for the
+compilation process, used for the same purpose (/i.e./ the first
+translation phases identified by the C standard). As such, it would
+already be subject to verification, so that no additional work would
+be required in this area.
+
+The /type-checker/ takes as input the AST computed by the parser, and transforms
+it into another AST, called Cil, where all expressions have been type-checked.
+At the same time, some normalization of the code is performed, in order to
+facilitate the task of subsequent analyses.
+
+The /linker/ takes as input a list of Cil ASTs, and outputs a single CIL AST,
+where global symbols common to different AST have been following the rules of
+the C standard (and the presence of static and extern type modifiers)
+
+Finally, for each function in the final CIL AST, the kernel computes 
+the /control-flow graph/ (CFG) of the function. Each statement gets then the
+list of its possible successors and predecessors according to C semantics. This
+information is the basis of dataflow analyses such as the one performed by
+the Value analysis plugin.
+
+**** Value analysis plugin
+Frama-C's value analysis follows the principles of Abstract Interpretation [4].
+Abstract states are propagated along the target program's control flow graph.
+Calls to “primitive functions”, such as Frama_C_interval(),
+can be used to introduce uncertainty in the program's state.
+ACSL annotations, such as /*@ assert x >= 0; */, can be used
+to force the analyzer to assume some information about the program state
+that either was not available in the program or that the analyzer has been
+unable to infer. Alternately, an ACSL annotation can also give
+the analyzer the opportunity to confirm that the expressed property
+does hold.
+
+** Testing C front-end
+
+In order to test the C front-end, a set of C files must be given, covering
+all C constructions that are susceptible to be seen in actual code, including
+code that exhibit undefined behavior under the C standard. Automated program
+generator such as Csmith[4] can help providing the test cases, but manual
+inspection will be needed to ensure that the generated programs cover all
+expected constructions (and potentially to complete the test cases).
+
+The oracle for
+such test cases will be the following:
+- test case with an undefined behavior must either be rejected by the kernel,
+  or at least trigger a warning stating that the code might be incorrect.
+- for test cases conforming to the standard, the output of both the parser
+  and the type-checker must be compilable by the target compiler and the
+  resulting program must behave as the original one. This will ensure that,
+  for the subset of C concerned by the qualification, the Frama-C kernel
+  preserves the semantics of the source program.
+
+The linker can be tested in a similar manner, with the input split
+across multiple C files.
+
+CFG computation can be assessed by a systematic review of its result over each
+kind of statement present in the CIL AST.
+
+Finally, if ACSL annotations can be present in the input files in addition to
+C programs, parsing and type-checking of the relevant ACSL constructions
+must also be assessed. The setting will be similar
+than for parsing and type-checking C programs alone, but the conformity of the
+result will have to be checked manually in the absence of an independent tool
+to verify the equivalence between the original and normalized annotations.
+A slightly weaker guarantee could be automated though, by verifying that
+the parser is idempotent. Namely, a pretty-printed annotation should 
+be re-parsable by Frama-C and resulting in the same pretty-printed
+annotation.
+
+** Testing Value analysis plugin
+
+Given the above tool structure and usage, any fault in the value analysis
+should, in the opinion of the designers, always fall in one of the
+classes below. Consequently, the verification of the value analysis
+for a particular use should make sure that each class has been tested for,
+with a coverage appropriate for the intended use.
+
+- wrong initial abstract state
+- unsound transfer function
+- fault in a primitive function
+- unsound interpretation of an ACSL annotation for reducing the abstract state
+- unsound computation of the truth value of an ACSL annotation
+- fault in the analyzer's propagation algorithm
+
+Past bug reports against Frama-C's value analysis can be found at
+http://bts.frama-c.com/ . 
+
+The above categorization assumes that the Abstract Syntax Tree built
+by the Frama-C front-end is a faithful representation of the program and
+that the functions provided by the front-end to operate on the AST
+work as intended (see above section for a proposed test
+plan of the C front-end itself)
+
+Each of the six above categories can be tested following a specific
+pattern, detailed below:
+
+*** Wrong abstract initial state
+
+The elaboration of the initial abstract state can be tested by
+writing programs with all relevant variable declarations (including
+attributes: const, volatile, ...) and an empty main() function.
+The option -val displays the abstract initial state, which
+can be compared to what was expected.
+Relevant options to test (if they are included in the qualification
+perimeter) include -lib-entry, -max-context-width, and -max-context-depth.
+See section "Tweaking the automatic generation of initial values" in the
+value analysis manual.
+
+*** Unsound transfer function
+
+The transfer function for a particular C statement can be tested
+by analyzing the program below.
+
+<declarations>
+
+main(){
+	<use of primitives to create abstract state>
+	
+	Frama_C_dump_each(); /* 1 */
+
+	<statement under test>
+
+	Frama_C_dump_each(); /* 2 */
+}
+
+The call to Frama_C_dump_each(); /* 1 */ should display a single
+abstract state. The displayed abstract state is the state for
+which the testcase provides coverage. The test is successful
+if the call Frama_C_dump_each(); /* 2 */ displays the expected
+abstract state. If the expected result is for
+the statement to cause an alarm, the test is successful
+if the appropriate alarm is emitted.
+
+The result of each test only depends on the statement under test
+and the abstract state displayed for Frama_C_dump_each(); /* 1 */.
+The abstract state at that point can be built in any 
+convenient way. It is sufficient to strive for coverage of
+the abstract states, not for coverage of the ways they can be built.
+
+*** fault in a primitive function
+
+Same idea with the skeleton:
+
+<declarations>
+
+main(){
+	<use of primitives to create abstract state>
+	
+	Frama_C_dump_each(); /* 1 */
+
+	<call to primitive function under test>
+
+	Frama_C_dump_each(); /* 2 */
+}
+
+*** Unsound interpretation of an ACSL annotation for reducing the abstract state
+
+Same idea with the skeleton:
+
+<declarations>
+
+main(){
+	<use of primitives to create abstract state>
+	
+	Frama_C_dump_each(); /* 1 */
+
+        /*@ <ACSL annotation for reducing under test> */
+
+	Frama_C_dump_each(); /* 2 */
+}
+
+*** Unsound computation of the truth value of an ACSL annotation
+
+Same idea with the skeleton:
+
+<declarations>
+
+main(){
+	<use of primitives to create abstract state>
+	
+	Frama_C_dump_each(); /* 1 */
+
+        /*@ <ACSL annotation under test> */
+
+}
+
+The computed truth value of the ACSL annotation is available
+through different means in the Frama-C framework. All the means
+that are within the perimeter should be checked for the
+predicted truth value.
+
+*** Fault in the analyzer's propagation algorithm
+
+This is difficult. The authors of the value analysis need to think
+more about it.
+
+* Bibliography
+[1] Frama-C: a Software Analysis Perspective, P. Cuoq &al., SEFM 2012.
+[2] Programming Languages - C. ISO/IEC Standard 9899-1999
+[3] ACSL: ANSI/ISO C Specification language, P. Baudin &al.
+[4] Testing Static Analyzers with Randomly Generated Programs. P. Cuoq &al.,
+    NFM 2012
+[4] Abstract interpretation: a unified lattice model for static analysis of
+    programs by construction or approximation of fixpoints,
+    P. Cousot and R. Cousot.
+
+# Local Variables:
+# mode: org
+# End:

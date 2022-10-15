@@ -1,0 +1,61 @@
+[kernel] Parsing ghost_cv_invalid_use.i (no preprocessing)
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:14: Warning: 
+  'ng' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:20: Warning: 
+  '*ptr' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:25: Warning: 
+  'ng_var.field' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:37: Warning: 
+  '*ptrp' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:38: Warning: 
+  '*(*ptrp)' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:39: Warning: 
+  '*(*ptrpg)' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:40: Warning: 
+  '*(arrp[0])' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:41: Warning: 
+  '(*ptra)[0]' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:46: Warning: 
+  '*a' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:54: Warning: 
+  '*a' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:64: Warning: 
+  'p' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:69: Warning: 
+  '*p' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:73: Warning: 
+  '*p' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:83: Warning: 
+  '*p' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:88: Warning: 
+  '*(p + (0 .. max))' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:92: Warning: 
+  '*(p + (0 .. max))' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:103: Warning: 
+  '*(p + (0 .. max))' is a non-ghost lvalue, it cannot be assigned in ghost code
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:127: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:128: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:129: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:132: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:133: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:134: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:155: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:156: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:157: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:160: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:161: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel:ghost:bad-use] ghost_cv_invalid_use.i:162: Warning: 
+  Call to non-ghost function from ghost code is not allowed
+[kernel] Warning: warning ghost:bad-use treated as deferred error. See above messages for more information.
+[kernel] Frama-C aborted: invalid user input.

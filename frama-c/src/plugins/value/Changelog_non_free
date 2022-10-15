@@ -1,0 +1,46 @@
+###############################################################################
+# Preliminary notes:                                                          #
+# ------------------                                                          #
+# Mark "-": change with an impact for users (and possibly developers).        #
+# Mark "o": change with an impact for developers only.                        #
+# Mark "+": change for Frama-C-commits audience (not in html version).        #
+# Mark "*": bug fixed.                                                        #
+# Mark "!": change that can break compatibility with existing development.    #
+# '#nnn'   : BTS entry #nnn                                                   #
+# '#!nnn'  : BTS private entry #nnn                                           #
+# For compatibility with old change log formats:                              #
+# '#?nnn'  : OLD-BTS entry #nnn                                               #
+###############################################################################
+
+-* memcpy [2016/03/30] Fix missing alarms on S_* bases that are generated in
+          -lib-entry mode or for the formals of main.
+-* malloc [2016/03/03] Fix missing alarm related to invalid accesses in
+          dynamically allocated variables. Bug reported by TrustInSoft.
+-* memcpy [2016/01/21] Fix bug when copying data containing pointers to
+          local variables. Out of bound accesses to such variables were
+          not reported
+-* malloc,realloc [2015/12/28] Full reimplementation. Supported builtins are
+          Frama_C_alloc_size (one new allocation for each call),
+          Frama_C_alloc_by_stack (one allocation per stack, except if option
+            -val-mlevel is > 0), Frama_C_realloc,  Frama_C_realloc_multiple
+          (each base in the argument is copied into a new base)
+-* strlen,strnlen,memchr,strchr [2015/11/15] Full reimplementation. Much better
+          results on imprecise strings
+-! memcmp [2015/11/15] Removed untested builtin memcp
+
+-* memcpy [2015/09/14] fix bug when writing an imprecise size at invalid
+          destinations. h/t to TrustInSoft
+
+-  free   [2015/02/25] Improve semantics of deallocation: bases are now
+          completely removed from the memory, instead of being set to
+          UNINITIALIZED
+-  memcpy [2014/09/19] Optionally warn when imprecisely copying indeterminate
+          bits (enable debug category "value:imprecision")
+-* memcpy [2014/09/19] Fix bug where indeterminate bits where not copied when
+          the size to copy was imprecise. Fix bug #!1918. Thanks to P. Cuoq
+          for finding the bug and proposing a patch.
+-  memcpy [2014/07/22] The builtin now removes invalid locations from its
+          arguments, which may results in improved precision when a very big
+          location is actually valid on only a few locations
+-  memset [2014/03/25] New implementation that writes values according
+          to the type of the destination pointer

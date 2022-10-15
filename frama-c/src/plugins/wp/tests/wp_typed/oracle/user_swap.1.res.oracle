@@ -1,0 +1,51 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing user_swap.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Assertion (file user_swap.i, line 25):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file user_swap.i, line 6) in 'swap'' in 'main' at call 'swap' (file user_swap.i, line 24)
+:
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Instance of 'Pre-condition (file user_swap.i, line 7) in 'swap'' in 'main' at call 'swap' (file user_swap.i, line 24)
+:
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function swap
+------------------------------------------------------------
+
+Goal Post-condition 'A' in 'swap':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'B' in 'swap':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns 'E' in 'swap':
+Prove: true.
+
+------------------------------------------------------------
+[wp] user_swap.i:13: Warning: 
+  Memory model hypotheses for function 'swap':
+  /*@
+     behavior wp_typed_ref:
+       requires \valid(a);
+       requires \valid(b);
+       requires \separated(a, b);
+     */
+  void swap(int *a, int *b);

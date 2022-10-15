@@ -1,0 +1,42 @@
+digraph G {
+  cp2 [label=<r>, shape=box, style="bold", ];
+  cp3 [label=<tmp>, shape=box, fillcolor="#AACCFF", color="#88AAFF",
+       style="filled", ];
+  cp5 [label=<tmp_0>, shape=box, fillcolor="#AACCFF", color="#88AAFF",
+       style="filled", ];
+  cp7 [label=<__retres>, shape=box, fillcolor="#EEFFEE", color="#004400",
+       style="filled", ];
+  cp9 [label=<__retres>, shape=box, fillcolor="#EEFFEE", color="#004400",
+       style="filled", ];
+  cp11 [label=<g>, shape=box, fillcolor="#EEFFEE", color="#004400",
+        style="filled", ];
+  cp15 [label=<x>, shape=box, fillcolor="#EEFFEE", color="#004400",
+        style="filled", ];
+  cp17 [label=<x2>, shape=box, fillcolor="#AACCFF", color="#88AAFF",
+        style="filled", ];
+  cp19 [label=<x1>, shape=box, fillcolor="#AACCFF", color="#88AAFF",
+        style="filled", ];
+  
+  subgraph cluster_cs_1 { label=<main>; cp19;cp17;cp5;cp3;cp2;
+    subgraph cluster_cs_2 { label=<f>; cp7;
+       };
+    subgraph cluster_cs_3 { label=<f>; cp9;
+       };
+     };
+  subgraph cluster_cs_4 { label=<f>; cp15;
+     };
+  subgraph cluster_file_1 { label=<callstack_global.i>; cp11;
+     };
+  
+  cp3 -> cp2;
+  cp5 -> cp2;
+  cp7 -> cp3;
+  cp9 -> cp5;
+  cp11 -> cp7;
+  cp11 -> cp9;
+  cp11 -> cp11;
+  cp15 -> cp11;
+  cp17 -> cp15;
+  cp19 -> cp15;
+  
+  }

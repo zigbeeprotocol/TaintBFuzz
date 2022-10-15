@@ -1,0 +1,11 @@
+[kernel] Parsing widen_hints.c (with preprocessing)
+[kernel:annot-error] widen_hints.c:17: Warning: 
+  invalid widen_hints annotation: no hints. Ignoring code annotation
+[kernel:annot-error] widen_hints.c:22: Warning: 
+  invalid widen_hints annotation: no hints. Ignoring code annotation
+[kernel:annot-error] widen_hints.c:27: Warning: 
+  unbound logic variable b. Ignoring code annotation
+[eva] widen_hints.c:32: User Error: 
+  could not parse widening hint: not_const
+  If it contains variables, they must be global const integers.
+[kernel] Plug-in eva aborted: invalid user input.

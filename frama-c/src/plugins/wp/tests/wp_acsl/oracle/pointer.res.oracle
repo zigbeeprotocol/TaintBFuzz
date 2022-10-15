@@ -1,0 +1,279 @@
+# frama-c -wp [...]
+[kernel] Parsing pointer.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] pointer.i:50: Warning: Uncomparable locations p_0 and mem:t.(0)
+[wp] pointer.i:49: Warning: Uncomparable locations p_0 and mem:t.(0)
+[wp] pointer.i:48: Warning: Uncomparable locations p_0 and mem:t.(0)
+[wp] pointer.i:47: Warning: Uncomparable locations p_0 and mem:t.(0)
+[wp] pointer.i:46: Warning: Uncomparable locations p_0 and mem:t.(0)
+[wp] pointer.i:45: Warning: Uncomparable locations p_0 and mem:t.(0)
+------------------------------------------------------------
+  Function absurd
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko,Base_oracle_ko' in 'absurd':
+Assume {
+  (* Heap *)
+  Type: (region(G_t_21) <= 0) /\ (region(q.base) <= 0).
+  (* Goal *)
+  When: q.offset < p.offset.
+  (* Pre-condition *)
+  Have: p.base = G_t_21.
+}
+Prove: addr_lt(q, p).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko,Comp_oracle_ko' in 'absurd':
+Assume {
+  (* Heap *)
+  Type: region(G_t_21) <= 0.
+  (* Goal *)
+  When: i_1 <= i.
+  (* Pre-condition *)
+  Have: p.base = G_t_21.
+}
+Prove: i <= i_1.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function array
+------------------------------------------------------------
+
+Goal Post-condition 'Lt' in 'array':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Le' in 'array':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'Eq' in 'array':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function compare
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Lt' in 'compare':
+Let x = q.base.
+Let x_1 = p.base.
+Assume {
+  (* Heap *)
+  Type: (region(x_1) <= 0) /\ (region(x) <= 0).
+  (* Goal *)
+  When: q.offset < p.offset.
+  (* Pre-condition *)
+  Have: x = x_1.
+}
+Prove: addr_lt(q, p).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Le' in 'compare':
+Let x = q.base.
+Let x_1 = p.base.
+Assume {
+  (* Heap *)
+  Type: (region(x_1) <= 0) /\ (region(x) <= 0).
+  (* Goal *)
+  When: q.offset <= p.offset.
+  (* Pre-condition *)
+  Have: x = x_1.
+}
+Prove: addr_le(q, p).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Eq' in 'compare':
+Let x = q.base.
+Let x_1 = p.base.
+Assume {
+  (* Heap *)
+  Type: (region(x_1) <= 0) /\ (region(x) <= 0).
+  (* Goal *)
+  When: q.offset = p.offset.
+  (* Pre-condition *)
+  Have: x = x_1.
+}
+Prove: q = p.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function mixed_array_pointer
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Lt' in 'mixed_array_pointer':
+pointer.i:45: warning from Reference Variable Model:
+ - Warning: Hide sub-term definition
+   Reason: Uncomparable locations p_0 and mem:t.(0)
+Assume {
+  (* Heap *)
+  Type: region(G_t_21) <= 0.
+  (* Goal *)
+  When: 0 < w.
+  (* Pre-condition *)
+  Have: p.base = G_t_21.
+}
+Prove: addr_lt(shift_sint32(global(G_t_21), 0), p).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Le' in 'mixed_array_pointer':
+pointer.i:46: warning from Reference Variable Model:
+ - Warning: Hide sub-term definition
+   Reason: Uncomparable locations p_0 and mem:t.(0)
+Assume {
+  (* Heap *)
+  Type: region(G_t_21) <= 0.
+  (* Goal *)
+  When: 0 <= w.
+  (* Pre-condition *)
+  Have: p.base = G_t_21.
+}
+Prove: addr_le(shift_sint32(global(G_t_21), 0), p).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Eq' in 'mixed_array_pointer':
+pointer.i:47: warning from Reference Variable Model:
+ - Warning: Hide sub-term definition
+   Reason: Uncomparable locations p_0 and mem:t.(0)
+Assume {
+  (* Heap *)
+  Type: region(G_t_21) <= 0.
+  (* Pre-condition *)
+  Have: p.base = G_t_21.
+}
+Prove: shift_sint32(global(G_t_21), 0) = p.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Ne' in 'mixed_array_pointer':
+pointer.i:48: warning from Reference Variable Model:
+ - Warning: Hide sub-term definition
+   Reason: Uncomparable locations p_0 and mem:t.(0)
+Assume {
+  (* Heap *)
+  Type: region(G_t_21) <= 0.
+  (* Goal *)
+  When: w != 0.
+  (* Pre-condition *)
+  Have: p.base = G_t_21.
+}
+Prove: shift_sint32(global(G_t_21), 0) != p.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko,Le_oracle_ko' in 'mixed_array_pointer':
+pointer.i:49: warning from Reference Variable Model:
+ - Warning: Hide sub-term definition
+   Reason: Uncomparable locations p_0 and mem:t.(0)
+Assume {
+  (* Heap *)
+  Type: region(G_t_21) <= 0.
+  (* Goal *)
+  When: 0 <= w.
+  (* Pre-condition *)
+  Have: p.base = G_t_21.
+}
+Prove: addr_lt(shift_sint32(global(G_t_21), 0), p).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko,Lt_oracle_ko' in 'mixed_array_pointer':
+pointer.i:50: warning from Reference Variable Model:
+ - Warning: Hide sub-term definition
+   Reason: Uncomparable locations p_0 and mem:t.(0)
+Assume {
+  (* Heap *)
+  Type: region(G_t_21) <= 0.
+  (* Goal *)
+  When: 0 < w.
+  (* Pre-condition *)
+  Have: p.base = G_t_21.
+}
+Prove: addr_le(p, shift_sint32(global(G_t_21), 0)).
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function null
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Bool' in 'null':
+Let x = int_of_addr(p).
+Assume { Type: is_sint32(x). (* Heap *) Type: region(p.base) <= 0. }
+Prove: (x != 0) <-> (null != p).
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,NotNull' in 'null':
+Let x = int_of_addr(p).
+Assume {
+  Type: is_sint32(x).
+  (* Heap *)
+  Type: region(p.base) <= 0.
+  (* Goal *)
+  When: null != p.
+}
+Prove: x != 0.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,IsNull' in 'null':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function pointer
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Lt' in 'pointer':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Le' in 'pointer':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Eq' in 'pointer':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Eq_0' in 'pointer':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ok,Eq_0_bis' in 'pointer':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko,Le_oracle_ko' in 'pointer':
+Assume { (* Goal *) When: i <= i_1. }
+Prove: i < i_1.
+
+------------------------------------------------------------
+
+Goal Post-condition 'qed_ko,Eq_oracle_ko' in 'pointer':
+Prove: false.
+
+------------------------------------------------------------
+[wp] pointer.i:63: Warning: 
+  Memory model hypotheses for function 'compare':
+  /*@ behavior wp_typed:
+        requires \separated(q + (..), &p); */
+  void compare(int *q);
+[wp] pointer.i:73: Warning: 
+  Memory model hypotheses for function 'absurd':
+  /*@ behavior wp_typed:
+        requires \separated(q + (..), &p); */
+  void absurd(int *q);

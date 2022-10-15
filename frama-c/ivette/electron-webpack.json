@@ -1,0 +1,22 @@
+// --------------------------------------------------------------------------
+// --- Electron-webpack configuration file for Dome
+// --------------------------------------------------------------------------
+
+/*
+   Template from $(DOME)/template/electron-webpack.json
+
+   This configuration file makes electron-webpack loading
+   webpack extensions to resolve Dome packages differently
+   for electron main-process and renderer-process.
+
+   You may configure further electron-webpack to your convenience.
+*/
+
+{
+  "main": {
+    "webpackConfig": "webpack.main.js"
+  },
+  "renderer": {
+    "webpackConfig": "webpack.renderer.js"
+  }
+}

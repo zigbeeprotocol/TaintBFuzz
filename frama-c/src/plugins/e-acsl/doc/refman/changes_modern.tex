@@ -1,0 +1,263 @@
+\section{Changes}
+
+% Next version
+%\subsection*{Version \version}
+
+\subsection*{Version 1.17}
+\begin{itemize}
+  \item \changeinsection{expressions}{xor \lstinline|\^\^| is not lazy}
+  \item \changeinsection{expressions}{new extended syntax for quantifications}
+  \item \changeinsection{reals}{additional remark about real numbers and
+    operations over them}
+  \item \changeinsection{locations}{new extended syntax for set comprehensions}
+  \item \changeinsection{at}{more restrictive scoping rule for \lstinline|\\at|
+    constructs.}
+  \item \changeinsection{logicspec}{add lemmas and data invariants}
+  \item \changeinsection{inductivepredicates}{add inductive predicates
+    experimentally: the accepted subset will be refined in a future version}
+  \item \changeinsection{axiomatic}{add axiomatic declarations
+    experimentally: the accepted subset will be refined in a future version}
+  \item \changeinsection{polym-logic-types}{add polymorphic logic types}
+  \item \changeinsection{higherorder}{add higher-order logic constructions}
+  \item \changeinsection{concrete-logic-types}{add concrete logic types}
+  \item \changeinsection{reads}{add \lstinline|read| clauses}
+  \item \changeinsection{func-dep}{add dependencies information}
+  \item \changeinsection{volatile-variables}{add volatile constructs}
+\end{itemize}
+
+\subsection*{Version 1.16}
+\begin{itemize}
+  \item Update according to \acsl 1.16
+  \begin{itemize}
+    \item \changeinsection{fn-behavior}{add the \lstinline|check| and
+      \lstinline|admit| clause kinds}
+    \item \changeinsection{assertions}{add the \lstinline|check| and
+      \lstinline|admit| clause kinds}
+    \item \changeinsection{generalized-invariants}{add the \lstinline|check| and
+      \lstinline|admit| clause kinds}
+    \item \changeinsection{loop_annot}{add the \lstinline|check| and
+      \lstinline|admit| clause kinds}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Version 1.15}
+\begin{itemize}
+\item Update according to \acsl 1.15:
+  \begin{itemize}
+  \item \changeinsection{ghost}{add the \lstinline|\\ghost| qualifier}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Version 1.14}
+\begin{itemize}
+\item Update according to \acsl 1.14:
+  \begin{itemize}
+  \item \changeinsection{assertions}{add the keyword \texttt{check}}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Version 1.13}
+\begin{itemize}
+\item Update according to \acsl 1.13:
+  \begin{itemize}
+  \item \changeinsection{locations}{add syntax for set membership}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Version 1.12}
+\begin{itemize}
+\item Update according to \acsl 1.12:
+  \begin{itemize}
+  \item \changeinsection{locations}{add subsections for build-in lists}
+  \item \changeinsection{statement_contract}{fix syntax rule for statement
+    contracts in allowing completeness clauses}
+  \item \changeinsection{memory}{add syntax for defining a set by giving
+    explicitly its element}
+  \item \changeinsection{typedpointers}{new section}
+  \end{itemize}
+\end{itemize}
+
+\subsection*{Version 1.9}
+
+\begin{itemize}
+\item \changeinsection{alloc-dealloc}{new section}
+\item Update according to \acsl 1.9.
+\end{itemize}
+
+\subsection*{Version 1.8}
+
+\begin{itemize}
+\item \changeinsection{locations}{fix example \ref{ex:tset}}
+\item \changeinsection{pointers}{add grammar of memory-related terms and
+  predicates}
+\end{itemize}
+
+\subsection*{Version 1.7}
+
+\begin{itemize}
+\item Update according to \acsl 1.7.
+\item \changeinsection{separation}{no more absent}
+\end{itemize}
+
+\subsection*{Version 1.5-4}
+
+\begin{itemize}
+\item Fix typos.
+\item \changeinsection{expressions}{fix syntax of guards in iterators}
+\item \changeinsection{semantics}{fix definition of undefined terms and
+  predicates}
+\item \changeinsection{typing}{no user-defined types}
+\item \changeinsection{builtinconstructs}{no more implementation issue for
+  \lstinline|\\old|}
+\item \changeinsection{at}{more restrictive scoping rule for label references
+in \lstinline|\\at|}
+\end{itemize}
+
+\subsection*{Version 1.5-3}
+
+\begin{itemize}
+\item Fix various typos.
+\item Warn about features known to be difficult to implement.
+\item \changeinsection{expressions}{fix semantics of ternary operator}
+\item \changeinsection{expressions}{fix semantics of cast operator}
+\item \changeinsection{expressions}{improve syntax of iterator quantifications}
+\item \changeinsection{semantics}{improve and fix example \ref{ex:semantics}}
+\item \changeinsection{loop_annot}{improve explanations about loop invariants}
+\item \changeinsection{logicalstates}{add hybrid functions and predicates}
+\end{itemize}
+
+\subsection*{Version 1.5-2}
+
+\begin{itemize}
+\item \changeinsection{expressions}{remove laziness of operator
+  \lstinline|<==>|}
+\item \changeinsection{expressions}{restrict guarded quantifications to integer}
+\item \changeinsection{expressions}{add iterator quantifications}
+\item \changeinsection{expressions}{extend unguarded quantifications to char}
+\item \changeinsection{locations}{extend syntax of set comprehensions}
+\item \changeinsection{loop_annot}{simplify explanations for loop invariants and
+  add example.}
+\end{itemize}
+
+\subsection*{Version 1.5-1}
+
+\begin{itemize}
+\item Fix many typos.
+\item Highlight constructs with semantic changes in grammars.
+\item Explain why unsupported features have been removed.
+\item Indicate that experimental \acsl features are unsupported.
+\item Add operations over memory like \lstinline|\valid|.
+\item \changeinsection{expressions}{lazy operators \lstinline|&&|,
+  \lstinline+||+, \lstinline|\^\^|, \lstinline|==>| and \lstinline|<==>|}
+\item \changeinsection{expressions}{allow unguarded quantification over boolean}
+\item \changeinsection{expressions}{revise syntax of \lstinline|\\exists|}
+\item \changeinsection{semantics}{better semantics for undefinedness}
+\item \changeinsection{locations}{revise syntax of set comprehensions}
+\item \changeinsection{loop_annot}{add loop invariants, but they lose their
+  inductive \acsl nature}
+\item \changeinsection{generalmeasures}{add general measures for termination}
+\item \changeinsection{specmodules}{add specification modules}
+\end{itemize}
+
+\subsection*{Version 1.5-0}
+
+\begin{itemize}
+\item Initial version.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ifthenelse%
+    {\boolean{PrintImplementationRq}}%
+    {
+\section{Changes in \eacsl Implementation}
+
+% Next version
+%\subsection*{Version \eacslplugincodename-\eacslpluginversion}
+
+\subsection*{Version \eacslplugincodename-\eacslpluginversion}
+\begin{itemize}
+\item \changeinsection{higherorder}{support for \lstinline|\\sum|,
+  \lstinline|\\prod|, and \lstinline|\\numof|}
+\end{itemize}
+
+\subsection*{Version Vanadium-23}
+\begin{itemize}
+\item \changeinsection{expressions}{mark logic function and predicate
+  applications as implemented}
+\item \changeinsection{fn-behavior}{support for admit and check clauses}
+\item \changeinsection{loop_annot}{support for loop variants}
+\end{itemize}
+
+\subsection*{Version Titanium-22}
+
+\begin{itemize}
+\item \changeinsection{expressions}{support for bitwise operations}
+\item \changeinsection{aggregates}{support for logic arrays}
+\end{itemize}
+
+\subsection*{Version Scandium-21}
+
+\begin{itemize}
+\item \changeinsection{reals}{support for rational numbers and operations}
+\item \changeinsection{fn-behavior}{remove abrupt clauses from the list of
+  exceptions}
+\item \changeinsection{fn-behavior}{support for \lstinline|complete behaviors|
+  and \lstinline|disjoint behaviors|}
+\item \changeinsection{statement_contract}{remove abrupt clauses from the list
+  of exceptions}
+\item \changeinsection{abrupt}{add grammar for abrupt termination}
+\end{itemize}
+
+\subsection*{Version Potassium-19}
+
+\begin{itemize}
+\item \changeinsection{logicspec}{support for logic functions and predicates}
+\end{itemize}
+
+\subsection*{Version Argon-18}
+
+\begin{itemize}
+\item \changeinsection{at}{support for \lstinline|\\at| on purely
+logic variables}
+\item \changeinsection{locations}{support for ranges in memory built-ins
+  (e.g. \lstinline|\\valid| or \lstinline|\\initialized|)}
+\end{itemize}
+
+\subsection*{Version Chlorine-20180501}
+
+\begin{itemize}
+\item \changeinsection{expressions}{support for \lstinline|\\let| binding}
+\end{itemize}
+
+\subsection*{Version 0.5}
+
+\begin{itemize}
+\item \changeinsection{alloc-dealloc}{support for \lstinline|\\freeable|}
+\end{itemize}
+
+\subsection*{Version 0.3}
+
+\begin{itemize}
+\item \changeinsection{loop_annot}{support for loop invariant}
+\end{itemize}
+
+\subsection*{Version 0.2}
+
+\begin{itemize}
+\item \changeinsection{expressions}{support for bitwise complementation}
+\item \changeinsection{memory}{support for \lstinline|\\valid|}
+\item \changeinsection{memory}{support for \lstinline|\\block_length|}
+\item \changeinsection{memory}{support for \lstinline|\\base_addr|}
+\item \changeinsection{memory}{support for \lstinline|\\offset|}
+\item \changeinsection{dangling}{support for \lstinline|\\initialized|}
+\end{itemize}
+
+\subsection*{Version 0.1}
+
+\begin{itemize}
+\item Initial version.
+\end{itemize}
+
+    }%
+    {}

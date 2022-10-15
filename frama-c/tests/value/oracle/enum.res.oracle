@@ -1,0 +1,37 @@
+[kernel] Parsing enum.i (no preprocessing)
+[eva] Analyzing a complete application starting at f
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0] ∈ {1}
+   [1..2] ∈ {0}
+  u[0] ∈ {2}
+   [1..2] ∈ {0}
+[eva] enum.i:16: starting to merge loop iterations
+[eva] enum.i:20: assertion got status valid.
+[eva] Recording results for f
+[eva] done for function f
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  t[0] ∈ {1}
+   [1] ∈ {0}
+   [2] ∈ {42}
+  u[0] ∈ {2}
+   [1] ∈ {0}
+   [2] ∈ {36}
+  i[0..1] ∈ {0; 1}
+   [2] ∈ {0}
+  j ∈ {2}
+  k ∈ {0}
+[from] Computing for function f
+[from] Done for function f
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  t[2] FROM \nothing
+  u[2] FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    t[2]; u[2]; i[0..2]; j; k
+[inout] Inputs for function f:
+    \nothing

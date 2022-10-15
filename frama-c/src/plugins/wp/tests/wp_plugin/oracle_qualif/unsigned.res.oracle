@@ -1,0 +1,10 @@
+# frama-c -wp [...]
+[kernel] Parsing unsigned.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] 1 goal scheduled
+[wp] [Script] Goal typed_lemma_U32 : Unsuccess
+[wp] Proved goals:    0 / 1
+------------------------------------------------------------
+ Axiomatics                WP     Alt-Ergo  Total   Success
+  Lemma                     -        -        1       0.0%
+------------------------------------------------------------

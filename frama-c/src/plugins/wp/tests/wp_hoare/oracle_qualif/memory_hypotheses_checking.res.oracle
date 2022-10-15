@@ -1,0 +1,75 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing memory_hypotheses_checking.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 50 goals scheduled
+[wp] [Qed] Goal typed_ref_sep_assigns : Valid
+[wp] [Qed] Goal typed_ref_call_sep_ok_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_sep_ok_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_sep_ok_call_sep_wp_typed_ref_requires : Valid
+[wp] [Qed] Goal typed_ref_call_sep_ok_call_sep_wp_typed_ref_requires_2 : Valid
+[wp] [Qed] Goal typed_ref_call_sep_bad_sep_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_sep_bad_sep_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_sep_bad_sep_call_sep_wp_typed_ref_requires : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_sep_bad_sep_call_sep_wp_typed_ref_requires_2 : Unsuccess
+[wp] [Qed] Goal typed_ref_call_sep_bad_valid_assigns_exit_part1 : Valid
+[wp] [Qed] Goal typed_ref_call_sep_bad_valid_assigns_exit_part2 : Valid
+[wp] [Qed] Goal typed_ref_call_sep_bad_valid_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_ref_call_sep_bad_valid_assigns_normal_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_sep_bad_valid_call_sep_wp_typed_ref_requires : Unsuccess
+[wp] [Qed] Goal typed_ref_call_sep_bad_valid_call_sep_wp_typed_ref_requires_2 : Valid
+[wp] [Qed] Goal typed_ref_gptr_sep_assigns : Valid
+[wp] [Qed] Goal typed_ref_call_gptr_sep_ok_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_gptr_sep_ok_assigns_normal : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_gptr_sep_ok_call_gptr_sep_wp_typed_ref_requires : Valid
+[wp] [Qed] Goal typed_ref_call_gptr_sep_ok_call_gptr_sep_wp_typed_ref_requires_2 : Valid
+[wp] [Qed] Goal typed_ref_call_gptr_sep_bad_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_gptr_sep_bad_assigns_normal : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_gptr_sep_bad_call_gptr_sep_wp_typed_ref_requires : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_gptr_sep_bad_call_gptr_sep_wp_typed_ref_requires_2 : Unsuccess
+[wp] [Qed] Goal typed_ref_assigns_ptr_assigns : Valid
+[wp] [Qed] Goal typed_ref_call_assigns_ptr_ok_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_assigns_ptr_ok_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_assigns_ptr_ok_call_assigns_ptr_wp_typed_ref_requires : Valid
+[wp] [Qed] Goal typed_ref_call_assigns_ptr_ok_call_assigns_ptr_wp_typed_ref_requires_2 : Valid
+[wp] [Qed] Goal typed_ref_call_assigns_ptr_bad_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_assigns_ptr_bad_assigns_normal : Valid
+[wp] [Qed] Goal typed_ref_call_assigns_ptr_bad_call_assigns_ptr_wp_typed_ref_requires : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_assigns_ptr_bad_call_assigns_ptr_wp_typed_ref_requires_2 : Unsuccess
+[wp] [Qed] Goal typed_ref_add_return_ok_ensures : Valid
+[wp] [Qed] Goal typed_ref_add_return_ok_assigns : Valid
+[wp] [Qed] Goal typed_ref_add_return_ok_wp_typed_ref_ensures : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_ok_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_ok_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_ok_assigns_normal_part2 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_add_return_ok_assigns_normal_part3 : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_ok_call_add_return_ok_wp_typed_ref_requires : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_ok_call_add_return_ok_wp_typed_ref_requires_2 : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_bad_assigns_exit : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_bad_assigns_normal_part1 : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_bad_assigns_normal_part2 : Valid
+[wp] [Qed] Goal typed_ref_call_add_return_bad_assigns_normal_part3 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_call_add_return_bad_call_add_return_ok_wp_typed_ref_requires : Unsuccess
+[wp] [Alt-Ergo] Goal typed_ref_call_add_return_bad_call_add_return_ok_wp_typed_ref_requires_2 : Unsuccess
+[wp] [Qed] Goal typed_ref_bad_return_formal_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_ref_bad_return_formal_wp_typed_ref_ensures : Unsuccess
+[wp] Proved goals:   43 / 50
+  Qed:            40 
+  Alt-Ergo:        3  (unsuccess: 7)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  sep                       1        -        1       100%
+  call_sep_ok               4        -        4       100%
+  call_sep_bad_sep          3        -        4      75.0%
+  call_sep_bad_valid        5        -        6      83.3%
+  gptr_sep                  1        -        1       100%
+  call_gptr_sep_ok          3        1        4       100%
+  call_gptr_sep_bad         2        1        4      75.0%
+  assigns_ptr               1        -        1       100%
+  call_assigns_ptr_ok       4        -        4       100%
+  call_assigns_ptr_bad      3        -        4      75.0%
+  add_return_ok             3        -        3       100%
+  call_add_return_ok        5        1        6       100%
+  call_add_return_bad       4        -        6      66.7%
+  bad_return_formal         1        -        2      50.0%
+------------------------------------------------------------

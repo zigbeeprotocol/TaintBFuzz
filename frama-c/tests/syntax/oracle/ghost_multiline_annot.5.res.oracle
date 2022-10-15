@@ -1,0 +1,6 @@
+[kernel] Parsing ghost_multiline_annot.c (with preprocessing)
+[kernel:annot-error] ghost_multiline_annot.c:76: Warning: unexpected token '/'
+[kernel] User Error: warning annot-error treated as fatal error.
+[kernel] User Error: stopping on file "ghost_multiline_annot.c" that has errors. Add
+  '-kernel-msg-key pp' for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

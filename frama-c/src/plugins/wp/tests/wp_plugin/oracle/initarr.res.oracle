@@ -1,0 +1,59 @@
+# frama-c -wp [...]
+[kernel] Parsing initarr.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition 'SEP' in 'job':
+Let a = A[2].
+Let a_1 = A[1].
+Let a_2 = A[0].
+Let a_3 = A[i].
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: forall i_1 : Z. let a_4 = A[i_1] in (region(a_4.F1_f.base) <= 0) /\
+      (region(a_4.F1_g.base) <= 0).
+  (* Initializer *)
+  Init: (a_2.F1_f) = global(G_a_20).
+  (* Initializer *)
+  Init: (a_2.F1_g) = global(G_b_21).
+  (* Initializer *)
+  Init: (a_1.F1_f) = global(G_c_22).
+  (* Initializer *)
+  Init: (a_1.F1_g) = global(G_d_23).
+  (* Initializer *)
+  Init: (a.F1_f) = global(G_e_24).
+  (* Initializer *)
+  Init: (a.F1_g) = global(G_f_25).
+  (* Pre-condition *)
+  Have: (0 <= i) /\ (i <= 2).
+}
+Prove: (a_3.F1_g) != (a_3.F1_f).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ALT' in 'job':
+Let a = global(G_e_24).
+Let a_1 = global(G_c_22).
+Let a_2 = global(G_a_20).
+Let a_3 = A[i].F1_f.
+Assume {
+  Type: is_sint32(i).
+  (* Heap *)
+  Type: forall i_1 : Z. let a_4 = A[i_1] in (region(a_4.F1_f.base) <= 0) /\
+      (region(a_4.F1_g.base) <= 0).
+  (* Initializer *)
+  Init: (A[0].F1_f) = a_2.
+  (* Initializer *)
+  Init: (A[1].F1_f) = a_1.
+  (* Initializer *)
+  Init: (A[2].F1_f) = a.
+  (* Pre-condition *)
+  Have: (0 <= i) /\ (i <= 2).
+}
+Prove: (a_3 = a_2) \/ (a_3 = a_1) \/ (a_3 = a).
+
+------------------------------------------------------------

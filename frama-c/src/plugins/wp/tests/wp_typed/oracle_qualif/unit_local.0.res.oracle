@@ -1,0 +1,16 @@
+# frama-c -wp [...]
+[kernel] Parsing unit_local.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 3 goals scheduled
+[wp] [Qed] Goal typed_foo_assigns_part1 : Valid
+[wp] [Alt-Ergo] Goal typed_foo_assigns_part2 : Valid
+[wp] [Qed] Goal typed_bar_assigns : Valid
+[wp] Proved goals:    3 / 3
+  Qed:             2 
+  Alt-Ergo:        1
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  foo                       1        1        2       100%
+  bar                       1        -        1       100%
+------------------------------------------------------------

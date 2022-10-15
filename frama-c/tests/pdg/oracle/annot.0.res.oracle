@@ -1,0 +1,48 @@
+[kernel] Parsing annot.c (with preprocessing)
+[eva] Analyzing a complete application starting at f1
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+[eva:alarm] annot.c:12: Warning: signed overflow. assert x + 1 ≤ 2147483647;
+[eva] annot.c:13: assertion got status valid.
+[eva] Recording results for f1
+[eva] done for function f1
+[pdg] computing for function f1
+[pdg] done for function f1
+[pdg] PDG for f1
+ {n1}: InCtrl
+ {n2}: VarDecl : x
+   -[a--]-> 3
+ {n3}: In1
+   -[a--]-> 2
+ {n4}: VarDecl : a
+ {n5}: int a = 10;
+   -[-c-]-> 1
+   -[a--]-> 4
+ {n6}: x < 10
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 3
+ {n7}: x = 10;
+   -[-c-]-> 1
+   -[a--]-> 2
+   -[-c-]-> 6
+ {n8}: L:
+   -[-c-]-> 1
+ {n9}: L: x ++;
+   -[-c-]-> 1
+   -[a-d]-> 2
+   -[--d]-> 3
+   -[--d]-> 7
+ {n10}: ;
+   -[-c-]-> 1
+ {n11}: x = 3;
+   -[-c-]-> 1
+   -[a--]-> 2
+ {n12}: return x;
+   -[-c-]-> 1
+   -[--d]-> 2
+   -[--d]-> 11
+ {n13}: OutRet
+   -[--d]-> 12

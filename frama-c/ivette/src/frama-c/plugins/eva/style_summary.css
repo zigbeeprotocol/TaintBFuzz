@@ -1,0 +1,100 @@
+.eva-summary-status {
+    margin: auto;
+}
+
+.eva-summary-status .dome-xButton-led {
+    display: inline-block;
+    vertical-align: baseline;
+}
+
+.eva-summary-box  {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    background-color: var(--background-report);
+}
+
+.eva-summary {
+    min-height: 0px;
+    user-select: text;
+}
+
+.eva-summary * {
+    user-select: auto;
+}
+
+.eva-summary span {
+    font-weight: bold;
+}
+
+.eva-summary h1 {
+    margin: 4px;
+}
+
+.eva-summary h2 {
+    margin: 20px 4px 8px;
+}
+
+.eva-summary table {
+    border-collapse: collapse;
+    width: auto;
+    margin: 6px;
+}
+
+.eva-summary thead th {
+    border-bottom: 1px solid black;
+    padding: 2px 8px;
+}
+
+.eva-summary tbody th {
+    text-align: left;
+    font-weight: normal;
+}
+
+.eva-summary tbody td {
+    text-align: center;
+}
+
+.eva-summary .coverage-table td {
+    position: relative;
+}
+
+.eva-summary .coverage-table td * {
+    z-index: 1;
+}
+
+.eva-summary .coverage-table .progress {
+    position: absolute;
+    z-index: 0;
+}
+
+.eva-summary .alarms-table tr:nth-child(2n) {
+    background-color: var(--background-alterning-even);
+}
+
+.eva-summary .alarms-table td:nth-child(1) {
+    text-align: right;
+}
+
+.eva-summary .alarms-table td:nth-child(2) {
+    text-align: left;
+}
+
+.eva-summary .statuses-table tr :nth-child(5) {
+  background-color: var(--background-intense);
+}
+
+.eva-summary td {
+    padding: 2px 6px;
+}
+
+
+.eva-summary thead tr td {
+    border-bottom: 1px solid black;
+}
+

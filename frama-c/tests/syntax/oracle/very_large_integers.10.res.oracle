@@ -1,0 +1,11 @@
+[kernel] Parsing very_large_integers.c (with preprocessing)
+[kernel] very_large_integers.c:84: Warning: 
+  ignoring invalid aligned attribute: __aligned__(9223372036854775808)
+[kernel] very_large_integers.c:84: Warning: 
+  ignoring invalid aligned attribute: __aligned__((9223372036854775808)+
+                                                   (9223372036854775808) )
+[kernel] very_large_integers.c:97: Failure: 
+  Invalid digit 9 in integer literal '09876543210' in base 8.
+[kernel] User Error: stopping on file "very_large_integers.c" that has errors. Add
+  '-kernel-msg-key pp' for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

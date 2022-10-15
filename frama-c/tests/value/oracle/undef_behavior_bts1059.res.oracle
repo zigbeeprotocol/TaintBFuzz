@@ -1,0 +1,52 @@
+[kernel] Parsing undef_behavior_bts1059.i (no preprocessing)
+[kernel] undef_behavior_bts1059.i:15: Warning: 
+  Unspecified sequence with side effect:
+  /* a <- 
+  */
+  
+  if (b) tmp = 1;
+  else {
+    a ++;
+    if (a == 2) tmp = 1; else tmp = 0;
+  }
+  /* a <-  */
+  a = tmp;
+[kernel] undef_behavior_bts1059.i:23: Warning: 
+  Unspecified sequence with side effect:
+  /*  <-  */
+  tmp_4 = a;
+  /* a <-  */
+  a ++;
+  /* a <- tmp_4 */
+  a = tmp_4;
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  c ∈ [--..--]
+[eva:alarm] undef_behavior_bts1059.i:15: Warning: 
+  undefined multiple accesses in expression. assert \separated(&a, &a);
+[eva:alarm] undef_behavior_bts1059.i:23: Warning: 
+  undefined multiple accesses in expression. assert \separated(&a, &a);
+[eva] Recording results for main
+[eva] done for function main
+[eva] undef_behavior_bts1059.i:15: 
+  assertion 'Eva,separation' got final status invalid.
+[eva] undef_behavior_bts1059.i:23: 
+  assertion 'Eva,separation' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  a ∈ {1}
+  b ∈ {2}
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    a; b; tmp_0; tmp_1; tmp_2; tmp_3; __retres
+[inout] Inputs for function main:
+    c

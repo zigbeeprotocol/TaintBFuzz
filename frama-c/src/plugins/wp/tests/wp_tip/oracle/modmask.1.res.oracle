@@ -1,0 +1,62 @@
+# frama-c -wp [...]
+[kernel] Parsing modmask.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] 2 goals scheduled
+[wp:script:allgoals] 
+  Lemma and_modulo_u:
+  Prove: let x_0 = (lsl 1 shift_0) in
+         (0<=shift_0) -> (shift_0<=31) -> (is_uint32 us_0)
+         -> ((us_0 mod x_0)=(land us_0 (x_0-1)))
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  Lemma and_modulo_us_255:
+  Prove: (is_uint16 us_0) -> ((us_0 mod 256)=(land 255 us_0))
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_check_lemma_and_modulo_us_255 : Valid
+[wp:script:allgoals] 
+  typed_check_lemma_and_modulo_u subgoal:
+  
+  Goal Wp.Tactical.typed_check_lemma_and_modulo_u-0 (generated):
+  Let x = lsl(1, shift_0).
+  Assume { Have: 0 <= shift_0. Have: shift_0 <= 31. Have: is_uint32(us_0). }
+  Prove: (0 <= us_0) /\ (0 < x) /\ (exists i : Z. (lsl(1, i) = x) /\ (0 <= i)).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_check_lemma_and_modulo_u subgoal:
+  
+  Goal Wp.Tactical.typed_check_lemma_and_modulo_u-1 (generated):
+  Prove: true.
+  Prover Qed returns Valid
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_check_lemma_and_modulo_u subgoal:
+  
+  Goal Wp.Tactical.typed_check_lemma_and_modulo_u-2 (generated):
+  Prove: true.
+  Prover Qed returns Valid
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_check_lemma_and_modulo_u subgoal:
+  
+  Goal Wp.Tactical.typed_check_lemma_and_modulo_u-3 (generated):
+  Assume { Have: 0 <= shift_0. Have: shift_0 <= 31. Have: is_uint32(us_0). }
+  Prove: 0 < lsl(1, shift_0).
+  
+  ------------------------------------------------------------
+[wp:script:allgoals] 
+  typed_check_lemma_and_modulo_u subgoal:
+  
+  Goal Wp.Tactical.typed_check_lemma_and_modulo_u-4 (generated):
+  Assume { Have: 0 <= shift_0. Have: shift_0 <= 31. Have: is_uint32(us_0). }
+  Prove: exists i : Z. (lsl(1, i) = lsl(1, shift_0)) /\ (0 <= i).
+  
+  ------------------------------------------------------------
+[wp] [Script] Goal typed_check_lemma_and_modulo_u : Valid
+[wp] Proved goals:    2 / 2
+  Qed:             0 
+  Script:          2

@@ -1,0 +1,113 @@
+(**************************************************************************)
+(*                                                                        *)
+(*  This file is part of Frama-C.                                         *)
+(*                                                                        *)
+(*  Copyright (C) 2007-2022                                               *)
+(*    CEA (Commissariat à l'énergie atomique et aux énergies              *)
+(*         alternatives)                                                  *)
+(*                                                                        *)
+(*  you can redistribute it and/or modify it under the terms of the GNU   *)
+(*  Lesser General Public License as published by the Free Software       *)
+(*  Foundation, version 2.1.                                              *)
+(*                                                                        *)
+(*  It is distributed in the hope that it will be useful,                 *)
+(*  but WITHOUT ANY WARRANTY; without even the implied warranty of        *)
+(*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *)
+(*  GNU Lesser General Public License for more details.                   *)
+(*                                                                        *)
+(*  See the GNU Lesser General Public License version 2.1                 *)
+(*  for more details (enclosed in the file licenses/LGPLv2.1).            *)
+(*                                                                        *)
+(**************************************************************************)
+
+# 24 "src/kernel_internals/runtime/fc_config.ml.in"
+
+let version = "@VERSION@"
+let codename = "@VERSION_CODENAME@"
+let version_and_codename = version ^ " (" ^ codename ^ ")"
+
+let major_version = @MAJOR_VERSION@
+
+let minor_version = @MINOR_VERSION@
+
+let is_gui = ref false
+
+let lablgtk = "@LABLGTK@"
+
+let ocamlc = "@OCAMLC@"
+let ocamlopt = "@OCAMLOPT@"
+let ocaml_wflags = "@WARNINGS@"
+
+let getenv_list name : Filepath.Normalized.t list =
+  let path = Sys.getenv name in
+  let dirs = Str.split (Str.regexp ":") path in
+  List.map Filepath.Normalized.of_string dirs
+
+let add_symbolic_dir_list name = function
+  | [d] -> Filepath.add_symbolic_dir name d
+  | ds ->
+      List.iteri
+        (fun i d ->
+           let path = Printf.sprintf "%s#%d" name (succ i) in
+           Filepath.add_symbolic_dir path d)
+        ds
+
+
+let datadir =
+  Filepath.Normalized.of_string
+    (try Sys.getenv "FRAMAC_SHARE" with Not_found -> "@FRAMAC_DATADIR@")
+let framac_libc = Filepath.Normalized.concat datadir "libc"
+let extra_datadir = try getenv_list "FRAMAC_EXTRA_SHARE" with Not_found -> []
+let () = add_symbolic_dir_list "FRAMAC_EXTRA_SHARE" extra_datadir
+(* After so that it has the priority for pretty printing *)
+let () = Filepath.add_symbolic_dir "FRAMAC_SHARE" datadir
+
+let datadirs = datadir::extra_datadir
+
+let libdir =
+  Filepath.Normalized.of_string
+    (try Sys.getenv "FRAMAC_LIB" with Not_found -> "@FRAMAC_LIBDIR@")
+let () = Filepath.add_symbolic_dir "FRAMAC_LIB" libdir
+let plugin_dir =
+  try
+    getenv_list "FRAMAC_PLUGIN"
+  with Not_found ->
+  try
+    let dir =
+      Filepath.Normalized.concat
+        (Filepath.Normalized.of_string (Sys.getenv "FRAMAC_LIB")) "plugins"
+    in
+    [dir]
+  with Not_found -> [ Filepath.Normalized.of_string "@FRAMAC_PLUGINDIR@" ]
+
+let plugin_path =
+  String.concat ":" (Filepath.Normalized.to_string_list plugin_dir)
+
+let () = add_symbolic_dir_list "FRAMAC_PLUGIN" plugin_dir
+
+let default_cpp = "@FRAMAC_DEFAULT_CPP@"
+
+let default_cpp_args = " @FRAMAC_DEFAULT_CPP_ARGS@"
+
+let env_or_default f vdefault =
+  try
+    let env = Sys.getenv "CPP" ^ default_cpp_args in
+    if env=default_cpp then vdefault else f env
+  with Not_found -> vdefault
+
+let preprocessor = env_or_default (fun x -> x) default_cpp
+
+let using_default_cpp = env_or_default (fun _ -> false) true
+
+let preprocessor_is_gnu_like =
+  env_or_default (fun _ -> false) @FRAMAC_GNU_CPP@
+
+let preprocessor_supported_arch_options = [@DEFAULT_CPP_SUPPORTED_ARCH_OPTS@]
+
+let preprocessor_keep_comments =
+  env_or_default (fun _ -> true) @DEFAULT_CPP_KEEP_COMMENTS@
+
+let compilation_unit_names = [@COMPILATION_UNITS@]
+let library_names = [@LIBRARY_NAMES@]
+
+let dot = @OPTDOT@

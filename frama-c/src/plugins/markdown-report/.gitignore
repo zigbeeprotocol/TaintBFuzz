@@ -1,0 +1,13 @@
+*.cm*
+*.o
+top/
+*.check_mli_exists
+.Makefile.plugin.generated
+.depend
+.merlin
+*~
+/Makefile
+/Markdown_report.mli
+/tests/ptests_config
+/tests/*/result
+/tests/*/result_*

@@ -1,0 +1,6 @@
+[kernel] Parsing tentative_definition.c (with preprocessing)
+[kernel] Parsing tentative_definition_aux.c (with preprocessing)
+[kernel] tentative_definition_aux.c:64: User Error: 
+  global var x at tentative_definition_aux.c:64 has different initializer than tentative_definition.c:75
+[kernel] User Error: error encountered during linking
+[kernel] Frama-C aborted: invalid user input.

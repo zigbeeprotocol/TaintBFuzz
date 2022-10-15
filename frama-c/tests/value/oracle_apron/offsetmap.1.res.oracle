@@ -1,0 +1,22 @@
+64,69c64,66
+<   a[bits 0 to 7] ∈ {1; 6}
+<    [bits 8 to 31]# ∈ {6}%32, bits 8 to 31 
+<   b[bits 0 to 7] ∈ {0; 1}
+<    [bits 8 to 31]# ∈ {0; 6}%32, bits 8 to 31 
+<   a7[bits 0 to 7] ∈ {1}
+<     [bits 8 to 31]# ∈ {97}%32, bits 8 to 31 
+---
+>   a ∈ {1; 6}
+>   b ∈ {0; 1}
+>   a7 ∈ {1}
+109,114c106,108
+<   a[bits 0 to 7] ∈ {1; 6}
+<    [bits 8 to 31]# ∈ {6}%32, bits 8 to 31 
+<   b[bits 0 to 7] ∈ {0; 1}
+<    [bits 8 to 31]# ∈ {0; 6}%32, bits 8 to 31 
+<   a7[bits 0 to 7] ∈ {1}
+<     [bits 8 to 31]# ∈ {97}%32, bits 8 to 31 
+---
+>   a ∈ {1; 6}
+>   b ∈ {0; 1}
+>   a7 ∈ {1}

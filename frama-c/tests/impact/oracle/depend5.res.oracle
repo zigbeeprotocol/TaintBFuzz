@@ -1,0 +1,59 @@
+[kernel] Parsing depend5.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {0}
+  b ∈ {0}
+  c ∈ {0}
+  d ∈ {0}
+  e ∈ {0}
+[eva] computing for function f <- main.
+  Called from depend5.i:23.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function g <- main.
+  Called from depend5.i:25.
+[eva] computing for function f <- g <- main.
+  Called from depend5.i:18.
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to f at depend5.i:18 (by g):
+  b FROM a; e
+[from] call to f at depend5.i:23 (by main):
+  c FROM a; d
+[from] call to g at depend5.i:25 (by main):
+  b FROM a
+  d FROM \nothing
+  e FROM \nothing
+[from] entry point:
+  a FROM \nothing
+  b FROM \nothing
+  c FROM d
+  d FROM \nothing
+  e FROM \nothing
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[impact] beginning analysis
+[pdg] computing for function g
+[pdg] done for function g
+[pdg] computing for function main
+[pdg] done for function main
+[pdg] computing for function f
+[pdg] done for function f
+[impact] impacted statements of stmt(s) 8 are:
+    depend5.i:11 (sid 4): b = e;depend5.i:17 (sid 9): e = d;
+    depend5.i:18 (sid 10): f();depend5.i:25 (sid 16): g();
+[impact] analysis done

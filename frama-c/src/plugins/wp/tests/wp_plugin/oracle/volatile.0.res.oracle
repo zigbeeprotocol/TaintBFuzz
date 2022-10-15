@@ -1,0 +1,55 @@
+# frama-c -wp [...]
+[kernel] Parsing volatile.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function default_init
+------------------------------------------------------------
+
+Goal Check 'KO_WHEN_VOLATILE' (file volatile.i, line 46):
+Assume {
+  Type: is_sint8(ClientId_0) /\ is_sint32(R1_0).
+  (* Pre-condition *)
+  Have: (0 <= ClientId_0) /\ (ClientId_0 <= 15).
+}
+Prove: R1_0 = 0.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job_assigns
+------------------------------------------------------------
+
+Goal Assertion 'KO_WHEN_VOLATILE' (file volatile.i, line 16):
+Prove: w = 0.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job_read
+------------------------------------------------------------
+
+Goal Assertion 'KO_WHEN_VOLATILE' (file volatile.i, line 22):
+Assume { Type: is_sint32(x). }
+Prove: x = w.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job_struct
+------------------------------------------------------------
+
+Goal Assertion 'ok,dead_code' (file volatile.i, line 30):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function job_struct_assigns
+------------------------------------------------------------
+
+Goal Assertion 'KO_WHEN_VOLATILE' (file volatile.i, line 36):
+Prove: EqS1_st_v(w, w_1).
+
+------------------------------------------------------------
+[wp] volatile.i:33: Warning: 
+  Memory model hypotheses for function 'job_struct_assigns':
+  /*@ behavior wp_typed:
+        requires \separated(p, &sv); */
+  void job_struct_assigns(struct st_v *p);

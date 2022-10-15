@@ -1,0 +1,43 @@
+# frama-c -wp [...]
+[kernel] Parsing issue-189-bis.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 30 goals scheduled
+[wp] [Alt-Ergo] Goal typed_memcpy_alias_vars_ensures_memcpy : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_alias_vars_ensures_unmodified : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_alias_vars_loop_invariant_cpy_preserved : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_invariant_cpy_established : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_invariant_dst_preserved : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_invariant_dst_established : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_alias_vars_loop_invariant_len_preserved : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_invariant_len_established : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_invariant_src_preserved : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_invariant_src_established : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_loop_assigns_part3 : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_alias_vars_loop_assigns_part4 : Valid
+[wp] [Qed] Goal typed_memcpy_alias_vars_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_context_vars_ensures_memcpy_ok : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_context_vars_ensures_unmodified_ok : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_context_vars_loop_invariant_ok_cpy_preserved : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_invariant_ok_cpy_established : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_invariant_ok_dst_preserved : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_invariant_ok_dst_established : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_context_vars_loop_invariant_ok_len_preserved : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_invariant_ok_len_established : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_invariant_ok_src_preserved : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_invariant_ok_src_established : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_assigns_part1 : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_assigns_part2 : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_loop_assigns_part3 : Valid
+[wp] [Alt-Ergo] Goal typed_memcpy_context_vars_loop_assigns_part4 : Valid
+[wp] [Qed] Goal typed_memcpy_context_vars_assigns : Valid
+[wp] Proved goals:   30 / 30
+  Qed:            20 
+  Alt-Ergo:       10
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  memcpy_alias_vars        10        5       15       100%
+  memcpy_context_vars      10        5       15       100%
+------------------------------------------------------------

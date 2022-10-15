@@ -1,0 +1,45 @@
+# --------------------------------------------------------------------------
+# ---  Resources                                                         ---
+# --------------------------------------------------------------------------
+FRAMAC_DOC= .make-class .make-images .make-icons VERSION VERSION_CODENAME
+# --------------------------------------------------------------------------
+FRAMAC_CLASS=frama-c-book.cls frama-c-cover.pdf frama-c-left.pdf frama-c-right.pdf frama-c-affiliation.tex
+FRAMAC_BULLETS=never_tried.png unknown.png valid_under_hyp.png surely_valid.png
+FRAMAC_IMAGES=cealistlogo.jpg
+# --------------------------------------------------------------------------
+FRAMAC_TRUNK?=../../../../..
+# --------------------------------------------------------------------------
+
+RES_CLASS=$(addprefix $(FRAMAC_TRUNK)/doc/,$(FRAMAC_CLASS))
+.make-class: $(RES_CLASS)
+	@echo "Import Frama-C Class"
+	@cp -fv $(RES_CLASS) .
+	@touch .make-class
+
+RES_IMAGES=$(addprefix $(FRAMAC_TRUNK)/doc/images/,$(FRAMAC_IMAGES))
+.make-images: $(RES_IMAGES)
+	@echo "Import Frama-C Logos"
+	@cp -fv $(RES_IMAGES) .
+	@touch .make-images
+
+RES_ICONS=$(addprefix $(FRAMAC_TRUNK)/share/theme/default/,$(FRAMAC_BULLETS))
+.make-icons: $(RES_ICONS)
+	@echo "Import Frama-C Icons"
+	@mkdir -p feedback
+	@cp -fv $(RES_ICONS) feedback/
+	@touch .make-icons
+
+VERSION: $(FRAMAC_TRUNK)/VERSION
+	@echo "Importing Frama-C Version"
+	@cp -fv $< $@
+	@chmod a-w $@
+
+VERSION_CODENAME: $(FRAMAC_TRUNK)/VERSION_CODENAME
+	@echo "Importing Frama-C Version Codename"
+	@cp -fv $< $@
+	@chmod a-w $@
+
+clean::
+	@echo "Cleaning resources"
+	@rm -f $(FRAMAC_DOC)
+	@rm -fr feedback

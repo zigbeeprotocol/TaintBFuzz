@@ -1,0 +1,18 @@
+[kernel] Parsing array_zero_length.i (no preprocessing)
+[kernel] array_zero_length.i:9: User Error: 
+  zero-length arrays only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+[kernel] array_zero_length.i:11: User Error: 
+  zero-length arrays only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+[kernel] array_zero_length.i:11: User Error: 
+  declaration of array of 'zero-length arrays' ('char [0]`);
+  zero-length arrays are not allowed in C99
+[kernel] array_zero_length.i:13: User Error: 
+  empty initializers only allowed for GCC/MSVC machdeps; see option -machdep or run 'frama-c -machdep help' for the list of available machdeps
+  11    char W[][0];
+  12    
+  13    char T1[] = {};
+        ^^^^^^^^^^^^^^^
+  14    char U1[0] = {};
+  15    char V1[][2] = {};
+[kernel] User Error: stopping on file "array_zero_length.i" that has errors.
+[kernel] Frama-C aborted: invalid user input.

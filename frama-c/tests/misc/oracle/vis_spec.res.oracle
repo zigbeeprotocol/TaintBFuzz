@@ -1,0 +1,8 @@
+[kernel] Parsing vis_spec.i (no preprocessing)
+Starting visit
+Considering spec of function g
+Function prototype; Funspec is 'assigns \nothing;'
+Considering spec of function f
+Funspec of f is 'assigns \nothing;' through visitor
+It is 'assigns \nothing;' through get_spec
+End visit

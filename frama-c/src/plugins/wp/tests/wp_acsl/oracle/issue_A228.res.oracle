@@ -1,0 +1,13 @@
+# frama-c -wp [...]
+[kernel] Parsing issue_A228.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition 'GOAL' in 'job':
+Assume { Type: is_bool(A) /\ is_bool(B). }
+Prove: land(-64, lor(to_uint32(lsl(A, 6)), to_uint32(lsl(B, 7)))) = 192.
+
+------------------------------------------------------------

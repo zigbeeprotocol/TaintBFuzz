@@ -1,0 +1,388 @@
+%% Chapter WP Models
+
+\section{ACSL} \label{sec-acsl}
+
+This section describes, firstly, the model of \textsf{ACSL} datum (or
+logical values) such as reals and integers, the logical arrays and
+records, the logical pointers and sets. Secondly, the translation
+of the predicates and axiomatics of \textsf{ACSL} to $\cal{L}$ is 
+presented.
+
+
+\subsection{ACSL values}
+
+\subsubsection{Values of Basic types}
+
+ The basic types are the C arithmetic types and the logic integers and reals. 
+ 
+ All integer types are translated into the type $\mathbb{Z}$ of $\cal{L}$.
+In the same flavor, the object of the logic type \cinline{real} of 
+ \textsf{ACSL} becomes object of type $\mathbb{R}$ of $\cal{L}$.
+
+ That is not sufficient for the translation of numerical values:
+ they have to be bound in a convenient domain. 
+ To express that domain constraint, the notion of {\it format} is necessary.  
+ A \whyinline{format} informs about the \textsf{ACSL} type of the
+ value. The table in the figure~\ref{fig:type_format} gathers some
+ primitive formats.
+
+ The format associated to a C arithmetic type handles the signess and
+ size information of the type. The predicate
+ \whyinline{is_in_format} expresses the domain constraint.
+
+ For example: \cinline{unsigned char i;} becomes in $\cal{L}$ 
+ \whyinline{forall i:Z. is_in_format(uint8_format,i)} which provide the
+ information that $0 \le i < 256$.
+
+\TODO{Pointers and Formats have been completely modified}
+
+ \begin{figure}[ht!]
+   \begin{center}
+     
+     \begin{tabular}{|l|r|r|}
+       \hline 
+       \textsf{ACSL}: $\tau$ & $\cal{L}$: $\overline{\tau}$ & $\cal{L}$ format \\
+       \hline
+       \cinline{signed char/short/int/long int} & 
+       $\mathbb{Z}$ & \whyinline{sint8/16/32/64_format} \\
+       \hline
+       \cinline{unsigned char/short/int/long int} & 
+       $\mathbb{Z}$ & \whyinline{uint8/16/32/64_format} \\
+       \hline
+       \cinline{float,double} &$\mathbb{R}$ & 
+       \whyinline{float16/32/64/96/128_format} \\
+       \hline
+       integer &  $\mathbb{Z}$  &  \whyinline{int_format} \\
+       \hline 
+       real & $\mathbb{R}$ & \whyinline{real_format} \\
+       \hline 
+       $\tau~*$ & pointer  & \whyinline{pointer_format} \\
+       \hline 
+       $\tau~$ array & $\overline{\tau}$ farray &
+       $\overline{\tau}$ \whyinline{array_dim_format} \\
+       \hline 
+       struct S $\{ \ldots\tau_n~f_n; \ldots \}$ &
+       S  & \whyinline{S_format} \\
+       \hline 
+     \end{tabular}
+
+\end{center}
+\caption{Typed representation of objects}
+\label{fig:type_format}
+\end{figure} 
+
+
+\subsubsection{Logic pointers}\label{ssec-acsl-ptr}
+
+  The logic pointers of \textsf{ACSL} are translated into an opaque
+  type \whyinline{pointer} which is untyped. 
+
+  All memory models use the logic arithmetic of pointers defined in
+  figure~\ref{fig:arithptr}, except for the shift operations which are 
+  memory model dependent.
+
+
+\begin{figure}[ht!]
+\begin{center}
+
+  \begin{tabular}{|l|r|r|}
+    \hline
+    ACSL & $\cal{L}$ functional & $\cal{L}$ relational \\
+    \hline 
+    \cinline{NULL} & \whyinline{null} & \whyinline{is_null} \\
+    \cinline{p == q}& \whyinline{equal_pointer(p,q)} & \whyinline{p=q} \\
+    \hline 
+    \cinline{p < q} & \whyinline{lt_pointer(p,q)} & 
+    \whyinline{lt_pointer_rel(p,q)} \\
+    \hline 
+    \cinline{p <= q} & \whyinline{le_pointer(p,q)} & 
+    \whyinline{le_pointer_rel(p,q)} \\
+   \hline 
+    \cinline{p - q} & \whyinline{minus_pointer(p,q)} & $\emptyset$ \\
+   \hline
+   \cinline{p + i} & \multicolumn{2}{c|}{memory model dependent} \\
+\hline
+  \end{tabular}
+
+\end{center}
+\caption{Translation of the arithmetic of pointers}
+\label{fig:arithptr}
+\end{figure}
+  
+
+ As all the pointer arithmetic is done via the logic pointer, 
+the  memory model has to provide coercion between a logic pointer
+ and its location type. 
+   
+
+\subsubsection{Arrays}
+
+   An \textsf{ACSL} array of type $\tau$ is represented by an infinite
+   array of type $\overline{\tau}$ in $\cal{L}$
+   (see figure~\ref{fig:type_format} for interpretation of primitive types). 
+
+
+   
+
+   The classical operations over \textsf{ACSL} array are translated as 
+ suspected: 
+ \begin{description}
+   \item{access} to a value at the index \cinline{i} of an \textsf{ACSL} array
+     \cinline{t} :
+     \cinline{t[i]} becomes \whyinline{access(t,i)} in $\cal{L}$,
+     which also can be written as \whyinline{t[i]};
+ 
+   \item{functional update} of the value indexed by \cinline{i} of an
+     \textsf{ACSL} array \cinline{t} by the new value \cinline{v}:
+     \cinline{\{t with [i] = v\}} 
+     becomes \whyinline{update (t, i, x)} in $\cal{L}$, which also can
+     be written \whyinline{t[i <- x ]}.
+ \end{description}
+
+   This is possible to access or update a set of indexes in a logic array:
+   \begin{description}
+     \item{\whyinline{get_range_index(t,s)}}
+       returns the set of values of \whyinline{t} of the indexes of
+       the set \whyinline{s}, when \whyinline{t} is an array;
+
+       \item{\whyinline{set_range_index(t,s)}} is an array such as all
+         elements \whyinline{set_range_index(t,s)[i]}= \whyinline{t[i]} 
+         when \whyinline{i} $\notin$ \whyinline{s} holds.
+   \end{description}
+
+
+
+\subsubsection{Logic records and unions }\label{ssec-acsl-rec} 
+ 
+ \begin{description}
+   \item {\cinline{struct S {...}}} becomes \whyinline{type S}.
+   \item{\cinline{union U{...}}} becomes \whyinline{type U}.
+   \item{For each field \cinline{tf f;} of a structure or an union S}
+     two functions are generated in $\cal{L}$:
+     \begin{itemize}
+       \item \whyinline{get_field_f_S:S ->}$\overline{tf}$ returns the value 
+         of the field \cinline{f} of a record or a union of type \cinline{S} 
+         \item \whyinline{set_field_f_S:S,}$\overline{tf}$\whyinline{
+           -> S} returns the updated record or union at the field
+           \cinline{f}
+     \end{itemize}
+     and an axiom : 
+     \begin{itemize}
+       \item\whyinline{axiom GetSetSame_f_S : forall r:S. forall
+         v:}$\overline{tf}$\whyinline{.}
+         \whyinline{get_field_f_S(set_field_f_S(r,v)) = r}
+     \end{itemize}
+    \item{For each disjoint pair of fields \cinline{...; tg g;...;tf
+        f;...} of a same structure definition S} an axiom is defined as follows:
+      \begin{itemize}
+      \item\whyinline{axiom GetSetOther_f_g_S : forall r:S. forall
+        v:}$\overline{tg}$\whyinline{.}
+        \whyinline{get_field_f_S(set_field_g_S(r,v)) = get_field_f_S(r)}
+      \end{itemize} 
+    \item{\cinline{s.f}} becomes \whyinline{get_field_f_S(s)}. 
+    \item{\cinline{s with .f = v}} becomes \whyinline{set_field_f_S(s,v)}. 
+ \end{description}
+
+ Consider the following example: %(tests/wp_acsl/record.c): 
+ \begin{ccode}
+   struct S {int a; int b;};
+
+   struct S s1,s2; 
+   
+   /*@
+   ensures {s1 \with .a = (int)1}.a == 1;  
+   */
+   void f (void) {}
+ \end{ccode}
+
+ The WP computation will give you this $\cal{L}$ specification:
+\begin{whycode}
+type S
+logic get_a_S: S -> int 
+logic set_a_S: S , int -> S 
+logic get_b_S: S -> int 
+logic set_b_S: S , int -> S 
+(* Definition of the good properties of the field a*)
+
+axiom GetSetSame_a:
+forall r:S.forall v:int.
+get_a_S(set_a_S(r,v))=
+ v
+
+
+(* Definition of the commutativity of the get field a over the set field b*)
+
+axiom GetSetOther_a_b:
+forall r:S.forall v:int.
+get_a_S(set_b_S(r,v))=
+ get_a_S(r)
+
+
+
+(* Definition of the good properties of the field b*)
+
+axiom GetSetSame_b:
+forall r:S.forall v:int.
+get_b_S(set_b_S(r,v))=
+ v
+
+
+(* Definition of the commutativity of the get field b over the set field a*)
+
+axiom GetSetOther_b_a:
+forall r:S.forall v:int.
+get_b_S(set_a_S(r,v))=
+ get_b_S(r)
+\end{whycode}
+
+ 
+
+ \subsubsection{The equality of logical values, \whyinline{v == v'}}\label{ssec-acsl-eq}
+ 
+ Alike for the representation of logic values, the relations of 
+ equality of logic values are directed by types. Hence, 
+ the equality of logic values of basic type; integer, reals and pointers,
+ is the equality of $\cal{L}$, \whyinline{=}. 
+ 
+ Concerning the equality of objects of more complex type; arrays, records 
+ and union, the \textsf{ACSL} model generates a equality 
+ relation for each type. \par
+ 
+ Two records of same type \cinline{S} are equals if their fields are equal. 
+ 
+ Consider the following example:
+ \begin{ccode}
+   typedef struct T {float f;};
+   
+   typedef struct S { int a; int * p; struct T t;};
+ \end{ccode}
+ 
+ If the WP computation needs to deal with object of type
+ \cinline{S},then an axiom in the environment over equality for object
+ of type \cinline{S} is defined \whyinline{Eqrec_S}:
+ 
+ \begin{whycode}
+Equality for Struct 'S'
+tests/wp_acsl/record.c:20: typedef struct S { ... }
+logic Eqrec_S: S,S -> prop
+
+Equality for Struct 'T'
+tests/wp_acsl/record.c:18: typedef struct T { ... }
+logic Eqrec_T: T,T -> prop
+
+Equality for Struct 'S'
+tests/wp_acsl/record.c:20: Axiomatic Definition
+axiom EqrecDef_S:
+  forall a:S.
+  forall b:S.
+      Eqrec_S(a, b)
+  <-> (    (get_a_S(a) = get_a_S(b))
+       and (get_p_S(a) = get_p_S(b))
+       and Eqrec_T(get_t_S(a), get_t_S(b)))
+
+Equality for Struct 'T'
+tests/wp_acsl/record.c:18: Axiomatic Definition
+axiom EqrecDef_T:
+  forall a:T.
+  forall b:T.
+      Eqrec_T(a, b)
+  <-> (get_f_T(a) = get_f_T(b))
+
+Symmetry of Equality for Struct 'S'
+tests/wp_acsl/record.c:20: Axiomatic Definition
+axiom EqrecSym_S: forall a:S.
+  Eqrec_S(a, a)
+
+Symmetry of Equality for Struct 'T'
+tests/wp_acsl/record.c:18: Axiomatic Definition
+axiom EqrecSym_T: forall a:T.
+  Eqrec_T(a, a)
+
+Symmetry of Equality for Struct 'S'
+tests/wp_acsl/record.c:20: Axiomatic Definition
+axiom EqrecTrans_S:
+  forall a:S.
+  forall b:S.
+  forall c:S.
+     Eqrec_S(a, b)
+  -> Eqrec_S(b, c)
+  -> Eqrec_S(a, c)
+
+Symmetry of Equality for Struct 'T'
+tests/wp_acsl/record.c:18: Axiomatic Definition
+axiom EqrecTrans_T:
+  forall a:T.
+  forall b:T.
+  forall c:T.
+     Eqrec_T(a, b)
+  -> Eqrec_T(b, c)
+  -> Eqrec_T(a, c)
+
+
+   \end{whycode}
+
+   As an object of type \cinline{S} has a field of type \cinline{T},
+   the equality over objects of type \cinline{T} is also defined.  Then
+   two objects of type \cinline{S} are equals iff the values their
+   field are equal two by two. \par
+
+   The same mechanism defines the equality on objects of an union type. \par
+
+
+   Two arrays of the same type $\tau$ and the same length are equals iff 
+   their elements are equals one by one according to the relation 
+   of equality of objects of type $\tau$. 
+  
+   Consider: 
+   \begin{ccode}
+     typedef struct S { ...}; 
+     struct S tab[10];
+   \end{ccode}
+   
+
+   The generated equality relation of object of type \cinline{struct S tab[10]}
+   is : 
+   \begin{whycode}
+Equality for S[10]
+Logic array
+logic Eqarr_S_10: S farray,S farray -> prop
+
+Equality for S[10]
+Axiomatic Definition
+axiom EqarrDef_S_10:
+  forall a:S farray.
+  forall b:S farray.
+      Eqarr_S_10(a, b)
+  <-> (forall i:int. 0 <= i -> i < 10 -> Eqrec_S(a[i], b[i]))
+
+
+   \end{whycode}
+
+ \subsubsection{Set}
+
+  The logic \textsf{ACSL} $\tau$ sets are specified into
+  $\overline{\tau}$ \whyinline{set} with all traditional constructors,
+  functions and properties.
+
+
+ \subsubsection{Logic cast}
+
+ Logic functions \whyinline{as_int} and  \whyinline{as_float}
+ are used to represent the type conversions between 
+ basic arithmetic types that map to the same type of  $\cal{L}$.
+ They also use the {\it format} presented in \ref{fig:type_format}.
+ At the moment, these functions are underspecified.
+ For \whyinline{as_int} for instance, we only assume that :
+\begin{whycode}
+forall f: int format. forall x:int. is_in_format (f, x) -> as_int (f, x) = x
+forall f: int format. forall x:int. is_in_format (f, (as_int (f, x)))
+\end{whycode}
+
+Two other logic functions (\whyinline{truncate_real_to_int} and
+\whyinline{real_of_int}) are used to transform $\mathbb{R}$ to and from $\mathbb{Z}$.
+
+Other casts involving pointers are memory model dependent.
+
+\subsection{\textsf{ACSL} predicates and axiomatics} 
+
+\TODO{To be complete}

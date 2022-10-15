@@ -1,0 +1,510 @@
+###############################################################################
+# Preliminary notes:                                                          #
+# ------------------                                                          #
+# Mark "-": change with an impact for users (and possibly developers).        #
+# Mark "o": change with an impact for developers only.                        #
+# Mark "+": change for Frama-C-commits audience (not in html version)         #
+# Mark "*": bug fixed.                                                        #
+# Mark "!": change that can break compatibility with existing development.    #
+# '#nnn'   : BTS entry #nnn                                                   #
+# '#!nnn'  : BTS private entry #nnn                                           #
+# '#@nnn'  : Gitlab frama-c/frama-c issue                                     #
+# '##nnn'  : Gitlab pub/frama-c issue                                         #
+# For compatibility with old change log formats:                              #
+# '#?nnn'  : OLD-BTS entry #nnn                                               #
+###############################################################################
+# Categories:
+#   E-ACSL      monitor generation
+#   runtime     C runtime library (and memory model)
+#   e-acsl-gcc  launcher e-acsl-gcc.sh
+#   Makefile    Makefile
+#   configure   configure
+###############################################################################
+
+############################
+Plugin E-ACSL <next-release>
+############################
+
+
+##############################
+Plugin E-ACSL 25.0 (Manganese)
+##############################
+
+-  E-ACSL       [2022-03-04] Improve translation of `\at()` terms and
+                predicates (frama-c/e-acsl#108).
+-* E-ACSL       [2022-03-01] Fix normalization of global annotations that
+                may lead to crashes (frama-c/e-acsl#195).
+-  E-ACSL       [2022-01-28] Add Linux's pthread concurrency support.
+-* E-ACSL       [2021-12-03] Fix crash when creating an axiomatic with an
+                existing name in E-ACSL's RTL (frama-c/e-acsl#161).
+-* E-ACSL       [2021-12-01] Fix crash when binding a lambda-abstraction to a
+                local variable (frama-c/e-acsl#189).
+-* e-acsl-gcc   [2021-11-30] Fix e-acsl-gcc.sh bash autocompletion script and
+                install it at a standard location.
+-* E-ACSL       [2021-11-23] Add support for VDSO segment on Linux.
+-* e-acsl-gcc   [2021-11-22] Fix e-acsl-gcc.sh detection of failures in
+                subcommands.
+-  runtime      [2021-11-03] Improve runtime debug logs: the %a modifier now
+                outputs in hexadecimal, the debug logs now all end in new lines,
+                the trace now outputs to stderr.
+-* runtime      [2021-11-03] Fix default stack size: E_ACSL_STACK_SIZE
+                is now correctly used by the runtime, the default values
+                have been adjusted to what was effectively used.
+-* E-ACSL       [2021-11-03] Now the same Frama-C options are used when parsing
+                the user sources and the E-ACSL's RTL.
+
+#############################
+Plugin E-ACSL 24.0 (Chromium)
+#############################
+
+-* E-ACSL       [2021-11-24] Fix code generation of properties proven invalid
+                with a previous analysis (frama-c/e-acsl#166).
+-  E-ACSL       [2021-10-20] Add option -e-acsl-assert-print-data
+                (--assert-print-data in e-acsl-gcc.sh) to print data
+                contributing to a failed assertion along with the error message.
+                Add option --external-print-value in e-acsl-gcc.sh to provide a
+                custom implementation of __e_acsl_print_value().
+-  E-ACSL       [2021-10-07] Support for \prod and \numof.
+-* E-ACSL       [2021-09-29] Fix translation order of the default behavior's
+                requires clauses. They are now translated before the evaluation
+                of the assumes clauses of the other behaviors.
+-* E-ACSL       [2021-09-13] Fix unsound reuse of previously typed recursive
+                functions (frama-c/e-acsl#177)
+-  E-ACSL       [2021-08-03] Correct monitoring of code depending on libc
+                function calls that write memory locations (frama-c/e-acsl#157).
+-* E-ACSL       [2021-07-30] Fix incorrect evaluation of quantified
+                predicates when a strict guard overlaps with the type of the
+                bound variable (unlikely in practice) (frama-c/e-acsl#149).
+-* E-ACSL       [2021-07-19] Fix crash occurring when two or more successive
+                logic coercions were done in a term (frama-c/e-acsl#172).
+-* E-ACSL       [2021-07-19] Fix crash when raising some user errors
+                (frama-c/e-acsl#170).
+-* E-ACSL       [2021-07-16] Fix crash when using some built-in labels
+                (frama-c/e-acsl#173).
+-  E-ACSL       [2021-07-06] Support for \sum.
+-* E-ACSL       [2021-06-22] Fix a crash that occured when using certain
+                combinations of nested blocks and annotations.
+-* E-ACSL       [2021-06-16] Fix literal string replacements in function
+                arguments during a local initialization.
+-* E-ACSL       [2021-06-14] Fix pointer address on memory annotations with
+                range indices (frama-c/e-acsl#148).
+-* E-ACSL       [2021-06-04] Do not translate contracts of E-ACSL built-ins.
+
+#############################
+Plugin E-ACSL 23.1 (Vanadium)
+#############################
+
+-* E-ACSL       [2021-07-19] Fix crash occurring when two or more successive
+                logic coercions were done in a term (frama-c/e-acsl#172).
+-* E-ACSL       [2021-07-19] Fix crash when raising some user errors
+                (frama-c/e-acsl#170).
+-* E-ACSL       [2021-07-16] Fix crash when using some built-in labels
+                (frama-c/e-acsl#173).
+-* E-ACSL       [2021-07-13] Fix crash when encountering a GMP value in a loop
+                variant (frama-c/e-acsl#169).
+
+#############################
+Plugin E-ACSL 23.0 (Vanadium)
+#############################
+
+-* E-ACSL       [2021-05-25] Restore behavior of option -e-acsl-no-valid broken
+                since Titanium (included).
+-  E-ACSL       [2021-04-09] Add support for loop variant.
+-  E-ACSL       [2021-04-07] Add support for multiple binders in guarded
+                quantifications (frama-c/e-acsl#127).
+-* runtime      [2021-04-08] Fix backtrace output on failed assertion
+                (frama-c/e-acsl#151).
+-* runtime      [2021-04-08] Fix incorrect check on program arguments when the
+                main function takes no arguments (frama-c/e-acsl#151).
+-* runtime      [2021-03-30] Fix the end address of the memory segments in the
+                RTL layouts.
+-  E-ACSL       [2021-03-25] Add support for `check` and `admit` annotations
+                (frama-c/e-acsl#142).
+-* E-ACSL       [2021-03-25] Fix wrong computation of the base pointer when
+                calling \valid predicate leading to undetected array overflows.
+-* E-ACSL       [2021-02-24] Fix crash when running another analysis after
+                E-ACSL caused by E-ACSL breaking some internal kernel invariant
+                (frama-c/e-acsl#145).
+-  e-acsl-gcc   [2021-02-24] Try to find Frama-C binary in script or development
+                directory if not present in PATH (frama-c/e-acsl#104).
+-  e-acsl-gcc   [2021-02-24] Remove obsolete options from documentation and bash
+                completion script (frama-c/e-acsl#104).
+-  e-acsl-gcc   [2021-02-24] Deactivate Variadic translation when using
+                incompatible option --validate-format-strings
+                (frama-c/e-acsl#104).
+-  e-acsl-gcc   [2021-02-24] Do not load Frama-C plugins when retrieving share
+                and plugins paths (frama-c/e-acsl#104).
+-* runtime      [2021-02-18] Fix integration of contracts from the runtime
+                library into Frama-C (#@999).
+-* E-ACSL       [2021-01-12] Fix crash when comparing two structs, which is
+                currently unsupported (frama-c/e-acsl#139).
+-* Makefile     [2021-01-05] Fix dependencies in bytecode-only compilation.
+-  E-ACSL       [2020-12-09] Add RTL support for Windows.
+-  E-ACSL       [2020-11-17] Update e-acsl-gcc.sh so that the library dlmalloc
+                can be compiled and used from sources.
+
+#############################
+Plugin E-ACSL 22.0 (Titanium)
+#############################
+
+-* E-ACSL       [2020-11-16] Fix soundness bug when checking
+                initialization of a chunk of heap memory block.
+-  E-ACSL       [2020-10-14] Support for Variadic generated functions in
+                the AST (frama-c/e-acsl#128).
+-  E-ACSL       [2020-10-06] Add support for the `\separated` predicate.
+                (frama-c/e-acsl#31)
+-* E-ACSL       [2020-10-06] Fix a soundness bug when translating a range with a
+                logic variable.
+-  E-ACSL       [2020-09-22] Support of complete and disjoint behavior
+                (frama-c/e-acsl#92 and frama-c/e-acsl#27).
+-* runtime      [2020-09-15] Fix wrong value returned for the stack size in the
+                segment memory model (frama-c/e-acsl#126).
+-  E-ACSL       [2020-09-15] Deprecate -e-acsl-full-mmodel in favor of
+                -e-acsl-full-mtracking.
+-  e-acsl-gcc   [2020-09-15] Deprecate --full-mmodel in favor of
+                --full-mtracking.
+-* E-ACSL       [2020-08-28] Fix crash that may occur when translating
+                properties that have been proved valid by another plug-in
+                (frama-c/e-acsl#106).
+-! E-ACSL       [2020-08-28] Remove option -e-acsl-prepare-ast.
+-! E-ACSL       [2020-08-28] Remove option -e-acsl-check.
+-  E-ACSL       [2020-08-07] Add support for logical array comparison
+                (frama-c/e-acsl#99).
+-  E-ACSL       [2020-07-28] Add support of bitwise operators
+                (frama-c/e-acsl#33).
+-* E-ACSL       [2020-07-20] Fix unstable order of generated globals
+                (frama-c/e-acsl#124).
+-* E-ACSL       [2020-07-10] Fix translation of trange (incorrect length).
+-* E-ACSL       [2020-07-09] Decrease the number of allocated blocks when one
+                block is freed.
+-  E-ACSL       [2020-06-19] Add support to create GMP rational from GMP
+                integer (frama-c/e-acsl#120).
+-* E-ACSL       [2020-06-18] Fix support of VLA memory tracking
+                (frama-c/e-acsl#119).
+
+#############################
+Plugin E-ACSL 21.0 (Scandium)
+#############################
+
+-* E-ACSL       [2020-06-10] Fix ##13: bug when mixing integers and floats in
+                annotations while -e-acsl-gmp-only is activated.
+-* E-ACSL       [2020-06-10] Fix a soundness bug (##14) when initializing
+                rationals from integers.
+-* E-ACSL       [2020-03-24] Fix automatic deactivation of plug-in Variadic when
+                E-ACSL is directly called from Frama-C without using
+                e-acsl-gcc.sh.
+-  E-ACSL       [2020-03-10] Call E-ACSL's free functions for globals in a
+                separate function at the end of main.
+-  E-ACSL       [2020-03-10] Call `__e_acsl_memory_init` only if the memory
+                model analysis is running.
+-* E-ACSL       [2020-03-10] Fix frama-c/e-acsl#105 about misplaced
+                `__e_acsl_delete_block` in presence of gotos to return statements.
+-* E-ACSL       [2020-03-16] Fix #?1386 and frama-c/e-acsl#91 about the tracking
+                of variables declared inside the body of switches.
+-  E-ACSL       [2020-02-09] Improve verdict messages emitted by e_acsl_assert.
+-* E-ACSL       [2020-01-06] Fix typing bug in presence of variable-length
+                arrays that may lead to incorrect generated code.
+-* E-ACSL       [2019-12-04] Fix bug with compiler built-ins.
+
+############################
+Plugin E-ACSL 20.0 (Calcium)
+############################
+
+-  E-ACSL       [2019-08-28] Support of rational numbers and operations.
+-! E-ACSL       [2019-08-28] Deactivate the unsound support of real
+                numbers (that are not rationals). They were previously
+                unsoundly converted to floating point numbers.
+
+##############################
+Plugin E-ACSL 19.0 (Potassium)
+##############################
+
+-  E-ACSL       [2019-04-29] Support for logic functions and predicates
+                without labels.
+-  runtime      [2019-02-26] The behavior of __e_acsl_assert now depends on the
+                runtime value of the global variable __e_acsl_sound_verdict:
+                if 0, it means that its verdict is possibly incorrect.
+-  E-ACSL       [2019-02-26] New option -e-acsl-instrument to instrument
+                only a specified set of functions. It may lead to incorrect
+                verdicts.
+-  E-ACSL       [2019-02-19] New option -e-acsl-functions to monitor only
+                annotations in a white list of functions.
+-* runtime      [2019-02-04] Fix initialization of the E-ACSL runtime in
+                presence of multiple calls to its initializer (for
+                instance, if the main is a recursive function).
+-* runtime      [2019-01-02] Fix overlap of TLS with other memory
+                segments for large memory spaces.
+-  E-ACSL       [2018-11-15] Predicates with empty quantifications
+                directly generate \true or \false instead of nested loops.
+
+##########################
+Plugin E-ACSL 18.0 (Argon)
+##########################
+
+-* E-ACSL       [2018-11-13] Fix typing bug in quantifications when the
+                guards of the quantifier variable cannot be represented into
+                its type.
+-* runtime      [2018-11-13] Fix bug #!2405 about memory initialization
+                in presence of GCC constructors.
+-* E-ACSL       [2018-10-23] Fix bug #2406 about monitoring of variables
+                with incomplete types.
+-* E-ACSL       [2018-10-04] Fix bug #2386 about incorrect typing when
+                performing pointer subtraction.
+-* E-ACSL       [2018-10-04] Support for \at on purely logic variables.
+                Fix bug #1762 about out-of-scope variables when using \old.
+-* E-ACSL       [2018-10-02] Fix bug #2305 about taking the address of a
+                bitfield.
+-  E-ACSL       [2018-09-18] Support for ranges in memory builtins
+                (\valid, \initialized, etc).
+
+######################################
+Plugin E-ACSL 17.0 (Chlorine-20180501)
+######################################
+
+-  E-ACSL       [2018-03-30] Support for let binding.
+-  E-ACSL       [2018-02-21] New option -e-acsl-replace-libc-functions to
+                replace a few libc functions by built-ins that efficiently
+                detects when they are incorrectly called.
+-  E-ACSL       [2018-02-21] New option -e-acsl-validate-format-strings to
+                detect format string errors in printf-like functions.
+-* E-ACSL       [2018-02-21] Correct support of variable-length array
+                (fix bug #1834).
+-* runtime      [2018-02-16] Function __e_acsl_offset now returns size_t.
+-* E-ACSL       [2018-02-07] Fix incorrect typing in presence of
+                comparison operators (may only be visible when directly
+                analyzing the E-ACSL's generated code with Frama-C without
+                pretty-printing it).
+-* runtime      [2018-01-30] E-ACSL aborted when run on a machine with a
+                low hard limit on the stack size.
+-* E-ACSL       [2018-01-08] Fix a crash when translating a postcondition
+                that should generate a local variable (bts #2339).
+-* e-acsl-gcc   [2017-11-28] Several files may be given to e-acsl-gcc.sh
+                (as specified).
+-* E-ACSL       [2017-11-27] Fix 'segmentation fault' of the generated monitor
+                whenever the main has a precondition depending on the memory
+                model.
+-* E-ACSL       [2017-11-27] Restore behavior of option -e-acsl-valid broken
+                since Phosphorus (included).
+
+####################################
+Plugin E-ACSL 16.0 (Sulfur-20171101)
+####################################
+
+-* E-ACSL       [2017-10-25] Fix bug #2303 about unnamed formals in
+                annotated functions.
+-  e-acsl-gcc   [2017-06-10] Add --free-valid-address option to e-acsl.gcc.sh.
+-  e-acsl-gcc   [2017-05-29] Add --fail-with-code option to e-acsl.gcc.sh.
+-  e-acsl-gcc   [2017-05-19] Add --temporal option to e-acsl.gcc.sh.
+-  E-ACSL       [2017-05-19] New detection of temporal errors in E-ACSL
+                through -e-acsl-temporal-validity (disabled by default).
+-  e-acsl-gcc   [2017-03-26] Add --weak-validity option to e-acsl.gcc.sh.
+-  e-acsl-gcc   [2017-03-26] Add --rt-verbose option to e-acsl.gcc.sh.
+-  e-acsl-gcc   [2017-03-26] Add --keep-going option to e-acsl.gcc.sh allowing
+                a program to continue execution after an assertion failure.
+-  e-acsl-gcc   [2017-03-26] Add --stack-size and --heap-size options to
+                e-acsl-gcc.sh allowing to change the default sizes of the
+                respective shadow spaces.
+
+########################################
+Plugin E-ACSL 15.0 (Phosphorus-20170501)
+########################################
+
+-  runtime      [2017-03-29] The (much more efficient) shadow memory model is
+                now used by default.
+-* runtime      [2017-03-28] Fix backtrace when the failed instrumented programs
+                do not require memory model.
+-! e-acsl-gcc   [2017-03-19] Remove --print|-p option from e-acsl-gcc.sh
+-  e-acsl-gcc   [2017-03-16] Add --check option to e-acsl-gcc.sh which allows
+                to check the integrity of the generated AST before
+                instrumentation.
+-! e-acsl-gcc   [2017-03-03] Remove precond rte option from e-acsl-gss.sh.
+-* E-ACSL       [2017-03-02] Fix bts #1740 about incorrect monitoring of
+                memory properties when early exiting a block through
+                goto, break or continue.
+-* E-ACSL       [2017-03-01] Correct support of stdin, stdout and stderr
+                in annotations.
+-* E-ACSL       [2017-02-24] Fix crash with casts from non-integral terms to
+                integral types (bts #2284).
+-* E-ACSL       [2017-02-17] Fix bug with goto which points to a labeled
+                statement which must be instrumented.
+-* E-ACSL       [2017-01-23] Fix bug #2252 about pointer arithmetic with
+                negative offsets.
+-* E-ACSL       [2017-01-23] Fix bug with typing of unary and binary
+                operations in a few cases: the generated code might have
+                overflowed.
+
+####################################
+Plugin E-ACSL 0.8 (Silicon-20161101)
+####################################
+
+-* e-acsl-gcc   [2016-11-07] Added --rte-select feature to e-acsl-gcc.sh.
+-* e-acsl-gcc   [2016-08-02] Added --rt-debug feature to e-acsl-gcc.sh.
+                --enable-optimized-rtl configure option removed
+-* configure    [2016-08-02] Added --enable-optimized-rtl option to configure
+-* e-acsl-gcc   [2016-08-02] Removed --production|-P, --no-stdlib|-N and
+                --debug-log|-D options of e-acsl-gcc.sh.
+-* E-ACSL       [2016-07-21] Enable reporting of stack traces during assertion
+                failures in instrumented programs.
+-* e-acsl-gcc   [2016-07-13] Add an e-acsl-gcc.sh option (--print--models)
+                allowing to print the names of the supported memory models.
+-* E-ACSL       [2016-07-01] Add monitoring support for aligned memory
+                allocation via posix_memalign and aligned alloc functions.
+-* runtime      [2016-07-01] Add local version of GMP library customized for use
+                with E-ACSL runtime library.
+-* runtime      [2016-07-01] Add custom implementation of malloc for use with
+                E-ACSL runtime library (via jemalloc library).
+-  E-ACSL       [2016-05-31] New option -e-acsl-builtins which allows to
+                declare pure C functions which can be used in logic
+                function application.
+-  E-ACSL       [2016-05-23] Re-implementation of the type system which
+                improves the efficiency of the generated code over integers.
+-* E-ACSL       [2016-05-23] Fix bug #2191 about complicate structs and
+                literate string.
+-* e-acsl-gcc   [2016-05-22] Add an e-acsl-gcc.sh option (--rte|-a) allowing to
+                annotate the source program with memory-safety assertions prior
+                to instrumentation.
+-* E-ACSL       [2016-05-23] Fix bug #1395 about recursive functions.
+-* Makefile     [2016-04-07] Fix 'make install' when executed within Frama-C.
+-* runtime      [2016-03-31] Improve performance of Patricia Trie memory model.
+-* Makefile     [2016-02-25] Fix 'make clean' in tests.
+-* runtime      [2016-01-15] Fix several bugs related to incorrect partial
+                initialization of tracked memory blocks in the E-ACSL
+                memory model library.
+
+######################################
+Plugin E-ACSL 0.6 (Magnesium_20151002)
+######################################
+
+-* e-acsl-gcc   [2016-01-22] Add an e-acsl-gcc.sh option allowing to skip
+                compilation of original sources.
+-* Makefile     [2016-01-15] Fix installation with custom --prefix.
+-* runtime      [2016-01-05] Fix bug in the memory model that caused the
+                tracked size of heap memory be computed incorrectly.
+-  e-acsl-gcc   [2015-12-15] Add a convenience script e-acsl-gcc.sh for
+                small runs of the E-ACSL plugin.
+-* E-ACSL       [2015-12-08] Fix bug #1817 about incorrect initialization of
+                literal strings in global arrays with compound initializers.
+-* runtime      [2015-11-06] Fix a crash occuring when using a recent libc
+                while GMP headers provided by E-ACSL are used.
+
+###################################
+Plugin E-ACSL 0.5 (Sodium_20150201)
+###################################
+
+-  E-ACSL       [2015-06-01] Support of \freeable. Thus illegal calls to
+                free (e.g. double free) are detected.
+-* E-ACSL       [2015-05-28] Fix types of \block_length and \offset.
+-  E-ACSL       [2015-05-27] Search .h in the E-ACSL memory model by
+                default (easier to use declarations like __memory_size).
+-  E-ACSL       [2015-05-27] Compatibility with new Frama-C Sodium option
+                -frama-c-stdlib.
+-* E-ACSL       [2015-04-28] Fix bug when using fopen.
+-* E-ACSL       [2015-03-06] Fix bugs #1636 and #1837 about scoping of literal
+                strings.
+o  E-ACSL       [2014-12-17] Export a minimal API for other plug-ins.
+-* E-ACSL       [2014-10-27] Add a missing cast when translating an integral
+                type used in a floating point/real context in an annotation.
+
+###################################
+Plugin E-ACSL 0.4.1 (Neon_20140301)
+###################################
+
+-* E-ACSL       [2014-08-05] Fix bug #1838 about memset.
+-* E-ACSL       [2014-08-05] Fix bug #1818 about initialization of globals.
+-* E-ACSL       [2014-08-04] Fix bug #1696 by clarifying the manual.
+-* E-ACSL       [2014-08-04] Fix bug #1831 about argc and argv.
+-* E-ACSL       [2014-07-19] Fix bug #1836 about one-off error when
+                computing the block which a pointer points to.
+-* E-ACSL       [2014-07-08] Fix bug #1695 about using some part of the
+                (Frama-C) libc which prevents linking of the generated C code.
+-* E-ACSL       [2014-05-21] Fix bug #1782 about incorrect URL in the
+                documentation.
+-  E-ACSL       [2014-03-27] Remove spurious warnings when using type real
+                numbers.
+-* E-ACSL       [2014-03-26] Fix bug #1692 about wrong localisation of
+                some messages.
+-  E-ACSL       [2014-03-26] Remove a spurious warning when an annotated
+                function is first declared, then defined.
+-* E-ACSL       [2014-03-26] Fix bug #1717 about instrumentation of
+                labeled statements.
+-* E-ACSL       [2014-03-25] Fix bug #1716 with annotations in while(1).
+-* E-ACSL       [2014-03-25] Fix bug #1715 about -e-acsl-full-mmodel which
+                generates incorrect code.
+-* E-ACSL       [2014-03-17] Fix bug #1700 about non-ISO empty struct.
+
+#################################
+Plugin E-ACSL 0.4 (Neon_20140301)
+#################################
+
+-* E-ACSL       [2014-01-28] Fix bug #1634 occuring in presence of static
+                addresses.
+-* E-ACSL       [2013-09-26] Fix incorrectness which may occur in presence
+                of aliasing.
+-* E-ACSL       [2013-09-25] Some loop invariants were tagged as "assertions".
+
+#####################################
+Plugin E-ACSL 0.3 (Fluorine_20130601)
+#####################################
+
+-  E-ACSL       [2013-09-18] More precise message for unsupported contract
+                clauses.
+-  E-ACSL       [2013-09-18] Use GMP still less often.
+-* E-ACSL       [2013-09-18] Fix bug which may occur with divisions and modulos.
+-  runtime      [2013-09-10] Improve ACSL contracts of the E-ACSL C library.
+-  E-ACSL       [2013-09-06] Support of loop invariants.
+-* E-ACSL       [2013-09-04] Fix bug when monitored global variables have
+                initializers (bts #1478).
+-* E-ACSL       [2013-09-04] Fix bug when mixing -e-acsl-prepare and
+                running E-ACSL in another project (bts #!1473).
+-* E-ACSL       [2013-06-26] Fix crash with typedef on pointer types.
+-  E-ACSL       [2013-06-21] Fewer unknown locations.
+-* E-ACSL       [2013-06-18] Fix bug when generating RTEs on the E-ACSL
+                generated project.
+-* E-ACSL       [2013-05-30] Fix -e-acsl-debug n, with n >= 2.
+
+#####################################
+Plugin E-ACSL 0.2 (Fluorine_20130401)
+#####################################
+
+-  E-ACSL       [2013-01-09] New option -e-acsl-valid. By default, valid
+                annotation are not translated anymore.
+-* E-ACSL       [2013-01-09] Fix bug when translating a postcondition of a
+                function where the init state is the same than the final
+                state (bts #!1300).
+-  E-ACSL       [2013-01-09] Support of undefined function with a contract.
+-  E-ACSL       [2012-12-20] Support of ghost variables and statements.
+-* E-ACSL       [2012-12-13] Fix bug with complex term left-values.
+-  E-ACSL       [2012-11-27] Support of \valid_read.
+-  E-ACSL       [2012-11-27] Prevent runtime errors in annotations, except
+                uninitialized variables.
+-  E-ACSL       [2012-11-19] Support of floats in annotations. Approximate
+                reals by floats.
+-  E-ACSL       [2012-10-25] Support of \valid.
+-  E-ACSL       [2012-10-25] Support of \initialized.
+-  E-ACSL       [2012-10-25] Support of \block_length.
+-  E-ACSL       [2012-10-25] Support of \offset.
+-  E-ACSL       [2012-10-25] Support of \base_addr.
+-* E-ACSL       [2012-09-13] Fix bug with very long ACSL integer constants.
+-  E-ACSL       [2012-06-27] Continue to convert the other pre/post-conditions
+                even if one fails.
+-  runtime      [2012-04-27] Improve ACSL spec of E-ACSL' C library.
+-* Makefile     [2012-01-27] Fix compilation bug when configuring with
+                --enable-external.
+-  E-ACSL       [2012-01-25] Nicer generated variable names.
+-* E-ACSL       [2012-01-24] Fix bug with lazy operators in term position.
+-* E-ACSL       [2012-01-24] Fix bug with boolean.
+-* E-ACSL       [2012-01-24] Fix bug with negation and GMP integers.
+-* E-ACSL       [2012-01-24] Fix bug with conditional and GMP integers.
+-  runtime      [2012-01-24] Function e_acsl_assert now consistent with
+                standard assert.
+-  E-ACSL       [2012-01-23] Support of bitwise complementation.
+-  E-ACSL       [2012-01-20] Use GMP arithmetics only when required
+                (i.e. mostly never in practice).
+
+#####################################
+Plugin E-ACSL 0.1 (Nitrogen_20111001)
+#####################################
+
+-  E-ACSL       [2012-01-06] First public release.
+
+###################################

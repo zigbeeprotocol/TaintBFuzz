@@ -1,0 +1,113 @@
+%==================================================================================
+\chapter{Slicing}
+
+\section{Ligne de commande}
+
+Parmi les options utilisables depuis la ligne de commande 
+ qui sont spécifiques au greffon de {\sl slicing}, trois options permettent
+ de spécifier les modes de fonctionnement du greffon :
+
+\begin{description}
+\item {\tt -slice-print} :   
+      {\sl pretty print the sliced code to the standard out, or else
+        into the file specified with the {\tt -ocode} option.}
+
+\item {\tt -slice-undef-functions} : 
+      {\sl allow the use of the -slicing-level option for calls to
+        undefined functions (by default, don't slice the prototype of
+        undefined functions).}
+
+\item {\tt -slicing-level n} :  
+      {\sl set the default level of slicing used to propagate to the calls.}
+      {\sl The possible values for {\tt n} are :}
+  \begin{description}
+  \item {\tt 0} :  
+        {\sl don't slice the called functions.}
+  \item {\tt 1} :   
+        {\sl don't slice the called functions but propagate the marks anyway.}
+  \item {\tt 2} :   
+        {\sl try to use existing slices, create at most one.}
+  \item {\tt 3} :   
+        {\sl most precise slices.}
+  \end{description}
+  {\sl note: this value (defaults to 2) is not used for calls to
+    undefined functions except when {\tt-slice-undef-functions} option is set.}
+
+
+\end{description}
+
+Les options suivantes permettent de spécifier les réductions à
+effectuer en précisant ce en quoi l'utilisateur est intéressé~:
+\begin{description} 
+\item {\tt -slice-assert f1,...,fn} :  
+      {\sl select the assertions of functions {\tt f1},...,{\tt fn}.}
+
+\item {\tt -slice-calls f1,...,fn} :  
+      {\sl select every calls to functions {\tt f1},...,{\tt fn}, and all their dependencies.}
+
+\item {\tt-slice-loop-inv f1,...,fn} : 
+      {\sl select the loop invariants of functions {\tt f1},...,{\tt fn}.}
+\item {\tt -slice-loop-var f1,...,fn} : 
+      {\sl select the loop variants of functions {\tt f1},...,{\tt fn}.}
+\item {\tt -slice-pragma f1,...,fn} :  
+      {\sl use the slicing pragmas in the code of functions {\tt f1},...,{\tt fn} as slicing criteria.}
+
+\item {\tt -slice-return f1,...,fn} :  
+      {\sl select the result (returned value) of functions {\tt f1},...,{\tt fn}.}
+
+\item {\tt -slice-threat f1,...,fn} :  
+      {\sl select the threats of functions {\tt f1},...,{\tt fn}.}
+
+\item {\tt -slice-value v1,...vn} :  
+      {\sl select the result of left-values {\tt v1},...,{\tt vn}
+        at the end of the function given as entry point
+        (the addresses are evaluated at the beginning of the function given as entry point).}
+
+\item {\tt -slice-rd v1,...vn} :  
+      {\sl select the read access to left-values {\tt v1},...,{\tt vn}
+        (the addresses are evaluated at the beginning of the function given as entry point).}
+
+\item {\tt -slice-wr v1,...vn} :  
+      {\sl select the write access to left-values {\tt v1},...,{\tt vn}
+        (the addresses are evaluated at the beginning of the function given as entry point).}
+
+\end{description}
+
+Ces options ne sont pas exclusives 
+car il est possible de s'intéresser simultanément 
+à plusieurs fonctions 
+ainsi qu'à plusieurs aspects concernant une même fonction.
+Une même option peut donc être utilisée à plusieurs reprise.
+Notons que l'ordre n'intervient pas dans le résultat final.
+
+\section{Annotation pour le slicing}
+
+Les annotations destinées à spécifier des requêtes
+de slicing se situe, comme toutes les autres annotations, dans des commentaires
+C commençant par \verb!@!. Leur identification est \verb!slice pragma!,
+et elles sont prises en compte si l'option \verb!-slice-pragma! mentionnée
+ci-dessus est utilisée.\\
+
+Il existe trois requêtes de slicing~:
+\begin{quote}
+\begin{description}
+  \item[]\verb!//@ slice pragma expr! {\it expr\_desc} \verb!;!
+    correspond au critère traditionnel de slicing, à savoir préserver le passage
+    au point de programme et la valeur de l'expression à ce point. Exemple~:
+    \begin{center}
+    \verb!//@slice pragma expr S.a;!
+    \end{center}
+  \item[]\verb!//@ slice pragma ctrl;!
+    permet de s'intéresser uniquement au passage à un point de programme 
+    (sélection des dépendances de contrôle),
+  \item[]\verb!//@ slice pragma stmt;!
+    sélectionne l'instruction (et donc de tout ce qui permet de l'atteindre et
+    de la calculer).
+    Cette dernière requête est expérimentale.
+\end{description}
+\end{quote}
+
+
+
+
+

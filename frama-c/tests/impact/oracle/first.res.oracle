@@ -1,0 +1,29 @@
+[kernel] Parsing first.i (no preprocessing)
+[impact] beginning analysis
+[eva] Analyzing an incomplete application starting at impact
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ [--..--]
+  b ∈ [--..--]
+  c ∈ [--..--]
+  e ∈ [--..--]
+  x ∈ [--..--]
+  y ∈ [--..--]
+  z ∈ [--..--]
+  f ∈ [--..--]
+  w ∈ [--..--]
+[eva:alarm] first.i:12: Warning: signed overflow. assert -2147483648 ≤ b + c;
+[eva:alarm] first.i:12: Warning: signed overflow. assert b + c ≤ 2147483647;
+[eva:alarm] first.i:13: Warning: signed overflow. assert -2147483648 ≤ x + e;
+[eva:alarm] first.i:13: Warning: signed overflow. assert x + e ≤ 2147483647;
+[eva:alarm] first.i:17: Warning: signed overflow. assert -2147483648 ≤ y + f;
+[eva:alarm] first.i:17: Warning: signed overflow. assert y + f ≤ 2147483647;
+[eva] Recording results for impact
+[eva] done for function impact
+[pdg] computing for function impact
+[pdg] done for function impact
+[impact] impacted statements of stmt(s) 2 are:
+    first.i:12 (sid 5): x = b + c;first.i:13 (sid 6): y = x + e;
+    first.i:17 (sid 9): z = y + f;first.i:18 (sid 10): w = b;
+[impact] analysis done

@@ -1,0 +1,24 @@
+# frama-c -wp [...]
+[kernel] Parsing postassigns2.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function mess1
+------------------------------------------------------------
+
+Goal Exit-condition (file postassigns2.c, line 6) in 'mess1':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file postassigns2.c, line 7) in 'mess1':
+Call Effect at line 10
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file postassigns2.c, line 7) in 'mess1':
+Call Effect at line 10
+Prove: true.
+
+------------------------------------------------------------

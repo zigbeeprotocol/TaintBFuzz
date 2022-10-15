@@ -1,0 +1,11 @@
+12a13,22
+> [eva] infinite.i:6: starting to merge loop iterations
+> [eva] computing for function pause <- main.
+>   Called from infinite.i:9.
+> [eva] Done for function pause
+> [eva] computing for function pause <- main.
+>   Called from infinite.i:9.
+> [eva] Done for function pause
+> [eva] computing for function pause <- main.
+>   Called from infinite.i:9.
+> [eva] Done for function pause

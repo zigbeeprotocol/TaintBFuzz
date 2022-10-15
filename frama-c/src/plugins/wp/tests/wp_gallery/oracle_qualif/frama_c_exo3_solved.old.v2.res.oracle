@@ -1,0 +1,82 @@
+# frama-c -wp -wp-model 'Typed (Ref)' [...]
+[kernel] Parsing frama_c_exo3_solved.old.v2.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 35 goals scheduled
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_ensures_v1_good : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_ensures_v2_good : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_ensures_v1_v2_diff : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_preserved : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_established : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_set_at_0_preserved : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_set_at_0_established : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_assert_set_at_1 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_bound_preserved : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_bound_established : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_seen_sound1_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_seen_sound1_established : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_seen_sound2_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_seen_sound2_established : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_v1_first_preserved : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_v1_first_established : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_v1_sound1_preserved : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_v1_sound1_established : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_v1_sound2_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_v1_sound2_established : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_v1_v2_diff_preserved : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_v1_v2_diff_established : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_v2_sound1_preserved : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_invariant_v2_sound1_established : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_v2_sound2_preserved : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_loop_invariant_v2_sound2_established : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_assigns : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_assigns_2 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assigns_part1 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assigns_part2 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assigns_part3 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_variant_decrease : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_variant_positive : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_variant_2_decrease : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_loop_variant_2_positive : Valid
+[wp] Proved goals:   35 / 35
+  Qed:            20 
+  Alt-Ergo:       15
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  equal_elements           20       15       35       100%
+------------------------------------------------------------
+[wp] frama_c_exo3_solved.old.v2.c:56: Warning: 
+  Memory model hypotheses for function 'equal_elements':
+  /*@
+     behavior wp_typed_ref:
+       requires \valid(v1);
+       requires \valid(v2);
+       requires \separated(v1, v2, a + (..));
+     */
+  void equal_elements(int *a, int *v1, int *v2);
+[wp] Running WP plugin...
+[rte:annot] annotating function equal_elements
+[wp] 16 goals scheduled
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_mem_access : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_mem_access_2 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_index_bound : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_index_bound_2 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_signed_overflow : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_assert_rte_mem_access_3 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_assert_rte_index_bound_3 : Valid
+[wp] [Alt-Ergo] Goal typed_ref_equal_elements_assert_rte_index_bound_4 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_mem_access_4 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_mem_access_5 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_mem_access_6 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_mem_access_7 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_mem_access_8 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_index_bound_5 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_index_bound_6 : Valid
+[wp] [Qed] Goal typed_ref_equal_elements_assert_rte_signed_overflow_2 : Valid
+[wp] Proved goals:   16 / 16
+  Qed:            13 
+  Alt-Ergo:        3
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  equal_elements           33       18       51       100%
+------------------------------------------------------------

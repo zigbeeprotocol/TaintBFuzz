@@ -1,0 +1,251 @@
+# frama-c -wp [...]
+[kernel] Parsing terminates_fp.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] terminates_fp.i:42: Warning: 
+  Missing terminates clause for no_t_spec, populates 'terminates \true'
+[wp] Warning: Missing RTE guards
+[wp] terminates_fp.i:62: Warning: 
+  Missing terminates clause for no_t_spec_cond, populates 'terminates \true'
+[wp] terminates_fp.i:70: Warning: 
+  Missing terminates clause for no_t_spec_cond_m, populates 'terminates \true'
+[wp] terminates_fp.i:56: Warning: 
+  Missing terminates clause for no_t_spec_in_bhv, populates 'terminates \true'
+[wp] terminates_fp.i:22: Warning: 
+  Missing terminates clause for t_spec, populates 'terminates \true'
+[wp] terminates_fp.i:36: Warning: 
+  Missing terminates clause for t_spec_in_bhv, populates 'terminates \true'
+[wp] terminates_fp.i:78: Warning: 
+  Missing terminates clause for warns_recursive, populates 'terminates \true'
+[wp] terminates_fp.i:78: Warning: 
+  In 'warns_recursive', no 'calls' specification for statement(s) on line(s): 
+  line 79, 
+  Assuming that they can call 'warns_recursive'
+[wp] terminates_fp.i:9: Warning: 
+  Missing terminates clause for gt, populates 'terminates \true'
+[wp] terminates_fp.i:11: Warning: 
+  Missing terminates clause for ht, populates 'terminates \true'
+[wp] terminates_fp.i:79: Warning: Missing 'calls' for default behavior
+[wp] terminates_fp.i:78: Warning: 
+  No 'decreases' clause on recursive function 'warns_recursive', cannot prove termination
+------------------------------------------------------------
+  Function no_t_spec
+------------------------------------------------------------
+
+Goal Call point gnt hnt in 'no_t_spec' at instruction (file terminates_fp.i, line 44):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec' (2/2):
+Call Effect at line 44
+Tags: Call gnt.
+Assume { (* Heap *) Type: region(G_gnt_32) <= 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_t_spec_cond
+------------------------------------------------------------
+
+Goal Call point gt hnt in 'no_t_spec_cond' at instruction (file terminates_fp.i, line 64):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec_cond' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec_cond' (2/2):
+Call Effect at line 64
+Tags: Call hnt.
+Assume { (* Heap *) Type: region(G_hnt_37) <= 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_t_spec_cond_m
+------------------------------------------------------------
+
+Goal Call point gt ht in 'no_t_spec_cond_m' at instruction (file terminates_fp.i, line 72):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Call point hnt in 'no_t_spec_cond_m' at instruction (file terminates_fp.i, line 75) (1/2):
+Tags: Call gt.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Call point hnt in 'no_t_spec_cond_m' at instruction (file terminates_fp.i, line 75) (2/2):
+Tags: Call ht.
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec_cond_m' (1/3):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec_cond_m' (2/3):
+Call Effect at line 75
+Tags: Call gt Call hnt.
+Assume { (* Heap *) Type: (region(G_gt_22) <= 0) /\ (region(G_hnt_37) <= 0).
+}
+Prove: false.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec_cond_m' (3/3):
+Call Effect at line 75
+Tags: Call ht Call hnt.
+Assume { (* Heap *) Type: (region(G_hnt_37) <= 0) /\ (region(G_ht_27) <= 0).
+}
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_t_spec_in_bhv
+------------------------------------------------------------
+
+Goal Call point gnt hnt in 'no_t_spec_in_bhv' at instruction (file terminates_fp.i, line 58):
+Let a = global(G_hnt_37).
+Let a_1 = global(G_gnt_32).
+Assume {
+  Type: is_sint32(x).
+  (* Heap *)
+  Type: region(f.base) <= 0.
+  (* Pre-condition for 'B1' *)
+  Have: ((x = 0) -> (a_1 = f)).
+  (* Pre-condition for 'B2' *)
+  Have: ((x != 0) -> (a = f)).
+}
+Prove: (a_1 = f) \/ (a = f).
+
+------------------------------------------------------------
+
+Goal Complete behaviors 'B1', 'B2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Disjoint behaviors 'B1', 'B2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec_in_bhv' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'no_t_spec_in_bhv' (2/2):
+Call Effect at line 58
+Tags: Call gnt.
+Assume { (* Heap *) Type: region(G_gnt_32) <= 0. }
+Prove: false.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_t_spec_in_bhv with behavior B1
+------------------------------------------------------------
+
+Goal Call point gnt hnt in 'no_t_spec_in_bhv' at instruction (file terminates_fp.i, line 58):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function no_t_spec_in_bhv with behavior B2
+------------------------------------------------------------
+
+Goal Call point gnt hnt in 'no_t_spec_in_bhv' at instruction (file terminates_fp.i, line 58):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function t_spec
+------------------------------------------------------------
+
+Goal Call point gt ht in 't_spec' at instruction (file terminates_fp.i, line 24):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 't_spec':
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function t_spec_in_bhv
+------------------------------------------------------------
+
+Goal Call point gt hnt in 't_spec_in_bhv' at instruction (file terminates_fp.i, line 38):
+Let a = global(G_gt_22).
+Let a_1 = global(G_hnt_37).
+Assume {
+  Type: is_sint32(x).
+  (* Heap *)
+  Type: region(f.base) <= 0.
+  (* Pre-condition for 'B1' *)
+  Have: ((x = 0) -> (a_1 = f)).
+  (* Pre-condition for 'B2' *)
+  Have: ((x != 0) -> (a = f)).
+}
+Prove: (a = f) \/ (a_1 = f).
+
+------------------------------------------------------------
+
+Goal Complete behaviors 'B1', 'B2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Disjoint behaviors 'B1', 'B2':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 't_spec_in_bhv' (1/2):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 't_spec_in_bhv' (2/2):
+Call Effect at line 38
+Tags: Call hnt.
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function t_spec_in_bhv with behavior B1
+------------------------------------------------------------
+
+Goal Call point gt hnt in 't_spec_in_bhv' at instruction (file terminates_fp.i, line 38):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function t_spec_in_bhv with behavior B2
+------------------------------------------------------------
+
+Goal Call point gt hnt in 't_spec_in_bhv' at instruction (file terminates_fp.i, line 38):
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function warns_recursive
+------------------------------------------------------------
+
+Goal Termination-condition (generated) in 'warns_recursive':
+Call Result at line 80
+Prove: false.
+
+------------------------------------------------------------

@@ -1,0 +1,104 @@
+[kernel] Parsing ilevel.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  i ∈ {0}
+  j ∈ {0}
+  k ∈ {0}
+  l ∈ {0}
+[eva] ilevel.i:9: starting to merge loop iterations
+[eva] ilevel.i:12: starting to merge loop iterations
+[eva:alarm] ilevel.i:20: Warning: assertion got status unknown.
+[eva:alarm] ilevel.i:22: Warning: assertion got status unknown.
+[eva] ilevel.i:24: Frama_C_show_each: [0..9]
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  i ∈ {0; 1; 2; 3; 4; 5; 6; 7}
+  j ∈ [0..16]
+  k ∈ [0..15]
+  l ∈ [0..9]
+  __retres ∈ [0..47]
+[slicing] slicing requests in progress...
+[slicing] initializing slicing ...
+[slicing] interpreting slicing requests from the command line...
+[pdg] computing for function main
+[from] Computing for function Frama_C_show_each
+[from] Done for function Frama_C_show_each
+[pdg] done for function main
+[slicing] applying all slicing requests...
+[slicing] applying 0 actions...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[slicing] exporting project to 'Slicing export'...
+[slicing] applying all slicing requests...
+[slicing] applying 0 actions...
+[sparecode] remove unused global declarations from project 'Slicing export tmp'
+[sparecode] removed unused global declarations in new project 'Slicing export'
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  i ∈ {0}
+  j ∈ {0}
+  k ∈ {0}
+  l ∈ {0}
+[eva] ilevel.i:9: starting to merge loop iterations
+[eva] ilevel.i:12: starting to merge loop iterations
+[eva:alarm] ilevel.i:26: Warning: 
+  signed overflow. assert (int)((int)(i + j) + k) + l ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  i ∈ {0; 1; 2; 3; 4; 5; 6; 7}
+  j ∈ [0..16]
+  k ∈ {0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15}
+  l ∈ [--..--]
+  __retres ∈ [--..--]
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  i ∈ {0}
+  j ∈ {0}
+  k ∈ {0}
+  l ∈ {0}
+[eva] ilevel.i:24: Frama_C_show_each: {0; 1; 2; 3; 4; 6; 7; 8; 9}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  i ∈ {0; 1; 2; 3; 4; 5; 6; 7}
+  j ∈ {0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16}
+  k ∈ {0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15}
+  l ∈ {0; 1; 2; 3; 4; 6; 7; 8; 9}
+  __retres ∈ [0..47]
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  v ∈ [--..--]
+  i ∈ {0}
+  j ∈ {0}
+  k ∈ {0}
+  l ∈ {0}
+[eva] ilevel.i:24: Frama_C_show_each: {0; 1; 2; 3; 4; 6; 7; 8; 9}
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  i ∈ {0; 1; 2; 3; 4; 5; 6; 7}
+  j ∈ {0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16}
+  k ∈ {0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15}
+  l ∈ {0; 1; 2; 3; 4; 6; 7; 8; 9}
+  __retres ∈
+          {0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10; 11; 12; 13; 14; 15; 16; 17; 18;
+           19; 20; 21; 22; 23; 24; 25; 26; 27; 28; 29; 30; 31; 32; 33; 34;
+           35; 36; 37; 38; 39; 40; 41; 42; 43; 44; 45; 46; 47}

@@ -1,0 +1,79 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing bts_1360.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function foo_correct
+[rte:annot] annotating function foo_wrong
+------------------------------------------------------------
+  Function foo_correct
+------------------------------------------------------------
+
+Goal Post-condition (file bts_1360.i, line 24) in 'foo_correct':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file bts_1360.i, line 29):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(b.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: valid_rd(Malloc_0, b, 1) /\ valid_rw(Malloc_0, a, 1).
+  (* Pre-condition *)
+  Have: b != a.
+}
+Prove: valid_rd(Malloc_0, a, 1).
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file bts_1360.i, line 29):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file bts_1360.i, line 30):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assigns (file bts_1360.i, line 25) in 'foo_correct':
+Effect at line 30
+Prove: true.
+
+------------------------------------------------------------
+------------------------------------------------------------
+  Function foo_wrong
+------------------------------------------------------------
+
+Goal Post-condition (file bts_1360.i, line 13) in 'foo_wrong':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file bts_1360.i, line 18):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file bts_1360.i, line 18):
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Assertion 'rte,mem_access' (file bts_1360.i, line 19):
+Assume {
+  (* Heap *)
+  Type: (region(a.base) <= 0) /\ (region(b.base) <= 0) /\ linked(Malloc_0).
+  (* Pre-condition *)
+  Have: valid_rd(Malloc_0, a, 1) /\ valid_rd(Malloc_0, b, 1).
+  (* Pre-condition *)
+  Have: b != a.
+}
+Prove: valid_rw(Malloc_0, a, 1).
+
+------------------------------------------------------------
+
+Goal Assigns (file bts_1360.i, line 14) in 'foo_wrong':
+Effect at line 19
+Prove: true.
+
+------------------------------------------------------------

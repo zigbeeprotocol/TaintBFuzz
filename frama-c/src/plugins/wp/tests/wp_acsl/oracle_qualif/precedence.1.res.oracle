@@ -1,0 +1,70 @@
+# frama-c -wp -wp-steps 50 [...]
+[kernel] Parsing precedence.i (no preprocessing)
+[kernel:annot-error] precedence.i:90: Warning: unexpected token ';'
+[kernel:annot-error] precedence.i:135: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:134: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:133: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:132: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:130: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:129: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:128: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:127: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:125: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:124: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:123: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:122: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:120: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:119: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:118: Warning: Inconsistent relation chain.
+[kernel:annot-error] precedence.i:175: Warning: 
+  R is not a logic variable. Ignoring code annotation
+[kernel:annot-error] precedence.i:176: Warning: 
+  P is not a logic variable. Ignoring code annotation
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] 37 goals scheduled
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_precedence_xor_and : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_precedence_xor_and : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_precedence_or_xor : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_precedence_or_xor : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_precedence_implies_or : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_assoc_implies : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_precedence_equiv_implies : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_precedence_equiv_implies : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_precedence_ite_equiv : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_precedence_ite_equiv : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_assoc_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_precedence_forall_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_m_precedence_forall_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_precedence_forall_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_assoc_forall : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_precedence_exists_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_m_precedence_exists_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_precedence_exists_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_assoc_exist : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_r_precedence_let_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_m_precedence_let_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_precedence_let_ite : Unsuccess
+[wp] [Alt-Ergo] Goal typed_predicate_ensures_ko_l_assoc_naming : Unsuccess
+[wp] [Alt-Ergo] Goal typed_comparison_ensures_ko_r_precedence_and_eq : Unsuccess
+[wp] [Alt-Ergo] Goal typed_comparison_ensures_ko_l_precedence_and_eq : Unsuccess
+[wp] [Alt-Ergo] Goal typed_comparison_ensures_ko_l_nonassoc_eq : Unsuccess
+[wp] [Alt-Ergo] Goal typed_comparison_ensures_ko_r_nonassoc_eq : Unsuccess
+[wp] [Alt-Ergo] Goal typed_comparison_ensures_ko_r_precedence_and_neq : Unsuccess
+[wp] [Alt-Ergo] Goal typed_comparison_ensures_ko_l_precedence_and_neq : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bitwise_ensures_ko_l_precedence_xor_and : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bitwise_ensures_ko_r_precedence_xor_and : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bitwise_ensures_ko_l_precedence_or_xor : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bitwise_ensures_ko_r_precedence_or_xor : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bitwise_ensures_ko_l_precedence_implies_or : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bitwise_ensures_ko_l_assoc_implies : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bitwise_ensures_ko_r_precedence_equiv_implies : Unsuccess
+[wp] [Alt-Ergo] Goal typed_bitwise_ensures_ko_l_precedence_equiv_implies : Unsuccess
+[wp] Proved goals:    0 / 37
+  Alt-Ergo:        0  (unsuccess: 37)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  predicate                 -        -       23       0.0%
+  comparison                -        -        6       0.0%
+  bitwise                   -        -        8       0.0%
+------------------------------------------------------------

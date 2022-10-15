@@ -1,0 +1,175 @@
+[kernel] Parsing fptr.i (no preprocessing)
+[kernel:typing:incompatible-types-call] fptr.i:44: Warning: 
+  implicit conversion between incompatible function types:
+  short (*)(void)
+  and
+  int (*)()
+[kernel:typing:incompatible-types-call] fptr.i:45: Warning: 
+  implicit conversion between incompatible function types:
+  int (*)(void)
+  and
+  short (*)()
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  R ∈ {77}
+  v ∈ [--..--]
+  n ∈ {0}
+  X ∈ {77}
+  XH ∈ {0}
+  XHH ∈ {0}
+  GLOBAL[0..9] ∈ {0}
+  G ∈ {0}
+  TA ∈ {0}
+[eva] computing for function retshort <- main.
+  Called from fptr.i:42.
+[eva] Recording results for retshort
+[eva] Done for function retshort
+[eva] computing for function retint <- main.
+  Called from fptr.i:43.
+[eva] Recording results for retint
+[eva] Done for function retint
+[eva:alarm] fptr.i:44: Warning: 
+  pointer to function with incompatible type.
+  assert \valid_function((int (*)(void))(&retshort));
+[eva:alarm] fptr.i:45: Warning: 
+  pointer to function with incompatible type.
+  assert \valid_function((short (*)(void))(&retint));
+[eva] fptr.i:51: Frama_C_show_each_F: {{ &h }}
+[eva] computing for function f <- main.
+  Called from fptr.i:52.
+[eva] computing for function h <- f <- main.
+  Called from fptr.i:9.
+[eva] Recording results for h
+[eva] Done for function h
+[eva] Recording results for f
+[eva] Done for function f
+[eva] fptr.i:52: Frama_C_show_each: {0}
+[eva] fptr.i:50: starting to merge loop iterations
+[eva] fptr.i:51: Frama_C_show_each_F: {{ &h ; &hh }}
+[eva] computing for function f <- main.
+  Called from fptr.i:52.
+[eva] computing for function hh <- f <- main.
+  Called from fptr.i:9.
+[eva] Recording results for hh
+[eva] Done for function hh
+[eva] fptr.i:9: Reusing old results for call to h
+[eva] Recording results for f
+[eva] Done for function f
+[eva] fptr.i:52: Frama_C_show_each: {0; 1}
+[eva] fptr.i:51: Frama_C_show_each_F: {{ NULL ; &h ; &hh }}
+[eva] computing for function f <- main.
+  Called from fptr.i:52.
+[eva:alarm] fptr.i:9: Warning: 
+  pointer to function with incompatible type. assert \valid_function(ptr);
+[eva] fptr.i:9: Reusing old results for call to hh
+[eva] fptr.i:9: Reusing old results for call to h
+[eva] Recording results for f
+[eva] Done for function f
+[eva] fptr.i:52: Frama_C_show_each: {0; 1}
+[eva] fptr.i:51: Frama_C_show_each_F: {{ NULL ; &h ; &hh }}
+[eva] fptr.i:52: Reusing old results for call to f
+[eva:alarm] fptr.i:56: Warning: division by zero. assert (int)(c & 64) ≢ 0;
+[eva] computing for function hh <- main.
+  Called from fptr.i:56.
+[eva] Recording results for hh
+[eva] Done for function hh
+[eva] computing for function h <- main.
+  Called from fptr.i:56.
+[eva] Recording results for h
+[eva] Done for function h
+[eva] Recording results for main
+[eva] done for function main
+[eva] fptr.i:44: assertion 'Eva,function_pointer' got final status invalid.
+[eva] fptr.i:45: assertion 'Eva,function_pointer' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function h:
+  X ∈ {0; 1}
+  XH ∈ {0; 1}
+[eva:final-states] Values at end of function hh:
+  X ∈ {0; 2}
+  XHH ∈ {0; 1}
+[eva:final-states] Values at end of function f:
+  R ∈ {1; 2}
+  n ∈ {1; 2; 3}
+  X ∈ {1; 2}
+  XH ∈ {0; 1}
+  XHH ∈ {0; 1}
+[eva:final-states] Values at end of function retint:
+  __retres ∈ {42}
+[eva:final-states] Values at end of function retshort:
+  __retres ∈ {12}
+[eva:final-states] Values at end of function main:
+  R ∈ {1; 2; 77}
+  n ∈ {0; 1; 2; 3}
+  X ∈ {0; 1; 2; 77}
+  XH ∈ {0; 1}
+  XHH ∈ {0; 1}
+  GLOBAL[0] ∈ {{ &h }}
+        [1] ∈ {{ &hh }}
+        [2..9] ∈ {0}
+  G ∈ {0; 1; 2}
+  TA ∈ {0}
+  in ∈ {12} or UNINITIALIZED
+  pin ∈ UNINITIALIZED
+  sh ∈ {42} or UNINITIALIZED
+  psh ∈ UNINITIALIZED
+  i ∈ {3}
+  p ∈ {{ &h ; &hh }}
+[from] Computing for function h
+[from] Done for function h
+[from] Computing for function hh
+[from] Done for function hh
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function retint
+[from] Done for function retint
+[from] Computing for function retshort
+[from] Done for function retshort
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function h:
+  X FROM y
+  XH FROM y
+  \result FROM y
+[from] Function hh:
+  X FROM y
+  XHH FROM y
+  \result FROM y
+[from] Function f:
+  R FROM ptr
+  n FROM i
+  X FROM ptr
+  XH FROM ptr (and SELF)
+  XHH FROM ptr (and SELF)
+  \result FROM ptr
+[from] Function retint:
+  \result FROM \nothing
+[from] Function retshort:
+  \result FROM \nothing
+[from] Function main:
+  R FROM v; GLOBAL[2] (and SELF)
+  n FROM v (and SELF)
+  X FROM v; GLOBAL[2]; c (and SELF)
+  XH FROM v; GLOBAL[2]; c (and SELF)
+  XHH FROM v; GLOBAL[2]; c (and SELF)
+  GLOBAL[0..1] FROM \nothing
+  G FROM v; GLOBAL[2] (and SELF)
+  TA FROM c (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function h:
+    X; XH
+[inout] Out (internal) for function hh:
+    X; XHH
+[inout] Out (internal) for function f:
+    R; n; X; XH; XHH
+[inout] Out (internal) for function retint:
+    __retres
+[inout] Out (internal) for function retshort:
+    __retres
+[inout] Out (internal) for function main:
+    R; n; X; XH; XHH; GLOBAL[0..1]; G; TA; in; pin; sh; psh; tmp; tmp_0; 
+    i; p; tmp_1

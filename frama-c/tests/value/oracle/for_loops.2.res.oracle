@@ -1,0 +1,64 @@
+[kernel] Parsing for_loops.c (with preprocessing)
+[eva] Analyzing a complete application starting at main_3
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  x ∈ {0}
+[eva] computing for function Frama_C_interval <- main_3.
+  Called from for_loops.c:37.
+[eva] using specification for function Frama_C_interval
+[eva] for_loops.c:37: 
+  function Frama_C_interval: precondition 'order' got status valid.
+[eva] Done for function Frama_C_interval
+[eva] for_loops.c:39: 
+  Frama_C_dump_each:
+  # cvalue:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ {0}
+  j ∈ UNINITIALIZED
+  T[0..999] ∈ UNINITIALIZED
+  nSelectors ∈ [0..1000]
+  w ∈ {0}
+  ==END OF DUMP==
+[eva] for_loops.c:40: starting to merge loop iterations
+[eva] for_loops.c:41: 
+  Frama_C_dump_each:
+  # cvalue:
+  Frama_C_entropy_source ∈ [--..--]
+  x ∈ {0}
+  j ∈ [0..1000]
+  T[0..999] ∈ {1} or UNINITIALIZED
+  nSelectors ∈ [0..1000]
+  w ∈ {0}
+  ==END OF DUMP==
+[eva:alarm] for_loops.c:42: Warning: 
+  accessing uninitialized left-value. assert \initialized(&T[j]);
+[eva] for_loops.c:42: starting to merge loop iterations
+[eva:alarm] for_loops.c:42: Warning: 
+  signed overflow. assert w + T[j] ≤ 2147483647;
+[eva] for_loops.c:43: Frama_C_show_each: [0..2147483647]
+[eva] Recording results for main_3
+[eva] done for function main_3
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main_3:
+  Frama_C_entropy_source ∈ [--..--]
+  j ∈ [0..1000]
+  T[0..999] ∈ {1} or UNINITIALIZED
+  nSelectors ∈ [0..1000]
+  w ∈ [0..2147483647]
+[from] Computing for function main_3
+[from] Computing for function Frama_C_interval <-main_3
+[from] Done for function Frama_C_interval
+[from] Done for function main_3
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function Frama_C_interval:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+  \result FROM Frama_C_entropy_source; min; max
+[from] Function main_3:
+  Frama_C_entropy_source FROM Frama_C_entropy_source (and SELF)
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main_3:
+    Frama_C_entropy_source; j; T[0..999]; nSelectors; w
+[inout] Inputs for function main_3:
+    Frama_C_entropy_source

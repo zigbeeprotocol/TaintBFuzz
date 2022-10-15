@@ -1,0 +1,72 @@
+# frama-c -wp [...]
+[kernel] Parsing logicarr.i (no preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function job
+------------------------------------------------------------
+
+Goal Post-condition 'PTR' in 'job':
+Let a = global(G_arr_35).
+Let a_1 = shift_sint32(a, i).
+Let x = Mint_0[a_1].
+Let a_2 = shift_sint32(a, j).
+Let m = Mint_0[a_1 <- Mint_0[a_2]][a_2 <- x][shift_sint32(a, k) <- x].
+Assume {
+  Type: is_sint32(i) /\ is_sint32(j) /\ is_sint32(k) /\
+      IsArray_sint32(Array_sint32(a, 10, Mint_0)) /\ is_sint32(x) /\
+      IsArray_sint32(Array_sint32(a, 10, m)).
+  (* Pre-condition *)
+  Have: (0 <= i) /\ (i <= 9).
+  (* Pre-condition *)
+  Have: (0 <= j) /\ (j <= 9).
+  (* Pre-condition *)
+  Have: (0 <= k) /\ (k <= 9).
+}
+Prove: P_p_pointer(m, Mint_0, shift_sint32(a, 0), i, j).
+
+------------------------------------------------------------
+
+Goal Post-condition 'ARR' in 'job':
+Let a = global(G_arr_35).
+Let m = Array_sint32(a, 10, Mint_0).
+Let a_1 = shift_sint32(a, i).
+Let x = Mint_0[a_1].
+Let a_2 = shift_sint32(a, j).
+Let m_1 = Array_sint32(a, 10,
+            Mint_0[a_1 <- Mint_0[a_2]][a_2 <- x][shift_sint32(a, k) <- x]).
+Assume {
+  Type: is_sint32(i) /\ is_sint32(j) /\ is_sint32(k) /\ IsArray_sint32(m) /\
+      is_sint32(x) /\ IsArray_sint32(m_1).
+  (* Pre-condition *)
+  Have: (0 <= i) /\ (i <= 9).
+  (* Pre-condition *)
+  Have: (0 <= j) /\ (j <= 9).
+  (* Pre-condition *)
+  Have: (0 <= k) /\ (k <= 9).
+}
+Prove: P_p_arrays(m, i, m_1, j).
+
+------------------------------------------------------------
+
+Goal Post-condition 'DUM' in 'job':
+Let a = global(G_arr_35).
+Let a_1 = shift_sint32(a, i).
+Let x = Mint_0[a_1].
+Let a_2 = shift_sint32(a, j).
+Let m = Array_sint32(a, 10,
+          Mint_0[a_1 <- Mint_0[a_2]][a_2 <- x][shift_sint32(a, k) <- x]).
+Assume {
+  Type: is_sint32(i) /\ is_sint32(j) /\ is_sint32(k) /\
+      IsArray_sint32(Array_sint32(a, 10, Mint_0)) /\ is_sint32(x) /\
+      IsArray_sint32(m).
+  (* Pre-condition *)
+  Have: (0 <= i) /\ (i <= 9).
+  (* Pre-condition *)
+  Have: (0 <= j) /\ (j <= 9).
+  (* Pre-condition *)
+  Have: (0 <= k) /\ (k <= 9).
+}
+Prove: P_p_dummy(m, j, k).
+
+------------------------------------------------------------

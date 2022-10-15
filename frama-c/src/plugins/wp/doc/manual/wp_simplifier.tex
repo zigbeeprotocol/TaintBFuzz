@@ -1,0 +1,346 @@
+\chapter{WP Simplifier}
+\label{wp-simplifier}
+
+The logical language $\cal{L}$ used to build proof obligations is now
+equipped with built-in simplifications. This allows for proof
+obligations to be simplified \emph{before} being sent to external
+provers, and sometimes to be reduced to trivial goals.
+
+This chapter is dedicated to the description of the simplifier and how to
+use it with the \textsf{WP} plug-in. It also presents how combinatorial
+explosion of path exploration is now tackled down thanks to
+\emph{passive form} transformation and automated sub-terms
+\emph{factorization}~\cite{FlanaganSaxe2001,Leino2003}. This also
+leads to more compact and (somehow) more readable proof obligations,
+with less memory, less disk usage and lower external prover time
+overhead, compared to \textsf{WP} versions \verb+0.6+ and lower.
+
+\section{Logic Normalizations}
+
+The new logic language $\cal{L}$ is naturally equipped with term
+normalization and maximal sub-term sharing. It is only used with new
+memory models, not with the standard ones.
+
+Maximal sub-term sharing is responsible for the introduction of
+let-bindings whenever a sub-expression appears several times in the
+generated proof obligations. The occupied memory and disk usage of WP
+is also reduced compared to other models.
+
+The normalization rules can not be turned off, and are responsible for
+local simplifications. Although modest, they allow a proof
+obligation to be trivially discharged.
+
+\begin{description}
+\item[Logic] normalization by commutativity and associativity;
+  absorption and neutral elements; elimination of redundant facts;
+  propagation of negations (Morgan laws); simplification of
+  conditionals.
+\item[Arithmetic] normalization by commutativity and associativity;
+  absorption and neutral elements; factorization with linear forms;
+  constant folding; normalization of linear equalities and
+  inequalities.
+\item[Array] elimination of consecutive accesses and updates.
+\item[Record] elimination of consecutive accesses and updates;\\
+  simplification of structural equalities and inequalities.
+\end{description}
+
+\section{Simplifier Engine (Qed)}
+
+Built on top of our normalizing logic language $\cal{L}$, we have a
+simplifier engine named \textsf{Qed}\cite{qed}. The simplifier engine is used by
+the \textsf{WP} plug-in to simplify the generated proof contexts and proof
+obligations. The basic feature of \textsf{Qed} is to manage a knowledge
+base $\Gamma$. It is possible to add new facts (hypotheses) to
+$\Gamma$, and to simplify (rewrite) a term of a property with respect
+to $\Gamma$.
+
+By default, the only rewriting performed by \textsf{Qed} is the
+propagation of equality classes by normalization. The \textsf{Qed}
+engine can be enriched by means of plug-ins to perform more dedicated
+simplifications. For instance, we have developed a simplifier plug-in
+for array and record theories, and a prototype for linear inequalities.
+
+\textsf{WP} uses the simplification engine to simplify proof contexts
+by recursively combining basic laws involving the simplifier
+engine. Each law is applied with respect to a local knowledge base
+$\Gamma$ (initially empty).
+
+\newcommand{\QED}[3]{#1\models\,#2\,\triangleright\,#3}
+\newcommand{\LAW}[2]{\begin{array}{c}{#1}\\\hline{#2}\end{array}}
+\newcommand{\AND}{\quad\quad\quad}
+
+Adding a new fact $H$ to $\Gamma$ is denoted by $\Gamma\oplus H$ ;
+rewriting a term of predicate $e$ into $e'$ with respect to $\Gamma$
+is denoted by $\Gamma\models e\triangleright e'$.
+
+\paragraph{Inference Law.} 
+A hypothesis is simplified and added to the knowledge base to
+simplify the goal.
+\[\LAW%
+ {\QED{\Gamma}{H}{H'}\AND\QED{\Gamma\oplus H'}{G}{G'}}%
+ {\QED{\Gamma}{(H\rightarrow G)}{(H'\rightarrow G')}}
+\]
+
+\paragraph{Conjunction Law.}
+Each side of a conjunction is simplified with the added knowledge of
+the other side. This law scales up to the conjunction of $n$ facts,
+and simplifications can be performed incrementally.
+\[\LAW%
+ {\QED{\Gamma\oplus B}{A}{A'}\AND\QED{\Gamma\oplus A}{B}{B'}}%
+ {\QED{\Gamma}{(A\wedge B)}{(A'\wedge B')}}
+\]
+
+\paragraph{Conditional Law.}
+The conditional expression is simplified, before simplifying each
+branch under the appropriate hypothesis.
+\[\LAW
+{\QED{\Gamma}{H}{H'}\AND
+ \QED{\Gamma\oplus H'}{A}{A'}\AND
+ \QED{\Gamma\oplus \neg H'}{B}{B'}}
+{\QED{\Gamma}{(H\,?A:B)}{(H'\,?A':B')}}
+\]
+
+Inside the \textsf{WP} plug-in, the proof contexts are only built in
+terms of conjunctions, conditional and inference rules. Hence, these
+laws are sufficient to perform proof context simplifications.
+Technically, simplification has a quadratic complexity in the width
+and depth of the proof formula. Options will be added to control the
+risk of combinatorial explosion. In practice, simplification is
+delayed until submission of the proof obligation to external provers,
+that have similar complexity. Since we account on simplification for
+enhancing prover efficiency, we expect it to be worth the cost.
+
+The power of the simplification process depends on the simplification plug-ins
+loaded in the \textsf{Qed} engine, and will be the purpose of further
+developments. Chapter~\ref{wp-builtins} provides additional informations on the
+implemented simplifications and the supported \textsf{ACSL} built-in operations.
+
+\section{Efficient WP Computation}
+
+During the \emph{Weakest Precondition} calculus, proof obligations are
+constructed backwardly for each program instruction. Conditional
+statements are of particular interest, since they introduce a fork in
+the generated proof contexts.
+
+More precisely, consider a conditional statement \texttt{if $(e)$ $A$
+  else $B$}. Let $W_A$ be the weakest precondition calculus from block
+$A$, and $W_B$ the one from block $B$. Provided the translation of expression
+$e$ in the current memory model leads to assumption $E$, the naive
+weakest precondition of the conditional is: $(E \, ? W_A : W_B)$.
+
+With this formula, the \emph{weakest preconditions} of the program
+after the conditional are duplicated inside $W_A$ and $W_B$. Moreover, these
+common postconditions have been transformed by the effects of $A$ and
+$B$.  Then, the factorization of common sub-terms of logic language
+$\cal{L}$ is \emph{not} capable of avoiding the duplication. In the presence of
+successive conditionals, proof obligations generated become twice as
+big at each conditional statement.
+
+To tackle this problem, the solution is to put the program in
+\emph{passive form}~\cite{FlanaganSaxe2001,Leino2003}. Each variable
+of the program is assigned a different logic variable in each
+branch. The different variables are joined at conditionals into new
+fresh variables and equality conditions.
+
+In practice, the passive form transformation is done during the
+\emph{weakest precondition} calculus, together with the translation of
+\textsf{C} and \textsf{ACSL} by the memory model. Hence, a translation
+map $\sigma$ is maintained at each program point from memory model
+variables to $\cal{L}$ logic variables.
+
+Joining maps $\sigma_1$ and $\sigma_2$ from the branches of a
+conditional leads to a new map $\sigma$ assigning a new logic variable
+$x$ to memory variable $m$ whenever $\sigma_1(m)$ and $\sigma_2(m)$
+are different. This join also produces the two sets of equalities $H_1$
+and $H_2$ associated to this variable renaming. Hence $\sigma(m)=\sigma_1(m)$ below
+is member of $H_1$ and $\sigma(m)=\sigma_2(m)$ is member of $H_2$.
+
+Now, if $W$ is the postcondition of the conditional program below,
+$W_A$ and $W_B$ can always be decomposed into: $W_A=W^0_A\wedge W$ and
+$W_B=W^0_B\wedge W$. Finally, the weakest precondition of the
+conditional is:
+\[ (\,E \, ?\; H_1\wedge W^0_A \;:\; H_2\wedge W^0_B\;) \wedge W \]
+
+This form actually factorizes the common postcondition to $A$ and $B$,
+which makes the \emph{weakest precondition} calculus linear in the
+number of program statements.
+
+\section{Structure of JSON Scripts}
+
+The proof scripts generated by using the Interactive Proof Editor (Section~\ref{wp-proof-editor})
+are saved in the \textsf{Frama-C/WP} session as \textsf{JSON} files. This section defines
+the format of session scripts precisely.
+
+\textsf{JSON} scripts files are located in the \texttt{<session>/wp/scripts} sub-directory
+of the \textsf{Frama-C} session directory (set with command line option \texttt{-session})
+or in the \texttt{<wpsession>/scripts} sub-directory of the \textsf{Frama-C/WP} session
+directory (set with command line option \texttt{-wp-session}).
+
+The proof scripts for goal named \texttt{<goal>} is stored in a single file \texttt{<goal>.json} ; the
+format of the \texttt{<goal>} name is identical to the one used by the \textsf{Frama-C/Report} plug-in
+for its \textsf{JSON} output.
+
+The content of each script file is an array ofs alternatives, each alternative being a record with
+two possible structures, that might represent a \textit{prover} attempt or the application of a
+\textit{tactic}:
+
+\begin{align*}
+    \mathit{wp.script} &::= \mathtt{[} \mathit{wp.alternative} , \ldots \mathtt{]} \\
+    \mathit{wp.alternative} &::= \mathit{wp.prover} \;|\; \mathit{wp.tactic}
+\end{align*}
+
+\paragraph{Prover Attempts} The proof script records previous attempts to discharge a proof obligation
+with external provers (also called decision procedures).
+Each attempt is represented by a \textsf{JSON} record with the following fields:
+
+\begin{align*}
+    \mathit{wp.prover} &::=
+    \left\{
+    \begin{array}{rl}
+        \mathtt{"prover"}  :& \mathit{string}, \\
+        \mathtt{"verdict"} :& \mathit{wp.verdict}, \\ 
+        \mathtt{"time"}    :& \mathit{number}? \\ 
+        \mathtt{"steps"}   :& \mathit{number}? \\ 
+        \mathtt{"depth"}   :& \mathit{number}? \\ 
+    \end{array}
+    \right\} \\
+    \mathit{wp.verdict} &::=
+    \begin{array}[t]{l}
+    \mathtt{"none"} ~|~ 
+    \mathtt{"valid"} ~|~ 
+    \mathtt{"unknown"} ~|~ \\
+    \mathtt{"timeout"} ~|~ 
+    \mathtt{"stepout"} ~|~ 
+    \mathtt{"invalid"} ~|~
+    \mathtt{"failed"}
+    \end{array}
+\end{align*}
+
+Remark that, since the proof scripts do not record the proof obligation that was exercised, there is no
+guarantee that replying the script on a (potentially new) proof obligation would issue the same result.
+Hence, prover attempts \emph{must} not be used as a cache, but can serve as a hint for choosing among
+several alternatives.
+
+\paragraph{Proof Tactic} Applying a tactic is represented by a \textsf{JSON} record with the following
+fields:
+
+\begin{align*}
+    \mathit{wp.tactic} &::=
+    \left\{
+    \begin{array}{rl}
+        \mathtt{"tactic"}   :& \mathit{string}, \\
+        \mathtt{"header"}   :& \mathit{string} ? \\ 
+        \mathtt{"select"}   :& \mathit{wp.selection}, \\ 
+        \mathtt{"params"}   :& \mathtt{\{}\; \mathit{string}:\mathit{wp.param} ,\ldots \;\mathtt{\}} ? \\ 
+        \mathtt{"children"} :& \mathtt{\{}\; \mathit{string}:\mathit{wp.script}, \ldots \;\mathtt{\}} ? \\ 
+    \end{array}
+    \right\}
+\end{align*}
+
+The \verb"header" field is just a descriptive title and has no special meaning. The \verb"tactic"
+identifies the tactic, as it has been registered in the \textsf{Frama-C/WP} internal API.
+The \verb"selection" is an opaque encoding of the target of the tactic inside the proof obligation
+structure. The \verb"params" array stores the value of tactic parameters, if any.
+The \verb"children" stores the proof scripts associated with each sub-goal generated by applying
+the specified tactic on a proof obligation.
+
+\paragraph{Tactic Parameters} Values of tactical parameters are encoded with the
+following \textsf{JSON} format, depending on the internal type of the parameter 
+value:
+
+\begin{align*}
+    \mathit{wp.param} ::=\;&
+    \mathit{bool} ~|~ \mathit{number} ~|~ \mathit{string} \\
+    |\;&\mathit{wp.named} ~|~ \mathit{wp.selection} \\
+    \mathit{wp.named} ::= &\mathtt{null} ~|~
+    \left\{
+    \begin{array}{rl}
+        \mathtt{"id"} :& \mathit{string}, \\
+        \mathtt{"title"} :& \mathit{string}? \\
+        \mathtt{"description"} :& \mathit{string}?
+    \end{array}
+    \right\}
+\end{align*}
+
+Named items (\textit{wp.named}) corresponds, for instance, to searched lemmas.
+Selections corresponds to terms or expressions selected by the user \emph{via}
+the graphical user interface, like the target of the tactic, as described below.
+
+\paragraph{Tactic Selection} The target of the tactic
+is identified by a complex structure
+encoding on which part of the proof obligation it shall be applied. Since the
+exact structure of the proof obligation may vary from time to time, this structure
+allows for searching in the proof obligation a \emph{pattern} that ressemble the
+original target that was originally selected by the user during an interactive
+session with the \textsf{Frama-C/WP} graphical user interface.
+
+Such \emph{patterns} are encoded as follows:
+
+\newcommand{\dash}{\rule[0.5ex]{1ex}{1pt}}
+
+\begin{align*}
+    \mathit{wp.selection}
+    ::=\;& \mathtt{null} \\
+    |\;\;& \mathtt{\{}\; \mathtt{"select":"clause\dash{}goal"},\;
+                         \mathit{wp.pattern} \;\mathtt{\}} \\
+    |\;\;& \mathtt{\{}\; \mathtt{"select":"inside\dash{}goal"},\;
+                         \mathit{wp.occur},\; \mathit{wp.pattern} \;\mathtt{\}} \\
+    |\;\;& \mathtt{\{}\; \mathtt{"select":"clause\dash{}step"},\;
+                         \mathit{wp.at},\; \mathit{wp.kind},\;
+                         \mathit{wp.pattern} \;\mathtt{\}} \\
+    |\;\;& \mathtt{\{}\; \mathtt{"select":"inside\dash{}step"},\;
+                         \mathit{wp.at},\; \mathit{wp.kind},\;
+                         \mathit{wp.occur},\; \mathit{wp.pattern} \;\mathtt{\}} \\
+    |\;\;& \mathtt{\{}\; \mathtt{"select":"range"},\;
+                         \mathtt{"min"}:\mathit{number},\;
+                         \mathtt{"max"}:\mathit{number} \;\mathtt{\}} \\                         
+    |\;\;& \mathtt{\{}\; \mathtt{"select":"kint"},\;
+                         \mathtt{"val"}:\mathit{number} \;\mathtt{\}} \\
+    |\;\;& \mathtt{\{}\; \mathtt{"select":"compose"},\;
+                         \mathtt{"id"}:\mathit{string},\;
+                         \mathtt{"args"}:[\mathit{wp.selection},\ldots]
+                         \;\mathtt{\}} \\
+% --
+    \mathit{wp.pattern} ::=\;& \mathtt{"pattern"} : \mathit{string} \\
+    \mathit{wp.occur}   ::=\;& \mathtt{"occur"} : \mathit{number} \\
+    \mathit{wp.at}      ::=\;& \mathtt{"at"} : \mathit{number} \\
+    \mathit{wp.kind}    ::=\;& \mathtt{"kind"} : \mathtt{"have"|"type"|"init"|"branch"|"either"|"state"} \\
+\end{align*}
+
+The various components of selection patterns have the following meaning: \textit{wp.pattern} encodes
+a term or predicate pattern; \textit{wp.occur} designates which occurrence of the pattern to select,
+in case of there is many of them inside the selected goal or hypothesis; \textit{wp.at} designates the
+order of the selected hypothesis inside the proof obligation (the pattern is searched around this value),
+and \textit{wp.kind} its kind.
+
+The \textit{wp.pattern} is an simple string that encodes the head of the structure of the 
+selected term or formulæ inside the designated goal or hypothesis. It is the concatenation of
+the first 32 head nodes of width-first traversal of the selected term, each node being represented by
+the following string:
+\begin{itemize}
+    \item constant are represented by their value,
+    \item free variables by their base-name prefixed with \verb'$',
+    \item bound variables by their de-Bruijn index prefixed with \verb'#',
+    \item true and false by \verb"T" and \verb"F", and quantifiers by \verb"\F" and \verb"\E",
+    \item operators by \verb"&,|,!,~,+,-,*,/,%<,>,=,>=,/,?"
+    \item array operations by \verb"[]", \verb"[.]" and \verb"[=]"
+    \item record operations by \verb".fd" and \verb"{fd,...}"
+    \item function calls by their name
+\end{itemize}
+
+For instance, the term $(x_1 \leq x_2+1)$ will be represented by the pattern \verb|"<=$x+$x1"|.
+
+\paragraph{Alternative Ordering} When several alternatives are available for
+discharging a proof obligation, the \texttt{script} and \texttt{tip} provers
+of \textsf{Frama-C/WP} choose which one to apply first according to the
+following heuristic:
+\begin{enumerate}
+    \item try internal prover \texttt{"Qed"} with a \texttt{"valid"} verdict;
+    \item try any SMT prover with a \texttt{"valid"} verdict;
+    \item try the \texttt{"Coq"} proof assistant with a \texttt{"valid"} verdict;
+    \item try any Tactic alternative;
+    \item finally try the remaining Prover alternatives.
+\end{enumerate}
+
+Inside the same level of priority, alternatives are kept in their original
+order.

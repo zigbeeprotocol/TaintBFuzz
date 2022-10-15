@@ -1,0 +1,58 @@
+\chapter{Introduction}
+
+This manual is intended for driving the release process of \FramaC
+distribution. It covers several topics: people involved in the release effort,
+repository resources and web site maintenance. The last chapter provides the
+ultimate procedure for releasing a new distribution of \FramaC.
+
+\section{Roles}
+
+Some individuals have particular expertises in some fields: they are indicated
+like \expertise{this} whenever appropriated.
+
+The members of \FramaC team involved in the release effort play different
+roles, and we must distinguish between:
+
+\begin{description}
+\item[Developers:] including the kernel and plug-ins developers. They
+  are responsible for all the source files in the repository, and the
+  associated documentation.
+%% \item[Binary Builders:] they are responsible for creating a binary distribution
+%%   of the release for a specific architecture \expertise{none currently}.
+\item[Web Site Maintainers:] they are responsible for updating the web site,
+  during the release and for possible later updates \expertise{Florent ? Thibaud ?}.
+\item[Release Manager:] they are responsible for the organisation of the
+  release process
+\end{description}
+
+\section{Release Overview}
+
+A \FramaC release consists of the following main steps:
+\begin{enumerate}
+
+\item \textbf{The branch stage.} A branch is created, in which the release
+  will be prepared. It will ultimately become the released version.
+  The development of unstable features may continue in master, while the
+  branch is dedicated to the ongoing release.
+
+\item \textbf{The build stage.} The source files are setup by the
+  developers, and the bug tracking system is updated to reflect the
+  distribution state. A source distribution is created and registered,
+  with its updated documentation.
+
+\item \textbf{The web stage.} A snap-shot of the complete web site is
+  created, by merging the new release files with the old,
+  already distributed ones. %% Some old data might be dropped away if
+  %% necessary, although they are still committed somewhere in the
+  %% repository.
+
+\item \textbf{The go-online stage}. The web-site snapshot is put on
+  the web. Time to notify the world!
+
+\end{enumerate}
+
+
+
+%%%Local Variables:
+%%%TeX-master: "release"
+%%%End:

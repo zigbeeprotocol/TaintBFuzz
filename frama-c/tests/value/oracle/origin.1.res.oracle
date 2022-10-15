@@ -1,0 +1,112 @@
+[kernel] Parsing origin.i (no preprocessing)
+[eva] Analyzing a complete application starting at origin
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {0}
+  b ∈ {0}
+  aa2 ∈ {0}
+  p ∈ {0}
+  pa1 ∈ {0}
+  pa2 ∈ {0}
+  qa2 ∈ {0}
+  pa3 ∈ {0}
+  q ∈ {0}
+  t[0..11] ∈ {0}
+  tt[0..9] ∈ {0}
+  ta1[0..9] ∈ {0}
+  ta2[0..9] ∈ {0}
+  ta3[0..9] ∈ {0}
+  tta2[0..9] ∈ {0}
+  gpp ∈ {{ NULL ; &S_gpp[0] }}
+  l1 ∈ {0}
+  l2 ∈ {0}
+  l3 ∈ {0}
+  pl ∈ {0}
+  Tm1[0] ∈ {{ &a }}
+     [1] ∈ {{ &b }}
+  Tm2[0] ∈ {{ &a }}
+     [1] ∈ {{ &b }}
+  Tm3[0] ∈ {{ &a }}
+     [1] ∈ {{ &b }}
+  Tm4[0] ∈ {{ &a }}
+     [1] ∈ {{ &b }}
+  pm1 ∈ {0}
+  pm2 ∈ {0}
+  qm2 ∈ {0}
+  pun ∈ {0}
+  pun2 ∈ {0}
+  qun2 ∈ {0}
+  random ∈ [--..--]
+  esc1 ∈ {0}
+  esc2 ∈ {0}
+  esc3 ∈ {0}
+  esc4 ∈ {0}
+  esc5 ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+  v.c ∈ {1}
+   .[bits 8 to 15] ∈ {0}
+   .i ∈ {2}
+   .p ∈ {{ &x }}
+   .t[0] ∈ {{ &y }}
+   .t[1] ∈ {0}
+  S_gpp[0..1] ∈ [--..--]
+[kernel:annot:missing-spec] origin.i:124: Warning: 
+  Neither code nor specification for function f, generating default assigns from the prototype
+[eva] computing for function f <- origin.
+  Called from origin.i:124.
+[eva] using specification for function f
+[eva] Done for function f
+[eva] origin.i:126: 
+  Assigning imprecise value to r.p.
+  The imprecision originates from Misaligned {origin.i:126}
+[eva] origin.i:129: 
+  Assigning imprecise value to r.t[0].
+  The imprecision originates from Merge {origin.i:129}
+[eva:alarm] origin.i:130: Warning: 
+  pointer downcast. assert (unsigned int)(&x) ≤ 2147483647;
+[eva:alarm] origin.i:130: Warning: 
+  signed overflow. assert -2147483648 ≤ -((int)(&x));
+[eva:alarm] origin.i:130: Warning: 
+  signed overflow. assert -((int)(&x)) ≤ 2147483647;
+[eva] origin.i:130: 
+  Assigning imprecise value to r.t[1].
+  The imprecision originates from Arithmetic {origin.i:130}
+[eva] origin.i:131: 
+  Assigning imprecise value to \result<origin>.
+  The imprecision originates from Misaligned {origin.i:126}
+[eva] Recording results for origin
+[eva] done for function origin
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function origin:
+  r.c ∈ [--..--]
+   .[bits 8 to 15] ∈ UNINITIALIZED
+   .i ∈ [--..--]
+   .p ∈ {{ garbled mix of &{x} (origin: Misaligned {origin.i:126}) }}
+   .t[0][bits 0 to 7] ∈
+   {{ garbled mix of &{y} (origin: Merge {origin.i:129}) }}
+   .t[0][bits 8 to 15]# ∈ {{ NULL ; (? *)&y }}%32, bits 24 to 31 
+   .t[0][bits 16 to 31] ∈ {0}
+   .t[1] ∈ {{ garbled mix of &{x} (origin: Arithmetic {origin.i:130}) }}
+  q1[bits 0 to 15]# ∈ {{ (? *)&y }}%32, bits 16 to 31 
+    [bits 16 to 31] ∈ {0}
+  q2[bits 0 to 7] ∈
+    {{ garbled mix of &{y} (origin: Merge {origin.i:129}) }}
+    [bits 8 to 15]# ∈ {{ NULL ; (? *)&y }}%32, bits 24 to 31 
+    [bits 16 to 31] ∈ {0}
+[from] Computing for function origin
+[from] Computing for function f <-origin
+[from] Done for function f
+[from] Done for function origin
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  \result FROM \nothing
+[from] Function origin:
+  \result FROM v{{.i[bits 8 to 15]; .p[bits 0 to 23]};
+                 .t{[0][bits 16 to 31]; [1][bits 0 to 23]}};
+                c0
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function origin:
+    r{.c; {.i; .p; .t[0..1]}}; q1; q2

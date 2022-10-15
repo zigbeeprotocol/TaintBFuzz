@@ -1,0 +1,20 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing chunk_typing_usable.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function usable_axiom
+[rte:annot] annotating function usable_lemma
+[wp] 3 goals scheduled
+[wp] [Alt-Ergo] Goal typed_lemma_provable_lemma : Unsuccess
+[wp] [Alt-Ergo] Goal typed_usable_axiom_ensures : Valid
+[wp] [Alt-Ergo] Goal typed_usable_lemma_ensures : Valid
+[wp] Proved goals:    2 / 3
+  Qed:             0 
+  Alt-Ergo:        2  (unsuccess: 1)
+------------------------------------------------------------
+ Axiomatics                WP     Alt-Ergo  Total   Success
+  Lemma                     -        -        1       0.0%
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  usable_axiom              -        1        1       100%
+  usable_lemma              -        1        1       100%
+------------------------------------------------------------

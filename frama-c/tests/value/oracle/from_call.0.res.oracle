@@ -1,0 +1,331 @@
+[kernel] Parsing from_call.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva:alarm] from_call.i:70: Warning: 
+  pointer downcast. assert (unsigned int)(&AA) ≤ 2147483647;
+[eva:alarm] from_call.i:71: Warning: 
+  pointer downcast. assert (unsigned int)(&AA) ≤ 2147483647;
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  a ∈ {0}
+  b ∈ {0}
+  c ∈ {0}
+  d ∈ {0}
+  x ∈ {0}
+  y ∈ {0}
+  z ∈ {0}
+  t ∈ {0}
+  A1 ∈ {0}
+  A2 ∈ {0}
+  A3 ∈ {0}
+  A4 ∈ {0}
+  A5 ∈ {0}
+  A6 ∈ {0}
+  A7 ∈ {0}
+  A8 ∈ {0}
+  R1 ∈ {0}
+  R2 ∈ {0}
+  R3 ∈ {0}
+  S1 ∈ {0}
+  S2 ∈ {0}
+  S3 ∈ {0}
+  T0 ∈ {0}
+  T1 ∈ {0}
+  T2 ∈ {0}
+  tab[0..4] ∈ {0}
+  AA ∈ {0}
+  AR ∈ {0}
+  AS ∈ {0}
+  At[0] ∈ {{ (int)&AA }}
+    [1] ∈ {0}
+  Ar[0] ∈ {{ (int)&AA }}
+    [1] ∈ {0}
+  Ap ∈ {{ &At[0] }}
+  f_previous ∈ {{ &a }}
+[eva] computing for function f <- main.
+  Called from from_call.i:81.
+[kernel:annot:missing-spec] from_call.i:20: Warning: 
+  Neither code nor specification for function h, generating default assigns from the prototype
+[eva] computing for function h <- f <- main.
+  Called from from_call.i:20.
+[eva] using specification for function h
+[eva] Done for function h
+[eva] computing for function g <- f <- main.
+  Called from from_call.i:20.
+[eva] Recording results for g
+[from] Computing for function g
+[from] Done for function g
+[eva] Done for function g
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from from_call.i:82.
+[eva] computing for function h <- f <- main.
+  Called from from_call.i:20.
+[eva] Done for function h
+[eva] from_call.i:20: Reusing old results for call to g
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva] computing for function f <- main.
+  Called from from_call.i:82.
+[eva] computing for function h <- f <- main.
+  Called from from_call.i:20.
+[eva] Done for function h
+[eva] from_call.i:20: Reusing old results for call to g
+[eva] Recording results for f
+[from] Computing for function f
+[from] Done for function f
+[eva] Done for function f
+[eva:alarm] from_call.i:82: Warning: 
+  signed overflow.
+  assert -2147483648 ≤ tmp + tmp_0;
+  (tmp from f(& c), tmp_0 from f(& d))
+[eva:alarm] from_call.i:82: Warning: 
+  signed overflow.
+  assert tmp + tmp_0 ≤ 2147483647;
+  (tmp from f(& c), tmp_0 from f(& d))
+[eva] computing for function dispatcher <- main.
+  Called from from_call.i:83.
+[eva] Recording results for dispatcher
+[from] Computing for function dispatcher
+[from] Done for function dispatcher
+[eva] Done for function dispatcher
+[eva] computing for function dispatcher <- main.
+  Called from from_call.i:84.
+[eva] Recording results for dispatcher
+[from] Computing for function dispatcher
+[from] Done for function dispatcher
+[eva] Done for function dispatcher
+[eva] computing for function dispatcher <- main.
+  Called from from_call.i:85.
+[eva] Recording results for dispatcher
+[from] Computing for function dispatcher
+[from] Done for function dispatcher
+[eva] Done for function dispatcher
+[eva] computing for function call_dispatcher2_1 <- main.
+  Called from from_call.i:86.
+[eva] computing for function dispatcher2 <- call_dispatcher2_1 <- main.
+  Called from from_call.i:49.
+[eva] computing for function return_A1 <- dispatcher2 <- call_dispatcher2_1 <- main.
+  Called from from_call.i:44.
+[eva] Recording results for return_A1
+[from] Computing for function return_A1
+[from] Done for function return_A1
+[eva] Done for function return_A1
+[eva] Recording results for dispatcher2
+[from] Computing for function dispatcher2
+[from] Done for function dispatcher2
+[eva] Done for function dispatcher2
+[eva] Recording results for call_dispatcher2_1
+[from] Computing for function call_dispatcher2_1
+[from] Done for function call_dispatcher2_1
+[eva] Done for function call_dispatcher2_1
+[eva] computing for function call_dispatcher2_0 <- main.
+  Called from from_call.i:87.
+[eva] computing for function dispatcher2 <- call_dispatcher2_0 <- main.
+  Called from from_call.i:54.
+[eva] computing for function return_A2 <- dispatcher2 <- call_dispatcher2_0 <- main.
+  Called from from_call.i:44.
+[eva] Recording results for return_A2
+[from] Computing for function return_A2
+[from] Done for function return_A2
+[eva] Done for function return_A2
+[eva] Recording results for dispatcher2
+[from] Computing for function dispatcher2
+[from] Done for function dispatcher2
+[eva] Done for function dispatcher2
+[eva] Recording results for call_dispatcher2_0
+[from] Computing for function call_dispatcher2_0
+[from] Done for function call_dispatcher2_0
+[eva] Done for function call_dispatcher2_0
+[eva] computing for function call_dispatcher2 <- main.
+  Called from from_call.i:88.
+[eva] computing for function dispatcher2 <- call_dispatcher2 <- main.
+  Called from from_call.i:59.
+[eva] from_call.i:44: Reusing old results for call to return_A1
+[eva] from_call.i:44: Reusing old results for call to return_A2
+[eva] Recording results for dispatcher2
+[from] Computing for function dispatcher2
+[from] Done for function dispatcher2
+[eva] Done for function dispatcher2
+[eva] Recording results for call_dispatcher2
+[from] Computing for function call_dispatcher2
+[from] Done for function call_dispatcher2
+[eva] Done for function call_dispatcher2
+[eva] computing for function access_tab <- main.
+  Called from from_call.i:92.
+[eva] Recording results for access_tab
+[from] Computing for function access_tab
+[from] Done for function access_tab
+[eva] Done for function access_tab
+[eva] computing for function access_tab <- main.
+  Called from from_call.i:93.
+[eva] Recording results for access_tab
+[from] Computing for function access_tab
+[from] Done for function access_tab
+[eva] Done for function access_tab
+[eva] computing for function access_tab <- main.
+  Called from from_call.i:94.
+[eva] Recording results for access_tab
+[from] Computing for function access_tab
+[from] Done for function access_tab
+[eva] Done for function access_tab
+[eva] computing for function unavailable_f <- main.
+  Called from from_call.i:96.
+[eva] using specification for function unavailable_f
+[eva] Done for function unavailable_f
+[eva] Recording results for main
+[from] Computing for function main
+[from] Done for function main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function access_tab:
+  __retres ∈ {0}
+[eva:final-states] Values at end of function dispatcher:
+  
+[eva:final-states] Values at end of function g:
+  __retres ∈ [--..--]
+[eva:final-states] Values at end of function f:
+  b ∈ {0}
+  c ∈ {0}
+  d ∈ {0}
+  f_previous ∈ {{ &b ; &c ; &d }}
+[eva:final-states] Values at end of function return_A1:
+  
+[eva:final-states] Values at end of function return_A2:
+  
+[eva:final-states] Values at end of function dispatcher2:
+  
+[eva:final-states] Values at end of function call_dispatcher2:
+  
+[eva:final-states] Values at end of function call_dispatcher2_0:
+  
+[eva:final-states] Values at end of function call_dispatcher2_1:
+  
+[eva:final-states] Values at end of function main:
+  b ∈ {0}
+  c ∈ {0}
+  d ∈ {0}
+  y ∈ [--..--]
+  z ∈ [--..--]
+  R1 ∈ {0}
+  R2 ∈ {0}
+  R3 ∈ {0}
+  S1 ∈ {0}
+  S2 ∈ {0}
+  S3 ∈ {0}
+  T0 ∈ {0}
+  T1 ∈ {0}
+  T2 ∈ {0}
+  tab[0..4] ∈ {0}
+  AR ∈
+    {{ garbled mix of &{AA} (origin: Library function {from_call.i:96}) }}
+  AS ∈
+    {{ garbled mix of &{AA} (origin: Library function {from_call.i:96}) }}
+  f_previous ∈ {{ &d }}
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to g at from_call.i:20 (by f):
+  \result FROM t; w
+[from] call to h at from_call.i:20 (by f):
+  \result FROM __x0
+[from] call to return_A1 at from_call.i:44 (by dispatcher2):
+  \result FROM A1
+[from] call to return_A2 at from_call.i:44 (by dispatcher2):
+  \result FROM A2
+[from] call to dispatcher2 at from_call.i:59 (by call_dispatcher2):
+  \result FROM A1; A2; c_0
+[from] call to dispatcher2 at from_call.i:54 (by call_dispatcher2_0):
+  \result FROM A2; c_0
+[from] call to dispatcher2 at from_call.i:49 (by call_dispatcher2_1):
+  \result FROM A1; c_0
+[from] call to f at from_call.i:81 (by main):
+  b FROM a; p; f_previous
+  f_previous FROM p
+  \result FROM a; x; t; p; f_previous
+[from] call to f at from_call.i:82 (by main):
+  c FROM b; p; f_previous
+  f_previous FROM p
+  \result FROM b; x; t; p; f_previous
+[from] call to f at from_call.i:82 (by main):
+  d FROM c; p; f_previous
+  f_previous FROM p
+  \result FROM c; x; t; p; f_previous
+[from] call to dispatcher at from_call.i:83 (by main):
+  \result FROM c_0; y_0
+[from] call to dispatcher at from_call.i:84 (by main):
+  \result FROM c_0; z_0
+[from] call to dispatcher at from_call.i:85 (by main):
+  \result FROM c_0; y_0; z_0
+[from] call to call_dispatcher2_1 at from_call.i:86 (by main):
+  \result FROM A1
+[from] call to call_dispatcher2_0 at from_call.i:87 (by main):
+  \result FROM A2
+[from] call to call_dispatcher2 at from_call.i:88 (by main):
+  \result FROM A1; A2; r
+[from] call to access_tab at from_call.i:92 (by main):
+  \result FROM tab[0]; ind
+[from] call to access_tab at from_call.i:93 (by main):
+  \result FROM tab[1]; ind
+[from] call to access_tab at from_call.i:94 (by main):
+  \result FROM tab[2]; ind
+[from] call to unavailable_f at from_call.i:96 (by main):
+  AR FROM At[0..1]
+  AS FROM Ar[0..1]
+[from] entry point:
+  b FROM a; f_previous
+  c FROM a; f_previous
+  d FROM a; f_previous
+  y FROM a; x; t; f_previous
+  z FROM a; x; t; f_previous
+  R1 FROM A1
+  R2 FROM A4
+  R3 FROM A4; A5; r
+  S1 FROM A1
+  S2 FROM A2
+  S3 FROM A1; A2; r
+  T0 FROM A1
+  T1 FROM A2; A3
+  T2 FROM A4
+  tab[0] FROM A1
+     [1] FROM A2; A3
+     [2] FROM A4
+  AR FROM At[0..1]
+  AS FROM Ar[0..1]
+  f_previous FROM \nothing
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[users] ====== DISPLAYING USERS ======
+  f: g h
+  dispatcher2: return_A1 return_A2
+  call_dispatcher2: return_A1 return_A2 dispatcher2
+  call_dispatcher2_0: return_A2 dispatcher2
+  call_dispatcher2_1: return_A1 dispatcher2
+  main: g h f dispatcher return_A1 return_A2 dispatcher2 call_dispatcher2_1
+      call_dispatcher2_0 call_dispatcher2 access_tab unavailable_f
+  ====== END OF USERS ==========
+[inout] Inputs for function access_tab:
+    tab[0..2]
+[inout] Inputs for function dispatcher:
+    \nothing
+[inout] Inputs for function g:
+    t
+[inout] Inputs for function f:
+    a; b; c; d; x; t; f_previous
+[inout] Inputs for function return_A1:
+    A1
+[inout] Inputs for function return_A2:
+    A2
+[inout] Inputs for function dispatcher2:
+    A1; A2
+[inout] Inputs for function call_dispatcher2:
+    A1; A2
+[inout] Inputs for function call_dispatcher2_0:
+    A1; A2
+[inout] Inputs for function call_dispatcher2_1:
+    A1; A2
+[inout] Inputs for function main:
+    a; b; c; d; x; t; A1; A2; A3; A4; A5; A6; A7; tab[0..2]; At[0..1];
+    Ar[0..1]; f_previous

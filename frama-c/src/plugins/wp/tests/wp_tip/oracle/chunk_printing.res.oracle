@@ -1,0 +1,43 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing chunk_printing.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function main
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Assertion (file chunk_printing.i, line 32):
+Let x_1 = « *`v_1 »@L1.
+Let x_2 = « *`v »@L1.
+Assume {
+  Type: is_sint32_chunk(µ:Msint32@L1) /\ is_uint32_chunk(µ:Muint32@L1) /\
+      is_uint32(`x_1) /\ is_sint32(`x_2).
+  (* Heap *)
+  Type: (region(0) <= 0) /\ framed(µ:Mptr@L1).
+  Stmt { L1:  }
+  Stmt { x.a = `v;  }
+  (* Call 'get_int' *)
+  Have: ((x@L1.F1_V_a) = `v) \/ (« y->a »@L1 = `v).
+  Stmt { x.b = `v_1;  }
+  (* Call 'get_uint' *)
+  Have: ((x@L1.F1_V_b) = `v_1) \/ (« y->b »@L1 = `v_1).
+}
+Prove: `x_2 = `x_1.
+
+------------------------------------------------------------
+[wp] chunk_printing.i:19: Warning: 
+  Memory model hypotheses for function 'get_int':
+  /*@
+     behavior wp_typed:
+       requires \separated(v, &y);
+       ensures \separated(\result, &y);
+     */
+  int *get_int(struct V *v);
+[wp] chunk_printing.i:25: Warning: 
+  Memory model hypotheses for function 'get_uint':
+  /*@
+     behavior wp_typed:
+       requires \separated(v, &y);
+       ensures \separated(\result, &y);
+     */
+  unsigned int *get_uint(struct V *v);

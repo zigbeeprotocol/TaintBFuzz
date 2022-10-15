@@ -1,0 +1,36 @@
+=========================================================================
+Ce fichier contient les règles à suivre pour écrire la doc du développeur
+=========================================================================
+
+* Les instructions de "doc/www/src/metadoc.NE_PAS_ECRIRE" doivent être 
+  appliquées.
+
+* Les fichiers portent l'extension .pretex pour permettre leur preprocessing
+
+* L'index doit être tenu à jour
+
+* Les redondances dans l'index (deux entrées différentes correspondant à la
+  même chose) ne sont autorisées seulement si une des deux entrées référence
+  proprement l'autre à l'aide d'un tag "see".
+
+* L'annexe "Changes" doit être tenue à jour.
+
+* Les macros doivent être définies dans macros.tex
+
+* Les macros doivent être au maximum utilisées. 
+  En particulier:
+    o les environnements dérivés de "code" pour le code
+        - autoconfcode pour les configure.in
+        - makecode pour les makefile
+	- ccode pour le C
+	- camlcode pour le caml
+	- code pour les autres codes (ligne de commandes par exemple)
+    o l'environnement "example" pour les exemples
+    o l'environnement "important" pour les choses importantes
+    o l'environnement "convention" pour les conventions qu'un développeur doit
+      respecter
+    o l'environnement "prereq" pour les prérequis nécessaires à la bonne
+      compréhension 
+    o les macros pour les noms de langage/d'outils (c'est la même macro
+      \langage à l'origine)
+    o les macros pour les entrées d'index

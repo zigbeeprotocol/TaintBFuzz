@@ -1,0 +1,16 @@
+[kernel] Parsing loop_wvar.i (no preprocessing)
+[kernel:annot-error] loop_wvar.i:38: Warning: 
+  invalid pragma '12'. Ignoring loop annotation
+[eva] Analyzing a complete application starting at main_err1
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] loop_wvar.i:27: starting to merge loop iterations
+[eva] Recording results for main_err1
+[eva] done for function main_err1
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main_err1:
+  n ∈ {13}
+  i ∈ {13}
+  j ∈ [7..55],3%4 or UNINITIALIZED

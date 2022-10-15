@@ -1,0 +1,51 @@
+[kernel] Parsing annot_valid.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  G ∈ {0}
+[eva] annot_valid.i:8: assertion got status valid.
+[eva:alarm] annot_valid.i:11: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva] annot_valid.i:14: assertion got status valid.
+[eva] annot_valid.i:17: assertion got status valid.
+[eva] annot_valid.i:20: assertion got status valid.
+[eva:alarm] annot_valid.i:23: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva:alarm] annot_valid.i:26: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva:alarm] annot_valid.i:29: Warning: assertion got status unknown.
+[eva:alarm] annot_valid.i:32: Warning: assertion got status unknown.
+[eva:alarm] annot_valid.i:35: Warning: assertion got status unknown.
+[eva] annot_valid.i:38: assertion got status valid.
+[eva] annot_valid.i:41: assertion got status valid.
+[eva:alarm] annot_valid.i:44: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva] annot_valid.i:47: assertion got status valid.
+[eva:alarm] annot_valid.i:50: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva] annot_valid.i:53: assertion got status valid.
+[eva] annot_valid.i:56: assertion got status valid.
+[eva] annot_valid.i:57: 
+  cannot evaluate ACSL term, \at() on a C label is unsupported
+[eva:alarm] annot_valid.i:57: Warning: assertion got status unknown.
+[eva:alarm] annot_valid.i:62: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  p ∈ {{ &G }}
+  c ∈ {{ (char *)&G }}
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    p; c; __retres
+[inout] Inputs for function main:
+    \nothing

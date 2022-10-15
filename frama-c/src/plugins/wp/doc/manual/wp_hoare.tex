@@ -1,0 +1,117 @@
+%% Chapter WP Models
+
+\section{Hoare}\label{sec-hoare}
+
+\subsection{Description and limitations}
+
+The Hoare model is the traditional one where
+the memory state is a mapping between the C program 
+variables and their logical values. 
+It has been extended a little to be able to deal which structures, arrays
+and even with pointers as long as they are not used to make an indirect 
+access to
+the memory because Hoare model doesn't have any idea of what is an address
+in the memory. It means that the C dereferencing (*) operation is not handled 
+neither in the program, nor in the properties.
+
+Another limitation about Hoare model is that it can provide only a limited
+support about pointer validity (\whyinline{valid} ACSL predicate).
+This is because memory allocation is not represented at this abstract level.
+
+\subsection{Operations}
+
+The Hoare model mainly uses logical operations from ACSL. 
+It only has to define few more
+operations on pointers because even if it doesn't deal with indirect access,
+it can still work on address computations~:
+
+\begin{description}
+  \item \whyinline{m0_addr (X_x)} : represent the value of the address of the
+    variable x;
+  \item \whyinline{shift_field (p,f)} : 
+    represent \cinline{\&(p->f)} where p
+    holds the address of a structure;
+  \item \whyinline{shift_ufield (p,f)} :  
+    represent \cinline{\&(p->f)} where p
+    holds the address of a union;
+  \item \whyinline{shift_index (p,i)} : represent \cinline{\&((*p)[i])}
+    where p holds the address of an array;
+  \item \whyinline{shift_pointer (p,i)} : represent \cinline{(p+i)} 
+    where p
+    can have any type. Notice that this is different from the previous
+    operation, because the result of this one has the same type than p.
+\end{description}
+
+\subsection{Examples}
+
+Let's take some elementary transformation examples to better understand to
+generated proof obligations.
+
+\subsubsection{Simple variable assignment}
+
+To check this assertion after the assignment:
+\begin{ccode}
+  x = y+1;
+  //@ assert x > 0;
+\end{ccode}
+the proof obligation to satisfy before the statement would be :
+\begin{whycode}
+  let x= (y+1) in (0 < x))
+\end{whycode}
+So this first example shows that for Hoare model, 
+the WP of a variable assignment is a variable substitution. 
+
+\subsubsection{Pointer assignment}
+
+In Hoare model, a pointer is not different from a simple variable,
+but computation on pointers uses the model specific operations defined before.
+For instance, to check:
+\begin{ccode}
+  p++;
+  //@ assert p == &(t[3]);
+\end{ccode}
+the proof obligation is: 
+\begin{whycode}
+let p= shift_pointer(p,1) in (p = shift_index(m0_addr(X_t),3))
+\end{whycode}
+which should be equivalent to:
+\begin{whycode}
+p = shift_index(m0_addr(X_t),2)
+\end{whycode}
+
+% \TODO: check that we have the rules in hoare.why...
+
+\subsubsection{Structure field assignment}
+
+To check:
+\begin{ccode}
+  s.a = x;
+  //@ assert s.a > 0 && s.b > 0;
+\end{ccode}
+the proof obligation is:
+\begin{whycode}
+  let s= s[F_a->{x}] in (0 < {s[F_a]}) and (0 < {s[F_b]})
+\end{whycode}
+where we see the structure update for the field $a$.
+When applying the access/update rules, this can be simplified to :
+\begin{whycode}
+  (0 < x) and (0 < {s[F_b]})
+\end{whycode}
+
+\subsubsection{Array element assignment}
+
+To check:
+\begin{ccode}
+  t[0] = x;
+  //@ assert t[i] > 0;
+\end{ccode}
+the proof obligation is:
+\begin{whycode}
+  let t= t[0->x] in (0 < t[i])
+\end{whycode}
+meaning that we want $0 < t[i]$ after an update of $t$. Because of access/update
+rules, this is equivalent to:
+\begin{whycode}
+  if (i == 0) then (0 < x) else (0 < t[i])
+\end{whycode}
+

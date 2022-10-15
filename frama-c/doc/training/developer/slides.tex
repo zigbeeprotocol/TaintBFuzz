@@ -1,0 +1,125 @@
+\documentclass[pdf,utf8,xcolor=x11names]{beamer}
+\usepackage{url}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{alltt}
+\usepackage{xspace}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage{array}
+
+\usetheme{frama-c}
+
+\usetikzlibrary{shapes.callouts}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{fit}
+
+\input{macros.tex}
+
+\makeatletter
+\AtBeginPart{
+\addtocontents{toc}{%
+\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
+\begin{frame}
+\tableofcontents[currentpart]
+\end{frame}
+}
+\providecommand\beamer@partintoc[3]{%
+  \ifnum\c@tocdepth=-1\relax
+    % requesting onlyparts.
+    \usebeamercolor[fg]{section in toc}{\makebox[6em]{Part #1:} #2}
+    \par
+    \vfill
+  \fi
+}
+\define@key{beamertoc}{onlyparts}[]{%
+  \c@tocdepth=-1\relax
+}
+\makeatother%
+
+\author{Virgile Prevosto and Julien Signoles\\[2mm]
+\texttt{firstname.lastname@cea.fr}}
+\institute{\includegraphics[width=0.15\textwidth]{cealist.pdf}}
+\title{Frama-C Plug-in Developer Training}
+\date{2012-05-xy}
+
+\begin{document}
+\titlepage
+\begin{frame}{Overview}
+\tableofcontents[onlyparts]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{First steps}
+
+\section{Gentle \protect\ocaml reminder}
+
+\subsection{Basic features}
+%JS:15mn
+\input{basic_ocaml}
+
+\subsection{Module system}
+\input{module}
+%JS:30mn
+
+\subsection{Object-oriented features}
+%VP:30mn
+\input{objects.tex}
+\section{My first \protect\framac script}
+%VP: 1h15
+\input{script.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Architecture overview}
+
+\section{Plug-in's basic elements}
+%JS: 1h30
+\input{basic_plugin.tex}
+
+\section{Kernel infrastructure}
+%VP: 1h30
+\input{kernel.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Integration into \protect\framac}
+
+\section{API registration}
+%JS: 1h15
+\input{api.tex}
+
+\section{Project system}
+%JS: 1h15
+\input{project.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\part{Writing analyses}
+
+\section{Syntactic analysis}
+%VP:1h
+\section{Semantic analysis}
+%VP:45mn
+\section{Manipulating annotations}
+%JS:30mn
+\input{annotations.tex}
+
+\section{Real-world examples}
+%VP:45mn
+
+\section{Bibliography}
+% reference manuals and articles
+\input{bibliography.tex}
+
+\end{document}
+
+Local Variables:
+ispell-local-dictionary: "english"
+End:

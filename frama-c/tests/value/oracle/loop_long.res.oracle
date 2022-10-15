@@ -1,0 +1,26 @@
+[kernel] Parsing loop_long.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0..368199] ∈ {0}
+[eva] loop_long.i:5: starting to merge loop iterations
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  T[0..367] ∈ {0; 33}
+   [368..368199] ∈ {0}
+  i ∈ {368}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  T[0..367] FROM \nothing (and SELF)
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    T[0..367]; i
+[inout] Inputs for function main:
+    \nothing

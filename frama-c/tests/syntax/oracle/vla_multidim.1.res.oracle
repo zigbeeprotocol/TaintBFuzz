@@ -1,0 +1,13 @@
+[kernel] Parsing vla_multidim.c (with preprocessing)
+[kernel] vla_multidim.c:15: User Error: 
+  Array length n is not a compile-time constant,
+  and currently VLAs may only have their first dimension as variable.
+[kernel] vla_multidim.c:16: User Error: 
+  Array length n is not a compile-time constant,
+  and currently VLAs may only have their first dimension as variable.
+[kernel] vla_multidim.c:17: User Error: 
+  Array length n is not a compile-time constant,
+  and currently VLAs may only have their first dimension as variable.
+[kernel] User Error: stopping on file "vla_multidim.c" that has errors. Add '-kernel-msg-key pp'
+  for preprocessing command.
+[kernel] Frama-C aborted: invalid user input.

@@ -1,0 +1,28 @@
+# frama-c -wp [...]
+[kernel] Parsing terminates_call_options.c (with preprocessing)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+[wp] terminates_call_options.c:24: Warning: 
+  Missing terminates clause on call to declaration, defaults to \false
+[wp] terminates_call_options.c:29: Warning: 
+  Missing terminates clause on call to definition, defaults to \false
+[wp] terminates_call_options.c:39: Warning: 
+  Missing terminates clause on call to exit, defaults to \false
+[wp] terminates_call_options.c:38: Warning: 
+  Missing terminates clause on call to div, defaults to \false
+[wp] 5 goals scheduled
+[wp] [Qed] Goal typed_definition_assigns : Valid
+[wp] [Alt-Ergo] Goal typed_call_declaration_terminates : Unsuccess
+[wp] [Alt-Ergo] Goal typed_call_definition_terminates : Unsuccess
+[wp] [Alt-Ergo] Goal typed_libc_call_terminates_part1 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_libc_call_terminates_part2 : Unsuccess
+[wp] Proved goals:    1 / 5
+  Qed:             1 
+  Alt-Ergo:        0  (unsuccess: 4)
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  definition                1        -        1       100%
+  call_declaration          -        -        1       0.0%
+  call_definition           -        -        1       0.0%
+  libc_call                 -        -        2       0.0%
+------------------------------------------------------------

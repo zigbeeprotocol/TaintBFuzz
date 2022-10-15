@@ -1,0 +1,333 @@
+[kernel] Parsing volatile2.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  t[0..9] ∈ [--..--]
+  u ∈ [--..--]
+  pu ∈ {{ &u }}
+  s ∈ {0}
+  ps ∈ {{ &s }}
+  v ∈ [--..--]
+  BITF ∈ [--..--]
+  S9 ∈ [--..--]
+  u9[0..9] ∈ [--..--]
+[eva] computing for function main1 <- main.
+  Called from volatile2.i:136.
+[eva:alarm] volatile2.i:23: Warning: 
+  signed overflow. assert (int)c << 8 ≤ 32767;
+[eva:alarm] volatile2.i:24: Warning: 
+  signed overflow. assert (int)*p << 8 ≤ 32767;
+[eva:alarm] volatile2.i:25: Warning: 
+  signed overflow. assert (int)t[1] << 8 ≤ 32767;
+[eva:alarm] volatile2.i:26: Warning: 
+  signed overflow. assert (int)u.f1 << 8 ≤ 32767;
+[eva] Recording results for main1
+[eva] Done for function main1
+[eva] computing for function main2 <- main.
+  Called from volatile2.i:137.
+[eva] Recording results for main2
+[eva] Done for function main2
+[eva] computing for function main3 <- main.
+  Called from volatile2.i:138.
+[eva:alarm] volatile2.i:47: Warning: 
+  assertion got status invalid (stopping propagation).
+[eva] volatile2.i:52: assertion got status valid.
+[eva:alarm] volatile2.i:55: Warning: assertion got status unknown.
+[eva:alarm] volatile2.i:56: Warning: assertion got status unknown.
+[eva] volatile2.i:59: assertion got status valid.
+[eva] Recording results for main3
+[eva] Done for function main3
+[eva] computing for function main4 <- main.
+  Called from volatile2.i:139.
+[eva] Recording results for main4
+[eva] Done for function main4
+[eva] computing for function main5 <- main.
+  Called from volatile2.i:140.
+[eva:alarm] volatile2.i:76: Warning: signed overflow. assert i + 1 ≤ 32767;
+[eva:alarm] volatile2.i:76: Warning: signed overflow. assert j + 1 ≤ 32767;
+[eva:alarm] volatile2.i:76: Warning: 
+  signed overflow.
+  assert -32768 ≤ tmp + tmp_0;
+  (tmp from i++, tmp_0 from j++)
+[eva:alarm] volatile2.i:76: Warning: 
+  signed overflow. assert tmp + tmp_0 ≤ 32767;
+                   (tmp from i++, tmp_0 from j++)
+[eva:alarm] volatile2.i:78: Warning: signed overflow. assert i + 1 ≤ 32767;
+[eva:alarm] volatile2.i:78: Warning: signed overflow. assert j + 1 ≤ 32767;
+[eva:alarm] volatile2.i:78: Warning: signed overflow. assert -32768 ≤ i + j;
+[eva:alarm] volatile2.i:78: Warning: signed overflow. assert i + j ≤ 32767;
+[eva] volatile2.i:80: 
+  Frama_C_dump_each:
+  # cvalue:
+  t[0..9] ∈ [--..--]
+  u ∈ [--..--]
+  pu ∈ {{ &u }}
+  s ∈ {0}
+  ps ∈ {{ &s }}
+  v ∈ [--..--]
+  i ∈ [--..--]
+  j ∈ [--..--]
+  k ∈ [--..--]
+  tmp ∈ [--..--]
+  tmp_0 ∈ [--..--]
+  l ∈ [--..--]
+  BITF ∈ [--..--]
+  S9 ∈ [--..--]
+  u9[0..9] ∈ [--..--]
+  ==END OF DUMP==
+[eva] Recording results for main5
+[eva] Done for function main5
+[eva] computing for function main6 <- main.
+  Called from volatile2.i:141.
+[eva] Recording results for main6
+[eva] Done for function main6
+[eva] computing for function main7 <- main.
+  Called from volatile2.i:142.
+[eva] Recording results for main7
+[eva] Done for function main7
+[eva] computing for function main8 <- main.
+  Called from volatile2.i:143.
+[eva] volatile2.i:119: 
+  Frama_C_show_each: [--..--], [--..--], [--..--], [--..--], [--..--]
+[eva] Recording results for main8
+[eva] Done for function main8
+[eva] computing for function main9 <- main.
+  Called from volatile2.i:144.
+[eva:alarm] volatile2.i:129: Warning: 
+  accessing out of bounds index. assert 0 ≤ S9.i1;
+[eva:alarm] volatile2.i:129: Warning: 
+  accessing out of bounds index. assert S9.i1 < 10;
+[eva:alarm] volatile2.i:130: Warning: 
+  accessing out of bounds index. assert 0 ≤ S9.i1;
+[eva:alarm] volatile2.i:130: Warning: 
+  accessing out of bounds index. assert S9.i1 < 10;
+[eva:alarm] volatile2.i:131: Warning: 
+  accessing out of bounds index. assert 0 ≤ u9[1];
+[eva:alarm] volatile2.i:131: Warning: 
+  accessing out of bounds index. assert u9[1] < 10;
+[eva:alarm] volatile2.i:132: Warning: 
+  accessing out of bounds index. assert 0 ≤ u9[1];
+[eva:alarm] volatile2.i:132: Warning: 
+  accessing out of bounds index. assert u9[1] < 10;
+[eva] Recording results for main9
+[eva] Done for function main9
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main1:
+  c ∈ [--..--]
+  x ∈ {1}
+  p ∈ {{ (unsigned char volatile *)&x }}
+  i ∈ [0..32767]
+  j ∈ [0..32767]
+  k ∈ [0..32767]
+  l ∈ [0..32767]
+[eva:final-states] Values at end of function main2:
+  i ∈ [-128..127]
+  j ∈ [0..255]
+  k ∈ [0..255]
+[eva:final-states] Values at end of function main3:
+  
+[eva:final-states] Values at end of function main4:
+  p1 ∈ {{ &i }}
+  p2 ∈ {{ &i + [--..--] }}
+[eva:final-states] Values at end of function main5:
+  i ∈ [--..--]
+  j ∈ [--..--]
+  k ∈ [--..--]
+  l ∈ [--..--]
+[eva:final-states] Values at end of function main6:
+  i ∈ {1}
+  j ∈ {1}
+[eva:final-states] Values at end of function main7:
+  i ∈ {-3; -2; -1; 0; 1; 2; 3; 4}
+  k ∈ [1..16]
+[eva:final-states] Values at end of function main8:
+  a ∈ [--..--]
+  b ∈ [--..--]
+  c ∈ [--..--]
+  d ∈ [--..--]
+  e ∈ [--..--]
+[eva:final-states] Values at end of function main9:
+  t9[0..9] ∈ {1; 2; 3; 4} or UNINITIALIZED
+[eva:final-states] Values at end of function main:
+  
+/* Generated by Frama-C */
+struct u {
+   unsigned char f1 ;
+   unsigned char f2 ;
+};
+struct s {
+   char i1 ;
+   char i2 ;
+};
+struct bitf {
+   int i : 3 ;
+   unsigned int j : 4 ;
+};
+struct __anonstruct_S_1 {
+   int field ;
+};
+typedef struct __anonstruct_S_1 S;
+typedef S volatile vS;
+struct __anonstruct_vS2_2 {
+   int field ;
+};
+typedef struct __anonstruct_vS2_2 volatile vS2;
+union __anonunion_U_3 {
+   int field ;
+};
+typedef union __anonunion_U_3 U;
+typedef U volatile vU;
+struct __anonstruct_S9_4 {
+   int volatile i1 ;
+   int i2 ;
+};
+unsigned char volatile t[10];
+struct u volatile u;
+struct u *pu = (struct u *)(& u);
+void main1(void)
+{
+  unsigned char volatile c = (unsigned char)1;
+  int x = 1;
+  unsigned char volatile *p = (unsigned char volatile *)(& x);
+  /*@ assert Eva: signed_overflow: (int)c << 8 ≤ 32767; */
+  unsigned int i = (unsigned int)(((int)c << 8) + (int)c);
+  /*@ assert Eva: signed_overflow: (int)*p << 8 ≤ 32767; */
+  unsigned int j = (unsigned int)(((int)*p << 8) + (int)*p);
+  /*@ assert Eva: signed_overflow: (int)t[1] << 8 ≤ 32767; */
+  unsigned int k = (unsigned int)(((int)t[1] << 8) + (int)t[2]);
+  /*@ assert Eva: signed_overflow: (int)u.f1 << 8 ≤ 32767; */
+  unsigned int l = (unsigned int)(((int)u.f1 << 8) + (int)u.f2);
+  return;
+}
+
+struct s s;
+struct s volatile *ps = (struct s volatile *)(& s);
+void main2(void)
+{
+  int i = (int)ps->i1;
+  int j = (int)u.f1;
+  int k = (int)t[1];
+  return;
+}
+
+int volatile v;
+void main3(void)
+{
+  if (v) 
+    /*@ assert \false; */ ;
+  if (v) 
+    /*@ assert \true; */ ;
+  /*@ assert v ≡ 0; */ ;
+  /*@ assert v ≡ 0; */ ;
+  if (v) 
+    /*@ assert \true; */ ;
+  return;
+}
+
+void main4(void)
+{
+  int volatile i;
+  int volatile *p1 = & i;
+  int volatile * volatile p2 = & i;
+  return;
+}
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_dump_each)();
+
+void main5(void)
+{
+  int tmp;
+  int tmp_0;
+  int volatile i = 0;
+  int volatile j = 0;
+  tmp = i;
+  /*@ assert Eva: signed_overflow: i + 1 ≤ 32767; */
+  i ++;
+  tmp_0 = j;
+  /*@ assert Eva: signed_overflow: j + 1 ≤ 32767; */
+  j ++;
+  /*@ assert Eva: signed_overflow: -32768 ≤ tmp + tmp_0; */
+  /*@ assert Eva: signed_overflow: tmp + tmp_0 ≤ 32767; */
+  int k = tmp + tmp_0;
+  /*@ assert Eva: signed_overflow: i + 1 ≤ 32767; */
+  i ++;
+  /*@ assert Eva: signed_overflow: j + 1 ≤ 32767; */
+  j ++;
+  /*@ assert Eva: signed_overflow: -32768 ≤ i + j; */
+  /*@ assert Eva: signed_overflow: i + j ≤ 32767; */
+  int l = i + j;
+  Frama_C_dump_each();
+  return;
+}
+
+void main6(void)
+{
+  int i = 1;
+  int j = i;
+  return;
+}
+
+struct bitf volatile BITF;
+void main7(void)
+{
+  int i = (int)BITF.i + 1;
+  int k = (int)BITF.j + 1;
+  return;
+}
+
+/*@ assigns \result;
+    assigns \result \from \nothing; */
+extern int ( /* missing proto */ Frama_C_show_each)();
+
+void main8(void)
+{
+  S volatile a = {.field = 0};
+  vS b = {.field = 0};
+  vS2 c = {.field = 0};
+  U volatile d = {.field = 0};
+  vU e = {.field = 0};
+  Frama_C_show_each(a,b,c,d,e);
+  return;
+}
+
+extern struct __anonstruct_S9_4 S9;
+
+int volatile u9[10];
+void main9(void)
+{
+  int t9[10];
+  /*@ assert Eva: index_bound: 0 ≤ S9.i1; */
+  /*@ assert Eva: index_bound: S9.i1 < 10; */
+  t9[S9.i1] = 1;
+  /*@ assert Eva: index_bound: 0 ≤ S9.i1; */
+  /*@ assert Eva: index_bound: S9.i1 < 10; */
+  t9[S9.i1] = 2;
+  /*@ assert Eva: index_bound: 0 ≤ u9[1]; */
+  /*@ assert Eva: index_bound: u9[1] < 10; */
+  t9[u9[1]] = 3;
+  /*@ assert Eva: index_bound: 0 ≤ u9[1]; */
+  /*@ assert Eva: index_bound: u9[1] < 10; */
+  t9[u9[1]] = 4;
+  return;
+}
+
+void main(void)
+{
+  main1();
+  main2();
+  main3();
+  main4();
+  main5();
+  main6();
+  main7();
+  main8();
+  main9();
+  return;
+}
+
+

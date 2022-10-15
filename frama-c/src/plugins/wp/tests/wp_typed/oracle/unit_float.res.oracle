@@ -1,0 +1,40 @@
+# frama-c -wp -wp-model 'Typed' [...]
+[kernel] Parsing unit_float.i (no preprocessing)
+[kernel:parser:decimal-float] unit_float.i:21: Warning: 
+  Floating-point constant 0.2 is not represented exactly. Will use 0x1.999999999999ap-3.
+  (warn-once: no further messages from category 'parser:decimal-float' will be emitted)
+[wp] Running WP plugin...
+[wp] Warning: Missing RTE guards
+------------------------------------------------------------
+  Function main
+------------------------------------------------------------
+
+Goal Post-condition 'CST_F' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'CST_D' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'CNV_F' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'CNV_D' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'VAR_F' in 'main':
+Prove: true.
+
+------------------------------------------------------------
+
+Goal Post-condition 'VAR_D' in 'main':
+Prove: true.
+
+------------------------------------------------------------

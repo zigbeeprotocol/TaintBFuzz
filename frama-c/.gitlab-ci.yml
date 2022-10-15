@@ -1,0 +1,272 @@
+stages:
+ - git-update
+ - build
+ - tests
+ - distrib_and_compatibility
+ - make_public
+
+variables:
+    CURRENT: $CI_COMMIT_REF_NAME
+    DEFAULT: "master"
+    FRAMA_CI_OPT: "--override frama-c:$CI_COMMIT_REF_NAME,$CI_COMMIT_SHA"
+    OCAML: "4_08"
+
+check-no-old-frama-c:
+  stage: git-update
+  script:
+   - (! git merge-base --is-ancestor a1e186c68a6418a53b3dc06237f49e8dcbf75f4a HEAD)
+   - git merge-base --is-ancestor a35d2118fe6999dddce9e1847eff626fae9cc37c HEAD
+  tags:
+   - nix
+
+#avoid a nix error https://github.com/NixOS/nix/issues/2087
+git-update:
+  stage: git-update
+  script:
+   - nix/frama-ci.sh instantiate --eval -A frama-c.src.outPath
+  tags:
+   - nix
+
+frama-c:
+  stage: build
+  script:
+   - nix/frama-ci.sh build -A frama-c.main
+  artifacts:
+    when: on_failure
+    paths:
+      - commits.nix
+      - results.log
+    expire_in: 1 day
+  tags:
+   - nix
+
+lint:
+  stage: build
+  script:
+   - nix/frama-ci.sh build -A frama-c.lint
+  coverage: '/lint coverage: \d+\.\d+/'
+  tags:
+   - nix
+
+tests:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A frama-c.tests
+  tags:
+   - nix
+
+wp-qualif:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A frama-c.wp-qualif
+  tags:
+   - nix
+
+aorai-prove:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A frama-c.aorai-prove
+  tags:
+   - nix
+  allow_failure: true
+
+genassigns:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A genassigns.tests
+  tags:
+   - nix
+
+frama-clang:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A frama-clang.tests
+  tags:
+   - nix
+
+acsl-importer:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A acsl-importer.tests
+  tags:
+   - nix
+
+volatile:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A volatile.tests
+  tags:
+   - nix
+
+metacsl:
+  stage: tests
+  script:
+  - nix/frama-ci.sh build -A meta.tests
+  tags:
+  - nix
+
+Security:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A security.tests
+  tags:
+   - nix
+
+CFP:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A context-from-precondition.tests
+  tags:
+   - nix
+
+eva-tests:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A frama-c.eva-tests
+  tags:
+   - nix
+  allow_failure: true
+
+build-distrib-tarball:
+  stage: build
+  script:
+   - nix/frama-ci.sh build -A frama-c.build-distrib-tarball
+  tags:
+   - nix
+
+build-from-distrib-tarball:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A frama-c.build-from-distrib-tarball
+  tags:
+   - nix
+
+doc:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A frama-c.doc
+  tags:
+   - nix
+  allow_failure: true
+
+.build_template: &internal_template
+  stage: distrib_and_compatibility
+  tags:
+   - nix
+
+internal:
+  <<: *internal_template
+  script:
+   - nix/frama-ci.sh build -A frama-c.internal
+  when: manual
+
+
+internal_nightly:
+  <<: *internal_template
+  script:
+   - nix/frama-ci.sh build -A frama-c.internal
+  only:
+  - schedules
+
+
+.build_template: &frama-c-ocaml
+  stage: distrib_and_compatibility
+  script:
+   - nix/frama-ci.sh build -A frama-c.tests
+  tags:
+   - nix
+
+frama-c-ocaml-4.13:
+  variables:
+    OCAML: "4_13"
+  <<: *frama-c-ocaml
+
+caveat-importer:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A caveat-importer.tests
+  tags:
+   - nix
+
+mthread:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A mthread.tests
+  tags:
+   - nix
+
+pathcrawler:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A pathcrawler.tests
+  tags:
+   - nix
+
+e-acsl-tests-dev:
+  stage: tests
+  script:
+   - nix/frama-ci.sh build -A frama-c.e-acsl-tests-dev
+  tags:
+   - nix
+
+ivette:
+  stage: build
+  image: node:lts-gallium
+  cache:
+    paths:
+    - ivette/node_modules/
+  script:
+   - node --version
+   - npm --version
+   - yarn --version
+   - make -C ivette
+  tags:
+    - docker
+
+# make_public stage is used to push the current master branch of Frama-C and
+# associated plugins from the internal frama-c group to the public pub group.
+# For that, it uses the 'frama-c to frama-c-public' deploy key. Thus, to publish
+# a new plugin (while keeping its main repository internal), you can add a new
+# target to this stage, adapting the script for MetAcsl or Frama-Clang to your
+# own plugin.
+# You must also activate the deploy key on both frama-c/my_plugin
+# and pub/my_plugin repositories (the former should be read-only, the latter
+# must provide write access to the deploy key).
+# Do not forget to trigger the target only on schedules, so that all public
+# repositories stay synchronized.
+
+make_public:
+  stage: make_public
+  script:
+   - (! git merge-base --is-ancestor a1e186c68a6418a53b3dc06237f49e8dcbf75f4a origin/master)
+   - echo "$FRAMA_C_PUBLIC_SSH_PRIVATE_KEY" | nix run -f channel:nixos-19.03 coreutils --command base64 -d > nix/frama-c-public/id_ed25519
+   - nix run -f channel:nixos-19.03 coreutils --command chmod 400 nix/frama-c-public/id_ed25519
+   - GIT_SSH=nix/frama-c-public/ssh.sh nix run -f channel:nixos-19.03 openssh --command git push git@git.frama-c.com:pub/frama-c.git origin/master:refs/heads/master
+  tags:
+  - nix
+  only:
+  - schedules
+
+make_public_meta:
+  stage: make_public
+  script:
+   - echo "$FRAMA_C_PUBLIC_SSH_PRIVATE_KEY" | nix run -f channel:nixos-19.03 coreutils --command base64 -d > nix/frama-c-public/id_ed25519
+   - nix run -f channel:nixos-19.03 coreutils --command chmod 400 nix/frama-c-public/id_ed25519
+   - GIT_SSH=$PWD/nix/frama-c-public/ssh.sh nix run -f channel:nixos-19.03 openssh --command git clone git@git.frama-c.com:frama-c/meta.git nix/frama-c-public/meta
+   - GIT_SSH=$PWD/nix/frama-c-public/ssh.sh nix run -f channel:nixos-19.03 openssh --command git -C nix/frama-c-public/meta push git@git.frama-c.com:pub/meta origin/master:refs/heads/master
+  tags:
+  - nix
+  only:
+  - schedules
+
+make_public_fclang:
+  stage: make_public
+  script:
+   - echo "$FRAMA_C_PUBLIC_SSH_PRIVATE_KEY" | nix run -f channel:nixos-19.03 coreutils --command base64 -d > nix/frama-c-public/id_ed25519
+   - nix run -f channel:nixos-19.03 coreutils --command chmod 400 nix/frama-c-public/id_ed25519
+   - GIT_SSH=$PWD/nix/frama-c-public/ssh.sh nix run -f channel:nixos-19.03 openssh --command git clone git@git.frama-c.com:frama-c/frama-clang.git nix/frama-c-public/frama-clang
+   - GIT_SSH=$PWD/nix/frama-c-public/ssh.sh nix run -f channel:nixos-19.03 openssh --command git -C nix/frama-c-public/frama-clang push git@git.frama-c.com:pub/frama-clang origin/master:refs/heads/master
+  tags:
+  - nix
+  only:
+  - schedules

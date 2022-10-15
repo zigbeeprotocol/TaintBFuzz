@@ -1,0 +1,64 @@
+[kernel] Parsing malloc.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva] malloc.c:11: Call to builtin malloc
+[eva] malloc.c:11: allocating variable __malloc_main_l11
+[eva] malloc.c:17: Call to builtin malloc
+[eva] malloc.c:17: allocating variable __malloc_main_l17
+[eva] malloc.c:17: Call to builtin malloc
+[eva:malloc] malloc.c:17: 
+  resizing variable `__malloc_main_l17' (0..-1/34359738359) to fit 0..-1
+[eva] malloc.c:18: Call to builtin malloc
+[eva] malloc.c:18: allocating variable __malloc_main_l18
+[eva] malloc.c:18: Call to builtin malloc
+[eva] malloc.c:20: Call to builtin malloc
+[eva] malloc.c:20: allocating variable __malloc_main_l20
+[eva] malloc.c:20: Call to builtin malloc
+[eva] malloc.c:20: allocating variable __malloc_main_l20_0
+[eva:alarm] malloc.c:21: Warning: out of bounds write. assert \valid(p);
+[eva:alarm] malloc.c:22: Warning: out of bounds write. assert \valid(p + 2);
+[eva:alarm] malloc.c:23: Warning: out of bounds write. assert \valid(p + 24999);
+[eva] malloc.c:26: Frama_C_show_each: {{ &__malloc_main_l18 + {8} }}
+[eva] malloc.c:26: Frama_C_show_each: {{ &__malloc_main_l18 + {8} }}
+[eva] malloc.c:33: Call to builtin malloc
+[eva:malloc:imprecise] malloc.c:33: Warning: 
+  allocating a single weak variable for ALL dynamic allocations via malloc/calloc/realloc: __alloc_w_main
+[eva] malloc.c:33: Call to builtin malloc
+[eva:alarm] malloc.c:34: Warning: out of bounds write. assert \valid(mw);
+[eva] malloc.c:36: Call to builtin malloc
+[eva] malloc.c:36: Call to builtin malloc
+[eva:alarm] malloc.c:37: Warning: out of bounds write. assert \valid(mw2);
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  __fc_heap_status ∈ [--..--]
+  x ∈ {1; 2}
+  s ∈ {{ NULL ; &__malloc_main_l11[0] }}
+  p ∈ {{ (int *)&__malloc_main_l17 }}
+  q ∈ {{ &__malloc_main_l18[0] }}
+  r ∈ {{ &__malloc_main_l20[0] ; &__malloc_main_l20_0[0] }}
+  mw ∈ {{ (int *)&__alloc_w_main }}
+  mw2 ∈ {{ (int *)&__alloc_w_main }}
+  __malloc_main_l17[bits 0 to 31] ∈ {1}
+                   [4..7] ∈ UNINITIALIZED
+                   [bits 64 to 95] ∈ {3}
+                   [12..99995] ∈ UNINITIALIZED
+                   [bits 799968 to 799999] ∈ {4}
+                   [100000..4294967294] ∈ UNINITIALIZED
+  __malloc_main_l18[0] ∈ {1}
+                   [1] ∈ UNINITIALIZED
+                   [2] ∈ {3}
+  __malloc_main_l20[0] ∈ {1}
+                   [1] ∈ UNINITIALIZED
+                   [2] ∈ {3}
+                   [3..24] ∈ UNINITIALIZED
+  __malloc_main_l20_0[0] ∈ {1}
+                     [1] ∈ UNINITIALIZED
+                     [2] ∈ {3}
+                     [3..24] ∈ UNINITIALIZED
+  __alloc_w_main[bits 0 to 31] ∈ {1; 2} or UNINITIALIZED
+                [4..4294967295] ∈ UNINITIALIZED

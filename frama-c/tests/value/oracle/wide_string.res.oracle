@@ -1,0 +1,32 @@
+[kernel] Parsing wide_string.c (with preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  
+[eva:alarm] wide_string.c:16: Warning: 
+  accessing out of bounds index. assert 4 < 4;
+[eva:alarm] wide_string.c:19: Warning: 
+  accessing out of bounds index. assert 4 < 4;
+[eva] Recording results for main
+[eva] done for function main
+[eva] wide_string.c:16: assertion 'Eva,index_bound' got final status invalid.
+[eva] wide_string.c:19: assertion 'Eva,index_bound' got final status invalid.
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function main:
+  p ∈ {{ "bar" }}
+  q ∈ {{ L"foO" }}
+  __retres ∈ {0}
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function main:
+  \result FROM "bar"{[bits 8 to 15]; [bits 24 to 31]};
+               L"foO"{[bits 32 to 63]; [bits 96 to 127]}
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function main:
+    p; q; c; wc; __retres
+[inout] Inputs for function main:
+    "bar"{[bits 8 to 15]; [bits 24 to 31]};
+    L"foO"{[bits 32 to 63]; [bits 96 to 127]}

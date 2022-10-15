@@ -1,0 +1,75 @@
+# frama-c -wp -wp-rte [...]
+[kernel] Parsing opaque_struct.i (no preprocessing)
+[wp] Running WP plugin...
+[rte:annot] annotating function assigned_via_pointer
+[rte:annot] annotating function assigns
+[rte:annot] annotating function assigns_effect
+[rte:annot] annotating function chunk_typing
+[rte:annot] annotating function initialized_assigns
+[rte:annot] annotating function uninitialized_assigns
+[kernel:annot:missing-spec] opaque_struct.i:79: Warning: 
+  Neither code nor specification for function use, generating default assigns from the prototype
+[wp] 15 goals scheduled
+[wp] [Alt-Ergo] Goal typed_check_lemma_fail : Unsuccess
+[wp] [Qed] Goal typed_check_lemma_succeed_L1 : Valid
+[wp] [Alt-Ergo] Goal typed_check_lemma_succeed_L2 : Valid
+[wp] [Alt-Ergo] Goal typed_assigns_check_fail : Unsuccess
+[wp] [Qed] Goal typed_assigns_check_succeed : Valid
+[wp] [Alt-Ergo] Goal typed_initialized_assigns_check_fails : Unsuccess
+[wp] [Alt-Ergo] Goal typed_initialized_assigns_check_succeed : Valid
+[wp] [Alt-Ergo] Goal typed_uninitialized_assigns_check_fail : Unsuccess
+[wp] [Alt-Ergo] Goal typed_uninitialized_assigns_check_fail_2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigned_via_pointer_check_fail : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigns_effect_check_fail : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigns_effect_check_fail_2 : Unsuccess
+[wp] [Alt-Ergo] Goal typed_assigns_effect_check_succeed : Valid
+[wp] [Qed] Goal typed_chunk_typing_assert_rte_mem_access : Valid
+[wp] [Qed] Goal typed_chunk_typing_assert_rte_mem_access_2 : Valid
+[wp] Proved goals:    7 / 15
+  Qed:             4 
+  Alt-Ergo:        3  (unsuccess: 8)
+------------------------------------------------------------
+ Axiomatics                WP     Alt-Ergo  Total   Success
+  Axiomatic test            1        1        3      66.7%
+------------------------------------------------------------
+ Functions                 WP     Alt-Ergo  Total   Success
+  assigns                   1        -        2      50.0%
+  initialized_assigns       -        1        2      50.0%
+  uninitialized_assigns     -        -        2       0.0%
+  assigned_via_pointer      -        -        1       0.0%
+  assigns_effect            -        1        3      33.3%
+  chunk_typing              2        -        2       100%
+------------------------------------------------------------
+[wp] opaque_struct.i:31: Warning: 
+  Memory model hypotheses for function 'g':
+  /*@ behavior wp_typed:
+        requires \separated(p, &S1, &S2, &p); */
+  void g(void);
+[wp] opaque_struct.i:64: Warning: 
+  Memory model hypotheses for function 'assign':
+  /*@ behavior wp_typed:
+        requires \separated(a, &S1, &S2); */
+  void assign(struct S *a);
+[wp] opaque_struct.i:67: Warning: 
+  Memory model hypotheses for function 'assigns_effect':
+  /*@
+     behavior wp_typed:
+       requires \separated(a, &S1, &S2);
+       requires \separated(c, &S1, &S2);
+       requires \separated(p_0, &S1, &S2);
+       requires \separated(q, &S1, &S2);
+     */
+  void assigns_effect(int *p_0, float *q, char *c, struct S *a);
+[wp] opaque_struct.i:76: Warning: 
+  Memory model hypotheses for function 'use':
+  /*@ behavior wp_typed:
+        requires \separated(s, &S1, &S2); */
+  void use(struct S *s);
+[wp] opaque_struct.i:79: Warning: 
+  Memory model hypotheses for function 'chunk_typing':
+  /*@
+     behavior wp_typed:
+       requires \separated(sc, &S1, &S2);
+       requires \separated(uc, &S1, &S2);
+     */
+  void chunk_typing(unsigned char *uc, signed char *sc);

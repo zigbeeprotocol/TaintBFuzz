@@ -1,0 +1,58 @@
+[kernel] Parsing call_simple.i (no preprocessing)
+[eva] Analyzing a complete application starting at main
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  X ∈ {0}
+  c ∈ {0}
+  u ∈ {0}
+  v ∈ {0}
+  w ∈ {0}
+  G ∈ {0}
+[eva] computing for function f <- main.
+  Called from call_simple.i:14.
+[eva] Recording results for f
+[eva] Done for function f
+[eva:alarm] call_simple.i:15: Warning: 
+  signed overflow. assert ll + 1 ≤ 2147483647;
+[eva] Recording results for main
+[eva] done for function main
+[eva] ====== VALUES COMPUTED ======
+[eva:final-states] Values at end of function f:
+  X ∈ {68}
+  u ∈ {0}
+  a ∈ {0}
+  i ∈ {{ &u }}
+[eva:final-states] Values at end of function main:
+  X ∈ {68}
+  c ∈ [--..--]
+  u ∈ {0}
+  v ∈ {0}
+  w ∈ {17}
+  ll ∈ [-2147483647..2147483647]
+  __retres ∈ {0}
+[from] Computing for function f
+[from] Done for function f
+[from] Computing for function main
+[from] Done for function main
+[from] ====== DEPENDENCIES COMPUTED ======
+  These dependencies hold at termination for the executions that terminate:
+[from] Function f:
+  X FROM b; c_0
+  u FROM a
+[from] Function main:
+  X FROM G
+  c FROM ll
+  u FROM \nothing
+  v FROM G
+  w FROM \nothing
+  \result FROM \nothing
+[from] ====== END OF DEPENDENCIES ======
+[inout] Out (internal) for function f:
+    X; u; a; i
+[inout] Inputs for function f:
+    \nothing
+[inout] Out (internal) for function main:
+    X; c; u; v; w; ll; tmp; __retres
+[inout] Inputs for function main:
+    v; w; G

@@ -1,0 +1,197 @@
+[kernel] Parsing bts336.i (no preprocessing)
+[eva] Analyzing a complete application starting at main4
+[eva] Computing initial state
+[eva] Initial state computed
+[eva:initial-state] Values of globals at initialization
+  T[0..9] ∈ {0}
+  x5 ∈ {0}
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:78.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:79.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:80.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:81.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:82.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] bts336.i:77: starting to merge loop iterations
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:78.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:79.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:80.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:81.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:82.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:78.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:79.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:80.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:81.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:82.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:78.
+[eva:alarm] bts336.i:62: Warning: signed overflow. assert *p + 1 ≤ 2147483647;
+[eva:alarm] bts336.i:63: Warning: signed overflow. assert *q + 1 ≤ 2147483647;
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:79.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:80.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:81.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva] computing for function f4 <- main4.
+  Called from bts336.i:82.
+[eva] Recording results for f4
+[from] Computing for function f4
+[from] Done for function f4
+[eva] Done for function f4
+[eva:alarm] bts336.i:84: Warning: 
+  signed overflow. assert a2 + b4 ≤ 2147483647;
+[eva] Recording results for main4
+[from] Computing for function main4
+[from] Done for function main4
+[eva] done for function main4
+[from] ====== DISPLAYING CALLWISE DEPENDENCIES ======
+[from] call to f4 at bts336.i:78 (by main4):
+  a1 FROM p; a1
+  b1 FROM q; b1
+[from] call to f4 at bts336.i:79 (by main4):
+  a2 FROM p; a2
+  b2 FROM q; b2
+[from] call to f4 at bts336.i:80 (by main4):
+  a3 FROM p; a3
+  b3 FROM q; b3
+[from] call to f4 at bts336.i:81 (by main4):
+  a4 FROM p; a4
+  b4 FROM q; b4
+[from] call to f4 at bts336.i:82 (by main4):
+  a5 FROM p; a5
+  b5 FROM q; b5
+[from] entry point:
+  \result FROM c
+[from] ====== END OF CALLWISE DEPENDENCIES ======
+[slicing] slicing requests in progress...
+[slicing] initializing slicing ...
+[slicing] interpreting slicing requests from the command line...
+[pdg] computing for function main4
+[pdg] done for function main4
+[slicing] applying all slicing requests...
+[slicing] applying 0 actions...
+[slicing] applying all slicing requests...
+[slicing] applying 1 actions...
+[slicing] applying actions: 1/1...
+[pdg] computing for function f4
+[pdg] done for function f4
+[slicing] exporting project to 'Slicing export'...
+[slicing] applying all slicing requests...
+[slicing] applying 0 actions...
+[sparecode] remove unused global declarations from project 'Slicing export tmp'
+[sparecode] removed unused global declarations in new project 'Slicing export'
+/* Generated by Frama-C */
+void f4_slice_1(int *p, int *q)
+{
+  (*p) ++;
+  (*q) ++;
+  return;
+}
+
+int main4(int volatile c)
+{
+  int __retres;
+  int a2 = 3;
+  int b2 = 4;
+  int a4 = 7;
+  int b4 = 8;
+  while (c) {
+    f4_slice_1(& a2,& b2);
+    f4_slice_1(& a4,& b4);
+  }
+  __retres = a2 + b4;
+  return __retres;
+}
+
+
+[kernel] Parsing ocode_5_bts336.i (no preprocessing)
