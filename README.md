@@ -1,4 +1,4 @@
-# TaintBFuzz: An Intelligent Mutation Strategy of Zigbee Protocol Fuzzing via Constraint-Field Dependency Inference
+# TaintBFuzz: Intelligent Zigbee Protocol Fuzzing via Constraint-Field Dependency Inference
 TaintBFuzz is a fuzzing platform for Zigbee protocol implementations, which implements an intelligent mutation method with constraint-filed dependency inference. It intends to assist IoT application developers in evaluating the security threats associated with the Zigbee protocol implementation in developing their applications. We leverage static taint analysis to infer the relationship between the message field and the path constraints, which guides the fuzzer to prioritize the critical message fields for mutation.
 
 The following figure shows the workflow of TaintBFuzz framework.
