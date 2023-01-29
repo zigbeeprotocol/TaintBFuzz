@@ -30,7 +30,7 @@ TaintBFuzz performs static taint analysis using Frama-C, which is a platform ded
 **Those variables would be different in other stack implementations developed by other vendors.** You may need to customize them and the pre-defined values in the file `config.h`.
 
 ## Step 1: Constraint Variables Identification ##
-TaintBFuzz first identifies the constraint variables reasonably and constructs a set of Representative Message Sequence (RMS) based on the given protocol message format script (protocol message format is defined in [fuzz_zigbee.py](https://github.com/zigbeeprotocol/TaintBFuzz/blob/main/fuzzing/fuzz_zigbee.py)). An RMS is defined as a tuple (F, Len,data), where F = (F1, ..., Fn) is a set of message fields defined in the script, Len = (L1, ..., Ln) is the length of every message field, and data is a message sequence with concrete values.
+TaintBFuzz first identifies the constraint variables reasonably and constructs a set of Representative Message (RM) based on the given protocol message format script (protocol message format is defined in [fuzz_zigbee.py](https://github.com/zigbeeprotocol/TaintBFuzz/blob/main/fuzzing/fuzz_zigbee.py)). An RM is defined as a tuple (F, Len,data), where F = (F1, ..., Fn) is a set of message fields defined in the script, Len = (L1, ..., Ln) is the length of every message field, and data is a message sequence with concrete values.
 
 1. Open WSL and navigate to the folder [depnInfer](https://github.com/zigbeeprotocol/TaintBFuzz/tree/main/depenInfer).
 2. Run the ocaml script with the following command to collect variables.
